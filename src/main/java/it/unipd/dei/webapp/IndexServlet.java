@@ -20,23 +20,76 @@ public class IndexServlet extends HttpServlet
         PrintWriter out = res.getWriter();
 
         // write the HTML page
-        out.printf("<!DOCTYPE html>%n");
+        out.println("""
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="utf-8">
+                        
+                        <style type="text/css">
+                            
+                            .menu_bar
+                            {
+                                list-style-type: none;
+                                margin: 0;
+                                padding: 0;
+                                
+                                overflow: hidden;
+                                background-color: #AFEEEE;
+                            }
+                            
+                            .menu_item
+                            {
+                                display: block;
+                                float: left;
+                                
+                                color: black;
+                                font-size: 16px;
+                                text-align: center;
+                                padding: 16px 16px;
+                            }
+                            
+                            .menu_item:hover
+                            {
+                                background-color: #5F9EA0;
+                            }
+                        
+                        </style>
+                        
+                        <title>GWA Homepage</title>
+                    </head>
+                    <body>
+                        <div style="width: 100%; height: 100%;">
+                            <div style="width: 100%; height: 100%; float: top;">
+                                <ul class="menu_bar">
+                                    <li class="menu_item"><a href="#">Home</a></li>
+                                    <li class="menu_item"><a href="#">Hours</a></li>
+                                    <li class="menu_item"><a href="#">The Gym</a></li>
+                                    <li class="menu_item"><a href="#">Courses</a></li>
+                                    <li class="menu_item"><a href="#">Staff</a></li>
+                                    <li class="menu_item"><a href="#">Prices</a></li>
+                                    <li class="menu_item"><a href="#">Contact Us</a></li>
+                                    <li class="menu_item"><a href="#">Login</a></li>
+                                    <li class="menu_item"><a href="#">Register</a></li>
+                                </ul>
+                            </div>
+                            <div style="width: 100%; height: 100%;">
+                                <h1>Index Servlet Response</h1>
+                                <hr/>
+                                <p>Hello, world!</p>
+                            </div>
+                            <div style="width: 100%; height: 100%; float: bottom;">
+                                <ul class="menu_bar">
+                                    <li class="menu_item">Useless 1!</li>
+                                    <li class="menu_item">Useless 2!</li>
+                                    <li class="menu_item">Useless 3!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </body>
+                    </html>
+                    """);
 
-        out.printf("<html lang=\"en\">%n");
-        out.printf("<head>%n");
-        out.printf("<meta charset=\"utf-8\">%n");
-        out.printf("<title>HelloWorld Servlet Response</title>%n");
-        out.printf("</head>%n");
-
-        out.printf("<body>%n");
-        out.printf("<h1>HelloWorld Servlet Response</h1>%n");
-        out.printf("<hr/>%n");
-        out.printf("<p>%n");
-        out.printf("Hello, world!%n");
-        out.printf("</p>%n");
-        out.printf("</body>%n");
-
-        out.printf("</html>%n");
 
         // flush the output stream buffer
         out.flush();
@@ -45,7 +98,7 @@ public class IndexServlet extends HttpServlet
         out.close();
 
         // write a "log" statement
-        System.out.printf("[INFO] HelloWorldServlet - %s - Request successfully served.%n",
-                new Timestamp(System.currentTimeMillis()).toString());
+        System.out.printf("[INFO] IndexServlet - %s - Request successfully served.%n",
+                new Timestamp(System.currentTimeMillis()));
     }
 }
