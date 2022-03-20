@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <RollingFile name="francesco_caldivezzi_appender" fileName="${sys:catalina.home}/logs/francesco_caldivezzi.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+     </Appenders>
+    <Loggers>
+        <Logger name="francesco_caldivezzi_logger" level="all">
+            <AppenderRef ref="francesco_caldivezzi_appender"/>
+        </Logger>
+    </Loggers>
+</Configuration>
