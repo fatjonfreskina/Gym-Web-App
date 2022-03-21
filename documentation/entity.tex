@@ -1,0 +1,28 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+
+\title{Entity}
+\date{March 2022}
+
+\begin{document}
+The entity-relationship contains 8 main entities:
+\begin{itemize}
+
+\item Users: This is the entity where we collect information about all the people that work or come to the gym, they are identified from a Primary key (The fiscal code), and it’s necessary also to store all information in order to access their private pages . There are 3 types of users 
+\begin{itemize}
+	\item Trainer, if they held courses at the gym 
+	\item Trainee for users which attend course
+	\item Secretary: for workers that managed bureaucratics and sign presence
+\end{itemize}
+A single user may have more than one role,they are defined in the “Role” attribute. 
+
+Password reset: This entity is necessary to manage the password reset system for our web app. When a user forgets his password we will send a token (via email address) which permits him to create a new password for his account. Tokens expire if they are not used after 30 minutes.
+\item  Medical certificate: This entity is necessary to collect information about medical certificates. The medical certificate is mandatory for every user with a “trainee” role in order to attend the courses offered by the gym.
+\item Course: Course is an entity to describe the different types of courses we have in our gym. We store the name and a description for our courses.
+\item Course edition : it’s an entity that describes a course that is held by a trainer at specific times in our gym. Any occurence in this entity must match a course type from the “Course” entity
+\item Lecture time slot
+\item Subscription type
+\item Subscription
+\end{itemize}
+
+\end{document}
