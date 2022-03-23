@@ -13,14 +13,14 @@ CREATE TABLE IF NOT EXISTS passwordreset (
 //ALMOST OK
 CREATE TABLE IF NOT EXISTS user (
 	id SERIAL,
-	role roles NOT NULL,
+	role roles[3] NOT NULL,
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
 	email VARCHAR(40) NOT NULL,
 	psw BIGINT NOT NULL,
 	taxcode CHAR(16) UNIQUE NOT NULL,
 	birthdate DATE NOT NULL,
-	telephone ?? STABILIRE +39??,
+	telephone CHAR(10),
 	address TEXT NOT NULL,
 	avatarpath TEXT,
 	PRIMARY KEY(id)
