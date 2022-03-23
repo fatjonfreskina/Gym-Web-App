@@ -14,9 +14,9 @@ CREATE TABLE IF NOT EXISTS passwordreset (
 CREATE TABLE IF NOT EXISTS user (
 	id SERIAL,
 	role roles NOT NULL,
-	name TEXT NOT NULL,
-	surname TEXT NOT NULL,
-	email TEXT NOT NULL,
+	name VARCHAR(30) NOT NULL,
+	surname VARCHAR(30) NOT NULL,
+	email VARCHAR(40) NOT NULL,
 	psw BIGINT NOT NULL,
 	taxcode CHAR(16) UNIQUE NOT NULL,
 	birthdate DATE NOT NULL,
@@ -42,9 +42,9 @@ CREATE TABLE IF NOT EXISTS medicalcertificate (
 //FINITO
 CREATE TABLE IF NOT EXISTS reservation (
 	trainee INTEGER,
-	lectureroom TEXT,
+	lectureroom VARCHAR(30),
 	lecturedate DATE,
-	lecturestarttime TIME
+	lecturestarttime TIME,
 	PRIMARY KEY(trainee,lectureroom,lecturedate,lecturestarttime),
 	FOREIGN KEY(trainee) REFERENCES user(id),
 	FOREIGN KEY(lectureroom,lecturedate,lecturestarttime) REFERENCES lecturetimeslot(roomname,date,starttime)
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS reservation (
 //OK
 CREATE TABLE IF NOT EXISTS teaches (
 	courseeditionid INTEGER,
-	coursename TEXT,
+	coursename VARCHAR(30),
 	trainer INTEGER,
 	PRIMARY KEY(courseeditionid,coursename,trainer),
 	FOREIGN KEY(courseeditionid,coursename) REFERENCES courseedition(id,coursename)
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS teaches (
 
 //OK
 CREATE TABLE IF NOT EXISTS room (
-	name TEXT,
+	name VARCHAR(30),
 	slots INTEGER NOT NULL,
 	PRIMARY KEY(name)
 );
