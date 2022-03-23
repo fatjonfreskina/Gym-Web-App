@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS passwordreset (
 //ALMOST OK
 CREATE TABLE IF NOT EXISTS user (
 	id SERIAL,
-	role roles[3] NOT NULL,
+	role roles[3],
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
 	email VARCHAR(40) NOT NULL,
