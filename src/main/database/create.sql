@@ -23,7 +23,8 @@ CREATE TABLE IF NOT EXISTS user (
 	telephone CHAR(10),
 	address TEXT NOT NULL,
 	avatarpath TEXT,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
+	CHECK(LENGTH(telephone) == 9)
 );
 
 CREATE TYPE IF NOT EXISTS roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
