@@ -15,7 +15,7 @@ CREATE TABLE person (
 	role roles[3],
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
-	email VARCHAR(40) NOT NULL,
+	email VARCHAR(40) UNIQUE NOT NULL,
 	psw BIGINT NOT NULL,
 	taxcode CHAR(16) UNIQUE NOT NULL,
 	birthdate DATE NOT NULL,
