@@ -2,21 +2,20 @@
 DROP DATABASE IF EXISTS gwa_db; 
 CREATE DATABASE gwa_db ENCODING = 'UTF8';
 -- Connect to the new db
-\c gwa_db
+-- \c gwa_db
 
 CREATE SCHEMA gwa;
 SET search_path='gwa';
 
 CREATE TYPE roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
 
---ALMOST OK
 CREATE TABLE person (
 	id SERIAL,
 	role roles[3],
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
 	email VARCHAR(40) UNIQUE NOT NULL,
-	psw BIGINT NOT NULL,
+	psw VARCHAR(255) NOT NULL,
 	taxcode CHAR(16) UNIQUE NOT NULL,
 	birthdate DATE NOT NULL,
 	telephone CHAR(10),
@@ -26,16 +25,14 @@ CREATE TABLE person (
 	CHECK(LENGTH(telephone) = 10)
 );
 
---FINTO 
 CREATE TABLE passwordreset (
-	token BIGINT,
+	token VARCHAR(255),
 	expirationdate TIMESTAMP NOT NULL,
 	person INTEGER,
 	PRIMARY KEY(token)
 );
 
 
---FINITO
 CREATE TABLE medicalcertificate (
 	person INTEGER,
 	expirationdate DATE,
@@ -44,7 +41,6 @@ CREATE TABLE medicalcertificate (
 	PRIMARY KEY(person,expirationdate)
 );
 
---FINITO
 CREATE TABLE reservation (
 	trainee INTEGER,
 	lectureroom VARCHAR(30),
@@ -53,7 +49,6 @@ CREATE TABLE reservation (
 	PRIMARY KEY(trainee,lectureroom,lecturedate,lecturestarttime)
 );
 
---OK
 CREATE TABLE teaches (
 	courseeditionid INTEGER,
 	coursename VARCHAR(30) NOT NULL,
@@ -61,7 +56,6 @@ CREATE TABLE teaches (
 	PRIMARY KEY(courseeditionid,coursename,trainer)
 );
 
---OK
 CREATE TABLE room (
 	name VARCHAR(30) NOT NULL,
 	slots INTEGER NOT NULL,
