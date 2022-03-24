@@ -68,6 +68,22 @@
                     <webXml>${basedir}/src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>
             </plugin>
+
+            <!-- tomcat plugin to deploy automatically -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://127.0.0.1:8080/manager/text</url>
+                    <username>robot</username>
+                    <password>robot</password>
+                    <mode>war</mode>
+                    <server>tomcat</server>
+                    <update>true</update>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
