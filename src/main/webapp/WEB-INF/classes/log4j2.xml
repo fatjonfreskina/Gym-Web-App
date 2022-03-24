@@ -7,10 +7,82 @@
             <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
             <TimeBasedTriggeringPolicy />
         </RollingFile>
+        <RollingFile name="marco_alessio_appender" fileName="${sys:catalina.home}/logs/marco_alessio.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="alberto_campeol_appender" fileName="${sys:catalina.home}/logs/alberto_campeol.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="simone_dantimo_appender" fileName="${sys:catalina.home}/logs/simone_dantimo.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="fatjon_freskina_appender" fileName="${sys:catalina.home}/logs/fatjon_freskina.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="riccardo_forzan_appender" fileName="${sys:catalina.home}/logs/riccardo_forzan.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="andrea_pasin_appender" fileName="${sys:catalina.home}/logs/andrea_pasin.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="harjot_singh_appender" fileName="${sys:catalina.home}/logs/harjot_singh.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
+        <RollingFile name="riccardo_tumiati_logger" fileName="${sys:catalina.home}/logs/riccardo_tumiati.log"
+                     filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
+                     immediateFlush="true">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
+            <TimeBasedTriggeringPolicy />
+        </RollingFile>
      </Appenders>
     <Loggers>
         <Logger name="francesco_caldivezzi_logger" level="all">
             <AppenderRef ref="francesco_caldivezzi_appender"/>
+        </Logger>
+        <Logger name="marco_alessio_logger" level="all">
+            <AppenderRef ref="marco_alessio_appender"/>
+        </Logger>
+        <Logger name="alberto_campeol_logger" level="all">
+            <AppenderRef ref="alberto_campeol_appender"/>
+        </Logger>
+        <Logger name="simone_dantimo_logger" level="all">
+            <AppenderRef ref="simone_dantimo_appender"/>
+        </Logger>
+        <Logger name="fatjon_freskina_logger" level="all">
+            <AppenderRef ref="fatjon_freskina_appender"/>
+        </Logger>
+        <Logger name="riccardo_forzan_logger" level="all">
+            <AppenderRef ref="riccardo_forzan_appender"/>
+        </Logger>
+        <Logger name="andrea_pasin_logger" level="all">
+            <AppenderRef ref="andrea_pasin_appender"/>
+        </Logger>
+        <Logger name="harjot_singh_logger" level="all">
+            <AppenderRef ref="harjot_singh_appender"/>
+        </Logger>
+        <Logger name="riccardo_tumiati_logger" level="all">
+            <AppenderRef ref="riccardo_tumiati_appender"/>
         </Logger>
     </Loggers>
 </Configuration>

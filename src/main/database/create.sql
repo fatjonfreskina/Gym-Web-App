@@ -1,5 +1,6 @@
 -- run `cat create.sql | psql -U postgres`
 DROP DATABASE IF EXISTS gwa_db; 
+DROP SCHEMA IF EXISTS gwa CASCADE;
 CREATE DATABASE gwa_db ENCODING = 'UTF8';
 -- Connect to the new db
 -- \c gwa_db
@@ -10,30 +11,29 @@ SET search_path='gwa';
 CREATE TYPE roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
 
 CREATE TABLE person (
-	id SERIAL,
+	email VARCHAR(40),
 	role roles[3],
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
-	email VARCHAR(40) UNIQUE NOT NULL,
 	psw VARCHAR(255) NOT NULL,
 	taxcode CHAR(16) UNIQUE NOT NULL,
 	birthdate DATE NOT NULL,
 	telephone CHAR(10),
 	address TEXT NOT NULL,
 	avatarpath TEXT,
-	PRIMARY KEY(id),
+	PRIMARY KEY(email),
 	CHECK(LENGTH(telephone) = 10)
 );
 
 CREATE TABLE passwordreset (
 	token VARCHAR(255),
 	expirationdate TIMESTAMP NOT NULL,
-	person INTEGER,
+	person VARCHAR(40),
 	PRIMARY KEY(token)
 );
 
 CREATE TABLE medicalcertificate (
-	person INTEGER,
+	person VARCHAR(40),
 	expirationdate DATE,
 	doctorname TEXT NOT NULL,
 	path TEXT NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE medicalcertificate (
 );
 
 CREATE TABLE reservation (
-	trainee INTEGER,
+	trainee VARCHAR(40),
 	lectureroom VARCHAR(30),
 	lecturedate DATE,
 	lecturestarttime TIME,
@@ -51,7 +51,7 @@ CREATE TABLE reservation (
 CREATE TABLE teaches (
 	courseeditionid INTEGER,
 	coursename VARCHAR(30) NOT NULL,
-	trainer INTEGER,
+	trainer VARCHAR(40),
 	PRIMARY KEY(courseeditionid,coursename,trainer)
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE lecturetimeslot (
 	starttime TIME NOT NULL,
 	courseeditionid INTEGER,
 	coursename VARCHAR(30) NOT NULL,
-	substitution INTEGER,
+	substitution VARCHAR(40),
 	PRIMARY KEY (roomname, date, starttime)
 );
 
@@ -100,7 +100,7 @@ CREATE TABLE subscription (
 	coursename VARCHAR(30) NOT NULL,
 	duration INTEGER NOT NULL,
 	startday DATE NOT NULL,
-	trainee INTEGER NOT NULL,
+	trainee VARCHAR(40) NOT NULL,
 	PRIMARY KEY (courseeditionid, coursename, duration, startday, trainee)
 );
 
@@ -108,15 +108,15 @@ CREATE TABLE subscription (
 --foreign keys
 ALTER TABLE passwordreset 
 ADD CONSTRAINT passwordreset_fk 
-FOREIGN KEY(person) REFERENCES person(id);
+FOREIGN KEY(person) REFERENCES person(email);
 
 ALTER TABLE medicalcertificate 
 ADD CONSTRAINT medicalcertificate_fk 
-FOREIGN KEY (person) REFERENCES person(id);
+FOREIGN KEY (person) REFERENCES person(email);
 
 ALTER TABLE reservation 
 ADD CONSTRAINT reservation_fk1 
-FOREIGN KEY(trainee) REFERENCES person(id);
+FOREIGN KEY(trainee) REFERENCES person(email);
 
 ALTER TABLE reservation 
 ADD CONSTRAINT reservation_fk2 
@@ -128,7 +128,7 @@ FOREIGN KEY(courseeditionid, coursename) REFERENCES courseedition(id, coursename
 
 ALTER TABLE teaches
 ADD CONSTRAINT teaches_fk2
-FOREIGN KEY(trainer) REFERENCES person(id);
+FOREIGN KEY(trainer) REFERENCES person(email);
 
 ALTER TABLE lecturetimeslot 
 ADD CONSTRAINT lecturetimeslot_fk1 
@@ -140,7 +140,7 @@ FOREIGN KEY(courseeditionid, coursename) REFERENCES courseedition(id, coursename
 
 ALTER TABLE lecturetimeslot
 ADD CONSTRAINT lecturetimeslot_fk3
-FOREIGN KEY(substitution) REFERENCES person(id);
+FOREIGN KEY(substitution) REFERENCES person(email);
 
 ALTER TABLE subscription
 ADD CONSTRAINT subscription_fk1
@@ -148,7 +148,7 @@ FOREIGN KEY(courseeditionid, coursename, duration) REFERENCES subscriptiontype(c
 
 ALTER TABLE subscription
 ADD CONSTRAINT subscription_fk2
-FOREIGN KEY(trainee) REFERENCES person(id);
+FOREIGN KEY(trainee) REFERENCES person(email);
 
 ALTER TABLE subscriptiontype
 ADD CONSTRAINT subscriptiontype_fk

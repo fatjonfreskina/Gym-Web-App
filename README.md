@@ -13,3 +13,7 @@
 | Singh         | Harjot        | 2053081       |
 | Tumiati       | Riccardo      | 2054534       |
 
+## Description the web-app
+
+This app is designed to managed everything related to a gym. Starting from the gym itself to the people that work there and also to the users that want to attend courses offered by the gym.
+The goal is to design a web application in order for those people to be able to simplify their tasks both on the workers side but also on the gym members side. 
