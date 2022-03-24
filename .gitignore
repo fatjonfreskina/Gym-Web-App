@@ -47,6 +47,3 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-
-# Pom
-pom.xml

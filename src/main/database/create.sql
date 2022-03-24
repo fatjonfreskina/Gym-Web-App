@@ -32,7 +32,6 @@ CREATE TABLE passwordreset (
 	PRIMARY KEY(token)
 );
 
-
 CREATE TABLE medicalcertificate (
 	person INTEGER,
 	expirationdate DATE,
