@@ -23,7 +23,7 @@ CREATE TABLE person (
 	address TEXT NOT NULL,
 	avatarpath TEXT,
 	PRIMARY KEY(id),
-	CHECK(LENGTH(telephone) = 9)
+	CHECK(LENGTH(telephone) = 10)
 );
 
 --FINTO 
