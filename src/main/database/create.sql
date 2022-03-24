@@ -1,17 +1,16 @@
-DROP DATABASE IF EXISTS gwa;
+-- run `cat create.sql | psql -U postgres`
+DROP DATABASE IF EXISTS gwa_db; 
+CREATE DATABASE gwa_db ENCODING = 'UTF8';
+-- Connect to the new db
+\c gwa_db
 
+CREATE SCHEMA gwa;
+SET search_path='gwa';
 
-//FINTO 
-CREATE TABLE IF NOT EXISTS passwordreset (
-	token BIGINT,
-	expirationdate TIMESTAMP NOT NULL,
-	user INTEGER,
-	PRIMARY KEY(token),
-	FOREIGN KEY(user) REFERENCES user(id)
-);
+CREATE TYPE roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
 
-//ALMOST OK
-CREATE TABLE IF NOT EXISTS user (
+--ALMOST OK
+CREATE TABLE person (
 	id SERIAL,
 	role roles[3],
 	name VARCHAR(30) NOT NULL,
@@ -24,46 +23,144 @@ CREATE TABLE IF NOT EXISTS user (
 	address TEXT NOT NULL,
 	avatarpath TEXT,
 	PRIMARY KEY(id),
-	CHECK(LENGTH(telephone) == 9)
+	CHECK(LENGTH(telephone) = 9)
 );
 
-CREATE TYPE IF NOT EXISTS roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
+--FINTO 
+CREATE TABLE passwordreset (
+	token BIGINT,
+	expirationdate TIMESTAMP NOT NULL,
+	person INTEGER,
+	PRIMARY KEY(token)
+);
 
 
-//FINITO
-CREATE TABLE IF NOT EXISTS medicalcertificate (
-	user BIGINT,
+--FINITO
+CREATE TABLE medicalcertificate (
+	person INTEGER,
 	expirationdate DATE,
 	doctorname TEXT NOT NULL,
 	path TEXT NOT NULL,
-	PRIMARY KEY(user,expirationdate),
-	FOREIGN KEY(user) REFERENCES user(id)
+	PRIMARY KEY(person,expirationdate)
 );
 
-//FINITO
-CREATE TABLE IF NOT EXISTS reservation (
+--FINITO
+CREATE TABLE reservation (
 	trainee INTEGER,
 	lectureroom VARCHAR(30),
 	lecturedate DATE,
 	lecturestarttime TIME,
-	PRIMARY KEY(trainee,lectureroom,lecturedate,lecturestarttime),
-	FOREIGN KEY(trainee) REFERENCES user(id),
-	FOREIGN KEY(lectureroom,lecturedate,lecturestarttime) REFERENCES lecturetimeslot(roomname,date,starttime)
+	PRIMARY KEY(trainee,lectureroom,lecturedate,lecturestarttime)
 );
 
-//OK
-CREATE TABLE IF NOT EXISTS teaches (
+--OK
+CREATE TABLE teaches (
 	courseeditionid INTEGER,
-	coursename VARCHAR(30),
+	coursename VARCHAR(30) NOT NULL,
 	trainer INTEGER,
-	PRIMARY KEY(courseeditionid,coursename,trainer),
-	FOREIGN KEY(courseeditionid,coursename) REFERENCES courseedition(id,coursename)
-
+	PRIMARY KEY(courseeditionid,coursename,trainer)
 );
 
-//OK
-CREATE TABLE IF NOT EXISTS room (
-	name VARCHAR(30),
+--OK
+CREATE TABLE room (
+	name VARCHAR(30) NOT NULL,
 	slots INTEGER NOT NULL,
 	PRIMARY KEY(name)
 );
+
+CREATE TABLE lecturetimeslot (
+	roomname VARCHAR(30),
+	date DATE NOT NULL,
+	starttime TIME NOT NULL,
+	courseeditionid INTEGER,
+	coursename VARCHAR(30) NOT NULL,
+	substitution INTEGER,
+	PRIMARY KEY (roomname, date, starttime)
+);
+
+CREATE TABLE courseedition (
+	id SERIAL,
+	coursename VARCHAR(30) NOT NULL,
+	PRIMARY KEY(id, coursename)
+);
+
+CREATE TABLE course (
+	name VARCHAR(30) NOT NULL,
+	description VARCHAR(50),
+	PRIMARY KEY(name)
+);
+
+CREATE TABLE subscriptiontype (
+	courseeditionid INTEGER,
+	coursename VARCHAR(30) NOT NULL,
+	duration INTEGER NOT NULL,
+	cost DECIMAL(6,2) NOT NULL,
+	discount INTEGER,
+	CHECK (duration > 0),
+	CHECK (discount >= 0 AND discount <= 100),
+	CHECK (cost > 0),
+	PRIMARY KEY (courseeditionid, coursename, duration)
+);
+
+CREATE TABLE subscription (
+	courseeditionid INTEGER,
+	coursename VARCHAR(30) NOT NULL,
+	duration INTEGER NOT NULL,
+	startday DATE NOT NULL,
+	trainee INTEGER NOT NULL,
+	PRIMARY KEY (courseeditionid, coursename, duration, startday, trainee)
+);
+
+
+--foreign keys
+ALTER TABLE passwordreset 
+ADD CONSTRAINT passwordreset_fk 
+FOREIGN KEY(person) REFERENCES person(id);
+
+ALTER TABLE medicalcertificate 
+ADD CONSTRAINT medicalcertificate_fk 
+FOREIGN KEY (person) REFERENCES person(id);
+
+ALTER TABLE reservation 
+ADD CONSTRAINT reservation_fk1 
+FOREIGN KEY(trainee) REFERENCES person(id);
+
+ALTER TABLE reservation 
+ADD CONSTRAINT reservation_fk2 
+FOREIGN KEY(lectureroom, lecturedate, lecturestarttime) REFERENCES lecturetimeslot(roomname, date, starttime);
+
+ALTER TABLE teaches 
+ADD CONSTRAINT teaches_fk1 
+FOREIGN KEY(courseeditionid, coursename) REFERENCES courseedition(id, coursename);
+
+ALTER TABLE teaches
+ADD CONSTRAINT teaches_fk2
+FOREIGN KEY(trainer) REFERENCES person(id);
+
+ALTER TABLE lecturetimeslot 
+ADD CONSTRAINT lecturetimeslot_fk1 
+FOREIGN KEY(roomname) REFERENCES room(name);
+
+ALTER TABLE lecturetimeslot 
+ADD CONSTRAINT lecturetimeslot_fk2
+FOREIGN KEY(courseeditionid, coursename) REFERENCES courseedition(id, coursename);
+
+ALTER TABLE lecturetimeslot
+ADD CONSTRAINT lecturetimeslot_fk3
+FOREIGN KEY(substitution) REFERENCES person(id);
+
+ALTER TABLE subscription
+ADD CONSTRAINT subscription_fk1
+FOREIGN KEY(courseeditionid, coursename, duration) REFERENCES subscriptiontype(courseeditionid, coursename, duration);
+
+ALTER TABLE subscription
+ADD CONSTRAINT subscription_fk2
+FOREIGN KEY(trainee) REFERENCES person(id);
+
+ALTER TABLE subscriptiontype
+ADD CONSTRAINT subscriptiontype_fk
+FOREIGN KEY(courseeditionid, coursename) REFERENCES courseedition(id, coursename);
+
+ALTER TABLE courseedition
+ADD CONSTRAINT courseedition_fk
+FOREIGN KEY(coursename) REFERENCES course(name);
