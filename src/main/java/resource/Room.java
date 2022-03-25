@@ -11,22 +11,22 @@ public class Room
         this.slots = slots;
     }
 
-    private void setName(String name)
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    private void setSlots(int slots)
+    public void setSlots(int slots)
     {
         this.slots = slots;
     }
 
-    private String getName()
+    public String getName()
     {
         return name;
     }
 
-    private int getSlots()
+    public int getSlots()
     {
         return slots;
     }
