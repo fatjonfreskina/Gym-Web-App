@@ -10,7 +10,7 @@ public class person {
     private final String surname;
     private final String TaxCode;
     private final String Birth_date;
-    
+    //Constructor with all the attributes
     public person(int id, int[] role, int email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date){
 
         ID = id;
@@ -24,7 +24,20 @@ public class person {
         TaxCode = taxCode;
         Birth_date = birth_date;
     }
+    //Constructor with no Path_img
+    public person(int id, int[] role, int email, String password, String address, String name, String surname, String taxCode, String birth_date){
 
+        ID = id;
+        this.role = role;
+        this.email = email;
+        Path_img = "";
+        this.password = password;
+        this.address = address;
+        this.name = name;
+        this.surname = surname;
+        TaxCode = taxCode;
+        Birth_date = birth_date;
+    }
     public String getBirth_date() {
         return Birth_date;
     }
