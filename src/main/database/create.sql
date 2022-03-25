@@ -79,7 +79,7 @@ CREATE TABLE courseedition (
 
 CREATE TABLE course (
 	name VARCHAR(30) NOT NULL,
-	description VARCHAR(50),
+	description TEXT,
 	PRIMARY KEY(name)
 );
 

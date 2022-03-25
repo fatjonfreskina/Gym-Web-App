@@ -4,15 +4,20 @@
 --CourseEdition
 --Course
 
-INSERT INTO person VALUES (1,ARRAY['Trainee']::roles[],'Mario','Rossi','mario.rossi@example.com','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000','01/01/1970','3000000001','Address of Mario Rossi',null);
-INSERT INTO person VALUES (2,ARRAY['Trainee']::roles[],'Riccardo','Bianchi','riccardo.bianchi@example.com','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000','01/02/1970','3000000002','Address of Riccardo Bianchi',null);
-INSERT INTO person VALUES (3,ARRAY['Trainee']::roles[],'Luca','Giallo','luca.giallo@example.com','d41d8cd98f00b204e9800998ecf8427e','LCLGLL0000000000','01/03/1970','3000000003','Address of Luca Giallo',null);
+INSERT INTO person VALUES ('mario.rossi@example.com',ARRAY['Trainee']::roles[],'Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000','01/01/1970','3000000001','Address of Mario Rossi',null);
+INSERT INTO person VALUES ('riccardo.bianchi@example.com',ARRAY['Trainee']::roles[],'Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000','01/02/1970','3000000002','Address of Riccardo Bianchi',null);
+INSERT INTO person VALUES ('luca.giallo@example.com',ARRAY['Trainee']::roles[],'Luca','Giallo','d41d8cd98f00b204e9800998ecf8427e','LCLGLL0000000000','01/03/1970','3000000003','Address of Luca Giallo',null);
+INSERT INTO person VALUES ('giacomo.forza@example.com',ARRAY['Trainer']::roles[],'Giacomo','Forza','d41d8cd98f00b204e9800998ecf8427e','GCMFRZ0000000000','01/06/1980','3000000004','Address of Giacomo Forza',null);
 
-INSERT INTO medicalcertificate VALUES (1,'01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
-INSERT INTO medicalcertificate VALUES (2,'01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
-INSERT INTO medicalcertificate VALUES (3,'01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('mario.rossi@example.com','01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('riccardo.bianchi@example.com','01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('luca.giallo@example.com','01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
 
+INSERT INTO course VALUES ('Powerlifting','Powerlifting is a strength sport that consists of three attempts at maximal weight on three lifts: squat, bench press, and deadlift. As in the sport of Olympic weightlifting, it involves the athlete attempting a maximal weight single-lift effort of a barbell loaded with weight plates.');
 
+INSERT INTO courseedition VALUES (DEFAULT, 'Powerlifting')
+
+INSERT INTO teaches VALUES (1,'Powerlifting','giacomo.forza@example.com');
 
 
 --Room
