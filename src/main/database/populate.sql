@@ -4,10 +4,11 @@
 --CourseEdition
 --Course
 
-INSERT INTO person VALUES ('mario.rossi@example.com',ARRAY['Trainee']::roles[],'Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000','01/01/1970','3000000001','Address of Mario Rossi',null);
-INSERT INTO person VALUES ('riccardo.bianchi@example.com',ARRAY['Trainee']::roles[],'Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000','01/02/1970','3000000002','Address of Riccardo Bianchi',null);
-INSERT INTO person VALUES ('luca.giallo@example.com',ARRAY['Trainee']::roles[],'Luca','Giallo','d41d8cd98f00b204e9800998ecf8427e','LCLGLL0000000000','01/03/1970','3000000003','Address of Luca Giallo',null);
-INSERT INTO person VALUES ('giacomo.forza@example.com',ARRAY['Trainer']::roles[],'Giacomo','Forza','d41d8cd98f00b204e9800998ecf8427e','GCMFRZ0000000000','01/06/1980','3000000004','Address of Giacomo Forza',null);
+--Users
+INSERT INTO person VALUES ('mario.rossi@example.com',ARRAY['Trainee']::roles[],'Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);
+INSERT INTO person VALUES ('riccardo.bianchi@example.com',ARRAY['Trainee']::roles[],'Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000',TO_DATE('01/02/1970','DD/MM/YYYY'),'3000000002','Address of Riccardo Bianchi',null);
+INSERT INTO person VALUES ('luca.giallo@example.com',ARRAY['Trainee']::roles[],'Luca','Giallo','d41d8cd98f00b204e9800998ecf8427e','LCLGLL0000000000',TO_DATE('01/03/1970','DD/MM/YYYY'),'3000000003','Address of Luca Giallo',null);
+INSERT INTO person VALUES ('giacomo.forza@example.com',ARRAY['Trainer']::roles[],'Giacomo','Forza','d41d8cd98f00b204e9800998ecf8427e','GCMFRZ0000000000',TO_DATE('01/06/1980','DD/MM/YYYY'),'3000000004','Address of Giacomo Forza',null);
 INSERT INTO person VALUES ('stanley.corkery@example.com',ARRAY['Trainee']::roles[],'Stanley','Corkery','d41d8cd98f00b204e9800998ecf8427e','GARCDBJVHEVHIILY',TO_DATE('21/02/1982','DD/MM/YYYY'),'8524881756','304 Jason Mills, Gradymouth, OK 59441',NULL);
 INSERT INTO person VALUES ('virginia.barrows@example.com',ARRAY['Trainee']::roles[],'Virginia','Barrows','d41d8cd98f00b204e9800998ecf8427e','PHDMJRPQFLCGNXVF',TO_DATE('26/01/1988','DD/MM/YYYY'),'0195723168','7610 Kling Drive, Port Nealborough, MA 60511-1715',NULL);
 INSERT INTO person VALUES ('sondra.dubuque@example.com',ARRAY['Trainee']::roles[],'Sondra','DuBuque','d41d8cd98f00b204e9800998ecf8427e','E4FHUQGI8YSMXC9O',TO_DATE('18/03/1999','DD/MM/YYYY'),'5280680379','Apt. 686 90669 Schroeder Center, Vivienfort, ID 47685',NULL);
@@ -25,12 +26,18 @@ INSERT INTO person VALUES ('alfonso.gibson@example.com',ARRAY['Secretary']::role
 INSERT INTO person VALUES ('carmine.sipes@example.com',ARRAY['Secretary']::roles[],'Carmine','Sipes','d41d8cd98f00b204e9800998ecf8427e','LCRKVACORBCT753D',TO_DATE('04/06/1997','DD/MM/YYYY'),'8151088748','99860 Lavonne Mall, New Lloyd, DE 43817-1522',NULL);
 INSERT INTO person VALUES ('altha.ruecker@example.com',ARRAY['Trainee']::roles[],'Altha','Ruecker','d41d8cd98f00b204e9800998ecf8427e','7IM7ZA79M0JKEDOE',TO_DATE('27/09/1959','DD/MM/YYYY'),'7216835609','34074 Luciano Loaf, Timton, IN 24432-9964',NULL);
 
+--Medical certificate
+INSERT INTO medicalcertificate VALUES ('mario.rossi@example.com',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('riccardo.bianchi@example.com',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('luca.giallo@example.com',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
 
-INSERT INTO medicalcertificate VALUES ('mario.rossi@example.com','01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
-INSERT INTO medicalcertificate VALUES ('riccardo.bianchi@example.com','01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
-INSERT INTO medicalcertificate VALUES ('luca.giallo@example.com','01/01/2023','Doctor Sport', 'FAKE_PATH_FOR_FILE');
-
+--Courses
 INSERT INTO course VALUES ('Powerlifting','Powerlifting is a strength sport that consists of three attempts at maximal weight on three lifts: squat, bench press, and deadlift. As in the sport of Olympic weightlifting, it involves the athlete attempting a maximal weight single-lift effort of a barbell loaded with weight plates.');
+INSERT INTO course VALUES ('Cardio','Cardio exercise is any exercise that raises your heart rate. Face it our bodies were made to move.');
+INSERT INTO course VALUES ('Yoga','Yoga is an ancient practice that involves physical poses, concentration, and deep breathing.');
+INSERT INTO course VALUES ('Crossfit','A form of high intensity interval training, CrossFit is a strength and conditioning workout that is made up of functional movement performed at a high intensity level.');
+INSERT INTO course VALUES ('Bodybuilding','Bodybuilding, a regimen of exercises designed to enhance the human body''s muscular development and promote general health and fitness. As a competitive activity, bodybuilding aims to display in artistic fashion pronounced muscle mass, symmetry, and definition for overall aesthetic effect.');
+INSERT INTO course VALUES ('Calisthenics','Calisthenics is a form of strength training consisting of a variety of movements that exercise large muscle groups (gross motor movements), such as standing, grasping, pushing, etc. These exercises are often performed rhythmically and with minimal equipment, as bodyweight exercises.');
 
 INSERT INTO courseedition VALUES (DEFAULT, 'Powerlifting')
 

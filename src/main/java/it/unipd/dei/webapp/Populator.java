@@ -69,6 +69,12 @@ public class Populator {
 
     }
 
+
+    private static void createMedicalCertificate(){
+        //TODO: create a medical certificate for the inserted user
+        throw new UnsupportedOperationException("Still to be implemented");
+    }
+
     //TODO: define appropriately the following methods
 
     /**
