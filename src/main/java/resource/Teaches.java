@@ -36,6 +36,4 @@ public class Teaches
     {
         return trainer;
     }
-
-
 }
