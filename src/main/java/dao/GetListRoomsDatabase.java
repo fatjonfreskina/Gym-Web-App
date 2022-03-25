@@ -9,9 +9,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+*
+* This DAO is used to show the name of the rooms and capicity in the page called "TheGym"
+*
+*  */
 public class GetListRoomsDatabase
 {
-    private static final String STATEMENT = "SELECT name, slots FROM gwa.room;";
+    private static final String STATEMENT = "SELECT name, slots FROM room;";
 
     private final Connection con;
 
@@ -19,7 +24,7 @@ public class GetListRoomsDatabase
     {
         this.con = con;
     }
-    
+
     public List<Room> listRoomsDatabase() throws SQLException
     {
         PreparedStatement pstmt = null;
