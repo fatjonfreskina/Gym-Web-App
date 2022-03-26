@@ -87,10 +87,8 @@ CREATE TABLE subscriptiontype (
 	courseeditionid INTEGER,
 	coursename VARCHAR(30) NOT NULL,
 	duration INTEGER NOT NULL,
-	cost DECIMAL(6,2) NOT NULL,
-	discount INTEGER,
+	cost DECIMAL(6,2) NOT NULL,	
 	CHECK (duration > 0),
-	CHECK (discount >= 0 AND discount <= 100),
 	CHECK (cost > 0),
 	PRIMARY KEY (courseeditionid, coursename, duration)
 );
@@ -101,6 +99,8 @@ CREATE TABLE subscription (
 	duration INTEGER NOT NULL,
 	startday DATE NOT NULL,
 	trainee VARCHAR(40) NOT NULL,
+	discount INTEGER,
+	CHECK (discount >= 0 AND discount <= 100),
 	PRIMARY KEY (courseeditionid, coursename, duration, startday, trainee)
 );
 
