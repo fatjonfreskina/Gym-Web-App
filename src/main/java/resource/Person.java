@@ -1,4 +1,6 @@
-public class person {
+package resource;
+
+public class Person {
 
     private final int ID;
     private final int[] role;
@@ -10,8 +12,9 @@ public class person {
     private final String surname;
     private final String TaxCode;
     private final String Birth_date;
+
     //Constructor with all the attributes
-    public person(int id, int[] role, int email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date){
+    public Person(int id, int[] role, int email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date) {
 
         ID = id;
         this.role = role;
@@ -24,8 +27,9 @@ public class person {
         TaxCode = taxCode;
         Birth_date = birth_date;
     }
+
     //Constructor with no Path_img
-    public person(int id, int[] role, int email, String password, String address, String name, String surname, String taxCode, String birth_date){
+    public Person(int id, int[] role, int email, String password, String address, String name, String surname, String taxCode, String birth_date) {
 
         ID = id;
         this.role = role;
@@ -38,6 +42,7 @@ public class person {
         TaxCode = taxCode;
         Birth_date = birth_date;
     }
+
     public String getBirth_date() {
         return Birth_date;
     }

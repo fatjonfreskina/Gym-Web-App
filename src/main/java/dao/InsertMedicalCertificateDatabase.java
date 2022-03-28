@@ -4,10 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.MedicalCertificate;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 
 public final class InsertMedicalCertificateDatabase
 {
@@ -29,7 +26,7 @@ public final class InsertMedicalCertificateDatabase
         {
             preparedStatement = con.prepareStatement(STATEMENT);
             preparedStatement.setString(1, mc.getPersonEmail());
-            preparedStatement.setDate(2, mc.getExpirationDate());
+            preparedStatement.setDate(2, (Date) mc.getExpirationDate());
             preparedStatement.setString(3, mc.getDoctorName());
             preparedStatement.setString(4, mc.getPath());
 

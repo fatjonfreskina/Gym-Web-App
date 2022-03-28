@@ -2,46 +2,38 @@ package resource;
 
 import java.sql.Timestamp;
 
-public class PasswordReset
-{
+public class PasswordReset {
     private String token;
     private Timestamp expirationDate;
     private String person;
 
-    public PasswordReset(String token, Timestamp expirationDate, String person)
-    {
+    public PasswordReset(String token, Timestamp expirationDate, String person) {
         this.token = token;
         this.expirationDate = expirationDate;
         this.person = person;
     }
 
-    public String getToken()
-    {
+    public String getToken() {
         return token;
     }
 
-    public Timestamp getExpirationDate()
-    {
+    public Timestamp getExpirationDate() {
         return expirationDate;
     }
 
-    public String getPerson()
-    {
+    public String getPerson() {
         return person;
     }
 
-    public void setToken(String token)
-    {
+    public void setToken(String token) {
         this.token = token;
     }
 
-    public void setExpirationDate(Timestamp expirationDate)
-    {
+    public void setExpirationDate(Timestamp expirationDate) {
         this.expirationDate = expirationDate;
     }
 
-    public void setPerson(String person)
-    {
+    public void setPerson(String person) {
         this.person = person;
     }
 }
