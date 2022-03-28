@@ -1,14 +1,14 @@
 \subsection{Entity-Relationship Schema}
-    % Schema ER
+
     \begin{center}
-        \includegraphics[width=0.9\textwidth]{resources/ER_restructured.pdf}
+        \includegraphics[width=0.9\textwidth]{resources/ER_restructured_v2.pdf}
         % this isn't finished yet
     \end{center}
 
     The entity-relationship contains 8 main entities:
     \begin{itemize}
         \item 
-        \textbf{User}: each user of the application is identified by an auto-increment \textit{ID} and has two unique keys \textit{tax\textunderscore code} (a CHAR field of 16 characters) and \textit{Email} (type of VARCHAR). 
+        \textbf{User}: each user of the application is identified by an \textit{Email} (type of VARCHAR). 
     	For each user we also save their \textit{Name}, \textit{Surname}, \textit{Address}, \textit{Telephone} and \textit{Path\textunderscore img} (for users's Profile image) as VARCHAR fields. We also save user's \textit{Birthday} (of type DATE). For each users we define
         one or more Roles (Indicated in the role attribute). The roles are:
         \begin{itemize}
