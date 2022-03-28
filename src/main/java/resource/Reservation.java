@@ -1,16 +1,16 @@
 package resource;
 
-import java.time.LocalDate; // https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
+import java.sql.Date; 
 import java.sql.Timestamp;
 
 public class Reservation {
 
     private String trainee;
     private String room;
-    private LocalDate lectureDate;
+    private Date lectureDate;
     private Timestamp lectureStartTime;
 
-    public Reservation (String trainee, String room, LocalDate lectureDate, Timestamp lectureStartTime){
+    public Reservation (String trainee, String room, Date lectureDate, Timestamp lectureStartTime){
         this.trainee = trainee;
         this.room = room;
         this.lectureDate = lectureDate;
@@ -25,7 +25,7 @@ public class Reservation {
         return room;
     }
 
-    public LocalDate getLectureDate(){
+    public Date getLectureDate(){
         return lectureDate;
     }
 
@@ -41,7 +41,7 @@ public class Reservation {
         this.room = newRoom;
     }
 
-    public void setLectureDate(LocalDate newLectureDate){
+    public void setLectureDate(Date newLectureDate){
         this.lectureDate = newLectureDate;
     }
 
