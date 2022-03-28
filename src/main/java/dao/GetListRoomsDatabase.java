@@ -11,7 +11,7 @@ import java.util.List;
 
 /*
 *
-* This DAO is used to show the name of the rooms and capicity in the page called "TheGym"
+* This DAO is used to show the name of the rooms and capacity in the page called "TheGym"
 *
 *  */
 public class GetListRoomsDatabase
