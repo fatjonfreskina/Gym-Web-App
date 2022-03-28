@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS gwa_db;
 DROP SCHEMA IF EXISTS gwa CASCADE;
 CREATE DATABASE gwa_db ENCODING = 'UTF8';
 -- Connect to the new db
--- \c gwa_db
+\c gwa_db
 
 CREATE SCHEMA gwa;
 SET search_path='gwa';
@@ -89,7 +89,7 @@ CREATE TABLE subscriptiontype (
 	duration INTEGER NOT NULL,
 	cost DECIMAL(6,2) NOT NULL,	
 	CHECK (duration > 0),
-	CHECK (cost > 0),
+	CHECK (cost >= 0),
 	PRIMARY KEY (courseeditionid, coursename, duration)
 );
 
