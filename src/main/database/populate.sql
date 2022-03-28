@@ -71,521 +71,521 @@ INSERT INTO room VALUES ('Power',15);
 --LectureTimeSlot for Stamina-----------------------------------------------------------------
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-05', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-05', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-05', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-05', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-07', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-07', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-08', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-08', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-08', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-08', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-12', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-12', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-12', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-12', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-14', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-14', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-15', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-15', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-15', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-15', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-19', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-19', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-19', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-19', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-21', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-21', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-22', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-22', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-22', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-22', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-26', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-26', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-26', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-26', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-28', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-28', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-29', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-04-29', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-29', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-04-29', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-03', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-03', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-03', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-03', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-05', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-05', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-06', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-06', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-06', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-06', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-10', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-10', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-10', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-10', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-12', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-12', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-13', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-13', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-13', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-13', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-17', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-17', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-17', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-17', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-19', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-19', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-20', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-20', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-20', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-20', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-24', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-24', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-24', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-24', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-26', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-26', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-27', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-27', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-27', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-27', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-31', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-05-31', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-31', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-31', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday******************************FESTA DELLA REPUBBLICA:DECIDERE SE TOGLIERE O NO!!!!!!!
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-02', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-02', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-03', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-03', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-03', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-03', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-07', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-07', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-07', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-07', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-09', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-09', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-10', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-10', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-10', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-10', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-14', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-14', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-14', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-14', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-16', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-16', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-17', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-17', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-17', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-17', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-21', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-21', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-21', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-21', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-23', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-23', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-24', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-24', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-24', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-24', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Tuesday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-28', ' 18:00:00', 2, 'Cardio', NULL);
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-28', ' 20:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-28', ' 18:00:00', 2, 'Cardio', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-28', ' 20:00:00', 3, 'Yoga', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Stamina', '2022-06-30', ' 18:00:00', 3, 'Yoga', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-30', ' 18:00:00', 3, 'Yoga', NULL);
 
 
 
 --LectureTimeSlot for Energy--------------------------------------------------------------------
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-04', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-04', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-07', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-07', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-09', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-09', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-11', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-11', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-14', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-14', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-16', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-16', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday****************PASQUETTA: DECIDERE SE TOGLIERE!!!!!!!
-INSERT INTO lecturetimeslot ('Energy', '2022-04-18', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-18', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-21', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-21', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-23', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-23', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-25', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-25', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-28', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-28', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-04-30', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-30', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-02', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-02', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-05', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-05', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-07', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-07', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-09', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-09', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-12', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-12', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-14', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-14', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-16', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-16', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-19', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-19', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-21', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-21', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-23', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-23', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-26', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-26', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-28', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-28', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-05-30', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-30', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday***********FESTA DELLA REPUBBLICA: DECIDERE SE TOGLIERE!!!!!!!!!!!!!!!!
-INSERT INTO lecturetimeslot ('Energy', '2022-06-02', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-02', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-04', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-04', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-06', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-06', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-09', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-09', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-11', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-11', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-13', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-13', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-16', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-16', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-18', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-18', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-20', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-20', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-23', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-23', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-25', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-25', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-27', ' 16:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-27', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
-INSERT INTO lecturetimeslot ('Energy', '2022-06-30', ' 10:00:00', 4, 'Crossfit', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-30', ' 10:00:00', 4, 'Crossfit', NULL);
 
 
 --LectureTimeSlot for Strength--------------------------------------------------------------------
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-04', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-04', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-06', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-06', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-11', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-11', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-13', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-13', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday****************************PASQUETTA: DECIDERE SE TOGLIERE O NO!!!!!!!!!!!!!!!
-INSERT INTO lecturetimeslot ('Strength', '2022-04-18', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-18', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-20', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-20', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-25', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-25', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-04-27', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-27', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-02', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-02', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-04', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-04', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-09', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-09', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-11', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-11', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-16', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-16', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-18', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-18', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-23', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-23', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-25', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-25', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-05-30', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-05-30', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-01', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-01', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-06', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-06', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-08', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-08', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-13', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-13', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-15', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-15', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-20', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-20', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-22', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-22', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-27', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-27', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Strength', '2022-06-29', ' 18:00:00', 6, 'Calisthenics', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-29', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 
 --LectureTimeSlot for Power-------------------------------------------------------------------------
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-04-04', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-04', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-04', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-04', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-04-06', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-06', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-06', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-06', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-04-08', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-08', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-04-09', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-09', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-04-11', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-11', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-11', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-11', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-04-13', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-13', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-13', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-13', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-04-15', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-15', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-04-16', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-16', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday**************************************PASQUETTA: DECIDERE SE TOGLIERE!!!!!!!!!!!!!!!!!!
-INSERT INTO lecturetimeslot ('Power', '2022-04-18', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-18', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-18', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-18', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-04-20', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-20', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-20', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-20', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-04-22', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-22', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-04-23', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-23', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-04-25', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-25', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-25', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-25', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-04-27', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-04-27', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-27', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-27', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-04-29', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-29', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-04-30', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-30', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-05-02', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-02', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-02', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-02', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-05-04', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-04', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-04', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-04', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-05-06', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-06', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-05-07', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-07', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-05-09', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-09', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-09', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-09', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-05-11', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-11', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-11', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-11', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-05-13', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-13', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-05-14', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-14', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-05-16', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-16', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-16', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-16', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-05-18', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-18', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-18', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-18', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-05-20', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-20', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-05-21', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-21', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-05-23', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-23', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-23', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-23', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-05-25', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-25', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-25', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-25', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-05-27', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-27', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-05-28', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-28', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-05-30', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-05-30', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-30', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-30', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-06-01', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-01', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-06-03', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-03', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-06-04', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-04', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-06-06', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-06', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-06', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-06', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-06-08', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-08', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-08', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-08', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-06-10', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-10', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-06-11', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-11', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-06-13', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-13', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-13', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-13', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-06-15', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-15', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-15', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-15', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-06-17', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-17', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-06-18', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-18', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-06-20', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-20', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-20', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-20', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-06-22', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-22', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-22', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-22', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Friday
-INSERT INTO lecturetimeslot ('Power', '2022-06-24', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-24', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Saturday
-INSERT INTO lecturetimeslot ('Power', '2022-06-25', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-25', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
 --Monday
-INSERT INTO lecturetimeslot ('Power', '2022-06-27', ' 10:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-27', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-27', ' 10:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-27', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
-INSERT INTO lecturetimeslot ('Power', '2022-06-29', ' 16:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot ('Power', '2022-06-29', ' 18:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-29', ' 16:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-29', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 
 
@@ -593,174 +593,174 @@ INSERT INTO lecturetimeslot ('Power', '2022-06-29', ' 18:00:00', 1, 'Powerliftin
 --Reservation-----------------------------------------------------------------------------------
 
 --Mario Rossi: Books Stamina from 18 to 20 every Tuesday for Cardio
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-04-19', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-04-26', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-05-03', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-05-10', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-05-17', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-05-24', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-05-31', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-06-07', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-06-14', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-06-21', ' 18:00:00');
-INSERT INTO reservation ('mario.rossi@example.com', 'Stamina', '2022-06-28', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-04-19', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-04-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-05-03', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-05-10', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-05-17', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-05-24', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-05-31', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-06-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-06-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-06-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('mario.rossi@example.com', 'Stamina', '2022-06-28', ' 18:00:00');
 
 --Riccardo Bianchi: Books Stamina from 18 to 20 every Tuesday for Cardio
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-04-19', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-04-26', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-05-03', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-05-10', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-05-17', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-05-24', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-05-31', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-06-07', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-06-14', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-06-21', ' 18:00:00');
-INSERT INTO reservation ('riccardo.bianchi@example.com', 'Stamina', '2022-06-28', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-04-19', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-04-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-05-03', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-05-10', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-05-17', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-05-24', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-05-31', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-06-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-06-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-06-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('riccardo.bianchi@example.com', 'Stamina', '2022-06-28', ' 18:00:00');
 
 --Luca Giallo: Books Strength Calisthenics every possible day
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-04', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-06', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-11', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-13', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-18', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-20', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-25', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-04-27', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-02', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-04', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-09', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-11', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-16', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-18', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-23', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-25', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-05-30', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-01', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-06', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-08', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-13', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-15', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-20', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-22', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-27', ' 18:00:00');
-INSERT INTO reservation ('luca.giallo@example.com', 'Strength', '2022-06-29', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-11', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-20', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-25', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-04-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-02', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-11', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-23', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-25', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-05-30', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-01', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-08', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-15', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-20', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-22', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('luca.giallo@example.com', 'Strength', '2022-06-29', ' 18:00:00');
 
 --Stanley Corkery: Books Strength Calisthenics some days
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-04-04', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-04-06', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-04-13', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-04-18', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-04-20', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-04-27', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-05-02', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-05-04', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-05-09', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-05-16', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-05-18', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-05-25', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-06-06', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-06-08', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-06-13', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-06-15', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-06-27', ' 18:00:00');
-INSERT INTO reservation ('stanley.corkery@example.com', 'Strength', '2022-06-29', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-04-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-04-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-04-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-04-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-04-20', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-04-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-05-02', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-05-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-05-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-05-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-05-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-05-25', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-06-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-06-08', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-06-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-06-15', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-06-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('stanley.corkery@example.com', 'Strength', '2022-06-29', ' 18:00:00');
 
 --Cristi Schaden: Books Stamina for Yoga some days
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-05', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-07', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-08', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-14', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-15', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-19', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-21', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-04-26', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-05-05', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-05-10', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-05-17', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-05-20', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-05-26', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-06-01', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-06-09', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-06-10', ' 20:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
-INSERT INTO reservation ('cristi.schaden@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-05', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-08', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-15', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-19', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-04-26', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-05-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-05-10', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-05-17', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-05-20', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-05-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-06-01', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-06-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-06-10', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('cristi.schaden@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
 
 --Alonzo Lindgren: Books Stamina for Yoga some days
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-05', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-07', ' 18:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-14', ' 18:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-15', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-19', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-21', ' 18:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-04-26', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-05-05', ' 18:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-05-17', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-05-20', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-06-01', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-06-09', ' 18:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-06-10', ' 20:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
-INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-05', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-15', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-19', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-04-26', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-05-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-05-17', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-05-20', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-06-01', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-06-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-06-10', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES ('alonzo.lindgren@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
 
 
 
 
 
 --Calisthenics
-INSERT INTO subscriptiontype(6, 'Calisthenics', 7, 0);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 30, 40.0);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 90, 100.0);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 180, 160.0);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 365, 250.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 7, 0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 30, 40.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 90, 100.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 180, 160.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 365, 250.0);
 
 --Cardio
-INSERT INTO subscriptiontype(2, 'Cardio', 7, 0);
-INSERT INTO subscriptiontype(2, 'Cardio', 30, 40.0);
-INSERT INTO subscriptiontype(2, 'Cardio', 90, 100.0;
-INSERT INTO subscriptiontype(2, 'Cardio', 180, 160.0);
-INSERT INTO subscriptiontype(2, 'Cardio', 365, 250.0);
+INSERT INTO subscriptiontype  (courseeditionid, coursename, duration, cost) VALUES (2, 'Cardio', 7, 0);
+INSERT INTO subscriptiontype  (courseeditionid, coursename, duration, cost) VALUES (2, 'Cardio', 30, 40.0);
+INSERT INTO subscriptiontype  (courseeditionid, coursename, duration, cost) VALUES (2, 'Cardio', 90, 100.0;
+INSERT INTO subscriptiontype  (courseeditionid, coursename, duration, cost) VALUES (2, 'Cardio', 180, 160.0);
+INSERT INTO subscriptiontype  (courseeditionid, coursename, duration, cost) VALUES (2, 'Cardio', 365, 250.0);
 
 --Bodybuilding
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 7, 0);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 30, 60.0;
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 90, 130.0);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 180, 220.0);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 365, 340.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (5, 'Bodybuilding', 7, 0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (5, 'Bodybuilding', 30, 60.0;
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (5, 'Bodybuilding', 90, 130.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (5, 'Bodybuilding', 180, 220.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (5, 'Bodybuilding', 365, 340.0);
 
 --Yoga
-INSERT INTO subscriptiontype(3, 'Yoga', 7, 0);
-INSERT INTO subscriptiontype(3, 'Yoga', 30, 50.0);
-INSERT INTO subscriptiontype(3, 'Yoga', 90, 110.0);
-INSERT INTO subscriptiontype(3, 'Yoga', 180, 180.0);
-INSERT INTO subscriptiontype(3, 'Yoga', 365, 280.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (3, 'Yoga', 7, 0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (3, 'Yoga', 30, 50.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (3, 'Yoga', 90, 110.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (3, 'Yoga', 180, 180.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (3, 'Yoga', 365, 280.0);
 
 --Powerlifting
-INSERT INTO subscriptiontype(1, 'Powerlifting', 7, 0);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 30, 40.0);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 90, 100.0);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 180, 160.0);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 365, 250.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (1, 'Powerlifting', 7, 0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (1, 'Powerlifting', 30, 40.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (1, 'Powerlifting', 90, 100.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (1, 'Powerlifting', 180, 160.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (1, 'Powerlifting', 365, 250.0);
 
 --Crossfit
-INSERT INTO subscriptiontype(4, 'Crossfit', 7, 0);
-INSERT INTO subscriptiontype(4, 'Crossfit', 30, 50.0;
-INSERT INTO subscriptiontype(4, 'Crossfit', 90, 110.0);
-INSERT INTO subscriptiontype(4, 'Crossfit', 180, 180.0);
-INSERT INTO subscriptiontype(4, 'Crossfit', 365, 280.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 7, 0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 30, 50.0;
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 90, 110.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 180, 180.0);
+INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 365, 280.0);
 
 
 --subscriptions
-INSERT INTO subscription(2, 'Cardio', 180, '2022-03-27', 'mario.rossi@example.com',0);
-INSERT INTO subscription(2, 'Cardio', 180, '2022-03-02', 'riccardo.bianchi@example.com',0);
-INSERT INTO subscription(6, 'Calisthenics', 365, '2022-01-08', 'luca.giallo@example.com',0);
-INSERT INTO subscription(6, 'Calisthenics', 180, '2022-02-15', 'stanley.corkery@example.com',0);
-INSERT INTO subscription(4, 'Crossfit', 30, '2022-03-27', 'virginia.barrows@example.com',0);
-INSERT INTO subscription(1, 'Powerlifting', 90, '2022-01-08', 'sondra.dubuque@example.com',0);
-INSERT INTO subscription(1, 'Powerlifting', 90, '2022-01-25', 'bart.collins@example.com',0);
-INSERT INTO subscription(3, 'Yoga', 180, '2022-02-03', 'cristi.schaden@example.com',0);
-INSERT INTO subscription(3, 'Yoga', 365, '2022-01-14', 'alonzo.lindgren@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-27', 'mario.rossi@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-02', 'riccardo.bianchi@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 365, '2022-01-08', 'luca.giallo@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 180, '2022-02-15', 'stanley.corkery@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (4, 'Crossfit', 30, '2022-03-27', 'virginia.barrows@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-08', 'sondra.dubuque@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-25', 'bart.collins@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 180, '2022-02-03', 'cristi.schaden@example.com',0);
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 365, '2022-01-14', 'alonzo.lindgren@example.com',0);
