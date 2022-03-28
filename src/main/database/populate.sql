@@ -712,55 +712,55 @@ INSERT INTO reservation ('alonzo.lindgren@example.com', 'Stamina', '2022-06-21',
 
 
 --Calisthenics
-INSERT INTO subscriptiontype(6, 'Calisthenics', 7, 0, 0, NULL);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 30, 40.0, 0, NULL);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 90, 100.0, 0, NULL);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 180, 160.0, 0, NULL);
-INSERT INTO subscriptiontype(6, 'Calisthenics', 365, 250.0, 0, NULL);
+INSERT INTO subscriptiontype(6, 'Calisthenics', 7, 0);
+INSERT INTO subscriptiontype(6, 'Calisthenics', 30, 40.0);
+INSERT INTO subscriptiontype(6, 'Calisthenics', 90, 100.0);
+INSERT INTO subscriptiontype(6, 'Calisthenics', 180, 160.0);
+INSERT INTO subscriptiontype(6, 'Calisthenics', 365, 250.0);
 
 --Cardio
-INSERT INTO subscriptiontype(2, 'Cardio', 7, 0, 0, NULL);
-INSERT INTO subscriptiontype(2, 'Cardio', 30, 40.0, 0, NULL);
-INSERT INTO subscriptiontype(2, 'Cardio', 90, 100.0, 0, NULL);
-INSERT INTO subscriptiontype(2, 'Cardio', 180, 160.0, 0, NULL);
-INSERT INTO subscriptiontype(2, 'Cardio', 365, 250.0, 0, NULL);
+INSERT INTO subscriptiontype(2, 'Cardio', 7, 0);
+INSERT INTO subscriptiontype(2, 'Cardio', 30, 40.0);
+INSERT INTO subscriptiontype(2, 'Cardio', 90, 100.0;
+INSERT INTO subscriptiontype(2, 'Cardio', 180, 160.0);
+INSERT INTO subscriptiontype(2, 'Cardio', 365, 250.0);
 
 --Bodybuilding
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 7, 0, 0, NULL);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 30, 60.0, 0, NULL);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 90, 130.0, 0, NULL);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 180, 220.0, 0, NULL);
-INSERT INTO subscriptiontype(5, 'Bodybuilding', 365, 340.0, 0, NULL);
+INSERT INTO subscriptiontype(5, 'Bodybuilding', 7, 0);
+INSERT INTO subscriptiontype(5, 'Bodybuilding', 30, 60.0;
+INSERT INTO subscriptiontype(5, 'Bodybuilding', 90, 130.0);
+INSERT INTO subscriptiontype(5, 'Bodybuilding', 180, 220.0);
+INSERT INTO subscriptiontype(5, 'Bodybuilding', 365, 340.0);
 
 --Yoga
-INSERT INTO subscriptiontype(3, 'Yoga', 7, 0, 0, NULL);
-INSERT INTO subscriptiontype(3, 'Yoga', 30, 50.0, 0, NULL);
-INSERT INTO subscriptiontype(3, 'Yoga', 90, 110.0, 0, NULL);
-INSERT INTO subscriptiontype(3, 'Yoga', 180, 180.0, 0, NULL);
-INSERT INTO subscriptiontype(3, 'Yoga', 365, 280.0, 0, NULL);
+INSERT INTO subscriptiontype(3, 'Yoga', 7, 0);
+INSERT INTO subscriptiontype(3, 'Yoga', 30, 50.0);
+INSERT INTO subscriptiontype(3, 'Yoga', 90, 110.0);
+INSERT INTO subscriptiontype(3, 'Yoga', 180, 180.0);
+INSERT INTO subscriptiontype(3, 'Yoga', 365, 280.0);
 
 --Powerlifting
-INSERT INTO subscriptiontype(1, 'Powerlifting', 7, 0, 0, NULL);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 30, 40.0, 0, NULL);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 90, 100.0, 0, NULL);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 180, 160.0, 0, NULL);
-INSERT INTO subscriptiontype(1, 'Powerlifting', 365, 250.0, 0, NULL);
+INSERT INTO subscriptiontype(1, 'Powerlifting', 7, 0);
+INSERT INTO subscriptiontype(1, 'Powerlifting', 30, 40.0);
+INSERT INTO subscriptiontype(1, 'Powerlifting', 90, 100.0);
+INSERT INTO subscriptiontype(1, 'Powerlifting', 180, 160.0);
+INSERT INTO subscriptiontype(1, 'Powerlifting', 365, 250.0);
 
 --Crossfit
-INSERT INTO subscriptiontype(4, 'Crossfit', 7, 0, 0, NULL);
-INSERT INTO subscriptiontype(4, 'Crossfit', 30, 50.0, 0, NULL);
-INSERT INTO subscriptiontype(4, 'Crossfit', 90, 110.0, 0, NULL);
-INSERT INTO subscriptiontype(4, 'Crossfit', 180, 180.0, 0, NULL);
-INSERT INTO subscriptiontype(4, 'Crossfit', 365, 280.0, 0, NULL);
+INSERT INTO subscriptiontype(4, 'Crossfit', 7, 0);
+INSERT INTO subscriptiontype(4, 'Crossfit', 30, 50.0;
+INSERT INTO subscriptiontype(4, 'Crossfit', 90, 110.0);
+INSERT INTO subscriptiontype(4, 'Crossfit', 180, 180.0);
+INSERT INTO subscriptiontype(4, 'Crossfit', 365, 280.0);
 
 
 --subscriptions
-INSERT INTO subscription(2, 'Cardio', 180, '2022-03-27', 'mario.rossi@example.com');
-INSERT INTO subscription(2, 'Cardio', 180, '2022-03-02', 'riccardo.bianchi@example.com');
-INSERT INTO subscription(6, 'Calisthenics', 365, '2022-01-08', 'luca.giallo@example.com');
-INSERT INTO subscription(6, 'Calisthenics', 180, '2022-02-15', 'stanley.corkery@example.com');
-INSERT INTO subscription(4, 'Crossfit', 30, '2022-03-27', 'virginia.barrows@example.com');
-INSERT INTO subscription(1, 'Powerlifting', 90, '2022-01-08', 'sondra.dubuque@example.com');
-INSERT INTO subscription(1, 'Powerlifting', 90, '2022-01-25', 'bart.collins@example.com');
-INSERT INTO subscription(3, 'Yoga', 180, '2022-02-03', 'cristi.schaden@example.com');
-INSERT INTO subscription(3, 'Yoga', 365, '2022-01-14', 'alonzo.lindgren@example.com');
+INSERT INTO subscription(2, 'Cardio', 180, '2022-03-27', 'mario.rossi@example.com',0);
+INSERT INTO subscription(2, 'Cardio', 180, '2022-03-02', 'riccardo.bianchi@example.com',0);
+INSERT INTO subscription(6, 'Calisthenics', 365, '2022-01-08', 'luca.giallo@example.com',0);
+INSERT INTO subscription(6, 'Calisthenics', 180, '2022-02-15', 'stanley.corkery@example.com',0);
+INSERT INTO subscription(4, 'Crossfit', 30, '2022-03-27', 'virginia.barrows@example.com',0);
+INSERT INTO subscription(1, 'Powerlifting', 90, '2022-01-08', 'sondra.dubuque@example.com',0);
+INSERT INTO subscription(1, 'Powerlifting', 90, '2022-01-25', 'bart.collins@example.com',0);
+INSERT INTO subscription(3, 'Yoga', 180, '2022-02-03', 'cristi.schaden@example.com',0);
+INSERT INTO subscription(3, 'Yoga', 365, '2022-01-14', 'alonzo.lindgren@example.com',0);
