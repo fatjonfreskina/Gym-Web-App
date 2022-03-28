@@ -1,6 +1,6 @@
 package resource;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * This Java Bean contains all the info about a medical certificate.
