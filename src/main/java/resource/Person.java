@@ -16,26 +16,26 @@ public class Person {
     public Person(int[] role, String email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date) {
         this.role = role;
         this.email = email;
-        Path_img = path_img;
+        this.Path_img = path_img;
         this.password = password;
         this.address = address;
         this.name = name;
         this.surname = surname;
-        TaxCode = taxCode;
-        Birth_date = birth_date;
+        this.TaxCode = taxCode;
+        this.Birth_date = birth_date;
     }
 
     //Constructor with no Path_img
     public Person(int[] role, String email, String password, String address, String name, String surname, String taxCode, String birth_date) {
         this.role = role;
         this.email = email;
-        Path_img = "";
+        this.Path_img = "";
         this.password = password;
         this.address = address;
         this.name = name;
         this.surname = surname;
-        TaxCode = taxCode;
-        Birth_date = birth_date;
+        this.TaxCode = taxCode;
+        this.Birth_date = birth_date;
     }
 
     public final String getBirth_date() {
