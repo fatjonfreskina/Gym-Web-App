@@ -14,11 +14,8 @@ public class InsertTeachesDatabase {
     private static final String STATEMENT = "INSERT INTO teaches (courseeditionid, coursename, trainer) VALUES (?, ?, ?)";
 
     private final Connection con;
-
     private final CourseEdtion courseEdtion;
     private final Person trainer;
-
-
 
     public InsertTeachesDatabase(final Connection con, final CourseEdtion courseEdition, final Person trainer)
     {
@@ -26,7 +23,6 @@ public class InsertTeachesDatabase {
         this.courseEdtion = courseEdition;
         this.trainer = trainer;
     }
-
 
     public void insertSubscriptionType() throws SQLException
     {
