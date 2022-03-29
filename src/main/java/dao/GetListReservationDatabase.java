@@ -1,6 +1,7 @@
 package dao;
 
 import resource.Reservation;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,17 +11,12 @@ import java.util.List;
 
 /*
 *
-Get list of (future) reservations FOR GIVEN TRAINEE 
-
-NOT FINISHED YET
-
+Return a list of (future) reservations given a date and a trainee
 *
 */
 
-//TODO: input sanitization? 
-//TODO: find out what is this DAO for and define the query
-
-public class GetListReservationDatabase {
+public final class GetListReservationDatabase 
+{
 
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
 
@@ -28,30 +24,65 @@ public class GetListReservationDatabase {
         SELECT * 
         FROM reservation
         WHERE trainee = ?
-        AND 
+        AND lecturedate > ?
+        ORDER BY lecturedate ASC;
         """;
 
     private final Connection con;
 
-    public GetListReservationDatabase(Connection con){
+    private final String trainee;
+
+    private final Date lectureDate;
+
+    public GetListReservationDatabase(final Connection con, final String trainee, final Date lectureDate)
+    {
         this.con = con;
+        this.trainee = trainee;
+        this.lectureDate = lectureDate;
     }
 
-    public List<Reservation> listTraineeReservationDatabase(String trainee) throws SQLException{
+    public List<Reservation> listReservationDatabase() throws SQLException
+    {
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        List<Reservation> listReservation = new ArrayList<>();
+        final List<Reservation> reservations = new ArrayList<Reservation>();
 
-        try{
+        try
+        {
             pstmt = con.prepareStatement(STATEMENT);
+            pstmt.setString(1, trainee);
+            pstmt.setDate(2, lectureDate);
+
             rs = pstmt.executeQuery();
-            while (rs.next()){
+
+            while (rs.next())
+            {
+                reservations.add(new Reservation(rs.getString("trainee"), rs.getString("lectureroom"),
+                 rs.getDate("lecturedate"), rs.getTimestamp("lecturestarttme")));
             }
 
+            logger.debug("[INFO] GetListReservationDatabase - %s - Query successfully done.\n".formatted(
+                    new Timestamp(System.currentTimeMillis())));
         }
+        catch (SQLException exc)
+        {
+            logger.error("[INFO] GetListReservationDatabase - %s - An exception occurred during query execution.\n%s\n".
+             formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
+        }
+        
+        finally 
+        {
+            if (rs != null) 
+            {
+                rs.close();
+            }
+            if (pstmt != null) 
+            {
+                pstmt.close();
+            }
+        }
+        return reservations;
     }
-
-
 }
