@@ -1,7 +1,7 @@
 package dao;
 
 
-import resource.Course;
+import resource.CourseEdition;
 import resource.Person;
 import resource.SubscriptionType;
 
@@ -14,13 +14,13 @@ public class InsertTeachesDatabase {
     private static final String STATEMENT = "INSERT INTO teaches (courseeditionid, coursename, trainer) VALUES (?, ?, ?)";
 
     private final Connection con;
-    private final CourseEdtion courseEdtion;
+    private final CourseEdition courseEdition;
     private final Person trainer;
 
-    public InsertTeachesDatabase(final Connection con, final CourseEdtion courseEdition, final Person trainer)
+    public InsertTeachesDatabase(final Connection con, final CourseEdition courseEdition, final Person trainer)
     {
         this.con = con;
-        this.courseEdtion = courseEdition;
+        this.courseEdition = courseEdition;
         this.trainer = trainer;
     }
 
@@ -29,8 +29,8 @@ public class InsertTeachesDatabase {
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement= con.prepareStatement(STATEMENT);
-            preparedStatement.setInt(1, courseEdtion.getId());
-            preparedStatement.setString(2, courseEdtion.getCourseName());
+            preparedStatement.setInt(1, courseEdition.getId()); 
+            preparedStatement.setString(2, courseEdition.getCourseName());
             preparedStatement.setString(3, trainer.getEmail());
 
         }
