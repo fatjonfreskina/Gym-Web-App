@@ -2,22 +2,12 @@ package resource;
 
 public class Room
 {
-    private String name;
-    private int slots;
+    private final String name;
+    private final int slots;
 
     public Room(String name,int slots)
     {
         this.name = name;
-        this.slots = slots;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public void setSlots(int slots)
-    {
         this.slots = slots;
     }
 

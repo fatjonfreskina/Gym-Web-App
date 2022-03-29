@@ -5,10 +5,10 @@ import java.sql.Timestamp;
 
 public class Reservation {
 
-    private String trainee;
-    private String room;
-    private Date lectureDate;
-    private Timestamp lectureStartTime;
+    private final String trainee;
+    private final String room;
+    private final Date lectureDate;
+    private final Timestamp lectureStartTime;
 
     public Reservation (String trainee, String room, Date lectureDate, Timestamp lectureStartTime){
         this.trainee = trainee;
@@ -33,20 +33,4 @@ public class Reservation {
         return lectureStartTime;
     }
 
-    public void setTrainee(String newTrainee){
-        this.trainee = newTrainee;
-    }
-
-    public void setRoom(String newRoom){
-        this.room = newRoom;
-    }
-
-    public void setLectureDate(Date newLectureDate){
-        this.lectureDate = newLectureDate;
-    }
-
-    public void setLectureStartTime(Timestamp newStartTime){
-        this.lectureStartTime = newStartTime;
-    }
-    
 }

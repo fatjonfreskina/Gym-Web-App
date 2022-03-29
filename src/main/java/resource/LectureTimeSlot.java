@@ -6,12 +6,12 @@ import java.sql.Timestamp;
 
 public class LectureTimeSlot
 {
-    private String roomName;
-    private Date date;
-    private Time startTime;
-    private int courseEditionId;
-    private String courseName;
-    private String substitution;
+    private final String roomName;
+    private final Date date;
+    private final Time startTime;
+    private final int courseEditionId;
+    private final String courseName;
+    private final String substitution;
 
     public LectureTimeSlot(String roomName, Date date, Time startTime, int courseEditionId, String courseName, String substitution)
     {
@@ -30,10 +30,5 @@ public class LectureTimeSlot
     public int getCourseEditionId(){ return courseEditionId; }
     public String getCourseName() { return  courseName; }
     public String getSubstitution() { return getSubstitution(); }
-    public void setRoomName(String roomName){ this.roomName = roomName; }
-    public void setDate(Date date) { this.date = date; }
-    public void setStartTime(Time startTime){ this.startTime = startTime; }
-    public void setCourseEditionId(int courseEditionId){ this.courseEditionId = courseEditionId; }
-    public void setCourseName(String courseName){ this.courseName = courseName; }
-    public void setSubstitution(String substitution){ this.substitution = substitution; }
+
 }
