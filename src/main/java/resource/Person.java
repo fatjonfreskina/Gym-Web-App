@@ -26,7 +26,7 @@ public class Person {
     }
 
     //Constructor with no Path_img
-    public Person(int id, int[] role, String email, String password, String address, String name, String surname, String taxCode, String birth_date) {
+    public Person(int[] role, String email, String password, String address, String name, String surname, String taxCode, String birth_date) {
         this.role = role;
         this.email = email;
         Path_img = "";
