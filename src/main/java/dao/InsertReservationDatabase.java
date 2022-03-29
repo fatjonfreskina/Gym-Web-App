@@ -6,8 +6,6 @@ import resource.Reservation;
 
 import java.sql.*;
 
-//TODO: input sanitization? 
-
 public class InsertReservationDatabase 
 {
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
