@@ -14,5 +14,5 @@ public class Course {
     public String getName(){ return name; }
 
     public String getDescription() { return description; }
-    
+
 }
