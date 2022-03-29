@@ -24,11 +24,11 @@ public class LectureTimeSlot
     }
 
 
-    public String getRoomName(){ return roomName; }
-    public Date getDate(){ return date; }
-    public Time getStartTime(){ return startTime; }
-    public int getCourseEditionId(){ return courseEditionId; }
-    public String getCourseName() { return  courseName; }
-    public String getSubstitution() { return getSubstitution(); }
+    public final String getRoomName(){ return roomName; }
+    public final Date getDate(){ return date; }
+    public final Time getStartTime(){ return startTime; }
+    public final int getCourseEditionId(){ return courseEditionId; }
+    public final String getCourseName() { return  courseName; }
+    public final String getSubstitution() { return getSubstitution(); }
 
 }

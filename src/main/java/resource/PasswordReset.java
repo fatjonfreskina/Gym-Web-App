@@ -13,15 +13,15 @@ public class PasswordReset {
         this.person = person;
     }
 
-    public String getToken() {
+    public final String getToken() {
         return token;
     }
 
-    public Timestamp getExpirationDate() {
+    public final Timestamp getExpirationDate() {
         return expirationDate;
     }
 
-    public String getPerson() {
+    public final String getPerson() {
         return person;
     }
 

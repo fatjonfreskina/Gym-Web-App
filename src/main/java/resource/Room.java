@@ -11,12 +11,12 @@ public class Room
         this.slots = slots;
     }
 
-    public String getName()
+    public final String getName()
     {
         return name;
     }
 
-    public int getSlots()
+    public final int getSlots()
     {
         return slots;
     }

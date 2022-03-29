@@ -11,8 +11,8 @@ public class Course {
         this.description = description;
     }
 
-    public String getName(){ return name; }
+    public final String getName(){ return name; }
 
-    public String getDescription() { return description; }
+    public final String getDescription() { return description; }
 
 }

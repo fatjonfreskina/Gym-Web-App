@@ -13,15 +13,15 @@ public class Teaches
         this.trainer = trainer;
     }
 
-    public int getCourseEdition()
+    public final int getCourseEdition()
     {
         return courseEdition;
     }
-    public String getCourseName()
+    public final String getCourseName()
     {
         return  courseName;
     }
-    public String getTrainer()
+    public final String getTrainer()
     {
         return trainer;
     }

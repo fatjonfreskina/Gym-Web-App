@@ -35,23 +35,23 @@ public class Subscription {
         this.substitution = substitution;
     }
 
-    public int getCourseEditionID() {
+    public final int getCourseEditionID() {
         return courseEditionID;
     }
 
-    public String getCourseName() {
+    public final String getCourseName() {
         return courseName;
     }
 
-    public int getDuration() {
+    public final int getDuration() {
         return duration;
     }
 
-    public Date getStartDay() {
+    public final Date getStartDay() {
         return startDay;
     }
 
-    public int getSubstitution() {
+    public final int getSubstitution() {
         return substitution;
     }
 

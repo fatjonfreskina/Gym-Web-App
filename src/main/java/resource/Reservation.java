@@ -17,19 +17,19 @@ public class Reservation {
         this.lectureStartTime = lectureStartTime;
     }
 
-    public String getTrainee(){
+    public final String getTrainee(){
         return trainee;
     }
 
-    public String getRoom(){
+    public final String getRoom(){
         return room;
     }
 
-    public Date getLectureDate(){
+    public final Date getLectureDate(){
         return lectureDate;
     }
 
-    public Timestamp getLectureStartTime(){
+    public final Timestamp getLectureStartTime(){
         return lectureStartTime;
     }
 
