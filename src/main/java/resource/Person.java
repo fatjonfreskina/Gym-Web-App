@@ -3,15 +3,15 @@ package resource;
 public class Person {
 
     private final int ID;
-    private final int[] role;
-    private final int email;
-    private final String Path_img;
-    private final String password;
-    private final String address;
-    private final String name;
-    private final String surname;
+    private int[] role;
+    private int email;
+    private String Path_img;
+    private String password;
+    private String address;
+    private String name;
+    private String surname;
     private final String TaxCode;
-    private final String Birth_date;
+    private String Birth_date;
 
     //Constructor with all the attributes
     public Person(int id, int[] role, int email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date) {
@@ -81,5 +81,37 @@ public class Person {
 
     public int getID() {
         return ID;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public void setRole(int[] role) {
+        this.role = role;
+    }
+
+    public void setEmail(int email) {
+        this.email = email;
+    }
+
+    public void setPath_img(String path_img) {
+        Path_img = path_img;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setBirth_date(String birth_date) {
+        Birth_date = birth_date;
     }
 }
