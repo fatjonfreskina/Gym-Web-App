@@ -36,7 +36,7 @@ public class GetCourseInfoForTrainee {
         try {
             preparedStatement = con.prepareStatement(STATEMENT);
             //Inject the ID of the trainee into the query
-            preparedStatement.setInt( 1, trainee.getID());
+            preparedStatement.setString( 1, trainee.getEmail());
             //Execute the query
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
