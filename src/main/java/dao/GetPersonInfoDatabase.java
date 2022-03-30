@@ -6,14 +6,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-public final class GetPersonInfo {
+public final class GetPersonInfoDatabase {
     private final String statement = "SELECT * FROM person WHERE email = ? ";
     private final Connection con;
     private final String email;
 
-    public GetPersonInfo(Connection con, String email){
+    public GetPersonInfoDatabase(Connection con, String email){
         this.con = con;
         this.email = email;
     }
