@@ -11,7 +11,7 @@ import java.util.List;
 
 /*
 *
-Return a list of (future) reservations given a date and a trainee
+Return a list of (future) reservations given a date and a user
 *
 */
 
