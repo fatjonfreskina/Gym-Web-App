@@ -82,6 +82,7 @@ public final class GetListReservationDatabase
             {
                 pstmt.close();
             }
+            con.close();
         }
         return reservations;
     }

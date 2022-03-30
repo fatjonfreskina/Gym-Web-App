@@ -1,6 +1,6 @@
 package dao;
 
-import resource.Reservation;
+//import resource.Reservation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.sql.*;
@@ -43,7 +43,7 @@ public class DeleteRegistration {
     public void deleteReservation() throws SQLException
     {
         PreparedStatement pstmt = null;
-        //Do we need a resultSet object with a Delete?..
+
         try
         {
             pstmt = con.prepareStatement(STATEMENT);
@@ -52,13 +52,20 @@ public class DeleteRegistration {
             pstmt.setDate(3, lectureDate);
             pstmt.setTimestamp(4, startTime);
 
-            pstmt.executeQuery();
-
-            
+            pstmt.execute();
+        }
+        catch (SQLException exc)
+        {
+            logger.error("[INFO] DeleteRegistration.java - %s - An exception occurred during query execution.\n%s\n".
+             formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
+        }
+        finally
+        {
+            if (pstmt != null) 
+            {
+                pstmt.close();
+            }
+            con.close();
         }
     }
-
-
-
-    
 }
