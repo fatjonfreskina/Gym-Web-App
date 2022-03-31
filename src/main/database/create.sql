@@ -35,7 +35,7 @@ CREATE TABLE passwordreset (
 CREATE TABLE medicalcertificate (
 	person VARCHAR(40),
 	expirationdate DATE,
-	doctorname TEXT NOT NULL,
+	doctorname VARCHAR(30) NOT NULL,
 	path TEXT NOT NULL,
 	PRIMARY KEY(person,expirationdate)
 );

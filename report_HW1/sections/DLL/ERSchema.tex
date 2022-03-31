@@ -22,23 +22,23 @@
     	
     	\item 
     	\textbf{Course}: The gym has different courses and each of them is uniquely identified by 
-    	\textit{Type Of Course} (type of VARCHAR). Each course also has and additional attribute \textit{Description} of type VARCHAR.
+    	\textit{Name} (type of VARCHAR). Each course also has and additional attribute \textit{Description} of type TEXT.
     	
     	\item 
-    	\textbf{Course Edition}: Each course may have many course editions. Each course eddition is identified by the \textit{Year}(of type SMALLINT), and \textit{Course(Type Of Course)}.
+    	\textbf{Course Edition}: Each course may have many course editions. Each course eddition is identified by the \textit{ID}(of type SERIAL), and \textit{CourseName}(which is the identifier of the entity Course).
     	
     	\item 
-    	\textbf{Room}: Lessons of each course are held in a Room which is identified by its \textit{Name} (type of VARCHAR). Each room has also a boolean attribute, \textit{Slot Available}, for it's current availability.
+    	\textbf{Room}: Lessons of each course are held in a Room which is identified by its \textit{Name} (type of VARCHAR). Each room has an attribute, \textit{Slots}(of type INTEGER), for the capacity of the Room.
     	
-    	\item \textbf{Lecture Time Slot}: each Lecture Time Slot is identified by \textit{Room(name)}
+    	\item \textbf{Lecture Time Slot}: Each Course Edition is composed of severls Lectures Time Slot. Each Lecture Time Slot is identified by three fields : \textit{Date}(of type Date)), \textit{Start Time}(of type Time) and \textit{Room}(of type Room). Each Lecture Time Slot has a fixed duration of 2 hours.
     	
-    	\item \textbf{Subscription Type}: each Subscription Type has \textit{Duration} and \textit{Cost}, both INTEGER fields. Every Subscription Type is identified by the \textit{Course(Type Of Course)} and its \textit{Duration}.
+    	\item \textbf{Subscription Type}: Each Course Edition can have at most 5 types of Subscription Type(Dayly, Monthly, Quaterly, Half-Yearly, Yearly). Each Subscription Type, is identified by two fields : \textit{Duration}(of type INTEGER that indicates how many days the subscription type last) and \textit{Course Edition}(of type Course Edition). In addition, Subscription Type has also a field \textit{Cost}(of type DECIMAL) to express the cost of a Subscription Type for different Durations and for different Course Editions.
     	
-    	\item \textbf{Subscription}: Every subscription has \textit{Month} and \textit{Year} attributes (both type of SMALLINT). Each trainee can have many Subscription to the gym and each trainee's subscription is identified by trainee's \textit{ID}, \textit{Month}, \textit{Year} and Subscription\textunderscore type's identification key \textit{(Duration, Course(Type Of Course))}.
+    	\item \textbf{Subscription}: A Trainee can have several Subscription. Every subscription is identified by \textit{Start Day}(of type Date), \textit{Trainee}(of type User) and \textit{Subscription Type}(of type Subscription Type). When a trainee buys a Subscription, if it was made in a particular day of the year (i.e. during the black friday week), he or she can have a discount applied to it.
     	
     	\item \textbf{Password Reset}: Additional entity to allow users to reset their password. It's identified by the \textit{Token} (type of VARCHAR) and three additional attributes: \textit{Expires} (type of TIMESTAMP), \textit{Used} and \textit{Revoked} both BOOLEAN fields.
         
-        \item \textbf{Medical Certificate}: Entity used to store the medical certificate of a given user. It's identified by the \textit{User (ID)} and by the \textit{Expiring Date} (type of TIMESTAMP). It has two additional attributes: \textit{Doctor Name} (type of VARCHAR) and \textit{Path} (type of VARCHAR).
+        \item \textbf{Medical Certificate}: Entity used to store the medical certificate of a given user. It's identified by the \textit{Trainee}(of type User) and by the \textit{Expiring Date}(of type of DATE). It has two additional attributes: \textit{Doctor Name} (type of VARCHAR) and \textit{Path} (type of VARCHAR).
         	
     	% TODO THESE
     	\color{red}
