@@ -23,7 +23,6 @@ public class LectureTimeSlot
         this.substitution = substitution;
     }
 
-
     public final String getRoomName(){ return roomName; }
     public final Date getDate(){ return date; }
     public final Time getStartTime(){ return startTime; }
@@ -31,4 +30,15 @@ public class LectureTimeSlot
     public final String getCourseName() { return  courseName; }
     public final String getSubstitution() { return getSubstitution(); }
 
+    @Override
+    public String toString() {
+        return "LectureTimeSlot{" +
+            "roomName='" + roomName + '\'' +
+            ", date=" + date +
+            ", startTime=" + startTime +
+            ", courseEditionId=" + courseEditionId +
+            ", courseName='" + courseName + '\'' +
+            ", substitution='" + substitution + '\'' +
+            '}';
+    }
 }
