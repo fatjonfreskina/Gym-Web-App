@@ -2,6 +2,7 @@ package dao;
 import java.sql.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +25,12 @@ public class GetLectureTimeSlotCurrentWeek {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<LectureTimeSlot> result = new ArrayList<>();
-        String from = LocalDate.now().with(TemporalAdjusters.previous( DayOfWeek.MONDAY )).toString();
-        String to = LocalDate.now().with(TemporalAdjusters.next( DayOfWeek.SUNDAY )).toString();
+        Date from = Date.valueOf(LocalDate.now().with(TemporalAdjusters.previous( DayOfWeek.MONDAY )));//.toString();
+        Date to = Date.valueOf(LocalDate.now().with(TemporalAdjusters.next( DayOfWeek.SUNDAY )));//.toString();
         try{
             ps = connection.prepareStatement(STATEMENT);
-            ps.setString(1,from);
-            ps.setString(2,to);
+            ps.setDate(1,from);
+            ps.setDate(2,to);
 
             rs = ps.executeQuery();
             logger.debug("[DEBUG] GetLectureTimeSlotCurrentWeek - %s - query executed successfully.\n".formatted(
