@@ -2,7 +2,6 @@ package dao;
 import java.sql.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ public class GetLectureTimeSlotCurrentWeek {
             ps.setDate(2,to);
 
             rs = ps.executeQuery();
-            logger.debug("[DEBUG] GetLectureTimeSlotCurrentWeek - %s - query executed successfully.\n".formatted(
+            logger.debug("[DEBUG] gwa.dao.GetLTSCWeek - %s - query executed successfully, retrieving data...\n".formatted(
                 new Timestamp(System.currentTimeMillis())));
             while (rs.next()) {
                 String roomName = rs.getString("roomname");
@@ -42,13 +41,14 @@ public class GetLectureTimeSlotCurrentWeek {
                 int courseEditionId = rs.getInt("courseeditionid");
                 String courseName = rs.getString("coursename");
                 String substitution = rs.getString("substitution");
+                LectureTimeSlot lts = new LectureTimeSlot(roomName,date,startTime,courseEditionId,courseName,substitution);
 
-                logger.debug("[DEBUG] GetLectureTimeSlotCurrentWeek - %s - %s.\n".formatted(
-                    new Timestamp(System.currentTimeMillis()),roomName));
-                result.add(new LectureTimeSlot(roomName,date,startTime,courseEditionId,courseName,substitution));
+                logger.debug("[DEBUG] gwa.dao.GetLTSCWeek - %s - Retrieved: %s.\n".formatted(
+                    new Timestamp(System.currentTimeMillis()),lts.toString()));
+                result.add(lts);
             }
         } catch (SQLException ex){
-            logger.error("[ERROR] GetLectureTimeSlotCurrentWeek - %s - Exception:\n%s\n".
+            logger.error("[ERROR] gwa.dao.GetLTSCWeek - %s - Exception:\n%s\n".
                 formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
             throw ex;
         } finally {
