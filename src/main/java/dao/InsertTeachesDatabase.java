@@ -9,6 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
+/**
+ * This DAO is used to insert what a trainer will teach
+ * @author Francesco Caldivezzi
+ *  */
 public class InsertTeachesDatabase {
 
     private static final String STATEMENT = "INSERT INTO teaches (courseeditionid, coursename, trainer) VALUES (?, ?, ?)";
@@ -17,6 +22,12 @@ public class InsertTeachesDatabase {
     private final CourseEdition courseEdition;
     private final Person trainer;
 
+    /**
+     * Constructor for the InsertTeachesDatabase class
+     * @param con  the connection to the database
+     * @param courseEdition the edition that the trainer will teach
+     * @param trainer the trainer
+     */
     public InsertTeachesDatabase(final Connection con, final CourseEdition courseEdition, final Person trainer)
     {
         this.con = con;
@@ -24,6 +35,9 @@ public class InsertTeachesDatabase {
         this.trainer = trainer;
     }
 
+    /**
+     * Execute the sql statement defined above
+     */
     public void insertSubscriptionType() throws SQLException
     {
         PreparedStatement preparedStatement = null;

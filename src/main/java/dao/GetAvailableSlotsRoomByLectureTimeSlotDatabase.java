@@ -9,6 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+/**
+ * DAO class that can be used to check before a user try to book a lecturetimeslot if there are available slots for booking it
+ *
+ * @author Francesco Caldivezzi
+ */
 public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
 
     private static final String STATEMENT = "SELECT slots - count AS availableslots FROM " +
@@ -19,6 +24,12 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
     private final Room room;
     private final LectureTimeSlot lectureTimeSlot;
 
+    /**
+     * Constructor for the GetAvailableSlotsRoomByLectureTimeSlotDatabase class
+     * @param con  the connection to the database
+     * @param room  the room in which the lecturetimeslot will occur
+     * @param lectureTimeSlot the lecturetimeslot that the user want to book
+     */
     public GetAvailableSlotsRoomByLectureTimeSlotDatabase(final Connection con, final Room room, final LectureTimeSlot lectureTimeSlot)
     {
         this.con = con;
@@ -26,6 +37,10 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
+    /**
+     * Execute an the query and provide the number of available slots
+     * @return the number of available slots
+     */
     public int getAvailableSlotsRoomByLectureTimeSlots() throws SQLException
     {
         PreparedStatement pstmt = null;
