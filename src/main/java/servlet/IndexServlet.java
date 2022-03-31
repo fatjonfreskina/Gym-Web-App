@@ -1,4 +1,4 @@
-package it.unipd.dei.webapp;
+package servlet;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
