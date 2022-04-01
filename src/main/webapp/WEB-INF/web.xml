@@ -9,6 +9,10 @@
         for the Computer Engineering master degree of University of Padua.
     </description>
 
+    <welcome-file-list>
+        <welcome-file>/jsp/home.jps</welcome-file>
+    </welcome-file-list>
+
     <!-- Servlets listing -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
