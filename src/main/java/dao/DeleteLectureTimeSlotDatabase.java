@@ -40,7 +40,9 @@ public class DeleteLectureTimeSlotDatabase {
 
         logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s -  Deleted Successfully: %s.\n".formatted(
             new Timestamp(System.currentTimeMillis()), deletedLts.toString()));
-      }
+      }else
+        logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - Following LectureTimeSlot not found: %s.\n".formatted(
+            new Timestamp(System.currentTimeMillis()), lts.toString()));
     } catch (SQLException ex) {
       logger.error("[ERROR] gwa.dao.DeleteLTSD - %s - Exception:\n%s\n".
           formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));

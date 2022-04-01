@@ -40,7 +40,7 @@ public class UpdateLectureTimeSlotDatabase {
       ps.setTime(6, lts.getStartTime());
 
       rs = ps.executeQuery();
-      logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - query executed successfully\n".formatted(
+      logger.debug("[DEBUG] gwa.dao.UpdateLTSD - %s - query executed successfully\n".formatted(
           new Timestamp(System.currentTimeMillis())));
       if (rs.next()) {
         String roomName = rs.getString("roomname");
@@ -51,17 +51,19 @@ public class UpdateLectureTimeSlotDatabase {
         String substitution = rs.getString("substitution");
         updatedLts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
 
-        logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - Updated Successfully: %s.\n".formatted(
+        logger.debug("[DEBUG] gwa.dao.UpdateLTSD - %s - Updated Successfully: %s.\n".formatted(
             new Timestamp(System.currentTimeMillis()), updatedLts.toString()));
       }else
-        logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - Following LectureTimeSlot not found: %s.\n".formatted(
+        logger.debug("[DEBUG] gwa.dao.UpdateLTSD - %s - Following LectureTimeSlot not found: %s.\n".formatted(
             new Timestamp(System.currentTimeMillis()), lts.toString()));
     } catch (SQLException ex) {
-      logger.error("[ERROR] dao.InsertLTSD - %s - Exception during insertion.\n%s\n".
+      logger.error("[ERROR] gwa.dao.UpdateLTSD - %s - Exception during insertion.\n%s\n".
           formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
 
       throw ex;
     } finally {
+      if (rs != null)
+        rs.close();
       if (ps != null)
         ps.close();
       connection.close();
