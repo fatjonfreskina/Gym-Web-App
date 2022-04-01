@@ -5,9 +5,6 @@ import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class DeleteLectureTimeSlotDatabase {
   private static final String STATEMENT = "DELETE FROM lecturetimeslot WHERE roomname=? AND date=? AND starttime=? RETURNING *;";
   private final LectureTimeSlot lts;
@@ -30,7 +27,7 @@ public class DeleteLectureTimeSlotDatabase {
       ps.setTime(3, lts.getStartTime());
 
       rs = ps.executeQuery();
-      logger.debug("[DEBUG] gwa.dao.GetLTSByDateD - %s - query executed successfully, retrieving data...\n".formatted(
+      logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - query executed successfully\n".formatted(
           new Timestamp(System.currentTimeMillis())));
       if (rs.next()) {
         String roomName = rs.getString("roomname");
@@ -41,11 +38,11 @@ public class DeleteLectureTimeSlotDatabase {
         String substitution = rs.getString("substitution");
         deletedLts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
 
-        logger.debug("[DEBUG] gwa.dao.GetLTSByDateD - %s - Deleted Successfully: %s.\n".formatted(
+        logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s -  Deleted Successfully: %s.\n".formatted(
             new Timestamp(System.currentTimeMillis()), deletedLts.toString()));
       }
     } catch (SQLException ex) {
-      logger.error("[ERROR] gwa.dao.GetLTSByDateD - %s - Exception:\n%s\n".
+      logger.error("[ERROR] gwa.dao.DeleteLTSD - %s - Exception:\n%s\n".
           formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
       throw ex;
     } finally {
