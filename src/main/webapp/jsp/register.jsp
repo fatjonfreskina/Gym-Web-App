@@ -7,6 +7,7 @@
     <title> Register </title>
 </head>
 <body>
+<jsp:include page="include/header.jsp"></jsp:include><br>
 <form method="post" action="">
     <label>Tax Code : </label><input type="text" name="tax_code" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required><br/>
     <label>First Name : </label><input type="text" name="first_name" required><br/>
@@ -22,5 +23,6 @@
     <label>Note : is mandatory to uplad a Medical Certificate before entering the gym.</label><br/>
     <button type="submit" >Register</button>
 </form>
+<jsp:include page="include/footer.jsp"></jsp:include>
 </body>
 </html>
