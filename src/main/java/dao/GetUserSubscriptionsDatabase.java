@@ -3,29 +3,31 @@ package dao;
 import resource.Person;
 import resource.Subscription;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Returns all the subscriptions for a given user
+ * @author Riccardo Forzan
  */
-public class GetUserSubscriptions {
+public class GetUserSubscriptionsDatabase {
 
     private static final String STATEMENT =
             "SELECT * FROM subscription WHERE trainee = ?";
     private final Connection con;
 
-    public GetUserSubscriptions(Connection con) {
+    /**
+     * Parametric constructor of the class
+     * @param con JDBC connection to the database
+     */
+    public GetUserSubscriptionsDatabase(Connection con) {
         this.con = con;
     }
 
     /**
      * Retrieves all the subscriptions associated to a user
-     * @param trainee
+     * @param trainee instance of Person {@link resource.Person}
      * @return List of all the subscriptions associated to the given trainee
      * @throws SQLException
      */
@@ -40,15 +42,18 @@ public class GetUserSubscriptions {
             //Execute the query
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
-
-                Subscription tmp = null;
-
-                // TODO: Implement parameter reading
-
+                //Read all the parameters
+                int courseEditionID = resultSet.getInt("courseeditionid");
+                String courseName = resultSet.getString("coursename");
+                int duration = resultSet.getInt("duration");
+                Date startDay = resultSet.getDate("startday");
+                int discount = resultSet.getInt("discount");
+                String trainee_email = resultSet.getString("trainee");
+                //Create the object
+                Subscription tmp = new Subscription(courseEditionID,courseName,duration,startDay,discount,trainee_email);
+                //Add the object to the return list
                 list.add(tmp);
-
             }
-
         }
         finally {
             if (resultSet != null)
