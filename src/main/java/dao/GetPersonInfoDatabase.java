@@ -37,7 +37,8 @@ public final class GetPersonInfoDatabase {
                         res.getString("name"),
                         res.getString("surname"),
                         res.getString("TaxCode"),
-                        res.getString("Birth_date")
+                        res.getString("Birth_date"),
+                        res.getLong("telephone")
                 );
             }
         }finally {

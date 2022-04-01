@@ -11,9 +11,10 @@ public class Person {
     private final String surname;
     private final String TaxCode;
     private final String Birth_date;
+    private final long telephone;
 
     //Constructor with all the attributes
-    public Person(int[] role, String email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date) {
+    public Person(int[] role, String email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date, long telephone) {
         this.role = role;
         this.email = email;
         this.Path_img = path_img;
@@ -23,10 +24,11 @@ public class Person {
         this.surname = surname;
         this.TaxCode = taxCode;
         this.Birth_date = birth_date;
+        this.telephone = telephone;
     }
 
     //Constructor with no Path_img
-    public Person(int[] role, String email, String password, String address, String name, String surname, String taxCode, String birth_date) {
+    public Person(int[] role, String email, String password, String address, String name, String surname, String taxCode, String birth_date, long telephone) {
         this.role = role;
         this.email = email;
         this.Path_img = "";
@@ -36,6 +38,7 @@ public class Person {
         this.surname = surname;
         this.TaxCode = taxCode;
         this.Birth_date = birth_date;
+        this.telephone = telephone;
     }
 
     public final String getBirth_date() {
@@ -73,5 +76,7 @@ public class Person {
     public final int[] getRole() {
         return role;
     }
+
+    public final long getTelephone() {return telephone;}
 
 }
