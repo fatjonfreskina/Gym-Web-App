@@ -6,6 +6,7 @@
     <title>Staff</title>
 </head>
 <body>
-
+    <jsp:include page="include/header.jsp"/><br>
+    <jsp:include page="include/footer.jsp"/>
 </body>
 </html>
