@@ -14,19 +14,11 @@
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>servlet.IndexServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SHTestingServlet</servlet-name>
-        <servlet-class>servlet.SHTestingServlet</servlet-class>
-    </servlet>
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SHTestingServlet</servlet-name>
-        <url-pattern>/SHTesting</url-pattern>
     </servlet-mapping>
 
 </web-app>
