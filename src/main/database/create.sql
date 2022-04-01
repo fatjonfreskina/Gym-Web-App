@@ -2,8 +2,7 @@
 DROP DATABASE IF EXISTS gwa_db; 
 DROP SCHEMA IF EXISTS gwa CASCADE;
 CREATE DATABASE gwa_db ENCODING = 'UTF8';
--- Connect to the new db
-\c gwa_db
+-- Connect to the new db using \c gwa_db
 
 CREATE SCHEMA gwa;
 SET search_path='gwa';

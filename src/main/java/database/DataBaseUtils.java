@@ -1,25 +1,36 @@
-package it.unipd.dei.webapp;
+package database;
+
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
-/**
- * Class that can be used to populate the tables of the WebApp
- * using the javafaker library
-*/
-public class Populator {
+public class DataBaseUtils {
 
-    /** Populate tables using javafaker and the DAO classes
-     */
     public static void main(String[] args){
 
-        Faker faker = new Faker();
+        //Initialize the DataBase schema
+        ArrayList<String> createStatements = null;
+        try {
+            createStatements = DataBaseUtils.ParseSQL("src/main/database/create.sql");
+            //System.out.println(createStatements);
 
-        // Create the users
-        Populator.createUsers(faker, 16);
+            //TODO: Retrieve a JDBC connection and execute the create statements
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+
+        //Faker faker = new Faker();
+        //Create users
+        //DataBaseUtils.createUsers(faker, 16);
 
     }
 
@@ -69,30 +80,43 @@ public class Populator {
 
     }
 
-
     private static void createMedicalCertificate(){
         //TODO: create a medical certificate for the inserted user
         throw new UnsupportedOperationException("Still to be implemented");
     }
 
-    //TODO: define appropriately the following methods
-
     /**
-     * Create the tables
+     * Parses an SQL file removing all the comments
+     * @param filepath file to parse
+     * @return collection of valid SQL statements
+     * @throws FileNotFoundException thrown if a problem occurs while reading the file
      */
-    public void migrate(){
-    }
+    private static ArrayList<String> ParseSQL(String filepath) throws FileNotFoundException {
 
-    /**
-     * Populate the tables
-     */
-    public void populate(){
-    }
+        //List of statements
+        ArrayList<String> statements = new ArrayList<>();
 
-    /**
-     * Delete data from the tables
-     */
-    public void delete(){
+        //Print the current path
+        Path currentRelativePath = Paths.get("");
+        String s = currentRelativePath.toAbsolutePath().toString();
+        System.out.println("Current absolute path is: " + s);
+
+        //Open the given file
+        File myObj = new File(filepath);
+        Scanner myReader = new Scanner(myObj);
+        while (myReader.hasNextLine()) {
+            //Read one line
+            String data = myReader.nextLine();
+            //Skip empty lines, blank lines and comment lines that start with --
+            boolean skip = data.isEmpty() || data.isBlank() || data.startsWith("--");
+
+            if(!skip) {
+                statements.add(data);
+            }
+
+        }
+
+        return statements;
     }
 
 }

@@ -1,6 +1,6 @@
---Connect to the gwa db
-\c gwa_db
+--Connect to the gwa db using \c gwa_db
 SET search_path='gwa';
+
 --Users
 INSERT INTO person VALUES ('mario.rossi@example.com',ARRAY['Trainee']::roles[],'Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);
 INSERT INTO person VALUES ('riccardo.bianchi@example.com',ARRAY['Trainee']::roles[],'Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000',TO_DATE('01/02/1970','DD/MM/YYYY'),'3000000002','Address of Riccardo Bianchi',null);
