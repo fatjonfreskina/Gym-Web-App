@@ -6,18 +6,18 @@ import resource.LectureTimeSlot;
 
 import java.sql.*;
 
-public class InsertLectureTimeSlot {
+public class InsertLectureTimeSlotDatabase {
   private final String STATEMENT = "INSERT INTO lecturetimeslot(roomname, date, starttime, courseeditionid,coursename,substitution) VALUES (?, ?, ?, ?, ?, ?)";
   private final LectureTimeSlot lts;
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-  public InsertLectureTimeSlot(Connection connection, LectureTimeSlot lts) {
+  public InsertLectureTimeSlotDatabase(Connection connection, LectureTimeSlot lts) {
     this.connection = connection;
     this.lts = lts;
   }
 
-  public void insertMedicalCertificate() throws SQLException {
+  public void insertLectureTimeSlot() throws SQLException {
     PreparedStatement ps = null;
     try {
       ps = connection.prepareStatement(STATEMENT);
@@ -29,10 +29,10 @@ public class InsertLectureTimeSlot {
       ps.setString(6, lts.getSubstitution());
 
       ps.execute();
-      logger.debug("[DEBUG] dao.InsertLTS - %s - %s Inserted successfully.\n".formatted(
-          new Timestamp(System.currentTimeMillis()),lts));
+      logger.debug("[DEBUG] dao.InsertLTSD - %s - %s Inserted successfully.\n".formatted(
+          new Timestamp(System.currentTimeMillis()), lts));
     } catch (SQLException ex) {
-      logger.error("[ERROR] dao.InsertLTS - %s - Exception during insertion.\n%s\n".
+      logger.error("[ERROR] dao.InsertLTSD - %s - Exception during insertion.\n%s\n".
           formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
 
       throw ex;
