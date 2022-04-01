@@ -1,8 +1,10 @@
 package resource;
 
+import java.sql.Date;
+
 public class Person {
 
-    private final int[] role;
+    private final Integer[] role;
     private final String email;
     private final String Path_img;
     private final String password;
@@ -10,11 +12,11 @@ public class Person {
     private final String name;
     private final String surname;
     private final String TaxCode;
-    private final String Birth_date;
-    private final long telephone;
+    private final Date Birth_date;
+    private final String telephone;
 
     //Constructor with all the attributes
-    public Person(int[] role, String email, String path_img, String password, String address, String name, String surname, String taxCode, String birth_date, long telephone) {
+    public Person(Integer[] role, String email, String path_img, String password, String address, String name, String surname, String taxCode, Date birth_date, String telephone) {
         this.role = role;
         this.email = email;
         this.Path_img = path_img;
@@ -28,7 +30,7 @@ public class Person {
     }
 
     //Constructor with no Path_img
-    public Person(int[] role, String email, String password, String address, String name, String surname, String taxCode, String birth_date, long telephone) {
+    public Person(Integer[] role, String email, String password, String address, String name, String surname, String taxCode, Date birth_date, String telephone) {
         this.role = role;
         this.email = email;
         this.Path_img = "";
@@ -41,7 +43,7 @@ public class Person {
         this.telephone = telephone;
     }
 
-    public final String getBirth_date() {
+    public final Date getBirth_date() {
         return Birth_date;
     }
 
@@ -73,10 +75,10 @@ public class Person {
         return email;
     }
 
-    public final int[] getRole() {
+    public final Integer[] getRole() {
         return role;
     }
 
-    public final long getTelephone() {return telephone;}
+    public final String getTelephone() { return telephone; }
 
 }

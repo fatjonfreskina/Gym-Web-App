@@ -1,7 +1,6 @@
 package dao;
 
 import resource.Person;
-import resource.Room;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,20 +51,20 @@ public class GetListExpiredMedicalCertificateDatabase
             while (rs.next())
                 if (rs.getString("avatar_path") == null)
                 {
-                    listPeople.add(new Person((int[]) rs.getArray("role").getArray(),
+                    listPeople.add(new Person((Integer[]) rs.getArray("role").getArray(),
                             rs.getString("email"),
                             rs.getString("password"),
                             rs.getString("address"),
                             rs.getString("name"),
                             rs.getString("surname"),
                             rs.getString("TaxCode"),
-                            rs.getString("Birth_date"),
-                            rs.getLong("telephone")
+                            rs.getDate("Birth_date"),
+                            rs.getString("Telephone")
                     ));
                 }
                 else
                 {
-                    listPeople.add(new Person((int[]) rs.getArray("role").getArray(),
+                    listPeople.add(new Person((Integer[]) rs.getArray("role").getArray(),
                             rs.getString("email"),
                             rs.getString("Path_img"),
                             rs.getString("password"),
@@ -73,8 +72,8 @@ public class GetListExpiredMedicalCertificateDatabase
                             rs.getString("name"),
                             rs.getString("surname"),
                             rs.getString("TaxCode"),
-                            rs.getString("Birth_date"),
-                            rs.getLong("telephone")
+                            rs.getDate("Birth_date"),
+                            rs.getString("Telephone")
                     ));
                 }
         } finally
