@@ -19,38 +19,19 @@ public class PricesServlet extends AbstractServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-
         List<SubscriptionType> list = null;
 
-        Logger logger = LogManager.getLogger("francesco_caldivezzi_logger");
-        logger.info("SONO QUI");
         try
         {
-
             list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).execute();
-            logger.info(list.size());
-
-            for ( SubscriptionType l : list)
-            {
-                logger.info(l.getCourseName());
-            }
-
-
-
-
-
-
-        } catch (NumberFormatException ex)
+        }
+        catch (SQLException ex)
         {
-            logger.info(ex.getMessage());
 
-        } catch (SQLException ex)
+        }
+        catch (NamingException ex)
         {
-            logger.info(ex.getMessage());
 
-        }catch (NamingException ex)
-        {
-            logger.info(ex.getMessage());
         }
         req.setAttribute("subscriptionTypeList", list);
         req.getRequestDispatcher(Constants.PATHPRICESJSP).forward(req, res);
