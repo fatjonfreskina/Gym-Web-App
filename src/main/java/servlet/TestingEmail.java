@@ -1,15 +1,10 @@
 package servlet;
 
-import jakarta.mail.*;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
 import utils.MailManager;
-
-import java.util.Date;
-import java.util.Properties;
 
 public class TestingEmail
 {
+    //NOTE: configuration parameters (host and port) available in a comment within MailManager class.
     private static final String HOST = "";
     private static final int PORT = 465;
 
