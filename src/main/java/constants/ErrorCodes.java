@@ -5,9 +5,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * Enumeration that will contain error codes.
  * Error codes start with value 0 and goes down -1,-2 etc..
  * */
-public enum ErrorCode {
+public enum ErrorCodes {
     OK(0, HttpServletResponse.SC_OK,"OK.")
-
 
     ;
 
@@ -15,7 +14,7 @@ public enum ErrorCode {
     private final int httpCode;
     private final String errorMessage;
 
-    ErrorCode(int errorCode, int httpCode, String errorMessage) {
+    ErrorCodes(int errorCode, int httpCode, String errorMessage) {
         this.errorCode = errorCode;
         this.httpCode = httpCode;
         this.errorMessage = errorMessage;
@@ -33,5 +32,4 @@ public enum ErrorCode {
         return errorMessage;
     }
 
-    
 }

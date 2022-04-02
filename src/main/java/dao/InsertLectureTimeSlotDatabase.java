@@ -15,7 +15,7 @@ public class InsertLectureTimeSlotDatabase {
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-  public InsertLectureTimeSlotDatabase(Connection connection, LectureTimeSlot lts) {
+  public InsertLectureTimeSlotDatabase(final Connection connection, final LectureTimeSlot lts) {
     this.connection = connection;
     this.lts = lts;
   }

@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-public final class UpdateMedicalCertificateDatabase
+public class UpdateMedicalCertificateDatabase
 {
     private static final String STATEMENT = "UPDATE gwa.medicalcertificate SET expirationdate = ?, doctorname = ?, path = ? WHERE person = ?";
     private final Connection con;

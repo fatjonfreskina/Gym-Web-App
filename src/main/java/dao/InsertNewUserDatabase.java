@@ -12,7 +12,7 @@ public class InsertNewUserDatabase {
     private final Connection conn;
     private final Person p;
 
-    public InsertNewUserDatabase(Connection conn, Person p) {
+    public InsertNewUserDatabase(final Connection conn, final Person p) {
         this.conn = conn;
         this.p = p;
     }

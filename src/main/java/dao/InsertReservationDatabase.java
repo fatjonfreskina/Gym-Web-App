@@ -18,7 +18,7 @@ public class InsertReservationDatabase
     private final Connection con;
     private final Reservation reservation;
 
-    public InsertReservationDatabase (Connection con, Reservation reservation)
+    public InsertReservationDatabase (final Connection con, final Reservation reservation)
     {
         this.con = con;
         this.reservation = reservation;

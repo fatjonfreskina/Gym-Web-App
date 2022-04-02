@@ -21,7 +21,7 @@ public class GetUserSubscriptionsDatabase {
      * Parametric constructor of the class
      * @param con JDBC connection to the database
      */
-    public GetUserSubscriptionsDatabase(Connection con,Person trainee)
+    public GetUserSubscriptionsDatabase(final Connection con,final Person trainee)
     {
         this.con = con;
         this.trainee = trainee;

@@ -13,7 +13,7 @@ public class GetLectureTimeSlotsByCourseDatabase {
   private final Connection connection;
   private final LectureTimeSlot lectureTimeSlot;
 
-  public GetLectureTimeSlotsByCourseDatabase(final Connection connection, LectureTimeSlot lectureTimeSlot) {
+  public GetLectureTimeSlotsByCourseDatabase(final Connection connection, final LectureTimeSlot lectureTimeSlot) {
     this.connection = connection;
     this.lectureTimeSlot = lectureTimeSlot;
   }

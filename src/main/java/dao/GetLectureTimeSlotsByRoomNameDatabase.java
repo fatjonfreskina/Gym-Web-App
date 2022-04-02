@@ -15,7 +15,7 @@ public class GetLectureTimeSlotsByRoomNameDatabase {
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-  public GetLectureTimeSlotsByRoomNameDatabase(final Connection connection, String roomName) {
+  public GetLectureTimeSlotsByRoomNameDatabase(final Connection connection, final String roomName) {
     this.connection = connection;
     this.roomName = roomName;
   }

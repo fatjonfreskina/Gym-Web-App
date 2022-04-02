@@ -12,7 +12,7 @@ public class DeleteLectureTimeSlotDatabase {
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-  public DeleteLectureTimeSlotDatabase(Connection connection, LectureTimeSlot lts) {
+  public DeleteLectureTimeSlotDatabase(final Connection connection,final LectureTimeSlot lts) {
     this.connection = connection;
     this.lts = lts;
   }

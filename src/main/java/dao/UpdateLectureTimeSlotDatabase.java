@@ -20,7 +20,7 @@ public class UpdateLectureTimeSlotDatabase {
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-  public UpdateLectureTimeSlotDatabase(Connection connection, LectureTimeSlot lts) {
+  public UpdateLectureTimeSlotDatabase(final Connection connection, final LectureTimeSlot lts) {
     this.connection = connection;
     this.lts = lts;
   }

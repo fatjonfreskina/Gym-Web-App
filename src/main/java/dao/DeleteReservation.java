@@ -26,7 +26,7 @@ public class DeleteReservation
     private final Connection con;
     private final Reservation reservation;
 
-    public DeleteReservation (Connection con, Reservation reservation)
+    public DeleteReservation (final Connection con, final Reservation reservation)
     {
         this.con = con;
         this.reservation = reservation;

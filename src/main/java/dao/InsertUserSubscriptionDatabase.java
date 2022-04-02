@@ -20,7 +20,7 @@ public class InsertUserSubscriptionDatabase {
      * @param con JDBC database connection
      * @param subscription instance of Subscription {@link resource.Subscription} to add in the database
      */
-    public InsertUserSubscriptionDatabase(Connection con, Subscription subscription) {
+    public InsertUserSubscriptionDatabase(final Connection con, final Subscription subscription) {
         this.con = con;
         this.subscription = subscription;
     }

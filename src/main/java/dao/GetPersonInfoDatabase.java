@@ -13,7 +13,7 @@ public final class GetPersonInfoDatabase {
     private final Connection con;
     private final Person person;
 
-    public GetPersonInfoDatabase(Connection con, String email, final Person person){
+    public GetPersonInfoDatabase(final Connection con, final Person person){
         this.con = con;
         this.person = person;
     }

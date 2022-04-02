@@ -26,7 +26,7 @@ public class GetPasswordResetDatabase
 
     private final PasswordReset passwordReset;
 
-    public GetPasswordResetDatabase(Connection con, PasswordReset passwordReset)
+    public GetPasswordResetDatabase(final Connection con, final PasswordReset passwordReset)
     {
         this.con = con;
         this.passwordReset = passwordReset;

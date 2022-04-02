@@ -6,7 +6,7 @@ import resource.MedicalCertificate;
 
 import java.sql.*;
 
-public final class InsertMedicalCertificateDatabase
+public class InsertMedicalCertificateDatabase
 {
     private static final String STATEMENT = "INSERT INTO gwa.medicalcertificate(person, expirationdate, doctorname, path) VALUES (?, ?, ?, ?)";
     private final Connection con;

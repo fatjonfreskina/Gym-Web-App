@@ -14,7 +14,7 @@ public class GetAvailableCourses {
     private final Connection con;
     private final Date today;
 
-    public GetAvailableCourses(Connection con){
+    public GetAvailableCourses(final Connection con){
         this.con = con;
         this.today = new Date(System.currentTimeMillis());
     }

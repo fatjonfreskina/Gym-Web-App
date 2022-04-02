@@ -16,7 +16,7 @@ public class GetLectureTimeSlotsByDateDatabase {
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-  public GetLectureTimeSlotsByDateDatabase(final Connection connection, Date date) {
+  public GetLectureTimeSlotsByDateDatabase(final Connection connection, final Date date) {
     this.connection = connection;
     this.date = date;
   }

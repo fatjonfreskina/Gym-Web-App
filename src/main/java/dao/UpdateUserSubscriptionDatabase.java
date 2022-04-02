@@ -22,7 +22,7 @@ public class UpdateUserSubscriptionDatabase {
      * @param con JDBC database connection
      * @param subscription instance of Subscription {@link Subscription} to update in the database
      */
-    public UpdateUserSubscriptionDatabase(Connection con, Subscription subscription) {
+    public UpdateUserSubscriptionDatabase(final Connection con, final Subscription subscription) {
         this.con = con;
         this.subscription = subscription;
     }
