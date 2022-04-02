@@ -31,5 +31,4 @@ public enum ErrorCodes {
     public String getErrorMessage() {
         return errorMessage;
     }
-
 }
