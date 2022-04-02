@@ -6,7 +6,7 @@
     <title>GWA</title>
 </head>
 <body>
-    <jsp:include page="include/header.jsp"/><br>
-    <jsp:include page="include/footer.jsp"/>
+    <jsp:include page="/jsp/include/header.jsp"/><br>
+    <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>
