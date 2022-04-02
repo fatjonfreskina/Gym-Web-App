@@ -8,9 +8,9 @@ public class TestingEmail
     private static final String HOST = "smtp.libero.it";
     private static final int PORT = 465;
 
-    private static final String FROM_EMAIL = "alemarco96@libero.it";
-    private static final String FROM_PASSWORD = "Vgn-Fz21m";
-    private static final String TO_EMAIL = "alessiomar1996@gmail.com";
+    private static final String FROM_EMAIL = "@libero.it";
+    private static final String FROM_PASSWORD = "";
+    private static final String TO_EMAIL = "@gmail.com";
 
     private static final String SUBJECT = "Test Subject";
     private static final String TEXT = "Test Text";
@@ -20,5 +20,6 @@ public class TestingEmail
         MailManager manager = new MailManager(HOST, PORT, FROM_EMAIL, FROM_PASSWORD);
 
         manager.sendMail(TO_EMAIL, SUBJECT, TEXT);
+        //manager.sendMail__Testing(TO_EMAIL, SUBJECT);
     }
 }

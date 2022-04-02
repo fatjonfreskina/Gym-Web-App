@@ -1,10 +1,11 @@
 package utils;
 
+import jakarta.activation.DataHandler;
+import jakarta.activation.FileDataSource;
 import jakarta.mail.*;
-import jakarta.mail.internet.AddressException;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.*;
 
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Properties;
 
@@ -84,6 +85,41 @@ public class MailManager
         msg.setSentDate(new Date());
         msg.setSubject(subject);
         msg.setText(text);
+
+        Transport.send(msg);
+    }
+
+
+    //TODO: Marco Alessio's testing code, do not touch!
+    public void sendMail__Testing(String email, String subject) throws Exception
+    {
+        final InternetAddress toAddress = new InternetAddress(email);
+
+        session.setDebug(true);
+
+        Message msg = new MimeMessage(session);
+        msg.setFrom(fromAddress);
+        msg.setRecipient(Message.RecipientType.TO, toAddress);
+
+        Multipart multipart = new MimeMultipart();
+
+        BodyPart textPart = new MimeBodyPart();
+        textPart.setText("Trial text with no real use.");
+
+        //File file = new File("logo.png");
+        System.out.println("** " + Paths.get("src\\main\\resources\\logo.png").toAbsolutePath() + " **");
+
+        BodyPart imgPart = new MimeBodyPart();
+        imgPart.setDataHandler(new DataHandler(new FileDataSource(
+                "src\\main\\resources\\logo.png")));
+        imgPart.setFileName("logo.png");
+
+        multipart.addBodyPart(textPart);
+        multipart.addBodyPart(imgPart);
+
+        msg.setSentDate(new Date());
+        msg.setSubject(subject);
+        msg.setContent(multipart);
 
         Transport.send(msg);
     }
