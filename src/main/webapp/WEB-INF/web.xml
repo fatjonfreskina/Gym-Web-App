@@ -25,4 +25,9 @@
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
+    <!-- Listener called when the application is initialized -->
+    <listener>
+        <listener-class>jobs.InitListener</listener-class>
+    </listener>
+
 </web-app>
