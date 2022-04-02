@@ -24,12 +24,15 @@ public class GetPasswordResetDatabase
 
     private final Connection con;
 
-    public GetPasswordResetDatabase(Connection con)
+    private final PasswordReset passwordReset;
+
+    public GetPasswordResetDatabase(Connection con, PasswordReset passwordReset)
     {
         this.con = con;
+        this.passwordReset = passwordReset;
     }
 
-    public List<PasswordReset> get(String person, Timestamp expirationDate) throws SQLException
+    public List<PasswordReset> get() throws SQLException
     {
         List<PasswordReset> result = new ArrayList<>();
 
@@ -39,15 +42,15 @@ public class GetPasswordResetDatabase
         try
         {
             stm = con.prepareStatement(STATEMENT);
-            stm.setString(1, person);
-            stm.setTimestamp(2, expirationDate);
+            stm.setString(1, passwordReset.getPerson());
+            stm.setTimestamp(2, passwordReset.getExpirationDate());
 
             rs = stm.executeQuery();
             while (rs.next())
             {
                 final String token = rs.getString("token");
                 final Timestamp expDate = rs.getTimestamp("expirationDate");
-
+                final String person = rs.getString("person");
                 result.add(new PasswordReset(token, expDate, person));
             }
 

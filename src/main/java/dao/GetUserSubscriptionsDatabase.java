@@ -16,22 +16,23 @@ public class GetUserSubscriptionsDatabase {
     private static final String STATEMENT =
             "SELECT * FROM gwa.subscription WHERE trainee = ?";
     private final Connection con;
-
+    private final Person trainee;
     /**
      * Parametric constructor of the class
      * @param con JDBC connection to the database
      */
-    public GetUserSubscriptionsDatabase(Connection con) {
+    public GetUserSubscriptionsDatabase(Connection con,Person trainee)
+    {
         this.con = con;
+        this.trainee = trainee;
     }
 
     /**
      * Retrieves all the subscriptions associated to a user
-     * @param trainee instance of Person {@link resource.Person}
      * @return List of all the subscriptions associated to the given trainee
      * @throws SQLException
      */
-    public List<Subscription> GetUserSubscriptions (Person trainee) throws SQLException {
+    public List<Subscription> GetUserSubscriptions () throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Subscription> list = new ArrayList<>();

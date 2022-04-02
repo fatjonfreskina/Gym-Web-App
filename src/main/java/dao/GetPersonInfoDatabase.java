@@ -9,12 +9,13 @@ import java.sql.SQLException;
 
 public final class GetPersonInfoDatabase {
     private final String statement = "SELECT * FROM gwa.person WHERE email = ? ";
-    private final Connection con;
-    private final String email;
 
-    public GetPersonInfoDatabase(Connection con, String email){
+    private final Connection con;
+    private final Person person;
+
+    public GetPersonInfoDatabase(Connection con, String email, final Person person){
         this.con = con;
-        this.email = email;
+        this.person = person;
     }
 
     public Person getPersonInfo() throws SQLException {
@@ -24,7 +25,7 @@ public final class GetPersonInfoDatabase {
 
         try{
             prstm = con.prepareStatement(statement);
-            prstm.setString(1,email);
+            prstm.setString(1,person.getEmail());
 
             res = prstm.executeQuery();
             if(res.next()){

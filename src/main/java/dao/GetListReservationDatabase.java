@@ -29,16 +29,14 @@ public final class GetListReservationDatabase
         """;
 
     private final Connection con;
+    private final Reservation reservation;
 
-    private final String trainee;
 
-    private final Date lectureDate;
-
-    public GetListReservationDatabase(final Connection con, final String trainee, final Date lectureDate)
+    public GetListReservationDatabase(final Connection con, final Reservation reservation)
     {
         this.con = con;
-        this.trainee = trainee;
-        this.lectureDate = lectureDate;
+        this.reservation = reservation;
+
     }
 
     public List<Reservation> listReservationDatabase() throws SQLException
@@ -52,8 +50,8 @@ public final class GetListReservationDatabase
         try
         {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setString(1, trainee);
-            pstmt.setDate(2, lectureDate);
+            pstmt.setString(1, reservation.getTrainee());
+            pstmt.setDate(2, reservation.getLectureDate());
 
             rs = pstmt.executeQuery();
 
