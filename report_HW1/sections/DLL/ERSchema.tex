@@ -5,7 +5,7 @@
         % this isn't finished yet
     \end{center}
 
-    The entity-relationship contains 8 main entities:
+    The entity-relationship contains 9 main entities:
     \begin{itemize}
         \item 
         \textbf{User}: each user of the application is identified by an \textit{Email} (type of VARCHAR). 
@@ -17,6 +17,8 @@
         \item Secretary: Users that managed course subscriptions and in charge to sign presence
         
         \end{itemize}
+    	\textcolor{red}{[ TODO restructuration: A: Each user can have one or more role among Trainer,  Trainee, and Secretary.\\
+    	  B: Different entities Trainer,Trainee,Secretary. ]}
     	
     	\item 
     	\textbf{Course}: The gym has different courses and each of them is uniquely identified by 
@@ -37,7 +39,7 @@
     	\item \textbf{Password Reset}: Additional entity to allow users to reset their password (a User can change multiple times its password). It's identified by the \textit{Token} (type of VARCHAR) and has another filed called \textit{Expiration Date}(type of TIMESTAMP).
         
         \item \textbf{Medical Certificate}: Entity used to store the medical certificate of a given user. It's identified by the \textit{Trainee}(of type User). It also has another field : \textit{Expiring Date}(of type of DATE). It has two additional attributes: \textit{Doctor Name} (type of VARCHAR) and \textit{Path} (type of TEXT).
-        	
+
     	% TODO THESE
     	\color{red}
     	\item[?]
