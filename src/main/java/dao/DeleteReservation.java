@@ -1,8 +1,9 @@
 package dao;
 
-//import resource.Reservation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import resource.Reservation;
+
 import java.sql.*;
 
 /*
@@ -12,10 +13,9 @@ Given a user and a lecture time slot, delete from the database the Reservation a
 */
 
 
-public class DeleteRegistration {
-
+public class DeleteReservation 
+{
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
-
     private static final String STATEMENT = """
         DELETE FROM reservation 
         WHERE trainee = ? 
@@ -23,41 +23,36 @@ public class DeleteRegistration {
         AND lecture date = ? 
         AND lecturestarttime = ?;
         """;
-
     private final Connection con;
+    private final Reservation reservation;
 
-    private final String user;
-    private final String room;
-    private final Date lectureDate;
-    private final Timestamp startTime;
-
-    public DeleteRegistration(final Connection con, final String user, final String room, final Date lecturDate, final Timestamp starttime)
+    public DeleteReservation (Connection con, Reservation reservation)
     {
         this.con = con;
-        this.user = user;
-        this.room = room;
-        this.lectureDate = lecturDate;
-        this.startTime = starttime;
+        this.reservation = reservation;
     }
 
-    public void deleteReservation() throws SQLException
+    public void executeDeleteReservation() throws SQLException
     {
         PreparedStatement pstmt = null;
 
         try
         {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setString(1, user);
-            pstmt.setString(2, room);
-            pstmt.setDate(3, lectureDate);
-            pstmt.setTimestamp(4, startTime);
+
+            pstmt.setString(1, reservation.getTrainee());
+            pstmt.setString(2, reservation.getRoom());
+            pstmt.setDate(3, reservation.getLectureDate());
+            pstmt.setTimestamp(4, reservation.getLectureStartTime());
 
             pstmt.execute();
         }
         catch (SQLException exc)
         {
-            logger.error("[INFO] DeleteRegistration.java - %s - An exception occurred during query execution.\n%s\n".
+            logger.error("[INFO] DeleteReservation.java - %s - An exception occurred during query execution.\n%s\n".
              formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
+
+            throw exc;
         }
         finally
         {
@@ -69,3 +64,4 @@ public class DeleteRegistration {
         }
     }
 }
+
