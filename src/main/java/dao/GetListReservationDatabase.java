@@ -15,7 +15,7 @@ Return a list of (future) reservations given a date and a user
 *
 */
 
-public final class GetListReservationDatabase 
+public class GetListReservationDatabase
 {
 
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
