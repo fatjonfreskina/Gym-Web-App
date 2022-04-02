@@ -31,14 +31,14 @@ public final class GetPersonInfoDatabase {
                 output = new Person(
                         (Integer[]) res.getArray("role").getArray(),
                         res.getString("email"),
-                        res.getString("Path_img"),
+                        res.getString("avatarpath"),
                         res.getString("password"),
                         res.getString("address"),
                         res.getString("name"),
                         res.getString("surname"),
                         res.getString("TaxCode"),
-                        res.getDate("Birth_date"),
-                        res.getString("Telephone")
+                        res.getDate("birthdate"),
+                        res.getString("telephone")
                 );
             }
         }finally {
