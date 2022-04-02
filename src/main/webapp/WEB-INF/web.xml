@@ -9,14 +9,14 @@
         for the Computer Engineering master degree of University of Padua.
     </description>
 
-    <welcome-file-list>
-        <welcome-file>/jsp/home.jps</welcome-file>
-    </welcome-file-list>
-
     <!-- Servlets listing -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>servlet.IndexServlet</servlet-class>
+        <jsp-file>/jsp/home.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffServlet</servlet-name>
+        <jsp-file>/jsp/staff.jsp</jsp-file>
     </servlet>
 
     <!-- Mapping between servlets and URIs -->
@@ -24,6 +24,10 @@
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/</url-pattern>
         <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffServlet</servlet-name>
+        <url-pattern>/staff/*</url-pattern>
     </servlet-mapping>
 
     <!-- Listener called when the application is initialized -->
