@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 public class AbstractServlet extends HttpServlet {
 
   private static DataSource ds = null;
-  
+
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
