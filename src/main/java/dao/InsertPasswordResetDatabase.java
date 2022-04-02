@@ -22,7 +22,7 @@ public class InsertPasswordResetDatabase
         this.passwordReset = passwordReset;
     }
 
-    public void create() throws SQLException
+    public void execute() throws SQLException
     {
 
         try (PreparedStatement stm = con.prepareStatement(STATEMENT))

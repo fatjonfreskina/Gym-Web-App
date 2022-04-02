@@ -38,7 +38,7 @@ public class InsertTeachesDatabase {
     /**
      * Execute the sql statement defined above
      */
-    public void insertSubscriptionType() throws SQLException
+    public void execute() throws SQLException
     {
         PreparedStatement preparedStatement = null;
         try{

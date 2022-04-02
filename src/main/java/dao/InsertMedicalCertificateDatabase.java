@@ -19,7 +19,7 @@ public final class InsertMedicalCertificateDatabase
         this.mc = mc;
     }
 
-    public void insertMedicalCertificate() throws SQLException
+    public void execute() throws SQLException
     {
         PreparedStatement preparedStatement = null;
         try

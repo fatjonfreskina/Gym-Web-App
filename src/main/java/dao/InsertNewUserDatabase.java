@@ -17,7 +17,7 @@ public class InsertNewUserDatabase {
         this.p = p;
     }
 
-    public void insertNewUser() throws SQLException {
+    public void execute() throws SQLException {
         PreparedStatement ps = null;
         try {
             ps = conn.prepareStatement(STATEMENT);

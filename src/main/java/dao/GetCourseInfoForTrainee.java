@@ -29,7 +29,7 @@ public class GetCourseInfoForTrainee {
      * @return List of all the subscriptions associated to the given trainee
      * @throws SQLException
      */
-    public List<Subscription> GetUserSubscriptions (Person trainee) throws SQLException {
+    public List<Subscription> execute (Person trainee) throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Subscription> list = new ArrayList<>();

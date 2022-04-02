@@ -29,7 +29,7 @@ public class InsertUserSubscriptionDatabase {
      * Inserts this object into the database
      * @throws SQLException if a database access error occurs
      */
-    public void insert() throws SQLException {
+    public void execute() throws SQLException {
 
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
             preparedStatement.setInt(1, subscription.getCourseEditionID());

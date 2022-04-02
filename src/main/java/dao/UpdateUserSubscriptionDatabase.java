@@ -31,7 +31,7 @@ public class UpdateUserSubscriptionDatabase {
      * Updates a subscription object in the database
      * @throws SQLException if a database access error occurs
      */
-    public void update() throws SQLException {
+    public void execute() throws SQLException {
 
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
             preparedStatement.setDate(1, subscription.getStartDay());

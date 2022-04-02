@@ -32,7 +32,7 @@ public class GetListRoomsDatabase
      * Execute an the query and provide the list of rooms of the gym
      * @return the list of rooms in the gym
      */
-    public List<Room> listRoomsDatabase() throws SQLException
+    public List<Room> execute() throws SQLException
     {
         PreparedStatement pstmt = null;
         ResultSet rs = null;

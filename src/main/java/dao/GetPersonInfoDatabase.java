@@ -18,7 +18,7 @@ public final class GetPersonInfoDatabase {
         this.person = person;
     }
 
-    public Person getPersonInfo() throws SQLException {
+    public Person execute() throws SQLException {
         PreparedStatement prstm = null;
         ResultSet res =  null;
         Person output = null;

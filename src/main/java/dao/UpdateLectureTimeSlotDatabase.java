@@ -25,7 +25,7 @@ public class UpdateLectureTimeSlotDatabase {
     this.lts = lts;
   }
 
-  public LectureTimeSlot updateLectureTimeSlot() throws SQLException {
+  public LectureTimeSlot execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
     LectureTimeSlot updatedLts = null;

@@ -35,7 +35,7 @@ public class GetListSubscriptionTypeDatabase {
      *
      * @return  the list of SubscriptionType retrieved from the database
      */
-    public List<SubscriptionType> getListSubscriptionType() throws SQLException
+    public List<SubscriptionType> execute() throws SQLException
     {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;

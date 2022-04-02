@@ -21,7 +21,7 @@ public final class UpdateMedicalCertificateDatabase
         this.mc = mc;
     }
 
-    public void updateMedicalCertificate() throws SQLException
+    public void execute() throws SQLException
     {
         PreparedStatement preparedStatement = null;
         try

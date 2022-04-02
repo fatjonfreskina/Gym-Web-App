@@ -32,7 +32,7 @@ public class GetUserSubscriptionsDatabase {
      * @return List of all the subscriptions associated to the given trainee
      * @throws SQLException
      */
-    public List<Subscription> GetUserSubscriptions () throws SQLException {
+    public List<Subscription> execute () throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<Subscription> list = new ArrayList<>();

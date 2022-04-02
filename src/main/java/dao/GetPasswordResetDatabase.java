@@ -32,7 +32,7 @@ public class GetPasswordResetDatabase
         this.passwordReset = passwordReset;
     }
 
-    public List<PasswordReset> get() throws SQLException
+    public List<PasswordReset> execute() throws SQLException
     {
         List<PasswordReset> result = new ArrayList<>();
 

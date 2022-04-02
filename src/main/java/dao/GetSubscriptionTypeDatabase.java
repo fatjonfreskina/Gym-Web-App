@@ -35,7 +35,7 @@ public class GetSubscriptionTypeDatabase {
      *
      * @return  the SubscriptionType retrieved from the database with the corresponding cost. May be null in case there is no SubscriptionType found
      */
-    public SubscriptionType getSubscriptionType() throws SQLException
+    public SubscriptionType execute() throws SQLException
     {
         if(this.subscriptionType.getCost()>=0){
             return this.subscriptionType;

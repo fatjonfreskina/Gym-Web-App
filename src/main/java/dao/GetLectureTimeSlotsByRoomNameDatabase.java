@@ -20,7 +20,7 @@ public class GetLectureTimeSlotsByRoomNameDatabase {
     this.roomName = roomName;
   }
 
-  public List<LectureTimeSlot> getLectureTimeSlotsByRoomName() throws SQLException {
+  public List<LectureTimeSlot> execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
     List<LectureTimeSlot> result = new ArrayList<>();

@@ -39,7 +39,7 @@ public class GetListExpiredMedicalCertificateDatabase
      * Execute the query
      * @return the list of people who have an expired certificate, but they're subscribed to a current course
      */
-    public List<Person> listExpiredCertificateUserDatabase() throws SQLException
+    public List<Person> execute() throws SQLException
     {
         PreparedStatement pstmt = null;
         ResultSet rs = null;

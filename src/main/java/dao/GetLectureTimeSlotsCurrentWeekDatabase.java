@@ -21,7 +21,7 @@ public class GetLectureTimeSlotsCurrentWeekDatabase {
     this.connection = connection;
   }
 
-  public List<LectureTimeSlot> getLectureTimeSlotsCurrentWeek() throws SQLException {
+  public List<LectureTimeSlot> execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
     List<LectureTimeSlot> result = new ArrayList<>();

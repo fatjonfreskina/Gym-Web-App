@@ -20,7 +20,7 @@ public class InsertLectureTimeSlotDatabase {
     this.lts = lts;
   }
 
-  public LectureTimeSlot insertLectureTimeSlot() throws SQLException {
+  public LectureTimeSlot execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
 

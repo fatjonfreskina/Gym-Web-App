@@ -32,7 +32,7 @@ public class DeleteReservation
         this.reservation = reservation;
     }
 
-    public void executeDeleteReservation() throws SQLException
+    public void execute() throws SQLException
     {
         PreparedStatement pstmt = null;
 

@@ -18,7 +18,7 @@ public class GetLectureTimeSlotsByCourseDatabase {
     this.lectureTimeSlot = lectureTimeSlot;
   }
 
-  public List<LectureTimeSlot> getLectureTimeSlotsByCourse() throws SQLException {
+  public List<LectureTimeSlot> execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
     List<LectureTimeSlot> result = new ArrayList<>();

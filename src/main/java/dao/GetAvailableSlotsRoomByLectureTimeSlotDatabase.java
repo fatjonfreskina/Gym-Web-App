@@ -41,7 +41,7 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
      * Execute an the query and provide the number of available slots
      * @return the number of available slots
      */
-    public int getAvailableSlotsRoomByLectureTimeSlots() throws SQLException
+    public int execute() throws SQLException
     {
         PreparedStatement pstmt = null;
         ResultSet rs = null;

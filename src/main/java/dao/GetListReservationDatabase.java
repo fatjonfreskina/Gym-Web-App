@@ -39,7 +39,7 @@ public final class GetListReservationDatabase
 
     }
 
-    public List<Reservation> listReservationDatabase() throws SQLException
+    public List<Reservation> execute() throws SQLException
     {
 
         PreparedStatement pstmt = null;

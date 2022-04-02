@@ -17,7 +17,7 @@ public class DeleteLectureTimeSlotDatabase {
     this.lts = lts;
   }
 
-  public LectureTimeSlot deleteLectureTimeSlot() throws SQLException {
+  public LectureTimeSlot execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
     try {

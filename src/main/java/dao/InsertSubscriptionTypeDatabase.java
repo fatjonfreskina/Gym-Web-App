@@ -34,7 +34,7 @@ public class InsertSubscriptionTypeDatabase {
     /**
      * Execute an Insert query to insert the provided SubscriptionType into the subscriptiontype table
      */
-    public void insertSubscriptionType() throws SQLException
+    public void execute() throws SQLException
     {
         PreparedStatement preparedStatement = null;
         try{

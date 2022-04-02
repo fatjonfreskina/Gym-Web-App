@@ -22,7 +22,7 @@ public class GetTeachesByTrainerDatabase {
         this.trainer = trainer;
     }
 
-    public List<Teaches> getSubscriptionType() throws SQLException
+    public List<Teaches> execute() throws SQLException
     {
         List<Teaches> result = new ArrayList<>();
         PreparedStatement stm = null;

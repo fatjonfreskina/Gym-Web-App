@@ -24,7 +24,7 @@ public class InsertReservationDatabase
         this.reservation = reservation;
     }
 
-    public void create() throws SQLException 
+    public void execute() throws SQLException
     {
         try (PreparedStatement stm = con.prepareStatement(STATEMENT))
         {

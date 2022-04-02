@@ -27,7 +27,7 @@ public class PricesServlet extends AbstractServlet {
         try
         {
 
-            list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).getListSubscriptionType();
+            list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).execute();
             logger.info(list.size());
 
             for ( SubscriptionType l : list)

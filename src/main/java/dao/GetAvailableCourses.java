@@ -19,7 +19,7 @@ public class GetAvailableCourses {
         this.today = new Date(System.currentTimeMillis());
     }
 
-    public List<Course> getPersonInfo() throws SQLException {
+    public List<Course> execute() throws SQLException {
         PreparedStatement prstm = null;
         ResultSet res =  null;
         List<Course> output = new ArrayList<>();
