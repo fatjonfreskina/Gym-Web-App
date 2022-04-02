@@ -18,7 +18,8 @@ public class MailManager
     Connection parameters per e-mail provider:
 
                     Host:                       Port:           Cryptographic option:
-    - Gmail         smtp.gmail.com              465             SSL
+    - Gmail         smtp.gmail.com              465             SSL (must enable sender account's option
+                                                                "Less secure app access" first)
     - Hotmail       smtp.live.com               25 / 587        STARTTLS
                                                 465             SSL
     - Libero        smtp.libero.it              465             SSL
