@@ -19,6 +19,9 @@ public class InitListener implements ServletContextListener {
         //Create a scheduler
         var scheduler = Executors.newSingleThreadScheduledExecutor();
 
+        //Add job to drop user's registration when expired, it runs once a day
+        scheduler.scheduleAtFixedRate(new DropUncompletedRegistrations(), 0, 1, TimeUnit.DAYS);
+
         //Super call
         jakarta.servlet.ServletContextListener.super.contextInitialized(sce);
 
