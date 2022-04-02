@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class MailManager
 {
-    public static void sendMail(String to,String title ,String msg, Person person)
+    public static void sendMail(String to,String title ,String msg, final Person person)
     {
         Properties properties = System.getProperties();
         properties.setProperty(Constants.MAILSMTPHOST, Constants.HOST);
