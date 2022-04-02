@@ -7,10 +7,11 @@ import resource.LectureTimeSlot;
 import java.sql.*;
 
 public class InsertLectureTimeSlotDatabase {
+
   private final String STATEMENT = "" +
       "INSERT INTO gwa.lecturetimeslot(roomname, date, starttime, courseeditionid,coursename,substitution)" +
-      "VALUES (?, ?, ?, ?, ?, ?) " +
-      "RETURNING *;";
+      "VALUES (?, ?, ?, ?, ?, ?) ";
+
   private final LectureTimeSlot lts;
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");

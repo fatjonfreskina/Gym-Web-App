@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public final class GetPersonInfoDatabase {
+public class GetPersonInfoDatabase {
     private final String statement = "SELECT * FROM gwa.person WHERE email = ? ";
 
     private final Connection con;
