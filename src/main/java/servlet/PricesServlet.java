@@ -20,7 +20,6 @@ public class PricesServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         List<SubscriptionType> list = null;
-
         try
         {
             list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).execute();
