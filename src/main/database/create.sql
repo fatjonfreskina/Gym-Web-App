@@ -2,8 +2,7 @@
 DROP DATABASE IF EXISTS gwa_db; 
 DROP SCHEMA IF EXISTS gwa CASCADE;
 CREATE DATABASE gwa_db ENCODING = 'UTF8';
--- Connect to the new db
--- \c gwa_db
+-- Connect to the new db using \c gwa_db
 
 CREATE SCHEMA gwa;
 SET search_path='gwa';
@@ -35,7 +34,7 @@ CREATE TABLE passwordreset (
 CREATE TABLE medicalcertificate (
 	person VARCHAR(40),
 	expirationdate DATE,
-	doctorname TEXT NOT NULL,
+	doctorname VARCHAR(30) NOT NULL,
 	path TEXT NOT NULL,
 	PRIMARY KEY(person,expirationdate)
 );
@@ -79,7 +78,7 @@ CREATE TABLE courseedition (
 
 CREATE TABLE course (
 	name VARCHAR(30) NOT NULL,
-	description VARCHAR(50),
+	description TEXT,
 	PRIMARY KEY(name)
 );
 
@@ -87,11 +86,9 @@ CREATE TABLE subscriptiontype (
 	courseeditionid INTEGER,
 	coursename VARCHAR(30) NOT NULL,
 	duration INTEGER NOT NULL,
-	cost DECIMAL(6,2) NOT NULL,
-	discount INTEGER,
+	cost DECIMAL(6,2) NOT NULL,	
 	CHECK (duration > 0),
-	CHECK (discount >= 0 AND discount <= 100),
-	CHECK (cost > 0),
+	CHECK (cost >= 0),
 	PRIMARY KEY (courseeditionid, coursename, duration)
 );
 
@@ -101,6 +98,8 @@ CREATE TABLE subscription (
 	duration INTEGER NOT NULL,
 	startday DATE NOT NULL,
 	trainee VARCHAR(40) NOT NULL,
+	discount INTEGER,
+	CHECK (discount >= 0 AND discount <= 100),
 	PRIMARY KEY (courseeditionid, coursename, duration, startday, trainee)
 );
 
