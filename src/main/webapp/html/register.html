@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+
+<form action="action_page.php">
+  <div>
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+      <p> <h4> Insert here your personal info</h4></p>
+
+    <label for="Name"><b>Name</b></label>
+    <input type="text" placeholder="Enter name" name="email" id="email" required>
+
+    <label for="Surname"><b>Surname</b></label>
+    <input type="text" placeholder="Enter Surname" name="email" id="email" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+    <label for="taxcode"><b>TaxCode</b></label>
+    <input type="text" placeholder="Enter TaxCode" name="email" id="email" required>
+
+    <label for="phonenumber"><b>PhoneNumber</label>
+    <input type="number" placeholder="Enter phonenumber" name="email" id="email" required>
+
+    <label for="birthdate"><b>Birthdate</b></label>
+    <input type="date" placeholder="Enter birthdate" name="email" id="email" required>
+
+    <label for="Address"><b>Address</b></label>
+    <input type="text" placeholder="Enter Address" name="email" id="email" required>
+
+  </div>
+  <p> <h4> Address form </h4></p>
+
+  <div type= margin: 30px auto; width:450px; >
+  <input type="street" 
+         class="form-control" 
+         id="autocomplete" 
+         placeholder="Street">
+  
+  <input type="city" 
+         class="form-control" 
+         id="inputCity" 
+         placeholder="City">
+  
+  <input type="state" 
+         class="form-control" 
+         id="inputState" 
+         placeholder="State">
+  
+  <input type="zip" 
+         class="form-control" 
+         id="inputZip" 
+         placeholder="Zip">
+  
+  <input type="county" 
+         class="form-control" 
+         id="inputCounty" 
+         placeholder="County">
+
+</div>
+
+ <p> <h4> Insert here your password </h4></p>
+
+<div>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    <hr>
+
+  </div>
+
+  <p> <h4> Insert here your profile picture </h4></p>
+<div>
+  <form action="/action_page.php">
+  <label for="img">Select profile picture:</label>
+  <input type="file" id="img" name="img" accept="image/*">
+  
+</form>
+  
+
+</div>
+   
+  <button type="submit" class="registerbtn">Register</button>
+  <div class="container signin">
+    <p>Already have an account? <a href="login.html">Sign in</a>.</p>
+  </div>
+</form>
+</body>
+</html>
