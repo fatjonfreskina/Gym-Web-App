@@ -1,5 +1,6 @@
 package servlet;
 
+import constants.Constants;
 import dao.GetListSubscriptionTypeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,9 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+//import
 
 public class PricesServlet extends AbstractServlet {
     @Override
@@ -18,10 +22,18 @@ public class PricesServlet extends AbstractServlet {
 
         List<SubscriptionType> list = null;
 
+        Logger logger = LogManager.getLogger("francesco_caldivezzi_logger");
+        logger.info("SONO QUI");
         try
         {
-            list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).getListSubscriptionType();
 
+            list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).getListSubscriptionType();
+            logger.info(list.size());
+
+            for ( SubscriptionType l : list)
+            {
+                logger.info(l.getCourseName());
+            }
 
 
 
@@ -30,17 +42,17 @@ public class PricesServlet extends AbstractServlet {
 
         } catch (NumberFormatException ex)
         {
-
+            logger.info(ex.getMessage());
 
         } catch (SQLException ex)
         {
-
+            logger.info(ex.getMessage());
 
         }catch (NamingException ex)
         {
-
+            logger.info(ex.getMessage());
         }
-        req.setAttribute("pricesList", list);
-        req.getRequestDispatcher("/jsp/prices.jsp").forward(req, res);
+        req.setAttribute("subscriptionTypeList", list);
+        req.getRequestDispatcher(Constants.PATHPRICESJSP).forward(req, res);
     }
 }
