@@ -5,7 +5,6 @@ import jakarta.activation.FileDataSource;
 import jakarta.mail.*;
 import jakarta.mail.internet.*;
 
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Properties;
 
@@ -91,6 +90,10 @@ public class MailManager
 
 
     //TODO: Marco Alessio's testing code, do not touch!
+    //Currently it sends an e-mail with:
+    //- image + side text, at the top
+    //- text, below
+    //as HTML code.
     public void sendMail__Testing(String email, String subject) throws Exception
     {
         final InternetAddress toAddress = new InternetAddress(email);
@@ -101,18 +104,34 @@ public class MailManager
         msg.setFrom(fromAddress);
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
+        final String htmlText =
+               """
+               <div style="width:100%; height:128px;">
+                   <div style="width:150px; height:100%; float:left;">
+                       <img src="cid:logo_cid" alt="gwa_logo" width="128" height="128">
+                   </div>
+                   <div style="width:100%; height:100%;">
+                       <h3>GWA Gym</h3>
+                       Padua, Italy
+                   </div>
+               </div>
+               <h1>Useless text just to try.</h1>
+               """;
+
+
         Multipart multipart = new MimeMultipart();
 
         BodyPart textPart = new MimeBodyPart();
-        textPart.setText("Trial text with no real use.");
-
-        //File file = new File("logo.png");
-        System.out.println("** " + Paths.get("src\\main\\resources\\logo.png").toAbsolutePath() + " **");
+        //For text + image as attachment, use instead:
+        //textPart.setText("Trial text with no real use.");
+        textPart.setContent(htmlText, "text/html");
 
         BodyPart imgPart = new MimeBodyPart();
         imgPart.setDataHandler(new DataHandler(new FileDataSource(
                 "src\\main\\resources\\logo.png")));
-        imgPart.setFileName("logo.png");
+        //For text + image as attachment, use instead:
+        //imgPart.setFileName("logo.png");
+        imgPart.setHeader("Content-ID", "<logo_cid>");
 
         multipart.addBodyPart(textPart);
         multipart.addBodyPart(imgPart);
