@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class InsertLectureTimeSlotDatabase {
   private final String STATEMENT = "" +
-      "INSERT INTO lecturetimeslot(roomname, date, starttime, courseeditionid,coursename,substitution)" +
+      "INSERT INTO gwa.lecturetimeslot(roomname, date, starttime, courseeditionid,coursename,substitution)" +
       "VALUES (?, ?, ?, ?, ?, ?) " +
       "RETURNING *;";
   private final LectureTimeSlot lts;

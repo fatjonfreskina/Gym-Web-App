@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class UpdateUserSubscriptionDatabase {
 
     private static final String STATEMENT =
-            "UPDATE subscription SET startday = ?, discount = ?, trainee = ? WHERE courseeditionid = ?, coursename = ?, duration = ?;";
+            "UPDATE gwa.subscription SET startday = ?, discount = ?, trainee = ? WHERE courseeditionid = ?, coursename = ?, duration = ?;";
     private final Connection con;
     private final Subscription subscription;
 

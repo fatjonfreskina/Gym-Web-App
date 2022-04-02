@@ -16,7 +16,7 @@ import java.sql.SQLException;
  *  */
 public class InsertTeachesDatabase {
 
-    private static final String STATEMENT = "INSERT INTO teaches (courseeditionid, coursename, trainer) VALUES (?, ?, ?)";
+    private static final String STATEMENT = "INSERT INTO gwa.teaches (courseeditionid, coursename, trainer) VALUES (?, ?, ?)";
 
     private final Connection con;
     private final CourseEdition courseEdition;

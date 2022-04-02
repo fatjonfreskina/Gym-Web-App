@@ -16,7 +16,7 @@ import java.util.List;
 public class GetCourseInfoForTrainee {
 
     private static final String STATEMENT =
-            "SELECT startday,duration FROM subscription WHERE trainee = ?";
+            "SELECT startday,duration FROM gwa.subscription WHERE trainee = ?";
     private final Connection con;
 
     public GetCourseInfoForTrainee(Connection con) {

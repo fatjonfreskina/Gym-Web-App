@@ -8,7 +8,7 @@ import resource.Person;
 import java.sql.*;
 
 public class InsertNewUserDatabase {
-    private final String STATEMENT = "INSERT INTO person(email, role, name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String STATEMENT = "INSERT INTO gwa.person(email, role, name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final Connection conn;
     private final Person p;
 

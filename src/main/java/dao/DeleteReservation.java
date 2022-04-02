@@ -17,7 +17,7 @@ public class DeleteReservation
 {
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
     private static final String STATEMENT = """
-        DELETE FROM reservation 
+        DELETE FROM gwa.reservation 
         WHERE trainee = ? 
         AND lectureroom = ? 
         AND lecture date = ? 

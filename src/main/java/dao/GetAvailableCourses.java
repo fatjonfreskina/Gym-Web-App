@@ -9,7 +9,7 @@ import java.util.List;
 public class GetAvailableCourses {
     private final String statement =
             "SELECT coursename, description "+
-            "FROM (courseedition as CE JOIN lecturetimeslot as LTS ON CE.id=LTS.courseeditionid AND CE.coursename=LTS.coursename) as A JOIN course as C ON A.coursename=C.name"+
+            "FROM (gwa.courseedition as CE JOIN gwa.lecturetimeslot as LTS ON CE.id=LTS.courseeditionid AND CE.coursename=LTS.coursename) as A JOIN gwa.course as C ON A.coursename=C.name"+
             "WHERE date >= ? ";
     private final Connection con;
     private final Date today;

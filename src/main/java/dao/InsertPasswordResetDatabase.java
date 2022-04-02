@@ -11,7 +11,7 @@ public class InsertPasswordResetDatabase
     private static final Logger logger = LogManager.getLogger("marco_alessio_appender");
 
     private static final String STATEMENT =
-            "INSERT INTO passwordreset (token, expirationdate, person) VALUES (?, ?, ?)";
+            "INSERT INTO gwa.passwordreset (token, expirationdate, person) VALUES (?, ?, ?)";
 
     private final Connection con;
     private final PasswordReset passwordReset;

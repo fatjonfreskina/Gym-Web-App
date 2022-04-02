@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Andrea Pasin
  */
 public class InsertSubscriptionTypeDatabase {
-    private static final String STATEMENT = "INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (?, ?, ?, ?,)";
+    private static final String STATEMENT = "INSERT INTO gwa.subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (?, ?, ?, ?,)";
     private final Connection con;
 
     private final SubscriptionType subscriptionType;

@@ -11,7 +11,7 @@ public class InsertReservationDatabase
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
     
     private static final String STATEMENT = """
-            INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime)
+            INSERT INTO gwa.reservation (trainee, lectureroom, lecturedate, lecturestarttime)
             VALUES (?,?,?,?);
             """;
     

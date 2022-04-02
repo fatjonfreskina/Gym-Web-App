@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
 public class GetLectureTimeSlotsCurrentWeekDatabase {
-  private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date >= ? AND date <= ?";
+  private static final String STATEMENT = "SELECT * FROM gwa.lecturetimeslot WHERE date >= ? AND date <= ?";
 
   private final Connection connection;
   private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
