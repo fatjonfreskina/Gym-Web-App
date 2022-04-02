@@ -7,14 +7,12 @@
 </head>
 <body>
     <jsp:include page="/jsp/include/header.jsp"/><br>
-
     <table>
         <thead>
             <tr>
                 <th>Course</th><th>Type of Subscription</th><th>Price</th>
             </tr>
         </thead>
-
         <c:set var="last_printed" value=""/>
         <c:forEach var="subscriptionType" items="${subscriptionTypeList}">
             <c:if test="${!subscriptionType.courseName.equals(last_printed)}">
@@ -32,13 +30,8 @@
                 </tr>
             </c:if>
             <c:set var="last_printed" value="${subscriptionType.courseName}"/>
-
-
         </c:forEach>
     </table>
-
-
-
     <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>
