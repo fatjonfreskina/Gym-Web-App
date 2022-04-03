@@ -11,23 +11,24 @@ import javax.sql.DataSource;
 
 public class AbstractServlet extends HttpServlet {
 
-  private static DataSource ds = null;
+    private static DataSource ds = null;
 
-  @Override
-  public void init(ServletConfig config) throws ServletException {
-    super.init(config);
-  }
-
-  @Override
-  public void destroy(){
-    super.destroy();
-  }
-
-  public DataSource getDataSource() throws NamingException {
-    if (ds == null) {
-      InitialContext ctx = new InitialContext();
-      ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
     }
-    return ds;
-  }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
+
+    public DataSource getDataSource() throws NamingException {
+        if (ds == null) {
+            InitialContext ctx = new InitialContext();
+            ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
+        }
+        return ds;
+    }
+
 }

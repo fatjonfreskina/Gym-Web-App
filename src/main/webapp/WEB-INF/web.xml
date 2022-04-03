@@ -18,12 +18,14 @@
         <servlet-name>StaffServlet</servlet-name>
         <jsp-file>/jsp/staff.jsp</jsp-file>
     </servlet>
-
     <servlet>
         <servlet-name>PricesServlet</servlet-name>
         <servlet-class>servlet.PricesServlet</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>TrainerServlet</servlet-name>
+        <servlet-class>servlet.TrainerServlet</servlet-class>
+    </servlet>
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -33,12 +35,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StaffServlet</servlet-name>
-        <url-pattern>/staff/*</url-pattern>
+        <url-pattern>/staff</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>PricesServlet</servlet-name>
         <url-pattern>/prices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrainerServlet</servlet-name>
+        <url-pattern>/trainer</url-pattern>
     </servlet-mapping>
 
     <!-- Listener called when the application is initialized -->
