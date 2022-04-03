@@ -19,6 +19,11 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+/**
+ * Da testare max size upload!!!
+ *
+ * */
 public class RegisterServlet extends AbstractServlet
 {
 
@@ -42,7 +47,7 @@ public class RegisterServlet extends AbstractServlet
         Date birthDate = null;
         Part medicalCertificate = null;
         Part avatar = null;
-
+        String[] roles = new String[]{"Trainee","",""};
 
         ErrorCodes error = null;
         Message message = null;
@@ -113,6 +118,17 @@ public class RegisterServlet extends AbstractServlet
             res.setStatus(error.getHTTPCode());
             req.setAttribute(Constants.MESSAGE,message);
             req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
+        }else
+        {
+            //here the user will be registered
+            /*
+            * Thing to do :
+            * 1) check if it is already in the db by testing email and tax code
+            * 2) if can register => add in db all the things needed
+            * 3) send email for confirmation of registration ?
+            * That's it!
+            * */
+
         }
     }
 
