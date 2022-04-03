@@ -6,88 +6,68 @@
 </head>
 <body>
 
-<form action="action_page.php">
+<form action="">
   <div>
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
       <p> <h4> Insert here your personal info</h4></p>
 
-    <label for="Name"><b>Name</b></label>
-    <input type="text" placeholder="Enter name" name="name" id="name" required>
+    <label for="first_name"><b>Name</b></label>
+    <input type="text" placeholder="Enter name" name="first_name" id="first_name" required>
 
-    <label for="Surname"><b>Surname</b></label>
-    <input type="text" placeholder="Enter Surname" name="surname" id="surname" required>
+    <label for="last_name"><b>Surname</b></label>
+    <input type="text" placeholder="Enter Surname" name="last_name" id="last_name" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
-    <label for="taxcode"><b>TaxCode</b></label>
-    <input type="text" placeholder="Enter TaxCode" name="taxcode" id="taxcode" required>
+    <label for="tax_code"><b>TaxCode</b></label>
+    <input type="text" placeholder="Enter TaxCode" name="tax_code" id="tax_code" required>
 
-    <label for="phonenumber"><b>PhoneNumber</label>
-    <input type="number" placeholder="Enter phonenumber" name="phonenumber" id="phonenumber" required>
+    <label for="telephone_number"><b>PhoneNumber</b></label>
+    <input type="tel" placeholder="Enter phonenumber" name="telephone_number" id="telephone_number" required>
 
-    <label for="birthdate"><b>Birthdate</b></label>
-    <input type="date" placeholder="Enter birthdate" name="birthdate" id="birthdate" required>
+    <label for="birth_date"><b>Birthdate</b></label>
+    <input type="date" placeholder="Enter birthdate" name="birth_date" id="birth_date" required>
 
     <label for="address"><b>Address</b></label>
     <input type="text" placeholder="Enter Address" name="address" id="address" required>
 
   </div>
-  <p> <h4> Address form </h4></p>
-
-  <div type= margin: 30px auto; width:450px; >
-  <input type="street" 
-         class="form-control" 
-         id="autocomplete" 
-         placeholder="Street">
-  
-  <input type="city" 
-         class="form-control" 
-         id="inputCity" 
-         placeholder="City">
-  
-  <input type="state" 
-         class="form-control" 
-         id="inputState" 
-         placeholder="State">
-  
-  <input type="zip" 
-         class="form-control" 
-         id="inputZip" 
-         placeholder="Zip">
-  
-  <input type="county" 
-         class="form-control" 
-         id="inputCounty" 
-         placeholder="County">
-
-</div>
 
  <p> <h4> Insert here your password </h4></p>
 
 <div>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+    <label for="confirm_password"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="confirm_password" id="confirm_password" required>
     <hr>
 
   </div>
 
   <p> <h4> Insert here your profile picture </h4></p>
 <div>
-  <form action="/action_page.php">
-  <label for="img">Select profile picture:</label>
-  <input type="file" id="img" name="img" accept="image/*">
+  <form action="">
+  <label for="avatar">Select profile picture:</label>
+  <input type="file" id="avatar" name="avatar" accept="image/*">
   
 </form>
-  
 
-</div>
+  <p> <h4> Insert here your medical certificate </h4></p>
+  <div>
+
+    <form action="">
+      <label for="medical_certificate">Select profile picture:</label>
+      <input type="file" id="medical_certificate" name="medical_certificate" accept="application/pdf">
+
+    </form>
+
+
+  </div>
    
   <button type="submit" class="registerbtn">Register</button>
   <div class="container signin">
