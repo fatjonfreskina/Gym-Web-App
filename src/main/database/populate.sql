@@ -1,5 +1,4 @@
---Connect to the gwa db using \c gwa_db
-SET search_path='gwa';
+-- REVIEW THE INSERTS FOR PERSON
 
 --Users
 INSERT INTO person VALUES ('mario.rossi@example.com',ARRAY['Trainee']::roles[],'Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);

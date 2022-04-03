@@ -1,12 +1,5 @@
--- run `cat create.sql | psql -U postgres`
-DROP DATABASE IF EXISTS gwa_db; 
-DROP SCHEMA IF EXISTS gwa CASCADE;
+DROP DATABASE IF EXISTS gwa_db;
 CREATE DATABASE gwa_db ENCODING = 'UTF8';
--- Connect to the new db using \c gwa_db
-
-CREATE SCHEMA gwa;
-SET search_path='gwa';
-
 
 CREATE TABLE emailconfermation(
     person VARCHAR(40),
@@ -14,6 +7,7 @@ CREATE TABLE emailconfermation(
     expirationdate TIMESTAMP NOT NULL,
     PRIMARY KEY(person)
 );
+
 -- 0,1,2
 CREATE TABLE typeofroles(
     role INTEGER,

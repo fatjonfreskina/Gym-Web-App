@@ -5,8 +5,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,6 +18,9 @@ public class DataBaseUtils {
     static final String DB_URL = "jdbc:postgresql://localhost:5432/gwa_db";
     static final String USER = "robot";
     static final String PASS = "robot";
+
+    static final String CREATE_FILEPATH = "src/main/database/create.sql";
+    static final String SEED_FILEPATH = "src/main/database/seed.sql";
 
     public static void main(String[] args){
 
@@ -42,7 +43,7 @@ public class DataBaseUtils {
     private static void createDatabase(Connection conn){
         try {
             Statement stmt = conn.createStatement();
-            List<String> statements = parseSQL("src/main/database/create.sql");
+            List<String> statements = parseSQL(CREATE_FILEPATH);
             for(String statement:statements){
                 stmt.execute(statement);
                 System.out.println(statement);
@@ -137,7 +138,7 @@ public class DataBaseUtils {
                 //Detect if is the end of a statement
                 if(data.endsWith(";")){
                     //End this statement and remove the last ;
-                    statement.append(data.substring(0,data.length()-1));
+                    statement.append(data, 0, data.length()-1);
                     //Delete multiple whitespaces
                     String wiped = statement.toString().replaceAll("\\s+", " ").trim();
                     //Add it to the statements
