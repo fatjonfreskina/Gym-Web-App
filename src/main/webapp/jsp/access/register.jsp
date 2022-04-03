@@ -8,7 +8,7 @@
 </head>
 <body>
     <jsp:include page="../include/header.jsp"/><br>
-    <form method="post" action="<c:url value="/register"/>">
+    <form method="post" action="<c:url value="/register"/>" enctype="multipart/form-data">
         <label>Tax Code : </label><input type="text" name="tax_code" ><br/><!-- pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required-->
         <label>First Name : </label><input type="text" name="first_name" ><br/>
         <label>Last Name : </label><input type="text" name="last_name" ><br/>
