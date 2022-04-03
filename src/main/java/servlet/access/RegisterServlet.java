@@ -4,6 +4,7 @@ import constants.Constants;
 import constants.ErrorCodes;
 import dao.GetUserByEmail;
 import dao.GetUserByTaxCode;
+import dao.InsertEmailConfermation;
 import dao.InsertNewUserDatabase;
 import jakarta.activation.MimeType;
 import jakarta.servlet.ServletException;
@@ -25,6 +26,7 @@ import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utils.EncryptionManager;
+import utils.MailManager2;
 
 import javax.naming.NamingException;
 
@@ -235,6 +237,11 @@ public class RegisterServlet extends AbstractServlet
                         {
                             Person p = new Person(roles,email,pathImg, EncryptionManager.encrypt(password),address,firstName,lastName,taxCode,birthDate,telephoneNumber);
                             new InsertNewUserDatabase(getDataSource().getConnection(),p);
+                            String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
+
+                            new InsertEmailConfermation(getDataSource().getConnection(),p,EncryptionManager.encrypt(email), )
+
+                            MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 
 
                         }catch (NoSuchAlgorithmException e)

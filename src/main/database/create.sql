@@ -12,7 +12,7 @@ CREATE TYPE roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
 CREATE TABLE emailconfermation(
     person VARCHAR(40),
     token VARCHAR(256) NOT NULL,
-    expirationdate DATE NOT NULL,
+    expirationdate TIMESTAMP NOT NULL,
     PRIMARY KEY(person)
 );
 

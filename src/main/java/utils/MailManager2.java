@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class MailManager2
 {
-    public static void sendMail(String to,String title ,String msg, Person person)
+    public static void sendMail(String title ,String msg, Person person)
     {
         Properties properties = System.getProperties();
         properties.setProperty(Constants.MAILSMTPHOST, Constants.HOST);
@@ -21,7 +21,7 @@ public class MailManager2
         {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(Constants.NOREPLYEMAIL));
-            message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(to));
+            message.addRecipient(MimeMessage.RecipientType.TO, new InternetAddress(person.getEmail()));
             message.setSubject(title);
             message.setText("Dear "+person.getName()+" "+person.getSurname()+",\n"+
                     "\n\n" +
