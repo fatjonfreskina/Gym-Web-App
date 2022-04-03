@@ -19,7 +19,7 @@ public class PersonalInfoServlet extends AbstractServlet
         try
         {
             //TODO: how to know the email of the logged user?
-            final String email = (String) req.getAttribute("email");
+            final String email = req.getParameter("email");
 
             Person person = new GetPersonInfoDatabase(getDataSource().getConnection(), email).execute();
 

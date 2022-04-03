@@ -11,7 +11,7 @@
     <table>
         <tr>
             <th>Tax Code:</th>
-            <td><c:out value="${personalInfo.TaxCode}"/></td>
+            <td><c:out value="${personalInfo.taxCode}"/></td>
         </tr>
         <tr>
             <th>First Name:</th>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <th>Birth Date:</th>
-            <td><c:out value="${personalInfo.Birth_date}"/></td>
+            <td><c:out value="${personalInfo.birthDate}"/></td>
         </tr>
         <tr>
             <th>Address:</th>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <th>Photo (optional):</th>
-            <td><c:out value="${personalInfo.Path_img}"/></td>
+            <td><c:out value="${personalInfo.pathImg}"/></td>
         </tr>
         <tr>
             <th>Email:</th>

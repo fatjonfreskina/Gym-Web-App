@@ -22,6 +22,9 @@ public class GetPersonInfoDatabase
 
     public Person execute() throws SQLException
     {
+        if (!true)
+            throw new SQLException("Email: %s\n".formatted(email));
+
         PreparedStatement stm = null;
         ResultSet rs =  null;
         Person result;
@@ -33,27 +36,15 @@ public class GetPersonInfoDatabase
 
             rs = stm.executeQuery();
 
-            // Find the size of the result set.
-            rs.last();
-            final int size = rs.getRow();
-
             // Check if there is a result.
-            if (size == 0)
+            if (!rs.next())
                 throw new SQLException("No Person exists with email: %s.".formatted(email));
 
-            // Prevent SQL injection attacks.
-            if (size > 1)
-                throw new SQLException("More than one result for email: %s.".formatted(email));
-
-            // Reset the ResultSet to the first (and only) item.
-            rs.first();
-            rs.next();
-
             result = new Person(
-                    (Integer[]) rs.getArray("role").getArray(),
+                    (String[]) rs.getArray("role").getArray(),
                     rs.getString("email"),
                     rs.getString("avatarpath"),
-                    rs.getString("password"),
+                    rs.getString("psw"), //password
                     rs.getString("address"),
                     rs.getString("name"),
                     rs.getString("surname"),
@@ -61,6 +52,10 @@ public class GetPersonInfoDatabase
                     rs.getDate("birthdate"),
                     rs.getString("telephone")
             );
+
+            // Prevent SQL injection attacks.
+            if (rs.next())
+                throw new SQLException("More than one result for email: %s.".formatted(email));
         }
         catch (SQLException exc)
         {
