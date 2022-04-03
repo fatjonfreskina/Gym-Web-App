@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <body>
-    <jsp:include page="include/header.jsp"/><br>
+    <jsp:include page="../include/header.jsp"/><br>
     <form action="action_page.php" method="post">
         <div class="container">
             <label> <b>Username</b> </label> <br>
@@ -23,6 +23,6 @@
             <span class="psw">Forgot <a href="#">password?</a></span>
         </div>
     </form>
-    <jsp:include page="include/footer.jsp"/><br>
+    <jsp:include page="../include/footer.jsp"/><br>
 </body>
 </html>
