@@ -33,6 +33,7 @@ public class PricesServlet extends AbstractServlet {
 
         }
         req.setAttribute("subscriptionTypeList", list);
-        req.getRequestDispatcher(Constants.PATHPRICESJSP).forward(req, res);
+        req.getRequestDispatcher(Constants.PATH_PRICES).forward(req, res);
+
     }
 }
