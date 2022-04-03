@@ -11,7 +11,7 @@
 
 <h1>Change the password</h1>
 
-<form method="POST" action="<c:url value="/password_change"/>" enctype="multipart/form-data">
+<form method="POST" action="<c:url value="/password_change"/>" enctype="application/x-www-form-urlencoded">
     <label for="password">New password:</label><br>
     <input type="password" id="password" name="password" placeholder="Insert your new password here" autoComplete="true"><br>
     <label for="password-confirm">Confirm password:</label><br>

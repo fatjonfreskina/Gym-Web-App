@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import servlet.AbstractServlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * This servlet is accessible after having asked for a password reset.
@@ -25,6 +26,13 @@ public class PasswordChangeServlet extends AbstractServlet {
         //Get from the request the new password and then change it
         //TODO: Read the fields from the HTTP request, then calculate the HASH of the new password and save it
 
-        resp.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
+        String raw_password = req.getParameter("password");
+        String raw_confirm = req.getParameter("password-confirm");
+
+        PrintWriter out = resp.getWriter();
+        out.println("<html><body>");
+        out.println("<h3>The inserted password: " + raw_password + "</h3>");
+        out.println("<h3>The confirmation password: " + raw_confirm + "</h3>");
+        out.println("</body></html>");
     }
 }
