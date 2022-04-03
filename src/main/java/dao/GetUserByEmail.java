@@ -20,7 +20,7 @@ public class GetUserByEmail
 
     private final Person user;
 
-    public GetUserByEmail(final Connection con, final Person user)
+    public GetUserByEmail(final Connection con, Person user)
     {
         this.con = con;
         this.user = user;

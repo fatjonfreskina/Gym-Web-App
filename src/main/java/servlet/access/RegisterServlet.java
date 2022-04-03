@@ -3,6 +3,8 @@ package servlet.access;
 import constants.Constants;
 import constants.ErrorCodes;
 import dao.GetUserByEmail;
+import dao.GetUserByTaxCode;
+import dao.InsertNewUserDatabase;
 import jakarta.activation.MimeType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,9 +14,9 @@ import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
 
-import java.awt.*;
 import java.io.*;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
@@ -49,7 +51,6 @@ public class RegisterServlet extends AbstractServlet
         String confirmPassword= null;
         String telephoneNumber = null;
         Date birthDate = null;
-        Part medicalCertificate = null;
         Part avatar = null;
         String[] roles = new String[]{Person.ROLE_TRAINEE,"",""};
 
@@ -76,10 +77,9 @@ public class RegisterServlet extends AbstractServlet
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
             avatar = req.getPart(Constants.AVATAR);
-            medicalCertificate = req.getPart(Constants.MEDICAL_CERTIFICATE);
 
             //insertUser
-            error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,medicalCertificate);
+            error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,roles);
             if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
             {
                 message = new Message(error.getErrorMessage(),true);
@@ -103,13 +103,14 @@ public class RegisterServlet extends AbstractServlet
             req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
         }else
         {
+            /*
             if((new GetUserByEmail(getDataSource().getConnection(),
                     new Person(null,email,null,null,null,null,null,null,null))) == null &&
             (new GetUserByEmail(getDataSource().getConnection(),
                     new Person(null,email,null,null,null,null,null,null,null)) == null ))
             {
                 //
-            }
+            }*/
             //here the user will be registered
             /*
             * Thing to do :
@@ -205,32 +206,51 @@ public class RegisterServlet extends AbstractServlet
     }
 
     public ErrorCodes insertUser(String taxCode,String firstName, String lastName,String address,String email,
-                                 String password, String telephoneNumber,Date birthDate,Part avatar,Part medicalCertificate)
+                                 String password, String telephoneNumber,Date birthDate,Part avatar,String[] roles)
     {
         ErrorCodes error = ErrorCodes.OK;
-
+        Person p1 = null;
+        Person p2 = null;
         try
         {
-            Person p1 = new GetUserByEmail(getDataSource().getConnection(),new Person(email,Constants.EMAIL));
-        }catch (NamingException e)
+            p1 = (new GetUserByEmail(getDataSource().getConnection(),new Person(email,Constants.EMAIL))).execute();
+            p2 = (new GetUserByTaxCode(getDataSource().getConnection(),new Person(email,Constants.TAX_CODE))).execute();
+
+            if(p1 == null || p2 == null)//It's a new user, so need to add it !
+            {
+
+                try
+                {
+                    error = saveFile(avatar,taxCode);
+                    if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+                    {
+                        //File saved ok can proceed with writing on the database and send email and log to test max dimension of the file??
+                        String pathImg = null;
+                        if(avatar != null)
+                            pathImg = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode +
+                                    File.separator + Constants.AVATAR + avatar.getContentType().split(File.separator)[1];
+
+                        Person p = new Person(roles,email,pathImg,password,address,firstName,lastName,taxCode,birthDate,telephoneNumber);
+                        new InsertNewUserDatabase(getDataSource().getConnection(),p);
+                        //send email to confirm registration
+
+                    }
+                }catch (IOException e)
+                {
+                    error = ErrorCodes.INTERNAL_ERROR;
+                }
+
+            }else
+                error = ErrorCodes.USER_ALREADY_PRESENT;
+        }catch (SQLException | NamingException e )
         {
-            error = ErrorCodes.
-
+            error = ErrorCodes.INTERNAL_ERROR;
         }
-
-
-
-
-
-
-
         return error;
     }
 
 
-
-
-    private ErrorCodes saveFile(Part file, String type, String taxCode) throws IOException
+    private ErrorCodes saveFile(Part file, String taxCode) throws IOException
     {
         ErrorCodes error = ErrorCodes.OK;
         File createDirectory = null;
@@ -238,43 +258,26 @@ public class RegisterServlet extends AbstractServlet
         InputStream content = null;
         String path = null;
         Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
-        if(taxCode == null || taxCode.isEmpty())
-        {
-            error = ErrorCodes.EMPTY_INPUT_FIELDS;
-        }else if(file != null)
-        {
-            if(type.equals(Constants.MEDICAL_CERTIFICATE))
-            {
 
-                log.info(file.getContentType());
-                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE).anyMatch(file.getContentType().split("/")[1]::equals))
-                    error = ErrorCodes.INVALID_FILE_TYPE;
-                else
-                    path = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + "/"+ taxCode;
-            }
-            else if(type.equals(Constants.AVATAR))
-            {
-                log.info(file.getContentType());
-                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).anyMatch(file.getContentType().split("/")[1]::equals))
-                    error = ErrorCodes.INVALID_FILE_TYPE;
-                else
-                    path = Constants.AVATAR_PATH_FOLDER + "/"+ taxCode;
-            }
-            //log.info(Constants.MEDICAL_CERTIFICATE_PATH_FOLDER+"/"+taxCode);
-            log.info(path);
+        if(file != null)
+        {
+            if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).
+                    anyMatch(file.getContentType().split(File.separator)[1]::equals))
+                error = ErrorCodes.INVALID_FILE_TYPE;
+            else
+                path = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode;
 
-            if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+            if(error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //can proceed to save
             {
                 createDirectory = new File(path);
                 if(!createDirectory.exists())
                     createDirectory.mkdir();
 
-                path = path + "/"+type+"."+file.getContentType().split("/")[1];
+                path = path + File.separator + Constants.AVATAR + "." + file.getContentType().split(File.separator)[1];
                 log.info(path);
                 try
                 {
                     writer = new FileOutputStream(path);
-
                     content = file.getInputStream();
                     int read = 0;
                     final byte[] bytes = new byte[1024];
@@ -283,13 +286,13 @@ public class RegisterServlet extends AbstractServlet
                 }catch (IOException e)
                 {
                     error = ErrorCodes.CANNOT_UPLOAD_FILE;
-                }finally {
+                }finally
+                {
                     if(content != null)
                         content.close();
                     if(writer != null)
                         writer.close();
                 }
-
             }
         }
         return error;
