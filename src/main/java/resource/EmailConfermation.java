@@ -8,7 +8,7 @@ public class EmailConfermation {
     private final String token;
     private Timestamp expirationDate;
 
-    private EmailConfermation(final Person person, final String token, final Timestamp expirationDate)
+    public EmailConfermation(final Person person, final String token, final Timestamp expirationDate)
     {
         this.person = person;
         this.token = token;

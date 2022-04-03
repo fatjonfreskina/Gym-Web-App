@@ -48,5 +48,7 @@ public class Constants
     public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{"png","jpg","jpeg"};
     public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
 
+    public static final int DAY = 1000*60*60*24;
+
 
 }

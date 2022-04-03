@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import resource.EmailConfermation;
 import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
@@ -19,6 +20,7 @@ import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
@@ -239,7 +241,10 @@ public class RegisterServlet extends AbstractServlet
                             new InsertNewUserDatabase(getDataSource().getConnection(),p);
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
-                            new InsertEmailConfermation(getDataSource().getConnection(),p,EncryptionManager.encrypt(email), )
+
+
+                            new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p,EncryptionManager.encrypt(email),
+                                    new Timestamp(System.currentTimeMillis() + Constants.DAY)));
 
                             MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 
