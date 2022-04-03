@@ -9,12 +9,19 @@ SET search_path='gwa';
 
 CREATE TYPE roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
 
+CREATE TABLE emailconfermation(
+    person VARCHAR(40),
+    token VARCHAR(256) NOT NULL,
+    expirationdate DATE NOT NULL,
+    PRIMARY KEY(person)
+);
+
 CREATE TABLE person (
 	email VARCHAR(40),
 	role roles[3],
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
-	psw VARCHAR(255) NOT NULL,
+	psw VARCHAR(256) NOT NULL,
 	taxcode CHAR(16) UNIQUE NOT NULL,
 	birthdate DATE NOT NULL,
 	telephone CHAR(10),
@@ -26,7 +33,7 @@ CREATE TABLE person (
 );
 
 CREATE TABLE passwordreset (
-	token VARCHAR(255),
+	token VARCHAR(256),
 	expirationdate TIMESTAMP NOT NULL,
 	person VARCHAR(40),
 	PRIMARY KEY(token)
@@ -106,6 +113,10 @@ CREATE TABLE subscription (
 
 
 --foreign keys
+ALTER TABLE emailconfermation
+ADD CONSTRAINT person_fk
+FOREIGN KEY(person) REFERENCES person(email);
+
 ALTER TABLE passwordreset 
 ADD CONSTRAINT passwordreset_fk 
 FOREIGN KEY(person) REFERENCES person(email);
