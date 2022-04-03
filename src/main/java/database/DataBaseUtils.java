@@ -7,30 +7,49 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class DataBaseUtils {
 
+    static final String DB_URL = "jdbc:postgresql://localhost:5432/gwa_db";
+    static final String USER = "robot";
+    static final String PASS = "robot";
+
     public static void main(String[] args){
 
-        //Initialize the DataBase schema
-        ArrayList<String> createStatements = null;
-        try {
-            createStatements = DataBaseUtils.ParseSQL("src/main/database/create.sql");
-            //System.out.println(createStatements);
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            //TODO: Retrieve a JDBC connection and execute the create statements
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
+            //Creates the database
+            createDatabase(conn);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        //Faker faker = new Faker();
-        //Create users
-        //DataBaseUtils.createUsers(faker, 16);
+    }
+
+    /**
+     * Initializes the database
+     * @param conn JDBC connection
+     */
+    private static void createDatabase(Connection conn){
+        try {
+            Statement stmt = conn.createStatement();
+            List<String> statements = parseSQL("src/main/database/create.sql");
+            for(String statement:statements){
+                stmt.execute(statement);
+                System.out.println(statement);
+            }
+        } catch (FileNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -91,27 +110,43 @@ public class DataBaseUtils {
      * @return collection of valid SQL statements
      * @throws FileNotFoundException thrown if a problem occurs while reading the file
      */
-    private static ArrayList<String> ParseSQL(String filepath) throws FileNotFoundException {
+    private static ArrayList<String> parseSQL(String filepath) throws FileNotFoundException {
 
         //List of statements
         ArrayList<String> statements = new ArrayList<>();
 
-        //Print the current path
-        Path currentRelativePath = Paths.get("");
-        String s = currentRelativePath.toAbsolutePath().toString();
-        System.out.println("Current absolute path is: " + s);
-
         //Open the given file
         File myObj = new File(filepath);
         Scanner myReader = new Scanner(myObj);
+        StringBuilder statement = null;
+
         while (myReader.hasNextLine()) {
+
+            //Create the statement if null
+            if(statement == null){
+                statement = new StringBuilder();
+            }
+
             //Read one line
             String data = myReader.nextLine();
+
             //Skip empty lines, blank lines and comment lines that start with --
             boolean skip = data.isEmpty() || data.isBlank() || data.startsWith("--");
 
             if(!skip) {
-                statements.add(data);
+                //Detect if is the end of a statement
+                if(data.endsWith(";")){
+                    //End this statement and remove the last ;
+                    statement.append(data.substring(0,data.length()-1));
+                    //Delete multiple whitespaces
+                    String wiped = statement.toString().replaceAll("\\s+", " ").trim();
+                    //Add it to the statements
+                    statements.add(wiped);
+                    //Start a new statement
+                    statement = null;
+                } else {
+                    statement.append(data);
+                }
             }
 
         }
