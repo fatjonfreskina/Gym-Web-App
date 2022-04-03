@@ -12,7 +12,7 @@
 
 <form method="POST" action="<c:url value="/password_forgot"/>" enctype="multipart/form-data">
     <label for="email">First name:</label><br>
-    <input type="text" id="email" name="email" placeholder="Insert your email here"><br>
+    <input type="text" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
     <input type="submit" value="Submit">
 </form>
 
