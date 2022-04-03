@@ -51,7 +51,7 @@ public class GetListExpiredMedicalCertificateDatabase
             while (rs.next())
                 if (rs.getString("avatar_path") == null)
                 {
-                    listPeople.add(new Person((Integer[]) rs.getArray("role").getArray(),
+                    listPeople.add(new Person((String[]) rs.getArray("role").getArray(),
                             rs.getString("email"),
                             rs.getString("password"),
                             rs.getString("address"),
@@ -64,7 +64,7 @@ public class GetListExpiredMedicalCertificateDatabase
                 }
                 else
                 {
-                    listPeople.add(new Person((Integer[]) rs.getArray("role").getArray(),
+                    listPeople.add(new Person((String[]) rs.getArray("role").getArray(),
                             rs.getString("email"),
                             rs.getString("Path_img"),
                             rs.getString("password"),

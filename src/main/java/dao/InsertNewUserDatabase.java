@@ -28,10 +28,10 @@ public class InsertNewUserDatabase {
             ps.setString(4, p.getSurname());
             ps.setString(5, p.getPassword());
             ps.setString(6, p.getTaxCode());
-            ps.setDate(7, p.getBirth_date());
+            ps.setDate(7, p.getBirthDate());
             ps.setString(8, p.getTelephone());
             ps.setString(9, p.getAddress());
-            ps.setString(10, p.getPath_img());
+            ps.setString(10, p.getPathImg());
 
             ps.execute();
         } finally {

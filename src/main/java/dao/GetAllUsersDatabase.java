@@ -30,7 +30,7 @@ public class GetAllUsersDatabase {
             while (resultSet.next()){
                 //Read all the parameters
                 String email = resultSet.getString("email");
-                Integer[] role = (Integer[]) resultSet.getArray("role").getArray();
+                String[] role = (String[]) resultSet.getArray("role").getArray();
                 String name = resultSet.getString("name");
                 String surname = resultSet.getString("surname");
                 String psw = resultSet.getString("psw");
