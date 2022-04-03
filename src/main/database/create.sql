@@ -7,7 +7,6 @@ CREATE DATABASE gwa_db ENCODING = 'UTF8';
 CREATE SCHEMA gwa;
 SET search_path='gwa';
 
-CREATE TYPE roles AS ENUM ('Trainee', 'Trainer', 'Secretary');
 
 CREATE TABLE emailconfermation(
     person VARCHAR(40),
@@ -15,10 +14,20 @@ CREATE TABLE emailconfermation(
     expirationdate TIMESTAMP NOT NULL,
     PRIMARY KEY(person)
 );
+-- 0,1,2
+CREATE TABLE typeofroles(
+    role INTEGER,
+    PRIMARY KEY(role)
+);
+
+CREATE TABLE personroles(
+  role INTEGER ,
+  person VARCHAR(40),
+  PRIMARY KEY(role,person)
+);
 
 CREATE TABLE person (
 	email VARCHAR(40),
-	role roles[3],
 	name VARCHAR(30) NOT NULL,
 	surname VARCHAR(30) NOT NULL,
 	psw VARCHAR(256) NOT NULL,
@@ -111,6 +120,14 @@ CREATE TABLE subscription (
 	PRIMARY KEY (courseeditionid, coursename, duration, startday, trainee)
 );
 
+
+ALTER TABLE personroles
+ADD CONSTRAINT person_fk_1
+FOREIGN KEY(person) REFERENCES person(email);
+
+ALTER TABLE personroles
+ADD CONSTRAINT role_fk
+FOREIGN KEY(role) REFERENCES typeofroles(role);
 
 --foreign keys
 ALTER TABLE emailconfermation

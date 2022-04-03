@@ -58,7 +58,7 @@ public class RegisterServlet extends AbstractServlet
         String telephoneNumber = null;
         Date birthDate = null;
         Part avatar = null;
-        String[] roles = new String[]{Person.ROLE_TRAINEE,"",""};
+        Integer[] roles = new Integer[]{0,null,null};
 
         boolean registrable = true;
         Message message = null;
@@ -88,7 +88,8 @@ public class RegisterServlet extends AbstractServlet
             error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,roles);
             if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
             {
-                message = new Message(error.getErrorMessage(),true);
+                //message = new Message(error.getErrorMessage(),true);
+
                 registrable = false;
             }
         }
@@ -109,45 +110,7 @@ public class RegisterServlet extends AbstractServlet
             req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
         }else
         {
-            /*
-            if((new GetUserByEmail(getDataSource().getConnection(),
-                    new Person(null,email,null,null,null,null,null,null,null))) == null &&
-            (new GetUserByEmail(getDataSource().getConnection(),
-                    new Person(null,email,null,null,null,null,null,null,null)) == null ))
-            {
-                //
-            }*/
-            //here the user will be registered
-            /*
-            * Thing to do :
-            * 1) check if it is already in the db by testing email and tax code and the save files if i need it!
-            * 2) if can register => add in db all the things needed
-            * 3) send email for confirmation of registration ?
-            * That's it!
-            *
-            * if(taxCode == null || taxCode.isEmpty())
-            {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
-                message = new Message(error.getErrorMessage(),true);
-                registrable = false;
-            }else
-            {
-                error = saveFile (avatar, Constants.AVATAR, taxCode);
-                if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
-                {
-                    message = new Message(error.getErrorMessage(),true);
-                    registrable = false;
-                }else
-                {
-                    error = saveFile (medicalCertificate,Constants.MEDICAL_CERTIFICATE,taxCode);
-                    if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
-                    {
-                        message = new Message(error.getErrorMessage(),true);
-                        registrable = false;
-                    }
-                }
-            }
-            * */
+
 
         }
     }
@@ -212,7 +175,7 @@ public class RegisterServlet extends AbstractServlet
     }
 
     public ErrorCodes insertUser(String taxCode,String firstName, String lastName,String address,String email,
-                                 String password, String telephoneNumber,Date birthDate,Part avatar,String[] roles)
+                                 String password, String telephoneNumber,Date birthDate,Part avatar,Integer[] roles)
     {
         ErrorCodes error = ErrorCodes.OK;
         Person p1 = null;
@@ -232,19 +195,19 @@ public class RegisterServlet extends AbstractServlet
                     {
                         //File saved ok can proceed with writing on the database and send email and log to test max dimension of the file??
                         String pathImg = null;
-                        if(avatar != null)
+                        if(avatar != null) //.png da aggiungere
                             pathImg = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode +
-                                    File.separator + Constants.AVATAR + avatar.getContentType().split(File.separator)[1];
+                                    File.separator + Constants.AVATAR +"."+ avatar.getContentType().split(File.separator)[1];
                         try
                         {
                             Person p = new Person(roles,email,pathImg, EncryptionManager.encrypt(password),address,firstName,lastName,taxCode,birthDate,telephoneNumber);
-                            new InsertNewUserDatabase(getDataSource().getConnection(),p);
+                            new InsertNewUserDatabase(getDataSource().getConnection(),p).execute();
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
 
 
-                            new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p,EncryptionManager.encrypt(email),
-                                    new Timestamp(System.currentTimeMillis() + Constants.DAY)));
+                            (new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p,EncryptionManager.encrypt(email),
+                                    new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 
@@ -280,9 +243,9 @@ public class RegisterServlet extends AbstractServlet
         OutputStream writer = null;
         InputStream content = null;
         String path = null;
-        Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
+        //Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
 
-        if(file != null)
+        if((file != null) && file.getSize() != 0)
         {
             if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).
                     anyMatch(file.getContentType().split(File.separator)[1]::equals))
@@ -297,7 +260,7 @@ public class RegisterServlet extends AbstractServlet
                     createDirectory.mkdir();
 
                 path = path + File.separator + Constants.AVATAR + "." + file.getContentType().split(File.separator)[1];
-                log.info(path);
+                //log.info(path);
                 try
                 {
                     writer = new FileOutputStream(path);

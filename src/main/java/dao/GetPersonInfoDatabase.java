@@ -27,7 +27,7 @@ public class GetPersonInfoDatabase
 
         PreparedStatement stm = null;
         ResultSet rs =  null;
-        Person result;
+        Person result = null;
 
         try
         {
@@ -40,7 +40,7 @@ public class GetPersonInfoDatabase
             if (!rs.next())
                 throw new SQLException("No Person exists with email: %s.".formatted(email));
 
-            result = new Person(
+           /* result = new Person(
                     (String[]) rs.getArray("role").getArray(),
                     rs.getString("email"),
                     rs.getString("avatarpath"),
@@ -51,7 +51,7 @@ public class GetPersonInfoDatabase
                     rs.getString("TaxCode"),
                     rs.getDate("birthdate"),
                     rs.getString("telephone")
-            );
+            );*/
 
             // Prevent SQL injection attacks.
             if (rs.next())

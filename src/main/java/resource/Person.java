@@ -6,13 +6,15 @@ import java.sql.Date;
 
 public class Person {
 
+    public static final String[] roles = {"Trainee","Trainer", "Secretary"};
+
     public static final String ROLE_TRAINEE = "Trainee";
     public static final String ROLE_TRAINER = "Trainer";
     public static final String ROLE_SECRETARY = "Secretary";
     public static final int LENGTH_TELEPHONE = 10;
     public static final int MIN_AGE = 14;
 
-    private final String[] role;
+    private final Integer[] role;
     private final String email;
     private final String pathImg;
     private final String password;
@@ -24,7 +26,7 @@ public class Person {
     private final String telephone;
 
     //Constructor with all the attributes
-    public Person(String[] role, String email, String pathImg, String password, String address, String name, String surname, String taxCode, Date birthDate, String telephone) {
+    public Person(Integer[] role, String email, String pathImg, String password, String address, String name, String surname, String taxCode, Date birthDate, String telephone) {
         this.role = role;
         this.email = email;
         this.pathImg = pathImg;
@@ -38,7 +40,7 @@ public class Person {
     }
 
     //Constructor with no Path_img
-    public Person(String[] role, String email, String password, String address, String name, String surname, String taxCode, Date birthDate, String telephone) {
+    public Person(Integer[] role, String email, String password, String address, String name, String surname, String taxCode, Date birthDate, String telephone) {
         this(role, email, "", password, address, name, surname, taxCode, birthDate, telephone);
     }
     //Constructor for either only email or taxCode
@@ -95,7 +97,7 @@ public class Person {
         return email;
     }
 
-    public final String[] getRole() {
+    public final Integer[] getRole() {
         return role;
     }
 

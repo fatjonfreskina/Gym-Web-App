@@ -5,7 +5,7 @@ import resource.Person;
 import java.sql.*;
 
 public class InsertNewUserDatabase {
-    private static final String STATEMENT = "INSERT INTO gwa.person(email, role, name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String STATEMENT = "INSERT INTO gwa.person(email, ARRAY['%s']::roles[], name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final Connection conn;
     private final Person p;
 
@@ -20,8 +20,8 @@ public class InsertNewUserDatabase {
             ps = conn.prepareStatement(STATEMENT);
             ps.setString(1, p.getEmail());
             //TODO: check if the type of the array is correct.
-            Array role = conn.createArrayOf("\"gwa\".\"role\"", p.getRole());
-            ps.setArray(2, role);
+            //Array role = conn.createArrayOf("\"gwa\".\"role\"", p.getRole());
+            ps.setString(2, Person.roles[p.getRole()[0]]);
             ps.setString(3, p.getName());
             ps.setString(4, p.getSurname());
             ps.setString(5, p.getPassword());

@@ -40,9 +40,9 @@ public class GetAllUsersDatabase {
                 String address = resultSet.getString("address");
                 String avatarpath = resultSet.getString("avatarpath");
                 //Create the object
-                Person tmp = new Person(role,email,avatarpath,psw,address,name,surname,taxcode,birthdate,telephone);
+                //Person tmp = new Person(role,email,avatarpath,psw,address,name,surname,taxcode,birthdate,telephone);
                 //Add the object to the return list
-                list.add(tmp);
+                //list.add(tmp);
             }
         }
         finally {

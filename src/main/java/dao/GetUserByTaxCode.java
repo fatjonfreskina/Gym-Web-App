@@ -32,7 +32,7 @@ public class GetUserByTaxCode {
             pstmt.setString(1,user.getTaxCode());
             rs = pstmt.executeQuery();
 
-            if (rs.next())
+            /*if (rs.next())
                 ret = new Person(
                         (String[]) rs.getArray("role").getArray(),
                         rs.getString("email"),
@@ -44,7 +44,7 @@ public class GetUserByTaxCode {
                         rs.getString("TaxCode"),
                         rs.getDate("birthdate"),
                         rs.getString("telephone")
-                );
+                );*/
         } finally
         {
             if (rs != null)

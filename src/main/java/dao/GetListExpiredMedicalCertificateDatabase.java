@@ -50,7 +50,7 @@ public class GetListExpiredMedicalCertificateDatabase
             rs = pstmt.executeQuery();
             while (rs.next())
                 if (rs.getString("avatar_path") == null)
-                {
+                {/*
                     listPeople.add(new Person((String[]) rs.getArray("role").getArray(),
                             rs.getString("email"),
                             rs.getString("password"),
@@ -60,11 +60,11 @@ public class GetListExpiredMedicalCertificateDatabase
                             rs.getString("TaxCode"),
                             rs.getDate("Birth_date"),
                             rs.getString("Telephone")
-                    ));
+                    ));*/
                 }
                 else
                 {
-                    listPeople.add(new Person((String[]) rs.getArray("role").getArray(),
+                    /*listPeople.add(new Person((String[]) rs.getArray("role").getArray(),
                             rs.getString("email"),
                             rs.getString("Path_img"),
                             rs.getString("password"),
@@ -74,7 +74,7 @@ public class GetListExpiredMedicalCertificateDatabase
                             rs.getString("TaxCode"),
                             rs.getDate("Birth_date"),
                             rs.getString("Telephone")
-                    ));
+                    ));*/
                 }
         } finally
         {
