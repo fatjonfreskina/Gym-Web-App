@@ -4,6 +4,10 @@ import java.sql.Date;
 
 public class Person {
 
+    public static final String ROLE_TRAINEE = "Trainee";
+    public static final String ROLE_TRAINER = "Trainer";
+    public static final String ROLE_SECRETARY = "Secretary";
+
     private final Integer[] role;
     private final String email;
     private final String Path_img;

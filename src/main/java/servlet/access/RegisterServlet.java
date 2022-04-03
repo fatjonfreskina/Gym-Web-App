@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import resource.Message;
+import resource.Person;
 import servlet.AbstractServlet;
 
 import java.awt.*;
@@ -47,7 +48,7 @@ public class RegisterServlet extends AbstractServlet
         Date birthDate = null;
         Part medicalCertificate = null;
         Part avatar = null;
-        String[] roles = new String[]{"Trainee","",""};
+        String[] roles = new String[]{Person.ROLE_TRAINEE,"",""};
 
         ErrorCodes error = null;
         Message message = null;

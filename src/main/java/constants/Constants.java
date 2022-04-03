@@ -51,4 +51,6 @@ public class Constants
     //ACCEPTED EXTENSIONS
     public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{".png",".jpg",".jpeg"};
     public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{".pdf"};
+
+
 }
