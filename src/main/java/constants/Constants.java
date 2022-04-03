@@ -22,7 +22,7 @@ public class Constants
 
     //DATABASE CONSTANTS
     public static final int MIN_AGE = 14;
-
+    public static final int MIN_LENGTH_PHONE_NUMBER = 10;
 
 
     //PARAMETERS POST/GET CONSTANTS

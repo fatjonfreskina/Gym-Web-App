@@ -58,30 +58,40 @@ public class RegisterServlet extends AbstractServlet
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
         }catch (Exception e)
         {
-
-        }
-        if(taxCode == null || firstName == null || lastName == null || address == null || email == null || password == null
-                || confirmPassword == null || telephoneNumber == null || birthDate == null)
-        {
-            error = ErrorCodes.EMPTY_INPUT_FIELDS;
-            message = new Message(error.getErrorMessage(),true);
-            registrable = false;
-        }else if(!password.equals(confirmPassword))
-        {
-            error = ErrorCodes.DIFFERENT_PASSWORDS;
-            message = new Message(error.getErrorMessage(),true);
-            registrable = false;
-        }else if(Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Constants.MIN_AGE)
-        {
-            error = ErrorCodes.MINIMUM_AGE;
+            error = ErrorCodes.INVALID_FIELDS;
             message = new Message(error.getErrorMessage(),true);
             registrable = false;
         }
         if(registrable)
         {
+            if(taxCode == null || firstName == null || lastName == null || address == null || email == null || password == null
+                    || confirmPassword == null || birthDate == null || taxCode.isEmpty() || firstName.isEmpty() || lastName.isEmpty()
+            || address.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() )
+            {
+                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                message = new Message(error.getErrorMessage(),true);
+                registrable = false;
+            }else if(!password.equals(confirmPassword))
+            {
+                error = ErrorCodes.DIFFERENT_PASSWORDS;
+                message = new Message(error.getErrorMessage(),true);
+                registrable = false;
+            }else if(Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Constants.MIN_AGE)
+            {
+                log.info("ANNI : "+ Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears());
+                error = ErrorCodes.MINIMUM_AGE;
+                message = new Message(error.getErrorMessage(),true);
+                registrable = false;
+            }else if(req.getParameter(Constants.TELEPHONE_NUMBER).length() != Constants.MIN_LENGTH_PHONE_NUMBER)
+            {
+                error = ErrorCodes.NOT_TELEPHONE_NUMBER;
+                message = new Message(error.getErrorMessage(),true);
+                registrable = false;
+            }
 
 
-        }else
+        }
+        if(!registrable)
         {
             res.setStatus(error.getHTTPCode());
             req.setAttribute(Constants.MESSAGE,message);
