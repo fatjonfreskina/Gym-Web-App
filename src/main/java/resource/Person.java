@@ -1,5 +1,7 @@
 package resource;
 
+import constants.Constants;
+
 import java.sql.Date;
 
 public class Person {
@@ -7,6 +9,8 @@ public class Person {
     public static final String ROLE_TRAINEE = "Trainee";
     public static final String ROLE_TRAINER = "Trainer";
     public static final String ROLE_SECRETARY = "Secretary";
+    public static final int LENGTH_TELEPHONE = 10;
+    public static final int MIN_AGE = 14;
 
     private final String[] role;
     private final String email;
@@ -36,6 +40,27 @@ public class Person {
     //Constructor with no Path_img
     public Person(String[] role, String email, String password, String address, String name, String surname, String taxCode, Date birthDate, String telephone) {
         this(role, email, "", password, address, name, surname, taxCode, birthDate, telephone);
+    }
+    //Constructor for either only email or taxCode
+    public Person(String string, String constant)
+    {
+        this.role = null;
+        this.address = null;
+        this.birthDate = null;
+        this.password = null;
+        this.surname = null;
+        this.pathImg = null;
+        this.name = null;
+        this.telephone = null;
+        if(constant.equals(Constants.EMAIL))
+        {
+            this.email = string;
+            this.taxCode = null;
+        }else
+        {
+            this.taxCode = string;
+            this.email = null;
+        }
     }
 
     public final Date getBirthDate() {

@@ -13,7 +13,8 @@ public enum ErrorCodes {
     NOT_TELEPHONE_NUMBER(-4, HttpServletResponse.SC_CONFLICT, "Not a telephone number"),
     INVALID_FIELDS(-5,HttpServletResponse.SC_BAD_REQUEST,"Invalid Fields"),
     INVALID_FILE_TYPE(-6,HttpServletResponse.SC_BAD_REQUEST,"Invalid file type"),
-    CANNOT_UPLOAD_FILE(-7,HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Cannot Upload File"),;
+    CANNOT_UPLOAD_FILE(-7,HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Cannot Upload File"),
+    INTERNAL_ERROR(-8,HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Cannot Upload File"),;
 
     private final int errorCode;
     private final int httpCode;

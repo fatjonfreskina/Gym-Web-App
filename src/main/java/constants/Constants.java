@@ -24,10 +24,6 @@ public class Constants
     public static final String HOST = "localhost";
     public static final String MAILSMTPHOST = "mail.smtp.host";
 
-    //DATABASE CONSTANTS
-    public static final int MIN_AGE = 14;
-    public static final int MIN_LENGTH_PHONE_NUMBER = 10;
-
 
     //PARAMETERS POST/GET CONSTANTS
     public static final String TAX_CODE = "tax_code";
