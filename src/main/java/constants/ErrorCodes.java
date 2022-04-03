@@ -6,8 +6,10 @@ import jakarta.servlet.http.HttpServletResponse;
  * Error codes start with value 0 and goes down -1,-2 etc..
  * */
 public enum ErrorCodes {
-    OK(0, HttpServletResponse.SC_OK,"OK.")
-
+    OK(0, HttpServletResponse.SC_OK,"OK."),
+    EMPTY_INPUT_FIELDS(-1, HttpServletResponse.SC_BAD_REQUEST, "One or more input fields are empty."),
+    DIFFERENT_PASSWORDS(-2, HttpServletResponse.SC_CONFLICT, "Different Passwords"),
+    MINIMUM_AGE(-3, HttpServletResponse.SC_CONFLICT, "Minimum Age not satified"),
     ;
 
     private final int errorCode;

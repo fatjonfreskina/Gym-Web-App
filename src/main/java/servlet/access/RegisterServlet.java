@@ -1,23 +1,27 @@
 package servlet.access;
 
 import constants.Constants;
+import constants.ErrorCodes;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import resource.Message;
 import servlet.AbstractServlet;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class RegisterServlet extends AbstractServlet
 {
-    Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException
     {
@@ -28,75 +32,66 @@ public class RegisterServlet extends AbstractServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException
     {
-        String taxCode,firstName,lastName,address,email,password,confirmPassword;
-        Integer telephoneNumber;
-        Date birthDate;
-
-        for (Part p: req.getParts())
+        Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
+        String taxCode = null;
+        String firstName = null;
+        String lastName = null;
+        String address = null;
+        String email = null;
+        String password= null;
+        String confirmPassword= null;
+        Integer telephoneNumber = null;
+        Date birthDate = null;
+        ErrorCodes error = null;
+        Message message = null;
+        boolean registrable = true;
+        try
         {
-            switch (p.getName())
-            {
-                case Constants.TAX_CODE:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        taxCode = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.FIRST_NAME:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        firstName = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.LAST_NAME:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        lastName = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.BIRTH_DATE:
-                    try (InputStream is = p.getInputStream())
-                    {
-                         birthDate = Date.valueOf(new String(is.readAllBytes(), StandardCharsets.UTF_8));
-                    }
-                    break;
-                case Constants.ADDRESS:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        address = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.TELEPHONE_NUMBER:
-                    try (InputStream is = p.getInputStream())
-                    {
-                         telephoneNumber= Integer.parseInt(new String(is.readAllBytes(), StandardCharsets.UTF_8));
-                    }
-                    break;
-                case Constants.AVATAR:
-                    break;
-                case Constants.EMAIL:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        email = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.PASSWORD:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        password = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.CONFIRM_PASSWORD:
-                    try (InputStream is = p.getInputStream())
-                    {
-                        confirmPassword = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    break;
-                case Constants.MEDICAL_CERTIFICATE:
-                    break;
-            }
+            taxCode = req.getParameter(Constants.TAX_CODE);
+            firstName = req.getParameter(Constants.FIRST_NAME);
+            lastName = req.getParameter(Constants.LAST_NAME);
+            address = req.getParameter(Constants.ADDRESS);
+            email = req.getParameter(Constants.EMAIL);
+            password = req.getParameter(Constants.PASSWORD);
+            confirmPassword = req.getParameter(Constants.CONFIRM_PASSWORD);
+            telephoneNumber = Integer.parseInt(req.getParameter(Constants.TELEPHONE_NUMBER));
+            birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
+        }catch (Exception e)
+        {
 
         }
-        req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
+        if(taxCode == null || firstName == null || lastName == null || address == null || email == null || password == null
+                || confirmPassword == null || telephoneNumber == null || birthDate == null)
+        {
+            error = ErrorCodes.EMPTY_INPUT_FIELDS;
+            message = new Message(error.getErrorMessage(),true);
+            registrable = false;
+        }else if(!password.equals(confirmPassword))
+        {
+            error = ErrorCodes.DIFFERENT_PASSWORDS;
+            message = new Message(error.getErrorMessage(),true);
+            registrable = false;
+        }else if(Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Constants.MIN_AGE)
+        {
+            error = ErrorCodes.MINIMUM_AGE;
+            message = new Message(error.getErrorMessage(),true);
+            registrable = false;
+        }
+        if(registrable)
+        {
+
+
+        }else
+        {
+            res.setStatus(error.getHTTPCode());
+            req.setAttribute(Constants.MESSAGE,message);
+            req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
+        }
+
+
+
+
+
+
     }
 }

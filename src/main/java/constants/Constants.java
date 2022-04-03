@@ -20,7 +20,8 @@ public class Constants
     public static final String HOST = "localhost";
     public static final String MAILSMTPHOST = "mail.smtp.host";
 
-
+    //DATABASE CONSTANTS
+    public static final int MIN_AGE = 14;
 
 
 
@@ -37,5 +38,5 @@ public class Constants
     public static final String CONFIRM_PASSWORD = "confirm_password";
     public static final String MEDICAL_CERTIFICATE = "medical_certificate";
 
-
+    public static final String MESSAGE = "message";
 }

@@ -21,7 +21,8 @@ CREATE TABLE person (
 	address TEXT NOT NULL,
 	avatarpath TEXT,
 	PRIMARY KEY(email),
-	CHECK(LENGTH(telephone) = 10)
+	CHECK(LENGTH(telephone) = 10),
+	CHECK(date_part('year',age(current_date ,birthdate)) >= 14)
 );
 
 CREATE TABLE passwordreset (
