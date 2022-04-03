@@ -15,6 +15,7 @@ import resource.Person;
 import servlet.AbstractServlet;
 
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.EncryptionManager;
 
 import javax.naming.NamingException;
 
@@ -229,10 +231,19 @@ public class RegisterServlet extends AbstractServlet
                         if(avatar != null)
                             pathImg = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode +
                                     File.separator + Constants.AVATAR + avatar.getContentType().split(File.separator)[1];
+                        try
+                        {
+                            Person p = new Person(roles,email,pathImg, EncryptionManager.encrypt(password),address,firstName,lastName,taxCode,birthDate,telephoneNumber);
+                            new InsertNewUserDatabase(getDataSource().getConnection(),p);
 
-                        Person p = new Person(roles,email,pathImg,password,address,firstName,lastName,taxCode,birthDate,telephoneNumber);
-                        new InsertNewUserDatabase(getDataSource().getConnection(),p);
-                        //send email to confirm registration
+
+                        }catch (NoSuchAlgorithmException e)
+                        {
+                            error = ErrorCodes.INTERNAL_ERROR;
+                        }
+
+
+
 
                     }
                 }catch (IOException e)
