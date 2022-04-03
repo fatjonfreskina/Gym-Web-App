@@ -133,8 +133,13 @@ public class MailManager
         //imgPart.setFileName("logo.png");
         imgPart.setHeader("Content-ID", "<logo_cid>");
 
+        //Add another HTML part => appended below that comes before.
+        BodyPart textPart2 = new MimeBodyPart();
+        textPart2.setContent("<h2>** Footer **</h2>", "text/html");
+
         multipart.addBodyPart(textPart);
         multipart.addBodyPart(imgPart);
+        multipart.addBodyPart(textPart2);
 
         msg.setSentDate(new Date());
         msg.setSubject(subject);
