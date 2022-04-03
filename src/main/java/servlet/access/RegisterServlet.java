@@ -2,24 +2,35 @@ package servlet.access;
 
 import constants.Constants;
 import constants.ErrorCodes;
+import dao.GetUserByEmail;
+import dao.GetUserByTaxCode;
+import dao.InsertEmailConfermation;
+import dao.InsertNewUserDatabase;
 import jakarta.activation.MimeType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import resource.EmailConfermation;
 import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
 
-import java.awt.*;
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import utils.EncryptionManager;
+import utils.MailManager2;
+
+import javax.naming.NamingException;
 
 
 /**
@@ -37,7 +48,6 @@ public class RegisterServlet extends AbstractServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException
     {
-        Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
         String taxCode = null;
         String firstName = null;
         String lastName = null;
@@ -45,17 +55,23 @@ public class RegisterServlet extends AbstractServlet
         String email = null;
         String password= null;
         String confirmPassword= null;
-        Integer telephoneNumber = null;
+        String telephoneNumber = null;
         Date birthDate = null;
-        Part medicalCertificate = null;
         Part avatar = null;
         String[] roles = new String[]{Person.ROLE_TRAINEE,"",""};
 
-        ErrorCodes error = null;
-        Message message = null;
         boolean registrable = true;
+        Message message = null;
+        ErrorCodes error = parseParams(req,res);
 
-        try
+
+        if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
+        {
+            message = new Message(error.getErrorMessage(),true);
+            registrable = false;
+        }
+
+        if(registrable) // it means that params are ok for now
         {
             taxCode = req.getParameter(Constants.TAX_CODE);
             firstName = req.getParameter(Constants.FIRST_NAME);
@@ -64,48 +80,28 @@ public class RegisterServlet extends AbstractServlet
             email = req.getParameter(Constants.EMAIL);
             password = req.getParameter(Constants.PASSWORD);
             confirmPassword = req.getParameter(Constants.CONFIRM_PASSWORD);
-            telephoneNumber = Integer.parseInt(req.getParameter(Constants.TELEPHONE_NUMBER));
+            telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
             avatar = req.getPart(Constants.AVATAR);
-            medicalCertificate = req.getPart(Constants.MEDICAL_CERTIFICATE);
 
-
-
-        }catch ( IllegalArgumentException e)
-        {
-            error = ErrorCodes.INVALID_FIELDS;
-            message = new Message(error.getErrorMessage(),true);
-            registrable = false;
-        }
-
-
-        if(registrable)
-        {
-            if(taxCode == null || taxCode.isEmpty() ||firstName == null || lastName == null || address == null || email == null || password == null
-                    || confirmPassword == null || birthDate == null || firstName.isEmpty() || lastName.isEmpty()
-            || address.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() )
+            //insertUser
+            error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,roles);
+            if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
             {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
-                message = new Message(error.getErrorMessage(),true);
-                registrable = false;
-            }else if(!password.equals(confirmPassword))
-            {
-                error = ErrorCodes.DIFFERENT_PASSWORDS;
-                message = new Message(error.getErrorMessage(),true);
-                registrable = false;
-            }else if(Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Constants.MIN_AGE)
-            {
-                log.info("ANNI : "+ Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears());
-                error = ErrorCodes.MINIMUM_AGE;
-                message = new Message(error.getErrorMessage(),true);
-                registrable = false;
-            }else if(req.getParameter(Constants.TELEPHONE_NUMBER).length() != Constants.MIN_LENGTH_PHONE_NUMBER)
-            {
-                error = ErrorCodes.NOT_TELEPHONE_NUMBER;
                 message = new Message(error.getErrorMessage(),true);
                 registrable = false;
             }
         }
+
+
+
+
+
+
+
+
+
+
         if(!registrable)
         {
             res.setStatus(error.getHTTPCode());
@@ -113,6 +109,14 @@ public class RegisterServlet extends AbstractServlet
             req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
         }else
         {
+            /*
+            if((new GetUserByEmail(getDataSource().getConnection(),
+                    new Person(null,email,null,null,null,null,null,null,null))) == null &&
+            (new GetUserByEmail(getDataSource().getConnection(),
+                    new Person(null,email,null,null,null,null,null,null,null)) == null ))
+            {
+                //
+            }*/
             //here the user will be registered
             /*
             * Thing to do :
@@ -148,7 +152,128 @@ public class RegisterServlet extends AbstractServlet
         }
     }
 
-    private ErrorCodes saveFile(Part file, String type, String taxCode) throws IOException
+
+    public ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    {
+        String taxCode = null;
+        String firstName = null;
+        String lastName = null;
+        String address = null;
+        String email = null;
+        String password= null;
+        String confirmPassword= null;
+        String telephoneNumber = null;
+        Date birthDate = null;
+
+        ErrorCodes error = ErrorCodes.OK;
+        try
+        {
+            taxCode = req.getParameter(Constants.TAX_CODE);
+            firstName = req.getParameter(Constants.FIRST_NAME);
+            lastName = req.getParameter(Constants.LAST_NAME);
+            address = req.getParameter(Constants.ADDRESS);
+            email = req.getParameter(Constants.EMAIL);
+            password = req.getParameter(Constants.PASSWORD);
+            confirmPassword = req.getParameter(Constants.CONFIRM_PASSWORD);
+            telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
+            Integer.parseInt(telephoneNumber);
+            birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
+
+        }catch ( IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date
+        {
+            error = ErrorCodes.INVALID_FIELDS;
+        }
+
+        if(error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //Phone is a phone and birthDate is a Date
+        {
+            if(taxCode == null || taxCode.isEmpty() ||
+                    firstName == null || firstName.isEmpty() ||
+                    lastName == null || lastName.isEmpty() ||
+                    address == null || address.isEmpty() ||
+                    email == null || email.isEmpty() ||
+                    password == null || password.isEmpty() ||
+                    confirmPassword == null || confirmPassword.isEmpty() ||
+                    telephoneNumber == null || telephoneNumber.isEmpty() ||
+                    birthDate == null) // Check if some of the fields are empty
+            {
+                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+            }else if(!password.equals(confirmPassword)) //all fields are not empty => check if the meaning is ok
+            {
+                error = ErrorCodes.DIFFERENT_PASSWORDS;
+            }else if(telephoneNumber.length() != Person.LENGTH_TELEPHONE)
+            {
+                error = ErrorCodes.NOT_TELEPHONE_NUMBER;
+            }else if ((Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.MIN_AGE))
+            {
+                error = ErrorCodes.MINIMUM_AGE;
+            }
+        }
+        return error;
+    }
+
+    public ErrorCodes insertUser(String taxCode,String firstName, String lastName,String address,String email,
+                                 String password, String telephoneNumber,Date birthDate,Part avatar,String[] roles)
+    {
+        ErrorCodes error = ErrorCodes.OK;
+        Person p1 = null;
+        Person p2 = null;
+        try
+        {
+            p1 = (new GetUserByEmail(getDataSource().getConnection(),new Person(email,Constants.EMAIL))).execute();
+            p2 = (new GetUserByTaxCode(getDataSource().getConnection(),new Person(email,Constants.TAX_CODE))).execute();
+
+            if(p1 == null || p2 == null)//It's a new user, so need to add it !
+            {
+
+                try
+                {
+                    error = saveFile(avatar,taxCode);
+                    if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+                    {
+                        //File saved ok can proceed with writing on the database and send email and log to test max dimension of the file??
+                        String pathImg = null;
+                        if(avatar != null)
+                            pathImg = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode +
+                                    File.separator + Constants.AVATAR + avatar.getContentType().split(File.separator)[1];
+                        try
+                        {
+                            Person p = new Person(roles,email,pathImg, EncryptionManager.encrypt(password),address,firstName,lastName,taxCode,birthDate,telephoneNumber);
+                            new InsertNewUserDatabase(getDataSource().getConnection(),p);
+                            String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
+
+
+
+                            new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p,EncryptionManager.encrypt(email),
+                                    new Timestamp(System.currentTimeMillis() + Constants.DAY)));
+
+                            MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
+
+
+                        }catch (NoSuchAlgorithmException e)
+                        {
+                            error = ErrorCodes.INTERNAL_ERROR;
+                        }
+
+
+
+
+                    }
+                }catch (IOException e)
+                {
+                    error = ErrorCodes.INTERNAL_ERROR;
+                }
+
+            }else
+                error = ErrorCodes.USER_ALREADY_PRESENT;
+        }catch (SQLException | NamingException e )
+        {
+            error = ErrorCodes.INTERNAL_ERROR;
+        }
+        return error;
+    }
+
+
+    private ErrorCodes saveFile(Part file, String taxCode) throws IOException
     {
         ErrorCodes error = ErrorCodes.OK;
         File createDirectory = null;
@@ -156,43 +281,26 @@ public class RegisterServlet extends AbstractServlet
         InputStream content = null;
         String path = null;
         Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
-        if(taxCode == null || taxCode.isEmpty())
-        {
-            error = ErrorCodes.EMPTY_INPUT_FIELDS;
-        }else if(file != null)
-        {
-            if(type.equals(Constants.MEDICAL_CERTIFICATE))
-            {
 
-                log.info(file.getContentType());
-                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE).anyMatch(file.getContentType().split("/")[1]::equals))
-                    error = ErrorCodes.INVALID_FILE_TYPE;
-                else
-                    path = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + "/"+ taxCode;
-            }
-            else if(type.equals(Constants.AVATAR))
-            {
-                log.info(file.getContentType());
-                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).anyMatch(file.getContentType().split("/")[1]::equals))
-                    error = ErrorCodes.INVALID_FILE_TYPE;
-                else
-                    path = Constants.AVATAR_PATH_FOLDER + "/"+ taxCode;
-            }
-            //log.info(Constants.MEDICAL_CERTIFICATE_PATH_FOLDER+"/"+taxCode);
-            log.info(path);
+        if(file != null)
+        {
+            if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).
+                    anyMatch(file.getContentType().split(File.separator)[1]::equals))
+                error = ErrorCodes.INVALID_FILE_TYPE;
+            else
+                path = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode;
 
-            if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+            if(error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //can proceed to save
             {
                 createDirectory = new File(path);
                 if(!createDirectory.exists())
                     createDirectory.mkdir();
 
-                path = path + "/"+type+"."+file.getContentType().split("/")[1];
+                path = path + File.separator + Constants.AVATAR + "." + file.getContentType().split(File.separator)[1];
                 log.info(path);
                 try
                 {
                     writer = new FileOutputStream(path);
-
                     content = file.getInputStream();
                     int read = 0;
                     final byte[] bytes = new byte[1024];
@@ -201,13 +309,13 @@ public class RegisterServlet extends AbstractServlet
                 }catch (IOException e)
                 {
                     error = ErrorCodes.CANNOT_UPLOAD_FILE;
-                }finally {
+                }finally
+                {
                     if(content != null)
                         content.close();
                     if(writer != null)
                         writer.close();
                 }
-
             }
         }
         return error;

@@ -23,11 +23,7 @@ public class Constants
     public static final String NOREPLYEMAIL = "noreply@gwa.com";
     public static final String HOST = "localhost";
     public static final String MAILSMTPHOST = "mail.smtp.host";
-
-    //DATABASE CONSTANTS
-    public static final int MIN_AGE = 14;
-    public static final int MIN_LENGTH_PHONE_NUMBER = 10;
-
+    public static final String CONFIRMATION_URL = "localhost/confirm-registration/";
 
     //PARAMETERS POST/GET CONSTANTS
     public static final String TAX_CODE = "tax_code";
@@ -51,6 +47,8 @@ public class Constants
     //ACCEPTED EXTENSIONS
     public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{"png","jpg","jpeg"};
     public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
+
+    public static final int DAY = 1000*60*60*24;
 
 
 }

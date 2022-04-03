@@ -1,9 +1,14 @@
 \subsection{Logical Schema}
     % Schema ER
     \begin{center}
-		\includegraphics[width=0.9\textwidth,bb = 0 440 700 850,clip=true]{resources/Logical_Schema.pdf}
+		\includegraphics[width=0.9\textwidth,bb = 0 380 700 850,clip=true]{resources/Logical_Schema.pdf}
     \end{center}
 
-	Should we add the constraints of the physical implementation? Yes
     
-	
+	  \textbf{Additional Constraints}:\\
+  \\
+    Telephone length 10\\
+    Minimum age of person is 14 years old\\
+    SubscriptionType has $duration > 0$ and $cost \ge 0$\\
+    Subscription's discount is between 0 and 100 inclusive.\\
+    The cardinality of the Subscription - SubscriptionType relationship is (0,5)

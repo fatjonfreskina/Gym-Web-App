@@ -20,8 +20,6 @@
         <label>Email : </label><input type="text" name="email" ><br/>
         <label>Password : </label><input type="password" name="password"><br/>
         <label>Confirm Password : </label><input type="password" name="confirm_password" ><br/>
-        <label>Medical Certificate (optional) : </label><input type="file" name="medical_certificate"><br/>
-        <label>Note : is mandatory to uplad a Medical Certificate before entering the gym.</label><br/>
         <button type="submit" >Register</button>
     </form>
 

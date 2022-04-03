@@ -32,6 +32,9 @@ public class MedicalCertificate {
         this.path = path;
     }
 
+
+
+
     public final String getPersonEmail()
     {
         return personEmail;
