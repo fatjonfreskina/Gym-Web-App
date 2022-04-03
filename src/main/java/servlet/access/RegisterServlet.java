@@ -2,6 +2,7 @@ package servlet.access;
 
 import constants.Constants;
 import constants.ErrorCodes;
+import jakarta.activation.MimeType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -65,20 +66,10 @@ public class RegisterServlet extends AbstractServlet
             confirmPassword = req.getParameter(Constants.CONFIRM_PASSWORD);
             telephoneNumber = Integer.parseInt(req.getParameter(Constants.TELEPHONE_NUMBER));
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
-
             avatar = req.getPart(Constants.AVATAR);
             medicalCertificate = req.getPart(Constants.MEDICAL_CERTIFICATE);
 
-            if(taxCode == null || taxCode.isEmpty())
-            {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
-                message = new Message(error.getErrorMessage(),true);
-                registrable = false;
-            }else
-            {
-                error = saveFile (avatar, Constants.AVATAR, taxCode);
-                error = saveFile (medicalCertificate,Constants.AVATAR,taxCode);
-            }
+
 
         }catch ( IllegalArgumentException e)
         {
@@ -87,9 +78,10 @@ public class RegisterServlet extends AbstractServlet
             registrable = false;
         }
 
+
         if(registrable)
         {
-            if(firstName == null || lastName == null || address == null || email == null || password == null
+            if(taxCode == null || taxCode.isEmpty() ||firstName == null || lastName == null || address == null || email == null || password == null
                     || confirmPassword == null || birthDate == null || firstName.isEmpty() || lastName.isEmpty()
             || address.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() )
             {
@@ -124,23 +116,46 @@ public class RegisterServlet extends AbstractServlet
             //here the user will be registered
             /*
             * Thing to do :
-            * 1) check if it is already in the db by testing email and tax code
+            * 1) check if it is already in the db by testing email and tax code and the save files if i need it!
             * 2) if can register => add in db all the things needed
             * 3) send email for confirmation of registration ?
             * That's it!
+            *
+            * if(taxCode == null || taxCode.isEmpty())
+            {
+                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                message = new Message(error.getErrorMessage(),true);
+                registrable = false;
+            }else
+            {
+                error = saveFile (avatar, Constants.AVATAR, taxCode);
+                if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
+                {
+                    message = new Message(error.getErrorMessage(),true);
+                    registrable = false;
+                }else
+                {
+                    error = saveFile (medicalCertificate,Constants.MEDICAL_CERTIFICATE,taxCode);
+                    if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
+                    {
+                        message = new Message(error.getErrorMessage(),true);
+                        registrable = false;
+                    }
+                }
+            }
             * */
 
         }
     }
 
-    private ErrorCodes saveFile(Part file, String type, String taxCode)
+    private ErrorCodes saveFile(Part file, String type, String taxCode) throws IOException
     {
         ErrorCodes error = ErrorCodes.OK;
         File createDirectory = null;
         OutputStream writer = null;
         InputStream content = null;
         String path = null;
-
+        Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
         if(taxCode == null || taxCode.isEmpty())
         {
             error = ErrorCodes.EMPTY_INPUT_FIELDS;
@@ -148,24 +163,32 @@ public class RegisterServlet extends AbstractServlet
         {
             if(type.equals(Constants.MEDICAL_CERTIFICATE))
             {
-                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE).anyMatch(file.getContentType()::equals))
+
+                log.info(file.getContentType());
+                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE).anyMatch(file.getContentType().split("/")[1]::equals))
                     error = ErrorCodes.INVALID_FILE_TYPE;
                 else
-                    path = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + File.separator+ taxCode + file.getContentType() ;
+                    path = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + "/"+ taxCode;
             }
             else if(type.equals(Constants.AVATAR))
             {
-                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).anyMatch(file.getContentType()::equals))
+                log.info(file.getContentType());
+                if(!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).anyMatch(file.getContentType().split("/")[1]::equals))
                     error = ErrorCodes.INVALID_FILE_TYPE;
                 else
-                    path = Constants.AVATAR_PATH_FOLDER + File.separator+ taxCode + file.getContentType();
+                    path = Constants.AVATAR_PATH_FOLDER + "/"+ taxCode;
             }
+            //log.info(Constants.MEDICAL_CERTIFICATE_PATH_FOLDER+"/"+taxCode);
+            log.info(path);
+
             if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
             {
                 createDirectory = new File(path);
                 if(!createDirectory.exists())
                     createDirectory.mkdir();
 
+                path = path + "/"+type+"."+file.getContentType().split("/")[1];
+                log.info(path);
                 try
                 {
                     writer = new FileOutputStream(path);
@@ -178,7 +201,13 @@ public class RegisterServlet extends AbstractServlet
                 }catch (IOException e)
                 {
                     error = ErrorCodes.CANNOT_UPLOAD_FILE;
+                }finally {
+                    if(content != null)
+                        content.close();
+                    if(writer != null)
+                        writer.close();
                 }
+
             }
         }
         return error;

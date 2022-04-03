@@ -45,12 +45,12 @@ public class Constants
     public static final String MESSAGE = "message";
 
     //UPLOAD FILE CONSTANTS
-    public static final String AVATAR_PATH_FOLDER ="../gwa/avatars/";
-    public static final String MEDICAL_CERTIFICATE_PATH_FOLDER ="../gwa/medical_certificates/";
+    public static final String AVATAR_PATH_FOLDER ="../gwa/avatars";
+    public static final String MEDICAL_CERTIFICATE_PATH_FOLDER ="../gwa/medical_certificates";
 
     //ACCEPTED EXTENSIONS
-    public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{".png",".jpg",".jpeg"};
-    public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{".pdf"};
+    public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{"png","jpg","jpeg"};
+    public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
 
 
 }
