@@ -1,14 +1,11 @@
 package dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import resource.LectureTimeSlot;
 import resource.Person;
 
 import java.sql.*;
 
 public class InsertNewUserDatabase {
-    private final String STATEMENT = "INSERT INTO gwa.person(email, role, name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String STATEMENT = "INSERT INTO gwa.person(email, role, name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final Connection conn;
     private final Person p;
 
@@ -22,7 +19,8 @@ public class InsertNewUserDatabase {
         try {
             ps = conn.prepareStatement(STATEMENT);
             ps.setString(1, p.getEmail());
-            Array role = conn.createArrayOf("integer", p.getRole());
+            //TODO: check if the type of the array is correct.
+            Array role = conn.createArrayOf("\"gwa\".\"role\"", p.getRole());
             ps.setArray(2, role);
             ps.setString(3, p.getName());
             ps.setString(4, p.getSurname());
