@@ -13,10 +13,10 @@ import java.io.IOException;
 public class TrainerServlet extends AbstractServlet {
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         //req.setAttribute("", null);
-        req.getRequestDispatcher(Constants.PATH_TRAINER_HOME).forward(req, res);
+        req.getRequestDispatcher(Constants.PATH_TRAINER_HOME).forward(req, resp);
     }
 
 }
