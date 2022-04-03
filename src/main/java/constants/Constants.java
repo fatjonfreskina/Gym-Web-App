@@ -17,6 +17,8 @@ public class Constants
     //TRAINER PATHS
     public static final String PATH_TRAINER_HOME = "/jsp/trainer/home.jsp";
 
+    public static final String PATH_PERSONALINFO = "/jsp/personalinfo.jsp";
+
     //EMAIL CONSTANTS
     public static final String NOREPLYEMAIL = "noreply@gwa.com";
     public static final String HOST = "localhost";
