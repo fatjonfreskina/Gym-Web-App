@@ -21,7 +21,7 @@ public class InsertNewUserDatabase {
             ps.setString(1, p.getEmail());
             //TODO: check if the type of the array is correct.
             //Array role = conn.createArrayOf("\"gwa\".\"role\"", p.getRole());
-            ps.setString(2, Person.roles[p.getRole()[0]]);
+            //ps.setString(2, Person.roles[p.getRole()[0]]);
             ps.setString(3, p.getName());
             ps.setString(4, p.getSurname());
             ps.setString(5, p.getPassword());
