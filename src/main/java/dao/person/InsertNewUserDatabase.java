@@ -1,4 +1,4 @@
-package dao;
+package dao.person;
 
 import resource.Person;
 
