@@ -23,6 +23,10 @@
         <servlet-class>servlet.PricesServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CalendarServlet</servlet-name>
+        <servlet-class>servlet.CalendarServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TrainerServlet</servlet-name>
         <servlet-class>servlet.TrainerServlet</servlet-class>
     </servlet>
@@ -64,6 +68,10 @@
     <servlet-mapping>
         <servlet-name>PricesServlet</servlet-name>
         <url-pattern>/prices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalendarServlet</servlet-name>
+        <url-pattern>/calendar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TrainerServlet</servlet-name>
