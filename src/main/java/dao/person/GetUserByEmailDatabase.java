@@ -9,12 +9,12 @@ public class GetUserByEmailDatabase
     private static final String STATEMENT = "SELECT * FROM person WHERE email = ?";
 
     private final Connection connection;
-    private final Person person;
+    private final String email;
 
-    public GetUserByEmailDatabase(final Connection connection, final Person person)
+    public GetUserByEmailDatabase(final Connection connection, final String email)
     {
         this.connection = connection;
-        this.person = person;
+        this.email = email;
     }
 
     public Person execute() throws SQLException
@@ -26,7 +26,7 @@ public class GetUserByEmailDatabase
         try
         {
             stm = connection.prepareStatement(STATEMENT);
-            stm.setString(1, person.getEmail());
+            stm.setString(1, email);
 
             rs = stm.executeQuery();
 
