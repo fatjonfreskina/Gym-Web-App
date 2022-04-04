@@ -3,6 +3,7 @@ package resource;
 import java.sql.Timestamp;
 
 public class PasswordReset {
+
     private final String token;
     private final Timestamp expirationDate;
     private final String person;

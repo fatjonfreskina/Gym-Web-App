@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 /**
  * Updates a subscription in the database
+ *
  * @author Riccardo Forzan
  */
 public class UpdateUserSubscriptionDatabase {
@@ -19,7 +20,8 @@ public class UpdateUserSubscriptionDatabase {
 
     /**
      * Parametric constructor for the class
-     * @param con JDBC database connection
+     *
+     * @param con          JDBC database connection
      * @param subscription instance of Subscription {@link Subscription} to update in the database
      */
     public UpdateUserSubscriptionDatabase(final Connection con, final Subscription subscription) {
@@ -29,6 +31,7 @@ public class UpdateUserSubscriptionDatabase {
 
     /**
      * Updates a subscription object in the database
+     *
      * @throws SQLException if a database access error occurs
      */
     public void execute() throws SQLException {

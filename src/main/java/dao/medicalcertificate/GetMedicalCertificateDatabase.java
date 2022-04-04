@@ -33,7 +33,7 @@ public class GetMedicalCertificateDatabase {
             resultSet = preparedStatement.executeQuery();
 
             //Iterate over all the certificates
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 //Parse data
                 String person = resultSet.getString("person");
                 Date expirationdate = resultSet.getDate("expirationdate");

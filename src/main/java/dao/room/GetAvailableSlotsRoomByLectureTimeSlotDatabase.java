@@ -26,12 +26,12 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
 
     /**
      * Constructor for the GetAvailableSlotsRoomByLectureTimeSlotDatabase class
-     * @param con  the connection to the database
-     * @param room  the room in which the lecturetimeslot will occur
+     *
+     * @param con             the connection to the database
+     * @param room            the room in which the lecturetimeslot will occur
      * @param lectureTimeSlot the lecturetimeslot that the user want to book
      */
-    public GetAvailableSlotsRoomByLectureTimeSlotDatabase(final Connection con, final Room room, final LectureTimeSlot lectureTimeSlot)
-    {
+    public GetAvailableSlotsRoomByLectureTimeSlotDatabase(final Connection con, final Room room, final LectureTimeSlot lectureTimeSlot) {
         this.con = con;
         this.room = room;
         this.lectureTimeSlot = lectureTimeSlot;
@@ -39,15 +39,14 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
 
     /**
      * Execute an the query and provide the number of available slots
+     *
      * @return the number of available slots
      */
-    public int execute() throws SQLException
-    {
+    public int execute() throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         int availableSlots = 0;
-        try
-        {
+        try {
             pstmt = con.prepareStatement(STATEMENT);
             pstmt.setString(1, room.getName());
             pstmt.setString(2, room.getName());
@@ -55,10 +54,9 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
             pstmt.setTime(4, lectureTimeSlot.getStartTime());
 
             rs = pstmt.executeQuery();
-            if(rs.next())
+            if (rs.next())
                 availableSlots = rs.getInt("availableslots");
-        } finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
             if (pstmt != null)

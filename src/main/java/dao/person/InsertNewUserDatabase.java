@@ -16,9 +16,7 @@ public class InsertNewUserDatabase {
     }
 
     public void execute() throws SQLException {
-        PreparedStatement ps = null;
-        try {
-            ps = conn.prepareStatement(STATEMENT);
+        try (PreparedStatement ps = conn.prepareStatement(STATEMENT)) {
             ps.setString(1, p.getEmail());
             ps.setString(2, p.getName());
             ps.setString(3, p.getSurname());
@@ -30,8 +28,6 @@ public class InsertNewUserDatabase {
             ps.setString(9, p.getAvatarpath());
             ps.execute();
         } finally {
-            if (ps != null)
-                ps.close();
             conn.close();
         }
     }

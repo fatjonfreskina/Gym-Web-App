@@ -4,6 +4,7 @@ import java.sql.Date;
 
 /**
  * This Bean contains all the info about a subscription.
+ *
  * @author Riccardo Forzan
  */
 public class Subscription {
@@ -17,11 +18,12 @@ public class Subscription {
 
     /**
      * Parametric constructor for Subscription
+     *
      * @param courseEditionID ID of a course edition
-     * @param courseName name of the course
-     * @param duration duration of the subscription (in days)
-     * @param startDay date from which the subscription starts
-     * @param discount discount applied to the price of the subscription
+     * @param courseName      name of the course
+     * @param duration        duration of the subscription (in days)
+     * @param startDay        date from which the subscription starts
+     * @param discount        discount applied to the price of the subscription
      * @param trainee
      */
     public Subscription(int courseEditionID, String courseName, int duration, Date startDay, int discount, String trainee) {
