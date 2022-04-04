@@ -17,7 +17,6 @@ import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
 import utils.InputValidation;
-import utils.MailManager2;
 
 import javax.naming.NamingException;
 import java.io.*;
@@ -205,7 +204,8 @@ public class RegisterServlet extends AbstractServlet
                             (new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p.getEmail(),EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
-                            MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
+                            //TODO
+                            //MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 
 
                         }catch (NoSuchAlgorithmException e)
