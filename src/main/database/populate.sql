@@ -34,13 +34,12 @@ INSERT INTO personroles VALUES ('luca.giallo@example.com','trainee');
 INSERT INTO personroles VALUES ('stanley.corkery@example.com','trainee');
 INSERT INTO personroles VALUES ('virginia.barrows@example.com','trainee');
 INSERT INTO personroles VALUES ('sondra.dubuque@example.com','trainee');
-INSERT INTO personroles VALUES ('sondra.dubuque@example.com','trainee');
 INSERT INTO personroles VALUES ('bart.collins@example.com','trainee');
 INSERT INTO personroles VALUES ('cristi.schaden@example.com','trainee');
 INSERT INTO personroles VALUES ('alonzo.lindgren@example.com','trainee');
 INSERT INTO personroles VALUES ('bao.glover@example.com','trainee');
 INSERT INTO personroles VALUES ('altha.ruecker@example.com','trainee');
-INSERT INTO person VALUES ('giacomo.forza@example.com','trainer')
+INSERT INTO personroles VALUES ('giacomo.forza@example.com','trainer');
 INSERT INTO personroles VALUES ('shery.stamm@example.com','trainer');
 INSERT INTO personroles VALUES ('nathanial.prohaska@example.com','trainer');
 INSERT INTO personroles VALUES ('annis.dach@example.com','trainer');

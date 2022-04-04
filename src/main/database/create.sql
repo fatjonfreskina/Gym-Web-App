@@ -15,8 +15,8 @@ CREATE TABLE typeofroles(
 );
 
 CREATE TABLE personroles(
-  role VARCHAR(30),
   person VARCHAR(40),
+  role VARCHAR(30),
   PRIMARY KEY(role,person)
 );
 
