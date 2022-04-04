@@ -1,44 +1,77 @@
 package dao.person;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import resource.Person;
 
 import java.sql.*;
 
-public class GetUserByEmailDatabase {
+public class GetUserByEmailDatabase
+{
+    private static final Logger LOGGER = LogManager.getLogger("marco_alessio_appender");
     private static final String STATEMENT = "SELECT * FROM person WHERE email = ?";
 
     private final Connection connection;
-    private final Person person;
+    private final String email;
 
-    public GetUserByEmailDatabase(final Connection connection, final Person person) {
+    public GetUserByEmailDatabase(final Connection connection, final String email)
+    {
         this.connection = connection;
-        this.person = person;
+        this.email = email;
     }
 
-    public Person execute() throws SQLException {
+    public Person execute() throws SQLException
+    {
         PreparedStatement stm = null;
-        ResultSet rs = null;
-        Person result = null;
+        ResultSet rs =  null;
+        Person result;
 
-        try {
+        try
+        {
             stm = connection.prepareStatement(STATEMENT);
-            stm.setString(1, person.getEmail());
+            stm.setString(1, email);
 
             rs = stm.executeQuery();
 
             // Check if there is a result.
-            if (rs.next())
-                result = new Person(rs.getString("email"), rs.getString("name"), rs.getString("surname"),
-                        rs.getString("psw"), rs.getString("taxcode"), rs.getDate("birthdate"),
-                        rs.getString("telephone"), rs.getString("address"), rs.getString("avatarpath"));
+            if (!rs.next())
+                throw new SQLException("No Person exists with email: %s.".formatted(email));
 
-        } finally {
+            result = new Person(
+                    rs.getString("email"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("psw"), //password
+                    rs.getString("taxCode"),
+                    rs.getDate("birthDate"),
+                    rs.getString("telephone"),
+                    rs.getString("address"),
+                    rs.getString("avatarPath")
+                    //(String[]) rs.getArray("role").getArray(),
+            );
+
+            // Prevent SQL injection attacks.
+            if (rs.next())
+                throw new SQLException("More than one result for email: %s.".formatted(email));
+        }
+        catch (SQLException exc)
+        {
+            LOGGER.error("[INFO] GetPersonInfoDatabase - %s - An exception occurred during query execution.\n%s\n".
+                    formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
+
+            throw exc;
+        }
+        finally
+        {
             if (stm != null)
                 stm.close();
+
             if (rs != null)
                 rs.close();
+
             connection.close();
         }
+
         return result;
     }
 }

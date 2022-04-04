@@ -11,19 +11,23 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class PersonalInfoServlet extends AbstractServlet {
+public class PersonalInfoServlet extends AbstractServlet
+{
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        try {
-            String email = req.getParameter("email");
-            var conn = getDataSource().getConnection();
-            //Create a person with email only
-            Person fake = new Person(email, null, null, null, null, null, null, null, null);
-            Person person = new GetUserByEmailDatabase(conn, fake).execute();
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    {
+        try
+        {
+            //TODO: how to know the email of the logged user?
+            final String email = req.getParameter("email");
+
+            Person person = new GetUserByEmailDatabase(getDataSource().getConnection(), email).execute();
 
             req.setAttribute("personalInfo", person);
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
-        } catch (NamingException | SQLException e) {
+        }
+        catch (NamingException | SQLException e)
+        {
             throw new ServletException(e);
         }
     }

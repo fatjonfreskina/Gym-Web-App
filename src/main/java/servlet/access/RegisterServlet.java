@@ -179,8 +179,7 @@ public class RegisterServlet extends AbstractServlet
         Person p2 = null;
         try
         {
-            p1 = (new GetUserByEmailDatabase(getDataSource().getConnection(),new Person(email,null,null,
-                    null,null,null,null,null,null))).execute();
+            p1 = (new GetUserByEmailDatabase(getDataSource().getConnection(), email)).execute();
 
             p2 = (new GetUserByTaxCodeDatabase(getDataSource().getConnection(),new Person(null,null,null,
                     null,taxCode,null,null,null,null))).execute();

@@ -1,11 +1,9 @@
 package resource;
 
-import constants.Constants;
-
 import java.sql.Date;
 
-public class Person {
-
+public class Person
+{
     public static final String ROLE_TRAINEE = "trainee";
     public static final String ROLE_TRAINER = "trainer";
     public static final String ROLE_SECRETARY = "secretary";
@@ -17,22 +15,23 @@ public class Person {
     private final String name;
     private final String surname;
     private final String psw;
-    private final String taxcode;
-    private final Date birthdate;
+    private final String taxCode;
+    private final Date birthDate;
     private final String telephone;
     private final String address;
-    private final String avatarpath;
+    private final String avatarPath;
 
-    public Person(String email, String name, String surname, String psw, String taxcode, Date birthdate, String telephone, String address, String avatarpath) {
+    public Person(String email, String name, String surname, String psw, String taxCode, Date birthDate, String telephone, String address, String avatarPath)
+    {
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.psw = psw;
-        this.taxcode = taxcode;
-        this.birthdate = birthdate;
+        this.taxCode = taxCode;
+        this.birthDate = birthDate;
         this.telephone = telephone;
         this.address = address;
-        this.avatarpath = avatarpath;
+        this.avatarPath = avatarPath;
     }
 
     public String getEmail() {
@@ -51,12 +50,12 @@ public class Person {
         return psw;
     }
 
-    public String getTaxcode() {
-        return taxcode;
+    public String getTaxCode() {
+        return taxCode;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
     public String getTelephone() {
@@ -67,8 +66,8 @@ public class Person {
         return address;
     }
 
-    public String getAvatarpath() {
-        return avatarpath;
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
 }

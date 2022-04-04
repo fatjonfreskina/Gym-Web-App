@@ -35,7 +35,7 @@
         </tr>
         <tr>
             <th>Photo (optional):</th>
-            <td><c:out value="${personalInfo.pathImg}"/></td>
+            <td><c:out value="${personalInfo.avatarPath}"/></td>
         </tr>
         <tr>
             <th>Email:</th>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <th>Password:</th>
-            <td><c:out value="${personalInfo.password}"/></td>
+            <td><c:out value="${personalInfo.psw}"/></td>
         </tr>
         <tr>
             <th>Medical Certificate (optional):</th>

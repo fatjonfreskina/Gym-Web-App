@@ -25,7 +25,7 @@ public class GetUserByTaxCodeDatabase {
 
         try {
             stm = connection.prepareStatement(STATEMENT);
-            stm.setString(1, person.getTaxcode());
+            stm.setString(1, person.getTaxCode());
             rs = stm.executeQuery();
 
             if (rs.next())

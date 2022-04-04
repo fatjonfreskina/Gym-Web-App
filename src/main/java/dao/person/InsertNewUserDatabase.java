@@ -21,11 +21,11 @@ public class InsertNewUserDatabase {
             ps.setString(2, p.getName());
             ps.setString(3, p.getSurname());
             ps.setString(4, p.getPsw());
-            ps.setString(5, p.getTaxcode());
-            ps.setDate(6, p.getBirthdate());
+            ps.setString(5, p.getTaxCode());
+            ps.setDate(6, p.getBirthDate());
             ps.setString(7, p.getTelephone());
             ps.setString(8, p.getAddress());
-            ps.setString(9, p.getAvatarpath());
+            ps.setString(9, p.getAvatarPath());
             ps.execute();
         } finally {
             conn.close();
