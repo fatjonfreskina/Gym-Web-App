@@ -6,9 +6,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import servlet.AbstractServlet;
+import utils.EncryptionManager;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * This servlet is accessible after having asked for a password reset.
@@ -23,7 +25,7 @@ public class PasswordChangeServlet extends AbstractServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //Get from the request the new password and then change it
         String raw_password = req.getParameter("password");
         String raw_confirm = req.getParameter("password-confirm");
@@ -45,6 +47,15 @@ public class PasswordChangeServlet extends AbstractServlet {
             if(raw_password.equals(raw_confirm)){
                 //The password is valid and should be updated
                 out.println("<h3>The new password will be: " + raw_password + "</h3>");
+
+                try {
+                    String hashed = EncryptionManager.encrypt(raw_password);
+                    out.println("<h3>The hashed password saved will be: " + hashed + "</h3>");
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+
+
             } else {
                 out.println("<h3>The password and the confirmation password fields do not match! </h3>");
             }
