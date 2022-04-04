@@ -1,6 +1,31 @@
 package servlet.access;
 
+import constants.Constants;
+import constants.ErrorCodes;
+import dao.emailconfermation.InsertEmailConfermation;
+import dao.person.GetUserByEmailDatabase;
+import dao.person.GetUserByTaxCodeDatabase;
+import dao.person.InsertNewUserDatabase;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
+import resource.EmailConfermation;
+import resource.Message;
+import resource.Person;
 import servlet.AbstractServlet;
+import utils.EncryptionManager;
+import utils.MailManager2;
+
+import javax.naming.NamingException;
+import java.io.*;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Arrays;
 
 
 /**
@@ -10,9 +35,9 @@ import servlet.AbstractServlet;
 public class RegisterServlet extends AbstractServlet
 {
 
-    /*
+
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
     }
@@ -29,7 +54,7 @@ public class RegisterServlet extends AbstractServlet
         String telephoneNumber = null;
         Date birthDate = null;
         Part avatar = null;
-        Integer[] roles = new Integer[]{0,null,null};
+
 
         boolean registrable = true;
         Message message = null;
@@ -56,7 +81,7 @@ public class RegisterServlet extends AbstractServlet
             avatar = req.getPart(Constants.AVATAR);
 
             //insertUser
-            error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,roles);
+            error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,Person.ROLE_TRAINEE);
             if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
             {
                 //message = new Message(error.getErrorMessage(),true);
@@ -146,15 +171,18 @@ public class RegisterServlet extends AbstractServlet
     }
 
     public ErrorCodes insertUser(String taxCode,String firstName, String lastName,String address,String email,
-                                 String password, String telephoneNumber,Date birthDate,Part avatar,Integer[] roles)
+                                 String password, String telephoneNumber,Date birthDate,Part avatar, String role)
     {
         ErrorCodes error = ErrorCodes.OK;
         Person p1 = null;
         Person p2 = null;
         try
         {
-            p1 = (new GetUserByEmail(getDataSource().getConnection(),new Person(email,Constants.EMAIL))).execute();
-            p2 = (new GetUserByTaxCode(getDataSource().getConnection(),new Person(email,Constants.TAX_CODE))).execute();
+            p1 = (new GetUserByEmailDatabase(getDataSource().getConnection(),new Person(email,null,null,
+                    null,null,null,null,null,null))).execute();
+
+            p2 = (new GetUserByTaxCodeDatabase(getDataSource().getConnection(),new Person(null,null,null,
+                    null,taxCode,null,null,null,null))).execute();
 
             if(p1 == null || p2 == null)//It's a new user, so need to add it !
             {
@@ -171,7 +199,15 @@ public class RegisterServlet extends AbstractServlet
                                     File.separator + Constants.AVATAR +"."+ avatar.getContentType().split(File.separator)[1];
                         try
                         {
-                            Person p = new Person(roles,email,pathImg, EncryptionManager.encrypt(password),address,firstName,lastName,taxCode,birthDate,telephoneNumber);
+                            Person p = new Person(email,firstName,lastName, EncryptionManager.encrypt(password)
+                                    ,taxCode,birthDate,telephoneNumber,address,pathImg);
+
+
+                            //QUI DA FINIRE
+
+
+
+
                             new InsertNewUserDatabase(getDataSource().getConnection(),p).execute();
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
@@ -254,5 +290,5 @@ public class RegisterServlet extends AbstractServlet
         }
         return error;
     }
-    */
+
 }
