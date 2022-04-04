@@ -37,6 +37,26 @@ public class DataBaseUtils {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int option = Integer.parseInt(reader.readLine());
 
+
+        switch (option){
+
+            case 1:
+                createDatabase();
+                break;
+            case 2:
+                createDatabaseTables();
+                break;
+            case 3:
+                seedDatabase();
+                break;
+            case 4:
+                fakeDataDatabase();
+                break;
+            case 5:
+                dropDatabase();
+                break;
+        }
+
         //TODO: implement switch case
 
         //createDatabase();
