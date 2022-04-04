@@ -46,6 +46,10 @@
         <servlet-name>PersonalInfoServlet</servlet-name>
         <servlet-class>servlet.PersonalInfoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AboutUsServlet</servlet-name>
+        <jsp-file>/jsp/aboutus.jsp</jsp-file>
+    </servlet>
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -80,6 +84,10 @@
     <servlet-mapping>
         <servlet-name>PersonalInfoServlet</servlet-name>
         <url-pattern>/personal_info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AboutUsServlet</servlet-name>
+        <url-pattern>/aboutus</url-pattern>
     </servlet-mapping>
     <!-- Listener called when the application is initialized -->
     <listener>
