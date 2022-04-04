@@ -6,6 +6,7 @@ import dao.emailconfermation.InsertEmailConfermation;
 import dao.person.GetUserByEmailDatabase;
 import dao.person.GetUserByTaxCodeDatabase;
 import dao.person.InsertNewUserDatabase;
+import dao.person.InsertUserRoleDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -194,7 +195,7 @@ public class RegisterServlet extends AbstractServlet
                     {
                         //File saved ok can proceed with writing on the database and send email and log to test max dimension of the file??
                         String pathImg = null;
-                        if(avatar != null) //.png da aggiungere
+                        if((avatar != null) && (avatar.getSize() != 0)) //.png da aggiungere
                             pathImg = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode +
                                     File.separator + Constants.AVATAR +"."+ avatar.getContentType().split(File.separator)[1];
                         try
@@ -209,6 +210,8 @@ public class RegisterServlet extends AbstractServlet
 
 
                             new InsertNewUserDatabase(getDataSource().getConnection(),p).execute();
+
+                            new InsertUserRoleDatabase(getDataSource().getConnection(),p,role).execute();
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
 
@@ -223,10 +226,6 @@ public class RegisterServlet extends AbstractServlet
                         {
                             error = ErrorCodes.INTERNAL_ERROR;
                         }
-
-
-
-
                     }
                 }catch (IOException e)
                 {

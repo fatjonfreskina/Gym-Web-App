@@ -28,6 +28,7 @@ public class InsertNewUserDatabase {
             ps.setString(7, p.getTelephone());
             ps.setString(8, p.getAddress());
             ps.setString(9, p.getAvatarpath());
+            ps.execute();
         } finally {
             if (ps != null)
                 ps.close();

@@ -10,7 +10,7 @@ import java.sql.*;
 
 public class InsertEmailConfermation {
 
-    private static final String STATEMENT = "INSERT INTO emailconfermation(person, token, expirationday) VALUES (?, ?, ?)";
+    private static final String STATEMENT = "INSERT INTO emailconfermation(person, token, expirationdate) VALUES (?, ?, ?)";
 
     private final Connection con;
     private final EmailConfermation emailConfermation;

@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetPersonRoles
+public class GetUserRolesDatabase
 {
 
     private static final String STATEMENT = "SELECT * FROM personroles JOIN person ON personroles.person = person.email WHERE email = ?";
@@ -15,7 +15,7 @@ public class GetPersonRoles
     private final Connection connection;
     private final Person person;
 
-    public GetPersonRoles(final Connection connection, final Person person)
+    public GetUserRolesDatabase(final Connection connection, final Person person)
     {
         this.connection = connection;
         this.person = person;
