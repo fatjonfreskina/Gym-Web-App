@@ -3,8 +3,7 @@ package database;
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,11 +25,24 @@ public class DataBaseUtils {
     private static final String FAKE_DATABASE_FILEPATH = "src/main/database/FAKE_DATA.sql";
     private static final String DROP_DATABASE_FILEPATH = "src/main/database/DROP.sql";
 
-    public static void main(String[] args) throws SQLException, FileNotFoundException {
-        createDatabase();
-        createDatabaseTables();
-        seedDatabase();
-        fakeDataDatabase();
+    public static void main(String[] args) throws SQLException, IOException {
+
+        System.out.println("COMMAND LINE TOOL FOR DATABASE MANAGEMENT, USE:");
+        System.out.println("* 1     - TO CREATE THE DATABASE");
+        System.out.println("* 2     - TO CREATE THE DATABASE TABLES");
+        System.out.println("* 3     - TO SEED THE DATABASE TABLES");
+        System.out.println("* 4     - TO LOAD FAKE VALUES IN THE TABLES");
+        System.out.println("* 5     - TO DROP DATABASE");
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int option = Integer.parseInt(reader.readLine());
+
+        //TODO: implement switch case
+
+        //createDatabase();
+        //createDatabaseTables();
+        //seedDatabase();
+        //fakeDataDatabase();
         //dropDatabase();
     }
 
