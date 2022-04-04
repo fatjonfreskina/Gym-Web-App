@@ -33,7 +33,7 @@ public class CalendarServlet extends AbstractServlet {
         {
             wc.addSlot(slot);
         }
-        req.setAttribute("weeklyCalendar", wc);
+        req.setAttribute("weeklyCalendar", wc.getOutput());
         req.getRequestDispatcher(Constants.PATH_CALENDAR).forward(req, res);
     }
 }

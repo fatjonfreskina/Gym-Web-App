@@ -75,6 +75,11 @@ public class WeeklyCalendar
         }
     }
 
+    public List<LectureTimeSlot>[][] getOutput()
+    {
+        return output;
+    }
+
     public List<LectureTimeSlot>[][] getWeeklyCalendar()
     {
         return output;

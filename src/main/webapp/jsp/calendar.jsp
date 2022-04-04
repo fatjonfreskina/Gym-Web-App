@@ -12,30 +12,33 @@
     <table>
         <thead>
         <tr>
-            <th>Date</th><th>Time</th><th>Room</th><th>Course</th>
+            <th>Hours</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th>
         </tr>
         </thead>
-        <c:set var="weeklyCalendar" value="${weeklyCalendar}"/>
+        <c:set var="hour" value="8"/>
+        <c:forEach var="element" items="${weeklyCalendar}">
 
-        <%
-            WeeklyCalendar calendar = (WeeklyCalendar) request.getAttribute("weeklyCalendar");
+            <tr>
+                <td><c:out value="${hour}"/></td>
+                <c:forEach var="elem" items="${element}">
+                    <td>
+                        <c:forEach var="e" items="${elem}">
+                            <c:out value="${e.courseName}"></c:out><br>
+                            <c:out value="${e.roomName}"></c:out>
+                            <br><br><br>
 
-            for(int i = 0; i < calendar.getSizeX(); i += 1)
-            {
-                response.getWriter().println("<tr>");
-                for(int j = 0; j < calendar.getSizeY(); j += 1)
-                {
-                    response.getWriter().println("<td>");
-                    for (LectureTimeSlot item:
-                         calendar.getTimeSlot(i, j)) {
-                        response.getWriter().println(item.toString());
-                    }
-                    response.getWriter().println("</td>");
-                }
-                response.getWriter().println("</tr>");
-            }
-//            response.weeklyCalendar[i][j]
-        %>
+                        </c:forEach>
+                    </td>
+                </c:forEach>
+            </tr>
+            <c:set var="hour" value="${hour+2}"/>
+        </c:forEach>
+    </table>
+
+
+
+
+
 
 <%--        <c:forEach var = "list" items="${weeklyCalendar}">--%>
 <%--            <tr>--%>
@@ -47,7 +50,7 @@
 <%--                </c:forEach>--%>
 <%--            </tr>--%>
 <%--        </c:forEach>--%>
-    </table>
+
     <jsp:include page="include/footer.jsp"/>
 </body>
 </html>
