@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetEmailConfirmationByTokenDatabase {
-    private static final String STATEMENT = "SELECT * FROM emailconfirmation WHERE token = ?";
+    private static final String STATEMENT = "SELECT * FROM emailconfermation WHERE token = ?";
     private final Connection connection;
     private final EmailConfermation emailConfermation;
 

@@ -27,7 +27,7 @@ public class Constants {
     public static final String NOREPLYEMAIL = "noreply@gwa.com";
     public static final String HOST = "localhost";
     public static final String MAILSMTPHOST = "mail.smtp.host";
-    public static final String CONFIRMATION_URL = "http://127.0.0.1:8080/wa2122-gwa/confirm_registration/";
+    public static final String CONFIRMATION_URL = "http://127.0.0.1:8080/wa2122-gwa/confirm_registration?token=";
 
     //PARAMETERS POST/GET CONSTANTS
     public static final String TAX_CODE = "tax_code";

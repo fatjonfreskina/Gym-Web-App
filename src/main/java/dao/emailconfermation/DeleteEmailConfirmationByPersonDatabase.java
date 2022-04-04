@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class DeleteEmailConfirmationByPersonDatabase
 {
-    private static final String STATEMENT = "DELETE FROM emailconfirmation WHERE person=?";
+    private static final String STATEMENT = "DELETE FROM emailconfermation WHERE person=?";
 
     private final Connection connection;
     private final Person person;

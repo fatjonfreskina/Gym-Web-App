@@ -7,6 +7,8 @@ import dao.person.GetUserByEmailDatabase;
 import dao.person.GetUserByTaxCodeDatabase;
 import dao.person.InsertNewUserDatabase;
 import dao.person.InsertUserRoleDatabase;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.AddressException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +19,7 @@ import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
 import utils.InputValidation;
+import utils.MailWrapper;
 
 import javax.naming.NamingException;
 import java.io.*;
@@ -205,10 +208,15 @@ public class RegisterServlet extends AbstractServlet
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             //TODO
+
+
+                            MailWrapper mw = new MailWrapper();
+                            mw.getManager().sendMail(p.getEmail(),"WELCOME TO GWA : CONFIRM YOUR REGISTRATION",msg);
+
                             //MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 
 
-                        }catch (NoSuchAlgorithmException e)
+                        } catch (NoSuchAlgorithmException | MessagingException e)
                         {
                             error = ErrorCodes.INTERNAL_ERROR;
                         }

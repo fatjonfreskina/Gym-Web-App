@@ -20,14 +20,15 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ConfirmedRegistrationServlet extends AbstractServlet
+public class ConfirmRegistrationServlet extends AbstractServlet
 {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        String[] pathRequest = req.getContextPath().split(File.separator);
-        String tokenUser = pathRequest[pathRequest.length-1];
+        //String[] pathRequest = req.getContextPath().split(File.separator);
+        //String tokenUser = pathRequest[pathRequest.length-1];
+        String tokenUser = req.getParameter("token");
         EmailConfermation emailConfermation = null;
         ErrorCodes error = ErrorCodes.OK;
         Message message = new Message(error.getErrorMessage(),false);
@@ -44,7 +45,7 @@ public class ConfirmedRegistrationServlet extends AbstractServlet
 
                     (new DeleteEmailConfirmationByPersonDatabase(getDataSource().getConnection(),p)).execute();
 
-                    if(emailConfermation.getExpirationDate().getTime() > System.currentTimeMillis())
+                    if(emailConfermation.getExpirationDate().getTime() < System.currentTimeMillis())
                     {
                         //need to remove eventually the directory and file inside of it of the path
                         if(p.getAvatarPath() != null)
