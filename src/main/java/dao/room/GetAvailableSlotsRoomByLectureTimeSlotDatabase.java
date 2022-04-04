@@ -1,4 +1,4 @@
-package dao;
+package dao.room;
 
 import resource.LectureTimeSlot;
 import resource.Room;

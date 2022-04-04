@@ -1,4 +1,4 @@
-package dao;
+package dao.lecturetimeslot;
 
 import java.sql.*;
 import java.time.DayOfWeek;

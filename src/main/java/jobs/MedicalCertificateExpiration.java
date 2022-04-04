@@ -2,7 +2,7 @@ package jobs;
 
 import constants.Constants;
 import dao.GetAllUsersDatabase;
-import dao.GetMedicalCertificateDatabase;
+import dao.medicalcertificate.GetMedicalCertificateDatabase;
 import resource.MedicalCertificate;
 import resource.Person;
 

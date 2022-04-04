@@ -4,9 +4,8 @@ import constants.Constants;
 import constants.ErrorCodes;
 import dao.GetUserByEmail;
 import dao.GetUserByTaxCode;
-import dao.InsertEmailConfermation;
+import dao.emailconfermation.InsertEmailConfermation;
 import dao.InsertNewUserDatabase;
-import jakarta.activation.MimeType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,8 +24,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import utils.EncryptionManager;
 import utils.MailManager2;
 
