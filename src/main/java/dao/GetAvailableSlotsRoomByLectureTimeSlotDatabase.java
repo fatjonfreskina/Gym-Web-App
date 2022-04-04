@@ -17,8 +17,8 @@ import java.sql.SQLException;
 public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
 
     private static final String STATEMENT = "SELECT slots - count AS availableslots FROM " +
-            "(SELECT slots FROM gwa.room where name=?) AS t1, " +
-            "(SELECT count(*) AS count FROM gwa.reservation WHERE lectureroom=? and lecturedate=? and lecturestarttime=?) AS t2;";
+            "(SELECT slots FROM room where name=?) AS t1, " +
+            "(SELECT count(*) AS count FROM reservation WHERE lectureroom=? and lecturedate=? and lecturestarttime=?) AS t2;";
 
     private final Connection con;
     private final Room room;

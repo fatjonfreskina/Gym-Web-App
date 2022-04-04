@@ -6,7 +6,7 @@ import resource.LectureTimeSlot;
 
 import java.sql.*;
 public class DeleteLectureTimeSlotDatabase {
-  private static final String STATEMENT = "DELETE FROM gwa.lecturetimeslot WHERE roomname=? AND date=? AND starttime=? RETURNING *;";
+  private static final String STATEMENT = "DELETE FROM lecturetimeslot WHERE roomname=? AND date=? AND starttime=? RETURNING *;";
   private final LectureTimeSlot lts;
   private LectureTimeSlot deletedLts;
   private final Connection connection;

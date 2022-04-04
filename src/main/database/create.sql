@@ -8,14 +8,14 @@ CREATE TABLE emailconfermation(
     PRIMARY KEY(person)
 );
 
--- 0,1,2
+-- Trainer, Trainee, Secreatary
 CREATE TABLE typeofroles(
-    role INTEGER,
+    role VARCHAR(30),
     PRIMARY KEY(role)
 );
 
 CREATE TABLE personroles(
-  role INTEGER ,
+  role VARCHAR(30),
   person VARCHAR(40),
   PRIMARY KEY(role,person)
 );

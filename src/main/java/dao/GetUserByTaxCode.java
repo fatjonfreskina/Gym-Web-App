@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class GetUserByTaxCode {
 
-    private static final String STATEMENT = "SELECT * FROM gwa.person WHERE taxcode = ?;";
+    private static final String STATEMENT = "SELECT * FROM person WHERE taxcode = ?;";
 
     private final Connection con;
 

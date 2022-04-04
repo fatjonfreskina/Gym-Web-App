@@ -14,7 +14,7 @@ import java.util.List;
 public class GetUserSubscriptionsDatabase {
 
     private static final String STATEMENT =
-            "SELECT * FROM gwa.subscription WHERE trainee = ?";
+            "SELECT * FROM subscription WHERE trainee = ?";
     private final Connection con;
     private final Person trainee;
     /**

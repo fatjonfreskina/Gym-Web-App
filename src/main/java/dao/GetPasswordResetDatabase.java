@@ -18,7 +18,7 @@ public class GetPasswordResetDatabase
 
     private static final String STATEMENT = """
             SELECT pr.token
-            FROM gwa.passwordreset as pr
+            FROM passwordreset as pr
             WHERE pr.person = ? AND pr.expirationdate <= ?
             """;
 

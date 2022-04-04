@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GetTeachesByTrainerDatabase {
 
-    private static final String STATEMENT = "SELECT * FROM gwa.teaches WHERE trainer = ?";
+    private static final String STATEMENT = "SELECT * FROM teaches WHERE trainer = ?";
     private final Connection con;
     private final Person trainer;
 

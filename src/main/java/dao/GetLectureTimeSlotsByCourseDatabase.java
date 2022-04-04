@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetLectureTimeSlotsByCourseDatabase {
-  private static final String STATEMENT = "SELECT * FROM gwa.lecturetimeslot WHERE courseEditionId = ? and courseName = ?";
+  private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE courseEditionId = ? and courseName = ?";
   private final Connection connection;
   private final LectureTimeSlot lectureTimeSlot;
 

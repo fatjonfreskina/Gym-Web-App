@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class UpdateLectureTimeSlotDatabase {
   private final String STATEMENT =
-      "UPDATE gwa.lecturetimeslot " +
+      "UPDATE lecturetimeslot " +
           "SET courseeditionid = ?," +
           "coursename = ?," +
           "substitution = ?" +

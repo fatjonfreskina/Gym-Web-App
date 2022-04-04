@@ -5,7 +5,7 @@ import resource.Person;
 import java.sql.*;
 
 public class InsertNewUserDatabase {
-    private static final String STATEMENT = "INSERT INTO gwa.person(email, ARRAY['%s']::roles[], name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String STATEMENT = "INSERT INTO person(email, ARRAY['%s']::roles[], name, surname, psw, taxcode, birthdate, telephone, address, avatarpath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private final Connection conn;
     private final Person p;
 

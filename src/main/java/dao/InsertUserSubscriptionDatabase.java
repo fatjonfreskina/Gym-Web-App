@@ -11,7 +11,7 @@ import java.sql.*;
 public class InsertUserSubscriptionDatabase {
 
     private static final String STATEMENT =
-            "INSERT INTO gwa.subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (?,?,?,?,?,?);";
+            "INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (?,?,?,?,?,?);";
     private final Connection con;
     private final Subscription subscription;
 

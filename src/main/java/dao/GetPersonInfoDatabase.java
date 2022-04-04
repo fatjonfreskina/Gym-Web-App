@@ -9,7 +9,7 @@ import java.sql.*;
 public class GetPersonInfoDatabase
 {
     private static final Logger LOGGER = LogManager.getLogger("marco_alessio_appender");
-    private static final String STATEMENT = "SELECT * FROM gwa.person WHERE email = ?";
+    private static final String STATEMENT = "SELECT * FROM person WHERE email = ?";
 
     private final Connection connection;
     private final String email;

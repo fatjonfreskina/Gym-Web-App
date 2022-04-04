@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class GetListSubscriptionTypeDatabase {
 
-    private static final String STATEMENT = "SELECT * FROM gwa.subscriptiontype where duration != 7";
+    private static final String STATEMENT = "SELECT * FROM subscriptiontype where duration != 7";
     private final Connection con;
 
     /**
