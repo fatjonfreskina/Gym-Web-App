@@ -12,6 +12,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Class used by command line to set up the database environment BEFORE deploying the application
+ * This class executes SQL statements using JDBC driver
+ * Run the main method to perform operations on the database
+ *
+ * @author Riccardo Forzan
+ */
 public class DataBaseUtils {
 
     private static final String DB_ROBOT = "jdbc:postgresql://localhost:5432/robot";
@@ -34,10 +41,9 @@ public class DataBaseUtils {
         System.out.println("* 4     - TO LOAD FAKE VALUES IN THE TABLES");
         System.out.println("* 5     - TO DROP DATABASE");
         System.out.println("* 6     - TO DROP DATABASE AND EXECUTE 1 to 5 ABOVE");
-
-
         System.out.print("SELECT AN OPTION: ");
 
+        //Read the selected option from console
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int option = Integer.parseInt(reader.readLine());
 
@@ -58,64 +64,99 @@ public class DataBaseUtils {
 
     }
 
+    /**
+     * Creates the database
+     *
+     * @throws SQLException          if a SQL statement fails
+     * @throws FileNotFoundException if the file containing the instructions is not present or cannot be opened
+     */
     private static void createDatabase() throws SQLException, FileNotFoundException {
         Connection conn = DriverManager.getConnection(DB_ROBOT, USER, PASS);
         Statement stmt = conn.createStatement();
         List<String> statements = parseSQL(CREATE_DATABASE_FILEPATH);
-        for(String statement:statements){
+        for (String statement : statements) {
+            System.out.println(String.format("Executing: %s", statement));
             stmt.execute(statement);
         }
     }
 
+    /**
+     * Creates the database tables
+     *
+     * @throws SQLException          if a SQL statement fails
+     * @throws FileNotFoundException if the file containing the instructions is not present or cannot be opened
+     */
     private static void createDatabaseTables() throws SQLException, FileNotFoundException {
         Connection conn = DriverManager.getConnection(DB_GWA, USER, PASS);
         Statement stmt = conn.createStatement();
         List<String> statements = parseSQL(CREATE_TABLES_FILEPATH);
-        for(String statement:statements){
+        for (String statement : statements) {
+            System.out.println(String.format("Executing: %s", statement));
             stmt.execute(statement);
         }
     }
 
+    /**
+     * Seeds some tables in the database (the table with typeofroles for example)
+     *
+     * @throws SQLException          if a SQL statement fails
+     * @throws FileNotFoundException if the file containing the instructions is not present or cannot be opened
+     */
     private static void seedDatabase() throws SQLException, FileNotFoundException {
         Connection conn = DriverManager.getConnection(DB_GWA, USER, PASS);
         Statement stmt = conn.createStatement();
         List<String> statements = parseSQL(SEED_DATABASE_FILEPATH);
-        for(String statement:statements){
+        for (String statement : statements) {
+            System.out.println(String.format("Executing: %s", statement));
             stmt.execute(statement);
         }
     }
 
+    /**
+     * Populates the database with the fake data inside the file
+     *
+     * @throws SQLException          if a SQL statement fails
+     * @throws FileNotFoundException if the file containing the instructions is not present or cannot be opened
+     */
     private static void fakeDataDatabase() throws SQLException, FileNotFoundException {
         Connection conn = DriverManager.getConnection(DB_GWA, USER, PASS);
         Statement stmt = conn.createStatement();
         List<String> statements = parseSQL(FAKE_DATABASE_FILEPATH);
-        for(String statement:statements){
+        for (String statement : statements) {
+            System.out.println(String.format("Executing: %s", statement));
             stmt.execute(statement);
         }
     }
 
+    /**
+     * Drops THE WHOLE database
+     *
+     * @throws SQLException          if a SQL statement fails
+     * @throws FileNotFoundException if the file containing the instructions is not present or cannot be opened
+     */
     private static void dropDatabase() throws SQLException, FileNotFoundException {
         Connection conn = DriverManager.getConnection(DB_ROBOT, USER, PASS);
         Statement stmt = conn.createStatement();
         List<String> statements = parseSQL(DROP_DATABASE_FILEPATH);
-        for(String statement:statements){
+        for (String statement : statements) {
+            System.out.println(String.format("Executing: %s", statement));
             stmt.execute(statement);
         }
     }
 
-
     /**
      * Creates some users
-     * @param faker faker instance
+     *
+     * @param faker         faker instance
      * @param numberOfUsers number of users you want to create
      */
-    private static void createUsers(Faker faker, int numberOfUsers){
+    private static void createUsers(Faker faker, int numberOfUsers) {
 
-        String[] roles = {"Trainee","Trainer", "Secretary"};
+        String[] roles = {"Trainee", "Trainer", "Secretary"};
 
         Random r = new Random();
 
-        for (int i=0; i<numberOfUsers; i++) {
+        for (int i = 0; i < numberOfUsers; i++) {
 
             String firstName = faker.name().firstName();
             String lastName = faker.name().lastName();
@@ -142,7 +183,7 @@ public class DataBaseUtils {
             //TODO: set the path to the downloaded file
             //TODO: if one of the firt two passages fails, then set the avatar to null
 
-            String sql = String.format("INSERT INTO person VALUES ('%s',ARRAY['%s']::roles[],'%s','%s','%s','%s',TO_DATE('%s','DD/MM/YYYY'),'%s','%s',NULL);",email,role,firstName,lastName,pwd,tax_code,date,phone,address);
+            String sql = String.format("INSERT INTO person VALUES ('%s',ARRAY['%s']::roles[],'%s','%s','%s','%s',TO_DATE('%s','DD/MM/YYYY'),'%s','%s',NULL);", email, role, firstName, lastName, pwd, tax_code, date, phone, address);
             System.out.println(sql);
             //TODO: use the DAO to perform the insert (when ready)
 
@@ -150,13 +191,14 @@ public class DataBaseUtils {
 
     }
 
-    private static void createMedicalCertificate(){
+    private static void createMedicalCertificate() {
         //TODO: create a medical certificate for the inserted user
         throw new UnsupportedOperationException("Still to be implemented");
     }
 
     /**
      * Parses an SQL file removing all the comments
+     *
      * @param filepath file to parse
      * @return collection of valid SQL statements
      * @throws FileNotFoundException thrown if a problem occurs while reading the file
@@ -174,7 +216,7 @@ public class DataBaseUtils {
         while (myReader.hasNextLine()) {
 
             //Create the statement if null
-            if(statement == null){
+            if (statement == null) {
                 statement = new StringBuilder();
             }
 
@@ -184,11 +226,11 @@ public class DataBaseUtils {
             //Skip empty lines, blank lines and comment lines that start with --
             boolean skip = data.isEmpty() || data.isBlank() || data.startsWith("--");
 
-            if(!skip) {
+            if (!skip) {
                 //Detect if is the end of a statement
-                if(data.endsWith(";")){
+                if (data.endsWith(";")) {
                     //End this statement and remove the last ;
-                    statement.append(data, 0, data.length()-1);
+                    statement.append(data, 0, data.length() - 1);
                     //Delete multiple whitespaces
                     String wiped = statement.toString().replaceAll("\\s+", " ").trim();
                     //Add it to the statements

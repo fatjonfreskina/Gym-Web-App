@@ -15,69 +15,57 @@ Return a list of (future) reservations given a date and a user
 *
 */
 
-public class GetListReservationDatabase
-{
+public class GetListReservationDatabase {
 
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
 
     private static final String STATEMENT = """
-        SELECT * 
-        FROM reservation
-        WHERE trainee = ?
-        AND lecturedate > ?
-        ORDER BY lecturedate ASC;
-        """;
+            SELECT * 
+            FROM reservation
+            WHERE trainee = ?
+            AND lecturedate > ?
+            ORDER BY lecturedate ASC;
+            """;
 
     private final Connection con;
     private final Reservation reservation;
 
 
-    public GetListReservationDatabase(final Connection con, final Reservation reservation)
-    {
+    public GetListReservationDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
         this.reservation = reservation;
 
     }
 
-    public List<Reservation> execute() throws SQLException
-    {
+    public List<Reservation> execute() throws SQLException {
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         final List<Reservation> reservations = new ArrayList<Reservation>();
 
-        try
-        {
+        try {
             pstmt = con.prepareStatement(STATEMENT);
             pstmt.setString(1, reservation.getTrainee());
             pstmt.setDate(2, reservation.getLectureDate());
 
             rs = pstmt.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 reservations.add(new Reservation(rs.getString("trainee"), rs.getString("lectureroom"),
-                 rs.getDate("lecturedate"), rs.getTimestamp("lecturestarttme")));
+                        rs.getDate("lecturedate"), rs.getTimestamp("lecturestarttme")));
             }
 
             logger.debug("[INFO] GetListReservationDatabase - %s - Query successfully done.\n".formatted(
                     new Timestamp(System.currentTimeMillis())));
-        }
-        catch (SQLException exc)
-        {
+        } catch (SQLException exc) {
             logger.error("[INFO] GetListReservationDatabase - %s - An exception occurred during query execution.\n%s\n".
-             formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
-        }
-        
-        finally 
-        {
-            if (rs != null) 
-            {
+                    formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
+        } finally {
+            if (rs != null) {
                 rs.close();
             }
-            if (pstmt != null) 
-            {
+            if (pstmt != null) {
                 pstmt.close();
             }
             con.close();

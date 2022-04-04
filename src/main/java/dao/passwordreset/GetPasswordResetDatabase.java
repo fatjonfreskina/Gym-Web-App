@@ -12,8 +12,7 @@ import java.util.List;
  * Get all password reset that belongs to the user specified to the query and that are still valid
  * (expiration time not yet reached).
  */
-public class GetPasswordResetDatabase
-{
+public class GetPasswordResetDatabase {
     private static final Logger logger = LogManager.getLogger("marco_alessio_appender");
 
     private static final String STATEMENT = """
@@ -26,28 +25,24 @@ public class GetPasswordResetDatabase
 
     private final PasswordReset passwordReset;
 
-    public GetPasswordResetDatabase(final Connection con, final PasswordReset passwordReset)
-    {
+    public GetPasswordResetDatabase(final Connection con, final PasswordReset passwordReset) {
         this.con = con;
         this.passwordReset = passwordReset;
     }
 
-    public List<PasswordReset> execute() throws SQLException
-    {
+    public List<PasswordReset> execute() throws SQLException {
         List<PasswordReset> result = new ArrayList<>();
 
         PreparedStatement stm = null;
         ResultSet rs = null;
 
-        try
-        {
+        try {
             stm = con.prepareStatement(STATEMENT);
             stm.setString(1, passwordReset.getPerson());
             stm.setTimestamp(2, passwordReset.getExpirationDate());
 
             rs = stm.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 final String token = rs.getString("token");
                 final Timestamp expDate = rs.getTimestamp("expirationDate");
                 final String person = rs.getString("person");
@@ -56,16 +51,12 @@ public class GetPasswordResetDatabase
 
             logger.debug("[INFO] GetPasswordResetDatabase - %s - Query successfully done.\n".formatted(
                     new Timestamp(System.currentTimeMillis())));
-        }
-        catch (SQLException exc)
-        {
+        } catch (SQLException exc) {
             logger.error("[INFO] GetPasswordResetDatabase - %s - An exception occurred during query execution.\n%s\n".
                     formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
 
             throw exc;
-        }
-        finally
-        {
+        } finally {
             if (stm != null)
                 stm.close();
 

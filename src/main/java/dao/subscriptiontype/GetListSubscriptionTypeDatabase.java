@@ -23,35 +23,32 @@ public class GetListSubscriptionTypeDatabase {
     /**
      * Constructor for the GetListSubscriptionTypeDatabase class
      *
-     * @param con  the connection to the database
+     * @param con the connection to the database
      */
-    public GetListSubscriptionTypeDatabase(final Connection con)
-    {
+    public GetListSubscriptionTypeDatabase(final Connection con) {
         this.con = con;
     }
 
     /**
      * Execute a select query to retrieve the list of types of subscription from the database
      *
-     * @return  the list of SubscriptionType retrieved from the database
+     * @return the list of SubscriptionType retrieved from the database
      */
-    public List<SubscriptionType> execute() throws SQLException
-    {
+    public List<SubscriptionType> execute() throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         List<SubscriptionType> listSubscriptionTypes = new ArrayList<SubscriptionType>();
         try {
             preparedStatement = con.prepareStatement(STATEMENT);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 listSubscriptionTypes.add(new SubscriptionType(resultSet.getInt("courseeditionid"),
                         resultSet.getString("coursename"),
                         resultSet.getInt("duration"),
                         resultSet.getFloat("cost")));
             }
 
-        }
-        finally {
+        } finally {
             if (resultSet != null)
                 resultSet.close();
             if (preparedStatement != null)

@@ -20,17 +20,11 @@ public class InsertUserRoleDatabase {
     }
 
     public void execute() throws SQLException {
-        PreparedStatement ps = null;
-        try
-        {
-            ps = conn.prepareStatement(STATEMENT);
+        try (PreparedStatement ps = conn.prepareStatement(STATEMENT)) {
             ps.setString(1, p.getEmail());
             ps.setString(2, role);
             ps.execute();
-        } finally
-        {
-            if (ps != null)
-                ps.close();
+        } finally {
             conn.close();
         }
     }

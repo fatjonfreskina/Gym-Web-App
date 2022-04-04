@@ -21,40 +21,37 @@ public class GetSubscriptionTypeDatabase {
     /**
      * Constructor for the GetSubscriptionTypeDatabase class
      *
-     * @param con  the connection to the database
-     * @param subscriptionType  the type of subscription to look for its cost
+     * @param con              the connection to the database
+     * @param subscriptionType the type of subscription to look for its cost
      */
-    public GetSubscriptionTypeDatabase(final Connection con, final SubscriptionType subscriptionType)
-    {
+    public GetSubscriptionTypeDatabase(final Connection con, final SubscriptionType subscriptionType) {
         this.con = con;
-        this.subscriptionType=subscriptionType;
+        this.subscriptionType = subscriptionType;
     }
 
     /**
      * Execute a select query to retrieve the type of subscription from the database with its cost
      *
-     * @return  the SubscriptionType retrieved from the database with the corresponding cost. May be null in case there is no SubscriptionType found
+     * @return the SubscriptionType retrieved from the database with the corresponding cost. May be null in case there is no SubscriptionType found
      */
-    public SubscriptionType execute() throws SQLException
-    {
-        if(this.subscriptionType.getCost()>=0){
+    public SubscriptionType execute() throws SQLException {
+        if (this.subscriptionType.getCost() >= 0) {
             return this.subscriptionType;
         }
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        SubscriptionType sub=null;
+        SubscriptionType sub = null;
         try {
             preparedStatement = con.prepareStatement(STATEMENT);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                sub=new SubscriptionType(this.subscriptionType.getCourseEditionID(),
+            while (resultSet.next()) {
+                sub = new SubscriptionType(this.subscriptionType.getCourseEditionID(),
                         this.subscriptionType.getCourseName(),
                         this.subscriptionType.getDuration(),
                         resultSet.getFloat("cost")
-                        );
+                );
             }
-        }
-        finally {
+        } finally {
             if (resultSet != null)
                 resultSet.close();
             if (preparedStatement != null)

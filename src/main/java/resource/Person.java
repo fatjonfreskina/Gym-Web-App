@@ -7,6 +7,9 @@ import java.sql.Date;
 public class Person {
 
     public static final String ROLE_TRAINEE = "trainee";
+    public static final String ROLE_TRAINER = "trainer";
+    public static final String ROLE_SECRETARY = "secretary";
+
     public static final int LENGTH_TELEPHONE = 10;
     public static final int MIN_AGE = 14;
 

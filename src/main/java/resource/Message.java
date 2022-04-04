@@ -10,8 +10,8 @@ public class Message {
 
     /**
      * This constructor is used for error messages
-     * @param message      general description of the error
-
+     *
+     * @param message general description of the error
      */
     public Message(final String message, boolean isError) {
         this.message = message;

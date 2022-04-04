@@ -16,27 +16,18 @@ public class InsertEmailConfermation {
     private final EmailConfermation emailConfermation;
 
 
-    public InsertEmailConfermation (final Connection con, final EmailConfermation emailConfermation)
-    {
+    public InsertEmailConfermation(final Connection con, final EmailConfermation emailConfermation) {
         this.con = con;
         this.emailConfermation = emailConfermation;
     }
 
-    public void execute() throws SQLException
-    {
-        PreparedStatement preparedStatement = null;
-        try
-        {
-            preparedStatement = con.prepareStatement(STATEMENT);
+    public void execute() throws SQLException {
+        try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
             preparedStatement.setString(1, emailConfermation.getPerson().getEmail());
             preparedStatement.setString(2, emailConfermation.getToken());
             preparedStatement.setTimestamp(3, emailConfermation.getExpirationDate());
             preparedStatement.execute();
-        }
-        finally
-        {
-            if (preparedStatement != null)
-                preparedStatement.close();
+        } finally {
             con.close();
         }
     }

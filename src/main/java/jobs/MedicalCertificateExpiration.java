@@ -28,7 +28,7 @@ public class MedicalCertificateExpiration implements Runnable {
         Context ctx = null;
         try {
             ctx = new InitialContext();
-            DataSource ds = (DataSource)ctx.lookup(Constants.DATASOURCE);
+            DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
             Connection c = ds.getConnection();
 
             //Get all the users

@@ -6,6 +6,7 @@ import java.sql.*;
 
 /**
  * Inserts a new subscription in the database
+ *
  * @author Riccardo Forzan
  */
 public class InsertUserSubscriptionDatabase {
@@ -17,7 +18,8 @@ public class InsertUserSubscriptionDatabase {
 
     /**
      * Parametric constructor for the class
-     * @param con JDBC database connection
+     *
+     * @param con          JDBC database connection
      * @param subscription instance of Subscription {@link resource.Subscription} to add in the database
      */
     public InsertUserSubscriptionDatabase(final Connection con, final Subscription subscription) {
@@ -27,6 +29,7 @@ public class InsertUserSubscriptionDatabase {
 
     /**
      * Inserts this object into the database
+     *
      * @throws SQLException if a database access error occurs
      */
     public void execute() throws SQLException {

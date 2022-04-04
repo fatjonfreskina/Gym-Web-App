@@ -22,32 +22,24 @@ public class InsertSubscriptionTypeDatabase {
     /**
      * Constructor for the InsertSubscriptionTypeDatabase class
      *
-     * @param con  the connection to the database
-     * @param subscriptionType  the type of subscription to be added into the database
+     * @param con              the connection to the database
+     * @param subscriptionType the type of subscription to be added into the database
      */
-    public InsertSubscriptionTypeDatabase(final Connection con, final SubscriptionType subscriptionType)
-    {
+    public InsertSubscriptionTypeDatabase(final Connection con, final SubscriptionType subscriptionType) {
         this.con = con;
-        this.subscriptionType=subscriptionType;
+        this.subscriptionType = subscriptionType;
     }
 
     /**
      * Execute an Insert query to insert the provided SubscriptionType into the subscriptiontype table
      */
-    public void execute() throws SQLException
-    {
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement=con.prepareStatement(STATEMENT);
+    public void execute() throws SQLException {
+        try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
             preparedStatement.setInt(1, subscriptionType.getCourseEditionID());
             preparedStatement.setString(2, subscriptionType.getCourseName());
             preparedStatement.setInt(3, subscriptionType.getDuration());
             preparedStatement.setFloat(4, subscriptionType.getCost());
-        }
-        finally {
-            if(preparedStatement!=null){
-                preparedStatement.close();
-            }
+        } finally {
             con.close();
         }
 

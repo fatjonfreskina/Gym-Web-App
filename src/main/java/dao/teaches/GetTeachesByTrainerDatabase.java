@@ -16,29 +16,24 @@ public class GetTeachesByTrainerDatabase {
     private final Person trainer;
 
 
-    public GetTeachesByTrainerDatabase(final Connection con, final Person trainer)
-    {
+    public GetTeachesByTrainerDatabase(final Connection con, final Person trainer) {
         this.con = con;
         this.trainer = trainer;
     }
 
-    public List<Teaches> execute() throws SQLException
-    {
+    public List<Teaches> execute() throws SQLException {
         List<Teaches> result = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
 
-        try
-        {
+        try {
             stm = con.prepareStatement(STATEMENT);
             stm.setString(1, trainer.getEmail());
 
             rs = stm.executeQuery();
             while (rs.next())
-                result.add(new Teaches(rs.getInt("courseeditionid"),rs.getString("coursename"),rs.getString("trainer")));
-        }
-        finally
-        {
+                result.add(new Teaches(rs.getInt("courseeditionid"), rs.getString("coursename"), rs.getString("trainer")));
+        } finally {
             if (stm != null)
                 stm.close();
             if (rs != null)

@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * This class is called when the application is initialized.
  * It launches the jobs to be executed.
+ *
  * @author Riccardo Forzan
  */
 public class InitListener implements ServletContextListener {

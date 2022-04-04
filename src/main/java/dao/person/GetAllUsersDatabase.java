@@ -19,8 +19,7 @@ public class GetAllUsersDatabase {
         this.con = con;
     }
 
-    public List<Person> execute () throws SQLException
-    {
+    public List<Person> execute() throws SQLException {
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
         List<Person> list = new ArrayList<>();
@@ -28,14 +27,12 @@ public class GetAllUsersDatabase {
             preparedStatement = con.prepareStatement(STATEMENT);
             //Execute the query
             rs = preparedStatement.executeQuery();
-            while (rs.next())
-            {
-                list.add(new Person(rs.getString("email"),rs.getString("name"),rs.getString("surname"),
-                        rs.getString("psw"),rs.getString("taxcode"),rs.getDate("birthdate"),
-                        rs.getString("telephone"),rs.getString("address"),rs.getString("avatarpath")));
+            while (rs.next()) {
+                list.add(new Person(rs.getString("email"), rs.getString("name"), rs.getString("surname"),
+                        rs.getString("psw"), rs.getString("taxcode"), rs.getDate("birthdate"),
+                        rs.getString("telephone"), rs.getString("address"), rs.getString("avatarpath")));
             }
-        }
-        finally {
+        } finally {
             if (rs != null)
                 rs.close();
             if (preparedStatement != null)

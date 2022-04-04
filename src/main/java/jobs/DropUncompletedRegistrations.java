@@ -2,6 +2,7 @@ package jobs;
 
 /**
  * This class is used to drop users that have not completed the registration
+ *
  * @author Riccardo Forzan
  */
 public class DropUncompletedRegistrations implements Runnable {
