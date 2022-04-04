@@ -2,12 +2,11 @@ package servlet;
 
 import constants.Constants;
 import dao.lecturetimeslot.GetLectureTimeSlotsCurrentWeekDatabase;
-import dao.subscriptiontype.GetListSubscriptionTypeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
-import resource.SubscriptionType;
+import resource.view.WeeklyCalendar;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -17,26 +16,24 @@ import java.util.List;
 
 public class CalendarServlet extends AbstractServlet {
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
-    {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<LectureTimeSlot> list = null;
-        try
-        {
+        try {
             list = new GetLectureTimeSlotsCurrentWeekDatabase(getDataSource().getConnection()).execute();
 
 
 
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
+
+        } catch (NamingException ex) {
 
         }
-        catch (NamingException ex)
+        WeeklyCalendar wc = new WeeklyCalendar();
+        for (LectureTimeSlot slot : list)
         {
-
+            wc.addSlot(slot);
         }
-        req.setAttribute("lectureTimeSlotList", list);
+        req.setAttribute("weeklyCalendar", wc);
         req.getRequestDispatcher(Constants.PATH_CALENDAR).forward(req, res);
-
     }
 }
