@@ -54,6 +54,11 @@
         <servlet-name>AboutUsServlet</servlet-name>
         <jsp-file>/jsp/aboutus.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ConfirmRegistrationServlet</servlet-name>
+        <servlet-class>servlet.access.ConfirmRegistrationServlet</servlet-class>
+    </servlet>
+
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -96,6 +101,10 @@
     <servlet-mapping>
         <servlet-name>AboutUsServlet</servlet-name>
         <url-pattern>/aboutus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmRegistrationServlet</servlet-name>
+        <url-pattern>/confirm_registration/*</url-pattern>
     </servlet-mapping>
     <!-- Listener called when the application is initialized -->
     <listener>

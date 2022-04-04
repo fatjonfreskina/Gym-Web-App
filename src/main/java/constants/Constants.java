@@ -11,6 +11,8 @@ public class Constants {
     public static final String PATH_REGISTER = "/jsp/access/register.jsp";
     public static final String PATH_ABOUTUS = "/jsp/aboutus.jsp";
     public static final String PATH_CALENDAR = "/jsp/calendar.jsp";
+    public static final String PATH_CONFIRM_REGISTRATION = "/jsp/access/confirm_registration.jsp";
+
 
     //PASSWORD FLOW PATHS
     public static final String PATH_PASSWORD_FORGOT = "/jsp/auth/password_forgot.jsp";
@@ -25,7 +27,7 @@ public class Constants {
     public static final String NOREPLYEMAIL = "noreply@gwa.com";
     public static final String HOST = "localhost";
     public static final String MAILSMTPHOST = "mail.smtp.host";
-    public static final String CONFIRMATION_URL = "localhost/confirm-registration/";
+    public static final String CONFIRMATION_URL = "http://127.0.0.1:8080/wa2122-gwa/confirm_registration/";
 
     //PARAMETERS POST/GET CONSTANTS
     public static final String TAX_CODE = "tax_code";
@@ -39,7 +41,6 @@ public class Constants {
     public static final String PASSWORD = "password";
     public static final String CONFIRM_PASSWORD = "confirm_password";
     public static final String MEDICAL_CERTIFICATE = "medical_certificate";
-
     public static final String MESSAGE = "message";
 
     //UPLOAD FILE CONSTANTS
@@ -47,7 +48,7 @@ public class Constants {
     public static final String MEDICAL_CERTIFICATE_PATH_FOLDER = "../gwa/medical_certificates";
 
     //ACCEPTED EXTENSIONS
-    public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{"png", "jpg", "jpeg","pdf"};
+    public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{"png", "jpg", "jpeg"};
     public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
 
     public static final long DAY = 1000 * 60 * 60 * 24;
