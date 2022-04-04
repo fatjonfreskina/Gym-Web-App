@@ -1,33 +1,6 @@
 package servlet.access;
 
-import constants.Constants;
-import constants.ErrorCodes;
-import dao.GetUserByEmail;
-import dao.GetUserByTaxCode;
-import dao.emailconfermation.InsertEmailConfermation;
-import dao.InsertNewUserDatabase;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-import resource.EmailConfermation;
-import resource.Message;
-import resource.Person;
 import servlet.AbstractServlet;
-
-import java.io.*;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.Arrays;
-
-import utils.EncryptionManager;
-import utils.MailManager2;
-
-import javax.naming.NamingException;
 
 
 /**
