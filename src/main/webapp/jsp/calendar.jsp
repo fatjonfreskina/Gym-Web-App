@@ -13,16 +13,26 @@
             <th>Date</th><th>Time</th><th>Room</th><th>Course</th>
         </tr>
         </thead>
+
+        <%
+
+
+
+
+            <td><c:out value="${lectureTimeSlot.date}"/></td>
+            <td><c:out value="${lectureTimeSlot.startTime}"/></td>
+            <td><c:out value="${lectureTimeSlot.roomName}"/></td>
+            <td><c:out value="${lectureTimeSlot.courseName}"/></td>
 <%--        <c:set var="last_printed" value=""/>--%>
         <c:forEach var="lectureTimeSlot" items="${lectureTimeSlotList}">
-                <tr>
-                    <td><c:out value="${lectureTimeSlot.date}"/></td>
-                    <td><c:out value="${lectureTimeSlot.startTime}"/></td>
-                    <td><c:out value="${lectureTimeSlot.roomName}"/></td>
-                    <td><c:out value="${lectureTimeSlot.courseName}"/></td>
-                </tr>
+                <th>
+                    <c:forEach var="lectureTimeSlot" items="${lectureTimeSlotList}">
+                        <tr></tr>
+                    </c:forEach>
+                </th>
 <%--            <c:set var="last_printed" value="${subscriptionType.courseName}"/>--%>
         </c:forEach>
+        %>
     </table>
     <jsp:include page="include/footer.jsp"/>
 </body>

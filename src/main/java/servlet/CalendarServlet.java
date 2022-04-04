@@ -23,6 +23,9 @@ public class CalendarServlet extends AbstractServlet {
         try
         {
             list = new GetLectureTimeSlotsCurrentWeekDatabase(getDataSource().getConnection()).execute();
+
+
+
         }
         catch (SQLException ex)
         {

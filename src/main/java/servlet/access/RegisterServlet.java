@@ -16,6 +16,7 @@ import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
+import utils.InputValidation;
 import utils.MailManager2;
 
 import javax.naming.NamingException;
@@ -51,7 +52,6 @@ public class RegisterServlet extends AbstractServlet
         String address = null;
         String email = null;
         String password= null;
-        String confirmPassword= null;
         String telephoneNumber = null;
         Date birthDate = null;
         Part avatar = null;
@@ -76,7 +76,6 @@ public class RegisterServlet extends AbstractServlet
             address = req.getParameter(Constants.ADDRESS);
             email = req.getParameter(Constants.EMAIL);
             password = req.getParameter(Constants.PASSWORD);
-            confirmPassword = req.getParameter(Constants.CONFIRM_PASSWORD);
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
             avatar = req.getPart(Constants.AVATAR);
@@ -85,8 +84,6 @@ public class RegisterServlet extends AbstractServlet
             error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,Person.ROLE_TRAINEE);
             if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
             {
-                //message = new Message(error.getErrorMessage(),true);
-
                 registrable = false;
             }
         }
@@ -166,6 +163,9 @@ public class RegisterServlet extends AbstractServlet
             }else if ((Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.MIN_AGE))
             {
                 error = ErrorCodes.MINIMUM_AGE;
+            }else if(!InputValidation.isValidEmailAddress(email))
+            {
+                error = ErrorCodes.NOT_A_MAIL;
             }
         }
         return error;
@@ -204,17 +204,14 @@ public class RegisterServlet extends AbstractServlet
 
 
                             //QUI DA FINIRE
-
-
-
-
+                            //Insert User into Database
                             new InsertNewUserDatabase(getDataSource().getConnection(),p).execute();
-
                             new InsertUserRoleDatabase(getDataSource().getConnection(),p,role).execute();
+
+                            //Send email
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
-
-
+                            //Insert Expiration Date Into database
                             (new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p,EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
