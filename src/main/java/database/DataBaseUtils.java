@@ -33,37 +33,29 @@ public class DataBaseUtils {
         System.out.println("* 3     - TO SEED THE DATABASE TABLES");
         System.out.println("* 4     - TO LOAD FAKE VALUES IN THE TABLES");
         System.out.println("* 5     - TO DROP DATABASE");
+        System.out.println("* 6     - TO DROP DATABASE AND EXECUTE 1 to 5 ABOVE");
+
+
+        System.out.print("SELECT AN OPTION: ");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int option = Integer.parseInt(reader.readLine());
 
-
-        switch (option){
-
-            case 1:
-                createDatabase();
-                break;
-            case 2:
-                createDatabaseTables();
-                break;
-            case 3:
-                seedDatabase();
-                break;
-            case 4:
-                fakeDataDatabase();
-                break;
-            case 5:
+        switch (option) {
+            case 1 -> createDatabase();
+            case 2 -> createDatabaseTables();
+            case 3 -> seedDatabase();
+            case 4 -> fakeDataDatabase();
+            case 5 -> dropDatabase();
+            case 6 -> {
                 dropDatabase();
-                break;
+                createDatabase();
+                createDatabaseTables();
+                seedDatabase();
+                fakeDataDatabase();
+            }
         }
 
-        //TODO: implement switch case
-
-        //createDatabase();
-        //createDatabaseTables();
-        //seedDatabase();
-        //fakeDataDatabase();
-        //dropDatabase();
     }
 
     private static void createDatabase() throws SQLException, FileNotFoundException {
@@ -108,7 +100,6 @@ public class DataBaseUtils {
         List<String> statements = parseSQL(DROP_DATABASE_FILEPATH);
         for(String statement:statements){
             stmt.execute(statement);
-            System.out.println(statement);
         }
     }
 
