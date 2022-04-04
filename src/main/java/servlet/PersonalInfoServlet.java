@@ -1,7 +1,7 @@
 package servlet;
 
 import constants.Constants;
-import dao.person.GetPersonInfoDatabase;
+import dao.person.GetUserByEmailDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,7 +21,7 @@ public class PersonalInfoServlet extends AbstractServlet
             //TODO: how to know the email of the logged user?
             final String email = req.getParameter("email");
 
-            Person person = new GetPersonInfoDatabase(getDataSource().getConnection(), email).execute();
+            Person person = new GetUserByEmailDatabase(getDataSource().getConnection(), email).execute();
 
             req.setAttribute("personalInfo", person);
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);

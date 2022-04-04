@@ -1,19 +1,17 @@
 package dao.person;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.Person;
 
 import java.sql.*;
 
-public class GetPersonInfoDatabase
+public class GetUserByEmailDatabase
 {
     private static final String STATEMENT = "SELECT * FROM person WHERE email = ?";
 
     private final Connection connection;
     private final Person person;
 
-    public GetPersonInfoDatabase(final Connection connection, final Person person)
+    public GetUserByEmailDatabase(final Connection connection, final Person person)
     {
         this.connection = connection;
         this.person = person;
