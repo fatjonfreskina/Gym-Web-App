@@ -6,6 +6,16 @@
     <title>Staff</title>
 </head>
 <body>
-CIAO
+    <jsp:include page="/jsp/include/header.jsp"/><br>
+    <c:if test='$(not empty trainerlist'>
+        <ul>
+        <c:forEach var="trainer" items="${trainerlist}">
+            <li>
+
+            </li>
+        </c:forEach>
+        </ul>
+    </c:if>
+    <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>
