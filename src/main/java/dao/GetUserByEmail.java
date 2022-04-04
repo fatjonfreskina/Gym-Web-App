@@ -26,6 +26,7 @@ public class GetUserByEmail
         this.user = user;
     }
 
+    /*
     public Person execute() throws SQLException
     {
         PreparedStatement pstmt = null;
@@ -60,5 +61,5 @@ public class GetUserByEmail
         }
         return ret;
     }
-
+     */
 }

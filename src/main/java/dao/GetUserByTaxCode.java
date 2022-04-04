@@ -29,7 +29,7 @@ public class GetUserByTaxCode {
         try
         {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setString(1,user.getTaxCode());
+            //pstmt.setString(1,user.getTaxCode());
             rs = pstmt.executeQuery();
 
             /*if (rs.next())

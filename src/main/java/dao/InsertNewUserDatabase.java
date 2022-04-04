@@ -22,16 +22,16 @@ public class InsertNewUserDatabase {
             //TODO: check if the type of the array is correct.
             //Array role = conn.createArrayOf("\"gwa\".\"role\"", p.getRole());
             //ps.setString(2, Person.roles[p.getRole()[0]]);
-            ps.setString(3, p.getName());
-            ps.setString(4, p.getSurname());
-            ps.setString(5, p.getPassword());
-            ps.setString(6, p.getTaxCode());
-            ps.setDate(7, p.getBirthDate());
-            ps.setString(8, p.getTelephone());
-            ps.setString(9, p.getAddress());
-            ps.setString(10, p.getPathImg());
+            // ps.setString(3, p.getName());
+            // ps.setString(4, p.getSurname());
+            // ps.setString(5, p.getPassword());
+            // ps.setString(6, p.getTaxCode());
+            // ps.setDate(7, p.getBirthDate());
+            // ps.setString(8, p.getTelephone());
+            // ps.setString(9, p.getAddress());
+            // ps.setString(10, p.getPathImg());
 
-            ps.execute();
+            // ps.execute();
         } finally {
             if (ps != null)
                 ps.close();

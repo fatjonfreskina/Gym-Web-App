@@ -40,6 +40,7 @@ import javax.naming.NamingException;
 public class RegisterServlet extends AbstractServlet
 {
 
+    /*
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException
     {
@@ -283,4 +284,5 @@ public class RegisterServlet extends AbstractServlet
         }
         return error;
     }
+    */
 }
