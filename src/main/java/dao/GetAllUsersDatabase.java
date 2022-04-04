@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class GetAllUsersDatabase {
 
-    private static final String STATEMENT = "SELECT * FROM gwa.person";
+    private static final String STATEMENT = "SELECT * FROM person";
     private final Connection con;
 
     public GetAllUsersDatabase(Connection con) {

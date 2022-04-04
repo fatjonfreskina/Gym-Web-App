@@ -19,10 +19,10 @@ public class GetListExpiredMedicalCertificateDatabase
     private static final String STATEMENT = "SELECT mc.person, name, surname, address, telephone, taxCode," +
         " birthdate, avatarpath, psw, courseeditionid, coursename, " +
         "startday, date(startday + duration * INTERVAL '1 day') AS finalday, expirationdate " +
-        "FROM gwa.subscription AS s JOIN gwa.medicalcertificate AS mc ON s.trainee = mc.person " +
-        "JOIN gwa.person AS p ON s.trainee = p.email " +
+        "FROM subscription AS s JOIN medicalcertificate AS mc ON s.trainee = mc.person " +
+        "JOIN person AS p ON s.trainee = p.email " +
         "WHERE startday + duration * INTERVAL '1 day' >= NOW() AND expirationdate <= now() " +
-        "AND NOT EXISTS (SELECT person FROM gwa.medicalcertificate WHERE person = mc.person AND expirationdate > now())";
+        "AND NOT EXISTS (SELECT person FROM medicalcertificate WHERE person = mc.person AND expirationdate > now())";
 
     private final Connection conn;
 

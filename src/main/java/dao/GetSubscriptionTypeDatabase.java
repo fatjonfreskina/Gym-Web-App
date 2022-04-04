@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Andrea Pasin
  */
 public class GetSubscriptionTypeDatabase {
-    private static final String STATEMENT = "SELECT cost FROM gwa.subscriptiontype WHERE ()AND()AND()";
+    private static final String STATEMENT = "SELECT cost FROM subscriptiontype WHERE ()AND()AND()";
     private final Connection con;
     private final SubscriptionType subscriptionType;
 

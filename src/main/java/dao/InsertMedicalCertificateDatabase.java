@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class InsertMedicalCertificateDatabase
 {
-    private static final String STATEMENT = "INSERT INTO gwa.medicalcertificate(person, expirationdate, doctorname, path) VALUES (?, ?, ?, ?)";
+    private static final String STATEMENT = "INSERT INTO medicalcertificate(person, expirationdate, doctorname, path) VALUES (?, ?, ?, ?)";
     private final Connection con;
     private final MedicalCertificate mc;
     private static final Logger logger = LogManager.getLogger("alberto_campeol_appender");

@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 
 public class UpdateMedicalCertificateDatabase
 {
-    private static final String STATEMENT = "UPDATE gwa.medicalcertificate SET expirationdate = ?, doctorname = ?, path = ? WHERE person = ?";
+    private static final String STATEMENT = "UPDATE medicalcertificate SET expirationdate = ?, doctorname = ?, path = ? WHERE person = ?";
     private final Connection con;
     private final MedicalCertificate mc;
     private static final Logger logger = LogManager.getLogger("alberto_campeol_appender");

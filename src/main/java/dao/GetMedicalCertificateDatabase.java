@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class GetMedicalCertificateDatabase {
 
-    private static final String STATEMENT = "SELECT * FROM gwa.medicalcertificate WHERE person = ?";
+    private static final String STATEMENT = "SELECT * FROM medicalcertificate WHERE person = ?";
     private final Connection con;
     private final Person person;
 

@@ -14,7 +14,7 @@ import java.util.List;
  * */
 public class GetUserByEmail
 {
-    private static final String STATEMENT = "SELECT * FROM gwa.person WHERE email = ?;";
+    private static final String STATEMENT = "SELECT * FROM person WHERE email = ?;";
 
     private final Connection con;
 
