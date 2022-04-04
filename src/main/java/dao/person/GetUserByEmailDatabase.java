@@ -3,6 +3,7 @@ package dao.person;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.Person;
+import utils.InputValidation;
 
 import java.sql.*;
 
@@ -25,6 +26,9 @@ public class GetUserByEmailDatabase
         PreparedStatement stm = null;
         ResultSet rs =  null;
         Person result;
+
+        if (!InputValidation.isValidEmailAddress(email))
+            throw new SQLException("The provided email address (%s) is not valid.".formatted(email));
 
         try
         {
