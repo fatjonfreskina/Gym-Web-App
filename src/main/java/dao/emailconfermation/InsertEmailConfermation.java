@@ -23,7 +23,7 @@ public class InsertEmailConfermation {
 
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
-            preparedStatement.setString(1, emailConfermation.getPerson().getEmail());
+            preparedStatement.setString(1, emailConfermation.getPerson());
             preparedStatement.setString(2, emailConfermation.getToken());
             preparedStatement.setTimestamp(3, emailConfermation.getExpirationDate());
             preparedStatement.execute();
