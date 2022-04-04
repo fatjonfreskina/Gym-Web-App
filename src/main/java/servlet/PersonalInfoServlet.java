@@ -1,7 +1,7 @@
 package servlet;
 
 import constants.Constants;
-import dao.GetPersonInfoDatabase;
+import dao.person.GetPersonInfoDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,7 +1,7 @@
 package servlet;
 
 import constants.Constants;
-import dao.GetListSubscriptionTypeDatabase;
+import dao.subscriptiontype.GetListSubscriptionTypeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,8 +11,6 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
 //import
 
 public class PricesServlet extends AbstractServlet {

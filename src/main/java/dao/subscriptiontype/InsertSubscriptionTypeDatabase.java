@@ -1,4 +1,4 @@
-package dao;
+package dao.subscriptiontype;
 
 import resource.SubscriptionType;
 

@@ -1,4 +1,4 @@
-package dao;
+package dao.medicalcertificate;
 
 import resource.MedicalCertificate;
 import resource.Person;

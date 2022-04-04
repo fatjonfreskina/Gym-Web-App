@@ -1,4 +1,4 @@
-package dao;
+package dao.teaches;
 
 
 import resource.CourseEdition;
