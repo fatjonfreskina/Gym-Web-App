@@ -10,6 +10,8 @@ public class Constants {
     public static final String PATH_ABOUTUS = "/jsp/aboutus.jsp";
     public static final String PATH_CALENDAR = "/jsp/calendar.jsp";
     public static final String PATH_CONFIRMED_REGISTRATION = "/jsp/access/confirmed_registration.jsp";
+    public static final String PATH_CONFIRM_REGISTRATION = "/jsp/access/confirm_registration.jsp";
+    public static final String PATH_LOGIN = "/jsp/access/login.jsp";
     public static final String PATH_COURSES="/jsp/courses.jsp";
 
     //PASSWORD FLOW PATHS

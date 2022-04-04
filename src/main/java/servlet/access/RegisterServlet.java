@@ -58,7 +58,7 @@ public class RegisterServlet extends AbstractServlet
 
 
         boolean registrable = true;
-        Message message = null;
+        Message message = new Message(ErrorCodes.OK.getErrorMessage(),false);
         ErrorCodes error = parseParams(req,res);
 
 
@@ -84,29 +84,19 @@ public class RegisterServlet extends AbstractServlet
             error = insertUser(taxCode,firstName,lastName,address,email,password,telephoneNumber,birthDate,avatar,Person.ROLE_TRAINEE);
             if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
             {
+                message = new Message(error.getErrorMessage(),true);
                 registrable = false;
             }
         }
 
-
-
-
-
-
-
-
-
+        res.setStatus(error.getHTTPCode());
+        req.setAttribute(Constants.MESSAGE,message);
 
         if(!registrable)
-        {
-            res.setStatus(error.getHTTPCode());
-            req.setAttribute(Constants.MESSAGE,message);
             req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
-        }else
-        {
+        else
+            req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);
 
-
-        }
     }
 
 

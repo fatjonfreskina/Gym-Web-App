@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.EmailConfermation;
+import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
 
@@ -29,6 +30,8 @@ public class ConfirmedRegistrationServlet extends AbstractServlet
         String tokenUser = pathRequest[pathRequest.length-1];
         EmailConfermation emailConfermation = null;
         ErrorCodes error = ErrorCodes.OK;
+        Message message = new Message(error.getErrorMessage(),false);
+
         if(tokenUser != null)
         {
             try
@@ -61,9 +64,16 @@ public class ConfirmedRegistrationServlet extends AbstractServlet
             if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
             {
                 //Ok ridireziona al login
+                message = new Message(error.getErrorMessage(),false);
+                res.setStatus(error.getHTTPCode());
+                req.setAttribute(Constants.MESSAGE,message);
+                req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
             }else
             {
-                //Ridireziona a Confirm Registration con messaggio errore
+                message = new Message(error.getErrorMessage(),true);
+                res.setStatus(error.getHTTPCode());
+                req.setAttribute(Constants.MESSAGE,message);
+                req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
             }
         }
         req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
