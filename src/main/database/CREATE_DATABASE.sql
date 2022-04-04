@@ -1,0 +1,1 @@
+CREATE DATABASE gwa_db ENCODING = 'UTF8' OWNER robot;

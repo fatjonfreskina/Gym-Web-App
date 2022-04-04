@@ -1,5 +1,3 @@
--- REVIEW THE INSERTS FOR PERSON
-
 --Users
 INSERT INTO person VALUES ('mario.rossi@example.com','Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);
 INSERT INTO person VALUES ('riccardo.bianchi@example.com','Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000',TO_DATE('01/02/1970','DD/MM/YYYY'),'3000000002','Address of Riccardo Bianchi',null);
@@ -21,11 +19,6 @@ INSERT INTO person VALUES ('alfonso.gibson@example.com','Alfonso','Gibson','d41d
 INSERT INTO person VALUES ('carmine.sipes@example.com','Carmine','Sipes','d41d8cd98f00b204e9800998ecf8427e','LCRKVACORBCT753D',TO_DATE('04/06/1997','DD/MM/YYYY'),'8151088748','99860 Lavonne Mall, New Lloyd, DE 43817-1522',NULL);
 INSERT INTO person VALUES ('dorris.trantow@example.com','Dorris','Trantow','d41d8cd98f00b204e9800998ecf8427e','BQQWDHZRKXT9A5YI',TO_DATE('30/10/1983','DD/MM/YYYY'),'6740753156','9688 Pacocha Port, New Bryan, IN 26529',NULL);
 INSERT INTO person VALUES ('kraig.larkin@example.com','Kraig','Larkin','d41d8cd98f00b204e9800998ecf8427e','T9XQHGBJ2NOYFJ0X',TO_DATE('31/12/1996','DD/MM/YYYY'),'0488874925','Apt. 444 157 Roob Bridge, South Earlean, CO 81294-2901',NULL);
-
---Type of Roles
-INSERT INTO typeofroles VALUES  ('trainee');
-INSERT INTO typeofroles VALUES  ('trainer');
-INSERT INTO typeofroles VALUES  ('secretary');
 
 --Roles Persons
 INSERT INTO personroles VALUES ('mario.rossi@example.com','trainee');

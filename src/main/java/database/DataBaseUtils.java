@@ -15,44 +15,71 @@ import java.util.Scanner;
 
 public class DataBaseUtils {
 
-    static final String DB_URL = "jdbc:postgresql://localhost:5432/gwa_db";
-    static final String USER = "robot";
-    static final String PASS = "robot";
+    private static final String DB_ROBOT = "jdbc:postgresql://localhost:5432/robot";
+    private static final String DB_GWA = "jdbc:postgresql://localhost:5432/gwa_db";
+    private static final String USER = "robot";
+    private static final String PASS = "robot";
 
-    static final String CREATE_FILEPATH = "src/main/database/create.sql";
-    static final String SEED_FILEPATH = "src/main/database/seed.sql";
+    private static final String CREATE_DATABASE_FILEPATH = "src/main/database/CREATE_DATABASE.sql";
+    private static final String CREATE_TABLES_FILEPATH = "src/main/database/CREATE_TABLE.sql";
+    private static final String SEED_DATABASE_FILEPATH = "src/main/database/SEED.sql";
+    private static final String FAKE_DATABASE_FILEPATH = "src/main/database/FAKE_DATA.sql";
+    private static final String DROP_DATABASE_FILEPATH = "src/main/database/DROP.sql";
 
-    public static void main(String[] args){
-
-        try{
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            //Creates the database
-            createDatabase(conn);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+    public static void main(String[] args) throws SQLException, FileNotFoundException {
+        createDatabase();
+        createDatabaseTables();
+        seedDatabase();
+        fakeDataDatabase();
+        //dropDatabase();
     }
 
-    /**
-     * Initializes the database
-     * @param conn JDBC connection
-     */
-    private static void createDatabase(Connection conn){
-        try {
-            Statement stmt = conn.createStatement();
-            List<String> statements = parseSQL(CREATE_FILEPATH);
-            for(String statement:statements){
-                stmt.execute(statement);
-                System.out.println(statement);
-            }
-        } catch (FileNotFoundException | SQLException e) {
-            e.printStackTrace();
+    private static void createDatabase() throws SQLException, FileNotFoundException {
+        Connection conn = DriverManager.getConnection(DB_ROBOT, USER, PASS);
+        Statement stmt = conn.createStatement();
+        List<String> statements = parseSQL(CREATE_DATABASE_FILEPATH);
+        for(String statement:statements){
+            stmt.execute(statement);
         }
-
     }
+
+    private static void createDatabaseTables() throws SQLException, FileNotFoundException {
+        Connection conn = DriverManager.getConnection(DB_GWA, USER, PASS);
+        Statement stmt = conn.createStatement();
+        List<String> statements = parseSQL(CREATE_TABLES_FILEPATH);
+        for(String statement:statements){
+            stmt.execute(statement);
+        }
+    }
+
+    private static void seedDatabase() throws SQLException, FileNotFoundException {
+        Connection conn = DriverManager.getConnection(DB_GWA, USER, PASS);
+        Statement stmt = conn.createStatement();
+        List<String> statements = parseSQL(SEED_DATABASE_FILEPATH);
+        for(String statement:statements){
+            stmt.execute(statement);
+        }
+    }
+
+    private static void fakeDataDatabase() throws SQLException, FileNotFoundException {
+        Connection conn = DriverManager.getConnection(DB_GWA, USER, PASS);
+        Statement stmt = conn.createStatement();
+        List<String> statements = parseSQL(FAKE_DATABASE_FILEPATH);
+        for(String statement:statements){
+            stmt.execute(statement);
+        }
+    }
+
+    private static void dropDatabase() throws SQLException, FileNotFoundException {
+        Connection conn = DriverManager.getConnection(DB_ROBOT, USER, PASS);
+        Statement stmt = conn.createStatement();
+        List<String> statements = parseSQL(DROP_DATABASE_FILEPATH);
+        for(String statement:statements){
+            stmt.execute(statement);
+            System.out.println(statement);
+        }
+    }
+
 
     /**
      * Creates some users
