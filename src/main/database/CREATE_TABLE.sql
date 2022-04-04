@@ -1,7 +1,7 @@
 CREATE TABLE emailconfermation
 (
     person         VARCHAR(40),
-    token          VARCHAR(256) NOT NULL,
+    token          VARCHAR(256) UNIQUE NOT NULL,
     expirationdate TIMESTAMP    NOT NULL,
     PRIMARY KEY (person)
 );

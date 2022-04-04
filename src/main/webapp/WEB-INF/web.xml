@@ -56,7 +56,7 @@
     </servlet>
     <servlet>
         <servlet-name>ConfirmRegistrationServlet</servlet-name>
-        <servlet-class>servlet.access.ConfirmRegistrationServlet</servlet-class>
+        <servlet-class>servlet.access.ConfirmedRegistrationServlet</servlet-class>
     </servlet>
 
 

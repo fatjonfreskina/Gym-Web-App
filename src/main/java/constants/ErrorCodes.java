@@ -18,6 +18,7 @@ public enum ErrorCodes {
     INTERNAL_ERROR(-8, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Cannot Upload File"),
     USER_ALREADY_PRESENT(-9, HttpServletResponse.SC_CONFLICT, "User already present!"),
     NOT_A_MAIL(-10, HttpServletResponse.SC_BAD_REQUEST, "Please provide a mail address"),
+    CONFIRMATION_NOT_FOUND(-11, HttpServletResponse.SC_BAD_REQUEST, "Registration not found"),
     ;
     private final int errorCode;
     private final int httpCode;

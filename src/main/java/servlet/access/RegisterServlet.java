@@ -212,7 +212,7 @@ public class RegisterServlet extends AbstractServlet
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
                             //Insert Expiration Date Into database
-                            (new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p,EncryptionManager.encrypt(email),
+                            (new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p.getEmail(),EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
