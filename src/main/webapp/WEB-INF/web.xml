@@ -9,15 +9,60 @@
         for the Computer Engineering master degree of University of Padua.
     </description>
 
-    <welcome-file-list>
-        <welcome-file>/jsp/home.jps</welcome-file>
-    </welcome-file-list>
-
     <!-- Servlets listing -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>servlet.IndexServlet</servlet-class>
+        <jsp-file>/jsp/home.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>StaffServlet</servlet-name>
+        <jsp-file>/jsp/staff.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>PricesServlet</servlet-name>
+        <servlet-class>servlet.PricesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalendarServlet</servlet-name>
+        <servlet-class>servlet.CalendarServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrainerServlet</servlet-name>
+        <servlet-class>servlet.TrainerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PasswordForgotServlet</servlet-name>
+        <servlet-class>servlet.auth.PasswordForgotServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PasswordChangeServlet</servlet-name>
+        <servlet-class>servlet.auth.PasswordChangeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>servlet.access.RegisterServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10 MB-->
+        </multipart-config>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonalInfoServlet</servlet-name>
+        <servlet-class>servlet.PersonalInfoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AboutUsServlet</servlet-name>
+        <jsp-file>/jsp/aboutus.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ConfirmRegistrationServlet</servlet-name>
+        <servlet-class>servlet.access.ConfirmRegistrationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TheGymServlet</servlet-name>
+        <servlet-class>servlet.TheGymServlet</servlet-class>
+    </servlet>
+
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -25,7 +70,50 @@
         <url-pattern>/</url-pattern>
         <url-pattern>/index</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>TheGymServlet</servlet-name>
+        <url-pattern>/the_gym</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffServlet</servlet-name>
+        <url-pattern>/staff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PricesServlet</servlet-name>
+        <url-pattern>/prices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalendarServlet</servlet-name>
+        <url-pattern>/calendar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrainerServlet</servlet-name>
+        <url-pattern>/trainer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordForgotServlet</servlet-name>
+        <url-pattern>/password_forgot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PasswordChangeServlet</servlet-name>
+        <url-pattern>/password_change</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonalInfoServlet</servlet-name>
+        <url-pattern>/personal_info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AboutUsServlet</servlet-name>
+        <url-pattern>/aboutus</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConfirmRegistrationServlet</servlet-name>
+        <url-pattern>/confirm_registration/*</url-pattern>
+    </servlet-mapping>
     <!-- Listener called when the application is initialized -->
     <listener>
         <listener-class>jobs.InitListener</listener-class>

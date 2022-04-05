@@ -3,9 +3,16 @@ package resource;
 import java.sql.Timestamp;
 
 public class PasswordReset {
+
     private final String token;
     private final Timestamp expirationDate;
     private final String person;
+
+    public PasswordReset(String token) {
+        this.token = token;
+        this.expirationDate = null;
+        this.person = null;
+    }
 
     public PasswordReset(String token, Timestamp expirationDate, String person) {
         this.token = token;
