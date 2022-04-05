@@ -13,8 +13,8 @@ import java.util.List;
 
 public class GetStaffDatabase {
     private final String statement = "SELECT name, surname, avatarpath, coursename" +
-            "FROM teaches JOIN person ON teaches.trainer = person.email"+
-            "ORDER BY email ASC";
+            " FROM teaches JOIN person ON teaches.trainer = person.email"+
+            " ORDER BY email ASC";
     private final Connection conn;
 
     public GetStaffDatabase(Connection conn){

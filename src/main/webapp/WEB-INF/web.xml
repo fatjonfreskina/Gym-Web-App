@@ -16,7 +16,7 @@
     </servlet>
     <servlet>
         <servlet-name>StaffServlet</servlet-name>
-        <jsp-file>/jsp/staff.jsp</jsp-file>
+        <servlet-class>servlet.StaffServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PricesServlet</servlet-name>

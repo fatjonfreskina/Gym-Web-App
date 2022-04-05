@@ -1,19 +1,19 @@
 package resource;
 
 public class Trainer {
-    private final Person p;
-    private final Teaches t;
+    private final Person person;
+    private final Teaches teaches;
 
-    public Trainer(Person p, Teaches t){
-        this.p = p;
-        this.t = t;
+    public Trainer(Person person, Teaches teaches){
+        this.person = person;
+        this.teaches = teaches;
     }
 
     public final Person getPerson(){
-        return p;
+        return person;
     }
 
     public final Teaches getTeaches(){
-        return t;
+        return teaches;
     }
 }

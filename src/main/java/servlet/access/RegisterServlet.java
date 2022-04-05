@@ -216,7 +216,7 @@ public class RegisterServlet extends AbstractServlet
                             //MailWrapper mw = new MailWrapper();
                             //mw.getManager().sendMail(p.getEmail(),"WELCOME TO GWA : CONFIRM YOUR REGISTRATION",msg);
 
-                            MailTypes.mailForRegistration(p);
+                            MailTypes.mailForConfirmRegistration(p);
 
                             //MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 

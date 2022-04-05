@@ -7,15 +7,13 @@
 </head>
 <body>
     <jsp:include page="/jsp/include/header.jsp"/><br>
-    <c:out value ="1"/>
-    <c:if test='$(not empty trainerlist'>
-        <c:out value ="2"/>
+    <c:if test="${not empty trainerlist}">
         <ul>
-        <c:forEach var="trainer" items="${trainerlist}">
-            <li>
-                <c:out value="${trainer.p.surname}"/> <c:out value="${trainer.p.name}"/>
-            </li>
-        </c:forEach>
+            <c:forEach var="trainer" items="${trainerlist}">
+                <li>
+                    <b><c:out value="${trainer.person.surname}"/> <c:out value="${trainer.person.name}"/>:</b> <c:out value="${trainer.teaches.courseName}"/>
+                </li>
+            </c:forEach>
         </ul>
     </c:if>
     <jsp:include page="/jsp/include/footer.jsp"/>

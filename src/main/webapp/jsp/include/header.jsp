@@ -12,7 +12,7 @@
         <th><a href="<c:url value="/courses"/>">Courses</a></th>
         <th><a href="<c:url value="/calendar"/>">Calendar</a></th>
         <th><a href="<c:url value="/prices"/>">Prices</a></th>
-        <th><a href="">Staff</a></th>
+        <th><a href="<c:url value="/staff"/>">Staff</a></th>
         <th><a href="<c:url value="/aboutus"/>">Contact Us</a></th>
         <th><a href="<c:url value="/register"/>">Register</a></th>
         <th><a href="<c:url value="/login"/>">Login</a></th>

@@ -1,5 +1,6 @@
 package servlet;
 
+import constants.Constants;
 import dao.person.GetStaffDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StaffServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -18,6 +21,7 @@ public class StaffServlet extends AbstractServlet {
         Message m = null;
         try{
             l_trainer = new GetStaffDatabase(getDataSource().getConnection()).execute();
+            m = new Message("Trainers retrieved correctly");
         }catch(NamingException e){
             m = new Message("NamingException",true);
         }catch(SQLException e){
@@ -27,6 +31,6 @@ public class StaffServlet extends AbstractServlet {
         req.setAttribute("trainerlist",l_trainer);
         req.setAttribute("message",m);
 
-        req.getRequestDispatcher("/jsp/staff.jsp").forward(req,res);
+        req.getRequestDispatcher(Constants.PATH_STAFF).forward(req,res);
     }
 }
