@@ -175,7 +175,7 @@ public class RegisterServlet extends AbstractServlet
             p2 = (new GetUserByTaxCodeDatabase(getDataSource().getConnection(),new Person(null,null,null,
                     null,taxCode,null,null,null,null))).execute();
 
-            if(p1 == null || p2 == null)//It's a new user, so need to add it !
+            if(p1 == null && p2 == null)//It's a new user, so need to add it !
             {
 
                 try

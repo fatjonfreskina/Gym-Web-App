@@ -11,6 +11,7 @@
         <p><c:out value="${message.message}"/></p>
     </c:when>
     <c:otherwise>
+        <a href="">Login</a><br>
         YOUR REGISTRATION HAS BEEN COMPLETED SUCCESSFULLY!!!
     </c:otherwise>
 </c:choose>

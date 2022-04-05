@@ -26,8 +26,6 @@ public class ConfirmRegistrationServlet extends AbstractServlet
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        //String[] pathRequest = req.getContextPath().split(File.separator);
-        //String tokenUser = pathRequest[pathRequest.length-1];
         String tokenUser = req.getParameter("token");
         EmailConfermation emailConfermation = null;
         ErrorCodes error = ErrorCodes.OK;
@@ -64,11 +62,11 @@ public class ConfirmRegistrationServlet extends AbstractServlet
 
             if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
             {
-                //Ok ridireziona al login
+                //Ok ridireziona tutto apposto ridireziona a CONFIRMED REGISTRATION
                 message = new Message(error.getErrorMessage(),false);
                 res.setStatus(error.getHTTPCode());
                 req.setAttribute(Constants.MESSAGE,message);
-                req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
+                req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
             }else
             {
                 message = new Message(error.getErrorMessage(),true);
@@ -76,8 +74,14 @@ public class ConfirmRegistrationServlet extends AbstractServlet
                 req.setAttribute(Constants.MESSAGE,message);
                 req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
             }
+        }else
+        {
+            error = ErrorCodes.BAD_REQUEST;
+            message = new Message(error.getErrorMessage(),true);
+            res.setStatus(error.getHTTPCode());
+            req.setAttribute(Constants.MESSAGE,message);
+            req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
         }
-        req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
     }
 
 

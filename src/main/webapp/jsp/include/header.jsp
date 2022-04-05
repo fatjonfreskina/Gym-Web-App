@@ -15,7 +15,7 @@
         <th><a href="">Staff</a></th>
         <th><a href="<c:url value="/aboutus"/>">Contact Us</a></th>
         <th><a href="<c:url value="/register"/>">Register</a></th>
-        <th><a href="">Login</a></th>
+        <th><a href="<c:url value="/login"/>">Login</a></th>
     </tr>
 </table>
 </body>
