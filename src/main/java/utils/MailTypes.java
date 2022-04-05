@@ -1,5 +1,6 @@
 package utils;
 import constants.Constants;
+import jakarta.mail.MessagingException;
 import resource.*;
 
 import java.security.NoSuchAlgorithmException;
@@ -45,25 +46,18 @@ public class MailTypes {
     //This mail is sent when someone registers for the first time in our website
     //Include the bean of the person registered
 
-    public static boolean mailForConfirmRegistration(Person person, EmailConfermation emailConfermation) {
-
+    public static void mailForConfirmRegistration(Person person) throws MessagingException {
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
                 "\n\n" +
                 "we inform you that you've been successfully registered to our gym" +
                 "\n\nKind regards,\n" +
                 "The Gwa Team";
         //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
-            return true;
 
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
     }
 
-    public static boolean mailForRegistration(Person person) throws NoSuchAlgorithmException {
+    public static void mailForRegistration(Person person) throws NoSuchAlgorithmException, MessagingException {
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
                 "\n\n" +
@@ -73,14 +67,11 @@ public class MailTypes {
                 "\n\nKind regards,\n" +
                 "The Gwa Team";
         //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
-            return true;
 
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+            MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
+
+
+
     }
 
     //This mail is sent when someone subscribed for a course in our gym (to the secretary)

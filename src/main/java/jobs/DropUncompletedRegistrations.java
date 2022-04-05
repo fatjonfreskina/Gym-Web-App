@@ -52,7 +52,7 @@ public class DropUncompletedRegistrations implements Runnable
         }
     }
 
-    private void removeAvatar(String path,String taxCode)
+    private void removeAvatar(String path,String taxCode) //add remove medical certificate file
     {
         File fileToremove = new File(path);
         fileToremove.delete();
