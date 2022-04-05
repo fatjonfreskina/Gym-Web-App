@@ -15,13 +15,13 @@
             <img src="/images/photo_gym_2.jpg" alt="Calistenichs" style="width:100%">
         </div>
         <div class="column">
-            <img src="rces/photo_gym_3.jpg" alt="Pilates" style="width:100%">
+            <img src="/images/photo_gym_3.jpg" alt="Pilates" style="width:100%">
         </div>
         <div class="column">
-            <img src="src/main/resources/photo_gym_4.jpg" alt="Pilates" style="width:100%">
+            <img src="/images/photo_gym_4.jpg" alt="Pilates" style="width:100%">
         </div>
         <div class="column">
-            <img src=src/main/resources/photo_gym_5.jpg" alt="Pilates" style="width:100%">
+            <img src="/images/photo_gym_5.jpg" alt="Pilates" style="width:100%">
         </div>
     </div>
     <jsp:include page="/jsp/include/footer.jsp"/>
