@@ -9,7 +9,7 @@
     <tr>
         <th><a href="<c:url value="/"/>">Home</a></th>
         <th><a href="<c:url value="/the_gym"/>">The Gym</a></th>
-        <th><a href="">Courses</a></th>
+        <th><a href="<c:url value="/courses"/>">Courses</a></th>
         <th><a href="<c:url value="/calendar"/>">Calendar</a></th>
         <th><a href="<c:url value="/prices"/>">Prices</a></th>
         <th><a href="">Staff</a></th>
