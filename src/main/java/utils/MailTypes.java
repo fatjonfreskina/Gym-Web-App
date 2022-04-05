@@ -24,16 +24,28 @@ public class MailTypes {
         System.out.println(mailForTrainerChanged(person,lectureTimeSlot));
     }
  */
+    private static final String HOST = "ssl0.ovh.net";
+    private static final int PORT = 465;
 
-    //This mail is sent when someone register for the first time in our website
-    public static String mailForRegistration(Person person){
-        String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
+    private static final String FROM_EMAIL = "test@projectzero.me";
+    private static final String FROM_PASSWORD = "RgrfDS34678@fgreq.few73";
+
+    //This mail is sent when someone registers for the first time in our website
+    public static void mailForRegistration(Person person) {
+        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
                 "\n\n" +
                 "we inform you that you've been successfully registered to our gym" +
-                "\n\nKind regards,\n"+
+                "\n\nKind regards,\n" +
                 "The Gwa Team";
-        return emailContent;
+        //return emailContent;
+        try {
+            MailManager manager = new MailManager(HOST, PORT, FROM_EMAIL, FROM_PASSWORD);
+            manager.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
     }
+
     //This mail is sent when someone subscribed for a course in our gym (to the secretary)
     public static String mailForSubscriptionToCourse(Person person, Subscription subscription){
 
