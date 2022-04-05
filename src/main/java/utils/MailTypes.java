@@ -1,5 +1,8 @@
 package utils;
+import constants.Constants;
 import resource.*;
+
+import java.security.NoSuchAlgorithmException;
 
 /*
 
@@ -25,6 +28,7 @@ public class MailTypes {
     }
  */
     /**
+     * @TODO Include Multipart
      * Setup the mail manager with the correct parameters.
      * @param host The SMTP host used in order to send the message
      * @param port The SMTP host port used in order to send the message
@@ -40,11 +44,32 @@ public class MailTypes {
 
     //This mail is sent when someone registers for the first time in our website
     //Include the bean of the person registered
-    public static boolean mailForRegistration(Person person) {
+
+    public static boolean mailForConfirmRegistration(Person person, EmailConfermation emailConfermation) {
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
                 "\n\n" +
                 "we inform you that you've been successfully registered to our gym" +
+                "\n\nKind regards,\n" +
+                "The Gwa Team";
+        //return emailContent;
+        try {
+            MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
+    }
+
+    public static boolean mailForRegistration(Person person) throws NoSuchAlgorithmException {
+
+        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
+                "\n\n" +
+                "we inform you that you've been successfully registered to our gym\n" +
+                "please click this:\n" +
+                Constants.CONFIRMATION_URL + EncryptionManager.encrypt(person.getEmail()) +
                 "\n\nKind regards,\n" +
                 "The Gwa Team";
         //return emailContent;
