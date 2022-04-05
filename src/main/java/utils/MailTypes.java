@@ -1,39 +1,29 @@
 package utils;
 import constants.Constants;
+import jakarta.mail.MessagingException;
 import resource.*;
 
 import java.security.NoSuchAlgorithmException;
 
-/*
-
- */
-
 public class MailTypes {
-/*
-    Some Example Beans for testing the emails format
 
-    public static void main(String args[]){
-
-        Person person = new Person("mail", "Pippo", "Pluto","--","123" , new Date(1999,6,9),"","","");
-        Subscription subscription = new Subscription(123,"Yoga",6, new Date(2022,6,15), 0, "Rodolfo");
-        PasswordReset passwordReset = new PasswordReset("magiclink", new Timestamp(111), "Simone D'Antimo");
-        LectureTimeSlot lectureTimeSlot = new LectureTimeSlot("--", new Date(2022,9,11), new Time(9,00,00), 2022,"Yoga", "Gianni");
-        System.out.println(mailForRegistration(person) + "\n\n");
-        System.out.println(mailForSubscriptionToCourse(person,subscription) + "\n\n");
-        System.out.println(mailForPasswordChanged(person,passwordReset) + "\n\n");
-        System.out.println(mailForMedicalCertificateUploaded(person));
-        System.out.println(mailForCancellationLecture(person,lectureTimeSlot));
-        System.out.println(mailForMedicalCertificateExpiring(person,new MedicalCertificate("Sim",new Date(2022,9,11),"Rossi","--")));
-        System.out.println(mailForTrainerChanged(person,lectureTimeSlot));
-    }
- */
     /**
-     * @TODO Include Multipart
+     * @TODO Include Multipart for formatting mails in HTML
+     *
      * Setup the mail manager with the correct parameters.
      * @param host The SMTP host used in order to send the message
      * @param port The SMTP host port used in order to send the message
      * @param email The e-mail address of the sender
      * @param password The password of the sender's e-mail address
+     *
+     *  @method registrationConfirmed : If a registration go well
+     *  @method mailForConfirmRegistration : Sent when a registration request comes
+     *  @method mailForSubscriptionToCourse : When a secretary register someone to a course
+     *  @method mailForPasswordChanged : When someone request for a password reset, todo: add token
+     *  @method mailForMedicalCertificateUploaded : When a secretary register a valid medical certificate
+     *  @method mailForMedicalCertificateExpiring : When a medical certificate is expiring
+     *  @method mailForTrainerChanged : When a lesson will be held by a substitute (Substitute must be insert in the DB before)
+     *  @method mailForCancellationLecture : When a lesson has been cancelled
      */
 
     private static final String HOST = "ssl0.ovh.net";
@@ -45,25 +35,18 @@ public class MailTypes {
     //This mail is sent when someone registers for the first time in our website
     //Include the bean of the person registered
 
-    public static boolean mailForConfirmRegistration(Person person, EmailConfermation emailConfermation) {
+    public static void registrationConfirmed(Person person) throws MessagingException{
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
                 "\n\n" +
                 "we inform you that you've been successfully registered to our gym" +
                 "\n\nKind regards,\n" +
                 "The Gwa Team";
-        //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
-            return true;
 
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
     }
 
-    public static boolean mailForRegistration(Person person) throws NoSuchAlgorithmException {
+    public static void mailForConfirmRegistration(Person person) throws MessagingException, NoSuchAlgorithmException {
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
                 "\n\n" +
@@ -72,19 +55,12 @@ public class MailTypes {
                 Constants.CONFIRMATION_URL + EncryptionManager.encrypt(person.getEmail()) +
                 "\n\nKind regards,\n" +
                 "The Gwa Team";
-        //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
-            return true;
 
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
     }
 
     //This mail is sent when someone subscribed for a course in our gym (to the secretary)
-    public static boolean mailForSubscriptionToCourse(Person person, Subscription subscription){
+    public static void mailForSubscriptionToCourse(Person person, Subscription subscription) throws MessagingException {
 
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
                 "\n\n" +
@@ -93,18 +69,11 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA subscription confirmed", emailContent);
-            return true;
-
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(person.getEmail(), "GWA subscription confirmed", emailContent);
     }
+
     // This mail is sent when someone requests for a password changes
-    public static boolean mailForPasswordChanged(Person person, PasswordReset passwordReset){
+    public static void mailForPasswordChanged(Person person, PasswordReset passwordReset) throws MessagingException {
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname()+",\n"+
                 "\n\n" +
@@ -115,37 +84,21 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Password reset request", emailContent);
-            return true;
-
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(person.getEmail(), "GWA Password reset request", emailContent);
     }
+
     //This mail is sent when someone Uploads a medical certificate
-    public static boolean mailForMedicalCertificateUploaded(Person person){
+    public static void mailForMedicalCertificateUploaded(Person person) throws MessagingException {
 
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
                 "\n\n" +
                 "we inform you that we have received your Medical Certificate" +
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
-
-        //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Medical certificate uploaded", emailContent);
-            return true;
-
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(person.getEmail(), "GWA Medical certificate uploaded", emailContent);
     }
 
-    public static boolean mailForMedicalCertificateExpiring(Person person, MedicalCertificate medicalCertificate){
+    public static void mailForMedicalCertificateExpiring(Person person, MedicalCertificate medicalCertificate) throws MessagingException {
 
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+
                 "\n\n" +
@@ -154,18 +107,12 @@ public class MailTypes {
                 "able to attending courses" +
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
-        //return emailContent;
-        try {
-            MANAGER.sendMail(person.getEmail(), "GWA Medical certificate expiring", emailContent);
-            return true;
 
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+            MANAGER.sendMail(person.getEmail(), "GWA Medical certificate expiring", emailContent);
     }
+
     //If a Trainer will be substituted
-    public static boolean mailForTrainerChanged(Person trainee, LectureTimeSlot lectureTimeSlot){
+    public static void mailForTrainerChanged(Person trainee, LectureTimeSlot lectureTimeSlot) throws MessagingException {
 
         String emailContent = "Dear "+trainee.getName()+" "+trainee.getSurname()+",\n"+
                 "\n\n" +
@@ -175,18 +122,11 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        //return emailContent;
-        try {
-            MANAGER.sendMail(trainee.getEmail(), "GWA Substitutions in a course", emailContent);
-            return true;
-
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
+        MANAGER.sendMail(trainee.getEmail(), "GWA Substitutions in a course", emailContent);
     }
+
     //mail if lecture is removed
-    public static boolean mailForCancellationLecture(Person person, LectureTimeSlot lectureTimeSlot){
+    public static void mailForCancellationLecture(Person person, LectureTimeSlot lectureTimeSlot) throws MessagingException {
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
                 "\n\n" +
                 "we inform you that the lecture of " + lectureTimeSlot.getCourseName() +
@@ -195,20 +135,6 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        //return emailContent;
-        try {
             MANAGER.sendMail(person.getEmail(), "GWA Lecture cancelled", emailContent);
-            return true;
-
-        } catch (Exception e) {
-            System.out.println("Cannot send email");
-        }
-        return false;
     }
-
-    //Still in Beta
-    public static String mailForConfirmedRegistration(){
-        return "";
-    }
-
 }
