@@ -1,10 +1,6 @@
 package utils;
 import resource.*;
 
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.sql.Date;
-
 public class MailTypes {
 /*
     Some Example Beans for testing the emails format
@@ -50,7 +46,7 @@ public class MailTypes {
     }
 
     //This mail is sent when someone subscribed for a course in our gym (to the secretary)
-    public static String mailForSubscriptionToCourse(Person person, Subscription subscription){
+    public static boolean mailForSubscriptionToCourse(Person person, Subscription subscription){
 
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
                 "\n\n" +
@@ -59,10 +55,18 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        return emailContent;
+        //return emailContent;
+        try {
+            MANAGER.sendMail(person.getEmail(), "GWA subscription confirmed", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
     }
     // This mail is sent when someone requests for a password changes
-    public static String mailForPasswordChanged(Person person, PasswordReset passwordReset){
+    public static boolean mailForPasswordChanged(Person person, PasswordReset passwordReset){
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname()+",\n"+
                 "\n\n" +
@@ -73,10 +77,18 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        return emailContent;
+        //return emailContent;
+        try {
+            MANAGER.sendMail(person.getEmail(), "GWA Password reset request", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
     }
     //This mail is sent when someone Uploads a medical certificate
-    public static String mailForMedicalCertificateUploaded(Person person){
+    public static boolean mailForMedicalCertificateUploaded(Person person){
 
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
                 "\n\n" +
@@ -84,10 +96,18 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        return emailContent;
+        //return emailContent;
+        try {
+            MANAGER.sendMail(person.getEmail(), "GWA Medical certificate uploaded", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
     }
 
-    public static String mailForMedicalCertificateExpiring(Person person, MedicalCertificate medicalCertificate){
+    public static boolean mailForMedicalCertificateExpiring(Person person, MedicalCertificate medicalCertificate){
 
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+
                 "\n\n" +
@@ -96,10 +116,18 @@ public class MailTypes {
                 "able to attending courses" +
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
-        return emailContent;
+        //return emailContent;
+        try {
+            MANAGER.sendMail(person.getEmail(), "GWA Medical certificate expiring", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
     }
     //If a Trainer will be substituted
-    public static String mailForTrainerChanged(Person trainee, LectureTimeSlot lectureTimeSlot){
+    public static boolean mailForTrainerChanged(Person trainee, LectureTimeSlot lectureTimeSlot){
 
         String emailContent = "Dear "+trainee.getName()+" "+trainee.getSurname()+",\n"+
                 "\n\n" +
@@ -109,10 +137,18 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        return emailContent;
+        //return emailContent;
+        try {
+            MANAGER.sendMail(trainee.getEmail(), "GWA Substitutions in a course", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
     }
     //mail if lecture is removed
-    public static String mailForCancellationLecture(Person person, LectureTimeSlot lectureTimeSlot){
+    public static boolean mailForCancellationLecture(Person person, LectureTimeSlot lectureTimeSlot){
         String emailContent = "Dear "+person.getName()+" "+person.getSurname()+",\n"+
                 "\n\n" +
                 "we inform you that the lecture of " + lectureTimeSlot.getCourseName() +
@@ -121,7 +157,15 @@ public class MailTypes {
                 "\n\nKind regards,\n"+
                 "The Gwa Team";
 
-        return emailContent;
+        //return emailContent;
+        try {
+            MANAGER.sendMail(person.getEmail(), "GWA Lecture cancelled", emailContent);
+            return true;
+
+        } catch (Exception e) {
+            System.out.println("Cannot send email");
+        }
+        return false;
     }
 
     //Still in Beta
