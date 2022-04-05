@@ -2,15 +2,22 @@ package servlet.auth;
 
 import com.google.common.html.HtmlEscapers;
 import constants.Constants;
+import constants.ErrorCodes;
+import dao.passwordreset.GetPasswordResetDatabase;
+import dao.person.GetUserByEmailDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import resource.PasswordReset;
+import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
 
+import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 /**
  * This servlet is accessible after having asked for a password reset.
@@ -25,7 +32,34 @@ public class PasswordChangeServlet extends AbstractServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
+
+        //Manages errors inside this function
+        ErrorCodes status = null;
+
+        //Read the token field from the request (GET parameter)
+        String token = req.getParameter("token"); //TODO: Declare a constant for String "token"
+
+        PasswordReset passwordReset = new PasswordReset(token);
+        if(passwordReset == null){
+            //Password reset record not found in the database
+            status = ErrorCodes.INTERNAL_ERROR;
+            return;
+        }
+
+        Person actualPerson = null;
+
+        try {
+            //Get database connection
+            var conn = getDataSource().getConnection();
+            //Retrieve the PasswordReset instance
+            PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(conn, passwordReset).execute();
+            //Retrieve the Person associated
+            actualPerson = new GetUserByEmailDatabase(conn, passwordResetDatabase.getPerson()).execute();
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+
         //Get from the request the new password and then change it
         String raw_password = req.getParameter("password");
         String raw_confirm = req.getParameter("password-confirm");
@@ -36,39 +70,47 @@ public class PasswordChangeServlet extends AbstractServlet {
         //If the sanitized password is different from the raw one, the given password is not valid
         boolean validation = raw_password.equals(sanitized_password);
 
-        //TODO: DEBUG PURPOSES ONLY
-        PrintWriter out = resp.getWriter();
-        out.println("<html><body>");
-
         //Check if the provided password is valid or contains something possibly malicious
         if(validation){
 
             //Check if the password and the confirmation password are equal
             if(raw_password.equals(raw_confirm)){
                 //The password is valid and should be updated
-                out.println("<h3>The new password will be: " + raw_password + "</h3>");
-
                 try {
+
                     String hashed = EncryptionManager.encrypt(raw_password);
-                    out.println("<h3>The hashed password saved will be: " + hashed + "</h3>");
+
+                    //Construct a new person with the same fields, except the password field
+                    Person newPerson = new Person(actualPerson.getEmail(), actualPerson.getName(),
+                            actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(),
+                            actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
+
+                    //Update the person
+                    //TODO
+
+                    //No error occurred
+                    status = ErrorCodes.OK;
+
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
 
-
             } else {
-                out.println("<h3>The password and the confirmation password fields do not match! </h3>");
+                //The two provided passwords are not equal
+                //TODO
+                status = ErrorCodes.INTERNAL_ERROR;
             }
 
         } else {
 
-            out.println("<h1>The password has been detected as malicious!<h1>");
-            //The sanitized input password field will be
-            out.println("<h3>The sanitized field is: " + sanitized_password + "</h3>");
+            // Input field has something nasty inside
 
         }
 
-        out.println("</body></html>");
+        //If an error has occurred while updating the password than show something
+        if(status != ErrorCodes.OK){
+            //
+        }
 
     }
 }

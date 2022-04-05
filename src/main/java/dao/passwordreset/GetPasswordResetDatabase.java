@@ -30,8 +30,9 @@ public class GetPasswordResetDatabase {
         this.passwordReset = passwordReset;
     }
 
-    public List<PasswordReset> execute() throws SQLException {
-        List<PasswordReset> result = new ArrayList<>();
+    public PasswordReset execute() throws SQLException {
+
+        PasswordReset item = null;
 
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -42,30 +43,25 @@ public class GetPasswordResetDatabase {
             stm.setTimestamp(2, passwordReset.getExpirationDate());
 
             rs = stm.executeQuery();
-            while (rs.next()) {
-                final String token = rs.getString("token");
-                final Timestamp expDate = rs.getTimestamp("expirationDate");
-                final String person = rs.getString("person");
-                result.add(new PasswordReset(token, expDate, person));
-            }
 
-            logger.debug("[INFO] GetPasswordResetDatabase - %s - Query successfully done.\n".formatted(
-                    new Timestamp(System.currentTimeMillis())));
+            final String token = rs.getString("token");
+            final Timestamp expDate = rs.getTimestamp("expirationDate");
+            final String person = rs.getString("person");
+            item = new PasswordReset(token, expDate, person);
+
+            logger.debug("[INFO] GetPasswordResetDatabase - %s - Query successfully done.\n".formatted(new Timestamp(System.currentTimeMillis())));
         } catch (SQLException exc) {
-            logger.error("[INFO] GetPasswordResetDatabase - %s - An exception occurred during query execution.\n%s\n".
-                    formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
+            logger.error("[INFO] GetPasswordResetDatabase - %s - An exception occurred during query execution.\n%s\n".formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
 
             throw exc;
         } finally {
-            if (stm != null)
-                stm.close();
+            if (stm != null) stm.close();
 
-            if (rs != null)
-                rs.close();
+            if (rs != null) rs.close();
 
             con.close();
         }
 
-        return result;
+        return item;
     }
 }
