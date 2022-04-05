@@ -127,7 +127,7 @@ CREATE TABLE subscription
 
 ALTER TABLE personroles
     ADD CONSTRAINT person_fk_1
-        FOREIGN KEY (person) REFERENCES person (email);
+        FOREIGN KEY (person) REFERENCES person (email) ON DELETE CASCADE;
 
 ALTER TABLE personroles
     ADD CONSTRAINT role_fk

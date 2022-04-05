@@ -3,20 +3,18 @@ package jobs;
 import constants.Constants;
 import dao.emailconfermation.DeleteEmailConfirmationByPersonDatabase;
 import dao.emailconfermation.GetListEmailConfimationsExpired;
-import dao.medicalcertificate.GetMedicalCertificateDatabase;
 import dao.person.DeleteUserByEmailDatabase;
-import dao.person.GetAllUsersDatabase;
+import dao.person.GetUserByEmailDatabase;
 import resource.EmailConfermation;
-import resource.MedicalCertificate;
 import resource.Person;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -26,28 +24,40 @@ import java.util.List;
  */
 public class DropUncompletedRegistrations implements Runnable
 {
-
     @Override
-    public void run() {
-        // Get DataSource
+    public void run()
+    {
         Context ctx = null;
         try
         {
             ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
-            Connection c = ds.getConnection();
-            var gau = new GetListEmailConfimationsExpired(c);
+            var gau = new GetListEmailConfimationsExpired(ds.getConnection(),new Timestamp(System.currentTimeMillis()));
             List<EmailConfermation> emailConfermations = gau.execute();
             for (EmailConfermation email : emailConfermations)
             {
-                Person toRemove = new Person(email.getPerson(), null, null, null, null, null, null, null, null);
-                new DeleteUserByEmailDatabase(c, toRemove).execute();
-                new DeleteEmailConfirmationByPersonDatabase(c, toRemove).execute();
+                Person toRemove = new GetUserByEmailDatabase(ds.getConnection(),email.getPerson()).execute();
+                new DeleteEmailConfirmationByPersonDatabase(ds.getConnection(), toRemove).execute();
+                new DeleteUserByEmailDatabase(ds.getConnection(), toRemove).execute();
+
+                if(toRemove.getAvatarPath() != null)
+                    removeAvatar(toRemove.getAvatarPath(),toRemove.getTaxCode());
+
             }
+            System.out.println("REMOVED ALL USERS THAT HAVEN'T COMPLETED REGISTRATION YET!!!");
         }catch (SQLException | NamingException e)
         {
             System.out.println("ERROR CANNOT REMOVE USERS THAT HAVEN'T UNCOMPLETED THEIR REGISTRATION ");
             e.printStackTrace();
         }
     }
+
+    private void removeAvatar(String path,String taxCode)
+    {
+        File fileToremove = new File(path);
+        fileToremove.delete();
+        fileToremove = new File(Constants.AVATAR_PATH_FOLDER + File.separator + taxCode);
+        fileToremove.delete();
+    }
+
 }
