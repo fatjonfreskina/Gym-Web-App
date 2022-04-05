@@ -2,13 +2,12 @@ package servlet.access;
 
 import constants.Constants;
 import constants.ErrorCodes;
-import dao.emailconfermation.InsertEmailConfermation;
+import dao.emailconfermation.InsertEmailConfermationDatabase;
 import dao.person.GetUserByEmailDatabase;
 import dao.person.GetUserByTaxCodeDatabase;
 import dao.person.InsertNewUserDatabase;
 import dao.person.InsertUserRoleDatabase;
 import jakarta.mail.MessagingException;
-import jakarta.mail.internet.AddressException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -204,7 +203,7 @@ public class RegisterServlet extends AbstractServlet
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
                             //Insert Expiration Date Into database
-                            (new InsertEmailConfermation(getDataSource().getConnection(), new EmailConfermation(p.getEmail(),EncryptionManager.encrypt(email),
+                            (new InsertEmailConfermationDatabase(getDataSource().getConnection(), new EmailConfermation(p.getEmail(),EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             //TODO

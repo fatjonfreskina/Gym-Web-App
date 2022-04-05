@@ -1,14 +1,10 @@
 package dao.emailconfermation;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.EmailConfermation;
-import resource.MedicalCertificate;
-import resource.Person;
 
 import java.sql.*;
 
-public class InsertEmailConfermation {
+public class InsertEmailConfermationDatabase {
 
     private static final String STATEMENT = "INSERT INTO emailconfermation(person, token, expirationdate) VALUES (?, ?, ?)";
 
@@ -16,7 +12,7 @@ public class InsertEmailConfermation {
     private final EmailConfermation emailConfermation;
 
 
-    public InsertEmailConfermation(final Connection con, final EmailConfermation emailConfermation) {
+    public InsertEmailConfermationDatabase(final Connection con, final EmailConfermation emailConfermation) {
         this.con = con;
         this.emailConfermation = emailConfermation;
     }
