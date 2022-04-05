@@ -1,6 +1,10 @@
 package utils;
 import resource.*;
 
+/*
+
+ */
+
 public class MailTypes {
 /*
     Some Example Beans for testing the emails format
@@ -20,6 +24,14 @@ public class MailTypes {
         System.out.println(mailForTrainerChanged(person,lectureTimeSlot));
     }
  */
+    /**
+     * Setup the mail manager with the correct parameters.
+     * @param host The SMTP host used in order to send the message
+     * @param port The SMTP host port used in order to send the message
+     * @param email The e-mail address of the sender
+     * @param password The password of the sender's e-mail address
+     */
+
     private static final String HOST = "ssl0.ovh.net";
     private static final int PORT = 465;
     private static final String FROM_EMAIL = "test@projectzero.me";
@@ -27,6 +39,7 @@ public class MailTypes {
     private static final MailManager MANAGER = new MailManager(HOST, PORT, FROM_EMAIL, FROM_PASSWORD);
 
     //This mail is sent when someone registers for the first time in our website
+    //Include the bean of the person registered
     public static boolean mailForRegistration(Person person) {
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" +
