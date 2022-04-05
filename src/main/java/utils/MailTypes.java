@@ -19,7 +19,7 @@ public class MailTypes {
      *  @method registrationConfirmed : If a registration go well
      *  @method mailForConfirmRegistration : Sent when a registration request comes
      *  @method mailForSubscriptionToCourse : When a secretary register someone to a course
-     *  @method mailForPasswordChanged : When someone request for a password reset, todo: add token
+     *  @method mailForPasswordChanges : When someone request for a password reset, todo: add token
      *  @method mailForMedicalCertificateUploaded : When a secretary register a valid medical certificate
      *  @method mailForMedicalCertificateExpiring : When a medical certificate is expiring
      *  @method mailForTrainerChanged : When a lesson will be held by a substitute (Substitute must be insert in the DB before)
@@ -73,7 +73,7 @@ public class MailTypes {
     }
 
     // This mail is sent when someone requests for a password changes
-    public static void mailForPasswordChanged(Person person, PasswordReset passwordReset) throws MessagingException {
+    public static void mailForPasswordChanges(Person person, PasswordReset passwordReset) throws MessagingException {
 
         String emailContent = "Dear " + person.getName() + " " + person.getSurname()+",\n"+
                 "\n\n" +
