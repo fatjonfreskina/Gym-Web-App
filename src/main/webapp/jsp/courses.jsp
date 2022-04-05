@@ -6,7 +6,18 @@
     <title>Courses</title>
 </head>
 <body>
-    <jsp:include page="include/header.jsp"/><br>
-    <jsp:include page="include/footer.jsp"/>
+<jsp:include page="/jsp/include/header.jsp"/><br>
+
+<table>
+    <c:forEach var="course" items="${courseList}">
+        <tr>
+
+            <td><img src="${pageContext.request.contextPath}/images/${course.name}" alt="" /></td>
+            <td><c:out value="${course.name}"/></td>
+            <td><c:out value="${course.description}"/></td>
+        </tr>
+    </c:forEach>
+</table>
+<jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>

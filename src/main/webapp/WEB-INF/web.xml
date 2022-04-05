@@ -62,6 +62,10 @@
         <servlet-name>TheGymServlet</servlet-name>
         <servlet-class>servlet.TheGymServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CoursesServlet</servlet-name>
+        <servlet-class>servlet.CoursesServlet</servlet-class>
+    </servlet>
 
 
     <!-- Mapping between servlets and URIs -->
@@ -113,6 +117,10 @@
     <servlet-mapping>
         <servlet-name>ConfirmRegistrationServlet</servlet-name>
         <url-pattern>/confirm_registration/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CoursesServlet</servlet-name>
+        <url-pattern>/courses</url-pattern>
     </servlet-mapping>
     <!-- Listener called when the application is initialized -->
     <listener>

@@ -8,9 +8,10 @@ import java.util.List;
 
 public class GetAvailableCourses {
     private final String statement =
-            "SELECT coursename, description " +
-                    "FROM (courseedition as CE JOIN lecturetimeslot as LTS ON CE.id=LTS.courseeditionid AND CE.coursename=LTS.coursename) as A JOIN course as C ON A.coursename=C.name" +
-                    "WHERE date >= ? ";
+            "SELECT DISTINCT courseedition.coursename AS cname,description FROM courseedition "+
+                    "INNER JOIN course ON courseedition.coursename = course.name "+
+                    "INNER JOIN lecturetimeslot ON lecturetimeslot.courseeditionid=courseedition.id AND courseedition.coursename=lecturetimeslot.coursename "+
+                    "WHERE date >=?";
     private final Connection con;
     private final Date today;
 
@@ -31,7 +32,7 @@ public class GetAvailableCourses {
             res = prstm.executeQuery();
             while (res.next()) {
                 output.add(new Course(
-                        res.getString("coursename"),
+                        res.getString("cname"),
                         res.getString("description")
                 ));
             }
