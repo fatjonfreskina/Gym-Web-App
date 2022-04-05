@@ -14,6 +14,8 @@ import resource.EmailConfermation;
 import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
+import utils.MailTypes;
+import utils.MailWrapper;
 
 import javax.naming.NamingException;
 import java.io.File;
@@ -63,6 +65,9 @@ public class ConfirmRegistrationServlet extends AbstractServlet
             if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
             {
                 //Ok ridireziona tutto apposto ridireziona a CONFIRMED REGISTRATION
+
+                //MailTypes.;
+
                 message = new Message(error.getErrorMessage(),false);
                 res.setStatus(error.getHTTPCode());
                 req.setAttribute(Constants.MESSAGE,message);

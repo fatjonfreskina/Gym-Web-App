@@ -18,6 +18,7 @@ import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
 import utils.InputValidation;
+import utils.MailTypes;
 import utils.MailWrapper;
 
 import javax.naming.NamingException;
@@ -203,14 +204,19 @@ public class RegisterServlet extends AbstractServlet
                             String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
 
                             //Insert Expiration Date Into database
+
+
+
                             (new InsertEmailConfermationDatabase(getDataSource().getConnection(), new EmailConfermation(p.getEmail(),EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             //TODO
 
 
-                            MailWrapper mw = new MailWrapper();
-                            mw.getManager().sendMail(p.getEmail(),"WELCOME TO GWA : CONFIRM YOUR REGISTRATION",msg);
+                            //MailWrapper mw = new MailWrapper();
+                            //mw.getManager().sendMail(p.getEmail(),"WELCOME TO GWA : CONFIRM YOUR REGISTRATION",msg);
+
+                            MailTypes.mailForRegistration(p);
 
                             //MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
 
