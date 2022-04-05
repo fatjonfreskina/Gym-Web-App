@@ -22,9 +22,10 @@ import java.util.List;
 /**
  * This class is used to drop users that have not completed the registration
  *
- * @author Riccardo Forzan
+ * @author Francesco Caldivezzi
  */
-public class DropUncompletedRegistrations implements Runnable {
+public class DropUncompletedRegistrations implements Runnable
+{
 
     @Override
     public void run() {
