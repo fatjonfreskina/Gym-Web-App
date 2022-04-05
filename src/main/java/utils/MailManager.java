@@ -25,7 +25,7 @@ public class MailManager
     - Libero        smtp.libero.it              465             SSL
     - Outlook       smtp-mail.outlook.com       587             STARTTLS
     */
-    private final InternetAddress fromAddress;
+    private final String fromAddress;
     private final Session session;
 
     /**
@@ -34,9 +34,9 @@ public class MailManager
      * @param port The SMTP host port used in order to send the message
      * @param email The e-mail address of the sender
      * @param password The password of the sender's e-mail address
-     * @throws AddressException If the email parameter is not valid
      */
-    public MailManager(String host, int port, String email, String password) throws AddressException
+
+    public MailManager(String host, int port, String email, String password)
     {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.auth", "true");
@@ -62,7 +62,7 @@ public class MailManager
         session.setDebug(false);
 
 
-        fromAddress = new InternetAddress(email);
+        fromAddress = email;
     }
 
 
@@ -76,9 +76,10 @@ public class MailManager
     public void sendMail(String email, String subject, String text) throws MessagingException
     {
         final InternetAddress toAddress = new InternetAddress(email);
+        final InternetAddress sourceAddress = new InternetAddress(fromAddress);
 
         Message msg = new MimeMessage(session);
-        msg.setFrom(fromAddress);
+        msg.setFrom(sourceAddress);
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
         msg.setSentDate(new Date());
@@ -97,11 +98,11 @@ public class MailManager
     public void sendMail__Testing(String email, String subject) throws Exception
     {
         final InternetAddress toAddress = new InternetAddress(email);
-
+        final InternetAddress sourceAddress = new InternetAddress(fromAddress);
         session.setDebug(true);
 
         Message msg = new MimeMessage(session);
-        msg.setFrom(fromAddress);
+        msg.setFrom(sourceAddress);
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
         final String htmlText =
