@@ -5,6 +5,7 @@ public class Constants {
     public static final String DATASOURCE = "java:/comp/env/jdbc/gwa-res";
 
     //GENERAL APPLICATION PATHS
+    public static final String PATH_THE_GYM = "/jsp/thegym.jsp";
     public static final String PATH_PRICES = "/jsp/prices.jsp";
     public static final String PATH_REGISTER = "/jsp/access/register.jsp";
     public static final String PATH_ABOUTUS = "/jsp/aboutus.jsp";
