@@ -48,7 +48,6 @@ public class PasswordChangeServlet extends AbstractServlet {
 
         //Get the token (hidden attribute)
         String token = req.getParameter("token");
-        out.println(token);
 
         if(token == null){
             //TODO: Throw some error
@@ -61,14 +60,12 @@ public class PasswordChangeServlet extends AbstractServlet {
         try {
             //Retrieve the PasswordReset instance
             PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
-            out.println(passwordResetDatabase);
             //Retrieve the Person associated
             actualPerson = new GetUserByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
         } catch (SQLException | NamingException e) {
             //TODO: Manage the error
         }
 
-        /*
         if(passwordReset == null){
             //Password reset record not found in the database
             status = ErrorCodes.INTERNAL_ERROR;
@@ -82,13 +79,14 @@ public class PasswordChangeServlet extends AbstractServlet {
         String sanitized_password = HtmlEscapers.htmlEscaper().escape(raw_password);
 
         //If the sanitized password is different from the raw one, the given password is not valid
-        boolean validation = raw_password.equals(sanitized_password);
+        boolean valid = raw_password.equals(sanitized_password);
 
         //Check if the provided password is valid or contains something possibly malicious
-        if(validation){
+        if(valid){
 
             //Check if the password and the confirmation password are equal
             if(raw_password.equals(raw_confirm)){
+
                 //The password is valid and should be updated
                 try {
 
@@ -99,8 +97,13 @@ public class PasswordChangeServlet extends AbstractServlet {
                             actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(),
                             actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
 
+                    out.println(newPerson);
+
+                    //TODO: Debug here
                     //Update the person
                     new UpdateUserDatabase(getDataSource().getConnection(), newPerson).execute();
+
+                    System.out.println("Password changed");
 
                     //No error occurred
                     status = ErrorCodes.OK;
@@ -125,7 +128,6 @@ public class PasswordChangeServlet extends AbstractServlet {
         if(status != ErrorCodes.OK){
             // TODO: Handle errors
         }
-         */
 
     }
 }
