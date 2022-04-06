@@ -79,4 +79,18 @@ public class Person
         return Objects.equals(email, person.email);
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", psw='" + psw + '\'' +
+                ", taxCode='" + taxCode + '\'' +
+                ", birthDate=" + birthDate +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", avatarPath='" + avatarPath + '\'' +
+                '}';
+    }
 }
