@@ -4,23 +4,29 @@
 <html>
 <head>
     <title>GWA</title>
+    <c:import url="/jsp/include/head.jsp"/>
 </head>
 <body>
     <jsp:include page="/jsp/include/header.jsp"/><br>
     <div class="row">
+
         <div class="column">
-            <img src="<c:url value="/images/photo_gym_1.jpg"></c:url>" alt="Pesi" style="width:100%" width="1920" height="1280">
+            <img src="<c:url value="/images/img.png"></c:url>" alt="Pesi" style="width:100%" width="1920" height="1280">
             <img src="/images/photo_gym_1.jpg" alt="Pesi" style="width:100%" width="1920" height="1280">
         </div>
         <div class="column">
-            <img src="/images/photo_gym_2.jpg" alt="Calistenichs" style="width:100%" width="1920" height="1280">
+
+            <img src="<c:url value="../images/photo_gym_2.jpg"/>">
         </div>
         <div class="column">
-            <img src="/images/photo_gym_3.jpg" alt="Pilates" style="width:100%" width="1920" height="1280">
+            <img src="http://localhost:8080/wa2122-gwa/images/photo_gym_3.jpg" alt="Pilates" style="width:100%" width="1920" height="1280">
         </div>
         <div class="column">
             <img src="/images/photo_gym_4.jpg" alt="Pilates" style="width:100%" width="1920" height="1080">
         </div>
+        
+        <img src="../images/photo_gym_3.jpg">
+        
     </div>
     <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
