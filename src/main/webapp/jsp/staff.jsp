@@ -11,7 +11,11 @@
         <ul>
             <c:forEach var="trainer" items="${trainerlist}">
                 <li>
-                    <b><c:out value="${trainer.person.surname}"/> <c:out value="${trainer.person.name}"/>:</b> <c:out value="${trainer.teaches.courseName}"/>
+                    <b><c:out value="${trainer.person.surname}"/> <c:out value="${trainer.person.name}"/>:</b>
+                    <c:forEach var="teach" items="${trainer.teaches}" varStatus="loop">
+                        <c:out value="${teach.courseName}"/>
+                        <c:if test="${!loop.last}">,</c:if>
+                    </c:forEach>
                 </li>
             </c:forEach>
         </ul>
