@@ -8,7 +8,16 @@
         Group project developed by GWA group of the Web Applications 2021/22 course,
         for the Computer Engineering master degree of University of Padua.
     </description>
-
+    <!-- Filters -->
+    <!-- Trainer Filter -->
+    <filter>
+        <filter-name>TrainerFilter</filter-name>
+        <filter-class>filter.TrainerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TrainerFilter</filter-name>
+        <url-pattern>/trainer/*</url-pattern>
+    </filter-mapping>
     <!-- Servlets listing -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
@@ -70,6 +79,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlet.access.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>servlet.access.LogoutServlet</servlet-class>
+    </servlet>
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -128,6 +141,10 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <!-- Listener called when the application is initialized -->
     <listener>

@@ -8,12 +8,12 @@
 </head>
 <body>
     <jsp:include page="../include/header.jsp"/><br>
-    <form action="action_page.php" method="post">
+    <form action="login" method="post">
         <div class="container">
             <label> <b>Username</b> </label> <br>
-            <input type="text" placeholder="Enter Username" name="uname" required><br>
+            <input type="text" placeholder="Enter Email" name="email" required><br>
             <label><b>Password</b></label><br>
-            <input type="password" placeholder="Enter Password" name="psw" required><br>
+            <input type="password" placeholder="Enter Password" name="password" required><br>
             <button type="submit">Login</button><br>
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me

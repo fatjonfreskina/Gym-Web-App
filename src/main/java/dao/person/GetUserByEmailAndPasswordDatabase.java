@@ -23,7 +23,7 @@ public class GetUserByEmailAndPasswordDatabase {
         this.person = person;
     }
 
-    public List<Person> execute() throws SQLException {
+    public Person execute() throws SQLException {
 
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -60,6 +60,9 @@ public class GetUserByEmailAndPasswordDatabase {
             }
             connection.close();
         }
-        return result;
+        if(result.size()!=1){
+            return null;
+        }else
+            return result.get(0);
     }
 }

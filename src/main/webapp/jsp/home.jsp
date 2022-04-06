@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>GWA</title>
-    <c:import url="/jsp/include/head.jsp"/>
 </head>
 <body>
     <jsp:include page="/jsp/include/header.jsp"/><br>
