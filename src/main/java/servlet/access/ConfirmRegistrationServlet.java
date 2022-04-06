@@ -3,19 +3,17 @@ package servlet.access;
 
 import constants.Constants;
 import constants.ErrorCodes;
-import dao.emailconfermation.DeleteEmailConfirmationByPersonDatabase;
-import dao.emailconfermation.GetEmailConfirmationByTokenDatabase;
+import dao.emailconfirmation.DeleteEmailConfirmationByPersonDatabase;
+import dao.emailconfirmation.GetEmailConfirmationByTokenDatabase;
 import dao.person.DeleteUserByEmailDatabase;
 import dao.person.GetUserByEmailDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import resource.EmailConfermation;
+import resource.EmailConfirmation;
 import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
-import utils.MailTypes;
-import utils.MailWrapper;
 
 import javax.naming.NamingException;
 import java.io.File;
@@ -29,7 +27,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         String tokenUser = req.getParameter("token");
-        EmailConfermation emailConfermation = null;
+        EmailConfirmation emailConfirmation = null;
         ErrorCodes error = ErrorCodes.OK;
         Message message = new Message(error.getErrorMessage(),false);
 
@@ -37,15 +35,15 @@ public class ConfirmRegistrationServlet extends AbstractServlet
         {
             try
             {
-                emailConfermation = (new GetEmailConfirmationByTokenDatabase(getDataSource().getConnection(),new EmailConfermation(null,tokenUser,null))).execute();
+                emailConfirmation = (new GetEmailConfirmationByTokenDatabase(getDataSource().getConnection(),new EmailConfirmation(null,tokenUser,null))).execute();
 
-                if(emailConfermation != null) //ok there's the record =>2 possible cases it is not expired or it is expired
+                if(emailConfirmation != null) //ok there's the record =>2 possible cases it is not expired or it is expired
                 {
-                    Person p = (new GetUserByEmailDatabase(getDataSource().getConnection(),emailConfermation.getPerson())).execute();
+                    Person p = (new GetUserByEmailDatabase(getDataSource().getConnection(),emailConfirmation.getPerson())).execute();
 
                     (new DeleteEmailConfirmationByPersonDatabase(getDataSource().getConnection(),p)).execute();
 
-                    if(emailConfermation.getExpirationDate().getTime() < System.currentTimeMillis())
+                    if(emailConfirmation.getExpirationDate().getTime() < System.currentTimeMillis())
                     {
                         //need to remove eventually the directory and file inside of it of the path
                         if(p.getAvatarPath() != null)

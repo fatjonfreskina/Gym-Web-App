@@ -2,13 +2,13 @@ package resource;
 
 import java.sql.Timestamp;
 
-public class EmailConfermation {
+public class EmailConfirmation {
 
     private final String person;
     private final String token;
     private Timestamp expirationDate;
 
-    public EmailConfermation(final String person, final String token, final Timestamp expirationDate) {
+    public EmailConfirmation(final String person, final String token, final Timestamp expirationDate) {
         this.person = person;
         this.token = token;
         this.expirationDate = expirationDate;

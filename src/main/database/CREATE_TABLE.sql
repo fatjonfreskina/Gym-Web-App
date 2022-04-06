@@ -1,4 +1,4 @@
-CREATE TABLE emailconfermation
+CREATE TABLE emailconfirmation
 (
     person         VARCHAR(40),
     token          VARCHAR(256) UNIQUE NOT NULL,
@@ -134,7 +134,7 @@ ALTER TABLE personroles
         FOREIGN KEY (role) REFERENCES typeofroles (role);
 
 --foreign keys
-ALTER TABLE emailconfermation
+ALTER TABLE emailconfirmation
     ADD CONSTRAINT person_fk
         FOREIGN KEY (person) REFERENCES person (email);
 

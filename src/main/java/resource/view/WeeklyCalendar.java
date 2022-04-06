@@ -3,9 +3,8 @@ package resource.view;
 import resource.LectureTimeSlot;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class WeeklyCalendar
 {
@@ -84,4 +83,5 @@ public class WeeklyCalendar
     {
         return output;
     }
+
 }

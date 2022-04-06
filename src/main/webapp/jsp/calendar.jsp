@@ -12,21 +12,20 @@
     <table>
         <thead>
         <tr>
-            <th>Hours</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th>
+            <th>Time</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th><th>Sunday</th>
         </tr>
         </thead>
         <c:set var="hour" value="8"/>
         <c:forEach var="element" items="${weeklyCalendar}">
-
             <tr>
                 <td><c:out value="${hour}"/></td>
                 <c:forEach var="elem" items="${element}">
                     <td>
                         <c:forEach var="e" items="${elem}">
+                            <br>
                             <c:out value="${e.courseName}"></c:out><br>
                             <c:out value="${e.roomName}"></c:out>
-                            <br><br><br>
-
+                            <br>
                         </c:forEach>
                     </td>
                 </c:forEach>

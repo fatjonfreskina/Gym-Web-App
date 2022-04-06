@@ -2,7 +2,7 @@ package servlet.access;
 
 import constants.Constants;
 import constants.ErrorCodes;
-import dao.emailconfermation.InsertEmailConfermationDatabase;
+import dao.emailconfirmation.InsertEmailConfirmationDatabase;
 import dao.person.GetUserByEmailDatabase;
 import dao.person.GetUserByTaxCodeDatabase;
 import dao.person.InsertNewUserDatabase;
@@ -12,14 +12,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
-import resource.EmailConfermation;
+import resource.EmailConfirmation;
 import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
 import utils.InputValidation;
 import utils.MailTypes;
-import utils.MailWrapper;
 
 import javax.naming.NamingException;
 import java.io.*;
@@ -207,7 +206,7 @@ public class RegisterServlet extends AbstractServlet
 
 
 
-                            (new InsertEmailConfermationDatabase(getDataSource().getConnection(), new EmailConfermation(p.getEmail(),EncryptionManager.encrypt(email),
+                            (new InsertEmailConfirmationDatabase(getDataSource().getConnection(), new EmailConfirmation(p.getEmail(),EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             //TODO

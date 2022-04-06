@@ -1,15 +1,12 @@
-package dao.emailconfermation;
+package dao.emailconfirmation;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import resource.LectureTimeSlot;
 import resource.Person;
 
 import java.sql.*;
 
 public class DeleteEmailConfirmationByPersonDatabase
 {
-    private static final String STATEMENT = "DELETE FROM emailconfermation WHERE person=?";
+    private static final String STATEMENT = "DELETE FROM emailconfirmation WHERE person=?";
 
     private final Connection connection;
     private final Person person;

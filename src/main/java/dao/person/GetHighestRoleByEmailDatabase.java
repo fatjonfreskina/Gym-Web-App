@@ -13,6 +13,10 @@ public class GetHighestRoleByEmailDatabase
     SELECT * FROM personroles 
     WHERE person = ?;
     """;
+
+    /*
+    // TODO remmed out to build project
+
     private final Connection connection;
     private final PersonRoles roles;
 
@@ -29,4 +33,5 @@ public class GetHighestRoleByEmailDatabase
 
 
     }
+     */
 }

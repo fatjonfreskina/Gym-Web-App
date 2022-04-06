@@ -1,6 +1,6 @@
-package dao.emailconfermation;
+package dao.emailconfirmation;
 
-import resource.EmailConfermation;
+import resource.EmailConfirmation;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 public class GetListEmailConfimationsExpired
 {
 
-    private static final String STATEMENT = "select * from emailconfermation where expirationdate <= ?";
+    private static final String STATEMENT = "select * from emailconfirmation where expirationdate <= ?";
     private final Connection connection;
     private Timestamp date;
 
@@ -19,11 +19,11 @@ public class GetListEmailConfimationsExpired
         this.date = date;
     }
 
-    public List<EmailConfermation> execute() throws SQLException
+    public List<EmailConfirmation> execute() throws SQLException
     {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<EmailConfermation> result = null;
+        List<EmailConfirmation> result = null;
         try {
             ps = connection.prepareStatement(STATEMENT);
             ps.setTimestamp(1,date);
@@ -31,7 +31,7 @@ public class GetListEmailConfimationsExpired
 
             result = new ArrayList<>();
             while (rs.next())
-                result.add(new EmailConfermation(rs.getString("person"),rs.getString("token"),rs.getTimestamp("expirationdate")));
+                result.add(new EmailConfirmation(rs.getString("person"),rs.getString("token"),rs.getTimestamp("expirationdate")));
 
         } finally
         {

@@ -1,18 +1,17 @@
 package jobs;
 
 import constants.Constants;
-import dao.emailconfermation.DeleteEmailConfirmationByPersonDatabase;
-import dao.emailconfermation.GetListEmailConfimationsExpired;
+import dao.emailconfirmation.DeleteEmailConfirmationByPersonDatabase;
+import dao.emailconfirmation.GetListEmailConfimationsExpired;
 import dao.person.DeleteUserByEmailDatabase;
 import dao.person.GetUserByEmailDatabase;
-import resource.EmailConfermation;
+import resource.EmailConfirmation;
 import resource.Person;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.io.File;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -33,8 +32,8 @@ public class DropUncompletedRegistrations implements Runnable
             ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
             var gau = new GetListEmailConfimationsExpired(ds.getConnection(),new Timestamp(System.currentTimeMillis()));
-            List<EmailConfermation> emailConfermations = gau.execute();
-            for (EmailConfermation email : emailConfermations)
+            List<EmailConfirmation> emailConfirmations = gau.execute();
+            for (EmailConfirmation email : emailConfirmations)
             {
                 Person toRemove = new GetUserByEmailDatabase(ds.getConnection(),email.getPerson()).execute();
                 new DeleteEmailConfirmationByPersonDatabase(ds.getConnection(), toRemove).execute();
