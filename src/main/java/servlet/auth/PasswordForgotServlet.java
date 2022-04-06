@@ -46,10 +46,6 @@ public class PasswordForgotServlet extends AbstractServlet {
         //Read the token field from the request (GET parameter)
         String email = req.getParameter("email");
 
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.println(email);
-
         Person person = null;
         Connection conn = null;
 
@@ -78,10 +74,8 @@ public class PasswordForgotServlet extends AbstractServlet {
                 //PasswordReset
                 PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp,person.getEmail());
                 //Insert the password reset into the database
-                out.println(passwordReset);
                 new InsertPasswordResetDatabase(conn, passwordReset).execute();
                 MailTypes.mailForPasswordChanges(person, passwordReset);
-                out.println("Mail sent!");
             } catch (NoSuchAlgorithmException | MessagingException | SQLException | NamingException e) {
                 //TODO: Error handling
             }
