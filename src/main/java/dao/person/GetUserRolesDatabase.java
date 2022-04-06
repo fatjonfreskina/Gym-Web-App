@@ -71,8 +71,11 @@ public class GetUserRolesDatabase {
         } else if (list.contains("trainer")){
             result = "trainer";
             return result;
-        } else {
+        } else if (list.contains("trainee")) {
             result = "trainee";
+            return result;
+        } else {
+            result = "No role for this user";
             return result;
         }
         }
