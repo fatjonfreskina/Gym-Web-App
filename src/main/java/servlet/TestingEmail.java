@@ -5,11 +5,11 @@ import utils.MailManager;
 public class TestingEmail
 {
     //NOTE: configuration parameters (host and port) available in a comment within MailManager class.
-    private static final String HOST = "smtp.libero.it";
+    private static final String HOST = "ssl0.ovh.net";
     private static final int PORT = 465;
 
-    private static final String FROM_EMAIL = "";
-    private static final String FROM_PASSWORD = "";
+    private static final String FROM_EMAIL = "test@projectzero.me";
+    private static final String FROM_PASSWORD = "RgrfDS34678@fgreq.few73";
     private static final String TO_EMAIL = "";
 
     private static final String SUBJECT = "Test Subject";

@@ -25,7 +25,7 @@ public class MailManager
     - Libero        smtp.libero.it              465             SSL
     - Outlook       smtp-mail.outlook.com       587             STARTTLS
     */
-    private final String fromAddress;
+    private final String fromEmail;
     private final Session session;
 
     /**
@@ -62,7 +62,7 @@ public class MailManager
         session.setDebug(false);
 
 
-        fromAddress = email;
+        fromEmail = email;
     }
 
 
@@ -75,16 +75,40 @@ public class MailManager
      * */
     public void sendMail(String email, String subject, String text) throws MessagingException
     {
+        final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
-        final InternetAddress sourceAddress = new InternetAddress(fromAddress);
 
         Message msg = new MimeMessage(session);
-        msg.setFrom(sourceAddress);
+        msg.setFrom(fromAddress);
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
         msg.setSentDate(new Date());
         msg.setSubject(subject);
         msg.setText(text);
+
+        Transport.send(msg);
+    }
+
+
+    /**
+     * This method is used to send a complex e-mail message, and not limited to only plain text.
+     * @param email : The e-mail address of the single receiver
+     * @param subject : The subject of the e-mail
+     * @param content : The content of the e-mail
+     * @throws MessagingException : If the sending of the e-mail fails for any reason
+     * */
+    public void sendMail(String email, String subject, Multipart content) throws MessagingException
+    {
+        final InternetAddress fromAddress = new InternetAddress(fromEmail);
+        final InternetAddress toAddress = new InternetAddress(email);
+
+        Message msg = new MimeMessage(session);
+        msg.setFrom(fromAddress);
+        msg.setRecipient(Message.RecipientType.TO, toAddress);
+
+        msg.setSentDate(new Date());
+        msg.setSubject(subject);
+        msg.setContent(content);
 
         Transport.send(msg);
     }
@@ -97,12 +121,17 @@ public class MailManager
     //as HTML code.
     public void sendMail__Testing(String email, String subject) throws Exception
     {
+        long t1 = System.currentTimeMillis();
+        final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
-        final InternetAddress sourceAddress = new InternetAddress(fromAddress);
+        t1 = System.currentTimeMillis() - t1;
+
+
         session.setDebug(true);
 
+        long t2 = System.currentTimeMillis();
         Message msg = new MimeMessage(session);
-        msg.setFrom(sourceAddress);
+        msg.setFrom(fromAddress);
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
         final String htmlText =
@@ -145,7 +174,27 @@ public class MailManager
         msg.setSentDate(new Date());
         msg.setSubject(subject);
         msg.setContent(multipart);
+        t2 = System.currentTimeMillis() - t2;
 
+        long t3 = System.currentTimeMillis();
         Transport.send(msg);
+        t3 = System.currentTimeMillis() - t3;
+
+        final String debugInfo =
+                """
+                Timings:
+                1) Addresses creation: %d ms
+                2) Preparing content:  %d ms
+                3) Sending the e-mail: %d ms
+                
+                """.formatted(t1, t2, t3);
+
+
+        if (true)
+        {
+            System.out.println(debugInfo);
+
+            //throw new MessagingException(debugInfo);
+        }
     }
 }
