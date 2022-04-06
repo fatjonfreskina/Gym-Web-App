@@ -20,6 +20,7 @@ public enum ErrorCodes {
     NOT_A_MAIL(-10, HttpServletResponse.SC_BAD_REQUEST, "Please provide a mail address"),
     CONFIRMATION_NOT_FOUND(-11, HttpServletResponse.SC_BAD_REQUEST, "Registration not found"),
     BAD_REQUEST(-12, HttpServletResponse.SC_BAD_REQUEST, "Bad request"),
+    NOT_AUTHENTICATED(-12, HttpServletResponse.SC_UNAUTHORIZED, "The provided credentials are wrong"),
     ;
     private final int errorCode;
     private final int httpCode;
