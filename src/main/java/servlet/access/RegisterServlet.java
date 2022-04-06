@@ -31,13 +31,8 @@ import java.time.Period;
 import java.util.Arrays;
 
 
-/**
- * Da testare max size upload!!!
- *
- * */
 public class RegisterServlet extends AbstractServlet
 {
-
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
@@ -56,7 +51,6 @@ public class RegisterServlet extends AbstractServlet
         String telephoneNumber = null;
         Date birthDate = null;
         Part avatar = null;
-
 
         boolean registrable = true;
         Message message = new Message(ErrorCodes.OK.getErrorMessage(),false);
@@ -193,33 +187,12 @@ public class RegisterServlet extends AbstractServlet
                             Person p = new Person(email,firstName,lastName, EncryptionManager.encrypt(password)
                                     ,taxCode,birthDate,telephoneNumber,address,pathImg);
 
-
-                            //QUI DA FINIRE
-                            //Insert User into Database
                             new InsertNewUserDatabase(getDataSource().getConnection(),p).execute();
                             new InsertUserRoleDatabase(getDataSource().getConnection(),p,role).execute();
-
-                            //Send email
-                            String msg = "please confirm your email at this address : " + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(email);
-
-                            //Insert Expiration Date Into database
-
-
-
                             (new InsertEmailConfirmationDatabase(getDataSource().getConnection(), new EmailConfirmation(p.getEmail(),EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
-                            //TODO
-
-
-                            //MailWrapper mw = new MailWrapper();
-                            //mw.getManager().sendMail(p.getEmail(),"WELCOME TO GWA : CONFIRM YOUR REGISTRATION",msg);
-
                             MailTypes.mailForConfirmRegistration(p);
-
-                            //MailManager2.sendMail("WELCOME TO GWA : CONFIRM YOUR REGISTRATION", msg, p);
-
-
                         } catch (NoSuchAlgorithmException | MessagingException e)
                         {
                             error = ErrorCodes.INTERNAL_ERROR;
@@ -243,11 +216,10 @@ public class RegisterServlet extends AbstractServlet
     private ErrorCodes saveFile(Part file, String taxCode) throws IOException
     {
         ErrorCodes error = ErrorCodes.OK;
-        File createDirectory = null;
+        File createDirectory;
         OutputStream writer = null;
         InputStream content = null;
         String path = null;
-        //Logger log = LogManager.getLogger("francesco_caldivezzi_logger");
 
         if((file != null) && file.getSize() != 0)
         {
@@ -264,7 +236,7 @@ public class RegisterServlet extends AbstractServlet
                     createDirectory.mkdir();
 
                 path = path + File.separator + Constants.AVATAR + "." + file.getContentType().split(File.separator)[1];
-                //log.info(path);
+
                 try
                 {
                     writer = new FileOutputStream(path);
@@ -287,5 +259,4 @@ public class RegisterServlet extends AbstractServlet
         }
         return error;
     }
-
 }

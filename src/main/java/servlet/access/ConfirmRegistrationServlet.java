@@ -7,6 +7,7 @@ import dao.emailconfirmation.DeleteEmailConfirmationByPersonDatabase;
 import dao.emailconfirmation.GetEmailConfirmationByTokenDatabase;
 import dao.person.DeleteUserByEmailDatabase;
 import dao.person.GetUserByEmailDatabase;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,6 +15,8 @@ import resource.EmailConfirmation;
 import resource.Message;
 import resource.Person;
 import servlet.AbstractServlet;
+import utils.FileManager;
+import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.File;
@@ -30,7 +33,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet
         EmailConfirmation emailConfirmation = null;
         ErrorCodes error = ErrorCodes.OK;
         Message message = new Message(error.getErrorMessage(),false);
-
+        Person p = null;
         if(tokenUser != null)
         {
             try
@@ -39,7 +42,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet
 
                 if(emailConfirmation != null) //ok there's the record =>2 possible cases it is not expired or it is expired
                 {
-                    Person p = (new GetUserByEmailDatabase(getDataSource().getConnection(),emailConfirmation.getPerson())).execute();
+                    p = (new GetUserByEmailDatabase(getDataSource().getConnection(),emailConfirmation.getPerson())).execute();
 
                     (new DeleteEmailConfirmationByPersonDatabase(getDataSource().getConnection(),p)).execute();
 
@@ -47,7 +50,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet
                     {
                         //need to remove eventually the directory and file inside of it of the path
                         if(p.getAvatarPath() != null)
-                            removeAvatar(p.getAvatarPath(),p.getTaxCode());
+                            FileManager.removeAvatar(p.getAvatarPath(),p.getTaxCode());
                         //expired need to remove the user
                         (new DeleteUserByEmailDatabase(getDataSource().getConnection(),p)).execute();
                     }
@@ -62,37 +65,23 @@ public class ConfirmRegistrationServlet extends AbstractServlet
 
             if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
             {
-                //Ok ridireziona tutto apposto ridireziona a CONFIRMED REGISTRATION
-
-                //MailTypes.;
-
-                message = new Message(error.getErrorMessage(),false);
-                res.setStatus(error.getHTTPCode());
-                req.setAttribute(Constants.MESSAGE,message);
-                req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
-            }else
-            {
-                message = new Message(error.getErrorMessage(),true);
-                res.setStatus(error.getHTTPCode());
-                req.setAttribute(Constants.MESSAGE,message);
-                req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
+                try
+                {
+                    MailTypes.registrationConfirmed(p);
+                }catch (MessagingException e)
+                {
+                    error = ErrorCodes.INTERNAL_ERROR;
+                }
             }
         }else
         {
             error = ErrorCodes.BAD_REQUEST;
-            message = new Message(error.getErrorMessage(),true);
-            res.setStatus(error.getHTTPCode());
-            req.setAttribute(Constants.MESSAGE,message);
-            req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
         }
+        message = new Message(error.getErrorMessage(),(error.getErrorCode() != ErrorCodes.OK.getErrorCode()));
+        res.setStatus(error.getHTTPCode());
+        req.setAttribute(Constants.MESSAGE,message);
+        req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
     }
 
 
-    private void removeAvatar(String path,String taxCode)
-    {
-        File fileToremove = new File(path);
-        fileToremove.delete();
-        fileToremove = new File(Constants.AVATAR_PATH_FOLDER + File.separator + taxCode);
-        fileToremove.delete();
-    }
 }
