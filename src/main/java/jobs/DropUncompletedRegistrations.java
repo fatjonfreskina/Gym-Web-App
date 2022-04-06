@@ -7,6 +7,8 @@ import dao.person.DeleteUserByEmailDatabase;
 import dao.person.GetUserByEmailDatabase;
 import resource.EmailConfirmation;
 import resource.Person;
+import utils.FileManager;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -36,14 +38,12 @@ public class DropUncompletedRegistrations implements Runnable
             for (EmailConfirmation email : emailConfirmations)
             {
                 Person toRemove = new GetUserByEmailDatabase(ds.getConnection(),email.getPerson()).execute();
-                new DeleteEmailConfirmationByPersonDatabase(ds.getConnection(), toRemove).execute();
                 new DeleteUserByEmailDatabase(ds.getConnection(), toRemove).execute();
 
                 if(toRemove.getAvatarPath() != null)
-                    removeAvatar(toRemove.getAvatarPath(),toRemove.getTaxCode());
+                    FileManager.removeAvatar(toRemove.getAvatarPath(), toRemove.getTaxCode());
 
             }
-            System.out.println("REMOVED ALL USERS THAT HAVEN'T COMPLETED REGISTRATION YET!!!");
         }catch (SQLException | NamingException e)
         {
             System.out.println("ERROR CANNOT REMOVE USERS THAT HAVEN'T UNCOMPLETED THEIR REGISTRATION ");
@@ -51,12 +51,6 @@ public class DropUncompletedRegistrations implements Runnable
         }
     }
 
-    private void removeAvatar(String path,String taxCode) //add remove medical certificate file
-    {
-        File fileToremove = new File(path);
-        fileToremove.delete();
-        fileToremove = new File(Constants.AVATAR_PATH_FOLDER + File.separator + taxCode);
-        fileToremove.delete();
-    }
+
 
 }

@@ -136,19 +136,19 @@ ALTER TABLE personroles
 --foreign keys
 ALTER TABLE emailconfirmation
     ADD CONSTRAINT person_fk
-        FOREIGN KEY (person) REFERENCES person (email);
+        FOREIGN KEY (person) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE passwordreset
     ADD CONSTRAINT passwordreset_fk
-        FOREIGN KEY (person) REFERENCES person (email);
+        FOREIGN KEY (person) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE medicalcertificate
     ADD CONSTRAINT medicalcertificate_fk
-        FOREIGN KEY (person) REFERENCES person (email);
+        FOREIGN KEY (person) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE reservation
     ADD CONSTRAINT reservation_fk1
-        FOREIGN KEY (trainee) REFERENCES person (email);
+        FOREIGN KEY (trainee) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE reservation
     ADD CONSTRAINT reservation_fk2
@@ -160,11 +160,11 @@ ALTER TABLE teaches
 
 ALTER TABLE teaches
     ADD CONSTRAINT teaches_fk2
-        FOREIGN KEY (trainer) REFERENCES person (email);
+        FOREIGN KEY (trainer) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE lecturetimeslot
     ADD CONSTRAINT lecturetimeslot_fk1
-        FOREIGN KEY (roomname) REFERENCES room (name);
+        FOREIGN KEY (roomname) REFERENCES room (name) ;
 
 ALTER TABLE lecturetimeslot
     ADD CONSTRAINT lecturetimeslot_fk2
@@ -172,7 +172,7 @@ ALTER TABLE lecturetimeslot
 
 ALTER TABLE lecturetimeslot
     ADD CONSTRAINT lecturetimeslot_fk3
-        FOREIGN KEY (substitution) REFERENCES person (email);
+        FOREIGN KEY (substitution) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE subscription
     ADD CONSTRAINT subscription_fk1
@@ -180,7 +180,7 @@ ALTER TABLE subscription
 
 ALTER TABLE subscription
     ADD CONSTRAINT subscription_fk2
-        FOREIGN KEY (trainee) REFERENCES person (email);
+        FOREIGN KEY (trainee) REFERENCES person (email) ON DELETE CASCADE ;
 
 ALTER TABLE subscriptiontype
     ADD CONSTRAINT subscriptiontype_fk
