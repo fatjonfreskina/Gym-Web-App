@@ -59,16 +59,18 @@ public class PasswordForgotServlet extends AbstractServlet {
             //Check if such an email exists in the database
             person = new GetUserByEmailDatabase(conn, email).execute();
         } catch (SQLException | NamingException e) {
-            e.printStackTrace();
+            //TODO: Error handling
         }
 
         //If the person has not been found do something
         if(person == null){
-            //TODO: Throw some error
+            //TODO: Error handling
         } else {
             //Generate a new token string of length 256
             try {
                 String token = EncryptionManager.encrypt(person.getAddress());
+                //Reopen a new connection
+                conn = getDataSource().getConnection();
                 //Take the actual date and add 24H
                 Date now = new Date();
                 Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(24));
@@ -80,8 +82,8 @@ public class PasswordForgotServlet extends AbstractServlet {
                 new InsertPasswordResetDatabase(conn, passwordReset).execute();
                 MailTypes.mailForPasswordChanges(person, passwordReset);
                 out.println("Mail sent!");
-            } catch (NoSuchAlgorithmException | MessagingException | SQLException e) {
-                //TODO: Throw some error
+            } catch (NoSuchAlgorithmException | MessagingException | SQLException | NamingException e) {
+                //TODO: Error handling
             }
 
         }
