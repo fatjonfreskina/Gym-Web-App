@@ -38,4 +38,44 @@ public class GetUserRolesDatabase {
         }
         return list;
     }
+/* //TODO Ok inserire qua o creare un Dao a parte?
+    public String executeForHighestRole() throws SQLException
+    {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        String result;
+        List<TypeOfRoles> list = new ArrayList<>();
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(STATEMENT);
+            preparedStatement.setString(1, person.getEmail());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                list.add(new TypeOfRoles(resultSet.getString("role")));
+            }
+
+        } finally {
+            if (resultSet != null)
+                resultSet.close();
+            if (preparedStatement != null)
+                preparedStatement.close();
+            connection.close();
+        }
+        // Check the highest role
+        if (list.contains("secretary"))
+        {
+            result = "secretary";
+            return result;
+        } else if (list.contains("trainer")){
+            result = "trainer";
+            return result;
+        } else {
+            result = "trainee";
+            return result;
+        }
+        }
+*/
+
 }
