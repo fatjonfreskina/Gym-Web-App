@@ -10,8 +10,8 @@
 <body>
 <h1>Ask for password reset</h1>
 
-<form method="POST" action="<c:url value="/password_forgot"/>" enctype="multipart/form-data">
-    <label for="email">First name:</label><br>
+<form method="POST" action="<c:url value="/password_forgot"/>" enctype="application/x-www-form-urlencoded">
+    <label for="email">Email address:</label><br>
     <input type="text" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
     <input type="submit" value="Submit">
 </form>

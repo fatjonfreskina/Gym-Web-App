@@ -9,6 +9,7 @@
     <jsp:include page="/jsp/include/header.jsp"/><br>
     <div class="row">
         <div class="column">
+            <img src="<c:url value="/images/photo_gym_1.jpg"></c:url>" alt="Pesi" style="width:100%" width="1920" height="1280">
             <img src="/images/photo_gym_1.jpg" alt="Pesi" style="width:100%" width="1920" height="1280">
         </div>
         <div class="column">

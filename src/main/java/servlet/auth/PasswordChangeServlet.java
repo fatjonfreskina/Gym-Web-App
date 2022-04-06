@@ -5,6 +5,7 @@ import constants.Constants;
 import constants.ErrorCodes;
 import dao.passwordreset.GetPasswordResetDatabase;
 import dao.person.GetUserByEmailDatabase;
+import dao.person.UpdateUserDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -48,10 +50,11 @@ public class PasswordChangeServlet extends AbstractServlet {
         }
 
         Person actualPerson = null;
+        Connection conn = null;
 
         try {
             //Get database connection
-            var conn = getDataSource().getConnection();
+            conn = getDataSource().getConnection();
             //Retrieve the PasswordReset instance
             PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(conn, passwordReset).execute();
             //Retrieve the Person associated
@@ -86,13 +89,14 @@ public class PasswordChangeServlet extends AbstractServlet {
                             actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
 
                     //Update the person
-                    //TODO
+                    new UpdateUserDatabase(conn, newPerson).execute();
 
                     //No error occurred
                     status = ErrorCodes.OK;
 
-                } catch (NoSuchAlgorithmException e) {
+                } catch (NoSuchAlgorithmException | SQLException e) {
                     e.printStackTrace();
+                    status = ErrorCodes.INTERNAL_ERROR;
                 }
 
             } else {
@@ -102,14 +106,13 @@ public class PasswordChangeServlet extends AbstractServlet {
             }
 
         } else {
-
             // Input field has something nasty inside
-
+            status = ErrorCodes.INTERNAL_ERROR;
         }
 
         //If an error has occurred while updating the password than show something
         if(status != ErrorCodes.OK){
-            //
+            // TODO: Handle errors
         }
 
     }
