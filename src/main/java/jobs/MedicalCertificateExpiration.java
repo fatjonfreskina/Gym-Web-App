@@ -29,10 +29,10 @@ public class MedicalCertificateExpiration implements Runnable {
         try {
             ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
-            Connection c = ds.getConnection();
+            Connection conn = ds.getConnection();
 
             //Get all the users
-            var gau = new GetAllUsersDatabase(c);
+            var gau = new GetAllUsersDatabase(conn);
             List<Person> personList = gau.execute();
 
             Date actualDate = new Date();
@@ -41,7 +41,8 @@ public class MedicalCertificateExpiration implements Runnable {
             for (Person p: personList) {
 
                 boolean hasValidCertificate = false;
-                var gmc = new GetMedicalCertificateDatabase(c,p);
+
+                var gmc = new GetMedicalCertificateDatabase(((DataSource) ctx.lookup(Constants.DATASOURCE)).getConnection(),p);
                 List<MedicalCertificate> certificateList = gmc.execute();
 
                 //Check if the user has at least one non expired medical certificate

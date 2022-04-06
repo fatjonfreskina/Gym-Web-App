@@ -29,34 +29,46 @@ public class PasswordChangeServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Read the token field from the request (GET parameter)
+        String token = req.getParameter("token"); //TODO: Declare a constant for String "token"
+        //Pass the token
+        req.setAttribute("token",token);
         //Show the form to insert the new password
         req.getRequestDispatcher(Constants.PATH_PASSWORD_CHANGE).forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp){
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
 
         //Manages errors inside this function
         ErrorCodes status = null;
 
-        //Read the token field from the request (GET parameter)
-        String token = req.getParameter("token"); //TODO: Declare a constant for String "token"
+        //Get the token (hidden attribute)
+        String token = req.getParameter("token");
+        out.println(token);
+
+        if(token == null){
+            //TODO: Throw some error
+            return;
+        }
 
         Person actualPerson = null;
-        Connection conn = null;
         PasswordReset passwordReset = null;
 
         try {
-            //Get database connection
-            conn = getDataSource().getConnection();
             //Retrieve the PasswordReset instance
-            PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(conn, passwordReset).execute();
+            PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
+            out.println(passwordResetDatabase);
             //Retrieve the Person associated
-            actualPerson = new GetUserByEmailDatabase(conn, passwordResetDatabase.getPerson()).execute();
+            actualPerson = new GetUserByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
         } catch (SQLException | NamingException e) {
-            e.printStackTrace();
+            //TODO: Manage the error
         }
 
+        /*
         if(passwordReset == null){
             //Password reset record not found in the database
             status = ErrorCodes.INTERNAL_ERROR;
@@ -88,12 +100,12 @@ public class PasswordChangeServlet extends AbstractServlet {
                             actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
 
                     //Update the person
-                    new UpdateUserDatabase(conn, newPerson).execute();
+                    new UpdateUserDatabase(getDataSource().getConnection(), newPerson).execute();
 
                     //No error occurred
                     status = ErrorCodes.OK;
 
-                } catch (NoSuchAlgorithmException | SQLException e) {
+                } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
                     e.printStackTrace();
                     status = ErrorCodes.INTERNAL_ERROR;
                 }
@@ -113,6 +125,7 @@ public class PasswordChangeServlet extends AbstractServlet {
         if(status != ErrorCodes.OK){
             // TODO: Handle errors
         }
+         */
 
     }
 }
