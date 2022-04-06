@@ -60,7 +60,7 @@ public class MailTypes {
     // This mail is sent when someone requests for a password changes
     public static void mailForPasswordChanges(Person person, PasswordReset passwordReset) throws MessagingException {
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" + "\n\n" + "we inform you that we received a request to change your password." + "\n If you ask for this, please, click the link below. Otherwise ignore this email\n" + passwordReset.getToken() + "\nthe link will expire in 30 minutes" + "\n\nKind regards,\n" + "The Gwa Team";
+        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n" + "\n\n" + "we inform you that we received a request to change your password." + "\nIf you ask for this, please, click the link below. Otherwise ignore this email\n" + Constants.PASSWORD_CHANGE_URL + passwordReset.getToken() + "\nthe link will expire in 30 minutes" + "\n\nKind regards,\n" + "The Gwa Team";
 
         MANAGER.sendMail(person.getEmail(), "GWA Password reset request", emailContent);
     }

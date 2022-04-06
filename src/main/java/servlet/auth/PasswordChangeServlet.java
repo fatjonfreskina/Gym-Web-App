@@ -42,15 +42,9 @@ public class PasswordChangeServlet extends AbstractServlet {
         //Read the token field from the request (GET parameter)
         String token = req.getParameter("token"); //TODO: Declare a constant for String "token"
 
-        PasswordReset passwordReset = new PasswordReset(token);
-        if(passwordReset == null){
-            //Password reset record not found in the database
-            status = ErrorCodes.INTERNAL_ERROR;
-            return;
-        }
-
         Person actualPerson = null;
         Connection conn = null;
+        PasswordReset passwordReset = null;
 
         try {
             //Get database connection
@@ -61,6 +55,11 @@ public class PasswordChangeServlet extends AbstractServlet {
             actualPerson = new GetUserByEmailDatabase(conn, passwordResetDatabase.getPerson()).execute();
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
+        }
+
+        if(passwordReset == null){
+            //Password reset record not found in the database
+            status = ErrorCodes.INTERNAL_ERROR;
         }
 
         //Get from the request the new password and then change it

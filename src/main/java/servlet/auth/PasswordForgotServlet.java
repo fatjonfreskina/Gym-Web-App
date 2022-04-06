@@ -1,12 +1,29 @@
 package servlet.auth;
 
 import constants.Constants;
+import constants.ErrorCodes;
+import dao.passwordreset.GetPasswordResetDatabase;
+import dao.passwordreset.InsertPasswordResetDatabase;
+import dao.person.GetUserByEmailDatabase;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import resource.PasswordReset;
+import resource.Person;
 import servlet.AbstractServlet;
+import utils.EncryptionManager;
+import utils.MailTypes;
 
+import javax.naming.NamingException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Riccardo Forzan
@@ -20,9 +37,55 @@ public class PasswordForgotServlet extends AbstractServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //If a POST request has been sent, then add a record to the table for password reset and return a view
-        //TODO
-        resp.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
+
+        //Manages errors inside this function
+        ErrorCodes status = null;
+
+        //Read the token field from the request (GET parameter)
+        String email = req.getParameter("email");
+
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        out.println(email);
+
+        Person person = null;
+        Connection conn = null;
+
+        try {
+            //Get database connection
+            conn = getDataSource().getConnection();
+            //Check if such an email exists in the database
+            person = new GetUserByEmailDatabase(conn, email).execute();
+        } catch (SQLException | NamingException e) {
+            e.printStackTrace();
+        }
+
+        //If the person has not been found do something
+        if(person == null){
+            //TODO: Throw some error
+        } else {
+            //Generate a new token string of length 256
+            try {
+                String token = EncryptionManager.encrypt(person.getAddress());
+                //Take the actual date and add 24H
+                Date now = new Date();
+                Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(24));
+                Timestamp expirationTimestamp = new Timestamp(expiration.getTime());
+                //PasswordReset
+                PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp,person.getEmail());
+                //Insert the password reset into the database
+                out.println(passwordReset);
+                new InsertPasswordResetDatabase(conn, passwordReset).execute();
+                MailTypes.mailForPasswordChanges(person, passwordReset);
+                out.println("Mail sent!");
+            } catch (NoSuchAlgorithmException | MessagingException | SQLException e) {
+                //TODO: Throw some error
+            }
+
+        }
+
+
     }
 }

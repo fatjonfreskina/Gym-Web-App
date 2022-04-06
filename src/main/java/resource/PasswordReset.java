@@ -8,12 +8,6 @@ public class PasswordReset {
     private final Timestamp expirationDate;
     private final String person;
 
-    public PasswordReset(String token) {
-        this.token = token;
-        this.expirationDate = null;
-        this.person = null;
-    }
-
     public PasswordReset(String token, Timestamp expirationDate, String person) {
         this.token = token;
         this.expirationDate = expirationDate;
@@ -32,4 +26,12 @@ public class PasswordReset {
         return person;
     }
 
+    @Override
+    public String toString() {
+        return "PasswordReset{" +
+                "token='" + token + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", person='" + person + '\'' +
+                '}';
+    }
 }
