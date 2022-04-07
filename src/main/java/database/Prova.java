@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class Prova {
-    
+
     private static final String DB_GWA = "jdbc:postgresql://localhost:5432/gwa_db";
     private static final String USER = "robot";
     private static final String PASS = "robot";
@@ -22,8 +22,8 @@ public class Prova {
 
         LectureTimeSlot l = lectureTimeSlot.get(0);
 
-        String x =l.toGson();
+        //String x =l.toGson();
 
-        System.out.println(x);
+        //System.out.println(x);
     }
 }

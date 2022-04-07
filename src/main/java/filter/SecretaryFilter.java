@@ -39,11 +39,11 @@ public class SecretaryFilter extends HttpFilter {
         logger.info(loggerClass + "unauthorized user " + session.getAttribute("email") +
             " with roles " + roles +
             " tried to access the secretary's sections");
-        res.sendRedirect(Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
+        res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
       }
     } else {
       logger.info(loggerClass + "User not logged it");
-      res.sendRedirect(Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
+      res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
     }
   }
 }
