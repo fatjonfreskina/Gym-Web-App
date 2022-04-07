@@ -25,10 +25,8 @@ public class CalendarServlet extends AbstractServlet {
         List<WeeklyCalendarSlot> list = null;
         try {
             list = new GetWeeklyCalendarSlotByDateDatabase(getDataSource().getConnection(), Date.valueOf(LocalDate.now())).execute();
-        } catch (SQLException ex) {
-
-        } catch (NamingException ex) {
-
+        } catch (SQLException | NamingException ex) {
+            //errore
         }
         Gson gson = new Gson();
         req.setAttribute("weeklyCalendar", gson.toJson(list));
