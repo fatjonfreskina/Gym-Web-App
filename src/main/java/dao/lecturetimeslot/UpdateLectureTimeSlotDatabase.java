@@ -1,5 +1,6 @@
 package dao.lecturetimeslot;
 
+import constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
@@ -43,12 +44,12 @@ public class UpdateLectureTimeSlotDatabase {
             logger.debug("[DEBUG] gwa.dao.UpdateLTSD - %s - query executed successfully\n".formatted(
                     new Timestamp(System.currentTimeMillis())));
             if (rs.next()) {
-                String roomName = rs.getString("roomname");
-                Date date = rs.getDate("date");
-                Time startTime = rs.getTime("starttime");
-                int courseEditionId = rs.getInt("courseeditionid");
-                String courseName = rs.getString("coursename");
-                String substitution = rs.getString("substitution");
+                String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
+                Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
+                Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
+                int courseEditionId = rs.getInt(Constants.LECTURETIMESLOT_COURSEEDITIONID);
+                String courseName = rs.getString(Constants.LECTURETIMESLOT_COURSENAME);
+                String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUITION);
                 updatedLts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
 
                 logger.debug("[DEBUG] gwa.dao.UpdateLTSD - %s - Updated Successfully: %s.\n".formatted(

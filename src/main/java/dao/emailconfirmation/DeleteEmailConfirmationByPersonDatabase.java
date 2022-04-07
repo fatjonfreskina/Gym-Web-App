@@ -22,14 +22,14 @@ public class DeleteEmailConfirmationByPersonDatabase
     {
         PreparedStatement ps = null;
 
-        try {
+        try
+        {
             ps = connection.prepareStatement(STATEMENT);
             ps.setString(1, person.getEmail());
             ps.execute();
         }
         finally
         {
-
             if (ps != null)
                 ps.close();
             connection.close();

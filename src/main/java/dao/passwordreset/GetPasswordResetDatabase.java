@@ -39,12 +39,14 @@ public class GetPasswordResetDatabase {
 
         stm = con.prepareStatement(STATEMENT);
         stm.setString(1, token);
+
         rs = stm.executeQuery();
         if (rs.next()) {
             final String person = rs.getString("person");
             final Timestamp expDate = rs.getTimestamp("expirationdate");
             item = new PasswordReset(token, expDate, person);
         }
+
         return item;
     }
 

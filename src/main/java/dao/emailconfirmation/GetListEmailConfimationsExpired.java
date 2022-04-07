@@ -1,5 +1,6 @@
 package dao.emailconfirmation;
 
+import constants.Constants;
 import resource.EmailConfirmation;
 
 import java.sql.*;
@@ -31,7 +32,7 @@ public class GetListEmailConfimationsExpired
 
             result = new ArrayList<>();
             while (rs.next())
-                result.add(new EmailConfirmation(rs.getString("person"),rs.getString("token"),rs.getTimestamp("expirationdate")));
+                result.add(new EmailConfirmation(rs.getString(Constants.EMAILCONFIRMATION_PERSON),rs.getString(Constants.EMAILCONFIRMATION_TOKEN),rs.getTimestamp(Constants.EMAILCONFIRMATION_EXPIRATIONDATE)));
 
         } finally
         {

@@ -9,6 +9,6 @@ public class SlotWeeklyCalendar
     private Person substituition;
     private LectureTimeSlot lecture;
 
-    
+
 
 }
