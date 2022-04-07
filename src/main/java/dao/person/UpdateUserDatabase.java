@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class UpdateUserDatabase {
 
-    private static final String STATEMENT = "UPDATE person SET name = ?, surname = ?, pws = ?, taxcode = ?, birthdate = ?, telephone = ?, address = ?, avatarpath = ? WHERE email = ?";
+    private static final String STATEMENT = "UPDATE person SET name = ?, surname = ?, psw = ?, taxcode = ?, birthdate = ?, telephone = ?, address = ?, avatarpath = ? WHERE email = ?";
 
     private final Connection conn;
     private final Person p;
