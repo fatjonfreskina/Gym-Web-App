@@ -23,6 +23,7 @@ import java.sql.SQLException;
 
 /**
  * This servlet is accessible after having asked for a password reset.
+ *
  * @author Riccardo Forzan
  */
 public class PasswordChangeServlet extends AbstractServlet {
@@ -32,7 +33,7 @@ public class PasswordChangeServlet extends AbstractServlet {
         //Read the token field from the request (GET parameter)
         String token = req.getParameter("token"); //TODO: Declare a constant for String "token"
         //Pass the token
-        req.setAttribute("token",token);
+        req.setAttribute("token", token);
         //Show the form to insert the new password
         req.getRequestDispatcher(Constants.PATH_PASSWORD_CHANGE).forward(req, resp);
     }
@@ -40,16 +41,13 @@ public class PasswordChangeServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-
         //Manages errors inside this function
         ErrorCodes status = null;
 
         //Get the token (hidden attribute)
         String token = req.getParameter("token");
 
-        if(token == null){
+        if (token == null) {
             //TODO: Throw some error
             return;
         }
@@ -66,7 +64,7 @@ public class PasswordChangeServlet extends AbstractServlet {
             //TODO: Manage the error
         }
 
-        if(passwordReset == null){
+        if (passwordReset == null) {
             //Password reset record not found in the database
             status = ErrorCodes.INTERNAL_ERROR;
         }
@@ -82,10 +80,10 @@ public class PasswordChangeServlet extends AbstractServlet {
         boolean valid = raw_password.equals(sanitized_password);
 
         //Check if the provided password is valid or contains something possibly malicious
-        if(valid){
+        if (valid) {
 
             //Check if the password and the confirmation password are equal
-            if(raw_password.equals(raw_confirm)){
+            if (raw_password.equals(raw_confirm)) {
 
                 //The password is valid and should be updated
                 try {
@@ -93,22 +91,16 @@ public class PasswordChangeServlet extends AbstractServlet {
                     String hashed = EncryptionManager.encrypt(raw_password);
 
                     //Construct a new person with the same fields, except the password field
-                    Person newPerson = new Person(actualPerson.getEmail(), actualPerson.getName(),
-                            actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(),
-                            actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
+                    Person newPerson = new Person(actualPerson.getEmail(), actualPerson.getName(), actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(), actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
 
-                    out.println(newPerson);
-
-                    //TODO: Debug here
                     //Update the person
                     new UpdateUserDatabase(getDataSource().getConnection(), newPerson).execute();
 
-                    System.out.println("Password changed");
-
-                    //No error occurred
+                    //No error occurred, password has been changed
                     status = ErrorCodes.OK;
 
                 } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
+                    //TODO
                     e.printStackTrace();
                     status = ErrorCodes.INTERNAL_ERROR;
                 }
@@ -125,7 +117,7 @@ public class PasswordChangeServlet extends AbstractServlet {
         }
 
         //If an error has occurred while updating the password than show something
-        if(status != ErrorCodes.OK){
+        if (status != ErrorCodes.OK) {
             // TODO: Handle errors
         }
 
