@@ -102,7 +102,6 @@ public class LoginServlet extends AbstractServlet {
         EmailConfirmation emailStillToConfirm = null;
         try {
             emailStillToConfirm = (new GetEmailConfirmationIfExists(getDataSource().getConnection(), new EmailConfirmation(person.getEmail())).execute());
-            logger.info(email + " Login: validated credentialsASDASD");
         } catch (SQLException | NamingException e) {
             logger.info(e);
             error = ErrorCodes.INTERNAL_ERROR;
@@ -138,32 +137,28 @@ public class LoginServlet extends AbstractServlet {
         }
         logger.info(email + " Login: obtained roles");
 
-
+        //Create session and set attributes
+        HttpSession session = req.getSession();
+        List<String> roles=new ArrayList<>();
+        for (TypeOfRoles r : userRoles) {
+            roles.add(r.getRole());
+            logger.info(r.getRole());
+        }
+        session.setAttribute("email", person.getEmail());
+        session.setAttribute("roles", roles);
+        session.setAttribute("defaultRole", userRoles.get(0).getRole());
+        session.setAttribute("avatarPath",person.getAvatarPath());
         //Everything is fine so far! Now act depending on user roles
         if (userRoles.size() == 1) {
-            HttpSession session = req.getSession();
 
-            // insert in the session the email and the roles
-            session.setAttribute("email", person.getEmail());
-            session.setAttribute("roles", userRoles);
-            session.setAttribute("defaultRole", userRoles.get(0).getRole());
             res.sendRedirect(req.getContextPath() + "/" + userRoles.get(0).getRole());
             return;
         }
         if (userRoles.size() > 1) {
-            HttpSession session = req.getSession();
 
-            // insert in the session the email and the roles
-            session.setAttribute("email", person.getEmail());
-            session.setAttribute("roles", userRoles);
-            List<String> roles = new ArrayList<>();
-            for (TypeOfRoles r : userRoles) {
-                roles.add(r.getRole());
-                logger.info(r.getRole());
-            }
             req.setAttribute("roles", roles);
             //TODO in servlet for /access/roles where the user selects one role as default
-            session.setAttribute("defaultRole", userRoles.get(1).getRole());
+            //session.setAttribute("defaultRole", userRoles.get(1).getRole());
             req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
         }
         logger.info(email + " Login: confirmed and returned");
