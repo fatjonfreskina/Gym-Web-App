@@ -18,6 +18,26 @@
         <filter-name>TrainerFilter</filter-name>
         <url-pattern>/trainer/*</url-pattern>
     </filter-mapping>
+    <!-- Trainee Filter -->
+    <filter>
+        <filter-name>TraineeFilter</filter-name>
+        <filter-class>filter.TraineeFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>TraineeFilter</filter-name>
+        <url-pattern>/trainee/*</url-pattern>
+    </filter-mapping>
+    <!-- Secretary Filter -->
+    <filter>
+        <filter-name>SecretaryFilter</filter-name>
+        <filter-class>filter.SecretaryFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecretaryFilter</filter-name>
+        <url-pattern>/secretary/*</url-pattern>
+    </filter-mapping>
+
+    
     <!-- Servlets listing -->
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
@@ -109,6 +129,7 @@
     <servlet-mapping>
         <servlet-name>TrainerServlet</servlet-name>
         <url-pattern>/trainer</url-pattern>
+        <url-pattern>/trainer/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PasswordForgotServlet</servlet-name>

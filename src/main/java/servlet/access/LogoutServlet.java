@@ -2,6 +2,7 @@ package servlet.access;
 
 import java.io.IOException;
 
+import constants.Constants;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,6 +13,6 @@ public class LogoutServlet extends AbstractServlet {
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     req.getSession().invalidate();
-    res.sendRedirect("/");
+    res.sendRedirect(Constants.RELATIVE_URL_HOME);
   }
 }

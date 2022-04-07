@@ -15,29 +15,30 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.TypeOfRoles;
 
-public class TrainerFilter extends HttpFilter {
+public class SecretaryFilter extends HttpFilter {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.filter.TrainerFilter: ";
+  private final String loggerClass = "gwa.filter.SecretaryFilter: ";
 
   @Override
   public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-    logger.debug(loggerClass + "Filter for Trainer");
 
     HttpSession session = req.getSession(false);
     boolean loggedIn = session != null && session.getAttribute("email") != null;
+
+    logger.debug(loggerClass + "Filter for Secretary");
     if (loggedIn) {
       List<TypeOfRoles> rolesAsObj = (List<TypeOfRoles>) session.getAttribute("roles");
       List<String> roles = new ArrayList<>();
       for (TypeOfRoles role : rolesAsObj) roles.add(role.getRole());
-      if (roles.contains("trainer")) {
+      if (roles.contains("secretary")) {
         res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
         res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         chain.doFilter(req, res); // User is logged in, just continue request.
       } else {
         logger.info(loggerClass + "unauthorized user " + session.getAttribute("email") +
             " with roles " + roles +
-            " tried to access the trainer's sections");
+            " tried to access the secretary's sections");
         res.sendRedirect(Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
       }
     } else {
