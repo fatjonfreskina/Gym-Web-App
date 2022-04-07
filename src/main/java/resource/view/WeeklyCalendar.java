@@ -1,5 +1,6 @@
 package resource.view;
 
+import com.google.gson.Gson;
 import resource.LectureTimeSlot;
 
 import java.sql.Time;
@@ -84,4 +85,9 @@ public class WeeklyCalendar
         return output;
     }
 
+    public String toGson()
+    {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
 }

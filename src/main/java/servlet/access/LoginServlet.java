@@ -2,6 +2,7 @@ package servlet.access;
 
 import constants.Constants;
 import constants.ErrorCodes;
+import dao.emailconfirmation.GetEmailConfirmationIfExists;
 import dao.person.GetUserByEmailDatabase;
 import dao.person.GetUserRolesDatabase;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import resource.EmailConfirmation;
 import resource.Message;
 import resource.Person;
 import resource.TypeOfRoles;
@@ -48,10 +50,9 @@ public class LoginServlet extends AbstractServlet {
         Person person=null;
         List<TypeOfRoles> userRoles=null;
 
-        logger.info("POST");
 
         //Parse params to check if they are well-formatted, if not send back an error
-        Message message = new Message(ErrorCodes.OK.getErrorMessage(),false);
+        //Message message = new Message(ErrorCodes.OK.getErrorMessage(),false);
         ErrorCodes error = parseParams(req,res);
 
         if(error.getErrorCode() != ErrorCodes.OK.getErrorCode())
@@ -59,22 +60,26 @@ public class LoginServlet extends AbstractServlet {
             sendBackError(error,req,res);
             return;
         }
+        logger.info("Login: parsed");
 
         email = req.getParameter(Constants.EMAIL);
         password = req.getParameter(Constants.PASSWORD);
 
+
         //Encrypt password
         try{
-            logger.info("Password before:"+password);
+            //logger.info("Password before:"+password);
             password= EncryptionManager.encrypt(password);
-            logger.info(email);
-            logger.info("Password after:"+password);
+            //logger.info(email);
+            //logger.info("Password after:"+password);
         }
         catch (Exception e){
             error = ErrorCodes.INTERNAL_ERROR;
             sendBackError(error,req,res);
             return;
         }
+        logger.info(email+" Login: encrypted");
+
 
         //Validate credentials
         try {
@@ -90,6 +95,33 @@ public class LoginServlet extends AbstractServlet {
             sendBackError(error,req,res);
             return;
         }
+        logger.info(email+" Login: validated credentials");
+
+
+        //Check if the person had confirmed the email
+        EmailConfirmation emailStillToConfirm=null;
+        try {
+            emailStillToConfirm = (new GetEmailConfirmationIfExists(getDataSource().getConnection(), new EmailConfirmation(person.getEmail())).execute());
+            logger.info(email+" Login: validated credentialsASDASD");
+        }
+        catch (SQLException | NamingException e ) {
+            logger.info(e);
+            error = ErrorCodes.INTERNAL_ERROR;
+            sendBackError(error,req,res);
+            return;
+        }
+        if(emailStillToConfirm!=null){
+            error=ErrorCodes.NOT_AUTHENTICATED;
+            sendBackError(error,req,res);
+            /*
+            res.setStatus(error.getHTTPCode());
+            req.setAttribute(Constants.MESSAGE,message);
+            //sendBackError(error,req,res);
+            req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);*/
+            return;
+        }
+        logger.info(email+" Login: validated account");
+
 
         //Retrieve person roles
         try
@@ -107,6 +139,8 @@ public class LoginServlet extends AbstractServlet {
             sendBackError(error,req,res);
             return;
         }
+        logger.info(email+" Login: obtained roles");
+
 
         //Everything is fine so far! Now act depending on user roles
         if(userRoles.size()==1){
@@ -135,6 +169,7 @@ public class LoginServlet extends AbstractServlet {
             session.setAttribute("defaultRole", userRoles.get(1).getRole());
             req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req,res);
         }
+        logger.info(email+" Login: confirmed and returned");
     }
 
     /**
@@ -150,6 +185,7 @@ public class LoginServlet extends AbstractServlet {
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE,message);
         req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
+        logger.info("Login: error ="+error.getErrorMessage());
     }
 
 
@@ -157,7 +193,6 @@ public class LoginServlet extends AbstractServlet {
     {
         String email = null;
         String password= null;
-        logger.info("PARSING PARAMS");
         ErrorCodes error = ErrorCodes.OK;
         try
         {
@@ -170,17 +205,14 @@ public class LoginServlet extends AbstractServlet {
         {
             error = ErrorCodes.INVALID_FIELDS;
         }
-        logger.info("PARSING PARAMS 2");
         if(error.getErrorCode() == ErrorCodes.OK.getErrorCode())
         {
             if(email == null || email.isEmpty() || password == null || password.isEmpty())
             {
                 error = ErrorCodes.EMPTY_INPUT_FIELDS;
-                logger.info(error.getErrorMessage());
             }else if(!InputValidation.isValidEmailAddress(email))
             {
                 error = ErrorCodes.NOT_A_MAIL;
-                logger.info(error.getErrorMessage());
             }
         }
         return error;

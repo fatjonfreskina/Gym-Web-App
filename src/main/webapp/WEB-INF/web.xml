@@ -8,30 +8,30 @@
         Group project developed by GWA group of the Web Applications 2021/22 course,
         for the Computer Engineering master degree of University of Padua.
     </description>
+
     <!-- Filters -->
-    <!-- Trainer Filter -->
     <filter>
         <filter-name>TrainerFilter</filter-name>
         <filter-class>filter.TrainerFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>TrainerFilter</filter-name>
-        <url-pattern>/trainer/*</url-pattern>
-    </filter-mapping>
-    <!-- Trainee Filter -->
     <filter>
         <filter-name>TraineeFilter</filter-name>
         <filter-class>filter.TraineeFilter</filter-class>
     </filter>
-    <filter-mapping>
-        <filter-name>TraineeFilter</filter-name>
-        <url-pattern>/trainee/*</url-pattern>
-    </filter-mapping>
-    <!-- Secretary Filter -->
     <filter>
         <filter-name>SecretaryFilter</filter-name>
         <filter-class>filter.SecretaryFilter</filter-class>
     </filter>
+
+    <!-- Filters Mapping -->
+    <filter-mapping>
+        <filter-name>TrainerFilter</filter-name>
+        <url-pattern>/trainer/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>TraineeFilter</filter-name>
+        <url-pattern>/trainee/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>SecretaryFilter</filter-name>
         <url-pattern>/secretary/*</url-pattern>

@@ -52,6 +52,88 @@ public class Constants {
     public static final String MEDICAL_CERTIFICATE = "medical_certificate";
     public static final String MESSAGE = "message";
 
+    //FIELDS DELLE TABELLE NOMETABELLA_NOMEFIELD
+
+    //emailconfirmation
+    public static final String EMAILCONFIRMATION_PERSON = "person";
+    public static final String EMAILCONFIRMATION_TOKEN = "token";
+    public static final String EMAILCONFIRMATION_EXPIRATIONDATE = "expirationdate";
+
+    //typeofroles
+    public static final String TYPEOFROLES_ROLE = "role";
+
+    //personroles
+    public static final String PERSONROLES_PERSON = "person";
+    public static final String PERSONROLES_ROLE = "role";
+
+    //person
+    public static final String PERSON_EMAIL = "email";
+    public static final String PERSON_NAME = "name";
+    public static final String PERSON_SURNAME = "surname";
+    public static final String PERSON_PSW = "psw";
+    public static final String PERSON_TAXCODE = "taxcode";
+    public static final String PERSON_BIRTHDATE = "birthdate";
+    public static final String PERSON_TELEPHONE = "telephone";
+    public static final String PERSON_ADDRESS = "address";
+    public static final String PERSON_AVATARPATH = "avatarpath";
+
+    //passwordreset
+    public static final String PASSWORDRESET_TOKEN = "token";
+    public static final String PASSWORDRESET_EXPIRATIONDATE = "expirationdate";
+    public static final String PASSWORDRESET_PERSON = "expirationdate";
+
+    //medicalcertificate
+    public static final String MEDICALCERTIFICATE_PERSON = "person";
+    public static final String MEDICALCERTIFICATE_EXPIRATIONDATE = "expirationdate";
+    public static final String MEDICALCERTIFICATE_DOCTORNAME = "doctorname";
+    public static final String MEDICALCERTIFICATE_PATH = "path";
+
+    //reservation
+    public static final String RESERVATION_TRAINEE = "trainee";
+    public static final String RESERVATION_LECTUREROOM = "lectureroom";
+    public static final String RESERVATION_LECTUREDATE = "lecturedate";
+    public static final String RESERVATION_LECTURESTARTTIME = "lecturestarttime";
+
+    //teaches
+    public static final String TEACHES_COURSEEDITIONID = "courseeditionid";
+    public static final String TEACHES_COURSENAME = "coursename";
+    public static final String TEACHES_TRAINER = "trainer";
+
+    //room
+    public static final String ROOM_NAME = "name";
+    public static final String ROOM_SLOTS = "slots";
+
+    //lecturetimeslot
+    public static final String LECTURETIMESLOT_ROOMNAME ="roomname";
+    public static final String LECTURETIMESLOT_DATE ="date";
+    public static final String LECTURETIMESLOT_STARTTIME ="starttime";
+    public static final String LECTURETIMESLOT_COURSEEDITIONID ="courseeditionid";
+    public static final String LECTURETIMESLOT_COURSENAME ="coursename";
+    public static final String LECTURETIMESLOT_SUBSTITUITION ="substituition";
+
+    //coursedition
+    public static final String COURSEEDITION_ID = "id";
+    public static final String COURSEEDITION_NAME = "name";
+
+    //course
+    public static final String COURSE_NAME = "name";
+    public static final String COURSE_DESCRIPTION = "description";
+
+    //subscriptiontype
+    public static final String SUBSCRIPTIONTYPE_COURSEEDITIONID = "courseeditionid";
+    public static final String SUBSCRIPTIONTYPE_COURSENAME = "coursename";
+    public static final String SUBSCRIPTIONTYPE_DURATION = "duration";
+    public static final String SUBSCRIPTIONTYPE_COST = "cost";
+
+    //subscription
+    public static final String SUBSCRIPTION_COURSEEDITIONID = "courseeditionid";
+    public static final String SUBSCRIPTION_COURSENAME = "coursename";
+    public static final String SUBSCRIPTION_DURATION = "duration";
+    public static final String SUBSCRIPTION_STARTDAY = "startday";
+    public static final String SUBSCRIPTION_TRAINEE = "trainee";
+    public static final String SUBSCRIPTION_DISCOUNT = "discount";
+
+
     //UPLOAD FILE CONSTANTS
     public static final String AVATAR_PATH_FOLDER = "../gwa/avatars";
     public static final String MEDICAL_CERTIFICATE_PATH_FOLDER = "../gwa/medical_certificates";

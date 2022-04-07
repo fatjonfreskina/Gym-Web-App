@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.TypeOfRoles;
 
-public class TrainerFilter extends HttpFilter {
+public class TrainerFilter extends AbstractFilter {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
   private final String loggerClass = "gwa.filter.TrainerFilter: ";
@@ -38,11 +38,11 @@ public class TrainerFilter extends HttpFilter {
         logger.info(loggerClass + "unauthorized user " + session.getAttribute("email") +
             " with roles " + roles +
             " tried to access the trainer's sections");
-        res.sendRedirect(Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
+        res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
       }
     } else {
       logger.info(loggerClass + "User not logged it");
-      res.sendRedirect(Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
+      res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
     }
   }
 }

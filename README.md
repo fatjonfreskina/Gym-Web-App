@@ -17,3 +17,8 @@
 
 This app is designed to managed everything related to a gym. Starting from the gym itself to the people that work there and also to the users that want to attend courses offered by the gym.
 The goal is to design a web application in order for those people to be able to simplify their tasks both on the workers side but also on the gym members side. 
+
+
+To make this webapp working correctly you need to :
+- create a folder inside the tomcat web server installation folder called "gwa"
+- then go inside gwa and create two other subdirectories called : "avatars" and "medical_certificates"

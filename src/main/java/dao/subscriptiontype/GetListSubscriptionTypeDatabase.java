@@ -1,5 +1,6 @@
 package dao.subscriptiontype;
 
+import constants.Constants;
 import resource.SubscriptionType;
 
 import java.sql.Connection;
@@ -42,10 +43,10 @@ public class GetListSubscriptionTypeDatabase {
             preparedStatement = con.prepareStatement(STATEMENT);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                listSubscriptionTypes.add(new SubscriptionType(resultSet.getInt("courseeditionid"),
-                        resultSet.getString("coursename"),
-                        resultSet.getInt("duration"),
-                        resultSet.getFloat("cost")));
+                listSubscriptionTypes.add(new SubscriptionType(resultSet.getInt(Constants.SUBSCRIPTIONTYPE_COURSEEDITIONID),
+                        resultSet.getString(Constants.SUBSCRIPTIONTYPE_COURSENAME),
+                        resultSet.getInt(Constants.SUBSCRIPTIONTYPE_DURATION),
+                        resultSet.getFloat(Constants.SUBSCRIPTIONTYPE_COST)));
             }
 
         } finally {

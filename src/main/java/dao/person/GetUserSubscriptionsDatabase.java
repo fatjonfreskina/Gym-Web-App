@@ -1,5 +1,6 @@
 package dao.person;
 
+import constants.Constants;
 import resource.Person;
 import resource.Subscription;
 
@@ -47,12 +48,12 @@ public class GetUserSubscriptionsDatabase {
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 //Read all the parameters
-                int courseEditionID = resultSet.getInt("courseeditionid");
-                String courseName = resultSet.getString("coursename");
-                int duration = resultSet.getInt("duration");
-                Date startDay = resultSet.getDate("startday");
-                int discount = resultSet.getInt("discount");
-                String trainee_email = resultSet.getString("trainee");
+                int courseEditionID = resultSet.getInt(Constants.SUBSCRIPTION_COURSEEDITIONID);
+                String courseName = resultSet.getString(Constants.SUBSCRIPTION_COURSENAME);
+                int duration = resultSet.getInt(Constants.SUBSCRIPTION_DURATION);
+                Date startDay = resultSet.getDate(Constants.SUBSCRIPTION_STARTDAY);
+                int discount = resultSet.getInt(Constants.SUBSCRIPTION_DISCOUNT);
+                String trainee_email = resultSet.getString(Constants.SUBSCRIPTION_TRAINEE);
                 //Create the object
                 Subscription tmp = new Subscription(courseEditionID, courseName, duration, startDay, discount, trainee_email);
                 //Add the object to the return list

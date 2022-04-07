@@ -1,5 +1,6 @@
 package dao.subscriptiontype;
 
+import constants.Constants;
 import resource.SubscriptionType;
 
 import java.sql.Connection;
@@ -48,7 +49,7 @@ public class GetSubscriptionTypeDatabase {
                 sub = new SubscriptionType(this.subscriptionType.getCourseEditionID(),
                         this.subscriptionType.getCourseName(),
                         this.subscriptionType.getDuration(),
-                        resultSet.getFloat("cost")
+                        resultSet.getFloat(Constants.SUBSCRIPTIONTYPE_COST)
                 );
             }
         } finally {

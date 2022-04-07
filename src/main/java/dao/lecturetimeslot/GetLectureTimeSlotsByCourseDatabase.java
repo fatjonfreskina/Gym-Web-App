@@ -1,5 +1,7 @@
 package dao.lecturetimeslot;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
 import java.sql.*;
@@ -30,13 +32,14 @@ public class GetLectureTimeSlotsByCourseDatabase {
 
             rs = ps.executeQuery();
 
-            while (rs.next()) {
-                String roomName = rs.getString("roomname");
-                Date date = rs.getDate("date");
-                Time startTime = rs.getTime("starttime");
-                int courseEditionId = rs.getInt("courseeditionid");
-                String courseName = rs.getString("coursename");
-                String substitution = rs.getString("substitution");
+            while (rs.next())
+            {
+                String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
+                Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
+                Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
+                int courseEditionId = rs.getInt(Constants.LECTURETIMESLOT_COURSEEDITIONID);
+                String courseName = rs.getString(Constants.LECTURETIMESLOT_COURSENAME);
+                String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUITION);
                 LectureTimeSlot lts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
                 result.add(lts);
             }

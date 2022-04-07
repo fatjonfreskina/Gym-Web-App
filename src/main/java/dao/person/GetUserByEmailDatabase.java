@@ -1,5 +1,6 @@
 package dao.person;
 
+import constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.Person;
@@ -35,15 +36,15 @@ public class GetUserByEmailDatabase
 
             if(rs.next())
                 result = new Person(
-                        rs.getString("email"),
-                        rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getString("psw"), //password
-                        rs.getString("taxCode"),
-                        rs.getDate("birthDate"),
-                        rs.getString("telephone"),
-                        rs.getString("address"),
-                        rs.getString("avatarPath")
+                        rs.getString(Constants.PERSON_EMAIL),
+                        rs.getString(Constants.PERSON_NAME),
+                        rs.getString(Constants.PERSON_SURNAME),
+                        rs.getString(Constants.PERSON_PSW), //password
+                        rs.getString(Constants.PERSON_TAXCODE),
+                        rs.getDate(Constants.PERSON_BIRTHDATE),
+                        rs.getString(Constants.PERSON_TELEPHONE),
+                        rs.getString(Constants.PERSON_ADDRESS),
+                        rs.getString(Constants.PERSON_AVATARPATH)
                         );
         }
         finally

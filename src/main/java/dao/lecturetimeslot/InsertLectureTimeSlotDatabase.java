@@ -1,5 +1,6 @@
 package dao.lecturetimeslot;
 
+import constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
@@ -29,7 +30,8 @@ public class InsertLectureTimeSlotDatabase {
         ResultSet rs = null;
 
         LectureTimeSlot insertedLTS = null;
-        try {
+        try
+        {
             ps = connection.prepareStatement(STATEMENT);
             ps.setString(1, lts.getRoomName());
             ps.setDate(2, lts.getDate());
@@ -40,12 +42,12 @@ public class InsertLectureTimeSlotDatabase {
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                String roomName = rs.getString("roomname");
-                Date date = rs.getDate("date");
-                Time startTime = rs.getTime("starttime");
-                int courseEditionId = rs.getInt("courseeditionid");
-                String courseName = rs.getString("coursename");
-                String substitution = rs.getString("substitution");
+                String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
+                Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
+                Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
+                int courseEditionId = rs.getInt(Constants.LECTURETIMESLOT_COURSEEDITIONID);
+                String courseName = rs.getString(Constants.LECTURETIMESLOT_COURSENAME);
+                String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUITION);
                 insertedLTS = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
 
                 logger.debug("[DEBUG] gwa.dao.InsertLTSD - %s - %s Inserted successfully.\n".formatted(

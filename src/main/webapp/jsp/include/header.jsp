@@ -10,7 +10,7 @@
         <th><a href="<c:url value="/staff"/>">Staff</a></th>
         <th><a href="<c:url value="/aboutus"/>">Contact Us</a></th>
 
-        <!--
+
         <c:choose>
             <c:when test="${empty sessionScope.roles}">
                 <th><a href="<c:url value="/register"/>">Register</a></th>
@@ -21,7 +21,6 @@
                 <th><a href="<c:url value="/logout"/>">Logout</a></th>
             </c:otherwise>
         </c:choose>
-        -->
 
     </tr>
 </table>

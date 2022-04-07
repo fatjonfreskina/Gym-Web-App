@@ -1,5 +1,6 @@
 package dao.medicalcertificate;
 
+import constants.Constants;
 import resource.MedicalCertificate;
 import resource.Person;
 
@@ -35,10 +36,10 @@ public class GetMedicalCertificateDatabase {
             //Iterate over all the certificates
             while (resultSet.next()) {
                 //Parse data
-                String person = resultSet.getString("person");
-                Date expirationdate = resultSet.getDate("expirationdate");
-                String doctorname = resultSet.getString("doctorname");
-                String path = resultSet.getString("path");
+                String person = resultSet.getString(Constants.MEDICALCERTIFICATE_PERSON);
+                Date expirationdate = resultSet.getDate(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE);
+                String doctorname = resultSet.getString(Constants.MEDICALCERTIFICATE_DOCTORNAME);
+                String path = resultSet.getString(Constants.MEDICALCERTIFICATE_PATH);
                 //Construct the object
                 var mc = new MedicalCertificate(person, expirationdate, doctorname, path);
                 //Add the object to the array

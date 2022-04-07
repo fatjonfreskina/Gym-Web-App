@@ -1,5 +1,6 @@
 package dao.passwordreset;
 
+import constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.PasswordReset;
@@ -42,12 +43,14 @@ public class GetPasswordResetDatabase {
 
         stm = con.prepareStatement(STATEMENT);
         stm.setString(1, token);
+
         rs = stm.executeQuery();
         if (rs.next()) {
-            final String person = rs.getString("person");
-            final Timestamp expDate = rs.getTimestamp("expirationdate");
+            final String person = rs.getString(Constants.PASSWORDRESET_PERSON);
+            final Timestamp expDate = rs.getTimestamp(Constants.PASSWORDRESET_EXPIRATIONDATE);
             item = new PasswordReset(token, expDate, person);
         }
+
         return item;
     }
 

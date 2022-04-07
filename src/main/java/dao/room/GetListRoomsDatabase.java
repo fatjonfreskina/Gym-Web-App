@@ -1,5 +1,6 @@
 package dao.room;
 
+import constants.Constants;
 import resource.Room;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author Francesco Caldivezzi
  */
 public class GetListRoomsDatabase {
-    private static final String STATEMENT = "SELECT name, slots FROM room;";
+    private static final String STATEMENT = "SELECT * FROM room;";
 
     private final Connection con;
 
@@ -41,7 +42,7 @@ public class GetListRoomsDatabase {
             pstmt = con.prepareStatement(STATEMENT);
             rs = pstmt.executeQuery();
             while (rs.next())
-                listRooms.add(new Room(rs.getString("name"), rs.getInt("slots")));
+                listRooms.add(new Room(rs.getString(Constants.ROOM_NAME), rs.getInt(Constants.ROOM_SLOTS)));
         } finally {
             if (rs != null)
                 rs.close();

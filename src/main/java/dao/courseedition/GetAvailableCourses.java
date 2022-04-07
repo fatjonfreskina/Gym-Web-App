@@ -44,7 +44,6 @@ public class GetAvailableCourses {
                 res.close();
             if (prstm != null)
                 prstm.close();
-
             con.close();
         }
 
