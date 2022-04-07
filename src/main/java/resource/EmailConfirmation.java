@@ -14,6 +14,12 @@ public class EmailConfirmation {
         this.expirationDate = expirationDate;
     }
 
+    public EmailConfirmation(final String person) {
+        this.person = person;
+        this.token = null;
+        this.expirationDate = null;
+    }
+
     public String getPerson() {
         return person;
     }

@@ -13,6 +13,11 @@
     <label>Password : </label><input type="password" name="password"><br/>
     <button type="submit" >Login</button>
 </form>
+<c:choose>
+    <c:when test="${message.error}">
+        <p><c:out value="${message.message}"/></p>
+    </c:when>
+</c:choose>
 <jsp:include page="../include/footer.jsp"/><br>
 </body>
 </html>
