@@ -1,5 +1,8 @@
 package resource;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class Course {
 
     private final String name;

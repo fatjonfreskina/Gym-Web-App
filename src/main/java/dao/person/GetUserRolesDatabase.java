@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class GetUserRolesDatabase {
 
     private static final String STATEMENT = "SELECT * FROM personroles JOIN person ON personroles.person = person.email WHERE email = ?";

@@ -2,6 +2,9 @@ package resource;
 
 import java.sql.Timestamp;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class EmailConfirmation {
 
     private final String person;

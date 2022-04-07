@@ -8,6 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Riccardo Tumiati
+ * @author Francesco Caldivezzi
+ */
 public class GetUserByTaxCodeDatabase {
     private static final String STATEMENT = "SELECT * FROM person WHERE taxcode = ?";
 

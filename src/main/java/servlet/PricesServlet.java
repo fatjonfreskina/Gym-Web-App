@@ -11,23 +11,17 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-//import
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class PricesServlet extends AbstractServlet {
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
-    {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<SubscriptionType> list = null;
-        try
-        {
+        try {
             list = new GetListSubscriptionTypeDatabase(getDataSource().getConnection()).execute();
-        }
-        catch (SQLException ex)
-        {
-
-        }
-        catch (NamingException ex)
-        {
+        } catch (SQLException | NamingException ex) {
 
         }
         req.setAttribute("subscriptionTypeList", list);

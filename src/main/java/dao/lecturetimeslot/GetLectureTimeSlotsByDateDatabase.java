@@ -20,19 +20,16 @@ public class GetLectureTimeSlotsByDateDatabase {
     private final Connection connection;
     private static final Logger logger = LogManager.getLogger("harjot_singh_appender");
 
-    public GetLectureTimeSlotsByDateDatabase(final Connection connection, final Date date)
-    {
+    public GetLectureTimeSlotsByDateDatabase(final Connection connection, final Date date) {
         this.connection = connection;
         this.date = date;
     }
 
-    public List<LectureTimeSlot> execute() throws SQLException
-    {
+    public List<LectureTimeSlot> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<LectureTimeSlot> result = new ArrayList<>();
-        try
-        {
+        try {
             ps = connection.prepareStatement(STATEMENT);
             ps.setDate(1, date);
             ps.setDate(2, date);
@@ -40,8 +37,7 @@ public class GetLectureTimeSlotsByDateDatabase {
             rs = ps.executeQuery();
             logger.debug("[DEBUG] gwa.dao.GetLTSByDateD - %s - query executed successfully, retrieving data...\n".formatted(
                     new Timestamp(System.currentTimeMillis())));
-            while (rs.next())
-            {
+            while (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
                 Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
@@ -54,13 +50,11 @@ public class GetLectureTimeSlotsByDateDatabase {
                         new Timestamp(System.currentTimeMillis()), lts.toString()));
                 result.add(lts);
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             logger.error("[ERROR] gwa.dao.GetLTSByDateD - %s - Exception:\n%s\n".
                     formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
             throw ex;
-        } finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
             if (ps != null)

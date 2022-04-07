@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class InsertUserRoleDatabase {
     private static final String STATEMENT = "INSERT INTO personroles VALUES (?,?)";
 

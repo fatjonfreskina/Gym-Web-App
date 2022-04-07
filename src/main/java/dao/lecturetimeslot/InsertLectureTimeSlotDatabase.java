@@ -30,8 +30,7 @@ public class InsertLectureTimeSlotDatabase {
         ResultSet rs = null;
 
         LectureTimeSlot insertedLTS = null;
-        try
-        {
+        try {
             ps = connection.prepareStatement(STATEMENT);
             ps.setString(1, lts.getRoomName());
             ps.setDate(2, lts.getDate());

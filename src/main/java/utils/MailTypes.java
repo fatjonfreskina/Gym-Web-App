@@ -6,16 +6,16 @@ import resource.*;
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author Simone D'Antimo
+ * @author Franceco Caldivezzi
+ */
 public class MailTypes {
 
-    /**
-     * @TODO Include Multipart for formatting mails in HTML
-     * <p>
-     * Setup the mail manager with the correct parameters.
-     * @param host The SMTP host used in order to send the message
-     * @param port The SMTP host port used in order to send the message
-     * @param email The e-mail address of the sender
-     * @param password The password of the sender's e-mail address
+    //TODO: Include Multipart for formatting mails in HTML
+
+    //TODO: Fix the JavaDoc
+    /*
      * @method registrationConfirmed : If a registration go well
      * @method mailForConfirmRegistration : Sent when a registration request comes
      * @method mailForSubscriptionToCourse : When a secretary register someone to a course

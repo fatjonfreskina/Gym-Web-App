@@ -10,10 +10,10 @@ import java.util.Properties;
 
 /**
  * This class is used to manage e-mail messages.
+ *
  * @author Marco Alessio
- * */
-public class MailManager
-{
+ */
+public class MailManager {
     /*
     Connection parameters per e-mail provider:
 
@@ -30,14 +30,14 @@ public class MailManager
 
     /**
      * Setup the mail manager with the correct parameters.
-     * @param host The SMTP host used in order to send the message
-     * @param port The SMTP host port used in order to send the message
-     * @param email The e-mail address of the sender
+     *
+     * @param host     The SMTP host used in order to send the message
+     * @param port     The SMTP host port used in order to send the message
+     * @param email    The e-mail address of the sender
      * @param password The password of the sender's e-mail address
      */
 
-    public MailManager(String host, int port, String email, String password)
-    {
+    public MailManager(String host, int port, String email, String password) {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.host", host);
@@ -50,11 +50,9 @@ public class MailManager
         properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        session = Session.getInstance(properties, new Authenticator()
-        {
+        session = Session.getInstance(properties, new Authenticator() {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication()
-            {
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, password);
             }
         });
@@ -68,13 +66,13 @@ public class MailManager
 
     /**
      * This method is used to send a simple e-mail message, composed only of plain text.
-     * @param email : The e-mail address of the single receiver
+     *
+     * @param email   : The e-mail address of the single receiver
      * @param subject : The subject of the e-mail
-     * @param text : The text of the e-mail
+     * @param text    : The text of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
-     * */
-    public void sendMail(String email, String subject, String text) throws MessagingException
-    {
+     */
+    public void sendMail(String email, String subject, String text) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 
@@ -92,13 +90,13 @@ public class MailManager
 
     /**
      * This method is used to send a complex e-mail message, and not limited to only plain text.
-     * @param email : The e-mail address of the single receiver
+     *
+     * @param email   : The e-mail address of the single receiver
      * @param subject : The subject of the e-mail
      * @param content : The content of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
-     * */
-    public void sendMail(String email, String subject, Multipart content) throws MessagingException
-    {
+     */
+    public void sendMail(String email, String subject, Multipart content) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 
@@ -119,8 +117,7 @@ public class MailManager
     //- image + side text, at the top
     //- text, below
     //as HTML code.
-    public void sendMail__Testing(String email, String subject) throws Exception
-    {
+    public void sendMail__Testing(String email, String subject) throws Exception {
         long t1 = System.currentTimeMillis();
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
@@ -135,18 +132,18 @@ public class MailManager
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
         final String htmlText =
-               """
-               <div style="width:100%; height:128px;">
-                   <div style="width:150px; height:100%; float:left;">
-                       <img src="cid:logo_cid" alt="gwa_logo" width="128" height="128">
-                   </div>
-                   <div style="width:100%; height:100%;">
-                       <h3>GWA Gym</h3>
-                       Padua, Italy
-                   </div>
-               </div>
-               <h1>Useless text just to try.</h1>
-               """;
+                """
+                        <div style="width:100%; height:128px;">
+                            <div style="width:150px; height:100%; float:left;">
+                                <img src="cid:logo_cid" alt="gwa_logo" width="128" height="128">
+                            </div>
+                            <div style="width:100%; height:100%;">
+                                <h3>GWA Gym</h3>
+                                Padua, Italy
+                            </div>
+                        </div>
+                        <h1>Useless text just to try.</h1>
+                        """;
 
 
         Multipart multipart = new MimeMultipart();
@@ -182,16 +179,15 @@ public class MailManager
 
         final String debugInfo =
                 """
-                Timings:
-                1) Addresses creation: %d ms
-                2) Preparing content:  %d ms
-                3) Sending the e-mail: %d ms
-                
-                """.formatted(t1, t2, t3);
+                        Timings:
+                        1) Addresses creation: %d ms
+                        2) Preparing content:  %d ms
+                        3) Sending the e-mail: %d ms
+                                        
+                        """.formatted(t1, t2, t3);
 
 
-        if (true)
-        {
+        if (true) {
             System.out.println(debugInfo);
 
             //throw new MessagingException(debugInfo);

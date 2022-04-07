@@ -21,16 +21,10 @@ public class DeleteEmailConfirmationByPersonDatabase {
 
     public void execute() throws SQLException {
 
-        try {
-            ps = connection.prepareStatement(STATEMENT);
+        try (PreparedStatement ps = connection.prepareStatement(STATEMENT)) {
             ps.setString(1, person.getEmail());
             ps.execute();
-        }
-        finally
-        {
-
-            if (ps != null)
-                ps.close();
+        } finally {
             connection.close();
         }
     }

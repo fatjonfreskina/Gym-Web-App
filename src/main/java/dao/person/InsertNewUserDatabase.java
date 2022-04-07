@@ -4,6 +4,9 @@ import resource.Person;
 
 import java.sql.*;
 
+/**
+ * @author Riccardo Tumiati
+ */
 public class InsertNewUserDatabase {
     private static final String STATEMENT = "INSERT INTO person VALUES (?,?,?,?,?,?,?,?,?)";
 

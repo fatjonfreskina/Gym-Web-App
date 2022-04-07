@@ -3,8 +3,12 @@ package resource;
 import java.sql.Date;
 import java.util.Objects;
 
-public class Person
-{
+/**
+ * @author Francesco Caldivezzi
+ * @author Riccardo Forzan
+ * @author Simone D'Antimo
+ */
+public class Person {
     public static final String ROLE_TRAINEE = "trainee";
     public static final String ROLE_TRAINER = "trainer";
     public static final String ROLE_SECRETARY = "secretary";
@@ -22,8 +26,7 @@ public class Person
     private final String address;
     private final String avatarPath;
 
-    public Person(String email, String name, String surname, String psw, String taxCode, Date birthDate, String telephone, String address, String avatarPath)
-    {
+    public Person(String email, String name, String surname, String psw, String taxCode, Date birthDate, String telephone, String address, String avatarPath) {
         this.email = email;
         this.name = name;
         this.surname = surname;

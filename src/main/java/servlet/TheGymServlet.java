@@ -7,9 +7,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+/**
+ * @author Harjot Singh
+ */
 public class TheGymServlet extends AbstractServlet {
-  @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     /*try {
       DataSource dataSource = getDataSource();
       //? SELECT Name, Slots FROM Room
@@ -17,6 +20,6 @@ public class TheGymServlet extends AbstractServlet {
       System.out.println("Error " + e.getMessage());
       e.printStackTrace();
     }*/
-    req.getRequestDispatcher(Constants.PATH_THE_GYM).forward(req, res);
-  }
+        req.getRequestDispatcher(Constants.PATH_THE_GYM).forward(req, res);
+    }
 }

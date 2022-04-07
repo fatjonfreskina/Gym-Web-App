@@ -68,8 +68,7 @@ public class GetWeeklyCalendarSlotByDateDatabase {
                         rs.getString("trainer_avatarPath")
                 );
                 Person sub_trainer = null;
-                if (substitution != null)
-                {
+                if (substitution != null) {
                     sub_trainer = new Person(
                             rs.getString("email"),
                             rs.getString("name"),

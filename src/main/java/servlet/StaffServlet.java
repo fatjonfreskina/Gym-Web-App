@@ -15,22 +15,25 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Riccardo Tumiati
+ */
 public class StaffServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<Trainer> l_trainer = null;
         Message m = null;
-        try{
+        try {
             l_trainer = new GetStaffDatabase(getDataSource().getConnection()).execute();
             m = new Message("Trainers retrieved correctly");
-        }catch(NamingException e){
-            m = new Message("NamingException",true);
-        }catch(SQLException e){
+        } catch (NamingException e) {
+            m = new Message("NamingException", true);
+        } catch (SQLException e) {
             m = new Message("SQLException", true);
         }
 
-        req.setAttribute("trainerlist",l_trainer);
-        req.setAttribute("message",m);
+        req.setAttribute("trainerlist", l_trainer);
+        req.setAttribute("message", m);
 
-        req.getRequestDispatcher(Constants.PATH_STAFF).forward(req,res);
+        req.getRequestDispatcher(Constants.PATH_STAFF).forward(req, res);
     }
 }

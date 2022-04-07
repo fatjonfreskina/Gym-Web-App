@@ -1,5 +1,6 @@
 package dao.lecturetimeslot;
 
+import constants.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
@@ -32,8 +33,7 @@ public class GetLectureTimeSlotsByCourseDatabase {
 
             rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
                 Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);

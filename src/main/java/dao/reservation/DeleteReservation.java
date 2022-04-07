@@ -8,6 +8,7 @@ import java.sql.*;
 
 /**
  * Given a user and a lecture time slot, delete from the database the Reservation associated
+ *
  * @author Fatjon Freskina
  */
 public class DeleteReservation {

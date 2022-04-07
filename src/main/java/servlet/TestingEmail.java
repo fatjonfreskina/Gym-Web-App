@@ -2,8 +2,7 @@ package servlet;
 
 import utils.MailManager;
 
-public class TestingEmail
-{
+public class TestingEmail {
     //NOTE: configuration parameters (host and port) available in a comment within MailManager class.
     private static final String HOST = "ssl0.ovh.net";
     private static final int PORT = 465;
@@ -15,8 +14,7 @@ public class TestingEmail
     private static final String SUBJECT = "Test Subject";
     private static final String TEXT = "Test Text";
 
-    public static void main(String[] args) throws Exception
-    {
+    public static void main(String[] args) throws Exception {
         MailManager manager = new MailManager(HOST, PORT, FROM_EMAIL, FROM_PASSWORD);
 
         //manager.sendMail(TO_EMAIL, SUBJECT, TEXT);

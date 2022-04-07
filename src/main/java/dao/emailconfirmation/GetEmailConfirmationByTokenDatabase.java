@@ -26,9 +26,9 @@ public class GetEmailConfirmationByTokenDatabase {
             ps.setString(1, emailConfirmation.getToken());
             rs = ps.executeQuery();
 
-            if(rs.next())
+            if (rs.next())
                 result = new EmailConfirmation(rs.getString("person"),
-                        rs.getString("token"),rs.getTimestamp("expirationdate"));
+                        rs.getString("token"), rs.getTimestamp("expirationdate"));
         } finally {
             if (rs != null)
                 rs.close();

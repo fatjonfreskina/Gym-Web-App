@@ -23,34 +23,28 @@ import java.util.List;
  *
  * @author Francesco Caldivezzi
  */
-public class DropUncompletedRegistrations implements Runnable
-{
+public class DropUncompletedRegistrations implements Runnable {
     @Override
-    public void run()
-    {
+    public void run() {
         Context ctx = null;
-        try
-        {
+        try {
             ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
-            var gau = new GetListEmailConfimationsExpired(ds.getConnection(),new Timestamp(System.currentTimeMillis()));
+            var gau = new GetListEmailConfimationsExpired(ds.getConnection(), new Timestamp(System.currentTimeMillis()));
             List<EmailConfirmation> emailConfirmations = gau.execute();
-            for (EmailConfirmation email : emailConfirmations)
-            {
-                Person toRemove = new GetUserByEmailDatabase(ds.getConnection(),email.getPerson()).execute();
+            for (EmailConfirmation email : emailConfirmations) {
+                Person toRemove = new GetUserByEmailDatabase(ds.getConnection(), email.getPerson()).execute();
                 new DeleteUserByEmailDatabase(ds.getConnection(), toRemove).execute();
 
-                if(toRemove.getAvatarPath() != null)
+                if (toRemove.getAvatarPath() != null)
                     FileManager.removeAvatar(toRemove.getAvatarPath(), toRemove.getTaxCode());
 
             }
-        }catch (SQLException | NamingException e)
-        {
+        } catch (SQLException | NamingException e) {
             System.out.println("ERROR CANNOT REMOVE USERS THAT HAVEN'T UNCOMPLETED THEIR REGISTRATION ");
             e.printStackTrace();
         }
     }
-
 
 
 }
