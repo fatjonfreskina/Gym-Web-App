@@ -4,8 +4,8 @@ import com.google.common.html.HtmlEscapers;
 import constants.Constants;
 import constants.ErrorCodes;
 import dao.passwordreset.GetPasswordResetDatabase;
-import dao.person.GetUserByEmailDatabase;
-import dao.person.UpdateUserDatabase;
+import dao.person.GetPersonByEmailDatabase;
+import dao.person.UpdatePersonDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,9 +16,7 @@ import utils.EncryptionManager;
 
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
@@ -59,7 +57,7 @@ public class PasswordChangeServlet extends AbstractServlet {
             //Retrieve the PasswordReset instance
             PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
             //Retrieve the Person associated
-            actualPerson = new GetUserByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
+            actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
         } catch (SQLException | NamingException e) {
             //TODO: Manage the error
         }
@@ -94,7 +92,7 @@ public class PasswordChangeServlet extends AbstractServlet {
                     Person newPerson = new Person(actualPerson.getEmail(), actualPerson.getName(), actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(), actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
 
                     //Update the person
-                    new UpdateUserDatabase(getDataSource().getConnection(), newPerson).execute();
+                    new UpdatePersonDatabase(getDataSource().getConnection(), newPerson).execute();
 
                     //No error occurred, password has been changed
                     status = ErrorCodes.OK;

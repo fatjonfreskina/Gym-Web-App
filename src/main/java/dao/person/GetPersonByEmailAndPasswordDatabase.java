@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Fatjon Freskina
  */
-public class GetUserByEmailAndPasswordDatabase {
+public class GetPersonByEmailAndPasswordDatabase {
     private static final String STATEMENT = """
             SELECT * FROM person
             WHERE email = ? 
@@ -23,7 +23,7 @@ public class GetUserByEmailAndPasswordDatabase {
     private final Person person;
 
 
-    public GetUserByEmailAndPasswordDatabase(final Connection connection, final Person person) {
+    public GetPersonByEmailAndPasswordDatabase(final Connection connection, final Person person) {
         this.connection = connection;
         this.person = person;
     }

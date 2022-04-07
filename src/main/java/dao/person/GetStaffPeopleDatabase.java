@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Riccardo Tumiati
  */
-public class GetStaffDatabase {
+public class GetStaffPeopleDatabase {
     private final String statement = "SELECT email, name, surname, avatarpath, A1.coursename" +
             " FROM (teaches JOIN person ON teaches.trainer = person.email) AS A1 JOIN lecturetimeslot ON (A1.coursename = lecturetimeslot.coursename AND A1.courseeditionid = lecturetimeslot.courseeditionid)" +
             " WHERE date >= ?" +
@@ -20,7 +20,7 @@ public class GetStaffDatabase {
 
     private final Connection conn;
 
-    public GetStaffDatabase(Connection conn) {
+    public GetStaffPeopleDatabase(Connection conn) {
         this.conn = conn;
     }
 

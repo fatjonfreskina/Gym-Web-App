@@ -9,14 +9,14 @@ import java.sql.SQLException;
 /**
  * @author Francesco Caldivezzi
  */
-public class DeleteUserByEmailDatabase {
+public class DeletePersonByEmailDatabase {
     private static final String STATEMENT = "DELETE FROM person WHERE email=?";
 
     private final Connection connection;
     private final Person person;
 
 
-    public DeleteUserByEmailDatabase(final Connection connection, final Person person) {
+    public DeletePersonByEmailDatabase(final Connection connection, final Person person) {
         this.connection = connection;
         this.person = person;
     }

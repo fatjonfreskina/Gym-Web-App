@@ -2,9 +2,8 @@ package servlet.auth;
 
 import constants.Constants;
 import constants.ErrorCodes;
-import dao.passwordreset.GetPasswordResetDatabase;
 import dao.passwordreset.InsertPasswordResetDatabase;
-import dao.person.GetUserByEmailDatabase;
+import dao.person.GetPersonByEmailDatabase;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +16,6 @@ import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -53,7 +51,7 @@ public class PasswordForgotServlet extends AbstractServlet {
             //Get database connection
             conn = getDataSource().getConnection();
             //Check if such an email exists in the database
-            person = new GetUserByEmailDatabase(conn, email).execute();
+            person = new GetPersonByEmailDatabase(conn, email).execute();
         } catch (SQLException | NamingException e) {
             //TODO: Error handling
         }

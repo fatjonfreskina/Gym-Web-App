@@ -3,8 +3,8 @@ package servlet.access;
 import constants.Constants;
 import constants.ErrorCodes;
 import dao.emailconfirmation.GetEmailConfirmationIfExists;
-import dao.person.GetUserByEmailDatabase;
-import dao.person.GetUserRolesDatabase;
+import dao.person.GetPersonByEmailDatabase;
+import dao.person.GetPersonRolesDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -84,7 +84,7 @@ public class LoginServlet extends AbstractServlet {
 
         //Validate credentials
         try {
-            person = (new GetUserByEmailDatabase(getDataSource().getConnection(), email).execute());
+            person = (new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute());
         } catch (SQLException | NamingException e) {
             error = ErrorCodes.INTERNAL_ERROR;
             sendBackError(error, req, res);
@@ -124,7 +124,7 @@ public class LoginServlet extends AbstractServlet {
 
         //Retrieve person roles
         try {
-            userRoles = new GetUserRolesDatabase(getDataSource().getConnection(), person).execute();
+            userRoles = new GetPersonRolesDatabase(getDataSource().getConnection(), person).execute();
 
         } catch (SQLException | NamingException e) {
             error = ErrorCodes.INTERNAL_ERROR;

@@ -1,7 +1,7 @@
 package jobs;
 
 import constants.Constants;
-import dao.person.GetAllUsersDatabase;
+import dao.person.GetAllPersonsDatabase;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
 import resource.MedicalCertificate;
 import resource.Person;
@@ -33,7 +33,7 @@ public class MedicalCertificateExpiration implements Runnable {
             Connection conn = ds.getConnection();
 
             //Get all the users
-            var gau = new GetAllUsersDatabase(conn);
+            var gau = new GetAllPersonsDatabase(conn);
             List<Person> personList = gau.execute();
 
             Date actualDate = new Date();

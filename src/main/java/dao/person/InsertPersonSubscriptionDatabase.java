@@ -9,7 +9,7 @@ import java.sql.*;
  *
  * @author Riccardo Forzan
  */
-public class InsertUserSubscriptionDatabase {
+public class InsertPersonSubscriptionDatabase {
 
     private static final String STATEMENT =
             "INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (?,?,?,?,?,?);";
@@ -22,7 +22,7 @@ public class InsertUserSubscriptionDatabase {
      * @param con          JDBC database connection
      * @param subscription instance of Subscription {@link resource.Subscription} to add in the database
      */
-    public InsertUserSubscriptionDatabase(final Connection con, final Subscription subscription) {
+    public InsertPersonSubscriptionDatabase(final Connection con, final Subscription subscription) {
         this.con = con;
         this.subscription = subscription;
     }

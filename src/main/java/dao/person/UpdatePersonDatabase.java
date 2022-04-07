@@ -9,14 +9,14 @@ import java.sql.SQLException;
 /**
  * @author Riccardo Forzan
  */
-public class UpdateUserDatabase {
+public class UpdatePersonDatabase {
 
     private static final String STATEMENT = "UPDATE person SET name = ?, surname = ?, psw = ?, taxcode = ?, birthdate = ?, telephone = ?, address = ?, avatarpath = ? WHERE email = ?";
 
     private final Connection conn;
     private final Person p;
 
-    public UpdateUserDatabase(final Connection conn, final Person p) {
+    public UpdatePersonDatabase(final Connection conn, final Person p) {
         this.conn = conn;
         this.p = p;
     }

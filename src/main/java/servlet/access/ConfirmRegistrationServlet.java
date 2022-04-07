@@ -5,8 +5,8 @@ import constants.Constants;
 import constants.ErrorCodes;
 import dao.emailconfirmation.DeleteEmailConfirmationByPersonDatabase;
 import dao.emailconfirmation.GetEmailConfirmationByTokenDatabase;
-import dao.person.DeleteUserByEmailDatabase;
-import dao.person.GetUserByEmailDatabase;
+import dao.person.DeletePersonByEmailDatabase;
+import dao.person.GetPersonByEmailDatabase;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +19,6 @@ import utils.FileManager;
 import utils.MailTypes;
 
 import javax.naming.NamingException;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -41,7 +40,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet {
 
                 if (emailConfirmation != null) //ok there's the record =>2 possible cases it is not expired or it is expired
                 {
-                    p = (new GetUserByEmailDatabase(getDataSource().getConnection(), emailConfirmation.getPerson())).execute();
+                    p = (new GetPersonByEmailDatabase(getDataSource().getConnection(), emailConfirmation.getPerson())).execute();
 
                     (new DeleteEmailConfirmationByPersonDatabase(getDataSource().getConnection(), p)).execute();
 
@@ -50,7 +49,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet {
                         if (p.getAvatarPath() != null)
                             FileManager.removeAvatar(p.getAvatarPath(), p.getTaxCode());
                         //expired need to remove the user
-                        (new DeleteUserByEmailDatabase(getDataSource().getConnection(), p)).execute();
+                        (new DeletePersonByEmailDatabase(getDataSource().getConnection(), p)).execute();
                     }
                 } else //already removed by the process or someone tries a number at random
                 {

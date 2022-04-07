@@ -10,13 +10,13 @@ import java.sql.*;
  * @author Riccardo Tumiati
  * @author Francesco Caldivezzi
  */
-public class GetUserByEmailDatabase {
+public class GetPersonByEmailDatabase {
     private static final String STATEMENT = "SELECT * FROM person WHERE email = ?";
 
     private final Connection connection;
     private final String email;
 
-    public GetUserByEmailDatabase(final Connection connection, final String email) {
+    public GetPersonByEmailDatabase(final Connection connection, final String email) {
         this.connection = connection;
         this.email = email;
     }

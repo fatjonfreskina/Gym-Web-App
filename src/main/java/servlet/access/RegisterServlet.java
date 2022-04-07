@@ -3,10 +3,10 @@ package servlet.access;
 import constants.Constants;
 import constants.ErrorCodes;
 import dao.emailconfirmation.InsertEmailConfirmationDatabase;
-import dao.person.GetUserByEmailDatabase;
-import dao.person.GetUserByTaxCodeDatabase;
-import dao.person.InsertNewUserDatabase;
-import dao.person.InsertUserRoleDatabase;
+import dao.person.GetPersonByEmailDatabase;
+import dao.person.GetPersonByTaxCodeDatabase;
+import dao.person.InsertNewPersonDatabase;
+import dao.person.InsertPersonRoleDatabase;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -155,9 +155,9 @@ public class RegisterServlet extends AbstractServlet {
         Person p1 = null;
         Person p2 = null;
         try {
-            p1 = (new GetUserByEmailDatabase(getDataSource().getConnection(), email)).execute();
+            p1 = (new GetPersonByEmailDatabase(getDataSource().getConnection(), email)).execute();
 
-            p2 = (new GetUserByTaxCodeDatabase(getDataSource().getConnection(), new Person(null, null, null,
+            p2 = (new GetPersonByTaxCodeDatabase(getDataSource().getConnection(), new Person(null, null, null,
                     null, taxCode, null, null, null, null))).execute();
 
             if (p1 == null && p2 == null)//It's a new user, so need to add it !
@@ -175,8 +175,8 @@ public class RegisterServlet extends AbstractServlet {
                             Person p = new Person(email, firstName, lastName, EncryptionManager.encrypt(password)
                                     , taxCode, birthDate, telephoneNumber, address, pathImg);
 
-                            new InsertNewUserDatabase(getDataSource().getConnection(), p).execute();
-                            new InsertUserRoleDatabase(getDataSource().getConnection(), p, role).execute();
+                            new InsertNewPersonDatabase(getDataSource().getConnection(), p).execute();
+                            new InsertPersonRoleDatabase(getDataSource().getConnection(), p, role).execute();
                             (new InsertEmailConfirmationDatabase(getDataSource().getConnection(), new EmailConfirmation(p.getEmail(), EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 

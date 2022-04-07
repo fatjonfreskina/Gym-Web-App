@@ -7,13 +7,13 @@ import java.sql.*;
 /**
  * @author Riccardo Tumiati
  */
-public class InsertNewUserDatabase {
+public class InsertNewPersonDatabase {
     private static final String STATEMENT = "INSERT INTO person VALUES (?,?,?,?,?,?,?,?,?)";
 
     private final Connection conn;
     private final Person p;
 
-    public InsertNewUserDatabase(final Connection conn, final Person p) {
+    public InsertNewPersonDatabase(final Connection conn, final Person p) {
         this.conn = conn;
         this.p = p;
     }
