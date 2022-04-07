@@ -147,6 +147,7 @@ public class LoginServlet extends AbstractServlet {
         session.setAttribute("email", person.getEmail());
         session.setAttribute("roles", roles);
         session.setAttribute("defaultRole", userRoles.get(0).getRole());
+        session.setAttribute("avatarPath",person.getAvatarPath());
         //Everything is fine so far! Now act depending on user roles
         if (userRoles.size() == 1) {
 
