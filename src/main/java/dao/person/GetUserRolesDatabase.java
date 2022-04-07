@@ -1,5 +1,6 @@
 package dao.person;
 
+import constants.Constants;
 import resource.Person;
 import resource.TypeOfRoles;
 
@@ -28,7 +29,7 @@ public class GetUserRolesDatabase {
             preparedStatement.setString(1, person.getEmail());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
-                list.add(new TypeOfRoles(resultSet.getString("role")));
+                list.add(new TypeOfRoles(resultSet.getString(Constants.PERSONROLES_ROLE)));
         } finally {
             if (resultSet != null)
                 resultSet.close();

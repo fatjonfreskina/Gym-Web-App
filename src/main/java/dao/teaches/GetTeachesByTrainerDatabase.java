@@ -1,5 +1,6 @@
 package dao.teaches;
 
+import constants.Constants;
 import resource.PasswordReset;
 import resource.Person;
 import resource.SubscriptionType;
@@ -32,7 +33,7 @@ public class GetTeachesByTrainerDatabase {
 
             rs = stm.executeQuery();
             while (rs.next())
-                result.add(new Teaches(rs.getInt("courseeditionid"), rs.getString("coursename"), rs.getString("trainer")));
+                result.add(new Teaches(rs.getInt(Constants.TEACHES_COURSEEDITIONID), rs.getString(Constants.TEACHES_COURSENAME), rs.getString(Constants.TEACHES_TRAINER)));
         } finally {
             if (stm != null)
                 stm.close();

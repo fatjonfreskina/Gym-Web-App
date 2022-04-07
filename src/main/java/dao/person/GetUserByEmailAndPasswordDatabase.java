@@ -1,4 +1,5 @@
 package dao.person;
+import constants.Constants;
 import resource.Person;
 
 import java.sql.Connection;
@@ -38,16 +39,15 @@ public class GetUserByEmailAndPasswordDatabase {
             if (rs.next())
             {
                 result.add(new Person(
-                        rs.getString("email"),
-                        rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getString("psw"), //password
-                        rs.getString("taxCode"),
-                        rs.getDate("birthDate"),
-                        rs.getString("telephone"),
-                        rs.getString("address"),
-                        rs.getString("avatarPath"))
-                );
+                                rs.getString(Constants.PERSON_EMAIL),
+                                rs.getString(Constants.PERSON_NAME),
+                                rs.getString(Constants.PERSON_SURNAME),
+                                rs.getString(Constants.PERSON_PSW), //password
+                                rs.getString(Constants.PERSON_TAXCODE),
+                                rs.getDate(Constants.PERSON_BIRTHDATE),
+                                rs.getString(Constants.PERSON_TELEPHONE),
+                                rs.getString(Constants.PERSON_ADDRESS),
+                                rs.getString(Constants.PERSON_AVATARPATH)));
             }
         } finally {
             if (rs != null)

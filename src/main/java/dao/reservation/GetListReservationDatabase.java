@@ -1,5 +1,6 @@
 package dao.reservation;
 
+import constants.Constants;
 import resource.Reservation;
 
 import org.apache.logging.log4j.LogManager;
@@ -52,8 +53,7 @@ public class GetListReservationDatabase {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                reservations.add(new Reservation(rs.getString("trainee"), rs.getString("lectureroom"),
-                        rs.getDate("lecturedate"), rs.getTimestamp("lecturestarttme")));
+                reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTimestamp(Constants.RESERVATION_LECTURESTARTTIME)));
             }
 
             logger.debug("[INFO] GetListReservationDatabase - %s - Query successfully done.\n".formatted(

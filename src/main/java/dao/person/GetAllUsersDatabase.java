@@ -1,5 +1,6 @@
 package dao.person;
 
+import constants.Constants;
 import resource.Person;
 import resource.Subscription;
 
@@ -28,9 +29,9 @@ public class GetAllUsersDatabase {
             //Execute the query
             rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                list.add(new Person(rs.getString("email"), rs.getString("name"), rs.getString("surname"),
-                        rs.getString("psw"), rs.getString("taxcode"), rs.getDate("birthdate"),
-                        rs.getString("telephone"), rs.getString("address"), rs.getString("avatarpath")));
+                list.add(new Person(rs.getString(Constants.PERSON_EMAIL), rs.getString(Constants.PERSON_NAME), rs.getString(Constants.PERSON_SURNAME),
+                        rs.getString(Constants.PERSON_PSW), rs.getString(Constants.PERSON_TAXCODE), rs.getDate(Constants.PERSON_BIRTHDATE),
+                        rs.getString(Constants.PERSON_TELEPHONE), rs.getString(Constants.PERSON_ADDRESS), rs.getString(Constants.PERSON_AVATARPATH)));
             }
         } finally {
             if (rs != null)
