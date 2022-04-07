@@ -1,5 +1,6 @@
 package dao.person;
 
+import constants.Constants;
 import resource.Person;
 import resource.Teaches;
 import resource.Trainer;
@@ -34,19 +35,19 @@ public class GetStaffDatabase {
 
             while(rs.next()){
                 Person p = new Person(
-                        rs.getString("email"),
-                        rs.getString("name"),
-                        rs.getString("surname"),
+                        rs.getString(Constants.PERSON_EMAIL),
+                        rs.getString(Constants.PERSON_NAME),
+                        rs.getString(Constants.PERSON_SURNAME),
                         null,
                         null,
                         null,
                         null,
                         null,
-                        rs.getString("avatarpath")
+                        rs.getString(Constants.PERSON_AVATARPATH)
                 );
                 Teaches t = new Teaches(
                         -1,
-                        rs.getString("coursename"),
+                        rs.getString(Constants.TEACHES_COURSENAME),
                         null
                 );
 
