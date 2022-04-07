@@ -22,8 +22,8 @@ public class Prova {
 
         LectureTimeSlot l = lectureTimeSlot.get(0);
 
-        String x =l.toGson();
+        //String x =l.toGson();
 
-        System.out.println(x);
+        //System.out.println(x);
     }
 }
