@@ -6,11 +6,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Riccardo Tumiati
+ */
 public class GetAvailableCourses {
     private final String statement =
-            "SELECT DISTINCT courseedition.coursename AS cname,description FROM courseedition "+
-                    "INNER JOIN course ON courseedition.coursename = course.name "+
-                    "INNER JOIN lecturetimeslot ON lecturetimeslot.courseeditionid=courseedition.id AND courseedition.coursename=lecturetimeslot.coursename "+
+            "SELECT DISTINCT courseedition.coursename AS cname,description FROM courseedition " +
+                    "INNER JOIN course ON courseedition.coursename = course.name " +
+                    "INNER JOIN lecturetimeslot ON lecturetimeslot.courseeditionid=courseedition.id AND courseedition.coursename=lecturetimeslot.coursename " +
                     "WHERE date >=?";
     private final Connection con;
     private final Date today;

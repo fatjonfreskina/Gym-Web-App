@@ -4,6 +4,9 @@ import resource.EmailConfirmation;
 
 import java.sql.*;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class GetEmailConfirmationByTokenDatabase {
     private static final String STATEMENT = "SELECT * FROM emailconfirmation WHERE token = ?";
     private final Connection connection;
@@ -14,8 +17,7 @@ public class GetEmailConfirmationByTokenDatabase {
         this.emailConfirmation = emailConfirmation;
     }
 
-    public EmailConfirmation execute() throws SQLException
-    {
+    public EmailConfirmation execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         EmailConfirmation result = null;
@@ -24,9 +26,9 @@ public class GetEmailConfirmationByTokenDatabase {
             ps.setString(1, emailConfirmation.getToken());
             rs = ps.executeQuery();
 
-            if(rs.next())
+            if (rs.next())
                 result = new EmailConfirmation(rs.getString("person"),
-                        rs.getString("token"),rs.getTimestamp("expirationdate"));
+                        rs.getString("token"), rs.getTimestamp("expirationdate"));
         } finally {
             if (rs != null)
                 rs.close();

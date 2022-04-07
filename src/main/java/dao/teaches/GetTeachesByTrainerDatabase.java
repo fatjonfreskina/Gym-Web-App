@@ -1,14 +1,15 @@
 package dao.teaches;
 
-import resource.PasswordReset;
 import resource.Person;
-import resource.SubscriptionType;
 import resource.Teaches;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class GetTeachesByTrainerDatabase {
 
     private static final String STATEMENT = "SELECT * FROM teaches WHERE trainer = ?";

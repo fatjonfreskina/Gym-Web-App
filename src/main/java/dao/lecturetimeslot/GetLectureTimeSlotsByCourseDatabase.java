@@ -1,13 +1,14 @@
 package dao.lecturetimeslot;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Harjot Singh
+ */
 public class GetLectureTimeSlotsByCourseDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE courseEditionId = ? and courseName = ?";
     private final Connection connection;

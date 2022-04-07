@@ -11,6 +11,9 @@ import java.util.List;
 /**
  * Get all password reset that belongs to the user specified to the query and that are still valid
  * (expiration time not yet reached).
+ *
+ * @author Riccardo Forzan
+ * @authon Marco Alessio
  */
 public class GetPasswordResetDatabase {
     private static final Logger logger = LogManager.getLogger("marco_alessio_appender");

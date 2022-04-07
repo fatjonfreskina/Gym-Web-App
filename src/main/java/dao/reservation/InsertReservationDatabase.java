@@ -6,6 +6,9 @@ import resource.Reservation;
 
 import java.sql.*;
 
+/**
+ * @author Fatjon Freskina
+ */
 public class InsertReservationDatabase {
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
 

@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Harjot Singh
+ */
 public class GetLectureTimeSlotsByRoomNameDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE roomname = ?";
     private final String roomName;

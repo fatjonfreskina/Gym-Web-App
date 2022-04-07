@@ -4,6 +4,9 @@ import resource.EmailConfirmation;
 
 import java.sql.*;
 
+/**
+ * @author Alberto Campeol
+ */
 public class InsertEmailConfirmationDatabase {
 
     private static final String STATEMENT = "INSERT INTO emailconfirmation(person, token, expirationdate) VALUES (?, ?, ?)";

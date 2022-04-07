@@ -6,6 +6,9 @@ import resource.PasswordReset;
 
 import java.sql.*;
 
+/**
+ * @author Marco Alessio
+ */
 public class InsertPasswordResetDatabase {
     private static final Logger logger = LogManager.getLogger("marco_alessio_appender");
 

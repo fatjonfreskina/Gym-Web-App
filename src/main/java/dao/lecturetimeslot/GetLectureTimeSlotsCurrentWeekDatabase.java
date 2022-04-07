@@ -11,6 +11,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
+/**
+ * @author Harjot Singh
+ */
 public class GetLectureTimeSlotsCurrentWeekDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date >= ? AND date <= ? ORDER BY date, starttime ASC";
 

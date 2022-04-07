@@ -8,6 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Harjot Singh
+ */
 public class GetLectureTimeSlotsByDateDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date >= ? and date <= ?";
     // Can not use == to compare dates therefore use <= and >= instead

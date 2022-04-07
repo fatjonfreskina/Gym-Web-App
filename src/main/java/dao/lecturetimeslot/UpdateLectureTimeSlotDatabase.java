@@ -6,6 +6,9 @@ import resource.LectureTimeSlot;
 
 import java.sql.*;
 
+/**
+ * @author Harjot Singh
+ */
 public class UpdateLectureTimeSlotDatabase {
     private final String STATEMENT =
             "UPDATE lecturetimeslot " +
