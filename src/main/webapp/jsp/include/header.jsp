@@ -17,7 +17,7 @@
                 <th><a href="<c:url value="/login"/>">Login</a></th>
             </c:when>
             <c:otherwise>
-                <th><a href="<c:url value=""/>">My Home</a></th>
+                <th><a href="<c:url value="/${sessionScope.defaultRole}"/>">My Home</a></th>
                 <th><a href="<c:url value="/logout"/>">Logout</a></th>
             </c:otherwise>
         </c:choose>

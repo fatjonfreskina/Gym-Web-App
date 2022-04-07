@@ -14,13 +14,13 @@
 <body>
 <c:forEach var="role" items="${roles}">
     <c:if test="${role=='trainee'}">
-        <a href="<c:url value="/trainee/"/>">Trainee</a>
+        <a href="<c:url value="/trainee"/>">Trainee</a>
     </c:if>
     <c:if test="${role=='trainer'}">
-        <a href="<c:url value="/trainer/"/>">Trainer</a>
+        <a href="<c:url value="/trainer"/>">Trainer</a>
     </c:if>
     <c:if test="${role=='secretary'}">
-        <a href="<c:url value="/secretary/"/>">Secretary</a>
+        <a href="<c:url value="/secretary"/>">Secretary</a>
     </c:if>
 </c:forEach>
 </body>

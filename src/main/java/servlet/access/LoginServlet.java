@@ -115,6 +115,7 @@ public class LoginServlet extends AbstractServlet {
             // insert in the session the email and the roles
             session.setAttribute("email", person.getEmail());
             session.setAttribute("roles", userRoles);
+            session.setAttribute("defaultRole", userRoles.get(0).getRole());
             res.sendRedirect(req.getContextPath()+"/"+userRoles.get(0).getRole());
             return;
         }
@@ -130,6 +131,8 @@ public class LoginServlet extends AbstractServlet {
                 logger.info(r.getRole());
             }
             req.setAttribute("roles",roles);
+            //TODO in servlet for /access/roles where the user selects one role as default
+            session.setAttribute("defaultRole", userRoles.get(1).getRole());
             req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req,res);
         }
     }
