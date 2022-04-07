@@ -22,9 +22,5 @@
             </c:otherwise>
         </c:choose>
 
-
-
-
-
     </tr>
 </table>

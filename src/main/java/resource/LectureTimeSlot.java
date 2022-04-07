@@ -1,5 +1,7 @@
 package resource;
 
+import com.google.gson.Gson;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -56,5 +58,10 @@ public class LectureTimeSlot {
                 ", substitution='" + substitution + '\'' +
                 '}';
     }
+
+
+
+
+
 
 }

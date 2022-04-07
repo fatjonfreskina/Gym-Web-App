@@ -10,6 +10,10 @@
 
 
     <img src="<c:url value="/images/photo_gym_1.jpg"></c:url>" width="50%" heigth="50%">
+    <img src="<c:url value="/images/photo_gym_2.jpg"></c:url>" width="50%" heigth="50%">
+    <img src="<c:url value="/images/photo_gym_3.jpg"></c:url>" width="50%" heigth="50%">
+    <img src="<c:url value="/images/photo_gym_4.jpg"></c:url>" width="50%" heigth="50%">
+    <img src="<c:url value="/images/the_gym-unsplash.jpg"></c:url>" width="50%" heigth="50%">
 
     <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
