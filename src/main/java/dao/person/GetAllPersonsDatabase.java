@@ -2,7 +2,6 @@ package dao.person;
 
 import constants.Constants;
 import resource.Person;
-import resource.Subscription;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ import java.util.List;
 /**
  * @author Riccardo Forzan
  */
-public class GetAllUsersDatabase {
+public class GetAllPersonsDatabase {
 
     private static final String STATEMENT = "SELECT * FROM person";
     private final Connection con;
 
-    public GetAllUsersDatabase(Connection con) {
+    public GetAllPersonsDatabase(Connection con) {
         this.con = con;
     }
 

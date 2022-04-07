@@ -7,6 +7,9 @@ import resource.LectureTimeSlot;
 
 import java.sql.*;
 
+/**
+ * @author Harjot Singh
+ */
 public class DeleteLectureTimeSlotDatabase {
     private static final String STATEMENT = "DELETE FROM lecturetimeslot WHERE roomname=? AND date=? AND starttime=? RETURNING *;";
     private final LectureTimeSlot lts;
@@ -19,12 +22,10 @@ public class DeleteLectureTimeSlotDatabase {
         this.lts = lts;
     }
 
-    public LectureTimeSlot execute() throws SQLException
-    {
+    public LectureTimeSlot execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        try
-        {
+        try {
             ps = connection.prepareStatement(STATEMENT);
             ps.setString(1, lts.getRoomName());
             ps.setDate(2, lts.getDate());
@@ -33,8 +34,7 @@ public class DeleteLectureTimeSlotDatabase {
             rs = ps.executeQuery();
             logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - query executed successfully\n".formatted(
                     new Timestamp(System.currentTimeMillis())));
-            if (rs.next())
-            {
+            if (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
                 Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
@@ -48,13 +48,11 @@ public class DeleteLectureTimeSlotDatabase {
             } else
                 logger.debug("[DEBUG] gwa.dao.DeleteLTSD - %s - Following LectureTimeSlot not found: %s.\n".formatted(
                         new Timestamp(System.currentTimeMillis()), lts.toString()));
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             logger.error("[ERROR] gwa.dao.DeleteLTSD - %s - Exception:\n%s\n".
                     formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
             throw ex;
-        } finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
             if (ps != null)

@@ -6,14 +6,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class InsertUserRoleDatabase {
+/**
+ * @author Francesco Caldivezzi
+ */
+public class InsertPersonRoleDatabase {
     private static final String STATEMENT = "INSERT INTO personroles VALUES (?,?)";
 
     private final Connection conn;
     private final Person p;
     private final String role;
 
-    public InsertUserRoleDatabase(final Connection conn, final Person p, final String role) {
+    public InsertPersonRoleDatabase(final Connection conn, final Person p, final String role) {
         this.conn = conn;
         this.p = p;
         this.role = role;

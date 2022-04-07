@@ -11,7 +11,7 @@ import java.sql.SQLException;
  *
  * @author Riccardo Forzan
  */
-public class UpdateUserSubscriptionDatabase {
+public class UpdatePersonSubscriptionDatabase {
 
     private static final String STATEMENT =
             "UPDATE subscription SET startday = ?, discount = ?, trainee = ? WHERE courseeditionid = ?, coursename = ?, duration = ?;";
@@ -24,7 +24,7 @@ public class UpdateUserSubscriptionDatabase {
      * @param con          JDBC database connection
      * @param subscription instance of Subscription {@link Subscription} to update in the database
      */
-    public UpdateUserSubscriptionDatabase(final Connection con, final Subscription subscription) {
+    public UpdatePersonSubscriptionDatabase(final Connection con, final Subscription subscription) {
         this.con = con;
         this.subscription = subscription;
     }

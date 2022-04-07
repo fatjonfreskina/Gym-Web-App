@@ -8,13 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class GetUserByTaxCodeDatabase {
+/**
+ * @author Riccardo Tumiati
+ * @author Francesco Caldivezzi
+ */
+public class GetPersonByTaxCodeDatabase {
     private static final String STATEMENT = "SELECT * FROM person WHERE taxcode = ?";
 
     private final Connection connection;
     private final Person person;
 
-    public GetUserByTaxCodeDatabase(final Connection connection, final Person person) {
+    public GetPersonByTaxCodeDatabase(final Connection connection, final Person person) {
         this.connection = connection;
         this.person = person;
     }

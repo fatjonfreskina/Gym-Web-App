@@ -10,12 +10,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-*
-Return a list of (future) reservations given a date and a user
-*
-*/
-
+/**
+ * Return a list of (future) reservations given a date and a user
+ *
+ * @author Fatjon Freskina
+ */
 public class GetListReservationDatabase {
 
     private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");

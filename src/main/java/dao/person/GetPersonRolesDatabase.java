@@ -8,14 +8,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetUserRolesDatabase {
+/**
+ * @author Francesco Caldivezzi
+ */
+public class GetPersonRolesDatabase {
 
     private static final String STATEMENT = "SELECT * FROM personroles JOIN person ON personroles.person = person.email WHERE email = ?";
 
     private final Connection connection;
     private final Person person;
 
-    public GetUserRolesDatabase(final Connection connection, final Person person) {
+    public GetPersonRolesDatabase(final Connection connection, final Person person) {
         this.connection = connection;
         this.person = person;
     }

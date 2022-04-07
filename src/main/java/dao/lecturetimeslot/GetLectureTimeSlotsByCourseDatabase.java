@@ -9,6 +9,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Harjot Singh
+ */
 public class GetLectureTimeSlotsByCourseDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE courseEditionId = ? and courseName = ?";
     private final Connection connection;
@@ -19,21 +22,18 @@ public class GetLectureTimeSlotsByCourseDatabase {
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
-    public List<LectureTimeSlot> execute() throws SQLException
-    {
+    public List<LectureTimeSlot> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<LectureTimeSlot> result = new ArrayList<>();
-        try
-        {
+        try {
             ps = connection.prepareStatement(STATEMENT);
             ps.setInt(1, lectureTimeSlot.getCourseEditionId());
             ps.setString(2, lectureTimeSlot.getCourseName());
 
             rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
                 Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
@@ -43,8 +43,7 @@ public class GetLectureTimeSlotsByCourseDatabase {
                 LectureTimeSlot lts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
                 result.add(lts);
             }
-        } finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
             if (ps != null)

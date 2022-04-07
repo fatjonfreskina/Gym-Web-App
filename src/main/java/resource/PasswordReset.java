@@ -2,6 +2,10 @@ package resource;
 
 import java.sql.Timestamp;
 
+/**
+ * @author Marco Alessio
+ * @author Riccardo Forzan
+ */
 public class PasswordReset {
 
     private final String token;

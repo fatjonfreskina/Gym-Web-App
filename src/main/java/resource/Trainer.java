@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Riccardo Tumiati
+ */
 public class Trainer {
     private final Person person;
     private final List<Teaches> teaches;

@@ -12,6 +12,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
+/**
+ * @author Harjot Singh
+ */
 public class GetLectureTimeSlotsCurrentWeekDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date >= ? AND date <= ? ORDER BY date, starttime ASC";
 
@@ -22,15 +25,13 @@ public class GetLectureTimeSlotsCurrentWeekDatabase {
         this.connection = connection;
     }
 
-    public List<LectureTimeSlot> execute() throws SQLException
-    {
+    public List<LectureTimeSlot> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         List<LectureTimeSlot> result = new ArrayList<>();
         Date from = Date.valueOf(LocalDate.now().with(TemporalAdjusters.previous(DayOfWeek.MONDAY)));//.toString();
         Date to = Date.valueOf(LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)));//.toString();
-        try
-        {
+        try {
             ps = connection.prepareStatement(STATEMENT);
             ps.setDate(1, from);
             ps.setDate(2, to);
@@ -52,8 +53,7 @@ public class GetLectureTimeSlotsCurrentWeekDatabase {
         } catch (SQLException ex) {
             logger.error("[ERROR] gwa.dao.GetLTSCWeekD - %s - Exception:\n%s\n".formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
             throw ex;
-        } finally
-        {
+        } finally {
             if (rs != null) rs.close();
             if (ps != null) ps.close();
             connection.close();

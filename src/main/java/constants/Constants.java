@@ -19,8 +19,8 @@ public class Constants {
     public static final String PATH_CONFIRMED_REGISTRATION = "/jsp/access/confirmed_registration.jsp";
     public static final String PATH_CONFIRM_REGISTRATION = "/jsp/access/confirm_registration.jsp";
     public static final String PATH_LOGIN = "/jsp/access/login.jsp";
-    public static final String PATH_COURSES="/jsp/courses.jsp";
-    public static final String PATH_STAFF="/jsp/staff.jsp";
+    public static final String PATH_COURSES = "/jsp/courses.jsp";
+    public static final String PATH_STAFF = "/jsp/staff.jsp";
 
     //PASSWORD FLOW PATHS
     public static final String PATH_PASSWORD_FORGOT = "/jsp/auth/password_forgot.jsp";
@@ -104,12 +104,12 @@ public class Constants {
     public static final String ROOM_SLOTS = "slots";
 
     //lecturetimeslot
-    public static final String LECTURETIMESLOT_ROOMNAME ="roomname";
-    public static final String LECTURETIMESLOT_DATE ="date";
-    public static final String LECTURETIMESLOT_STARTTIME ="starttime";
-    public static final String LECTURETIMESLOT_COURSEEDITIONID ="courseeditionid";
-    public static final String LECTURETIMESLOT_COURSENAME ="coursename";
-    public static final String LECTURETIMESLOT_SUBSTITUITION ="substituition";
+    public static final String LECTURETIMESLOT_ROOMNAME = "roomname";
+    public static final String LECTURETIMESLOT_DATE = "date";
+    public static final String LECTURETIMESLOT_STARTTIME = "starttime";
+    public static final String LECTURETIMESLOT_COURSEEDITIONID = "courseeditionid";
+    public static final String LECTURETIMESLOT_COURSENAME = "coursename";
+    public static final String LECTURETIMESLOT_SUBSTITUITION = "substituition";
 
     //coursedition
     public static final String COURSEEDITION_ID = "id";

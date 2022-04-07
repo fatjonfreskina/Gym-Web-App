@@ -4,13 +4,16 @@ import resource.Person;
 
 import java.sql.*;
 
-public class InsertNewUserDatabase {
+/**
+ * @author Riccardo Tumiati
+ */
+public class InsertNewPersonDatabase {
     private static final String STATEMENT = "INSERT INTO person VALUES (?,?,?,?,?,?,?,?,?)";
 
     private final Connection conn;
     private final Person p;
 
-    public InsertNewUserDatabase(final Connection conn, final Person p) {
+    public InsertNewPersonDatabase(final Connection conn, final Person p) {
         this.conn = conn;
         this.p = p;
     }

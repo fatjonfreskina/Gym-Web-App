@@ -3,6 +3,9 @@ package resource;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * @author Fatjon Freskina
+ */
 public class Reservation {
 
     private final String trainee;

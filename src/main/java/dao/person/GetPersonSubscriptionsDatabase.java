@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Riccardo Forzan
  */
-public class GetUserSubscriptionsDatabase {
+public class GetPersonSubscriptionsDatabase {
 
     private static final String STATEMENT =
             "SELECT * FROM subscription WHERE trainee = ?";
@@ -25,7 +25,7 @@ public class GetUserSubscriptionsDatabase {
      *
      * @param con JDBC connection to the database
      */
-    public GetUserSubscriptionsDatabase(final Connection con, final Person trainee) {
+    public GetPersonSubscriptionsDatabase(final Connection con, final Person trainee) {
         this.con = con;
         this.trainee = trainee;
     }

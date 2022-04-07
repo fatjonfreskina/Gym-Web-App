@@ -1,10 +1,12 @@
 package resource;
 
-import com.google.gson.Gson;
-
 import java.sql.Date;
 import java.sql.Time;
 
+/**
+ * @author Francesco Caldivezzi
+ * @author Harjot Singh
+ */
 public class LectureTimeSlot {
 
     private final String roomName;
@@ -58,10 +60,5 @@ public class LectureTimeSlot {
                 ", substitution='" + substitution + '\'' +
                 '}';
     }
-
-
-
-
-
 
 }
