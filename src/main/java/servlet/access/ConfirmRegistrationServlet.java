@@ -82,6 +82,4 @@ public class ConfirmRegistrationServlet extends AbstractServlet
         req.setAttribute(Constants.MESSAGE,message);
         req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);
     }
-
-
 }

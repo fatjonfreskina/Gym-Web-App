@@ -9,6 +9,7 @@
     <jsp:include page="/jsp/include/header.jsp"/><br>
 
 
+    <img src="<c:url value="/images/photo_gym_1.jpg"></c:url>" width="50%" heigth="50%">
 
     <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
