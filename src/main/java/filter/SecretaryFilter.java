@@ -15,7 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.TypeOfRoles;
 
-public class SecretaryFilter extends HttpFilter {
+public class SecretaryFilter extends AbstractFilter {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
   private final String loggerClass = "gwa.filter.SecretaryFilter: ";
