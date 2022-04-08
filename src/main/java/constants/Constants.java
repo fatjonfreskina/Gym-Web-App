@@ -7,6 +7,7 @@ public class Constants {
     //GENERAL APPLICATION PATHS
     public static final String RELATIVE_URL_LOGIN = "/login";
     public static final String RELATIVE_URL_LOGOUT = "/logout";
+    public static final String RELATIVE_URL_PERSONALINFO = "/personal_info";
     public static final String RELATIVE_URL_UNAUTHORIZED = "/unauthorized";
     public static final String RELATIVE_URL_HOME = "/";
 
