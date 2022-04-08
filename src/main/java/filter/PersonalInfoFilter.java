@@ -32,7 +32,22 @@ public class PersonalInfoFilter extends AbstractFilter
         {
             LOGGER.info(CLASS + "Request to /personal_info while not logged in yet. Redirected to /login.");
 
-            res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+            /* READ ME:
+             * Trying to access /personal_info while NOT logged in (can happen if manually requesting
+             * /personal_info or in case of page reload while in /personal_info and session has expired, due to
+             * timeout or logout in another browser tab) result in a redirection to /login,
+             * in order to let the user log into his/her account. After the login is successful,
+             * the user expects to be automatically redirected to the page he/she originally requested.
+             * That's why I decided to add a new attribute to the request called "redirect".
+             * Probably it is not the best or smartest way to do it, you are free to change it with
+             * something better.
+             * @author Marco Alessio
+             */
+            //session.setAttribute("redirect", Constants.RELATIVE_URL_PERSONALINFO);
+            req.setAttribute("redirect", Constants.RELATIVE_URL_PERSONALINFO);
+
+            req.getRequestDispatcher(Constants.RELATIVE_URL_LOGIN).forward(req, res);
+            //res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
         }
         else
         {
