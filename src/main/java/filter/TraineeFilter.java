@@ -30,9 +30,9 @@ public class TraineeFilter extends AbstractFilter {
         HttpSession session = req.getSession(false);
         boolean loggedIn = session != null && session.getAttribute("email") != null;
         if (loggedIn) {
-            List<TypeOfRoles> rolesAsObj = (List<TypeOfRoles>) session.getAttribute("roles");
-            List<String> roles = new ArrayList<>();
-            for (TypeOfRoles role : rolesAsObj) roles.add(role.getRole());
+            //List<TypeOfRoles> rolesAsObj = (List<TypeOfRoles>) session.getAttribute("roles");
+            List<String> roles = (List<String>) session.getAttribute("roles");
+            //for (TypeOfRoles role : rolesAsObj) roles.add(role.getRole());
             if (roles.contains("trainee")) {
                 res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
                 res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
