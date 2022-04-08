@@ -206,7 +206,7 @@ public class RegisterServlet extends AbstractServlet {
         String path = null;
 
         if ((file != null) && file.getSize() != 0) {
-            if (!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).
+            if (!Arrays.stream(Constants.ACCEPTED_EXTENSIONS_AVATAR).
                     anyMatch(file.getContentType().split(File.separator)[1]::equals))
                 error = ErrorCodes.INVALID_FILE_TYPE;
             else

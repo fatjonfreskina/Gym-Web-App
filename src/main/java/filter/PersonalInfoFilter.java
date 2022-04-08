@@ -28,7 +28,7 @@ public class PersonalInfoFilter extends AbstractFilter
         HttpSession session = req.getSession(false);
         String email;
 
-        if ((session == null) || ((email = (String) session.getAttribute("email")) == null))
+        if ((session == null) || ((email = (String) session.getAttribute(Constants.EMAIL)) == null))
         {
             LOGGER.info(CLASS + "Request to /personal_info while not logged in yet. Redirected to /login.");
 

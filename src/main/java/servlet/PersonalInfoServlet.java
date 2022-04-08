@@ -29,7 +29,7 @@ public class PersonalInfoServlet extends AbstractServlet
         if (session == null)
             res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
 
-        final String email = (String) session.getAttribute("email");
+        final String email = (String) session.getAttribute(Constants.EMAIL);
         //This should never happen, given the use of PersonalInfoFilter.
         if (email == null)
             res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
