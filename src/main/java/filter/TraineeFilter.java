@@ -1,19 +1,17 @@
 package filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import constants.Constants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import resource.TypeOfRoles;
 
 /**
  * @author Harjot Singh
@@ -30,9 +28,7 @@ public class TraineeFilter extends AbstractFilter {
         HttpSession session = req.getSession(false);
         boolean loggedIn = session != null && session.getAttribute("email") != null;
         if (loggedIn) {
-            //List<TypeOfRoles> rolesAsObj = (List<TypeOfRoles>) session.getAttribute("roles");
             List<String> roles = (List<String>) session.getAttribute("roles");
-            //for (TypeOfRoles role : rolesAsObj) roles.add(role.getRole());
             if (roles.contains("trainee")) {
                 res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
                 res.setHeader("Pragma", "no-cache"); // HTTP 1.0.

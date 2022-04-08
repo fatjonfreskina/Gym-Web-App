@@ -10,6 +10,9 @@ public class Constants {
     public static final String RELATIVE_URL_UNAUTHORIZED = "/unauthorized";
     public static final String RELATIVE_URL_HOME = "/";
 
+    //PATH PARAMETERS
+    public static final String URL_PARAMETER_TRAINER_HOME_PAGE_ADD_WEEKS = "addWeeks";
+
     //GENERAL APPLICATION PATHS
     public static final String PATH_THE_GYM = "/jsp/thegym.jsp";
     public static final String PATH_PRICES = "/jsp/prices.jsp";
@@ -109,7 +112,7 @@ public class Constants {
     public static final String LECTURETIMESLOT_STARTTIME = "starttime";
     public static final String LECTURETIMESLOT_COURSEEDITIONID = "courseeditionid";
     public static final String LECTURETIMESLOT_COURSENAME = "coursename";
-    public static final String LECTURETIMESLOT_SUBSTITUITION = "substituition";
+    public static final String LECTURETIMESLOT_SUBSTITUTION = "substitution";
 
     //coursedition
     public static final String COURSEEDITION_ID = "id";

@@ -1,19 +1,17 @@
 package filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import constants.Constants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import resource.TypeOfRoles;
 
 /**
  * @author Harjot Singh
@@ -31,9 +29,6 @@ public class SecretaryFilter extends AbstractFilter {
 
     logger.debug(loggerClass + "Filter for Secretary");
     if (loggedIn) {
-      //List<TypeOfRoles> rolesAsObj = (List<TypeOfRoles>) session.getAttribute("roles");
-      //List<String> roles = new ArrayList<>();
-      //for (TypeOfRoles role : rolesAsObj) roles.add(role.getRole());
       List<String> roles = (List<String>) session.getAttribute("roles");
       if (roles.contains("secretary")) {
         res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
