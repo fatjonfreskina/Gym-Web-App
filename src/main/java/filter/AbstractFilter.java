@@ -4,9 +4,6 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpFilter;
 
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 
 /**
  * Added if we need datasource for the filters
