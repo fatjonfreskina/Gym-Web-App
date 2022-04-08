@@ -8,9 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Trainee page</title>
 </head>
 <body>
+<jsp:include page="../include/header.jsp"/><br>
+
+
+<%--<p><a href="../personalinfo.jsp/">My personal info</a></p> --%>
+
+<%--Corsi a cui sei iscritto --%>
+
+<%--Corsi prenotabili  --%>
+
+
+<jsp:include page="../include/footer.jsp"/>
 
 </body>
 </html>
