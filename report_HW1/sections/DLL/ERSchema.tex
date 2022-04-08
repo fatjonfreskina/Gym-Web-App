@@ -32,5 +32,9 @@
     	\item \textbf{Password Reset}: Additional entity to allow users to reset their password (a User can change multiple times its password). It's identified by the \textit{Token} (type of VARCHAR) and has another field called \textit{Expiration Date}(type of TIMESTAMP).
         
         \item \textbf{Medical Certificate}: Entity used to store the medical certificate of a given user. It's identified by the \textit{Trainee}(of type User). It also has another field : \textit{Expiring Date}(of type of DATE). It has two additional attributes: \textit{Doctor Name} (type of VARCHAR) and \textit{Path} (type of TEXT).
+        
+        \item \textbf{Type of Roles}: Entity used to store the roles available for a User.
+        
+        \item \textbf{Email Confermation}: Additional entity to allow a User to confirm its registration after he has done it.
 	
     \end{itemize}

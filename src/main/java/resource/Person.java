@@ -1,84 +1,99 @@
 package resource;
 
 import java.sql.Date;
+import java.util.Objects;
 
+/**
+ * @author Francesco Caldivezzi
+ * @author Riccardo Forzan
+ * @author Simone D'Antimo
+ */
 public class Person {
+    public static final String ROLE_TRAINEE = "trainee";
+    public static final String ROLE_TRAINER = "trainer";
+    public static final String ROLE_SECRETARY = "secretary";
 
-    private final Integer[] role;
+    public static final int LENGTH_TELEPHONE = 10;
+    public static final int MIN_AGE = 14;
+
     private final String email;
-    private final String Path_img;
-    private final String password;
-    private final String address;
     private final String name;
     private final String surname;
-    private final String TaxCode;
-    private final Date Birth_date;
+    private final String psw;
+    private final String taxCode;
+    private final Date birthDate;
     private final String telephone;
+    private final String address;
+    private final String avatarPath;
 
-    //Constructor with all the attributes
-    public Person(Integer[] role, String email, String path_img, String password, String address, String name, String surname, String taxCode, Date birth_date, String telephone) {
-        this.role = role;
+    public Person(String email, String name, String surname, String psw, String taxCode, Date birthDate, String telephone, String address, String avatarPath) {
         this.email = email;
-        this.Path_img = path_img;
-        this.password = password;
-        this.address = address;
         this.name = name;
         this.surname = surname;
-        this.TaxCode = taxCode;
-        this.Birth_date = birth_date;
+        this.psw = psw;
+        this.taxCode = taxCode;
+        this.birthDate = birthDate;
         this.telephone = telephone;
-    }
-
-    //Constructor with no Path_img
-    public Person(Integer[] role, String email, String password, String address, String name, String surname, String taxCode, Date birth_date, String telephone) {
-        this.role = role;
-        this.email = email;
-        this.Path_img = "";
-        this.password = password;
         this.address = address;
-        this.name = name;
-        this.surname = surname;
-        this.TaxCode = taxCode;
-        this.Birth_date = birth_date;
-        this.telephone = telephone;
+        this.avatarPath = avatarPath;
     }
 
-    public final Date getBirth_date() {
-        return Birth_date;
-    }
-
-    public final String getTaxCode() {
-        return TaxCode;
-    }
-
-    public final String getSurname() {
-        return surname;
-    }
-
-    public final String getName() {
-        return name;
-    }
-
-    public final String getAddress() {
-        return address;
-    }
-
-    public final String getPassword() {
-        return password;
-    }
-
-    public final String getPath_img() {
-        return Path_img;
-    }
-
-    public final String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public final Integer[] getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public final String getTelephone() { return telephone; }
+    public String getSurname() {
+        return surname;
+    }
 
+    public String getPsw() {
+        return psw;
+    }
+
+    public String getTaxCode() {
+        return taxCode;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(email, person.email);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", psw='" + psw + '\'' +
+                ", taxCode='" + taxCode + '\'' +
+                ", birthDate=" + birthDate +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", avatarPath='" + avatarPath + '\'' +
+                '}';
+    }
 }

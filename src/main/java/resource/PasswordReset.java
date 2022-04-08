@@ -2,7 +2,12 @@ package resource;
 
 import java.sql.Timestamp;
 
+/**
+ * @author Marco Alessio
+ * @author Riccardo Forzan
+ */
 public class PasswordReset {
+
     private final String token;
     private final Timestamp expirationDate;
     private final String person;
@@ -25,4 +30,12 @@ public class PasswordReset {
         return person;
     }
 
+    @Override
+    public String toString() {
+        return "PasswordReset{" +
+                "token='" + token + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", person='" + person + '\'' +
+                '}';
+    }
 }

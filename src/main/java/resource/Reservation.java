@@ -1,8 +1,11 @@
 package resource;
 
-import java.sql.Date; 
+import java.sql.Date;
 import java.sql.Timestamp;
 
+/**
+ * @author Fatjon Freskina
+ */
 public class Reservation {
 
     private final String trainee;
@@ -10,26 +13,26 @@ public class Reservation {
     private final Date lectureDate;
     private final Timestamp lectureStartTime;
 
-    public Reservation (String trainee, String room, Date lectureDate, Timestamp lectureStartTime){
+    public Reservation(String trainee, String room, Date lectureDate, Timestamp lectureStartTime) {
         this.trainee = trainee;
         this.room = room;
         this.lectureDate = lectureDate;
         this.lectureStartTime = lectureStartTime;
     }
 
-    public final String getTrainee(){
+    public final String getTrainee() {
         return trainee;
     }
 
-    public final String getRoom(){
+    public final String getRoom() {
         return room;
     }
 
-    public final Date getLectureDate(){
+    public final Date getLectureDate() {
         return lectureDate;
     }
 
-    public final Timestamp getLectureStartTime(){
+    public final Timestamp getLectureStartTime() {
         return lectureStartTime;
     }
 

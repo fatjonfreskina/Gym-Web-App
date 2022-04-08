@@ -1,14 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
 <table>
     <tr>
-        <th><a href="">Home</a></th><th><a href="">The Gym</a></th><th><a href="">Calendar</a></th><th><a href="">Courses</a></th><th><a href="">Prices</a></th><th><a href="">Staff</a></th><th><a href="">About Us</a></th>
+        <th><a href="<c:url value="/"/>">Home</a></th>
+        <th><a href="<c:url value="/the_gym"/>">The Gym</a></th>
+        <th><a href="<c:url value="/courses"/>">Courses</a></th>
+        <th><a href="<c:url value="/calendar"/>">Calendar</a></th>
+        <th><a href="<c:url value="/prices"/>">Prices</a></th>
+        <th><a href="<c:url value="/staff"/>">Staff</a></th>
+        <th><a href="<c:url value="/aboutus"/>">Contact Us</a></th>
+
+
+        <c:choose>
+            <c:when test="${empty sessionScope.roles}">
+                <th><a href="<c:url value="/register"/>">Register</a></th>
+                <th><a href="<c:url value="/login"/>">Login</a></th>
+            </c:when>
+            <c:otherwise>
+                <th><a href="<c:url value="/${sessionScope.defaultRole}"/>">My Home</a></th>
+                <th><a href="<c:url value="/logout"/>">Logout</a></th>
+            </c:otherwise>
+        </c:choose>
+
     </tr>
 </table>
-</body>
-</html>

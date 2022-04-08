@@ -1,18 +1,24 @@
 package resource;
 
+/**
+ * @author Francesco Caldivezzi
+ */
 public class Course {
 
     private final String name;
     private final String description;
 
-    public Course(String name, String description)
-    {
+    public Course(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public final String getName(){ return name; }
+    public final String getName() {
+        return name;
+    }
 
-    public final String getDescription() { return description; }
+    public final String getDescription() {
+        return description;
+    }
 
 }
