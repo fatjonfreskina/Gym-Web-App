@@ -1,14 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Trainee page</title>
+    <title>Title</title>
 </head>
 <body>
+<jsp:include page="include/headersecreatry.jsp"/>
 
-<c:import url="/jsp/include/icon.jsp"></c:import>
+
+
+
+
+
+
+
 
 
 <jsp:include page="../include/footer.jsp"/>
+
+
 
 </body>
 </html>
