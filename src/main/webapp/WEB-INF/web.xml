@@ -22,6 +22,10 @@
         <filter-name>SecretaryFilter</filter-name>
         <filter-class>filter.SecretaryFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>PersonalInfoFilter</filter-name>
+        <filter-class>filter.PersonalInfoFilter</filter-class>
+    </filter>
 
     <!-- Filters Mapping -->
     <filter-mapping>
@@ -35,6 +39,10 @@
     <filter-mapping>
         <filter-name>SecretaryFilter</filter-name>
         <url-pattern>/secretary/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>PersonalInfoFilter</filter-name>
+        <url-pattern>/personal_info</url-pattern>
     </filter-mapping>
 
     
