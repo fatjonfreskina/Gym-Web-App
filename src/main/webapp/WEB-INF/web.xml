@@ -115,6 +115,10 @@
         <servlet-name>SecretaryServlet</servlet-name>
         <servlet-class>servlet.secretary.SecretaryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCoursesServlet</servlet-name>
+        <servlet-class>servlet.secretary.AddCoursesServlet</servlet-class>
+    </servlet>
     
     
 
@@ -184,7 +188,10 @@
         <servlet-name>SecretaryServlet</servlet-name>
         <url-pattern>/secretary</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>AddCoursesServlet</servlet-name>
+        <url-pattern>/secretary/addcourses</url-pattern>
+    </servlet-mapping>
     
     
     <!-- Listener called when the application is initialized -->

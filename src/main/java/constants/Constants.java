@@ -32,6 +32,8 @@ public class Constants {
 
     //SECRETARY APPLICATION PATH
     public static final String PATH_SECRETARY_HOME = "/jsp/secretary/home.jsp";
+    public static final String PATH_SECRETARY_ADD_COURSES = "/jsp/secretary/addcourses.jsp";
+
 
     //TRAINER PATHS
     public static final String PATH_TRAINER_HOME = "/jsp/trainer/home.jsp";
