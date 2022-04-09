@@ -128,18 +128,17 @@
         <servlet-class>servlet.secretary.ManagesSubscriptionServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ManageLecturesServlet</servlet-name>
+        <servlet-class>servlet.secretary.ManageLecturesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>servlet.secretary.AddAccountServlet</servlet-class>
-        <multipart-config>
-            <max-file-size>5242880</max-file-size><!-- 5MB -->
-            <max-request-size>10485760</max-request-size><!-- 10 MB-->
-        </multipart-config>
     </servlet>
     <servlet>
         <servlet-name>ManageRolesServlet</servlet-name>
         <servlet-class>servlet.secretary.ManageRolesServlet</servlet-class>
     </servlet>
-    
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -218,6 +217,10 @@
     <servlet-mapping>
         <servlet-name>ManagesSubscriptionServlet</servlet-name>
         <url-pattern>/secretary/managessubscription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManageLecturesServlet</servlet-name>
+        <url-pattern>/secretary/managelectures</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>

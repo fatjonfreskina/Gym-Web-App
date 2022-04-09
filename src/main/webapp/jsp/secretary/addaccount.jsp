@@ -18,27 +18,21 @@
         <label>Telephone Number : </label><input type="tel" name="telephone_number" value="0123456789"><br>
         <label>Avatar (Optional) : </label><input type="file" name="avatar" ><br/>
         <label>Email : </label><input type="text" name="email" value=""><br/>
-        <label>Role : </label>
-        <div>
-            <input type="checkbox" id="trainee" name="trainee"/>
-            <label for="trainee">Trainee</label>
-        </div>
-        <div>
-            <input type="checkbox" name="trainer" id="trainer"/>
-            <label for="trainer">Trainer</label>
-        </div>
-        <div>
-            <input type="checkbox" name="secretary" id="secretary"/>
-            <label for="secretary">Secretary</label>
-        </div>
+<%--        <label>Role : </label>
+        <input type="checkbox" id="trainee" name="trainee"/>
+        <label for="trainee">Trainee</label>
+        <input type="checkbox" name="trainer" id="trainer"/>
+        <label for="trainer">Trainer</label>
+        <input type="checkbox" name="secretary" id="secretary"/>
+        <label for="secretary">Secretary</label>--%>
         <button type="submit" >Register</button>
     </form>
 
-    <c:choose>
+<%--    <c:choose>
         <c:when test="${message.error}">
             <p><c:out value="${message.message}"/></p>
         </c:when>
-    </c:choose>
+    </c:choose>--%>
 
     <jsp:include page="../include/footer.jsp"/>
 </body>
