@@ -144,16 +144,8 @@
         <servlet-class>servlet.secretary.rest.DeleteLectureTimeSlot</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditLectureTimeSlot</servlet-name>
-        <servlet-class>servlet.secretary.rest.SubstitutionLectureTimeSlot</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>servlet.secretary.AddAccountServlet</servlet-class>
-        <multipart-config>
-            <max-file-size>5242880</max-file-size><!-- 5MB -->
-            <max-request-size>10485760</max-request-size><!-- 10 MB-->
-        </multipart-config>
     </servlet>
     <servlet>
         <servlet-name>ManageRolesServlet</servlet-name>
@@ -168,8 +160,8 @@
         <servlet-class>servlet.secretary.rest.TimeSchedulesServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetTrainerAttendanceServlet</servlet-name>
-        <servlet-class>servlet.trainer.rest.GetTrainerAttendanceServlet</servlet-class>
+        <servlet-name>AddSubscriptionServlet</servlet-name>
+        <servlet-class>servlet.secretary.rest.AddSubScriptionServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RetrieveAvatar</servlet-name>
@@ -283,8 +275,8 @@
         <url-pattern>/secretary/rest/timeschedules</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetTrainerAttendanceServlet</servlet-name>
-        <url-pattern>/trainer/rest/getattendance</url-pattern>
+        <servlet-name>AddSubscriptionServlet</servlet-name>
+        <url-pattern>/secretary/rest/addsubscription</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RetrieveAvatar</servlet-name>

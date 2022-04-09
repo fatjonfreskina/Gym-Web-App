@@ -14,7 +14,7 @@ import java.util.List;
  * @author Andrea Pasin
  */
 public class GetValidSubscriptionByCourseAndTraineeDatabase {
-    private static final String STATEMENT = "SELECT * FROM subscription WHERE courseeditionid = ? and startday+ (duration || ' day')::interval>CURRENT_DATE and trainee=?";
+    private static final String STATEMENT = "SELECT * FROM subscription WHERE courseeditionid = ? and startday+ (duration || ' day')::interval>CURRENT_DATE and trainee=? and coursename=?";
     private final Connection connection;
     private final CourseEdition course;
     private final Person person;
@@ -33,7 +33,7 @@ public class GetValidSubscriptionByCourseAndTraineeDatabase {
             ps = connection.prepareStatement(STATEMENT);
             ps.setInt(1, course.getId());
             ps.setString(2, person.getEmail());
-
+            ps.setString(3,course.getCourseName());
             rs = ps.executeQuery();
 
             while (rs.next()) {

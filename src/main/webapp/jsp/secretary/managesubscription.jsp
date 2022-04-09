@@ -13,7 +13,7 @@
     <label>Course Name : </label>
     <select name="course_name">
         <c:forEach var="course" items="${courses}">
-            <option  value="${course.name}"><c:out value="${course.name}"/></option><br>
+            <option  value="${course.name}"><c:out value="${course.name}"/> </option><br>
         </c:forEach>
     </select><br>
 
@@ -27,7 +27,7 @@
         <option  value="180">Half-Yearly</option><br>
         <option  value="365">Year</option><br>
     </select><br>
-
+    <label>Discount : </label><input type="number" min = "0" max ="100">
 
     <input type="submit" name="Submit"/>
 </form>
