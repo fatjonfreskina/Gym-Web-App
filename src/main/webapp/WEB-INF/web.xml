@@ -137,7 +137,7 @@
     </servlet>
     <servlet>
         <servlet-name>EditLectureTimeSlot</servlet-name>
-        <servlet-class>servlet.secretary.rest.EditLectureTimeSlot</servlet-class>
+        <servlet-class>servlet.secretary.rest.SubstitutionLectureTimeSlot</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>

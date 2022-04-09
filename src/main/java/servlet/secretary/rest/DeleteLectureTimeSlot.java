@@ -71,8 +71,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
             for (Person p: noticeTo) {
                 Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(),p.getEmail()).execute();
                 out.println("email to: " + person);
-                //TODO: unlock mail sending
-                //MailTypes.mailForCancellationLecture(person,lectureTimeSlot);
+                //TODO: unlock mail sending             MailTypes.mailForCancellationLecture(person,lectureTimeSlot);
             }
 
             //Delete the LectureTimeSlot (all subscriptions have been removed)
