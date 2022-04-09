@@ -17,34 +17,22 @@ import java.sql.Time;
 /**
  * @author Riccardo Forzan
  */
-public class DeleteLectureTimeSlot extends AbstractServlet {
+public class EditLectureTimeSlot extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //doGet => doPost
+        //doPost
 
-        //http://localhost:8080/wa2122-gwa/secretary/rest/deletelecturetimeslot?roomname=Stamina&date=2022-04-05&starttime=18:00:00
+        //http://localhost:8080/wa2122-gwa/secretary/rest/editlecturetimeslot?roomname=Stamina&date=2022-04-05&starttime=18:00:00&courseeditionid=2&coursename=Cardio&subsitution=giacomo.forza@example.com
 
         //Parse the parameters
         String roomName = request.getParameter("roomname");
         Date date = Date.valueOf(request.getParameter("date"));
         Time startTime = Time.valueOf(request.getParameter("starttime"));
-
-        LectureTimeSlot toFind = new LectureTimeSlot(roomName,date,startTime,null,null,null);
-
-        try {
-
-            //TODO: Delete all the users of the lecturetimeslot and send an email to all the users
-
-            //Delete the LectureTimeSlot (all subscriptions have been removed)
-            new DeleteLectureTimeSlotDatabase(getDataSource().getConnection(),toFind).execute();
-
-        } catch (SQLException | NamingException e) {
-
-            //TODO: Handle the error
-
-        }
+        Integer coursEditionId = Integer.valueOf(request.getParameter("courseeditionid"));
+        String courseName = request.getParameter("coursename");
+        String email = request.getParameter("subsitution");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
@@ -53,7 +41,9 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
         out.println(roomName);
         out.println(date);
         out.println(startTime);
-        out.println(toFind);
+        out.println(coursEditionId);
+        out.println(courseName);
+        out.println(email);
 
     }
 

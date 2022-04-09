@@ -136,6 +136,10 @@
         <servlet-class>servlet.secretary.rest.DeleteLectureTimeSlot</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditLectureTimeSlot</servlet-name>
+        <servlet-class>servlet.secretary.rest.EditLectureTimeSlot</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>servlet.secretary.AddAccountServlet</servlet-class>
     </servlet>
@@ -239,6 +243,10 @@
         <url-pattern>/secretary/rest/deletelecturetimeslot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>EditLectureTimeSlot</servlet-name>
+        <url-pattern>/secretary/rest/editlecturetimeslot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/secretary/addaccount</url-pattern>
     </servlet-mapping>
@@ -254,7 +262,6 @@
         <servlet-name>TimeSchedulesServlet</servlet-name>
         <url-pattern>/secretary/rest/timeschedules</url-pattern>
     </servlet-mapping>
-    
     
     <!-- Listener called when the application is initialized -->
     <listener>

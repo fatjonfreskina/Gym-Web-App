@@ -12,7 +12,6 @@ import java.sql.*;
  * @author Fatjon Freskina
  */
 public class DeleteReservation {
-    private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
     private static final String STATEMENT = """
             DELETE FROM reservation 
             WHERE trainee = ? 
@@ -36,9 +35,6 @@ public class DeleteReservation {
             pstmt.setDate(3, reservation.getLectureDate());
             pstmt.setTime(4, reservation.getLectureStartTime());
             pstmt.execute();
-        } catch (SQLException exc) {
-            logger.error("[INFO] DeleteReservation.java - %s - An exception occurred during query execution.\n%s\n".formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
-            throw exc;
         } finally {
             con.close();
         }
