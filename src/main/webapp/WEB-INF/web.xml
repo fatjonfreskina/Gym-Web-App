@@ -255,10 +255,6 @@
         <url-pattern>/secretary/rest/deletelecturetimeslot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditLectureTimeSlot</servlet-name>
-        <url-pattern>/secretary/rest/editlecturetimeslot</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/secretary/addaccount</url-pattern>
     </servlet-mapping>
