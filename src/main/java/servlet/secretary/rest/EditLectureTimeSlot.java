@@ -1,17 +1,13 @@
 package servlet.secretary.rest;
 
-import dao.lecturetimeslot.DeleteLectureTimeSlotDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import resource.LectureTimeSlot;
 import servlet.AbstractServlet;
 
-import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Time;
 
 /**
@@ -20,9 +16,8 @@ import java.sql.Time;
 public class EditLectureTimeSlot extends AbstractServlet {
 
     @Override
+    //TODO: Convert to doPost
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //doPost
 
         //http://localhost:8080/wa2122-gwa/secretary/rest/editlecturetimeslot?roomname=Stamina&date=2022-04-05&starttime=18:00:00&courseeditionid=2&coursename=Cardio&subsitution=giacomo.forza@example.com
 
@@ -34,6 +29,10 @@ public class EditLectureTimeSlot extends AbstractServlet {
         String courseName = request.getParameter("coursename");
         String email = request.getParameter("subsitution");
 
+        //This field will be sent as a motivation in the email to notice all the subscripted users
+        String notice = request.getParameter("notice");
+
+
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
@@ -44,6 +43,7 @@ public class EditLectureTimeSlot extends AbstractServlet {
         out.println(coursEditionId);
         out.println(courseName);
         out.println(email);
+        out.println(notice);
 
     }
 
