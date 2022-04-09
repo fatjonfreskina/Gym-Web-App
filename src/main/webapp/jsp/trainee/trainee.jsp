@@ -8,6 +8,7 @@
 <c:import url="/jsp/include/icon.jsp"></c:import>
 
 
+
 <jsp:include page="../include/footer.jsp"/>
 
 </body>
