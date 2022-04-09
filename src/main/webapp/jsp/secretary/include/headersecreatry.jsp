@@ -10,7 +10,7 @@
         <td><a href ="">Add Medical Certificates</a></td>
         <td><a href ="">Manage Accounts</a></td>
         <td><a href ="">Manage Certificates</a></td>
-        <td><a href="">Manage Subscription</a> </td>
+        <td><a href="<c:url value="/secretary/managessubscription"/>">Manage Subscription</a> </td>
     </tr>
 </table>
 
