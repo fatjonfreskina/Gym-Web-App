@@ -12,11 +12,11 @@ public class LectureTimeSlot {
     private final String roomName;
     private final Date date;
     private final Time startTime;
-    private final int courseEditionId;
+    private final Integer courseEditionId;
     private final String courseName;
     private final String substitution;
 
-    public LectureTimeSlot(String roomName, Date date, Time startTime, int courseEditionId, String courseName, String substitution) {
+    public LectureTimeSlot(String roomName, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {
         this.roomName = roomName;
         this.date = date;
         this.startTime = startTime;

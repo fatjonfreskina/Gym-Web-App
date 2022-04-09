@@ -50,10 +50,13 @@
             let event = new Object();
             event.title = lts.courseName;
 
+            //TODO: Some start date are not parsed
+
             let startDate = moment(lts.date).format('YYYY-MM-DD');
 
             event.start = startDate;
             event.end = moment(startDate).add(2, 'hours');
+
             event.courseEditionId = lts.courseEditionId;
             event.roomName = lts.roomName;
             calendar.addEvent(event);

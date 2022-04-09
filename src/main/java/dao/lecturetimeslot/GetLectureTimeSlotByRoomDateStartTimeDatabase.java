@@ -11,10 +11,9 @@ import java.util.List;
 
 /**
  * @author Francesco Caldivezzi
- * */
+ */
 
-public class GetLectureTimeSlotByRoomDateStartTimeDatabase
-{
+public class GetLectureTimeSlotByRoomDateStartTimeDatabase {
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE roomname = ? and date = ? and starttime=?";
     private final Connection connection;
     private final LectureTimeSlot lectureTimeSlot;
@@ -25,8 +24,7 @@ public class GetLectureTimeSlotByRoomDateStartTimeDatabase
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
-    public LectureTimeSlot execute() throws SQLException
-    {
+    public LectureTimeSlot execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         LectureTimeSlot result = null;
@@ -48,12 +46,9 @@ public class GetLectureTimeSlotByRoomDateStartTimeDatabase
                 String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUTION);
                 result = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
             }
-        }  finally
-        {
-            if (rs != null)
-                rs.close();
-            if (ps != null)
-                ps.close();
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
             connection.close();
         }
         return result;
