@@ -34,6 +34,14 @@ public class Subscription {
     this.discount = discount;
     this.trainee = trainee;
   }
+  public Subscription(int courseEditionID, String courseName) {
+    this.courseEditionID = courseEditionID;
+    this.courseName = courseName;
+    this.duration = 0;
+    this.startDay = null;
+    this.discount = 0;
+    this.trainee = null;
+  }
 
   public int getCourseEditionID() {
     return courseEditionID;

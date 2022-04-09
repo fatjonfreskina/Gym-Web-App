@@ -152,7 +152,7 @@ ALTER TABLE reservation
 
 ALTER TABLE reservation
     ADD CONSTRAINT reservation_fk2
-        FOREIGN KEY (lectureroom, lecturedate, lecturestarttime) REFERENCES lecturetimeslot (roomname, date, starttime);
+        FOREIGN KEY (lectureroom, lecturedate, lecturestarttime) REFERENCES lecturetimeslot (roomname, date, starttime) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE teaches
     ADD CONSTRAINT teaches_fk1

@@ -47,6 +47,17 @@ public class Person {
         this.address = address;
         this.avatarPath = avatarPath;
     }
+    public Person(String email) {
+        this.email = email;
+        this.name = null;
+        this.surname = null;
+        this.psw = null;
+        this.taxCode = null;
+        this.birthDate = null;
+        this.telephone = null;
+        this.address = null;
+        this.avatarPath = null;
+    }
 
     public String getEmail() {
         return email;
