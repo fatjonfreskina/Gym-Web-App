@@ -6,9 +6,7 @@
 <body>
 
 <c:import url="/jsp/include/icon.jsp"></c:import>
-
-
-
+<jsp:include url="/jsp/trainer/subscriptiontrainee.jsp"/>
 <jsp:include page="../include/footer.jsp"/>
 
 </body>
