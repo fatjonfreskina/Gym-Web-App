@@ -23,8 +23,11 @@ public enum ErrorCodes {
     NOT_AUTHENTICATED(-13, HttpServletResponse.SC_UNAUTHORIZED, "The provided credentials are wrong"),
     OVERLAPPING(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping!"),
     NO_COURSES_TAUGHT(-15,HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
-    NO_COURSES_HELD_NOW(-16,HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now")
+    NO_COURSES_HELD_NOW(-16,HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
+    FREE_TRAIAL_ALREADY_DONE(-17,HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
+    OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription")
     ;
+
     private final int errorCode;
     private final int httpCode;
     private final String errorMessage;
