@@ -134,6 +134,10 @@
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <servlet-class>servlet.secretary.AddAccountServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10 MB-->
+        </multipart-config>
     </servlet>
     <servlet>
         <servlet-name>ManageRolesServlet</servlet-name>

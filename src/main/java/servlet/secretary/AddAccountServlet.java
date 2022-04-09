@@ -74,8 +74,11 @@ public class AddAccountServlet extends AbstractServlet {
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
             avatar = req.getPart(Constants.AVATAR);
-            String isTrainer = req.getParameter("trainer");
-            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, role);
+            boolean isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
+            boolean isSecretary = req.getParameter(Person.ROLE_SECRETARY).equals("on");
+            boolean isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
+            boolean roles[] = {isSecretary, isTrainee, isTrainer};
+            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, roles);
             if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), true);
                 registrable = false;
@@ -99,7 +102,6 @@ public class AddAccountServlet extends AbstractServlet {
         String lastName = null;
         String address = null;
         String email = null;
-        String confirmPassword = null;
         String telephoneNumber = null;
         Date birthDate = null;
 
@@ -137,12 +139,14 @@ public class AddAccountServlet extends AbstractServlet {
             } else if (!InputValidation.isValidEmailAddress(email)) {
                 error = ErrorCodes.NOT_A_MAIL;
             }
+            if (req.getParameter(Person.ROLE_TRAINER) == null && req.getParameter(Person.ROLE_SECRETARY) == null && req.getParameter(Person.ROLE_TRAINEE) == null);
+                error = ErrorCodes.EMPTY_INPUT_FIELDS;
         }
         return error;
     }
 
     public ErrorCodes insertUser(String taxCode, String firstName, String lastName, String address, String email,
-                                 String password, String telephoneNumber, Date birthDate, Part avatar, String role) {
+                                 String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles) {
         ErrorCodes error = ErrorCodes.OK;
         Person p1 = null;
         Person p2 = null;
@@ -168,9 +172,14 @@ public class AddAccountServlet extends AbstractServlet {
                                     , taxCode, birthDate, telephoneNumber, address, pathImg);
 
                             new InsertNewPersonDatabase(getDataSource().getConnection(), p).execute();
-                            new InsertPersonRoleDatabase(getDataSource().getConnection(), p, role).execute();
+                            if (roles[0])
+                                new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_SECRETARY).execute();
+                            if (roles[1])
+                                new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINEE).execute();
+                            if (roles[2])
+                                new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINER).execute();
                             (new InsertEmailConfirmationDatabase(getDataSource().getConnection(), new EmailConfirmation(p.getEmail(), EncryptionManager.encrypt(email),
-                                    new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
+                                   new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
 
                             MailTypes.mailForConfirmRegistration(p);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
