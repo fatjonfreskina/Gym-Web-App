@@ -3,33 +3,22 @@ package dao.reservation;
 import constants.Constants;
 import resource.Reservation;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Return a list of (future) reservations given a date and a user
- *
- * @author Fatjon Freskina
+ * @author Andrea Pasin
  */
-public class GetListReservationDatabase {
+public class GetListReservationByLectureDatabase {
 
-    private static final String STATEMENT = """
-            SELECT * 
-            FROM reservation
-            WHERE trainee = ?
-            AND lecturedate > ?
-            ORDER BY lecturedate ASC;
-            """;
+    private static final String STATEMENT = "SELECT * FROM reservation WHERE lecturedate = ? and lectureroom= ? and lecturestarttime= ?";
 
     private final Connection con;
     private final Reservation reservation;
 
 
-    public GetListReservationDatabase(final Connection con, final Reservation reservation) {
+    public GetListReservationByLectureDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
         this.reservation = reservation;
 
@@ -44,15 +33,17 @@ public class GetListReservationDatabase {
 
         try {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setString(1, reservation.getTrainee());
-            pstmt.setDate(2, reservation.getLectureDate());
+            pstmt.setDate(1, reservation.getLectureDate());
+            pstmt.setString(2, reservation.getRoom());
+            pstmt.setTime(3, reservation.getLectureStartTime());
 
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTime(Constants.RESERVATION_LECTURESTARTTIME)));
             }
-        } finally {
+        }
+        finally {
             if (rs != null) {
                 rs.close();
             }

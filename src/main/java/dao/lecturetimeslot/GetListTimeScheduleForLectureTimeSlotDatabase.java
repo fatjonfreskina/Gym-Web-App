@@ -3,8 +3,10 @@ package dao.lecturetimeslot;
 import constants.Constants;
 import resource.CourseEdition;
 import resource.LectureTimeSlot;
+import resource.view.GeneralWeekHours;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public class GetListTimeScheduleForLectureTimeSlotDatabase
     private final String STATEMENT = "select distinct to_char(date,'Dy') as date,starttime,courseeditionid " +
             "from lecturetimeslot join courseedition on lecturetimeslot.courseeditionid=courseedition.id and lecturetimeslot.coursename=courseedition.coursename " +
             "where date >= current_date and courseedition.coursename = ? " +
-            "group by date,starttime,courseeditionid" +
+            "group by date,starttime,courseeditionid " +
             "order by courseeditionid desc";
 
 
@@ -28,11 +30,11 @@ public class GetListTimeScheduleForLectureTimeSlotDatabase
         this.courseEdition = courseEdition;
     }
 
-    public List<LectureTimeSlot> execute() throws SQLException
+    public List<GeneralWeekHours> execute() throws SQLException
     {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<LectureTimeSlot> result = null;
+        List<GeneralWeekHours> result = new ArrayList<>();
         try
         {
             ps = connection.prepareStatement(STATEMENT);
@@ -42,12 +44,12 @@ public class GetListTimeScheduleForLectureTimeSlotDatabase
 
             while(rs.next())
             {
-                Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
+                String day = rs.getString(Constants.LECTURETIMESLOT_DATE);
                 Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
-                Integer courseEditionId = rs.getInt(Constants.COURSEEDITION_ID);
-                result.add(new LectureTimeSlot(null, date, startTime, courseEditionId, null, null));
+                Integer courseEditionId = rs.getInt(Constants.LECTURETIMESLOT_COURSEEDITIONID);
+                result.add(new GeneralWeekHours(day,startTime,courseEditionId));
             }
-        }  finally
+        } finally
         {
             if (rs != null)
                 rs.close();
@@ -57,5 +59,7 @@ public class GetListTimeScheduleForLectureTimeSlotDatabase
         }
         return result;
     }
+
+
 
 }
