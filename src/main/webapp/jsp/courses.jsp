@@ -11,8 +11,7 @@
 <table>
     <c:forEach var="course" items="${courseList}">
         <tr>
-
-            <td><img src="${pageContext.request.contextPath}/images/${course.name}" alt="" /></td>
+            <td><img src="<c:url value="/images/courses/${course.name}.jpg"></c:url>" alt="" width="20%" height="20%"/></td>
             <td><c:out value="${course.name}"/></td>
             <td><c:out value="${course.description}"/></td>
         </tr>
