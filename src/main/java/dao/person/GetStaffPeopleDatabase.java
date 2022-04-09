@@ -45,7 +45,7 @@ public class GetStaffPeopleDatabase {
                         null,
                         null,
                         null,
-                        rs.getString(Constants.PERSON_AVATARPATH)
+                        null
                 );
                 Teaches t = new Teaches(
                         -1,
