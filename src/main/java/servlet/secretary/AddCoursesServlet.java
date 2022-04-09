@@ -61,7 +61,11 @@ public class AddCoursesServlet extends AbstractServlet
         }
         if(error != ErrorCodes.OK)
         {
-            //error page error
+            String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), true));
+            PrintWriter out = response.getWriter();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            out.print(messageJson);
         }else
         {
             request.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_COURSES).forward(request,response);

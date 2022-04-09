@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Context>
+<Context docbase="" path="">
     <Resource name="jdbc/gwa-res"
               auth="Container"
               type="javax.sql.DataSource"
