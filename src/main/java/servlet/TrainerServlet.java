@@ -70,7 +70,7 @@ public class TrainerServlet extends AbstractServlet {
         week[i] = fromLocalDate.plusDays(i).toString();
       }
 
-      req.setAttribute("courseStatus", courseStatuses);
+      req.setAttribute("courseStatuses", courseStatuses);
       req.setAttribute("slots", getWeeklySlotsFromLectureTimeSlots(allLessonsInThisWeek));
       req.setAttribute("week", week);
       req.setAttribute("addWeeks", addWeeks);
