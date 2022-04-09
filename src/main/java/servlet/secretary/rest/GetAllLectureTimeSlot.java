@@ -1,9 +1,8 @@
-package servlet.secretary;
+package servlet.secretary.rest;
 
 import com.google.gson.Gson;
 import dao.lecturetimeslot.GetAllLectureTimeSlotDatabase;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
@@ -18,7 +17,7 @@ import java.util.List;
 /**
  * @author Riccardo Forzan
  */
-public class ManageLecturesServlet extends AbstractServlet {
+public class GetAllLectureTimeSlot extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,10 +40,4 @@ public class ManageLecturesServlet extends AbstractServlet {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response){
-
-
-
-    }
 }

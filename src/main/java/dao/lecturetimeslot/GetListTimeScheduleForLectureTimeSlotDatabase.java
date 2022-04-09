@@ -5,6 +5,7 @@ import resource.CourseEdition;
 import resource.LectureTimeSlot;
 
 import java.sql.*;
+import java.util.List;
 
 /**
  * @author Francesco Caldivezzi
@@ -27,11 +28,11 @@ public class GetListTimeScheduleForLectureTimeSlotDatabase
         this.courseEdition = courseEdition;
     }
 
-    public LectureTimeSlot execute() throws SQLException
+    public List<LectureTimeSlot> execute() throws SQLException
     {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        LectureTimeSlot result = null;
+        List<LectureTimeSlot> result = null;
         try
         {
             ps = connection.prepareStatement(STATEMENT);
@@ -39,12 +40,12 @@ public class GetListTimeScheduleForLectureTimeSlotDatabase
             rs = ps.executeQuery();
 
 
-            if(rs.next())
+            while(rs.next())
             {
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
                 Time startTime = rs.getTime(Constants.LECTURETIMESLOT_STARTTIME);
                 Integer courseEditionId = rs.getInt(Constants.COURSEEDITION_ID);
-                result = new LectureTimeSlot(null, date, startTime, courseEditionId, null, null);
+                result.add(new LectureTimeSlot(null, date, startTime, courseEditionId, null, null));
             }
         }  finally
         {
