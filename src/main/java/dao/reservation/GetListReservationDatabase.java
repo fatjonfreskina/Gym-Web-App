@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class GetListReservationDatabase {
 
-    private static final Logger logger = LogManager.getLogger("fatjon_freskina_appender");
-
     private static final String STATEMENT = """
             SELECT * 
             FROM reservation
@@ -52,14 +50,8 @@ public class GetListReservationDatabase {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTimestamp(Constants.RESERVATION_LECTURESTARTTIME)));
+                reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTime(Constants.RESERVATION_LECTURESTARTTIME)));
             }
-
-            logger.debug("[INFO] GetListReservationDatabase - %s - Query successfully done.\n".formatted(
-                    new Timestamp(System.currentTimeMillis())));
-        } catch (SQLException exc) {
-            logger.error("[INFO] GetListReservationDatabase - %s - An exception occurred during query execution.\n%s\n".
-                    formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
         } finally {
             if (rs != null) {
                 rs.close();
