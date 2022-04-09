@@ -27,6 +27,9 @@ public class Constants {
     public static final String PATH_STAFF = "/jsp/staff.jsp";
 
 
+    //TRAINEE PATH
+    public static final String PATH_TRAINEE = "/jsp/trainee/trainee.jsp";
+
     //PASSWORD FLOW PATHS
     public static final String PATH_PASSWORD_FORGOT = "/jsp/auth/password_forgot.jsp";
     public static final String PATH_PASSWORD_CHANGE = "/jsp/auth/password_change.jsp";

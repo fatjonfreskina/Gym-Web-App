@@ -119,7 +119,10 @@
         <servlet-name>AddCoursesServlet</servlet-name>
         <servlet-class>servlet.secretary.AddCoursesServlet</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>TraineeServlet</servlet-name>
+        <servlet-class>servlet.trainee.TraineeServlet</servlet-class>
+    </servlet>
     
 
     <!-- Mapping between servlets and URIs -->
@@ -147,6 +150,10 @@
         <servlet-name>TrainerServlet</servlet-name>
         <url-pattern>/trainer</url-pattern>
         <url-pattern>/trainer/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TraineeServlet</servlet-name>
+        <url-pattern>/trainee</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PasswordForgotServlet</servlet-name>
