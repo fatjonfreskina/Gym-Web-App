@@ -10,6 +10,7 @@ import resource.LectureTimeSlot;
 import resource.Person;
 import resource.Teaches;
 import resource.view.CourseStatus;
+import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
-public class TraineeServlet {
+public class TraineeServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher(Constants.PATH_TRAINEE).forward(req, resp);
     }
