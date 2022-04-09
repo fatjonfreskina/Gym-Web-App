@@ -1,3 +1,9 @@
+--INSERT FAKE USER WITH ALL ROLES USED BY DEVS, password is CIAO
+INSERT INTO person VALUES ('dev@dev.dev','Developer','Developer','6613DDD54D6DB890EC06519714257DD4C2ABE8080229C86C900B57FA7552A8EC','DEVDEV0000000000',TO_DATE('01/01/2000','DD/MM/YYYY'),'0000000000','Address of developer',null);
+INSERT INTO personroles VALUES ('dev@dev.dev','trainee');
+INSERT INTO personroles VALUES ('dev@dev.dev','trainer');
+INSERT INTO personroles VALUES ('dev@dev.dev','secretary');
+
 --Users
 INSERT INTO person VALUES ('mario.rossi@example.com','Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);
 INSERT INTO person VALUES ('riccardo.bianchi@example.com','Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000',TO_DATE('01/02/1970','DD/MM/YYYY'),'3000000002','Address of Riccardo Bianchi',null);
@@ -71,7 +77,6 @@ INSERT INTO teaches VALUES (3,'Yoga','shery.stamm@example.com');
 INSERT INTO teaches VALUES (4,'Crossfit','nathanial.prohaska@example.com');
 INSERT INTO teaches VALUES (5,'Bodybuilding','cyrus.hammes@example.com');
 INSERT INTO teaches VALUES (6,'Calisthenics','annis.dach@example.com');
-
 
 --Room
 --LectureTimeSlot
