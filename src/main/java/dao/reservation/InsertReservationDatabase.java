@@ -30,7 +30,7 @@ public class InsertReservationDatabase {
             stm.setString(1, reservation.getTrainee());
             stm.setString(2, reservation.getRoom());
             stm.setDate(3, reservation.getLectureDate());
-            stm.setTimestamp(4, reservation.getLectureStartTime());
+            stm.setTime(4, reservation.getLectureStartTime());
 
             stm.execute();
             logger.error("[INFO] InsertReservationDatabase - %s - Insertion successfully done.\n".

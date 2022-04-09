@@ -52,7 +52,7 @@ public class GetListReservationDatabase {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTimestamp(Constants.RESERVATION_LECTURESTARTTIME)));
+                reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTime(Constants.RESERVATION_LECTURESTARTTIME)));
             }
 
             logger.debug("[INFO] GetListReservationDatabase - %s - Query successfully done.\n".formatted(
