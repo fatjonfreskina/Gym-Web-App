@@ -11,7 +11,7 @@
         <p><c:out value="${message.message}"/></p>
     </c:when>
     <c:otherwise>
-        <a href="<c:url value="login.jsp"/>">Login</a><br>
+        <a href="<c:url value="/login"/>">Login</a><br>
         YOUR REGISTRATION HAS BEEN COMPLETED SUCCESSFULLY!!!
     </c:otherwise>
 </c:choose>

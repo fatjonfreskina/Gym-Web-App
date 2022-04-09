@@ -79,16 +79,10 @@ INSERT INTO teaches VALUES (6,'Calisthenics','annis.dach@example.com');
 --SubscriptionType
 --Subscription
 
-
-
 INSERT INTO room VALUES ('Stamina',30);
 INSERT INTO room VALUES ('Energy',25);
 INSERT INTO room VALUES ('Strength',15);
 INSERT INTO room VALUES ('Power',15);
-
-
-
-
 
 --LectureTimeSlot for Stamina-----------------------------------------------------------------
 
@@ -184,7 +178,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-31', ' 18:00:00', 2, 'Cardio', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-05-31', ' 20:00:00', 3, 'Yoga', NULL);
 
---Thursday******************************FESTA DELLA REPUBBLICA:DECIDERE SE TOGLIERE O NO!!!!!!!
+--Thursday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-02', ' 18:00:00', 3, 'Yoga', NULL);
 
 --Friday
@@ -231,8 +225,6 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Thursday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Stamina', '2022-06-30', ' 18:00:00', 3, 'Yoga', NULL);
 
-
-
 --LectureTimeSlot for Energy--------------------------------------------------------------------
 
 --Monday
@@ -253,7 +245,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Saturday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-16', ' 10:00:00', 4, 'Crossfit', NULL);
 
---Monday****************PASQUETTA: DECIDERE SE TOGLIERE!!!!!!!
+--Monday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-04-18', ' 16:00:00', 4, 'Crossfit', NULL);
 
 --Thursday
@@ -310,7 +302,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Monday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-05-30', ' 16:00:00', 4, 'Crossfit', NULL);
 
---Thursday***********FESTA DELLA REPUBBLICA: DECIDERE SE TOGLIERE!!!!!!!!!!!!!!!!
+--Thursday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-02', ' 10:00:00', 4, 'Crossfit', NULL);
 
 --Saturday
@@ -349,7 +341,6 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Thursday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Energy', '2022-06-30', ' 10:00:00', 4, 'Crossfit', NULL);
 
-
 --LectureTimeSlot for Strength--------------------------------------------------------------------
 
 --Monday
@@ -364,7 +355,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Wednesday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-13', ' 18:00:00', 6, 'Calisthenics', NULL);
 
---Monday****************************PASQUETTA: DECIDERE SE TOGLIERE O NO!!!!!!!!!!!!!!!
+--Monday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-04-18', ' 18:00:00', 6, 'Calisthenics', NULL);
 
 --Wednesday
@@ -430,8 +421,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Wednesday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-29', ' 18:00:00', 6, 'Calisthenics', NULL);
 
-
---LectureTimeSlot for Power-------------------------------------------------------------------------
+--LectureTimeSlot for Power
 
 --Monday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-04', ' 10:00:00', 5, 'Bodybuilding', NULL);
@@ -461,7 +451,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 --Saturday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-16', ' 10:00:00', 5, 'Bodybuilding', NULL);
 
---Monday**************************************PASQUETTA: DECIDERE SE TOGLIERE!!!!!!!!!!!!!!!!!!
+--Monday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-18', ' 10:00:00', 5, 'Bodybuilding', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-04-18', ' 18:00:00', 1, 'Powerlifting', NULL);
 
@@ -609,9 +599,6 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-29', ' 16:00:00', 5, 'Bodybuilding', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-29', ' 18:00:00', 1, 'Powerlifting', NULL);
 
-
-
-
 --Reservation-----------------------------------------------------------------------------------
 
 --Mario Rossi: Books Stamina from 18 to 20 every Tuesday for Cardio
@@ -727,10 +714,6 @@ INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VA
 INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
 INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
 
-
-
-
-
 --Calisthenics
 INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 7, 0);
 INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 30, 40.0);
@@ -773,8 +756,7 @@ INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUE
 INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 180, 180.0);
 INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 365, 280.0);
 
-
---subscriptions
+--Subscriptions
 INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-27', 0, 'mario.rossi@example.com');
 INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-02', 0, 'riccardo.bianchi@example.com');
 INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 365, '2022-01-08', 0, 'luca.giallo@example.com');

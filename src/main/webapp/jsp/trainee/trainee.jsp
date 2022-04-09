@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: caldi
-  Date: 02/04/22
-  Time: 07:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Trainee page</title>
 </head>
 <body>
+<%--TODO:
+Servlet che prenda dati dal db
+table subscription.jsp
+--%>
+
+<c:import url="/jsp/include/icon.jsp"></c:import>
+<jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+<jsp:include page="../include/footer.jsp"/>
 
 </body>
 </html>

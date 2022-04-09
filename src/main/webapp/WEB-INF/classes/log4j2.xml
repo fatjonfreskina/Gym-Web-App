@@ -78,7 +78,7 @@
         <Logger name="andrea_pasin_logger" level="all">
             <AppenderRef ref="andrea_pasin_appender"/>
         </Logger>
-        <Logger name="harjot_singh_logger" level="all">
+        <Logger name="harjot_singh_logger" level="INFO">
             <AppenderRef ref="harjot_singh_appender"/>
         </Logger>
         <Logger name="riccardo_tumiati_logger" level="all">
