@@ -6,7 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.Message;
-import resource.Trainer;
+import resource.view.Trainer;
 
 import javax.naming.NamingException;
 import java.io.IOException;
