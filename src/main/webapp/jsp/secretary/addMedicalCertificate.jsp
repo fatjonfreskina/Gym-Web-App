@@ -8,7 +8,7 @@
     <title>Add medical certificate</title>
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/><br>
+<jsp:include page="include/headersecreatry.jsp"/><br>
 <form method="post" action="<c:url value=""/>" enctype="multipart/form-data">
 
     <label>Email : </label><input type="text" name="email" value=""><br/>
