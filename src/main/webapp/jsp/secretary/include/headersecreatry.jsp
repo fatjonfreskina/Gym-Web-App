@@ -6,11 +6,11 @@
 <table>
     <tr>
         <td><a href="<c:url value="/secretary"/>">My Home</a></td>
-        <td>Manage Certificates</td>
-        <td>Subscriptions</td>
         <td><a href="<c:url value="/secretary/addcourses"/>">Add Courses</a></td>
-        <td>Create Gym Accounts</td>
-        <td>Edit Gym Accounts</td>
+        <td><a href ="">Add Medical Certificates</a></td>
+        <td><a href ="">Manage Accounts</a></td>
+        <td><a href ="">Manage Certificates</a></td>
+        <td><a href="">Manage Subscription</a> </td>
     </tr>
 </table>
 
