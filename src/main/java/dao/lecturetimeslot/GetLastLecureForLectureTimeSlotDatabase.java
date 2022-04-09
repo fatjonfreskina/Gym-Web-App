@@ -25,11 +25,11 @@ public class GetLastLecureForLectureTimeSlotDatabase
         this.courseEdition = courseEdition;
     }
 
-    public List<LectureTimeSlot> execute() throws SQLException
+    public LectureTimeSlot execute() throws SQLException
     {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<LectureTimeSlot> result = null;
+        LectureTimeSlot result = null;
         try
         {
             ps = connection.prepareStatement(STATEMENT);
@@ -37,11 +37,11 @@ public class GetLastLecureForLectureTimeSlotDatabase
             rs = ps.executeQuery();
 
 
-            while (rs.next())
+            if (rs.next())
             {
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
                 Integer courseEditionId = rs.getInt(Constants.COURSEEDITION_ID);
-                result.add(new LectureTimeSlot(null, date, null, courseEditionId, null, null));
+                result= new LectureTimeSlot(null, date, null, courseEditionId, null, null);
             }
         }  finally
         {
