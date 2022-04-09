@@ -21,6 +21,7 @@ public enum ErrorCodes {
     CONFIRMATION_NOT_FOUND(-11, HttpServletResponse.SC_BAD_REQUEST, "Registration not found"),
     BAD_REQUEST(-12, HttpServletResponse.SC_BAD_REQUEST, "Bad request"),
     NOT_AUTHENTICATED(-13, HttpServletResponse.SC_UNAUTHORIZED, "The provided credentials are wrong"),
+    OVERLAPPING(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping!"),
     ;
     private final int errorCode;
     private final int httpCode;

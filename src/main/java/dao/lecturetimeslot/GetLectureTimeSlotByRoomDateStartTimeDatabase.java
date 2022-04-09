@@ -15,7 +15,7 @@ import java.util.List;
 
 public class GetLectureTimeSlotByRoomDateStartTimeDatabase
 {
-    private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE room = ? and date = ? and starttime=?";
+    private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE roomname = ? and date = ? and starttime=?";
     private final Connection connection;
     private final LectureTimeSlot lectureTimeSlot;
 
@@ -34,7 +34,7 @@ public class GetLectureTimeSlotByRoomDateStartTimeDatabase
             ps = connection.prepareStatement(STATEMENT);
             ps.setString(1, lectureTimeSlot.getRoomName());
             ps.setDate(2, lectureTimeSlot.getDate());
-            ps.setTime(2, lectureTimeSlot.getStartTime());
+            ps.setTime(3, lectureTimeSlot.getStartTime());
 
             rs = ps.executeQuery();
 
