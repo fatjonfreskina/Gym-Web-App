@@ -48,91 +48,91 @@
                 <label>Monday</label>:<br>
                 <label>Start Time :</label><br>
                 <select name="monday" multiple>
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
             <td>
                 <label>Tuesday</label>:<br>
                 <label>Start Time :</label><br>
                 <select name="tuesday" multiple>
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
             <td>
                 <label>Wednesday</label>:<br>
                 <label>Start Time :</label><br>
                 <select name="wednesday" multiple>
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
             <td>
                 <label>Thursday</label>:<br>
                 <label>Start Time :</label><br>
                 <select name="thursday" multiple><!-- Max ??-->
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
             <td>
                 <label>Friday</label>:<br>
                 <label>Start Time :</label><br>
                 <select name="friday" multiple><!-- Max ??-->
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
             <td>
                 <label>Saturday</label>:<br>
                 <label>Start Time :</label><br>
                 <select name="saturday" multiple><!-- Max ??-->
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
             <td>
-                <label>Sanday</label>:<br>
+                <label>Sunday</label>:<br>
                 <label>Start Time :</label><br>
-                <select name="tuesday" multiple><!-- Max ??-->
-                    <option value="8:00">8:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="12:00">12:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="16:00">16:00</option>
-                    <option value="18:00">18:00</option>
-                    <option value="20:00">20:00</option>
+                <select name="sunday" multiple><!-- Max ??-->
+                    <option value="8:00:00">8:00</option>
+                    <option value="10:00:00">10:00</option>
+                    <option value="12:00:00">12:00</option>
+                    <option value="14:00:00">14:00</option>
+                    <option value="16:00:00">16:00</option>
+                    <option value="18:00:00">18:00</option>
+                    <option value="20:00:00">20:00</option>
                 </select>
             </td>
         </tr>

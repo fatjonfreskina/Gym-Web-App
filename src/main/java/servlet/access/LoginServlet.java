@@ -162,13 +162,13 @@ public class LoginServlet extends AbstractServlet {
          * @author Marco Alessio
          */
         //START OF ADDED CODE
-        final String redirect = req.getParameter("redirect");
-        logger.info(email + " Redirected to: \"" + redirect + "\".");
+        //final String redirect = req.getParameter("redirect");
+        //logger.info(email + " Redirected to: \"" + redirect + "\".");
 
-        if (redirect != null) {
-            res.sendRedirect(req.getContextPath() + redirect);
-            return;
-        }
+        //if (redirect != null) {
+        //    res.sendRedirect(req.getContextPath() + redirect);
+         //   return;
+        //}
         //END OF ADDED CODE
 
 
