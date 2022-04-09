@@ -57,6 +57,7 @@ public class PasswordChangeServlet extends AbstractServlet {
             //Retrieve the PasswordReset instance
             PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
             //Retrieve the Person associated
+            var email = passwordResetDatabase.getPerson();
             actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
         } catch (SQLException | NamingException e) {
             //TODO: Manage the error

@@ -95,7 +95,7 @@ public class Constants {
     //passwordreset
     public static final String PASSWORDRESET_TOKEN = "token";
     public static final String PASSWORDRESET_EXPIRATIONDATE = "expirationdate";
-    public static final String PASSWORDRESET_PERSON = "expirationdate";
+    public static final String PASSWORDRESET_PERSON = "person";
 
     //medicalcertificate
     public static final String MEDICALCERTIFICATE_PERSON = "person";

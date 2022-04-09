@@ -3,6 +3,7 @@ package servlet.secretary;
 import constants.Constants;
 import constants.ErrorCodes;
 import dao.emailconfirmation.InsertEmailConfirmationDatabase;
+import dao.passwordreset.InsertPasswordResetDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.GetPersonByTaxCodeDatabase;
 import dao.person.InsertNewPersonDatabase;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import resource.EmailConfirmation;
 import resource.Message;
+import resource.PasswordReset;
 import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
@@ -24,12 +26,14 @@ import javax.naming.NamingException;
 import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Alberto Campeol
@@ -74,9 +78,15 @@ public class AddAccountServlet extends AbstractServlet {
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
             avatar = req.getPart(Constants.AVATAR);
-            boolean isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
-            boolean isSecretary = req.getParameter(Person.ROLE_SECRETARY).equals("on");
-            boolean isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
+            boolean isTrainer = false;
+            if (req.getParameter(Person.ROLE_TRAINER) != null)
+                isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
+            boolean isSecretary = false;
+            if (req.getParameter(Person.ROLE_SECRETARY) != null)
+                isSecretary = req.getParameter(Person.ROLE_SECRETARY).equals("on");
+            boolean isTrainee = false;
+            if (req.getParameter(Person.ROLE_TRAINEE) != null)
+                isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
             boolean roles[] = {isSecretary, isTrainee, isTrainer};
             error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, roles);
             if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
@@ -139,7 +149,16 @@ public class AddAccountServlet extends AbstractServlet {
             } else if (!InputValidation.isValidEmailAddress(email)) {
                 error = ErrorCodes.NOT_A_MAIL;
             }
-            if (req.getParameter(Person.ROLE_TRAINER) == null && req.getParameter(Person.ROLE_SECRETARY) == null && req.getParameter(Person.ROLE_TRAINEE) == null);
+            boolean isTrainer = false;
+            if (req.getParameter(Person.ROLE_TRAINER) != null)
+                isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
+            boolean isSecretary = false;
+            if (req.getParameter(Person.ROLE_SECRETARY) != null)
+                isSecretary = req.getParameter(Person.ROLE_SECRETARY).equals("on");
+            boolean isTrainee = false;
+            if (req.getParameter(Person.ROLE_TRAINEE) != null)
+                isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
+            if (!isSecretary && !isTrainee && !isTrainer)
                 error = ErrorCodes.EMPTY_INPUT_FIELDS;
         }
         return error;
@@ -178,10 +197,18 @@ public class AddAccountServlet extends AbstractServlet {
                                 new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINEE).execute();
                             if (roles[2])
                                 new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINER).execute();
-                            (new InsertEmailConfirmationDatabase(getDataSource().getConnection(), new EmailConfirmation(p.getEmail(), EncryptionManager.encrypt(email),
-                                   new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
-
-                            MailTypes.mailForConfirmRegistration(p);
+                            String token = EncryptionManager.encrypt(p.getAddress());
+                            //Reopen a new connection
+                            Connection conn = getDataSource().getConnection();
+                            //Take the actual date and add 24H
+                            java.util.Date now = new java.util.Date();
+                            java.util.Date expiration = new java.util.Date(now.getTime() + TimeUnit.HOURS.toMillis(24));
+                            Timestamp expirationTimestamp = new Timestamp(expiration.getTime());
+                            //PasswordReset
+                            PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp,p.getEmail());
+                            //Insert the password reset into the database
+                            new InsertPasswordResetDatabase(conn, passwordReset).execute();
+                            MailTypes.mailForPasswordChanges(p, passwordReset);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
                             error = ErrorCodes.INTERNAL_ERROR;
                         }
