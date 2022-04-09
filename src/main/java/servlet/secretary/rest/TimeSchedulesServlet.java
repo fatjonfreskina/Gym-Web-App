@@ -12,6 +12,7 @@ import resource.CourseEdition;
 import resource.LectureTimeSlot;
 import resource.Message;
 import resource.Person;
+import resource.view.GeneralWeekHours;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -19,7 +20,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -32,8 +35,8 @@ public class TimeSchedulesServlet extends AbstractServlet
 
 
         ErrorCodes error = ErrorCodes.OK;
-        String coursename = request.getParameter("coursename");
-        List<String> json = new ArrayList<>();
+        String coursename = request.getParameter("course_name");
+        Set<String> json = new HashSet<>();
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
@@ -41,20 +44,20 @@ public class TimeSchedulesServlet extends AbstractServlet
         {
             try
             {
-                List<LectureTimeSlot> list = new GetListTimeScheduleForLectureTimeSlotDatabase(getDataSource().getConnection(),new CourseEdition(-1,coursename)).execute();
-                for (LectureTimeSlot lecture: list)
+                List<GeneralWeekHours> list = new GetListTimeScheduleForLectureTimeSlotDatabase(getDataSource().getConnection(),new CourseEdition(-1,coursename)).execute();
+                for (GeneralWeekHours lecture: list)
                 {
-                    json.add(new Gson().toJson(
-                            new GetLastLecureForLectureTimeSlotDatabase(
-                                    getDataSource().getConnection(),
-                                    new CourseEdition(lecture.getCourseEditionId(),null)).execute()));
+                    LectureTimeSlot lts = new GetLastLecureForLectureTimeSlotDatabase(getDataSource().getConnection(),
+                            new CourseEdition(lecture.getCourseEditionId(),null)).execute();
+                    if(lts != null)
+                        json.add(new Gson().toJson(lts));
                 }
             } catch (SQLException | NamingException e)
             {
                 error = ErrorCodes.INTERNAL_ERROR;
             }
         }
-        if(error != ErrorCodes.OK)
+        if(error == ErrorCodes.OK)
         {
             //no error
             out.print(json);

@@ -1,6 +1,7 @@
 package servlet.secretary.rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import constants.ErrorCodes;
 import dao.person.GetListPersonByLikeEmailDatabase;
 import jakarta.servlet.ServletException;
@@ -31,13 +32,13 @@ public class ListLikePersonsServlet extends AbstractServlet
             try
             {
                 List<Person> list= new GetListPersonByLikeEmailDatabase(getDataSource().getConnection(),partialEmail).execute();
-                json = new Gson().toJson(list);
+                json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(list);
             } catch (SQLException | NamingException e)
             {
                 error = ErrorCodes.INTERNAL_ERROR;
             }
         }
-        if(error != ErrorCodes.OK)
+        if(error == ErrorCodes.OK)
         {
             //no error
             out.print(json);

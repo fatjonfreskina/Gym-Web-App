@@ -7,7 +7,9 @@
 <body>
 <jsp:include page="include/headersecreatry.jsp"/>
 
-<form method="post">
+
+
+<form method="get" action="<c:url value="/secretary/rest/timeschedules"/>">
     <label>Course Name : </label>
     <select name="course_name">
         <c:forEach var="course" items="${courses}">
@@ -16,7 +18,7 @@
     </select><br>
 
 
-    <label>Search : </label><input type="text" name="email"><br>
+    <label>Search : </label><input type="text" name="partial_email"><br>
     <label>Subscription Duration : </label>
     <select name="subscription_duration">
         <option  value="7">Free</option><br>
@@ -27,7 +29,7 @@
     </select><br>
 
 
-    <input type="submit" name="Submit">
+    <input type="submit" name="Submit"/>
 </form>
 
 

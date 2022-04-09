@@ -40,7 +40,7 @@ public class GetLastLecureForLectureTimeSlotDatabase
             if (rs.next())
             {
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
-                Integer courseEditionId = rs.getInt(Constants.COURSEEDITION_ID);
+                Integer courseEditionId = rs.getInt(Constants.LECTURETIMESLOT_COURSEEDITIONID);
                 result= new LectureTimeSlot(null, date, null, courseEditionId, null, null);
             }
         }  finally

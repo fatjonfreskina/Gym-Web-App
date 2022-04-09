@@ -1,5 +1,7 @@
 package resource;
 
+import com.google.gson.annotations.Expose;
+
 import java.sql.Date;
 import java.util.Objects;
 
@@ -16,14 +18,22 @@ public class Person {
     public static final int LENGTH_TELEPHONE = 10;
     public static final int MIN_AGE = 14;
 
+    @Expose
     private final String email;
+    @Expose
     private final String name;
+    @Expose
     private final String surname;
     private final String psw;
+    @Expose
     private final String taxCode;
+    @Expose
     private final Date birthDate;
+    @Expose
     private final String telephone;
+    @Expose
     private final String address;
+    @Expose
     private final String avatarPath;
 
     public Person(String email, String name, String surname, String psw, String taxCode, Date birthDate, String telephone, String address, String avatarPath) {
