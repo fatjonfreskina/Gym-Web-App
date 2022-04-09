@@ -3,7 +3,7 @@ package dao.person;
 import constants.Constants;
 import resource.Person;
 import resource.Teaches;
-import resource.Trainer;
+import resource.view.Trainer;
 
 import java.sql.*;
 import java.util.ArrayList;

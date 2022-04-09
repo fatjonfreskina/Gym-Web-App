@@ -1,4 +1,7 @@
-package resource;
+package resource.view;
+
+import resource.Person;
+import resource.Teaches;
 
 import java.util.ArrayList;
 import java.util.List;
