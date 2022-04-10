@@ -17,7 +17,7 @@
     <label>Medical Certificate: </label><input type="file" name="medical_Certificate" required ><br/>
 
 
-    <button type="submit" >Register</button>
+    <button type="submit" >Add certificate</button>
 </form>
 
 <c:choose>

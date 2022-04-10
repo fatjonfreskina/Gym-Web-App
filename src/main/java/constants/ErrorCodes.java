@@ -25,7 +25,8 @@ public enum ErrorCodes {
     NO_COURSES_TAUGHT(-15,HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
     NO_COURSES_HELD_NOW(-16,HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
     FREE_TRAIAL_ALREADY_DONE(-17,HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
-    OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription")
+    OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
+    EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user")
     ;
 
     private final int errorCode;
