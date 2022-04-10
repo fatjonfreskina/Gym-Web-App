@@ -3,23 +3,29 @@ package resource.view;
 import resource.Person;
 import resource.Subscription;
 
-import java.util.List;
+import java.util.Date;
 
 public class ValidSubscription {
-    private final Subscription sub;
-    private final List<Person> trainers;
+    private final Subscription subscription;
+    private final Person trainer;
+    private final Date expiration;
 
-    public ValidSubscription(Subscription sub, List<Person> trainers){
-        this.sub = sub;
-        this.trainers = trainers;
+    public ValidSubscription(Subscription subscription, Person trainer, Date expiration){
+        this.subscription = subscription;
+        this.trainer = trainer;
+        this.expiration = expiration;
     }
 
-    public Subscription getSub(){
-        return sub;
+    public Date getExpiration(){
+        return expiration;
     }
 
-    public List<Person> trainers(){
-        return trainers;
+    public Subscription getSubscription(){
+        return subscription;
+    }
+
+    public Person getTrainer(){
+        return trainer;
     }
 
 }
