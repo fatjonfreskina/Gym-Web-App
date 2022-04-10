@@ -167,6 +167,11 @@
         <servlet-name>RetrieveAvatar</servlet-name>
         <servlet-class>servlet.avatar.RetrieveAvatar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMedicalCertificateServlet</servlet-name>
+        <servlet-class>servlet.secretary.AddMedicalCertificateServlet</servlet-class>
+
+    </servlet>
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -278,7 +283,11 @@
         <servlet-name>RetrieveAvatar</servlet-name>
         <url-pattern>/avatar</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet-mapping>
+        <servlet-name>AddMedicalCertificateServlet</servlet-name>
+        <url-pattern>/secretary/addMedicalCertificate</url-pattern>
+    </servlet-mapping>
     <!-- Listener called when the application is initialized -->
     <listener>
         <listener-class>jobs.InitListener</listener-class>

@@ -9,7 +9,8 @@
 </head>
 <body>
 <jsp:include page="include/headersecreatry.jsp"/><br>
-<form method="post" action="<c:url value=""/>" enctype="multipart/form-data">
+
+<form method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data">
 
     <label>Email : </label><input type="text" name="email" value=""><br/>
     <label>Expiration Date : </label><input type="date" name="expiration_date" value="1999-09-06"><br/>
