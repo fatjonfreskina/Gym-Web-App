@@ -34,6 +34,7 @@
 <script>
 
     //Construct the calendar
+
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
@@ -57,7 +58,7 @@
     });
 
     //AJAX request to fill the calendar
-    $.get( "<c:url value="/secretary/rest/getalllecturetimeslot"/>").done(function( data ) {
+    $.get( "<c:url value="/secretary/rest/getalllecturetimeslot?start=2022-4-01&end=2022-04-30"/>").done(function( data ) {
         let jsondata = data;
 
         //Add events to the calendar

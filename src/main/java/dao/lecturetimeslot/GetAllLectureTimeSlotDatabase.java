@@ -8,19 +8,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Get all LectureTimeSlot between the two specified dates
+ *
  * @author Riccardo Forzan
  */
 public class GetAllLectureTimeSlotDatabase {
-    private static final String STATEMENT = "SELECT * FROM lecturetimeslot";
+    private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date BETWEEN ? AND ?";
     private final Connection connection;
+    private final Date startDate;
+    private final Date endDate;
 
-    public GetAllLectureTimeSlotDatabase(final Connection connection) {
+    public GetAllLectureTimeSlotDatabase(Connection connection, Date startDate, Date endDate) {
         this.connection = connection;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public List<LectureTimeSlot> execute() throws SQLException {
         ArrayList<LectureTimeSlot> resultSet = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement(STATEMENT); ResultSet rs = ps.executeQuery()) {
+        PreparedStatement ps;
+        ResultSet rs;
+
+        try {
+            ps = connection.prepareStatement(STATEMENT);
+            ps.setDate(1, startDate);
+            ps.setDate(2, endDate);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
                 Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);

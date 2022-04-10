@@ -11,6 +11,7 @@ import servlet.AbstractServlet;
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,11 +23,14 @@ public class GetAllLectureTimeSlot extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Date startDate = Date.valueOf(request.getParameter("start"));
+        Date endDate = Date.valueOf(request.getParameter("end"));
+
         List<LectureTimeSlot> lectureTimeSlots = null;
 
         //Get all the lecture time slots
         try {
-            lectureTimeSlots = new GetAllLectureTimeSlotDatabase(getDataSource().getConnection()).execute();
+            lectureTimeSlots = new GetAllLectureTimeSlotDatabase(getDataSource().getConnection(), startDate, endDate).execute();
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }
