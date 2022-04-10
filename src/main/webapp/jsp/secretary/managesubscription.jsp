@@ -9,7 +9,7 @@
 
 
 
-<form method="get" action="<c:url value="/secretary/rest/addsubscription"/>">
+<form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">
     <label>Course Name : </label>
     <select name="course_name">
         <c:forEach var="course" items="${courses}">

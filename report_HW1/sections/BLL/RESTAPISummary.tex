@@ -1,11 +1,23 @@
 \subsection{REST API Summary}
 
+The rest API is studied to expiriment with multiple different approaches to the REST paradigm. 
+More in detail rest is not used to implement the login part, registration part a some pages related to the funtionalities of trainee, trainer and secretary.
+Part of URIs are filtered with different filters. TRAINEE indicates the filter that allow the access for trainees, TRAINER identifies the filter that allow the
+access to TRAINERS and SECRETARY the one for secretaries.
+
+
 %describe the REST API. If needed, add a few lines of text here, describing the content of the table.
 
 \begin{longtable}{|p{.375\columnwidth}|p{.1\columnwidth} |p{.35\columnwidth}|p{.1\columnwidth}|} 
 \hline
 \textbf{URI} & \textbf{Method} & \textbf{Description} & \textbf{Filter} \\\hline
-What is the URI? & What HTTP method uses? &  Describe briefly the result of calling the URI & is it behind a filter?\\\hline
+secretary/rest/listlikepersons & GET & By specifing a string that is part of email return the list of users with such patter  & S\\\hline
+
+secretary/rest/timeschedules & GET & By specifing a string that is the name of a course it will return a list of courseeditionid, day of the week and time for each edition of the given course  & S\\\hline
+
+secretary/rest/addsubscription & POST & By specifing an email of a user, name of a course, id of courseedition, discount, and duration it will add a subscription for the given user  & S\\\hline
+
+
 \caption{Describe in this table your REST API}
 \label{tab:termGlossary}
 \end{longtable}
