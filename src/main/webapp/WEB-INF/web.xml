@@ -161,7 +161,7 @@
     </servlet>
     <servlet>
         <servlet-name>AddSubscriptionServlet</servlet-name>
-        <servlet-class>servlet.secretary.rest.AddSubScriptionServlet</servlet-class>
+        <servlet-class>servlet.secretary.rest.AddSubscriptionServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RetrieveAvatar</servlet-name>

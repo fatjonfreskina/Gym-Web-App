@@ -1,12 +1,10 @@
 package servlet.secretary.rest;
 
 import com.google.gson.Gson;
-import constants.Constants;
 import constants.ErrorCodes;
 import dao.person.InsertPersonSubscriptionDatabase;
 import dao.subscription.GetFreeSubscriptionByTraineeAndCourseDatabase;
 import dao.subscription.GetValidSubscriptionByCourseAndTraineeDatabase;
-import dao.subscriptiontype.InsertSubscriptionTypeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,7 +18,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddSubScriptionServlet extends AbstractServlet
+public class AddSubscriptionServlet extends AbstractServlet
 {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
