@@ -1,4 +1,4 @@
-package servlet;
+package servlet.trainer;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -31,6 +31,7 @@ import resource.LectureTimeSlot;
 import resource.Person;
 import resource.Teaches;
 import resource.view.CourseStatus;
+import servlet.AbstractServlet;
 
 /**
  * @author Harjot Singh
@@ -38,7 +39,7 @@ import resource.view.CourseStatus;
 public class TrainerServlet extends AbstractServlet {
 
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.servlet.TrainerServlet: ";
+  private final String loggerClass = "gwa.servlet.trainer.TrainerServlet: ";
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
