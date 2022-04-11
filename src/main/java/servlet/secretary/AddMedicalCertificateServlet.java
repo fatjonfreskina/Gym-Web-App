@@ -1,6 +1,5 @@
 package servlet.secretary;
 
-import com.github.javafaker.Medical;
 import constants.Constants;
 import constants.ErrorCodes;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
@@ -8,7 +7,6 @@ import dao.medicalcertificate.InsertMedicalCertificateDatabase;
 import dao.medicalcertificate.UpdateMedicalCertificateDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
@@ -26,10 +24,8 @@ import utils.MailTypes;
 import javax.naming.NamingException;
 import java.io.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
 
 /**
  * @author Simone D'Antimo
@@ -93,7 +89,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         //Error nel get params
         try {
 
-            doctorName = req.getParameter(Constants.MEDICALCERTIFICATE_DOCTORNAME);
+            doctorName = req.getParameter("doctorname");
             email = req.getParameter(Constants.MEDICALCERTIFICATE_PERSON);
             expirationDate = Date.valueOf(req.getParameter(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE));
 
@@ -125,24 +121,28 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
 
         ErrorCodes error = ErrorCodes.OK;
         Person p1 = null;
-        MedicalCertificate med1;
+        List<MedicalCertificate> med1;
 
         try {
             //Find if the Medical certificate is associated to a person
             p1 = (new GetPersonByEmailDatabase(getDataSource().getConnection(), email)).execute();
-            med1 = (MedicalCertificate) (new GetMedicalCertificateDatabase(getDataSource().getConnection(), p1)).execute();
+            med1 = (new GetMedicalCertificateDatabase(getDataSource().getConnection(), p1)).execute();
 
             if(p1 != null){ //User exist, let insert the certificate
                 error = saveFile(medicalCertificate, p1.getTaxCode());
-                String pathCertificate = null;
+                String pathCertificate = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + File.separator + p1.getTaxCode() +
+                        File.separator + Constants.MEDICAL_CERTIFICATE + ".pdf";
+
+                /* Controllo da valutare
                 if ((medicalCertificate != null) && (medicalCertificate.getSize() != 0)) //.png da aggiungere
                     pathCertificate = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + File.separator + p1.getTaxCode() +
                             File.separator + Constants.MEDICAL_CERTIFICATE + ".pdf"; // or insert instead of "pdf" --> medicalCertificate.getContentType().split(File.separator)[1]
+                */
                 try {
 
                     MedicalCertificate m = new MedicalCertificate(email, expirationDate, doctorName ,pathCertificate);
 
-                    if(med1 == null){ //Med1 null --> Insert certificate
+                    if(med1.isEmpty()){ //Med1 null --> Insert certificate
                         new InsertMedicalCertificateDatabase(getDataSource().getConnection(), m).execute();
                     }else{ //Med1 not null
                         new UpdateMedicalCertificateDatabase(getDataSource().getConnection(), m).execute();
