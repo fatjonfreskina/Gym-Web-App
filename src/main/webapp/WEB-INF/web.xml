@@ -149,6 +149,10 @@
     </servlet>
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10 MB-->
+        </multipart-config>
         <servlet-class>servlet.secretary.AddAccountServlet</servlet-class>
     </servlet>
     <servlet>

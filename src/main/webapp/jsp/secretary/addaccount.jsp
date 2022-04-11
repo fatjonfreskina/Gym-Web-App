@@ -8,6 +8,7 @@
 </head>
 <body>
     <jsp:include page="include/headersecreatry.jsp"/>
+
     <form method="post" enctype="multipart/form-data">
 
         <label>Tax Code : </label><input type="text" name="tax_code" value="0123450123456789"><br/><!-- pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required-->
@@ -30,11 +31,6 @@
         <button type="submit" >Register</button>
     </form>
 
-<%--    <c:choose>
-        <c:when test="${message.error}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>--%>
 
     <jsp:include page="../include/footer.jsp"/>
 </body>

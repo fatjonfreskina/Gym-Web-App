@@ -99,7 +99,7 @@ public class AddAccountServlet extends AbstractServlet {
         req.setAttribute(Constants.MESSAGE, message);
 
         if (!registrable)
-            req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
+            req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_ACCOUNT).forward(req, res);
         else
             req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);
 
