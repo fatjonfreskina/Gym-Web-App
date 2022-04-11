@@ -20,7 +20,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetTrainerAttendanceServlet extends AbstractServlet {
+/**
+ * @author Andrea Pasin
+ */
+public class GetAttendanceServlet extends AbstractServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
