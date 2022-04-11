@@ -132,6 +132,10 @@
         <servlet-class>servlet.trainee.TraineeServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TraineeAvailableSlots</servlet-name>
+        <servlet-class>servlet.trainee.rest.TraineeAvailableSlots</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ManagesSubscriptionServlet</servlet-name>
         <servlet-class>servlet.secretary.ManagesSubscriptionServlet</servlet-class>
     </servlet>
@@ -209,6 +213,10 @@
     <servlet-mapping>
         <servlet-name>TraineeServlet</servlet-name>
         <url-pattern>/trainee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TraineeAvailableSlots</servlet-name>
+        <url-pattern>/trainee/rest/available/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PasswordForgotServlet</servlet-name>

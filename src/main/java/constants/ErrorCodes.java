@@ -26,7 +26,9 @@ public enum ErrorCodes {
     NO_COURSES_HELD_NOW(-16,HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
     FREE_TRAIAL_ALREADY_DONE(-17,HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
     OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
-    EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user")
+    EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
+    ACCEPT_MISSING(-20, HttpServletResponse.SC_BAD_REQUEST, "Accept field missing"),
+    MEDIA_TYPE_NOT_SUPPORTED(-21, HttpServletResponse.SC_NOT_ACCEPTABLE, "Requested media type not supported")
     ;
 
     private final int errorCode;
