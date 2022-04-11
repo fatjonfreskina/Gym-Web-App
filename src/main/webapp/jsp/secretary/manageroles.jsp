@@ -8,6 +8,13 @@
 </head>
 <body>
     <jsp:include page="include/headersecreatry.jsp"/>
+
+    <c:choose>
+        <c:when test="${message != null}">
+            <p><c:out value="${message.message}"/></p>
+        </c:when>
+    </c:choose>
+
     <form method="post" enctype="application/x-www-form-urlencoded">
 
         <label>Email : </label><input type="text" name="email" value=""><br/>
@@ -22,12 +29,6 @@
         </div>
         <button type="submit" >Update</button>
     </form>
-
-<%--    <c:choose>
-        <c:when test="${message.error}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>--%>
 
     <jsp:include page="../include/footer.jsp"/>
 </body>
