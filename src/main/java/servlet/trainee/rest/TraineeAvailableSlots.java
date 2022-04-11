@@ -24,48 +24,93 @@ public class TraineeAvailableSlots extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType(JSON_UTF_8_MEDIA_TYPE);
-        final OutputStream out = resp.getOutputStream();
 
         if(checkMethodMediaType(req,resp).getErrorCode() != 0)
             return;
 
+        if(processRequest(req,resp).getErrorCode() == 0)
+            return;
+    }
 
-        //super.service(req, resp);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        setUpErrorMessage(resp,code);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        setUpErrorMessage(resp,code);
+    }
+
+    @Override
+    protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        setUpErrorMessage(resp,code);
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        setUpErrorMessage(resp,code);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        setUpErrorMessage(resp,code);
+    }
+
+    @Override
+    protected void doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        setUpErrorMessage(resp,code);
     }
 
     private ErrorCodes checkMethodMediaType(HttpServletRequest req, HttpServletResponse resp) throws IOException{
-        final String method = req.getMethod();
-        //WATCH OUT THIS
-        final String content = req.getContentType();
         final String accept = req.getHeader("Accept");
         ErrorCodes code = ErrorCodes.OK;
 
         if(accept == null) {
             code = ErrorCodes.ACCEPT_MISSING;
-            String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
-            PrintWriter out = resp.getWriter();
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("utf-8");
-            resp.setStatus(code.getHTTPCode());
-            out.print(messageJson);
+            setUpErrorMessage(resp,code);
             return code;
         }
 
         if(!accept.contains(JSON_MEDIA_TYPE) && !accept.equals(ALL_MEDIA_TYPE)) {
             code = ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
-            String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
-            PrintWriter out = resp.getWriter();
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("utf-8");
-            resp.setStatus(code.getHTTPCode());
-            out.print(messageJson);
+            setUpErrorMessage(resp,code);
             return code;
         }
 
         return code;
     }
 
-    private void setUpErrorMessage(HttpServletResponse resp, ErrorCodes code){
-        
+    private ErrorCodes processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+        ErrorCodes code = ErrorCodes.OK;
+        String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), false));
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("utf-8");
+        resp.setStatus(code.getHTTPCode());
+        out.print(messageJson);
+
+        out.flush();
+        out.close();
+
+        return code;
+    }
+
+    private void setUpErrorMessage(HttpServletResponse resp, ErrorCodes code) throws IOException{
+        String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("utf-8");
+        resp.setStatus(code.getHTTPCode());
+        out.print(messageJson);
+
+        out.flush();
+        out.close();
     }
 }

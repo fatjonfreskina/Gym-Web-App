@@ -28,7 +28,9 @@ public enum ErrorCodes {
     OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
     EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
     ACCEPT_MISSING(-20, HttpServletResponse.SC_BAD_REQUEST, "Accept field missing"),
-    MEDIA_TYPE_NOT_SUPPORTED(-21, HttpServletResponse.SC_NOT_ACCEPTABLE, "Requested media type not supported")
+    MEDIA_TYPE_NOT_SUPPORTED(-21, HttpServletResponse.SC_NOT_ACCEPTABLE, "Requested media type not supported"),
+    METHOD_NOT_ALLOWED(-22, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI")
+
     ;
 
     private final int errorCode;
