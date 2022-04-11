@@ -11,6 +11,7 @@
 
 <jsp:include page="../include/header.jsp"/>
 <br>
+<a href="<c:url value="/trainer/attendance"/>">Attendance</a>
 <h1>Courses you teach</h1>
 <table>
     <thead>
