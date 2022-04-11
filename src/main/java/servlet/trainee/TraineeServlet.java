@@ -23,9 +23,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * SBAGLIATO TUTTO SISTEMARE !!!
+ * FILTRO DENTRO A UNA DOGET???
+ * */
+
 public class TraineeServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        Message m;
+        /*Message m;
         List<ValidSubscription> l_subscription = new ArrayList<>();
         HttpSession session = req.getSession(false);
         if (session == null)
@@ -44,7 +49,7 @@ public class TraineeServlet extends AbstractServlet {
         System.out.println(l_subscription.get(0).getTrainer().getSurname());
         System.out.println(l_subscription.get(1).getTrainer().getSurname());
         req.setAttribute("subscriptionlist", l_subscription);
-        req.setAttribute("message", m);
+        req.setAttribute("message", m);*/
 
         req.getRequestDispatcher(Constants.PATH_TRAINEE).forward(req, res);
     }

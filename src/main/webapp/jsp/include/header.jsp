@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <table>
     <tr>
         <th><a href="<c:url value="/"/>">Home</a></th>
@@ -17,7 +18,7 @@
                 <th><a href="<c:url value="/login"/>">Login</a></th>
             </c:when>
             <c:otherwise>
-                <th><a href="<c:url value="/${sessionScope.defaultRole}"/>">My Home</a></th>
+                <th><a href="<c:url value="/${sessionScope.defaultRole}"/>">My Profile</a></th>
                 <th><a href="<c:url value="/logout"/>">Logout</a></th>
             </c:otherwise>
         </c:choose>
