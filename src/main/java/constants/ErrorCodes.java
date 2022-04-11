@@ -29,8 +29,8 @@ public enum ErrorCodes {
     EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
     ACCEPT_MISSING(-20, HttpServletResponse.SC_BAD_REQUEST, "Accept field missing"),
     MEDIA_TYPE_NOT_SUPPORTED(-21, HttpServletResponse.SC_NOT_ACCEPTABLE, "Requested media type not supported"),
-    METHOD_NOT_ALLOWED(-22, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI")
-
+    METHOD_NOT_ALLOWED(-22, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI"),
+    UNEXPECTED_ERROR(-23, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Unexpected error")
     ;
 
     private final int errorCode;
