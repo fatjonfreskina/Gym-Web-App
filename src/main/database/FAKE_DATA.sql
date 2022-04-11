@@ -606,6 +606,21 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 
 --Reservation-----------------------------------------------------------------------------------
 
+--dev@dev.dev: Books Stamina from 18 to 20 every Tuesday for Cardio
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-04-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-04-12', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-04-19', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-04-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-05-03', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-05-10', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-05-17', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-05-24', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-05-31', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-06-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-06-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-06-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-06-28', ' 18:00:00');
+
 --Mario Rossi: Books Stamina from 18 to 20 every Tuesday for Cardio
 INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
 INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');

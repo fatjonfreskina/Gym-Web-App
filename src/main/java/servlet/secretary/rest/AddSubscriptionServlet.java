@@ -53,7 +53,7 @@ public class AddSubscriptionServlet extends AbstractServlet
                 {
                     List<Subscription> lst =  new GetFreeSubscriptionByTraineeAndCourseDatabase(getDataSource().getConnection(),new Course(courseName,null),new Person(trainee,null,null,null,null,null,null,null,null)).execute();
                     if(!lst.isEmpty())
-                        error = ErrorCodes.FREE_TRAIAL_ALREADY_DONE;
+                        error = ErrorCodes.FREE_TRIAL_ALREADY_DONE;
                     //look if it is
                     //GetFreeSuscriptionByTrainee
                     //GetValidSubscrtio By CourseandTrainee

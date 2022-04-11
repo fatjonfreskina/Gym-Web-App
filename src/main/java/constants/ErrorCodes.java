@@ -24,13 +24,21 @@ public enum ErrorCodes {
     OVERLAPPING(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping!"),
     NO_COURSES_TAUGHT(-15,HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
     NO_COURSES_HELD_NOW(-16,HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
-    FREE_TRAIAL_ALREADY_DONE(-17,HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
+    FREE_TRIAL_ALREADY_DONE(-17,HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
     OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
     EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
     ACCEPT_MISSING(-20, HttpServletResponse.SC_BAD_REQUEST, "Accept field missing"),
     MEDIA_TYPE_NOT_SUPPORTED(-21, HttpServletResponse.SC_NOT_ACCEPTABLE, "Requested media type not supported"),
-    METHOD_NOT_ALLOWED(-22, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI"),
-    UNEXPECTED_ERROR(-23, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Unexpected error")
+    CONTENTTYPE_MISSING(-22, HttpServletResponse.SC_BAD_REQUEST, "Content type field missing"),
+    DELETE_OPERATION_NOT_SUPPORTED(-23, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "DELETE operation not supported"),
+    GET_OPERATION_NOT_SUPPORTED(-24, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET operation not supported"),
+    HEAD_OPERATION_NOT_SUPPORTED(-25, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "HEAD operation not supported"),
+    OPTIONS_OPERATION_NOT_SUPPORTED(-26, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "OPTIONS operation not supported"),
+    POST_OPERATION_NOT_SUPPORTED(-27, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "POST operation not supported"),
+    PUT_OPERATION_NOT_SUPPORTED(-28, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "PUT operation not supported"),
+    TRACE_OPERATION_NOT_SUPPORTED(-29, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "TRACE operation not supported"),
+    METHOD_NOT_ALLOWED(-30, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI")
+    UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Unexpected error")
     ;
 
     private final int errorCode;
