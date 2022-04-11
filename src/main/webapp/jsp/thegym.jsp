@@ -25,7 +25,7 @@
         <div class="carousel-inner">
             <div class="item active">
                 <img width="600" height="333"
-                     src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                     src="<c:url value="/images/thegym/the_gym1.jpg"/>"
 
                      alt="Gym Room">
                      <!--https://images.unsplash.com/photo-1570829460005-c840387bb1ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"-->
@@ -34,13 +34,13 @@
 
             <div class="item">
                 <img width="600" height="333"
-                     src="https://images.unsplash.com/photo-1588286840104-8957b019727f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                     src="<c:url value="/images/thegym/the_gym2.jpg"/>"
                      alt="Yoga Room">
             </div>
 
             <div class="item">
                 <img width="600" height="333"
-                     src="https://images.unsplash.com/photo-1556817411-9571d6fba73b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                     src="<c:url value="/images/thegym/the_gym3.jpeg"/>"
                      alt="Calisthenics Room">
             </div>
         </div>
