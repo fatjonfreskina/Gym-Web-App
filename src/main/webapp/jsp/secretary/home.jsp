@@ -90,7 +90,11 @@
                     event.title = lts.courseName;
 
                     //Calculate dates
-                    let startDate = moment(lts.date, "MMM DD, YYYY", "it").format('YYYY-MM-DD');
+                    let startDate = moment(lts.date, "MMM DD, YYYY", "it");
+                    startDate = moment(startDate).add(moment.duration(moment(lts.startTime, "hh:mm A")).asMinutes(), 'minutes');
+                    startDate = moment(startDate).format();
+                    console.log(startDate);
+
                     event.start = startDate;
                     event.end = moment(startDate).add(2, 'hours');
 
