@@ -89,7 +89,7 @@ public class ManageRolesServlet extends AbstractServlet {
         }
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
-
+        req.getRequestDispatcher(Constants.PATH_SECRETARY_MANAGE_ROLES).forward(req, res);
     }
 
 

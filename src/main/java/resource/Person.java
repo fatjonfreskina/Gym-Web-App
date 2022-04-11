@@ -17,6 +17,7 @@ public class Person {
 
     public static final int LENGTH_TELEPHONE = 10;
     public static final int MIN_AGE = 14;
+    public static final int ADULT_AGE = 18;
 
     @Expose
     private final String email;
