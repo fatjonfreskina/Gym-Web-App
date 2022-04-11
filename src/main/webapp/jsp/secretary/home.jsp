@@ -36,14 +36,15 @@
     //Construct the calendar
 
     let calendarEl = document.getElementById('calendar');
+
     let calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
+        initialView: 'timeGridWeek',
         initialDate: new Date(),        //Date of today
         themeSystem: "bootstrap",
         headerToolbar: {
-            left: 'prev,next today',
+            left: '',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: 'prev,next today'
         },
         eventClick: function(info) {
             alert('Event: ' + info.event.title + ' - Take a look at the console');
@@ -57,30 +58,59 @@
         }
     });
 
-    //AJAX request to fill the calendar
-    $.get( "<c:url value="/secretary/rest/getalllecturetimeslot?start=2022-4-01&end=2022-04-30"/>").done(function( data ) {
-        let jsondata = data;
+    //Attach render calendar to button for week change
+    $('body').on('click', 'button.fc-next-button', renderCalendar);
+    $('body').on('click', 'button.fc-prev-button', renderCalendar);
 
-        //Add events to the calendar
-        let arrayOfLTS = JSON.parse(jsondata);
+    //Renders the calendar of this week
+    function renderCalendar(){
 
-        for(const lts of arrayOfLTS){
+        let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
+        let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
 
-            let event = new Object();
-            event.title = lts.courseName;
+        $.ajax({
+            url: "<c:url value="/secretary/rest/getalllecturetimeslot"/>",
+            data: {
+                "start": start,
+                "end": end,
+            },
+            cache: false,
+            type: "GET",
+            dataType: 'json',
+            success: function(response) {
 
-            //Calculate dates
-            let startDate = moment(lts.date, "MMM DD, YYYY", "it").format('YYYY-MM-DD');
-            event.start = startDate;
-            event.end = moment(startDate).add(2, 'hours');
+                //Remove all the events
+                calendar.removeAllEvents();
 
-            event.courseEditionId = lts.courseEditionId;
-            event.roomName = lts.roomName;
-            calendar.addEvent(event);
-        }
+                for(const lts of response){
 
-        calendar.render();
-    });
+                    console.log(lts);
+
+                    let event = new Object();
+                    event.title = lts.courseName;
+
+                    //Calculate dates
+                    let startDate = moment(lts.date, "MMM DD, YYYY", "it").format('YYYY-MM-DD');
+                    event.start = startDate;
+                    event.end = moment(startDate).add(2, 'hours');
+
+                    event.courseEditionId = lts.courseEditionId;
+                    event.roomName = lts.roomName;
+                    calendar.addEvent(event);
+
+                }
+
+                calendar.render();
+            },
+            error: function(xhr) {
+                console.log(xhr);
+            }
+        });
+
+    }
+
+    renderCalendar();
+
 
 </script>
 
