@@ -98,10 +98,10 @@ public class AddAccountServlet extends AbstractServlet {
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
 
-        if (!registrable)
+        //if (!registrable)
             req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_ACCOUNT).forward(req, res);
-        else
-            req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);
+        //else
+        //    req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);
 
     }
 
@@ -144,7 +144,7 @@ public class AddAccountServlet extends AbstractServlet {
                 error = ErrorCodes.EMPTY_INPUT_FIELDS;
             } else if (telephoneNumber.length() != Person.LENGTH_TELEPHONE) {
                 error = ErrorCodes.NOT_TELEPHONE_NUMBER;
-            } else if ((Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.MIN_AGE)) {
+            } else if ((Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.ADULT_AGE)) {
                 error = ErrorCodes.MINIMUM_AGE;
             } else if (!InputValidation.isValidEmailAddress(email)) {
                 error = ErrorCodes.NOT_A_MAIL;

@@ -8,7 +8,11 @@
 </head>
 <body>
     <jsp:include page="include/headersecreatry.jsp"/>
-
+    <c:choose>
+        <c:when test="${message != null}">
+            <p><c:out value="${message.message}"/></p>
+        </c:when>
+    </c:choose>
     <form method="post" enctype="multipart/form-data">
 
         <label>Tax Code : </label><input type="text" name="tax_code" value="0123450123456789"><br/><!-- pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required-->
