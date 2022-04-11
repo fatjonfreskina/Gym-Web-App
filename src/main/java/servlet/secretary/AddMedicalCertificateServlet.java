@@ -34,6 +34,10 @@ import java.util.Arrays;
 public class AddMedicalCertificateServlet extends AbstractServlet {
 
     @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_CERTIFICATE).forward(req, res);
+    }
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String email = null;
@@ -70,9 +74,9 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         req.setAttribute(Constants.MESSAGE, message);
 
         if (!registrable)
-            req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
+            req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_CERTIFICATE).forward(req, res);
         else
-            req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);
+            req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_CERTIFICATE).forward(req, res);
 
     }
 

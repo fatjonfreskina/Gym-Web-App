@@ -9,7 +9,7 @@
         <td><a href="<c:url value="/secretary/addcourses"/>">Add Courses</a></td>
         <td><a href="<c:url value="/secretary/addaccount"/>">Add Account</a></td> <!--Alberto-->
         <td><a href="<c:url value="/secretary/manageroles"/>">Manage Roles</a></td> <!--Alberto-->
-        <td><a href="">Add Medical Certificates</a></td><!-- Simone -->
+        <td><a href="<c:url value="/secretary/addMedicalCertificate"/>">Add Medical Certificates</a></td><!-- Simone -->
         <td><a href="<c:url value="/secretary/managessubscription"/>">Manage Subscription</a></td> <!-- Francesco -->
 
         <!-- Riccardo -->
