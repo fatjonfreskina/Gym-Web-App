@@ -29,7 +29,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
+/**
+ * @author Simone D'Antimo
+ */
 
 public class AddMedicalCertificateServlet extends AbstractServlet {
 
@@ -48,7 +52,6 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         boolean registrable = true;
         Message message = new Message(ErrorCodes.OK.getErrorMessage(), false);
         ErrorCodes error = parseParams(req, res);
-
 
         if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
             message = new Message(error.getErrorMessage(), true);
@@ -73,11 +76,11 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
 
-        if (!registrable)
+        if (!registrable) {
             req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_CERTIFICATE).forward(req, res);
-        else
+        }else {
             req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_CERTIFICATE).forward(req, res);
-
+        }
     }
 
     public ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -87,18 +90,23 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         Date expirationDate = null;
 
         ErrorCodes error = ErrorCodes.OK;
+        //Error nel get params
         try {
 
             doctorName = req.getParameter(Constants.MEDICALCERTIFICATE_DOCTORNAME);
             email = req.getParameter(Constants.MEDICALCERTIFICATE_PERSON);
             expirationDate = Date.valueOf(req.getParameter(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE));
 
-        } catch (IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date
+        } catch (IllegalArgumentException e)
         {
+            System.out.println(doctorName);
+            System.out.println(email);
+            System.out.println(expirationDate);
+
             error = ErrorCodes.INVALID_FIELDS;
         }
 
-        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //Phone is a phone and birthDate is a Date
+        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode())
         {
             if (
                     doctorName == null || doctorName.isEmpty() ||
