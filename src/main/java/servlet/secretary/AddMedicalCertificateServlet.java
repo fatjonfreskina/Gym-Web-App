@@ -31,9 +31,7 @@ import java.util.List;
 
 /**
  * @author Simone D'Antimo
- * TODO Check medical certificate extension
- * Il mail sender va ma è commentato per debugging purpose
- */
+ * */
 
 public class AddMedicalCertificateServlet extends AbstractServlet {
 
@@ -156,16 +154,12 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
                     else //Med1 not null
                         new UpdateMedicalCertificateDatabase(getDataSource().getConnection(), m).execute();
 
-
-                    /* Mail is working only with TRUE Existing email
                     try{
                         //Send mail that everything correct
                         MailTypes.mailForMedicalCertificateUploaded(p1);
                     }catch (MessagingException e) {
-
-                    error = ErrorCodes.INTERNAL_ERROR;
-                }
-                     */
+                        error = ErrorCodes.INTERNAL_ERROR;
+                    }
 
                 } catch (SQLException | NamingException e) {
                     error = ErrorCodes.INVALID_FIELDS;
