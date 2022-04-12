@@ -15,7 +15,7 @@
     <label>Email : </label><input type="text" name="person" value=""><br/>
     <label>Expiration Date : </label><input type="date" name="expirationdate" value="2023-09-06"><br/>
     <label>Doctor name : </label><input type="text" name="doctorname" value="Mario Rossi"><br/>
-    <label>Medical Certificate: </label><input type="file" name="medical_Certificate"  ><br/>
+    <label>Medical Certificate: </label><input type="file" name="medical_certificate"  ><br/>
 
     <button type="submit" >Add certificate</button>
 </form>
