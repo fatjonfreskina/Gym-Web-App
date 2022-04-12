@@ -25,12 +25,12 @@ public class LectureTimeSlot {
         this.substitution = substitution;
     }
 
-    public LectureTimeSlot(int courseEditionId) {
+    public LectureTimeSlot(int courseEditionId,String courseName) {
         this.roomName = null;
         this.date = null;
         this.startTime = null;
         this.courseEditionId = courseEditionId;
-        this.courseName = null;
+        this.courseName = courseName;
         this.substitution = null;
     }
 
