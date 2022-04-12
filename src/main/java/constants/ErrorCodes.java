@@ -40,6 +40,7 @@ public enum ErrorCodes {
     METHOD_NOT_ALLOWED(-30, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI"),
     UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Unexpected error"),
     ROOM_ALREADY_FULL(-32, HttpServletResponse.SC_BAD_REQUEST,"There are no more spots left"),
+    INVALID_DATE(-33,HttpServletResponse.SC_BAD_REQUEST,"Can't insert date in the past!")
     ;
 
     private final int errorCode;

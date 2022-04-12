@@ -24,8 +24,6 @@ import utils.MailTypes;
 import javax.naming.NamingException;
 import java.io.*;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -42,10 +40,10 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String email = null;
-        String doctorName = null;
-        Date expirationDate = null;
-        Part medicalCertificate = null;
+        String email;
+        String doctorName;
+        Date expirationDate;
+        Part medicalCertificate;
 
         boolean registrable = true;
         Message message = new Message(ErrorCodes.OK.getErrorMessage(), false);
@@ -100,7 +98,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         //Error nel get params
         try {
 
-            doctorName = req.getParameter("doctorname");
+            doctorName = req.getParameter(Constants.MEDICALCERTIFICATE_DOCTORNAME);
             email = req.getParameter(Constants.MEDICALCERTIFICATE_PERSON);
             expirationDate = Date.valueOf(req.getParameter(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE));
 
@@ -121,7 +119,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
                 error = ErrorCodes.NOT_A_MAIL;
             }
             if(!expirationDate.after(Calendar.getInstance().getTime())){
-                error = ErrorCodes.INVALID_FIELDS;
+                error = ErrorCodes.INVALID_DATE;
             }
         }
         return error;
@@ -130,7 +128,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
     private ErrorCodes insertCertificate(String email, Date expirationDate, String doctorName, Part medicalCertificate) {
 
         ErrorCodes error = ErrorCodes.OK;
-        Person p1 = null;
+        Person p1;
         List<MedicalCertificate> med1;
 
         try {

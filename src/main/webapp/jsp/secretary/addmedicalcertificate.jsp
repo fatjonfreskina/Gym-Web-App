@@ -13,8 +13,8 @@
 <form method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data">
 
     <label>Email : </label><input type="text" name="person" value=""><br/>
-    <label>Expiration Date : </label><input type="date" name="expirationdate" value="2023-09-06"><br/>
-    <label>Doctor name : </label><input type="text" name="doctorname" value="Mario Rossi"><br/>
+    <label>Expiration Date : </label><input type="date" name="expirationdate" value="2023-01-01"><br/>
+    <label>Doctor name : </label><input type="text" name="doctorname" value=""><br/>
     <label>Medical Certificate: </label><input type="file" name="medical_certificate"  ><br/>
 
     <button type="submit" >Add certificate</button>
