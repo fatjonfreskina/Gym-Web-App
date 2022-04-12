@@ -2,7 +2,6 @@ package resource;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 
 /**
  * @author Fatjon Freskina
