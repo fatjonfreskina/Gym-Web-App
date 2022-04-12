@@ -1,7 +1,6 @@
 package servlet.trainer.rest;
 
 import com.google.gson.Gson;
-import constants.Constants;
 import constants.ErrorCodes;
 import dao.reservation.GetAllPeopleInReservationTimeSlotDatabase;
 import dao.reservation.InsertReservationDatabase;
@@ -27,7 +26,7 @@ public class InsertNotBookedAttendanceServlet extends AbstractServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Gson gson=new Gson();
         Reservation reservation=gson.fromJson(req.getParameter("reservation"),Reservation.class);
-        List<Person> reservations=null;
+        List<Person> reservations;
         ErrorCodes error = ErrorCodes.OK;
 
         //Check if there are enough spots available for the given room
@@ -36,33 +35,33 @@ public class InsertNotBookedAttendanceServlet extends AbstractServlet {
         }
         catch (SQLException | NamingException e){
             error=ErrorCodes.INTERNAL_ERROR;
-            sendFeedback(req,res,error);
+            sendFeedback(res,error);
             return;
         }
         if(reservations==null){
             error=ErrorCodes.INTERNAL_ERROR;
-            sendFeedback(req,res,error);
+            sendFeedback(res,error);
             return;
         }
 
-        Room room=null;
+        Room room;
         try{
             List<Room> rooms= new GetRoomSizeByNameDatabase(getDataSource().getConnection(),new Room(reservation.getRoom())).execute();
             if(rooms == null || rooms.size() != 1){
                 error=ErrorCodes.INTERNAL_ERROR;
-                sendFeedback(req,res,error);
+                sendFeedback(res,error);
                 return;
             }
             room=rooms.get(0);
         }
         catch (SQLException | NamingException e){
             error=ErrorCodes.INTERNAL_ERROR;
-            sendFeedback(req,res,error);
+            sendFeedback(res,error);
             return;
         }
         if(room==null){
             error=ErrorCodes.INTERNAL_ERROR;
-            sendFeedback(req,res,error);
+            sendFeedback(res,error);
             return;
         }
 
@@ -72,21 +71,21 @@ public class InsertNotBookedAttendanceServlet extends AbstractServlet {
             }
             catch (SQLException | NamingException e){
                 error=ErrorCodes.INTERNAL_ERROR;
-                sendFeedback(req,res,error);
+                sendFeedback(res,error);
                 return;
             }
 
             //Return positive feedback
-            sendFeedback(req,res,error);
+            sendFeedback(res,error);
         }
         else{
             error=ErrorCodes.ROOM_ALREADY_FULL;
-            sendFeedback(req,res,error);
+            sendFeedback(res,error);
         }
     }
 
 
-    private void sendFeedback(HttpServletRequest req, HttpServletResponse res, ErrorCodes error) throws IOException {
+    private void sendFeedback(HttpServletResponse res, ErrorCodes error) throws IOException {
         String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), true));
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");
