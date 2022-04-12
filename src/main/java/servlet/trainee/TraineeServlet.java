@@ -39,8 +39,6 @@ public class TraineeServlet extends AbstractServlet {
             m = new Message("SQLException", true);
         }
 
-        System.out.println(l_subscription.get(0).getTrainer().getSurname());
-        System.out.println(l_subscription.get(1).getTrainer().getSurname());
         req.setAttribute("subscriptionlist", l_subscription);
         req.setAttribute("message", m);
 
