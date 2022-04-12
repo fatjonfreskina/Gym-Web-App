@@ -31,6 +31,11 @@ public class SecretaryFilter extends AbstractFilter {
     if (loggedIn) {
       List<String> roles = (List<String>) session.getAttribute("roles");
       if (roles.contains("secretary")) {
+        ////////////////////////////////////////////////////////////////
+        if(!session.getAttribute("defaultRole").equals("secretary")){
+          session.setAttribute("defaultRole","secretary");
+        }
+        ///////////////////////////////////////////////////////////////
         res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
         res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         chain.doFilter(req, res); // User is logged in, just continue request.

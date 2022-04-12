@@ -43,6 +43,7 @@ public class LoginServlet extends AbstractServlet {
             res.sendRedirect(req.getContextPath());
         } else {
             req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
+           // req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
         }
     }
 
@@ -180,11 +181,13 @@ public class LoginServlet extends AbstractServlet {
         }
         if (userRoles.size() > 1) {
 
-            req.setAttribute("roles", roles);
+            //req.setAttribute("roles", roles);
 
             //TODO in servlet for /access/roles where the user selects one role as default
             //session.setAttribute("defaultRole", userRoles.get(1).getRole());
-            req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
+            //req.getRequestDispatcher("/access/roles").forward(req, res);
+            logger.info(req.getContextPath()+"/access/roles");
+            res.sendRedirect(req.getContextPath()+"/access/roles");
         }
         logger.info(email + " Login: confirmed and returned");
     }

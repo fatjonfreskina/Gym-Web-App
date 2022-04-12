@@ -7,7 +7,7 @@
     <title>GWA - Trainer Home page </title>
 </head>
 <body>
-<c:import url="/jsp/include/icon.jsp"></c:import>
+<!--<c:import url="/jsp/include/icon.jsp"></c:import>-->
 
 <jsp:include page="../include/header.jsp"/>
 <br>

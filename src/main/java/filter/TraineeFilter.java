@@ -30,6 +30,11 @@ public class TraineeFilter extends AbstractFilter {
         if (loggedIn) {
             List<String> roles = (List<String>) session.getAttribute("roles");
             if (roles.contains("trainee")) {
+                ////////////////////////////////////////////////////////////////
+                if(!session.getAttribute("defaultRole").equals("trainee")){
+                    session.setAttribute("defaultRole","trainee");
+                }
+                ///////////////////////////////////////////////////////////////
                 res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
                 res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
                 chain.doFilter(req, res); // User is logged in, just continue request.

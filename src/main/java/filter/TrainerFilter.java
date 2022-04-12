@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
  */
 public class TrainerFilter extends AbstractFilter {
 
+    private final Logger logger1 = LogManager.getLogger("andrea_pasin_logger");
     private final Logger logger = LogManager.getLogger("harjot_singh_logger");
     private final String loggerClass = "gwa.filter.TrainerFilter: ";
 
@@ -30,6 +31,13 @@ public class TrainerFilter extends AbstractFilter {
         if (loggedIn) {
             List<String> roles = (List<String>) session.getAttribute("roles");
             if (roles.contains("trainer")) {
+
+                ////////////////////////////////////////////////////////////////
+                if(!session.getAttribute("defaultRole").equals("trainer")){
+                    session.setAttribute("defaultRole","trainer");
+                    logger1.info("ROLE CHANGED "+session.getAttribute("defaultRole"));
+                }
+                ///////////////////////////////////////////////////////////////
                 res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
                 res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
                 chain.doFilter(req, res); // User is logged in, just continue request.

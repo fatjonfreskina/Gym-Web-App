@@ -5,7 +5,7 @@
     <title>Trainee page</title>
 </head>
 <body>
-<jsp:include page="/jsp/include/icon.jsp"/>
+<!--<jsp:include page="/jsp/include/icon.jsp"/>-->
 <jsp:include page="/jsp/include/header.jsp"/>
 <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
 <jsp:include page="/jsp/include/footer.jsp"/>

@@ -25,7 +25,7 @@ public class Constants {
     public static final String PATH_LOGIN = "/jsp/access/login.jsp";
     public static final String PATH_COURSES = "/jsp/courses.jsp";
     public static final String PATH_STAFF = "/jsp/staff.jsp";
-
+    public static final String PATH_ROLES = "/jsp/access/roles.jsp";
 
     //TRAINEE PATH
     public static final String PATH_TRAINEE = "/jsp/trainee/trainee.jsp";
