@@ -1,11 +1,13 @@
 package resource;
 
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  * This Bean contains all the info about a subscription.
  *
  * @author Riccardo Forzan
+ * @author Harjot Singh
  */
 public class Subscription {
 
@@ -77,5 +79,18 @@ public class Subscription {
         ", discount=" + discount +
         ", trainee='" + trainee + '\'' +
         '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Subscription that = (Subscription) o;
+    return courseEditionID == that.courseEditionID && duration == that.duration && discount == that.discount && Objects.equals(courseName, that.courseName) && Objects.equals(startDay, that.startDay) && Objects.equals(trainee, that.trainee);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(courseEditionID, courseName, duration, startDay, discount, trainee);
   }
 }

@@ -78,7 +78,7 @@
     </servlet>
     <servlet>
         <servlet-name>GetAttendanceServlet</servlet-name>
-        <servlet-class>servlet.trainer.rest.GetAttendanceServlet</servlet-class>
+        <servlet-class>servlet.trainer.rest.TrainerManageAttendanceServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PasswordForgotServlet</servlet-name>

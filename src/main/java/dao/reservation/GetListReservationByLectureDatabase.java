@@ -1,6 +1,7 @@
 package dao.reservation;
 
 import constants.Constants;
+import resource.LectureTimeSlot;
 import resource.Reservation;
 
 import java.sql.*;
@@ -9,23 +10,22 @@ import java.util.List;
 
 /**
  * @author Andrea Pasin
+ * @author Harjot Singh
  */
 public class GetListReservationByLectureDatabase {
 
     private static final String STATEMENT = "SELECT * FROM reservation WHERE lecturedate = ? and lectureroom= ? and lecturestarttime= ?";
 
     private final Connection con;
-    private final Reservation reservation;
+    private final LectureTimeSlot lectureTimeSlot;
 
 
-    public GetListReservationByLectureDatabase(final Connection con, final Reservation reservation) {
+    public GetListReservationByLectureDatabase(final Connection con, final LectureTimeSlot lectureTimeSlot) {
         this.con = con;
-        this.reservation = reservation;
-
+        this.lectureTimeSlot = lectureTimeSlot;
     }
 
     public List<Reservation> execute() throws SQLException {
-
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
@@ -33,9 +33,9 @@ public class GetListReservationByLectureDatabase {
 
         try {
             pstmt = con.prepareStatement(STATEMENT);
-            pstmt.setDate(1, reservation.getLectureDate());
-            pstmt.setString(2, reservation.getRoom());
-            pstmt.setTime(3, reservation.getLectureStartTime());
+            pstmt.setDate(1, lectureTimeSlot.getDate());
+            pstmt.setString(2, lectureTimeSlot.getRoomName());
+            pstmt.setTime(3, lectureTimeSlot.getStartTime());
 
             rs = pstmt.executeQuery();
 

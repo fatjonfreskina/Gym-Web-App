@@ -2,9 +2,11 @@ package resource;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Objects;
 
 /**
  * @author Fatjon Freskina
+ * @author Harjot Singh
  */
 public class Reservation {
 
@@ -44,4 +46,26 @@ public class Reservation {
         return lectureStartTime;
     }
 
+    @Override
+    public String toString() {
+        return "Reservation{" +
+            "trainee='" + trainee + '\'' +
+            ", room='" + room + '\'' +
+            ", lectureDate=" + lectureDate +
+            ", lectureStartTime=" + lectureStartTime +
+            '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return Objects.equals(trainee, that.trainee) && Objects.equals(room, that.room) && Objects.equals(lectureDate, that.lectureDate) && Objects.equals(lectureStartTime, that.lectureStartTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(trainee, room, lectureDate, lectureStartTime);
+    }
 }
