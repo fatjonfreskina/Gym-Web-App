@@ -10,6 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import resource.*;
 import servlet.AbstractServlet;
 
@@ -24,7 +26,7 @@ import java.util.List;
  * @author Andrea Pasin
  */
 public class GetAttendanceServlet extends AbstractServlet {
-
+    private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Person> personList=null;
@@ -55,12 +57,12 @@ public class GetAttendanceServlet extends AbstractServlet {
             out.print(messageJson);
             return;
         }
-
+        logger.info("TEACHES"+teaches.get(0));
         //Get the lecture that should be held now
         List<LectureTimeSlot> lectureTimeSlots=new ArrayList<>();
         try{
             for(Teaches t:teaches){
-                LectureTimeSlot l=new GetLectureTimeSlotByCourseEditionIdNowDatabase(getDataSource().getConnection(),new LectureTimeSlot(t.getCourseEdition())).execute();
+                LectureTimeSlot l=new GetLectureTimeSlotByCourseEditionIdNowDatabase(getDataSource().getConnection(),new LectureTimeSlot(t.getCourseEdition(),t.getCourseName())).execute();
                 if(l!=null){
                     lectureTimeSlots.add(l);
                 }
@@ -137,8 +139,5 @@ public class GetAttendanceServlet extends AbstractServlet {
         out.println(lectureJson);
         out.println(reservationsJson);
         out.println(subscriptionsJson);
-
-
-
     }
 }
