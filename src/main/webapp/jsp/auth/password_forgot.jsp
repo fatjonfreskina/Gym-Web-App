@@ -16,5 +16,11 @@
     <input type="submit" value="Submit">
 </form>
 
+<c:choose>
+    <c:when test="${message.error}">
+        <p><c:out value="${message.message}"/></p>
+    </c:when>
+</c:choose>
+
 </body>
 </html>
