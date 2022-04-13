@@ -1,19 +1,15 @@
 package servlet.trainee.rest;
 
-import com.google.gson.Gson;
 import constants.ErrorCodes;
 import dao.reservation.DeleteReservation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import resource.Message;
 import resource.Reservation;
 import servlet.AbstractRestServlet;
-import servlet.AbstractServlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.regex.Matcher;
@@ -48,7 +44,7 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
         final Matcher matcher = URI_REGEX.matcher(uri);
 
         if ((!matcher.find()) || (matcher.groupCount() != 3)) {
-            //sendErrorResponse(resp, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(resp, ErrorCodes.BAD_REQUEST);
             return;
         }
 
@@ -57,11 +53,10 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
         final Time time = Time.valueOf(matcher.group(3));
         HttpSession session = req.getSession(false);
         final String email = session.getAttribute("email").toString();
-        Reservation reservation;
 
         if (isDateAndTimeValid(date, time)) {
             try {
-                reservation = new Reservation(email, room, date, time);
+                final Reservation reservation = new Reservation(email, room, date, time);
                 new DeleteReservation(getDataSource().getConnection(), reservation).execute();
                 sendDataResponse(resp, reservation);
 
@@ -70,21 +65,17 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
             }
         } else {
             //Trying to delete future(/present) reservation
-            sendErrorResponse(resp, ErrorCodes.INVALID_FIELDS);}
+            sendErrorResponse(resp, ErrorCodes.INVALID_FIELDS);
+        }
     }
 
-        private boolean isDateAndTimeValid(Date reservationDate, Time reservationTime)
-        {
-        boolean validation;
+    private boolean isDateAndTimeValid(Date reservationDate, Time reservationTime)
+    {
         long millis = System.currentTimeMillis();
         Date today = new Date(millis);
         Time now = new Time(millis);
 
-        if (today.compareTo(reservationDate) <  0 || (today.compareTo(reservationDate)  == 0 && now.compareTo(reservationTime) <= 0)) {
-            return true;
-        } else {
-            return false;
-        }
-        }
+        return today.compareTo(reservationDate) < 0 ||
+                (today.compareTo(reservationDate) == 0 && now.compareTo(reservationTime) <= 0);
     }
-
+}

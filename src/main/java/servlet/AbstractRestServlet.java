@@ -3,7 +3,6 @@ package servlet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import constants.ErrorCodes;
-import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,7 +10,6 @@ import resource.Message;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Type;
 
 
 /**
@@ -35,7 +33,7 @@ import java.lang.reflect.Type;
  *     <li>
  *         Default implementation of methods {@code doDelete()}, {@code doGet()}, {@code doHead()},
  *         {@code doOptions()}, {@code doPost()}, {@code doPut()} and {@code doTrace()},
- *         that returns a METHOD_NOT_ALLOWED error.
+ *         that returns a METHOD_NOT_ALLOWED error response.
  *     </li>
  * </ul>
  *
@@ -53,75 +51,75 @@ public class AbstractRestServlet extends AbstractServlet
     protected static final String ALL_MEDIA_TYPE = "*/*";
 
 
-    @Override
-    public void init(ServletConfig config) throws ServletException
-    {
-        super.init(config);
-    }
-
-
-    @Override
-    public void destroy()
-    {
-        super.destroy();
-    }
-
-
     /**
      * Check if the "accept" header in the HTTP request is present and reports accepting JSON format,
-     * otherwise send back an error response with the appropriate error code.
+     * otherwise send back an appropriate error code.
      * @param req The HTTP request.
-     * @param res The HTTP response.
-     * @throws IOException If something happens when writing the response to the output stream.
+     * @return It can return 3 different error codes:
+     * <ul>
+     *     <li>
+     *          {@code ErrorCodes.OK} if the header "accept" is present in the HTTP request
+     *          and reports accepting JSON format.
+     *     </li>
+     *     <li>
+     *         {@code ErrorCodes.ACCEPT_MISSING} if the header "accept" is not present in the HTTP request.
+     *     </li>
+     *     <li>
+     *         {@code ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED} if the header "accept" is present in the HTTP request,
+     *         but does not reports accepting JSON format.
+     *     </li>
+     * </ul>
      */
-    protected void checkAcceptMediaType(HttpServletRequest req, HttpServletResponse res) throws IOException
+    protected ErrorCodes checkAcceptMediaType(HttpServletRequest req)
     {
         final String accept = req.getHeader(ACCEPT_HEADER);
 
         // Check if the "accept" HTTP header is not found in the request.
         if (accept == null)
-        {
-            sendErrorResponse(res, ErrorCodes.ACCEPT_MISSING);
-            return;
-        }
+            return ErrorCodes.ACCEPT_MISSING;
 
         // Check if the "accept" HTTP header does not report accepting JSON format.
         if ((!accept.contains(JSON_MEDIA_TYPE)) && (!accept.equals(ALL_MEDIA_TYPE)))
-        {
-            sendErrorResponse(res, ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED);
-            return;
-        }
+            return ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
 
-        // HTTP header "accept" reports accepting JSON format => nothing to do.
+        // HTTP header "accept" reports accepting JSON format.
+        return ErrorCodes.OK;
     }
 
 
     /**
      * Check if the "Content-Type" header in the HTTP request is present and reports accepting JSON format,
-     * otherwise send back an error response with the appropriate error code.
+     * otherwise send back an appropriate error code.
      * @param req The HTTP request.
-     * @param res The HTTP response.
-     * @throws IOException If something happens when writing the response to the output stream.
+     * @return It can return 3 different error codes:
+     * <ul>
+     *     <li>
+     *          {@code ErrorCodes.OK} if the header "Content-Type" is present in the HTTP request
+     *          and reports accepting JSON format.
+     *     </li>
+     *     <li>
+     *         {@code ErrorCodes.CONTENTTYPE_MISSING} if the header "Content-Type" is not present in the HTTP request.
+     *     </li>
+     *     <li>
+     *         {@code ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED} if the header "Content-Type" is present in the HTTP request,
+     *         but does not reports accepting JSON format.
+     *     </li>
+     * </ul>
      */
-    protected void checkContentTypeMediaType(HttpServletRequest req, HttpServletResponse res) throws IOException
+    protected ErrorCodes checkContentTypeMediaType(HttpServletRequest req)
     {
         final String contentType = req.getContentType();
 
         // Check if the "Content-Type" HTTP header is not found in the request.
         if (contentType == null)
-        {
-            sendErrorResponse(res, ErrorCodes.CONTENTTYPE_MISSING);
-            return;
-        }
+            return ErrorCodes.CONTENTTYPE_MISSING;
 
         // Check if the "Content-Type" HTTP header does not report accepting JSON format.
         if (!contentType.contains(JSON_MEDIA_TYPE))
-        {
-            sendErrorResponse(res, ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED);
-            return;
-        }
+            return ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
 
-        // HTTP header "Content-Type" reports accepting JSON format => nothing to do.
+        // HTTP header "Content-Type" reports accepting JSON format.
+        return ErrorCodes.OK;
     }
 
 
@@ -143,34 +141,6 @@ public class AbstractRestServlet extends AbstractServlet
         // Write the output.
         final PrintWriter out = res.getWriter();
         out.print(GSON.toJson(data));
-
-        // Flush the output stream and close it.
-        out.flush();
-        out.close();
-    }
-
-
-    /**
-     * Send a response with the specified data in JSON format.
-     * @param res The HTTP response.
-     * @param list The list of data to send in JSON format.
-     * @param type The type of the list elements, needed by Gson to perform the serialization.
-     *             Must use this code: {@code new TypeToken<List<ElementType>>() {}.getType()},
-     *             replacing {@code ElementType} with the correct value.
-     * @throws IOException If something happens when writing the response to the output stream.
-     */
-    protected void sendDataResponse(HttpServletResponse res, Object list, Type type) throws IOException
-    {
-        // Set headers of the response.
-        res.setContentType(JSON_MEDIA_TYPE);
-        res.setCharacterEncoding(UTF8_ENCODING);
-
-        // Set HTTP error code.
-        res.setStatus(HttpServletResponse.SC_OK);
-
-        // Write the output.
-        final PrintWriter out = res.getWriter();
-        out.print(GSON.toJson(list, type));
 
         // Flush the output stream and close it.
         out.flush();

@@ -1,7 +1,5 @@
 package servlet.trainee.rest;
 
-import com.google.common.reflect.TypeToken;
-import constants.Constants;
 import constants.ErrorCodes;
 import dao.reservation.GetListReservationByEmailAndDateDatabase;
 import jakarta.servlet.ServletException;
@@ -32,14 +30,17 @@ public class GetReservationsServlet extends AbstractRestServlet
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        // Retrieve trainee email by session.
-        final HttpSession session = req.getSession(false);
-        if (session == null)
+        // Check that the request accepts JSON format.
+        //final ErrorCodes code = checkAcceptMediaType(req);
+        final ErrorCodes code = ErrorCodes.OK;  //To enable browser requests (no JSON accepted) to be executed.
+        if (code != ErrorCodes.OK)
         {
-            res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+            sendErrorResponse(res, code);
             return;
         }
 
+        // Retrieve trainee email by session.
+        final HttpSession session = req.getSession(false);
         final String email = session.getAttribute("email").toString();
 
         // Retrieve input data from the requested URI.
@@ -78,10 +79,6 @@ public class GetReservationsServlet extends AbstractRestServlet
         }
 
 
-        // Check that the request accepts JSON format.
-        //checkAcceptMediaType(req, res); //To enable browser requests (no JSON accepted) to be executed.
-
-
         try
         {
             // Retrieve requested data from database.
@@ -90,7 +87,7 @@ public class GetReservationsServlet extends AbstractRestServlet
                     new GetListReservationByEmailAndDateDatabase(con, email, fromDate, toDate).execute();
 
             // Send the data as response in JSON format.
-            sendDataResponse(res, reservations, new TypeToken<List<Reservation>>() {}.getType());
+            sendDataResponse(res, reservations);
         }
         catch (Throwable th)
         {
