@@ -10,10 +10,10 @@ import javax.naming.NamingException;
 
 import com.google.gson.Gson;
 
+import constants.Codes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import constants.ErrorCodes;
 import constants.exeption.TrainerCoursesOverlapping;
 import constants.exeption.TrainerNoCourseHeld;
 import constants.exeption.TrainerNoCourseHeldNow;
@@ -70,13 +70,13 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       out.print(new Gson().toJson(new TrainerAttendance(lectureHeldNow, reservations, subscriptions), TrainerAttendance.class));
     } catch (SQLException | NamingException e) {
       logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (TrainerNoCourseHeld e) {
-      sendFeedback(res, ErrorCodes.NO_COURSES_TAUGHT);
+      sendFeedback(res, Codes.NO_COURSES_TAUGHT);
     } catch (TrainerNoCourseHeldNow e) {
-      sendFeedback(res, ErrorCodes.NO_COURSES_HELD_NOW);
+      sendFeedback(res, Codes.NO_COURSES_HELD_NOW);
     } catch (TrainerCoursesOverlapping e) {
-      sendFeedback(res, ErrorCodes.OVERLAPPING);
+      sendFeedback(res, Codes.OVERLAPPING);
     }
   }
 
@@ -101,7 +101,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
         Reservation reservationToAdd = new Reservation(subscription.getTrainee(), room.getName(), lectureHeldNow.getDate(), lectureHeldNow.getStartTime());
         if (reservations.contains(reservationToAdd)) {
           logger.warn(loggerClass + "Already present");
-          sendFeedback(res, ErrorCodes.RESERVATION_ALREADY_PRESENT);
+          sendFeedback(res, Codes.RESERVATION_ALREADY_PRESENT);
           return;
         }
 
@@ -111,23 +111,23 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
         if (availability >= 1) {
           new InsertReservationDatabase(getDataSource().getConnection(), reservationToAdd).execute();
           //Return positive feedback
-          sendFeedback(res, ErrorCodes.OK, false);
+          sendFeedback(res, Codes.OK, false);
         } else {
-          sendFeedback(res, ErrorCodes.ROOM_ALREADY_FULL);
+          sendFeedback(res, Codes.ROOM_ALREADY_FULL);
         }
 
       } else {
-        sendFeedback(res, ErrorCodes.TRAINEE_NOT_ENROLLED_TO_THE_COURSE);
+        sendFeedback(res, Codes.TRAINEE_NOT_ENROLLED_TO_THE_COURSE);
       }
     } catch (SQLException | NamingException | NullPointerException e) {
       e.printStackTrace();
-      sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (TrainerCoursesOverlapping e) {
-      sendFeedback(res, ErrorCodes.OVERLAPPING);
+      sendFeedback(res, Codes.OVERLAPPING);
     } catch (TrainerNoCourseHeld e) {
-      sendFeedback(res, ErrorCodes.NO_COURSES_TAUGHT);
+      sendFeedback(res, Codes.NO_COURSES_TAUGHT);
     } catch (TrainerNoCourseHeldNow e) {
-      sendFeedback(res, ErrorCodes.NO_COURSES_HELD_NOW);
+      sendFeedback(res, Codes.NO_COURSES_HELD_NOW);
     }
   }
 
@@ -147,20 +147,20 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       Reservation deleted = new DeleteReservation(getDataSource().getConnection(), reservation).execute();
       if (deleted == null) {
         logger.debug("NOT DELETED");
-        sendFeedback(res, ErrorCodes.NO_CONTENT, false);
+        sendFeedback(res, Codes.NO_CONTENT, false);
       }else{
-        sendFeedback(res, ErrorCodes.OK, false);
+        sendFeedback(res, Codes.OK, false);
       }
     } catch (SQLException | NamingException e) {
       //e.printStackTrace();
-      sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(res, Codes.INTERNAL_ERROR);
       return;
     } catch (TrainerCoursesOverlapping e) {
-      sendFeedback(res, ErrorCodes.OVERLAPPING);
+      sendFeedback(res, Codes.OVERLAPPING);
     } catch (TrainerNoCourseHeld e) {
-      sendFeedback(res, ErrorCodes.NO_COURSES_TAUGHT);
+      sendFeedback(res, Codes.NO_COURSES_TAUGHT);
     } catch (TrainerNoCourseHeldNow e) {
-      sendFeedback(res, ErrorCodes.NO_COURSES_HELD_NOW);
+      sendFeedback(res, Codes.NO_COURSES_HELD_NOW);
     }
   }
 
@@ -168,11 +168,11 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
 
   /* PRIVATE METHODS */
 
-  private void sendFeedback(HttpServletResponse res, ErrorCodes error) throws IOException {
+  private void sendFeedback(HttpServletResponse res, Codes error) throws IOException {
     sendFeedback(res, error, true);
   }
 
-  private void sendFeedback(HttpServletResponse res, ErrorCodes error, boolean isError) throws IOException {
+  private void sendFeedback(HttpServletResponse res, Codes error, boolean isError) throws IOException {
     String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
     PrintWriter out = res.getWriter();
     res.setStatus(error.getHTTPCode());

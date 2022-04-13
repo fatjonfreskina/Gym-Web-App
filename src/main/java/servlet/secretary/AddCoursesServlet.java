@@ -1,8 +1,8 @@
 package servlet.secretary;
 
 import com.google.gson.Gson;
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.courseedition.GetAvailableCourses;
 import dao.courseedition.InsertCourseEditionDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
@@ -41,7 +41,7 @@ public class AddCoursesServlet extends AbstractServlet
         //All the courses?
         //Tutti insegnati
         //Tutte le stanze
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
 
         List<Room> rooms = null;
         List<Course> courses = null;
@@ -57,9 +57,9 @@ public class AddCoursesServlet extends AbstractServlet
             request.setAttribute("teachers",teachers);
         }catch (SQLException | NamingException e)
         {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
         }
-        if(error != ErrorCodes.OK)
+        if(error != Codes.OK)
         {
             String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), true));
             PrintWriter out = response.getWriter();
@@ -76,8 +76,8 @@ public class AddCoursesServlet extends AbstractServlet
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         Message message = null;
-        ErrorCodes error = ErrorCodes.OK;
-        if((error = parseParams(req,res)) == ErrorCodes.OK) {
+        Codes error = Codes.OK;
+        if((error = parseParams(req,res)) == Codes.OK) {
             //Add course and lecture time slots
             String courseName = null;
             String teacher = null;
@@ -386,15 +386,15 @@ public class AddCoursesServlet extends AbstractServlet
                             }
                         }
                     } else
-                        error = ErrorCodes.OVERLAPPING;
+                        error = Codes.OVERLAPPING;
                 } else
-                    error = ErrorCodes.INTERNAL_ERROR;
+                    error = Codes.INTERNAL_ERROR;
 
             } catch (NamingException | SQLException exception) {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             }
 
-            if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) {
+            if (error.getErrorCode() == Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), false);
             } else {
                 message = new Message(error.getErrorMessage(), true);
@@ -409,9 +409,9 @@ public class AddCoursesServlet extends AbstractServlet
 
     }
 
-    public ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
 
         String courseName = null;
         String teacher = null;
@@ -467,18 +467,18 @@ public class AddCoursesServlet extends AbstractServlet
             cost365 = req.getParameter("cost_365");
 
             if(monaday == null && tuesday == null && wednesday == null && thursday==null && friday == null && saturday == null && sunday == null)
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
             else if(cost30 == null && cost90 == null && cost180 == null && cost365 == null && "".equals(cost30) && "".equals(cost90) && "".equals(cost180) && "".equals(cost365))
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
             else if(subscriptionType30 == null && subscriptionType90 == null && subscriptionType180 == null && subscriptionType365 == null || "".equals(subscriptionType30) || "".equals(subscriptionType90) || "".equals(subscriptionType180) || "".equals(subscriptionType365))
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
             else if(courseName == null || dateFirstEvent == null || teacher == null && weeks == null || "".equals(dateFirstEvent) || "".equals(courseName) || "".equals(teacher) || "".equals(weeks) || room == null || "".equals(room))
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
 
             //if(courseName == null || teacher == null || subscriptionType30)
         } catch (IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date
         {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
 
         //conversions :
@@ -502,7 +502,7 @@ public class AddCoursesServlet extends AbstractServlet
         Time[] saturdayTime = null;
         Time[] sundayTime = null;
 
-        if(error == ErrorCodes.OK)
+        if(error == Codes.OK)
         {
 
             try
@@ -577,7 +577,7 @@ public class AddCoursesServlet extends AbstractServlet
 
                 if(!dateFirstEventDate.after(new Date(System.currentTimeMillis())))
                 {
-                    error = ErrorCodes.INVALID_FIELDS;
+                    error = Codes.INVALID_FIELDS;
                 }else
                 {
 
@@ -595,11 +595,11 @@ public class AddCoursesServlet extends AbstractServlet
                     {
 
                     }else
-                        error = ErrorCodes.INVALID_FIELDS;
+                        error = Codes.INVALID_FIELDS;
                 }
             }catch (Exception e)
             {
-                error = ErrorCodes.INVALID_FIELDS;
+                error = Codes.INVALID_FIELDS;
             }
         }
         //Time monday

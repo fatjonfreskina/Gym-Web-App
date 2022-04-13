@@ -1,13 +1,11 @@
 package servlet.secretary.rest;
 
 import com.google.gson.Gson;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.lecturetimeslot.DeleteLectureTimeSlotDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.reservation.GetAllPeopleInReservationTimeSlotDatabase;
-import jakarta.mail.MessagingException;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
@@ -15,7 +13,6 @@ import resource.Message;
 import resource.Person;
 import resource.Reservation;
 import servlet.AbstractServlet;
-import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -51,7 +48,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName,date,startTime,null,null,null)).execute();
         } catch (SQLException | NamingException e) {
             error = true;
-            resultMessage = new Message(ErrorCodes.LECUTRETIMESLOT_NOT_FOUND.getErrorMessage(), true);
+            resultMessage = new Message(Codes.LECUTRETIMESLOT_NOT_FOUND.getErrorMessage(), true);
         }
 
         //Execute only if previously no error has been generated
@@ -76,7 +73,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
 
             } catch (SQLException | NamingException e) {
                 error = true;
-                resultMessage = new Message(ErrorCodes.INTERNAL_ERROR.getErrorMessage(), true);
+                resultMessage = new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
             }
         }
 

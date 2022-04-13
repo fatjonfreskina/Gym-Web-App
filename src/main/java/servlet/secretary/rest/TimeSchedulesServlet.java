@@ -1,17 +1,15 @@
 package servlet.secretary.rest;
 
 import com.google.gson.Gson;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.lecturetimeslot.GetLastLecureForLectureTimeSlotDatabase;
 import dao.lecturetimeslot.GetListTimeScheduleForLectureTimeSlotDatabase;
-import dao.person.GetListPersonByLikeEmailDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.CourseEdition;
 import resource.LectureTimeSlot;
 import resource.Message;
-import resource.Person;
 import resource.view.GeneralWeekHours;
 import servlet.AbstractServlet;
 
@@ -19,7 +17,6 @@ import javax.naming.NamingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,7 +31,7 @@ public class TimeSchedulesServlet extends AbstractServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         String coursename = request.getParameter("course_name");
         Set<String> json = new HashSet<>();
         PrintWriter out = response.getWriter();
@@ -54,10 +51,10 @@ public class TimeSchedulesServlet extends AbstractServlet
                 }
             } catch (SQLException | NamingException e)
             {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             }
         }
-        if(error == ErrorCodes.OK)
+        if(error == Codes.OK)
         {
             //no error
             out.print(json);

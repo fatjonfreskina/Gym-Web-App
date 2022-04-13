@@ -1,7 +1,7 @@
 package servlet.access;
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.emailconfirmation.GetEmailConfirmationIfExists;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.GetPersonRolesDatabase;
@@ -56,10 +56,10 @@ public class LoginServlet extends AbstractServlet {
 
 
         //Parse params to check if they are well-formatted, if not send back an error
-        //Message message = new Message(ErrorCodes.OK.getErrorMessage(),false);
-        ErrorCodes error = parseParams(req, res);
+        //Message message = new Message(Codes.OK.getErrorMessage(),false);
+        Codes error = parseParams(req, res);
 
-        if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
+        if (error.getErrorCode() != Codes.OK.getErrorCode()) {
             sendBackError(error, req, res);
             return;
         }
@@ -76,7 +76,7 @@ public class LoginServlet extends AbstractServlet {
             //logger.info(email);
             //logger.info("Password after:"+password);
         } catch (Exception e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
@@ -87,12 +87,12 @@ public class LoginServlet extends AbstractServlet {
         try {
             person = (new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute());
         } catch (SQLException | NamingException e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
         if (person == null || !person.getPsw().equals(password)) {
-            error = ErrorCodes.NOT_AUTHENTICATED;
+            error = Codes.NOT_AUTHENTICATED;
             sendBackError(error, req, res);
             return;
         }
@@ -105,12 +105,12 @@ public class LoginServlet extends AbstractServlet {
             emailStillToConfirm = (new GetEmailConfirmationIfExists(getDataSource().getConnection(), new EmailConfirmation(person.getEmail())).execute());
         } catch (SQLException | NamingException e) {
             logger.info(e);
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
         if (emailStillToConfirm != null) {
-            error = ErrorCodes.NOT_AUTHENTICATED;
+            error = Codes.NOT_AUTHENTICATED;
             sendBackError(error, req, res);
             /*
             res.setStatus(error.getHTTPCode());
@@ -127,12 +127,12 @@ public class LoginServlet extends AbstractServlet {
             userRoles = new GetPersonRolesDatabase(getDataSource().getConnection(), person).execute();
 
         } catch (SQLException | NamingException e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
         if (userRoles.isEmpty()) {
-            sendBackError(ErrorCodes.USER_HAS_NO_ROLE_ASSIGNED, req, res);
+            sendBackError(Codes.USER_HAS_NO_ROLE_ASSIGNED, req, res);
             return;
         }
         logger.info(email + " Login: obtained roles" + userRoles);
@@ -200,7 +200,7 @@ public class LoginServlet extends AbstractServlet {
      * @throws ServletException
      * @throws IOException
      */
-    private void sendBackError(ErrorCodes error, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private void sendBackError(Codes error, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Message message = new Message(error.getErrorMessage(), true);
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
@@ -209,10 +209,10 @@ public class LoginServlet extends AbstractServlet {
     }
 
 
-    private ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email = null;
         String password = null;
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         try {
             email = req.getParameter("email");
             logger.info(email);
@@ -220,13 +220,13 @@ public class LoginServlet extends AbstractServlet {
             logger.info(password);
 
         } catch (IllegalArgumentException e) {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
-        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) {
+        if (error.getErrorCode() == Codes.OK.getErrorCode()) {
             if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
             } else if (!InputValidation.isValidEmailAddress(email)) {
-                error = ErrorCodes.NOT_A_MAIL;
+                error = Codes.NOT_A_MAIL;
             }
         }
         return error;

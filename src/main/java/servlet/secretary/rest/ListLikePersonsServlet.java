@@ -2,7 +2,7 @@ package servlet.secretary.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.person.GetListPersonByLikeEmailDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class ListLikePersonsServlet extends AbstractServlet
 {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         String partialEmail = request.getParameter("partial_email");
         String json = null;
         PrintWriter out = response.getWriter();
@@ -35,10 +35,10 @@ public class ListLikePersonsServlet extends AbstractServlet
                 json = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(list);
             } catch (SQLException | NamingException e)
             {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             }
         }
-        if(error == ErrorCodes.OK)
+        if(error == Codes.OK)
         {
             //no error
             out.print(json);

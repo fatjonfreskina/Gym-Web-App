@@ -1,7 +1,7 @@
 package servlet.secretary.rest;
 
 import com.google.gson.Gson;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.person.InsertPersonSubscriptionDatabase;
 import dao.subscription.GetFreeSubscriptionByTraineeAndCourseDatabase;
 import dao.subscription.GetValidSubscriptionByCourseAndTraineeDatabase;
@@ -23,7 +23,7 @@ public class AddSubscriptionServlet extends AbstractServlet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         String trainee = null;
         String courseName = null;
         Integer courseEditionId = null;
@@ -33,7 +33,7 @@ public class AddSubscriptionServlet extends AbstractServlet
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("utf-8");
-        if((error = parseParams(req,resp)) == ErrorCodes.OK)
+        if((error = parseParams(req,resp)) == Codes.OK)
         {
             trainee = req.getParameter("trainee");
             courseName = req.getParameter("course_name");
@@ -53,7 +53,7 @@ public class AddSubscriptionServlet extends AbstractServlet
                 {
                     List<Subscription> lst =  new GetFreeSubscriptionByTraineeAndCourseDatabase(getDataSource().getConnection(),new Course(courseName,null),new Person(trainee,null,null,null,null,null,null,null,null)).execute();
                     if(!lst.isEmpty())
-                        error = ErrorCodes.FREE_TRIAL_ALREADY_DONE;
+                        error = Codes.FREE_TRIAL_ALREADY_DONE;
                     //look if it is
                     //GetFreeSuscriptionByTrainee
                     //GetValidSubscrtio By CourseandTrainee
@@ -63,10 +63,10 @@ public class AddSubscriptionServlet extends AbstractServlet
                             new CourseEdition(courseEditionId,courseName),new Person(trainee,null,
                             null,null,null,null,null,null,null)).execute();
                     if(!lst.isEmpty())
-                        error = ErrorCodes.OVELAPPING_SUBSCRIPTIONS;
+                        error = Codes.OVELAPPING_SUBSCRIPTIONS;
                 }
 
-                if(error == ErrorCodes.OK)
+                if(error == Codes.OK)
                 {
                     discount = discount == null ? 0 : discount;
                     new InsertPersonSubscriptionDatabase(getDataSource().getConnection(),
@@ -74,11 +74,11 @@ public class AddSubscriptionServlet extends AbstractServlet
                 }
 
             } catch (SQLException | NamingException e) {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             }
         }
 
-        if(error == ErrorCodes.OK)
+        if(error == Codes.OK)
             out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
         else
             out.print(new Gson().toJson(new Message(error.getErrorMessage(), false)));
@@ -87,9 +87,9 @@ public class AddSubscriptionServlet extends AbstractServlet
     }
 
     //parametri attesi : email, durata, corso, courseid, discount, startday(oggi) checkboxato,
-    private ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res)
+    private Codes parseParams(HttpServletRequest req, HttpServletResponse res)
     {
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         String trainee = null;
         String courseName = null;
         String courseEditionId = null;
@@ -111,31 +111,31 @@ public class AddSubscriptionServlet extends AbstractServlet
             if(trainee == null || "".equals(trainee) ||
                     courseName == null || "".equals(courseName) || courseEditionId == null || "".equals(courseEditionId) || duration == null || "".equals(duration))
             {
-                error = ErrorCodes.INVALID_FIELDS;
+                error = Codes.INVALID_FIELDS;
             }else
             {
                 if(discount != null && !"".equals(discount))
                 {
                     discountInteger = Integer.parseInt(discount);
                     if(discountInteger < 0 || discountInteger > 100)
-                        error = ErrorCodes.INVALID_FIELDS;
+                        error = Codes.INVALID_FIELDS;
                 }
 
-                if(error == ErrorCodes.OK)
+                if(error == Codes.OK)
                 {
                     courseEditionIdInteger = Integer.parseInt(courseEditionId);
                     durationInteger = Integer.parseInt(duration);
 
                     //integrity check
                     if(durationInteger != 7 && durationInteger != 30 && durationInteger != 90 && durationInteger != 180 && durationInteger != 365)
-                        error = ErrorCodes.INVALID_FIELDS;
+                        error = Codes.INVALID_FIELDS;
                 }
             }
 
 
         }catch (NumberFormatException e)
         {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
 
         return  error;

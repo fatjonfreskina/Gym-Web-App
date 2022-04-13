@@ -27,10 +27,7 @@ import java.util.List;
 public class SubstitutionLectureTimeSlot extends AbstractServlet {
 
     @Override
-    //TODO: Convert to doPost
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //http://localhost:8080/wa2122-gwa/secretary/rest/editlecturetimeslot?roomname=Stamina&date=2022-04-05&starttime=18:00:00&subsitution=giacomo.forza@example.com&notice=the trainer is sick
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //Parse the parameters
         String roomName = request.getParameter("roomname");

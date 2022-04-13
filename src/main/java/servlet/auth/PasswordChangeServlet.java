@@ -1,7 +1,7 @@
 package servlet.auth;
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.passwordreset.DeletePasswordResetDatabase;
 import dao.passwordreset.GetPasswordResetDatabase;
 import dao.person.GetPersonByEmailDatabase;
@@ -68,25 +68,20 @@ public class PasswordChangeServlet extends AbstractServlet {
 
         //Handle the case in which the token is null
         if (token == null) {
-            return new Message(ErrorCodes.TOKEN_NOT_FOUND.getErrorMessage(), true);
+            return new Message(Codes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         }
 
-        Person actualPerson = null;
-        PasswordReset passwordReset = null;
+        Person actualPerson;
+        PasswordReset passwordReset;
 
         try {
             //Retrieve the PasswordReset instance
-            PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
+            passwordReset = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
             //Retrieve the Person associated
-            actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
+            actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordReset.getPerson()).execute();
         } catch (SQLException | NamingException e) {
             //Something went wrong in the handling of the token
-            return new Message(ErrorCodes.TOKEN_NOT_FOUND.getErrorMessage(), true);
-        }
-
-        //If password reset is null it means that a password reset token has not been found in the database
-        if (passwordReset == null) {
-            return new Message(ErrorCodes.TOKEN_NOT_FOUND.getErrorMessage(), true);
+            return new Message(Codes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         }
 
         //Get from the request the new password and then change it
@@ -98,13 +93,12 @@ public class PasswordChangeServlet extends AbstractServlet {
 
         //If the input field contains something strange similar to JS code print an error
         if (!valid) {
-            return new Message(ErrorCodes.PASSWORD_NOT_VALID.getErrorMessage(), true);
+            return new Message(Codes.PASSWORD_NOT_VALID.getErrorMessage(), true);
         }
-
 
         //Check if the password and the confirmation password are equal
         if (!raw_password.equals(raw_confirm)) {
-            return new Message(ErrorCodes.DIFFERENT_PASSWORDS.getErrorMessage(), true);
+            return new Message(Codes.DIFFERENT_PASSWORDS.getErrorMessage(), true);
         }
 
         //The password is valid and should be updated
@@ -119,11 +113,11 @@ public class PasswordChangeServlet extends AbstractServlet {
             new DeletePasswordResetDatabase(getDataSource().getConnection(), passwordReset);
 
             //The procedure has terminated correctly, return a positive message
-            return new Message(ErrorCodes.OK.getErrorMessage(), false);
+            return new Message(Codes.PASSWORD_CAHNGED.getErrorMessage(), false);
 
         } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
             //Create the error message if something went wrong
-            return new Message(ErrorCodes.INTERNAL_ERROR.getErrorMessage(), true);
+            return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
 
     }

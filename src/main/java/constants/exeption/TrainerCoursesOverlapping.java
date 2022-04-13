@@ -1,9 +1,9 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
 public class TrainerCoursesOverlapping extends Exception {
   public TrainerCoursesOverlapping() {
-    super(ErrorCodes.NO_COURSES_TAUGHT.getErrorMessage());
+    super(Codes.NO_COURSES_TAUGHT.getErrorMessage());
   }
 }

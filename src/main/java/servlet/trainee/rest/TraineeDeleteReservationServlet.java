@@ -1,7 +1,7 @@
 package servlet.trainee.rest;
 
 import com.google.gson.Gson;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.reservation.DeleteReservation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,37 +34,37 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        Codes code = Codes.METHOD_NOT_ALLOWED;
         setUpErrorMessage(resp, code);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        Codes code = Codes.METHOD_NOT_ALLOWED;
         setUpErrorMessage(resp, code);
     }
 
     @Override
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        Codes code = Codes.METHOD_NOT_ALLOWED;
         setUpErrorMessage(resp, code);
     }
 
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        Codes code = Codes.METHOD_NOT_ALLOWED;
         setUpErrorMessage(resp, code);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        Codes code = Codes.METHOD_NOT_ALLOWED;
         setUpErrorMessage(resp, code);
     }
 
     @Override
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        Codes code = Codes.METHOD_NOT_ALLOWED;
         setUpErrorMessage(resp, code);
     }
 
@@ -81,7 +81,7 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
         // /trainee/rest/reservation/room/{room}/date/{date}/starttime/{time}
 
         if (i != path_splitted.length - 9) {
-            ErrorCodes code = ErrorCodes.BAD_REQUEST;
+            Codes code = Codes.BAD_REQUEST;
             setUpErrorMessage(resp, code);
             return;
         }
@@ -92,7 +92,7 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
                 !path_splitted[i + 5].equals("date") ||
                 !path_splitted[i + 7].equals("starttime")
         ) {
-            ErrorCodes code = ErrorCodes.BAD_REQUEST;
+            Codes code = Codes.BAD_REQUEST;
             setUpErrorMessage(resp, code);
             return;
         }
@@ -109,7 +109,7 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
         try {
             reservation = new Reservation(email, room, date, time);
             new DeleteReservation(getDataSource().getConnection(), reservation).execute();
-            ErrorCodes code = ErrorCodes.OK;
+            Codes code = Codes.OK;
             resp.setContentType("application/json");
             resp.setCharacterEncoding("utf-8");
             resp.setStatus(code.getHTTPCode());
@@ -117,13 +117,13 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
             out.flush();
             out.close();
         } catch (Throwable e) {
-            ErrorCodes code = ErrorCodes.UNEXPECTED_ERROR;
+            Codes code = Codes.UNEXPECTED_ERROR;
             setUpErrorMessage(resp,code);
         }
 
     }
 
-        private void setUpErrorMessage (HttpServletResponse resp, ErrorCodes code) throws IOException {
+        private void setUpErrorMessage (HttpServletResponse resp, Codes code) throws IOException {
             String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
             PrintWriter out = resp.getWriter();
             resp.setContentType("application/json");

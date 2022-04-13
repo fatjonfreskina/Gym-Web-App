@@ -3,8 +3,8 @@ package servlet.trainee.rest;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.reservation.GetListReservationByEmailAndDateDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -37,34 +37,34 @@ public class GetReservationsServlet extends AbstractServlet
     private static final String JSON_MEDIA_TYPE = "application/json";
     private static final String ALL_MEDIA_TYPE = "*/*";
 
-    private ErrorCodes checkContentTypeHeaderForJSON(HttpServletRequest req)
+    private Codes checkContentTypeHeaderForJSON(HttpServletRequest req)
     {
         final String contentType = req.getContentType();
 
         if (contentType == null)
-            return ErrorCodes.CONTENTTYPE_MISSING;
+            return Codes.CONTENTTYPE_MISSING;
 
         if (!contentType.contains(JSON_MEDIA_TYPE))
-            return ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
+            return Codes.MEDIA_TYPE_NOT_SUPPORTED;
 
-        return ErrorCodes.OK;
+        return Codes.OK;
     }
 
 
-    private ErrorCodes checkAcceptHeaderForJSON(HttpServletRequest req)
+    private Codes checkAcceptHeaderForJSON(HttpServletRequest req)
     {
         final String accept = req.getHeader(ACCEPT_HEADER);
 
         if (accept == null)
-            return ErrorCodes.ACCEPT_MISSING;
+            return Codes.ACCEPT_MISSING;
 
         if ((!accept.contains(JSON_MEDIA_TYPE)) && (!accept.equals(ALL_MEDIA_TYPE)))
-            return ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
+            return Codes.MEDIA_TYPE_NOT_SUPPORTED;
 
-        return ErrorCodes.OK;
+        return Codes.OK;
     }
 
-    private void sendError(HttpServletResponse res, ErrorCodes code) throws IOException
+    private void sendError(HttpServletResponse res, Codes code) throws IOException
     {
         final PrintWriter out = res.getWriter();
 
@@ -94,7 +94,7 @@ public class GetReservationsServlet extends AbstractServlet
 
         if ((!matcher.find()) || (matcher.groupCount() != 2))
         {
-            sendError(res, ErrorCodes.BAD_REQUEST);
+            sendError(res, Codes.BAD_REQUEST);
             return;
         }
 
@@ -112,7 +112,7 @@ public class GetReservationsServlet extends AbstractServlet
         }
         catch (Exception e)
         {
-            sendError(res, ErrorCodes.BAD_REQUEST);
+            sendError(res, Codes.BAD_REQUEST);
             return;
         }
 
@@ -122,9 +122,9 @@ public class GetReservationsServlet extends AbstractServlet
 
 
         // Check that the request accepts JSON format.
-        //ErrorCodes code = checkAcceptHeaderForJSON(req);
-        ErrorCodes code = ErrorCodes.OK; //To enable browser requests (no JSON accepted) to be executed.
-        if (code != ErrorCodes.OK)
+        //Codes code = checkAcceptHeaderForJSON(req);
+        Codes code = Codes.OK; //To enable browser requests (no JSON accepted) to be executed.
+        if (code != Codes.OK)
         {
             sendError(res, code);
             return;
@@ -141,7 +141,7 @@ public class GetReservationsServlet extends AbstractServlet
         }
         catch (NamingException | SQLException e)
         {
-            sendError(res, ErrorCodes.INTERNAL_ERROR);
+            sendError(res, Codes.INTERNAL_ERROR);
             return;
         }
 
@@ -162,7 +162,7 @@ public class GetReservationsServlet extends AbstractServlet
         res.setContentType(JSON_MEDIA_TYPE);
         res.setCharacterEncoding(UTF8_ENCODING);
 
-        sendError(res, ErrorCodes.DELETE_OPERATION_NOT_SUPPORTED);
+        sendError(res, Codes.DELETE_OPERATION_NOT_SUPPORTED);
     }
 
     @Override
@@ -172,7 +172,7 @@ public class GetReservationsServlet extends AbstractServlet
         res.setContentType(JSON_MEDIA_TYPE);
         res.setCharacterEncoding(UTF8_ENCODING);
 
-        sendError(res, ErrorCodes.HEAD_OPERATION_NOT_SUPPORTED);
+        sendError(res, Codes.HEAD_OPERATION_NOT_SUPPORTED);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class GetReservationsServlet extends AbstractServlet
         res.setContentType(JSON_MEDIA_TYPE);
         res.setCharacterEncoding(UTF8_ENCODING);
 
-        sendError(res, ErrorCodes.OPTIONS_OPERATION_NOT_SUPPORTED);
+        sendError(res, Codes.OPTIONS_OPERATION_NOT_SUPPORTED);
     }
 
     @Override
@@ -192,7 +192,7 @@ public class GetReservationsServlet extends AbstractServlet
         res.setContentType(JSON_MEDIA_TYPE);
         res.setCharacterEncoding(UTF8_ENCODING);
 
-        sendError(res, ErrorCodes.POST_OPERATION_NOT_SUPPORTED);
+        sendError(res, Codes.POST_OPERATION_NOT_SUPPORTED);
     }
 
     @Override
@@ -202,7 +202,7 @@ public class GetReservationsServlet extends AbstractServlet
         res.setContentType(JSON_MEDIA_TYPE);
         res.setCharacterEncoding(UTF8_ENCODING);
 
-        sendError(res, ErrorCodes.PUT_OPERATION_NOT_SUPPORTED);
+        sendError(res, Codes.PUT_OPERATION_NOT_SUPPORTED);
     }
 
     @Override
@@ -212,6 +212,6 @@ public class GetReservationsServlet extends AbstractServlet
         res.setContentType(JSON_MEDIA_TYPE);
         res.setCharacterEncoding(UTF8_ENCODING);
 
-        sendError(res, ErrorCodes.TRACE_OPERATION_NOT_SUPPORTED);
+        sendError(res, Codes.TRACE_OPERATION_NOT_SUPPORTED);
     }
 }

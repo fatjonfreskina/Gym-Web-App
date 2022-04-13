@@ -1,7 +1,7 @@
 package servlet.trainee.rest;
 
 import com.google.gson.Gson;
-import constants.ErrorCodes;
+import constants.Codes;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,13 +22,13 @@ public class TraineeNewReservationServlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.GET_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.GET_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.HEAD_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.HEAD_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
@@ -42,53 +42,53 @@ public class TraineeNewReservationServlet extends AbstractServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.PUT_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.PUT_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.DELETE_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.DELETE_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.OPTIONS_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.OPTIONS_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.TRACE_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.TRACE_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
-    private ErrorCodes checkMethodMediaType(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+    private Codes checkMethodMediaType(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         final String accept = req.getHeader("Accept");
         final String contentType = req.getContentType();
-        ErrorCodes code = ErrorCodes.OK;
+        Codes code = Codes.OK;
 
         if(accept == null) {
-            code = ErrorCodes.ACCEPT_MISSING;
+            code = Codes.ACCEPT_MISSING;
             setUpErrorMessage(resp,code);
             return code;
         }
 
         if(!accept.contains(JSON_MEDIA_TYPE) && !accept.equals(ALL_MEDIA_TYPE)) {
-            code = ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
+            code = Codes.MEDIA_TYPE_NOT_SUPPORTED;
             setUpErrorMessage(resp,code);
             return code;
         }
 
         if(contentType == null){
-            code = ErrorCodes.CONTENTTYPE_MISSING;
+            code = Codes.CONTENTTYPE_MISSING;
             setUpErrorMessage(resp,code);
             return code;
         }
 
         if(!contentType.contains(JSON_MEDIA_TYPE)){
-            code = ErrorCodes.CONTENTTYPE_UNSUPPORTED;
+            code = Codes.CONTENTTYPE_UNSUPPORTED;
             setUpErrorMessage(resp,code);
             return code;
         }
@@ -103,7 +103,7 @@ public class TraineeNewReservationServlet extends AbstractServlet {
         System.out.println(res);
     }
 
-    private void setUpErrorMessage(HttpServletResponse resp, ErrorCodes code) throws IOException{
+    private void setUpErrorMessage(HttpServletResponse resp, Codes code) throws IOException{
         String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
         PrintWriter out = resp.getWriter();
         resp.setContentType(JSON_UTF_8_MEDIA_TYPE);

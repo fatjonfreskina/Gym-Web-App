@@ -1,9 +1,8 @@
 package servlet.trainee.rest;
 
 import com.google.gson.Gson;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotsAvailableForUserByWeekDatabase;
-import dao.person.GetStaffPeopleDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,12 +11,9 @@ import resource.LectureTimeSlot;
 import resource.Message;
 import servlet.AbstractServlet;
 
-import javax.naming.NamingException;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 
 /*
@@ -39,52 +35,52 @@ public class TraineeAvailableSlots extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.POST_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.POST_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.DELETE_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.DELETE_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.HEAD_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.HEAD_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.OPTIONS_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.OPTIONS_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.PUT_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.PUT_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.TRACE_OPERATION_NOT_SUPPORTED;
+        Codes code = Codes.TRACE_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
-    private ErrorCodes checkMethodMediaType(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+    private Codes checkMethodMediaType(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         final String accept = req.getHeader("Accept");
-        ErrorCodes code = ErrorCodes.OK;
+        Codes code = Codes.OK;
 
         if(accept == null) {
-            code = ErrorCodes.ACCEPT_MISSING;
+            code = Codes.ACCEPT_MISSING;
             setUpErrorMessage(resp,code);
             return code;
         }
 
         if(!accept.contains(JSON_MEDIA_TYPE) && !accept.equals(ALL_MEDIA_TYPE)) {
-            code = ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
+            code = Codes.MEDIA_TYPE_NOT_SUPPORTED;
             setUpErrorMessage(resp,code);
             return code;
         }
@@ -101,7 +97,7 @@ public class TraineeAvailableSlots extends AbstractServlet {
 
         //Note : 7 is the number of parameters required for a compatible URI request
         if(i != path_splitted.length - 7){
-            ErrorCodes code = ErrorCodes.BAD_REQUEST;
+            Codes code = Codes.BAD_REQUEST;
             setUpErrorMessage(resp,code);
             return;
         }
@@ -111,7 +107,7 @@ public class TraineeAvailableSlots extends AbstractServlet {
                 !path_splitted[i+3].equals("from-day") ||
                 !path_splitted[i+5].equals("to-day")
         ){
-            ErrorCodes code = ErrorCodes.BAD_REQUEST;
+            Codes code = Codes.BAD_REQUEST;
             setUpErrorMessage(resp,code);
             return;
         }
@@ -125,7 +121,7 @@ public class TraineeAvailableSlots extends AbstractServlet {
 
         try {
             l_slots = new GetLectureTimeSlotsAvailableForUserByWeekDatabase(getDataSource().getConnection(),email,fromday,today).execute();
-            ErrorCodes code = ErrorCodes.OK;
+            Codes code = Codes.OK;
             String messageJson = new Gson().toJson(l_slots);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("utf-8");
@@ -135,12 +131,12 @@ public class TraineeAvailableSlots extends AbstractServlet {
             out.flush();
             out.close();
         } catch (Throwable e) {
-            ErrorCodes code = ErrorCodes.UNEXPECTED_ERROR;
+            Codes code = Codes.UNEXPECTED_ERROR;
             setUpErrorMessage(resp,code);
         }
     }
 
-    private void setUpErrorMessage(HttpServletResponse resp, ErrorCodes code) throws IOException{
+    private void setUpErrorMessage(HttpServletResponse resp, Codes code) throws IOException{
         String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
         PrintWriter out = resp.getWriter();
         resp.setContentType(JSON_UTF_8_MEDIA_TYPE);

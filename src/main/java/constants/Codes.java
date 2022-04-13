@@ -3,11 +3,13 @@ package constants;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Enumeration that will contain error codes.
+ * Enumeration that will contain codes, for success and for errors
  * Error codes start with value 0 and goes down -1,-2 etc..
  */
-public enum ErrorCodes {
+public enum Codes {
     NO_CONTENT(204, HttpServletResponse.SC_NO_CONTENT, "NO CONTENT"),
+    PASSWORD_CAHNGED(1,HttpServletResponse.SC_OK,"Password has been changed!"),
+    PASSWORD_RESET_SENT(1,HttpServletResponse.SC_OK,"Password reset email sent!"),
     OK(0, HttpServletResponse.SC_OK, "OK"),
     EMPTY_INPUT_FIELDS(-1, HttpServletResponse.SC_BAD_REQUEST, "One or more input fields are empty."),
     DIFFERENT_PASSWORDS(-2, HttpServletResponse.SC_CONFLICT, "Different Passwords"),
@@ -48,14 +50,15 @@ public enum ErrorCodes {
     CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type"),
     LECUTRETIMESLOT_NOT_FOUND(-39, HttpServletResponse.SC_NOT_FOUND, "LectureTimeSlot not found"),
     TOKEN_NOT_FOUND(-40, HttpServletResponse.SC_NOT_FOUND, "Token for password reset not found"),
-    PASSWORD_NOT_VALID(-41, HttpServletResponse.SC_CONFLICT, "Password is not valid")
+    PASSWORD_NOT_VALID(-41, HttpServletResponse.SC_CONFLICT, "Password is not valid"),
+    PERSON_NOT_FOUND(-42, HttpServletResponse.SC_NOT_FOUND, "Person not found")
     ;
 
   private final int errorCode;
   private final int httpCode;
   private final String errorMessage;
 
-  ErrorCodes(int errorCode, int httpCode, String errorMessage) {
+  Codes(int errorCode, int httpCode, String errorMessage) {
     this.errorCode = errorCode;
     this.httpCode = httpCode;
     this.errorMessage = errorMessage;
