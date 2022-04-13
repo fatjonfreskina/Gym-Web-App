@@ -7,7 +7,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * Error codes start with value 0 and goes down -1,-2 etc..
  */
 public enum ErrorCodes {
-    OK(0, HttpServletResponse.SC_OK, "OK."),
+    NO_CONTENT(204, HttpServletResponse.SC_NO_CONTENT, "NO CONTENT"),
+    OK(0, HttpServletResponse.SC_OK, "OK"),
     EMPTY_INPUT_FIELDS(-1, HttpServletResponse.SC_BAD_REQUEST, "One or more input fields are empty."),
     DIFFERENT_PASSWORDS(-2, HttpServletResponse.SC_CONFLICT, "Different Passwords"),
     MINIMUM_AGE(-3, HttpServletResponse.SC_CONFLICT, "Minimum age not satified"),
@@ -22,10 +23,10 @@ public enum ErrorCodes {
     BAD_REQUEST(-12, HttpServletResponse.SC_BAD_REQUEST, "Bad request"),
     NOT_AUTHENTICATED(-13, HttpServletResponse.SC_UNAUTHORIZED, "The provided credentials are wrong"),
     OVERLAPPING(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping!"),
-    NO_COURSES_TAUGHT(-15,HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
-    NO_COURSES_HELD_NOW(-16,HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
-    FREE_TRIAL_ALREADY_DONE(-17,HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
-    OVELAPPING_SUBSCRIPTIONS(-18,HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
+    NO_COURSES_TAUGHT(-15, HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
+    NO_COURSES_HELD_NOW(-16, HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
+    FREE_TRIAL_ALREADY_DONE(-17, HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
+    OVELAPPING_SUBSCRIPTIONS(-18, HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
     EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
     ACCEPT_MISSING(-20, HttpServletResponse.SC_BAD_REQUEST, "Accept field missing"),
     MEDIA_TYPE_NOT_SUPPORTED(-21, HttpServletResponse.SC_NOT_ACCEPTABLE, "Requested media type not supported"),
@@ -38,11 +39,12 @@ public enum ErrorCodes {
     PUT_OPERATION_NOT_SUPPORTED(-28, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "PUT operation not supported"),
     TRACE_OPERATION_NOT_SUPPORTED(-29, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "TRACE operation not supported"),
     METHOD_NOT_ALLOWED(-30, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI"),
-    UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR,"Unexpected error"),
-    ROOM_ALREADY_FULL(-32, HttpServletResponse.SC_BAD_REQUEST,"There are no more spots left"),
-    INVALID_DATE(-33,HttpServletResponse.SC_BAD_REQUEST,"Can't insert date in the past!"),
+    UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unexpected error"),
+    ROOM_ALREADY_FULL(-32, HttpServletResponse.SC_BAD_REQUEST, "There are no more spots left"),
+    INVALID_DATE(-33, HttpServletResponse.SC_BAD_REQUEST, "Can't insert date in the past!"),
     TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_FORBIDDEN, "Trainee must be enrolled to the course to make a reservation"),
-    RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present")
+    RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present"),
+    USER_HAS_NO_ROLE_ASSIGNED(-35, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it")
     ;
 
   private final int errorCode;
