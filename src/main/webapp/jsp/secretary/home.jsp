@@ -15,7 +15,7 @@
 <jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
 
 
-<div id="calendar" style="max-width: 1100px;margin: 40px auto;">
+<div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
 
 
 <jsp:include page="../include/footer.jsp"/>
@@ -84,24 +84,16 @@
 
                 for(const lts of response){
 
-                    console.log(lts);
-
-                    let event = new Object();
-                    event.title = lts.courseName;
+                    let event = {};
 
                     //Calculate dates
-                    let startDate = moment(lts.date, "MMM DD, YYYY", "it");
-                    startDate = moment(startDate).add(moment.duration(moment(lts.startTime, "hh:mm A")).asMinutes(), 'minutes');
-                    startDate = moment(startDate).format();
-                    console.log(startDate);
-
+                    startDate = new Date(lts.dateTime)
                     event.start = startDate;
-                    event.end = moment(startDate).add(2, 'hours');
+                    event.end = moment(startDate).add(2, 'hours').toDate();
 
                     event.courseEditionId = lts.courseEditionId;
                     event.roomName = lts.roomName;
                     calendar.addEvent(event);
-
                 }
 
                 calendar.render();

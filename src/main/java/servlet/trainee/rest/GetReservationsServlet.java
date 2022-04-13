@@ -1,6 +1,6 @@
 package servlet.trainee.rest;
 
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.reservation.GetListReservationByEmailAndDateDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,8 +32,8 @@ public class GetReservationsServlet extends AbstractRestServlet
     {
         // Check that the request accepts JSON format.
         //final ErrorCodes code = checkAcceptMediaType(req);
-        final ErrorCodes code = ErrorCodes.OK;  //To enable browser requests (no JSON accepted) to be executed.
-        if (code != ErrorCodes.OK)
+        final Codes code = Codes.OK;  //To enable browser requests (no JSON accepted) to be executed.
+        if (code != Codes.OK)
         {
             sendErrorResponse(res, code);
             return;
@@ -49,7 +49,7 @@ public class GetReservationsServlet extends AbstractRestServlet
 
         if ((!matcher.find()) || (matcher.groupCount() != 2))
         {
-            sendErrorResponse(res, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(res, Codes.BAD_REQUEST);
             return;
         }
 
@@ -67,14 +67,14 @@ public class GetReservationsServlet extends AbstractRestServlet
         }
         catch (Throwable th)
         {
-            sendErrorResponse(res, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(res, Codes.BAD_REQUEST);
             return;
         }
 
         // Check that fromDate is before toDate.
         if (fromDate.compareTo(toDate) > 0)
         {
-            sendErrorResponse(res, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(res, Codes.BAD_REQUEST);
             return;
         }
 
@@ -91,7 +91,7 @@ public class GetReservationsServlet extends AbstractRestServlet
         }
         catch (Throwable th)
         {
-            sendErrorResponse(res, ErrorCodes.INTERNAL_ERROR);
+            sendErrorResponse(res, Codes.INTERNAL_ERROR);
             return;
         }
     }

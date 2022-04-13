@@ -1,7 +1,7 @@
 package servlet.trainee.rest;
 
 import constants.Constants;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.reservation.GetReservationByAllFields;
 import dao.reservation.InsertReservationDatabase;
@@ -25,15 +25,15 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ErrorCodes code = checkAcceptMediaType(req);
-        if (code != ErrorCodes.OK)
+        Codes code = checkAcceptMediaType(req);
+        if (code != Codes.OK)
         {
             sendErrorResponse(resp, code);
             return;
         }
 
         code = checkContentTypeMediaType(req);
-        if (code != ErrorCodes.OK)
+        if (code != Codes.OK)
         {
             sendErrorResponse(resp, code);
             return;
@@ -61,7 +61,7 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             //Check 1: requested reservation is related to a real lecture time slot
             LectureTimeSlot lts = new LectureTimeSlot(res.getRoom(), res.getLectureDate(), res.getLectureStartTime(), 0, null, null);
             if(new GetLectureTimeSlotByRoomDateStartTimeDatabase(getConnection(),lts).execute() == null) {
-                sendErrorResponse(resp, ErrorCodes.LECTURETIMESLOT_NOT_FOUND);
+                sendErrorResponse(resp, Codes.LECUTRETIMESLOT_NOT_FOUND);
                 return;
             }
             //Check 2: available slots for the requested reservation
@@ -72,11 +72,11 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
 
             //Check 5: not already present a reservation made by the same user in the same slot
             if(new GetReservationByAllFields(getConnection(),res).execute() == null) {
-                sendErrorResponse(resp, ErrorCodes.RESERVATION_ALREADY_PRESENT);
+                sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
                 return;
             }
         }catch(Throwable e){
-            sendErrorResponse(resp, ErrorCodes.INTERNAL_ERROR);
+            sendErrorResponse(resp, Codes.INTERNAL_ERROR);
         }
 
 
@@ -86,7 +86,7 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             sendDataResponse(resp, res);
 
         } catch (Throwable th) {
-            sendErrorResponse(resp, ErrorCodes.INTERNAL_ERROR);
+            sendErrorResponse(resp, Codes.INTERNAL_ERROR);
         }
     }
 

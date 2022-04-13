@@ -30,14 +30,6 @@ public class InsertPasswordResetDatabase {
             stm.setTimestamp(2, passwordReset.getExpirationDate());
             stm.setString(3, passwordReset.getPerson());
             stm.execute();
-
-            logger.debug("[INFO] InsertPasswordResetDatabase - %s - Insertion successfully done.\n".formatted(
-                    new Timestamp(System.currentTimeMillis())));
-        } catch (SQLException exc) {
-            logger.error("[INFO] InsertPasswordResetDatabase - %s - An exception occurred during insertion.\n%s\n".
-                    formatted(new Timestamp(System.currentTimeMillis()), exc.getMessage()));
-
-            throw exc;
         } finally {
             con.close();
         }

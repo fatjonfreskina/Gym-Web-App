@@ -46,7 +46,7 @@ public class GetLectureTimeSlotsInRangeDatabase {
         String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUTION);
         LectureTimeSlot lts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
 
-        logger.debug(loggerClass + "Retrieved " + lts);
+        logger.trace(loggerClass + "Retrieved " + lts);
         result.add(lts);
       }
     } catch (SQLException ex) {

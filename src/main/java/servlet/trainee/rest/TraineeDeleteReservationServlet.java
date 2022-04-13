@@ -1,6 +1,6 @@
 package servlet.trainee.rest;
 
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.reservation.DeleteReservation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,7 +44,7 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
         final Matcher matcher = URI_REGEX.matcher(uri);
 
         if ((!matcher.find()) || (matcher.groupCount() != 3)) {
-            sendErrorResponse(resp, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(resp, Codes.BAD_REQUEST);
             return;
         }
 
@@ -61,11 +61,11 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
                 sendDataResponse(resp, reservation);
 
             } catch (Throwable e) {
-                sendErrorResponse(resp, ErrorCodes.UNEXPECTED_ERROR);
+                sendErrorResponse(resp, Codes.UNEXPECTED_ERROR);
             }
         } else {
             //Trying to delete future(/present) reservation
-            sendErrorResponse(resp, ErrorCodes.INVALID_FIELDS);
+            sendErrorResponse(resp, Codes.INVALID_FIELDS);
         }
     }
 

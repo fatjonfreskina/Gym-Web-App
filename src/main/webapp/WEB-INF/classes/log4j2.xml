@@ -49,7 +49,7 @@
             <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
             <TimeBasedTriggeringPolicy />
         </RollingFile>
-        <RollingFile name="riccardo_tumiati_logger" fileName="${sys:catalina.home}/logs/riccardo_tumiati.log"
+        <RollingFile name="riccardo_tumiati_appender" fileName="${sys:catalina.home}/logs/riccardo_tumiati.log"
                      filePattern="${sys:catalina.home}/logs/logFile-%d{MM-dd-yyyy}.log"
                      immediateFlush="true">
             <PatternLayout pattern="%highlight{%d [%t] %-5level:}{FATAL=white, ERROR=red, WARN=blue, INFO=white, DEBUG=green, TRACE=blue} - %msg%n"/>
@@ -78,7 +78,7 @@
         <Logger name="andrea_pasin_logger" level="all">
             <AppenderRef ref="andrea_pasin_appender"/>
         </Logger>
-        <Logger name="harjot_singh_logger" level="INFO">
+        <Logger name="harjot_singh_logger" level="DEBUG">
             <AppenderRef ref="harjot_singh_appender"/>
         </Logger>
         <Logger name="riccardo_tumiati_logger" level="all">

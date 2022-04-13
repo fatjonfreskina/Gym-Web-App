@@ -1,36 +1,18 @@
 package servlet.secretary;
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
-import dao.emailconfirmation.InsertEmailConfirmationDatabase;
-import dao.passwordreset.InsertPasswordResetDatabase;
 import dao.person.*;
-import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
-import resource.EmailConfirmation;
 import resource.Message;
-import resource.PasswordReset;
 import resource.Person;
 import servlet.AbstractServlet;
-import utils.EncryptionManager;
-import utils.InputValidation;
-import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.*;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Alberto Campeol
@@ -45,9 +27,9 @@ public class ManageRolesServlet extends AbstractServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email = null;
-        Message message = new Message(ErrorCodes.OK.getErrorMessage(), false);
-        ErrorCodes error = parseParams(req, res);
-        if (error.getErrorCode() != ErrorCodes.OK.getErrorCode())
+        Message message = new Message(Codes.OK.getErrorMessage(), false);
+        Codes error = parseParams(req, res);
+        if (error.getErrorCode() != Codes.OK.getErrorCode())
         {
             message = new Message(error.getErrorMessage(), true);
         }
@@ -67,7 +49,7 @@ public class ManageRolesServlet extends AbstractServlet {
             {
                 Person p = new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute();
                 if (p == null)
-                    error = ErrorCodes.INVALID_FIELDS;
+                    error = Codes.INVALID_FIELDS;
                 else
                 {
                     new DeletePersonRoleDatabase(getDataSource().getConnection(), p).execute();
@@ -79,11 +61,11 @@ public class ManageRolesServlet extends AbstractServlet {
                         new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINER).execute();
                 }
             } catch (SQLException e) {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             } catch (NamingException e) {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             }
-            if (error.getErrorCode() != ErrorCodes.OK.getErrorCode())
+            if (error.getErrorCode() != Codes.OK.getErrorCode())
                 message = new Message(error.getErrorMessage(), true);
 
         }
@@ -93,18 +75,18 @@ public class ManageRolesServlet extends AbstractServlet {
     }
 
 
-    public ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email = null;
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         try
         {
             email = req.getParameter(Constants.EMAIL);
         }
         catch (IllegalArgumentException e)
         {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
-        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+        if (error.getErrorCode() == Codes.OK.getErrorCode())
         {
             boolean isTrainer = false;
             if (req.getParameter(Person.ROLE_TRAINER) != null)
@@ -116,7 +98,7 @@ public class ManageRolesServlet extends AbstractServlet {
             if (req.getParameter(Person.ROLE_TRAINEE) != null)
                 isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
             if (!isSecretary && !isTrainee && !isTrainer)
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
         }
         return error;
     }

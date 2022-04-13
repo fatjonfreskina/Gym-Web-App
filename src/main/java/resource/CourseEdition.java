@@ -30,4 +30,11 @@ public class CourseEdition {
         return courseName;
     }
 
+    @Override
+    public String toString() {
+        return "CourseEdition{" +
+            "ID=" + ID +
+            ", courseName='" + courseName + '\'' +
+            '}';
+    }
 }

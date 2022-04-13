@@ -9,14 +9,17 @@
 <body>
 <jsp:include page="../include/header.jsp"/><br>
 <form method="post" action="<c:url value="/login"/>" enctype="application/x-www-form-urlencoded">
-    <label>Email : </label><input type="text" name="email" value="dev@dev.dev" autocomplete="on"><br/>
-    <label>Password : </label><input type="password" name="password" value="CIAO" autocomplete="on"><br/>
+    <label>Email : </label><input type="text" name="email" value="" autocomplete="on"><br/>
+    <label>Password : </label><input type="password" name="password" value="" autocomplete="on"><br/>
     <%-- Forwards the redirect parameter to LoginServlet --%>
     <input type="hidden" name="redirect" value="${redirect}">
     <button type="submit" >Login</button>
 </form>
+
+<a href="<c:url value="/password_forgot"/>">Password forgot</a>
+
 <c:choose>
-    <c:when test="${message.error}">
+    <c:when test="${message != null}">
         <p><c:out value="${message.message}"/></p>
     </c:when>
 </c:choose>

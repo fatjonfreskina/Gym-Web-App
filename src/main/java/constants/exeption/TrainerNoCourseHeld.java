@@ -1,9 +1,9 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
-public class TrainerNoCourseHeld extends Exception {
+public class TrainerNoCourseHeld extends CustomException {
   public TrainerNoCourseHeld() {
-    super(ErrorCodes.NO_COURSES_TAUGHT.getErrorMessage());
+    super(Codes.NO_COURSES_TAUGHT);
   }
 }

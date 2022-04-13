@@ -3,7 +3,7 @@ package servlet.trainee.rest;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import constants.Constants;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotsAvailableForUserByWeekDatabase;
 import dao.person.GetStaffPeopleDatabase;
 import jakarta.servlet.ServletException;
@@ -64,7 +64,7 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
 
         if ((!matcher.find()) || (matcher.groupCount() != 2))
         {
-            sendErrorResponse(resp, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(resp, Codes.BAD_REQUEST);
             return;
         }
 
@@ -81,14 +81,14 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
         }
         catch (Throwable th)
         {
-            sendErrorResponse(resp, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(resp, Codes.BAD_REQUEST);
             return;
         }
 
         // Check that fromDate is before toDate.
         if (fromDate.compareTo(toDate) > 0)
         {
-            sendErrorResponse(resp, ErrorCodes.BAD_REQUEST);
+            sendErrorResponse(resp, Codes.BAD_REQUEST);
             return;
         }
 
@@ -105,7 +105,7 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
         }
         catch (Throwable th)
         {
-            sendErrorResponse(resp, ErrorCodes.UNEXPECTED_ERROR);
+            sendErrorResponse(resp, Codes.UNEXPECTED_ERROR);
             return;
         }
     }

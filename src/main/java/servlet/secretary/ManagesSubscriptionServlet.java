@@ -1,18 +1,14 @@
 package servlet.secretary;
 
 import com.google.gson.Gson;
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.courseedition.GetAvailableCourses;
-import dao.person.GetListOfTeachersDatabase;
-import dao.room.GetListRoomsDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.Course;
 import resource.Message;
-import resource.Person;
-import resource.Room;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -26,7 +22,7 @@ public class ManagesSubscriptionServlet extends AbstractServlet
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
 
         List<Course> courses = null;
 
@@ -36,9 +32,9 @@ public class ManagesSubscriptionServlet extends AbstractServlet
             request.setAttribute("courses",courses);
         }catch (SQLException | NamingException e)
         {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
         }
-        if(error != ErrorCodes.OK)
+        if(error != Codes.OK)
         {
             String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), true));
             PrintWriter out = response.getWriter();
