@@ -52,7 +52,7 @@ public class GetSubscriptionsByCourseDatabase {
         int discount = rs.getInt(Constants.SUBSCRIPTION_DISCOUNT);
 
         Subscription s = new Subscription(courseEditionId, courseName, duration, startDay, discount, traineeEmail);
-        logger.debug(loggerClass + "Retrieved " + s);
+        logger.trace(loggerClass + "Retrieved " + s);
         result.add(s);
       }
     } catch (SQLException ex) {

@@ -138,7 +138,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
     try {
       //JUST TO CHECK CURRENT LECTURE TIME SLOT IS CORRECT
-      //SO ONLY TRAINER CAN DELETE 
+      //SO ONLY TRAINER CAN DELETE
       getCurrentLectureTimeSlot(trainerEmail);
 
       Reservation reservation = new Gson().fromJson(req.getReader(), Reservation.class);
