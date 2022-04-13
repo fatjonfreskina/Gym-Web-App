@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServlet;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class AbstractServlet extends HttpServlet {
 
@@ -31,4 +33,7 @@ public class AbstractServlet extends HttpServlet {
         return ds;
     }
 
+    public Connection getConnection() throws SQLException, NamingException {
+        return getDataSource().getConnection();
+    }
 }
