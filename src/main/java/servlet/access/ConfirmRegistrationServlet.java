@@ -1,8 +1,8 @@
 package servlet.access;
 
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.emailconfirmation.DeleteEmailConfirmationByPersonDatabase;
 import dao.emailconfirmation.GetEmailConfirmationByTokenDatabase;
 import dao.person.DeletePersonByEmailDatabase;
@@ -31,7 +31,7 @@ public class ConfirmRegistrationServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String tokenUser = req.getParameter("token");
         EmailConfirmation emailConfirmation = null;
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         Message message = new Message(error.getErrorMessage(), false);
         Person p = null;
         if (tokenUser != null) {
@@ -53,23 +53,23 @@ public class ConfirmRegistrationServlet extends AbstractServlet {
                     }
                 } else //already removed by the process or someone tries a number at random
                 {
-                    error = ErrorCodes.CONFIRMATION_NOT_FOUND;
+                    error = Codes.CONFIRMATION_NOT_FOUND;
                 }
             } catch (NamingException | SQLException e) {
-                error = ErrorCodes.INTERNAL_ERROR;
+                error = Codes.INTERNAL_ERROR;
             }
 
-            if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) {
+            if (error.getErrorCode() == Codes.OK.getErrorCode()) {
                 try {
                     MailTypes.registrationConfirmed(p);
                 } catch (MessagingException e) {
-                    error = ErrorCodes.INTERNAL_ERROR;
+                    error = Codes.INTERNAL_ERROR;
                 }
             }
         } else {
-            error = ErrorCodes.BAD_REQUEST;
+            error = Codes.BAD_REQUEST;
         }
-        message = new Message(error.getErrorMessage(), (error.getErrorCode() != ErrorCodes.OK.getErrorCode()));
+        message = new Message(error.getErrorMessage(), (error.getErrorCode() != Codes.OK.getErrorCode()));
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
         req.getRequestDispatcher(Constants.PATH_CONFIRMED_REGISTRATION).forward(req, res);

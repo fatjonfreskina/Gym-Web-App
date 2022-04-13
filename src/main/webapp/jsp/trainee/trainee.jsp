@@ -1,16 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: caldi
-  Date: 02/04/22
-  Time: 07:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <head>
-    <title>Title</title>
+    <title>Trainee page</title>
 </head>
 <body>
-
+<!--<jsp:include page="/jsp/include/icon.jsp"/>-->
+<jsp:include page="/jsp/include/header.jsp"/>
+<jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+<jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>

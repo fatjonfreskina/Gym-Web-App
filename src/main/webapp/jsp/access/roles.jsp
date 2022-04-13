@@ -12,16 +12,24 @@
     <title>Roles</title>
 </head>
 <body>
-<c:forEach var="role" items="${roles}">
+<c:forEach var="role" items="${sessionScope.roles}">
     <c:if test="${role=='trainee'}">
-        <a href="<c:url value="/trainee"/>">Trainee</a>
+        <form method="post" action="<c:url value="/access/roles"/>">
+            <input type="submit" name="trainee" value="Trainee">
+        </form>
+
     </c:if>
     <c:if test="${role=='trainer'}">
-        <a href="<c:url value="/trainer"/>">Trainer</a>
+        <form method="post" action="<c:url value="/access/roles"/>">
+            <input type="submit" name="trainer" value="Trainer">
+        </form>
     </c:if>
     <c:if test="${role=='secretary'}">
-        <a href="<c:url value="/secretary"/>">Secretary</a>
+        <form method="post" action="<c:url value="/access/roles"/>">
+            <input type="submit" name="secretary" value="Secretary">
+        </form>
     </c:if>
+
 </c:forEach>
 </body>
 </html>

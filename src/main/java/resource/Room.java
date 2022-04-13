@@ -20,6 +20,11 @@ public class Room {
         this.slots = slots;
     }
 
+    public Room(String name) {
+        this.name = name;
+        this.slots = 0;
+    }
+
     public final String getName() {
         return name;
     }

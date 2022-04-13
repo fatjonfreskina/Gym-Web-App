@@ -6,7 +6,7 @@
     <title>Personal Info</title>
 </head>
 <body>
-    <jsp:include page="/jsp/include/header.jsp"/>
+    <!--<jsp:include page="/jsp/include/icon.jsp"/>-->
 
     <table>
         <tr>

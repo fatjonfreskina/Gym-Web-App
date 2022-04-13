@@ -3,8 +3,10 @@ package jobs;
 import constants.Constants;
 import dao.person.GetAllPersonsDatabase;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
+import jakarta.mail.MessagingException;
 import resource.MedicalCertificate;
 import resource.Person;
+import utils.MailTypes;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,6 +14,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +31,7 @@ public class MedicalCertificateExpiration implements Runnable {
         // Get DataSource
         Context ctx = null;
         try {
+
             ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
             Connection conn = ds.getConnection();
@@ -36,11 +40,15 @@ public class MedicalCertificateExpiration implements Runnable {
             var gau = new GetAllPersonsDatabase(conn);
             List<Person> personList = gau.execute();
 
-            Date actualDate = new Date();
+            //Actual date of today
+            Date actual = new Date();
+            //Date of today plus one week
+            Date oneWeekFromNow = Date.from(actual.toInstant().plus(1, ChronoUnit.WEEKS));
 
             //Iterate over all the users
             for (Person p : personList) {
 
+                MedicalCertificate expiringCertificate = null;
                 boolean hasValidCertificate = false;
 
                 var gmc = new GetMedicalCertificateDatabase(((DataSource) ctx.lookup(Constants.DATASOURCE)).getConnection(), p);
@@ -52,27 +60,28 @@ public class MedicalCertificateExpiration implements Runnable {
                     //Convert from java.sql.Date to java.util.Date
                     var expirationDate = new Date(mc.getExpirationDate().getTime());
 
-                    if (expirationDate.after(actualDate)) {
+                    if (expirationDate.after(oneWeekFromNow)) {
                         //The user has a valid certificate
                         hasValidCertificate = true;
                         break;
+                    } else if (expirationDate.before(oneWeekFromNow) && expirationDate.after(actual)) {
+                        //The user has a certification that is expiring, send an alert
+                        expiringCertificate = mc;
                     }
 
                 }
 
                 //If the medical certificate of the user has expired, then send a mail
                 if (!hasValidCertificate) {
-                    String email = p.getEmail();
-                    //TODO: Send an email to the user
+                    //TODO: Unlock emails   MailTypes.mailForMedicalCertificateExpiring(p, expiringCertificate);
                 }
 
             }
 
         } catch (NamingException | SQLException e) {
-            e.printStackTrace();
+            //Print exception to logs of Tomcat
+            System.out.println(e);
         }
-
-        System.out.print("\n\n LAUNCHED JOB TO CHECK MEDICAL CERTIFICATE EXPIRATION \n\n");
 
     }
 

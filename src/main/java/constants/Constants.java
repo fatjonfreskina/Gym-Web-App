@@ -7,8 +7,12 @@ public class Constants {
     //GENERAL APPLICATION PATHS
     public static final String RELATIVE_URL_LOGIN = "/login";
     public static final String RELATIVE_URL_LOGOUT = "/logout";
+    public static final String RELATIVE_URL_PERSONALINFO = "/personal_info";
     public static final String RELATIVE_URL_UNAUTHORIZED = "/unauthorized";
     public static final String RELATIVE_URL_HOME = "/";
+
+    //PATH PARAMETERS
+    public static final String URL_PARAMETER_TRAINER_HOME_PAGE_ADD_WEEKS = "addWeeks";
 
     //GENERAL APPLICATION PATHS
     public static final String PATH_THE_GYM = "/jsp/thegym.jsp";
@@ -21,10 +25,22 @@ public class Constants {
     public static final String PATH_LOGIN = "/jsp/access/login.jsp";
     public static final String PATH_COURSES = "/jsp/courses.jsp";
     public static final String PATH_STAFF = "/jsp/staff.jsp";
+    public static final String PATH_ROLES = "/jsp/access/roles.jsp";
+
+    //TRAINEE PATH
+    public static final String PATH_TRAINEE = "/jsp/trainee/trainee.jsp";
 
     //PASSWORD FLOW PATHS
     public static final String PATH_PASSWORD_FORGOT = "/jsp/auth/password_forgot.jsp";
     public static final String PATH_PASSWORD_CHANGE = "/jsp/auth/password_change.jsp";
+
+    //SECRETARY APPLICATION PATH
+    public static final String PATH_SECRETARY_HOME = "/jsp/secretary/home.jsp";
+    public static final String PATH_SECRETARY_ADD_COURSES = "/jsp/secretary/addcourses.jsp";
+    public static final String PATH_SECRETARY_MANAGES_SUBSCRIPTION = "/jsp/secretary/managesubscription.jsp";
+    public static final String PATH_SECRETARY_ADD_ACCOUNT = "/jsp/secretary/addaccount.jsp";
+    public static final String PATH_SECRETARY_MANAGE_ROLES = "/jsp/secretary/manageroles.jsp";
+    public static final String PATH_SECRETARY_ADD_CERTIFICATE = "/jsp/secretary/addmedicalcertificate.jsp";
 
     //TRAINER PATHS
     public static final String PATH_TRAINER_HOME = "/jsp/trainer/home.jsp";
@@ -80,7 +96,7 @@ public class Constants {
     //passwordreset
     public static final String PASSWORDRESET_TOKEN = "token";
     public static final String PASSWORDRESET_EXPIRATIONDATE = "expirationdate";
-    public static final String PASSWORDRESET_PERSON = "expirationdate";
+    public static final String PASSWORDRESET_PERSON = "person";
 
     //medicalcertificate
     public static final String MEDICALCERTIFICATE_PERSON = "person";
@@ -109,7 +125,7 @@ public class Constants {
     public static final String LECTURETIMESLOT_STARTTIME = "starttime";
     public static final String LECTURETIMESLOT_COURSEEDITIONID = "courseeditionid";
     public static final String LECTURETIMESLOT_COURSENAME = "coursename";
-    public static final String LECTURETIMESLOT_SUBSTITUITION = "substituition";
+    public static final String LECTURETIMESLOT_SUBSTITUTION = "substitution";
 
     //coursedition
     public static final String COURSEEDITION_ID = "id";
@@ -139,8 +155,8 @@ public class Constants {
     public static final String MEDICAL_CERTIFICATE_PATH_FOLDER = "../gwa/medical_certificates";
 
     //ACCEPTED EXTENSIONS
-    public static final String[] ACCPETED_EXTENSIONS_AVATAR = new String[]{"png", "jpg", "jpeg"};
-    public static final String[] ACCPETED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
+    public static final String[] ACCEPTED_EXTENSIONS_AVATAR = new String[]{"png", "jpg", "jpeg"};
+    public static final String[] ACCEPTED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
 
     public static final long DAY = 1000 * 60 * 60 * 24;
 

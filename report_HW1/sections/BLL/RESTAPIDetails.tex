@@ -10,12 +10,68 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 
 \begin{itemize}
-    \item URL: \texttt{the URL to retrieve it}
-    \item Method: \texttt{Method to retrieve it}
+    \item URL: \texttt{secretary/rest/listlikepersons}
+    \item Method: \texttt{GET}
     \item URL Parameters:
+    	\begin{itemize}
+    		\item partial\_email = \{string\}    		
+    	\end{itemize}
+    \item Data Parameters: No data parameter
+    \item Success Response:\\
+    Code: 200 OK\\
+    Content: The list of users with an email that match the parameter provided
+    \item Error Response:\\
+    Code : 500 INTERNAL\_ERROR\\
+    Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
+    When : If there is an SQLException or a NamingException.\\
+------------------------------------------------------------------------------------------------------------------------------------
+    \item URL: \texttt{secretary/rest/timeschedules}
+    \item Method: \texttt{GET}
+    \item URL Parameters:
+    \begin{itemize}
+    	\item course\_name = \{string\}    		
+    \end{itemize}
+    \item Data Parameters: No data parameter
+    \item Success Response:\\
+    Code: 200 OK\\
+    Content: The  list of courseeditionid, day of the week and time for each edition of the given course        
+    \item Error Response:\\
+    Code : 500 INTERNAL\_ERROR\\
+    Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
+    When : If there is an SQLException or a NamingException.\\
+------------------------------------------------------------------------------------------------------------------------------------
+    \item URL: \texttt{secretary/rest/addsubscription}
+    \item Method: \texttt{POST}
+    \item URL Parameters: No parameters are required in the URL
     \item Data Parameters: 
+    \begin{itemize}
+    	\item trainee = \{string\}
+     	\item course\_name = \{string\}
+     	\item course\_edition\_id = \{integer\}
+     	\item discount = \{integer\} (optional)
+     	\item duration = \{integer\}
+    \end{itemize}
     \item Success Response:
+    Code: 200 OK\\
+    Content:  \{"message" : "OK", "isError" : "False"\}
     \item Error Response:
+	
+	Code : 400 BAD\_REQUEST\\
+	Content : \{"message" : "Invalid Fields", "isError" : "True"\}\\
+	When : If some of the mandatory parameters are not provided or they are not correct for what concers their domain
+	
+	Code : 400 BAD\_REQUEST\\
+	Content : \{"message" : "Overlapping Subscriptions", "isError" : "True"\}\\
+    When : The "user" request to subscribe for a courseedition that is already subscribed
+	
+	Code : 400 BAD\_REQUEST\\
+	Content : \{"message" : "Already done free trial", "isError" : "True"\}\\
+	When : The "user" has already done a free trial subscription for a course of any edition
+	    
+    Code : 500 INTERNAL\_ERROR\\
+    Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
+    When : If there is an SQLException or a NamingException.
+    
     
 \end{itemize}
 

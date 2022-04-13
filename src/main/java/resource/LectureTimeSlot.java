@@ -12,17 +12,35 @@ public class LectureTimeSlot {
     private final String roomName;
     private final Date date;
     private final Time startTime;
-    private final int courseEditionId;
+    private final Integer courseEditionId;
     private final String courseName;
     private final String substitution;
 
-    public LectureTimeSlot(String roomName, Date date, Time startTime, int courseEditionId, String courseName, String substitution) {
+    public LectureTimeSlot(String roomName, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {
         this.roomName = roomName;
         this.date = date;
         this.startTime = startTime;
         this.courseEditionId = courseEditionId;
         this.courseName = courseName;
         this.substitution = substitution;
+    }
+
+    public LectureTimeSlot(int courseEditionId,String courseName) {
+        this.roomName = null;
+        this.date = null;
+        this.startTime = null;
+        this.courseEditionId = courseEditionId;
+        this.courseName = courseName;
+        this.substitution = null;
+    }
+
+    public LectureTimeSlot(LectureTimeSlot l){
+        this.roomName = l.roomName;
+        this.date = l.date;
+        this.startTime = l.startTime;
+        this.courseEditionId = l.courseEditionId;
+        this.courseName = l.courseName;
+        this.substitution = l.substitution;
     }
 
     public final String getRoomName() {

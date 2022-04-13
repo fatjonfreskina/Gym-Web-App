@@ -1,7 +1,7 @@
 package servlet.access;
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.emailconfirmation.GetEmailConfirmationIfExists;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.GetPersonRolesDatabase;
@@ -43,6 +43,7 @@ public class LoginServlet extends AbstractServlet {
             res.sendRedirect(req.getContextPath());
         } else {
             req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
+            // req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
         }
     }
 
@@ -55,10 +56,10 @@ public class LoginServlet extends AbstractServlet {
 
 
         //Parse params to check if they are well-formatted, if not send back an error
-        //Message message = new Message(ErrorCodes.OK.getErrorMessage(),false);
-        ErrorCodes error = parseParams(req, res);
+        //Message message = new Message(Codes.OK.getErrorMessage(),false);
+        Codes error = parseParams(req, res);
 
-        if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
+        if (error.getErrorCode() != Codes.OK.getErrorCode()) {
             sendBackError(error, req, res);
             return;
         }
@@ -75,7 +76,7 @@ public class LoginServlet extends AbstractServlet {
             //logger.info(email);
             //logger.info("Password after:"+password);
         } catch (Exception e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
@@ -86,12 +87,12 @@ public class LoginServlet extends AbstractServlet {
         try {
             person = (new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute());
         } catch (SQLException | NamingException e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
         if (person == null || !person.getPsw().equals(password)) {
-            error = ErrorCodes.NOT_AUTHENTICATED;
+            error = Codes.NOT_AUTHENTICATED;
             sendBackError(error, req, res);
             return;
         }
@@ -104,12 +105,12 @@ public class LoginServlet extends AbstractServlet {
             emailStillToConfirm = (new GetEmailConfirmationIfExists(getDataSource().getConnection(), new EmailConfirmation(person.getEmail())).execute());
         } catch (SQLException | NamingException e) {
             logger.info(e);
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
         if (emailStillToConfirm != null) {
-            error = ErrorCodes.NOT_AUTHENTICATED;
+            error = Codes.NOT_AUTHENTICATED;
             sendBackError(error, req, res);
             /*
             res.setStatus(error.getHTTPCode());
@@ -126,20 +127,19 @@ public class LoginServlet extends AbstractServlet {
             userRoles = new GetPersonRolesDatabase(getDataSource().getConnection(), person).execute();
 
         } catch (SQLException | NamingException e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
             sendBackError(error, req, res);
             return;
         }
-        if (userRoles == null) {
-            error = ErrorCodes.INTERNAL_ERROR;
-            sendBackError(error, req, res);
+        if (userRoles.isEmpty()) {
+            sendBackError(Codes.USER_HAS_NO_ROLE_ASSIGNED, req, res);
             return;
         }
-        logger.info(email + " Login: obtained roles");
+        logger.info(email + " Login: obtained roles" + userRoles);
 
         //Create session and set attributes
         HttpSession session = req.getSession();
-        List<String> roles=new ArrayList<>();
+        List<String> roles = new ArrayList<>();
         for (TypeOfRoles r : userRoles) {
             roles.add(r.getRole());
             logger.info(r.getRole());
@@ -147,7 +147,31 @@ public class LoginServlet extends AbstractServlet {
         session.setAttribute("email", person.getEmail());
         session.setAttribute("roles", roles);
         session.setAttribute("defaultRole", userRoles.get(0).getRole());
-        session.setAttribute("avatarPath",person.getAvatarPath());
+        session.setAttribute("avatarPath", person.getAvatarPath());
+
+
+        /* READ ME:
+         * Trying to access /personal_info while NOT logged in (can happen if manually requesting
+         * /personal_info or in case of page reload while in /personal_info and session has expired, due to
+         * timeout or logout in another browser tab) result in a redirection to /login,
+         * in order to let the user log into his/her account. After the login is successful,
+         * the user expects to be automatically redirected to the page he/she originally requested.
+         * That's why I decided to add a new attribute to the request called "redirect".
+         * Probably it is not the best or smartest way to do it, you are free to change it with
+         * something better.
+         * @author Marco Alessio
+         */
+        //START OF ADDED CODE
+/*        final String redirect = req.getParameter("redirect");
+        logger.info(email + " Redirected to: \"" + redirect + "\".");
+
+        if (redirect != null) {
+            res.sendRedirect(req.getContextPath() + redirect);
+            return;
+        }*/
+        //END OF ADDED CODE
+
+
         //Everything is fine so far! Now act depending on user roles
         if (userRoles.size() == 1) {
 
@@ -156,10 +180,13 @@ public class LoginServlet extends AbstractServlet {
         }
         if (userRoles.size() > 1) {
 
-            req.setAttribute("roles", roles);
+            //req.setAttribute("roles", roles);
+
             //TODO in servlet for /access/roles where the user selects one role as default
             //session.setAttribute("defaultRole", userRoles.get(1).getRole());
-            req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
+            //req.getRequestDispatcher("/access/roles").forward(req, res);
+            logger.info(req.getContextPath() + "/access/roles");
+            res.sendRedirect(req.getContextPath() + "/access/roles");
         }
         logger.info(email + " Login: confirmed and returned");
     }
@@ -173,7 +200,7 @@ public class LoginServlet extends AbstractServlet {
      * @throws ServletException
      * @throws IOException
      */
-    private void sendBackError(ErrorCodes error, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private void sendBackError(Codes error, HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Message message = new Message(error.getErrorMessage(), true);
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
@@ -182,10 +209,10 @@ public class LoginServlet extends AbstractServlet {
     }
 
 
-    private ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email = null;
         String password = null;
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         try {
             email = req.getParameter("email");
             logger.info(email);
@@ -193,13 +220,13 @@ public class LoginServlet extends AbstractServlet {
             logger.info(password);
 
         } catch (IllegalArgumentException e) {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
-        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) {
+        if (error.getErrorCode() == Codes.OK.getErrorCode()) {
             if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
             } else if (!InputValidation.isValidEmailAddress(email)) {
-                error = ErrorCodes.NOT_A_MAIL;
+                error = Codes.NOT_A_MAIL;
             }
         }
         return error;

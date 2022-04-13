@@ -16,6 +16,6 @@ public class LogoutServlet extends AbstractServlet {
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     req.getSession().invalidate();
-    res.sendRedirect(Constants.RELATIVE_URL_HOME);
+    res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_HOME);
   }
 }

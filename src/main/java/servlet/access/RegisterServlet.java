@@ -1,7 +1,7 @@
 package servlet.access;
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.emailconfirmation.InsertEmailConfirmationDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.GetPersonByTaxCodeDatabase;
@@ -53,11 +53,11 @@ public class RegisterServlet extends AbstractServlet {
         Part avatar = null;
 
         boolean registrable = true;
-        Message message = new Message(ErrorCodes.OK.getErrorMessage(), false);
-        ErrorCodes error = parseParams(req, res);
+        Message message = new Message(Codes.OK.getErrorMessage(), false);
+        Codes error = parseParams(req, res);
 
 
-        if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
+        if (error.getErrorCode() != Codes.OK.getErrorCode()) {
             message = new Message(error.getErrorMessage(), true);
             registrable = false;
         }
@@ -76,7 +76,7 @@ public class RegisterServlet extends AbstractServlet {
 
             //insertUser
             error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, Person.ROLE_TRAINEE);
-            if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
+            if (error.getErrorCode() != Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), true);
                 registrable = false;
             }
@@ -93,7 +93,7 @@ public class RegisterServlet extends AbstractServlet {
     }
 
 
-    public ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
         String firstName = null;
         String lastName = null;
@@ -104,7 +104,7 @@ public class RegisterServlet extends AbstractServlet {
         String telephoneNumber = null;
         Date birthDate = null;
 
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         try {
             taxCode = req.getParameter(Constants.TAX_CODE);
             firstName = req.getParameter(Constants.FIRST_NAME);
@@ -119,10 +119,10 @@ public class RegisterServlet extends AbstractServlet {
 
         } catch (IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date
         {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
 
-        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //Phone is a phone and birthDate is a Date
+        if (error.getErrorCode() == Codes.OK.getErrorCode()) //Phone is a phone and birthDate is a Date
         {
             if (taxCode == null || taxCode.isEmpty() ||
                     firstName == null || firstName.isEmpty() ||
@@ -134,24 +134,24 @@ public class RegisterServlet extends AbstractServlet {
                     telephoneNumber == null || telephoneNumber.isEmpty() ||
                     birthDate == null) // Check if some of the fields are empty
             {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                error = Codes.EMPTY_INPUT_FIELDS;
             } else if (!password.equals(confirmPassword)) //all fields are not empty => check if the meaning is ok
             {
-                error = ErrorCodes.DIFFERENT_PASSWORDS;
+                error = Codes.DIFFERENT_PASSWORDS;
             } else if (telephoneNumber.length() != Person.LENGTH_TELEPHONE) {
-                error = ErrorCodes.NOT_TELEPHONE_NUMBER;
+                error = Codes.NOT_TELEPHONE_NUMBER;
             } else if ((Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.MIN_AGE)) {
-                error = ErrorCodes.MINIMUM_AGE;
+                error = Codes.MINIMUM_AGE;
             } else if (!InputValidation.isValidEmailAddress(email)) {
-                error = ErrorCodes.NOT_A_MAIL;
+                error = Codes.NOT_A_MAIL;
             }
         }
         return error;
     }
 
-    public ErrorCodes insertUser(String taxCode, String firstName, String lastName, String address, String email,
-                                 String password, String telephoneNumber, Date birthDate, Part avatar, String role) {
-        ErrorCodes error = ErrorCodes.OK;
+    public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
+                            String password, String telephoneNumber, Date birthDate, Part avatar, String role) {
+        Codes error = Codes.OK;
         Person p1 = null;
         Person p2 = null;
         try {
@@ -165,7 +165,7 @@ public class RegisterServlet extends AbstractServlet {
 
                 try {
                     error = saveFile(avatar, taxCode);
-                    if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) {
+                    if (error.getErrorCode() == Codes.OK.getErrorCode()) {
                         //File saved ok can proceed with writing on the database and send email and log to test max dimension of the file??
                         String pathImg = null;
                         if ((avatar != null) && (avatar.getSize() != 0)) //.png da aggiungere
@@ -182,37 +182,37 @@ public class RegisterServlet extends AbstractServlet {
 
                             MailTypes.mailForConfirmRegistration(p);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
-                            error = ErrorCodes.INTERNAL_ERROR;
+                            error = Codes.INTERNAL_ERROR;
                         }
                     }
                 } catch (IOException e) {
-                    error = ErrorCodes.INTERNAL_ERROR;
+                    error = Codes.INTERNAL_ERROR;
                 }
 
             } else
-                error = ErrorCodes.USER_ALREADY_PRESENT;
+                error = Codes.USER_ALREADY_PRESENT;
         } catch (SQLException | NamingException e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
         }
         return error;
     }
 
 
-    private ErrorCodes saveFile(Part file, String taxCode) throws IOException {
-        ErrorCodes error = ErrorCodes.OK;
+    private Codes saveFile(Part file, String taxCode) throws IOException {
+        Codes error = Codes.OK;
         File createDirectory;
         OutputStream writer = null;
         InputStream content = null;
         String path = null;
 
         if ((file != null) && file.getSize() != 0) {
-            if (!Arrays.stream(Constants.ACCPETED_EXTENSIONS_AVATAR).
+            if (!Arrays.stream(Constants.ACCEPTED_EXTENSIONS_AVATAR).
                     anyMatch(file.getContentType().split(File.separator)[1]::equals))
-                error = ErrorCodes.INVALID_FILE_TYPE;
+                error = Codes.INVALID_FILE_TYPE;
             else
                 path = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode;
 
-            if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //can proceed to save
+            if (error.getErrorCode() == Codes.OK.getErrorCode()) //can proceed to save
             {
                 createDirectory = new File(path);
                 if (!createDirectory.exists())
@@ -228,7 +228,7 @@ public class RegisterServlet extends AbstractServlet {
                     while ((read = content.read(bytes)) != -1)
                         writer.write(bytes, 0, read);
                 } catch (IOException e) {
-                    error = ErrorCodes.CANNOT_UPLOAD_FILE;
+                    error = Codes.CANNOT_UPLOAD_FILE;
                 } finally {
                     if (content != null)
                         content.close();

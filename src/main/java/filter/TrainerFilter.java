@@ -1,52 +1,66 @@
 package filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import constants.Constants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import resource.TypeOfRoles;
 
 /**
  * @author Harjot Singh
  */
 public class TrainerFilter extends AbstractFilter {
 
-    private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-    private final String loggerClass = "gwa.filter.TrainerFilter: ";
+  private final Logger logger1 = LogManager.getLogger("andrea_pasin_logger");
+  private final Logger logger = LogManager.getLogger("harjot_singh_logger");
+  private final String loggerClass = "gwa.filter.TrainerFilter: ";
 
-    @Override
-    public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        logger.debug(loggerClass + "Filter for Trainer");
+  @Override
+  public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+    logger.debug(loggerClass + "Filter for Trainer");
 
-        HttpSession session = req.getSession(false);
-        boolean loggedIn = session != null && session.getAttribute("email") != null;
-        if (loggedIn) {
-            /*List<TypeOfRoles> rolesAsObj = (List<TypeOfRoles>) session.getAttribute("roles");
-            List<String> roles = new ArrayList<>();
-            for (TypeOfRoles role : rolesAsObj) roles.add(role.getRole());*/
-            List<String> roles = (List<String>) session.getAttribute("roles");
-            if (roles.contains("trainer")) {
-                res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-                res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-                chain.doFilter(req, res); // User is logged in, just continue request.
-            } else {
-                logger.info(loggerClass + "unauthorized user " + session.getAttribute("email") +
-                        " with roles " + roles +
-                        " tried to access the trainer's sections");
-                res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
-            }
-        } else {
-            logger.info(loggerClass + "User not logged it");
-            res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
+    HttpSession session = req.getSession(false);
+    boolean loggedIn = session != null && session.getAttribute("email") != null;
+    if (loggedIn) {
+      List<String> roles = (List<String>) session.getAttribute("roles");
+      if (roles.contains("trainer")) {
+
+        ////////////////////////////////////////////////////////////////
+        if (!session.getAttribute("defaultRole").equals("trainer")) {
+          session.setAttribute("defaultRole", "trainer");
+          logger1.info("ROLE CHANGED " + session.getAttribute("defaultRole"));
         }
+        ///////////////////////////////////////////////////////////////
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+        res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+        chain.doFilter(req, res); // User is logged in, just continue request.
+      } else {
+        logger.warn(loggerClass + "unauthorized user " + session.getAttribute("email") + " with roles " + roles + " tried to access the trainer's sections");
+        res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
+      }
+    } else {
+      logger.info(loggerClass + "User not logged it");
+      //OPTION A
+      res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
+
+      //OPTION B + TO ADD LOGIN URI TO THE MESSAGE
+      //sendFeedback(res, HttpServletResponse.SC_UNAUTHORIZED, "USER_NOT_LOGGED_IN", true);
     }
+  }
+
+  /*private void sendFeedback(HttpServletResponse res, int statusCode, String errorMessage, boolean isError) throws IOException {
+    String messageJson = new Gson().toJson(new Message(errorMessage, isError));
+    PrintWriter out = res.getWriter();
+    res.setStatus(statusCode);
+    res.setContentType("application/json");
+    res.setCharacterEncoding("utf-8");
+    out.print(messageJson);
+  }*/
 }

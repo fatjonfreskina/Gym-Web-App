@@ -17,7 +17,7 @@
         <label>Address : </label><input type="text" name="address" value="0"><br/>
         <label>Telephone Number : </label><input type="tel" name="telephone_number" value="0123456789"><br>
         <label>Avatar (Optional) : </label><input type="file" name="avatar" ><br/>
-        <label>Email : </label><input type="text" name="email" value="alberto.campeol@outlook.it"><br/>
+        <label>Email : </label><input type="text" name="email" value=""><br/>
         <label>Password : </label><input type="password" name="password" value="a"><br/>
         <label>Confirm Password : </label><input type="password" name="confirm_password" value="a"><br/>
         <button type="submit" >Register</button>

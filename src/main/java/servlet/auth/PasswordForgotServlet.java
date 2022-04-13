@@ -1,13 +1,14 @@
 package servlet.auth;
 
+import constants.Codes;
 import constants.Constants;
-import constants.ErrorCodes;
 import dao.passwordreset.InsertPasswordResetDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import resource.Message;
 import resource.PasswordReset;
 import resource.Person;
 import servlet.AbstractServlet;
@@ -35,14 +36,32 @@ public class PasswordForgotServlet extends AbstractServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        //If a POST request has been sent, then add a record to the table for password reset and return a view
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        //Manages errors inside this function
-        ErrorCodes status = null;
+        //If a POST request has been sent, then add a record to the table for password reset and return a view
+        Message message = askForPasswordReset(req);
+
+        if (message.isError()) {
+            //Return the same page of password reset passing the error message
+            req.setAttribute(Constants.MESSAGE, message);
+            req.getRequestDispatcher(Constants.PATH_PASSWORD_FORGOT).forward(req, resp);
+        } else {
+            //Redirect to the login page passing the successful message
+            req.setAttribute(Constants.MESSAGE, message);
+            req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, resp);
+        }
+    }
+
+    /**
+     * Handles the logic of adding a new record in the password reset table, sending a mail to the user and so on
+     *
+     * @param req HTTP request to process
+     * @return Message with information about the state of the request
+     */
+    private Message askForPasswordReset(HttpServletRequest req) {
 
         //Read the token field from the request (GET parameter)
-        String email = req.getParameter("email");
+        String email = req.getParameter(Constants.EMAIL);
 
         Person person = null;
         Connection conn = null;
@@ -53,33 +72,39 @@ public class PasswordForgotServlet extends AbstractServlet {
             //Check if such an email exists in the database
             person = new GetPersonByEmailDatabase(conn, email).execute();
         } catch (SQLException | NamingException e) {
-            //TODO: Error handling
+            //Not possible to find the person with the specified email in the database
+            return new Message(Codes.PERSON_NOT_FOUND.getErrorMessage(), true);
         }
 
-        //If the person has not been found do something
-        if(person == null){
-            //TODO: Error handling
-        } else {
-            //Generate a new token string of length 256
-            try {
-                String token = EncryptionManager.encrypt(person.getAddress());
-                //Reopen a new connection
-                conn = getDataSource().getConnection();
-                //Take the actual date and add 24H
-                Date now = new Date();
-                Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(24));
-                Timestamp expirationTimestamp = new Timestamp(expiration.getTime());
-                //PasswordReset
-                PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp,person.getEmail());
-                //Insert the password reset into the database
-                new InsertPasswordResetDatabase(conn, passwordReset).execute();
-                MailTypes.mailForPasswordChanges(person, passwordReset);
-            } catch (NoSuchAlgorithmException | MessagingException | SQLException | NamingException e) {
-                //TODO: Error handling
-            }
-
+        if (person == null) {
+            //Not possible to find the person with the specified email in the database
+            return new Message(Codes.PERSON_NOT_FOUND.getErrorMessage(), true);
         }
 
+        //Generate a new token string of length 256
+        try {
+            String token = EncryptionManager.encrypt(person.getAddress());
+            //Reopen a new connection
+            conn = getDataSource().getConnection();
+            //Take the actual date and add 24H
+            Date now = new Date();
+            Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(24));
+            Timestamp expirationTimestamp = new Timestamp(expiration.getTime());
+            //PasswordReset
+            PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp, person.getEmail());
+            //Insert the password reset into the database
+            new InsertPasswordResetDatabase(conn, passwordReset).execute();
+            //Send an email with password reset link
+            MailTypes.mailForPasswordChanges(person, passwordReset);
+
+            //The email with password reset token has been sent
+            return new Message(Codes.PASSWORD_RESET_SENT.getErrorMessage(), false);
+
+        } catch (NoSuchAlgorithmException | MessagingException | SQLException | NamingException e) {
+            //Some internal error occurred while generating the token
+            return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
+        }
 
     }
+
 }
