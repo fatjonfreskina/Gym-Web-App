@@ -110,7 +110,7 @@ public class PasswordChangeServlet extends AbstractServlet {
             //Update the person
             new UpdatePersonDatabase(getDataSource().getConnection(), newPerson).execute();
             //No error occurred, password has been changed, remove the token for password reset
-            new DeletePasswordResetDatabase(getDataSource().getConnection(), passwordReset);
+            new DeletePasswordResetDatabase(getDataSource().getConnection(), passwordReset).execute();
 
             //The procedure has terminated correctly, return a positive message
             return new Message(Codes.PASSWORD_CAHNGED.getErrorMessage(), false);

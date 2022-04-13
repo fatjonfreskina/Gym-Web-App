@@ -16,7 +16,7 @@
     <button type="submit" >Login</button>
 </form>
 <c:choose>
-    <c:when test="${message.error}">
+    <c:when test="${message}">
         <p><c:out value="${message.message}"/></p>
     </c:when>
 </c:choose>
