@@ -33,7 +33,7 @@ public class GetReservationsServlet extends AbstractRestServlet
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         // Retrieve trainee email by session.
-        HttpSession session = req.getSession(false);
+        final HttpSession session = req.getSession(false);
         if (session == null)
         {
             res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
@@ -86,7 +86,7 @@ public class GetReservationsServlet extends AbstractRestServlet
         {
             // Retrieve requested data from database.
             final Connection con = getConnection();
-            List<Reservation> reservations =
+            final List<Reservation> reservations =
                     new GetListReservationByEmailAndDateDatabase(con, email, fromDate, toDate).execute();
 
             // Send the data as response in JSON format.
