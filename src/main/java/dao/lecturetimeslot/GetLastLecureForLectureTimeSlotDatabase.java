@@ -13,10 +13,10 @@ import java.util.List;
  * */
 public class GetLastLecureForLectureTimeSlotDatabase
 {
-    private static final String STATEMENT = "SELECT date,courseeditionid " +
-            "FROM lecturetimeslot " +
-            "WHERE courseeditionid = ? and date = (SELECT MAX (date) FROM lecturetimeslot)";
-
+    private static final String STATEMENT = """
+        SELECT max(date) as date,courseeditionid FROM lecturetimeslot WHERE courseeditionid = ?
+        group by courseeditionid
+        """;
     private final Connection connection;
     private final CourseEdition courseEdition;
     public GetLastLecureForLectureTimeSlotDatabase(final Connection connection, CourseEdition courseEdition)
