@@ -2,17 +2,17 @@ package dao.lecturetimeslot;
 
 import constants.Constants;
 import resource.LectureTimeSlot;
-import resource.Person;
-import resource.Subscription;
-import resource.view.ValidSubscription;
+import resource.rest.LectureTimeSlotOccupation;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
-    private final String statement = "SELECT lts.roomname, lts.date, lts.starttime, lts.courseeditionid, lts.coursename, lts.substitution" +
+    private final String statement = "SELECT lts.roomname, lts.date, lts.starttime, lts.courseeditionid, lts.coursename, lts.substitution, ro.slots, r.reservations" +
             " FROM subscription AS s JOIN lecturetimeslot AS lts ON (s.courseeditionid = lts.courseeditionid AND s.coursename = lts.coursename)"+
+            " JOIN room AS ro ON (lts.roomname = ro.name)"+
+            " LEFT JOIN (SELECT lectureroom,lecturedate,lecturestarttime, count(*) AS reservations FROM reservation GROUP BY lectureroom,lecturedate,lecturestarttime) AS r ON (lts.roomname = r.lectureroom AND lts.date = r.lecturedate AND lts.starttime = r.lecturestarttime)"+
             " WHERE s.trainee = ? AND s.startday+ (s.duration || ' day')::interval>CURRENT_DATE AND lts.date>= ? AND lts.date<= ?";
 
     private final Connection conn;
@@ -27,10 +27,10 @@ public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
         this.toDate = toDate;
     }
 
-    public List<LectureTimeSlot> execute() throws SQLException {
+    public List<LectureTimeSlotOccupation> execute() throws SQLException {
         PreparedStatement stm = null;
         ResultSet rs = null;
-        List<LectureTimeSlot> l_slots = new ArrayList<>();
+        List<LectureTimeSlotOccupation> l_slots = new ArrayList<>();
 
         try {
             stm = conn.prepareStatement(statement);
@@ -46,6 +46,8 @@ public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
                 int courseeditionid = rs.getInt(Constants.LECTURETIMESLOT_COURSEEDITIONID);
                 String coursename = rs.getString(Constants.LECTURETIMESLOT_COURSENAME);
                 String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUTION);
+                int total_slots = rs.getInt(Constants.ROOM_SLOTS);
+                int occupied_slots = rs.getInt("reservations");
 
                 LectureTimeSlot l = new LectureTimeSlot(
                         roomname,
@@ -56,7 +58,9 @@ public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
                         substitution
                 );
 
-                l_slots.add(l);
+                LectureTimeSlotOccupation lo = new LectureTimeSlotOccupation(l, total_slots, occupied_slots);
+
+                l_slots.add(lo);
             }
         } finally {
             if (rs != null) rs.close();

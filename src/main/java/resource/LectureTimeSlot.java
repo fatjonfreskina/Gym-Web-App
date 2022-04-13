@@ -34,6 +34,15 @@ public class LectureTimeSlot {
         this.substitution = null;
     }
 
+    public LectureTimeSlot(LectureTimeSlot l){
+        this.roomName = l.roomName;
+        this.date = l.date;
+        this.startTime = l.startTime;
+        this.courseEditionId = l.courseEditionId;
+        this.courseName = l.courseName;
+        this.substitution = l.substitution;
+    }
+
     public final String getRoomName() {
         return roomName;
     }

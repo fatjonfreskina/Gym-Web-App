@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import resource.LectureTimeSlot;
 import resource.Message;
 import resource.Reservation;
+import resource.rest.LectureTimeSlotOccupation;
 import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
@@ -70,7 +71,6 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
         final String fromString = matcher.group(1);
         final String toString = matcher.group(2);
 
-        // TODO: input sanitization.
         Date fromDate;
         Date toDate;
 
@@ -94,15 +94,14 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
 
 
         try {
-
             // Retrieve requested data from database.
             final Connection con = getConnection();
 
-            List<LectureTimeSlot> l_slots =
+            List<LectureTimeSlotOccupation> l_slots =
                     new GetLectureTimeSlotsAvailableForUserByWeekDatabase(con, email, fromDate, toDate).execute();
 
             // Send the data as response in JSON format.
-            sendDataResponse(resp, l_slots);//, new TypeToken<List<LectureTimeSlot>>() {}.getType());
+            sendDataResponse(resp, l_slots);
         }
         catch (Throwable th)
         {
