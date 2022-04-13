@@ -15,3 +15,4 @@
             </tr>
     </c:forEach>
 </c:if>
+</table>

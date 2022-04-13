@@ -44,7 +44,8 @@ public enum ErrorCodes {
     INVALID_DATE(-33, HttpServletResponse.SC_BAD_REQUEST, "Can't insert date in the past!"),
     TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_FORBIDDEN, "Trainee must be enrolled to the course to make a reservation"),
     RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present"),
-    USER_HAS_NO_ROLE_ASSIGNED(-35, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it")
+    USER_HAS_NO_ROLE_ASSIGNED(-36, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it"),
+    CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type")
     ;
 
   private final int errorCode;

@@ -31,8 +31,6 @@ public class TraineeAvailableSlots extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType(JSON_UTF_8_MEDIA_TYPE);
-
         if(checkMethodMediaType(req,resp).getErrorCode() != 0)
             return;
 
@@ -41,37 +39,37 @@ public class TraineeAvailableSlots extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        ErrorCodes code = ErrorCodes.POST_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        ErrorCodes code = ErrorCodes.DELETE_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doHead(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        ErrorCodes code = ErrorCodes.HEAD_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        ErrorCodes code = ErrorCodes.OPTIONS_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        ErrorCodes code = ErrorCodes.PUT_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
     @Override
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ErrorCodes code = ErrorCodes.METHOD_NOT_ALLOWED;
+        ErrorCodes code = ErrorCodes.TRACE_OPERATION_NOT_SUPPORTED;
         setUpErrorMessage(resp,code);
     }
 
@@ -145,7 +143,7 @@ public class TraineeAvailableSlots extends AbstractServlet {
     private void setUpErrorMessage(HttpServletResponse resp, ErrorCodes code) throws IOException{
         String messageJson = new Gson().toJson(new Message(code.getErrorMessage(), true));
         PrintWriter out = resp.getWriter();
-        resp.setContentType("application/json");
+        resp.setContentType(JSON_UTF_8_MEDIA_TYPE);
         resp.setCharacterEncoding("utf-8");
         resp.setStatus(code.getHTTPCode());
         out.print(messageJson);

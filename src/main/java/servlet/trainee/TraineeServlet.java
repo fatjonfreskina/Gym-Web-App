@@ -1,24 +1,17 @@
 package servlet.trainee;
 
 import constants.Constants;
-import dao.person.GetStaffPeopleDatabase;
 import dao.subscription.GetValidSubscriptionByTrainee;
-import dao.teaches.GetTeachesByTrainerDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import resource.LectureTimeSlot;
 import resource.Message;
-import resource.Person;
-import resource.Teaches;
-import resource.view.CourseStatus;
 import resource.view.ValidSubscription;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
