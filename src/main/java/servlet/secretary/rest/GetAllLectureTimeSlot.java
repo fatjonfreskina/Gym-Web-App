@@ -13,12 +13,38 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author Riccardo Forzan
  */
 public class GetAllLectureTimeSlot extends AbstractServlet {
+
+    /**
+     * Helper class used to fill the calendar using AJAX
+     */
+    private class MyLectureTimeSlot {
+
+        private final String roomName;
+        private final String dateTime;
+        private final Integer courseEditionId;
+        private final String courseName;
+        private final String substitution;
+
+        public MyLectureTimeSlot(String roomName, String dateTime, Integer courseEditionId, String courseName, String substitution) {
+            this.roomName = roomName;
+            this.dateTime = dateTime;
+            this.courseEditionId = courseEditionId;
+            this.courseName = courseName;
+            this.substitution = substitution;
+        }
+
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,11 +61,23 @@ public class GetAllLectureTimeSlot extends AbstractServlet {
             e.printStackTrace();
         }
 
+        List<MyLectureTimeSlot> myLectureTimeSlots = new ArrayList<>(lectureTimeSlots.size());
+
+        for(LectureTimeSlot lts:lectureTimeSlots){
+            //Create timestamp from date and time
+            long time = lts.getDate().getTime() + lts.getStartTime().getTime();
+            LocalDateTime starts = LocalDateTime.ofInstant(Instant.ofEpochMilli(time), TimeZone.getDefault().toZoneId());
+            //Create custom object
+            MyLectureTimeSlot myLectureTimeSlot = new MyLectureTimeSlot(lts.getRoomName(), starts.toString(), lts.getCourseEditionId(), lts.getCourseName(), lts.getSubstitution());
+            //Add to the collection
+            myLectureTimeSlots.add(myLectureTimeSlot);
+        }
+
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
 
         PrintWriter out = response.getWriter();
-        String ltsJson = new Gson().toJson(lectureTimeSlots);
+        String ltsJson = new Gson().toJson(myLectureTimeSlots);
         out.println(ltsJson);
 
     }
