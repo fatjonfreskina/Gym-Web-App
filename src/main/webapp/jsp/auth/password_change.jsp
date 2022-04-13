@@ -1,7 +1,7 @@
 <%--
   author: Riccardo Forzan
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -16,7 +16,7 @@
     <label for="password">New password:</label><br>
     <input type="password" id="password" name="password" placeholder="Insert your new password here" autoComplete="true"><br>
     <label for="password_confirm">Confirm password:</label><br>
-    <input type="password" id="password_confirm" name="password-confirm" placeholder="Confirm your new password here" autoComplete="true"><br>
+    <input type="password" id="password_confirm" name="confirm_password" placeholder="Confirm your new password here" autoComplete="true"><br>
     <input type="submit" value="Submit">
 </form>
 

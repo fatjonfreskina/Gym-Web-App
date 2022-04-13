@@ -41,11 +41,14 @@ public class PasswordChangeServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
+        String token = req.getParameter(Constants.PASSWORDRESET_TOKEN);
+
         Message message = changePassword(req);
 
         if(message.isError()){
             //Return the same page of password reset passing the error message
             req.setAttribute(Constants.MESSAGE, message);
+            req.setAttribute(Constants.PASSWORDRESET_TOKEN, token);
             req.getRequestDispatcher(Constants.PATH_PASSWORD_CHANGE).forward(req, resp);
         } else {
             //Redirect to the login page passing the successful message
@@ -89,10 +92,7 @@ public class PasswordChangeServlet extends AbstractServlet {
         String raw_confirm = req.getParameter(Constants.CONFIRM_PASSWORD);
 
         //Validate the password field against XSS, the password is valid if it does not contain something suspicious
-        boolean valid = !InputValidation.containsXSS(raw_password);
-
-        //If the input field contains something strange similar to JS code print an error
-        if (!valid) {
+        if (InputValidation.containsXSS(raw_password)) {
             return new Message(Codes.PASSWORD_NOT_VALID.getErrorMessage(), true);
         }
 

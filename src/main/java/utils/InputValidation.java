@@ -35,6 +35,6 @@ public class InputValidation {
      */
     public static boolean containsXSS(String string){
         String sanitized = HtmlEscapers.htmlEscaper().escape(string);
-        return string.equals(sanitized);
+        return !string.equals(sanitized);
     }
 }
