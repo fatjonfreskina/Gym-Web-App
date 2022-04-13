@@ -72,8 +72,7 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
         final String path = req.getRequestURI();
         final String[] path_splitted = path.split("\\/");
         int i = 0;
-        /*
-        //TODO: is this necessary?
+
         while (!path_splitted[i].equals("trainee") && i < path_splitted.length) {
             i++;
         }
@@ -97,7 +96,6 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
             setUpErrorMessage(resp, code);
             return;
         }
-        */
 
         PrintWriter out = resp.getWriter();
         final String room = String.valueOf(path_splitted[i+4]);
@@ -136,5 +134,18 @@ public class TraineeDeleteReservationServlet extends AbstractServlet {
             out.flush();
             out.close();
         }
+        /*
+        private final boolean isDateAndTimeValid(Date reservationDate, Time reservationTime){
+        boolean validation;
+
+        long millis = System.currentTimeMillis();
+        Date now = new Date(millis);
+        Date nowDay = Date.getDay();
+        Date nowSeconds = Date.getMillis();
+
+        return validation;
+        }
+
+         */
     }
 
