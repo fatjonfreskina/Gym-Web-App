@@ -1,7 +1,7 @@
 package servlet.secretary;
 
 import constants.Constants;
-import constants.ErrorCodes;
+import constants.Codes;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
 import dao.medicalcertificate.InsertMedicalCertificateDatabase;
 import dao.medicalcertificate.UpdateMedicalCertificateDatabase;
@@ -46,20 +46,20 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         Part medicalCertificate;
 
         boolean registrable = true;
-        Message message = new Message(ErrorCodes.OK.getErrorMessage(), false);
-        ErrorCodes error = parseParams(req, res);
+        Message message = new Message(Codes.OK.getErrorMessage(), false);
+        Codes error = parseParams(req, res);
 
 
         medicalCertificate = req.getPart(Constants.MEDICAL_CERTIFICATE);
         if(medicalCertificate == null){
-            error = ErrorCodes.EMPTY_INPUT_FIELDS;
+            error = Codes.EMPTY_INPUT_FIELDS;
             registrable = false;
         }else if (!medicalCertificate.getContentType().equals("application/pdf")){
-            error = ErrorCodes.INVALID_FILE_TYPE;
+            error = Codes.INVALID_FILE_TYPE;
             registrable = false;
         }
 
-        if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
+        if (error.getErrorCode() != Codes.OK.getErrorCode()) {
             message = new Message(error.getErrorMessage(), true);
             registrable = false;
         }
@@ -73,7 +73,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
 
             //insertUser
             error = insertCertificate(email, expirationDate,doctorName, medicalCertificate);
-            if (error.getErrorCode() != ErrorCodes.OK.getErrorCode()) {
+            if (error.getErrorCode() != Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), true);
                 registrable = false;
             }
@@ -89,12 +89,12 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         }
     }
 
-    public ErrorCodes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String email = null;
         String doctorName = null;
         Date expirationDate = null;
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         //Error nel get params
         try {
 
@@ -104,39 +104,39 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
 
         } catch (IllegalArgumentException e)
         {
-            error = ErrorCodes.INVALID_FIELDS;
+            error = Codes.INVALID_FIELDS;
         }
 
         try
         {
-            if (error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+            if (error.getErrorCode() == Codes.OK.getErrorCode())
             {
                 if (
                         doctorName == null || doctorName.isEmpty() ||
                                 email == null || email.isEmpty() ||
                                 expirationDate == null) // Check if some fields are empty
                 {
-                    error = ErrorCodes.EMPTY_INPUT_FIELDS;
+                    error = Codes.EMPTY_INPUT_FIELDS;
 
                 }else if (!InputValidation.isValidEmailAddress(email)) {
-                    error = ErrorCodes.NOT_A_MAIL;
+                    error = Codes.NOT_A_MAIL;
                 }else if(!expirationDate.after(Calendar.getInstance().getTime())){
-                    error = ErrorCodes.INVALID_DATE;
+                    error = Codes.INVALID_DATE;
                 }else if((new GetPersonByEmailDatabase(getDataSource().getConnection(),email).execute()) == null)
                 {
-                    error = ErrorCodes.EMAIL_NOT_FOUND;
+                    error = Codes.EMAIL_NOT_FOUND;
                 }
             }
         }catch (SQLException | NamingException e) {
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
         }
 
         return error;
     }
 
-    private ErrorCodes insertCertificate(String email, Date expirationDate, String doctorName, Part medicalCertificate) {
+    private Codes insertCertificate(String email, Date expirationDate, String doctorName, Part medicalCertificate) {
 
-        ErrorCodes error = ErrorCodes.OK;
+        Codes error = Codes.OK;
         Person p1;
         List<MedicalCertificate> med1;
 
@@ -165,26 +165,26 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
                         //Send mail that everything correct
                         MailTypes.mailForMedicalCertificateUploaded(p1);
                     }catch (MessagingException e) {
-                        error = ErrorCodes.INTERNAL_ERROR;
+                        error = Codes.INTERNAL_ERROR;
                     }
 
                 } catch (SQLException | NamingException e) {
-                    error = ErrorCodes.INVALID_FIELDS;
+                    error = Codes.INVALID_FIELDS;
                 }
             }else{
-                error = ErrorCodes.EMAIL_NOT_FOUND;
+                error = Codes.EMAIL_NOT_FOUND;
             }
         }catch (SQLException | NamingException e){
-            error = ErrorCodes.INTERNAL_ERROR;
+            error = Codes.INTERNAL_ERROR;
         }catch(IOException e){
-            error = ErrorCodes.INVALID_FILE_TYPE;
+            error = Codes.INVALID_FILE_TYPE;
         }
 
         return error;
     }
 
-    private ErrorCodes saveFile(Part file, String taxCode) throws IOException {
-        ErrorCodes error = ErrorCodes.OK;
+    private Codes saveFile(Part file, String taxCode) throws IOException {
+        Codes error = Codes.OK;
         File createDirectory;
         OutputStream writer = null;
         InputStream content = null;
@@ -196,7 +196,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
             else
                 path = Constants.MEDICAL_CERTIFICATE_PATH_FOLDER + File.separator + taxCode;
 
-            if (error.getErrorCode() == ErrorCodes.OK.getErrorCode()) //can proceed to save
+            if (error.getErrorCode() == Codes.OK.getErrorCode()) //can proceed to save
             {
                 createDirectory = new File(path);
                 if (!createDirectory.exists())
@@ -212,7 +212,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
                     while ((read = content.read(bytes)) != -1)
                         writer.write(bytes, 0, read);
                 } catch (IOException e) {
-                    error = ErrorCodes.CANNOT_UPLOAD_FILE;
+                    error = Codes.CANNOT_UPLOAD_FILE;
                 } finally {
                     if (content != null)
                         content.close();
