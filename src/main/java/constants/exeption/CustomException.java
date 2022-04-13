@@ -1,16 +1,16 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
 public class CustomException extends Exception {
-  final private ErrorCodes errorCode;
+  final private Codes code;
 
-  public CustomException(final ErrorCodes errorCode) {
-    super(errorCode.getErrorMessage());
-    this.errorCode = errorCode;
+  public CustomException(final Codes code) {
+    super(code.getErrorMessage());
+    this.code = code;
   }
 
-  public ErrorCodes getErrorCode() {
-    return errorCode;
+  public Codes getErrorCode() {
+    return code;
   }
 }

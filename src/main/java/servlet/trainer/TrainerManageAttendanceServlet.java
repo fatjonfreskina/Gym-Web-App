@@ -3,7 +3,7 @@ package servlet.trainer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import constants.Constants;
-import constants.ErrorCodes;
+import constants.Codes;
 import constants.exeption.CustomException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,7 +38,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       req.setAttribute("trainerAttendance", new TrainerService(getDataSource(), trainerEmail).getTrainerAttendance());
     } catch (SQLException | NamingException e) {
       logger.error(loggerClass + e.getMessage());
-      sendFeedback(req, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(req, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       sendFeedback(req, e.getErrorCode());
     }
@@ -83,12 +83,12 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       }
     } catch (SQLException | NamingException | NullPointerException e) {
       e.printStackTrace();
-      sendFeedback(req, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(req, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       sendFeedback(req, e.getErrorCode());
     }
     if (success) {
-      sendFeedback(req, ErrorCodes.OK, false);
+      sendFeedback(req, Codes.OK, false);
       res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_TRAINER_MANAGE_ATTENDANCE);
     } else {
       logger.debug(loggerClass + "success: " + success);
@@ -99,11 +99,11 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
 
   /* PRIVATE METHODS */
 
-  private void sendFeedback(HttpServletRequest req, ErrorCodes error) {
+  private void sendFeedback(HttpServletRequest req, Codes error) {
     sendFeedback(req, error, true);
   }
 
-  private void sendFeedback(HttpServletRequest req, ErrorCodes error, boolean isError) {
+  private void sendFeedback(HttpServletRequest req, Codes error, boolean isError) {
     String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
     logger.error(loggerClass + messageJson);
     req.setAttribute("error", messageJson);

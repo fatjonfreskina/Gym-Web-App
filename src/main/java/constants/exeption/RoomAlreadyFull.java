@@ -1,9 +1,9 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
 public class RoomAlreadyFull extends CustomException {
   public RoomAlreadyFull() {
-    super(ErrorCodes.ROOM_ALREADY_FULL);
+    super(Codes.ROOM_ALREADY_FULL);
   }
 }

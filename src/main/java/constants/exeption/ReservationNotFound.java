@@ -1,9 +1,9 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
 public class ReservationNotFound extends CustomException {
   public ReservationNotFound() {
-    super(ErrorCodes.RESERVATION_NOT_FOUND);
+    super(Codes.RESERVATION_NOT_FOUND);
   }
 }

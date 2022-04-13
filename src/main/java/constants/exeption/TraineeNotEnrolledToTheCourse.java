@@ -1,9 +1,9 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
 public class TraineeNotEnrolledToTheCourse extends CustomException {
   public TraineeNotEnrolledToTheCourse() {
-    super(ErrorCodes.TRAINEE_NOT_ENROLLED_TO_THE_COURSE);
+    super(Codes.TRAINEE_NOT_ENROLLED_TO_THE_COURSE);
   }
 }

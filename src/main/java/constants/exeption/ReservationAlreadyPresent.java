@@ -1,9 +1,9 @@
 package constants.exeption;
 
-import constants.ErrorCodes;
+import constants.Codes;
 
 public class ReservationAlreadyPresent extends CustomException {
   public ReservationAlreadyPresent() {
-    super(ErrorCodes.RESERVATION_ALREADY_PRESENT);
+    super(Codes.RESERVATION_ALREADY_PRESENT);
   }
 }

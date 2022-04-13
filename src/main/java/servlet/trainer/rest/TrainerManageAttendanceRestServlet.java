@@ -13,7 +13,7 @@ import constants.exeption.CustomException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import constants.ErrorCodes;
+import constants.Codes;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -53,7 +53,7 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
       out.print(gson.toJson(new TrainerService(getDataSource(), trainerEmail).getTrainerAttendance(), TrainerAttendance.class));
     } catch (SQLException | NamingException e) {
       logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       logger.error(loggerClass + e.getMessage());
       sendFeedback(res, e.getErrorCode());
@@ -78,16 +78,16 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
       success = trainerService.addPresenceToCurrentLectureTimeSlot(subscription);
     } catch (SQLException | NamingException | NullPointerException e) {
       e.printStackTrace();
-      sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       sendFeedback(res, e.getErrorCode());
     } catch (JsonParseException e) {
       e.printStackTrace();
       logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, ErrorCodes.CONTENTTYPE_UNSUPPORTED);
+      sendFeedback(res, Codes.CONTENTTYPE_UNSUPPORTED);
     }
     //Return positive feedback
-    if (success) sendFeedback(res, ErrorCodes.OK, false);
+    if (success) sendFeedback(res, Codes.OK, false);
   }
 
   /* DELETE A RESERVATION */
@@ -110,27 +110,27 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
       success = trainerService.removePresenceFromCurrentLectureTimeSlot(reservation);
     } catch (SQLException | NamingException e) {
       logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
+      sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       logger.error(loggerClass + e.getMessage());
       sendFeedback(res, e.getErrorCode());
     } catch (JsonParseException e) {
       logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, ErrorCodes.CONTENTTYPE_UNSUPPORTED);
+      sendFeedback(res, Codes.CONTENTTYPE_UNSUPPORTED);
     }
     //Return positive feedback
-    if (success) sendFeedback(res, ErrorCodes.OK, false);
+    if (success) sendFeedback(res, Codes.OK, false);
   }
 
   /* TODO FOR OTHER METHODS THROW NOT IMPLEMENTED */
 
   /* PRIVATE METHODS */
 
-  private void sendFeedback(HttpServletResponse res, ErrorCodes error) throws IOException {
+  private void sendFeedback(HttpServletResponse res, Codes error) throws IOException {
     sendFeedback(res, error, true);
   }
 
-  private void sendFeedback(HttpServletResponse res, ErrorCodes error, boolean isError) throws IOException {
+  private void sendFeedback(HttpServletResponse res, Codes error, boolean isError) throws IOException {
     String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
     PrintWriter out = res.getWriter();
     res.setStatus(error.getHTTPCode());
