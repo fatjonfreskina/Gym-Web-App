@@ -43,7 +43,7 @@ public class LoginServlet extends AbstractServlet {
             res.sendRedirect(req.getContextPath());
         } else {
             req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
-           // req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
+            // req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
         }
     }
 
@@ -131,16 +131,15 @@ public class LoginServlet extends AbstractServlet {
             sendBackError(error, req, res);
             return;
         }
-        if (userRoles == null) {
-            error = ErrorCodes.INTERNAL_ERROR;
-            sendBackError(error, req, res);
+        if (userRoles.isEmpty()) {
+            sendBackError(ErrorCodes.USER_HAS_NO_ROLE_ASSIGNED, req, res);
             return;
         }
-        logger.info(email + " Login: obtained roles");
+        logger.info(email + " Login: obtained roles" + userRoles);
 
         //Create session and set attributes
         HttpSession session = req.getSession();
-        List<String> roles=new ArrayList<>();
+        List<String> roles = new ArrayList<>();
         for (TypeOfRoles r : userRoles) {
             roles.add(r.getRole());
             logger.info(r.getRole());
@@ -186,8 +185,8 @@ public class LoginServlet extends AbstractServlet {
             //TODO in servlet for /access/roles where the user selects one role as default
             //session.setAttribute("defaultRole", userRoles.get(1).getRole());
             //req.getRequestDispatcher("/access/roles").forward(req, res);
-            logger.info(req.getContextPath()+"/access/roles");
-            res.sendRedirect(req.getContextPath()+"/access/roles");
+            logger.info(req.getContextPath() + "/access/roles");
+            res.sendRedirect(req.getContextPath() + "/access/roles");
         }
         logger.info(email + " Login: confirmed and returned");
     }

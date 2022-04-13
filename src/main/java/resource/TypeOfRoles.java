@@ -15,5 +15,11 @@ public class TypeOfRoles {
         return role;
     }
 
+    @Override
+    public String toString() {
+        return "TypeOfRoles{" +
+            "role='" + role + '\'' +
+            '}';
+    }
 }
 

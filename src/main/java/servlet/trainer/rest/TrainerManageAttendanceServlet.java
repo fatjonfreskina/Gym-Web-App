@@ -57,7 +57,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     try {
       LectureTimeSlot lectureHeldNow = getCurrentLectureTimeSlot(trainerEmail);
       logger.debug(loggerClass + "Current Lecture: " + lectureHeldNow);
-      
+
       //Get the list of reservation for the lecture now and their corresponding trainees
       List<Reservation> reservations = new GetListReservationByLectureDatabase(getDataSource().getConnection(), lectureHeldNow).execute();
 
@@ -88,7 +88,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       LectureTimeSlot lectureHeldNow = getCurrentLectureTimeSlot(trainerEmail);
 
       Subscription subscription = new Gson().fromJson(req.getReader(), Subscription.class);
-      logger.debug(loggerClass+ "Subscription from body of post: " + subscription);
+      logger.debug(loggerClass + "Subscription from body of post: " + subscription);
 
       CourseEdition courseEdition = new CourseEdition(lectureHeldNow.getCourseEditionId(), lectureHeldNow.getCourseName());
       // check if the trainee can be added, has a subscription to this couse
@@ -135,35 +135,53 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
   @Override
   public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    Reservation reservation = new Gson().fromJson(req.getReader(), Reservation.class);
-    logger.debug("SH - Subscription from post body:" + reservation);
-
+    String trainerEmail = req.getSession(false).getAttribute("email").toString();
     try {
+      //JUST TO CHECK CURRENT LECTURE TIME SLOT IS CORRECT
+      //SO ONLY TRAINER CAN DELETE 
+      getCurrentLectureTimeSlot(trainerEmail);
+
+      Reservation reservation = new Gson().fromJson(req.getReader(), Reservation.class);
+      logger.debug("SH - Subscription from post body:" + reservation);
+
       Reservation deleted = new DeleteReservation(getDataSource().getConnection(), reservation).execute();
       if (deleted == null) {
         logger.debug("NOT DELETED");
+        sendFeedback(res, ErrorCodes.NO_CONTENT, false);
+      }else{
+        sendFeedback(res, ErrorCodes.OK, false);
       }
     } catch (SQLException | NamingException e) {
       //e.printStackTrace();
       sendFeedback(res, ErrorCodes.INTERNAL_ERROR);
       return;
+    } catch (TrainerCoursesOverlapping e) {
+      sendFeedback(res, ErrorCodes.OVERLAPPING);
+    } catch (TrainerNoCourseHeld e) {
+      sendFeedback(res, ErrorCodes.NO_COURSES_TAUGHT);
+    } catch (TrainerNoCourseHeldNow e) {
+      sendFeedback(res, ErrorCodes.NO_COURSES_HELD_NOW);
     }
-    sendFeedback(res, ErrorCodes.OK, false);
   }
 
   /* TODO FOR OTHER METHODS THROW NOT IMPLEMENTED */
+
+  /* PRIVATE METHODS */
+
+  private void sendFeedback(HttpServletResponse res, ErrorCodes error) throws IOException {
+    sendFeedback(res, error, true);
+  }
+
   private void sendFeedback(HttpServletResponse res, ErrorCodes error, boolean isError) throws IOException {
     String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
     PrintWriter out = res.getWriter();
+    res.setStatus(error.getHTTPCode());
     res.setContentType("application/json");
     res.setCharacterEncoding("utf-8");
     out.print(messageJson);
   }
 
-  private void sendFeedback(HttpServletResponse res, ErrorCodes error) throws IOException {
-    sendFeedback(res, error, true);
-  }
-  
+
   private boolean isValidSubscritpion(Subscription subscription, CourseEdition courseEdition) throws NamingException, SQLException {
     if (subscription == null || courseEdition == null) return false;
     List<Subscription> subscriptionsList = new GetSubscriptionsByCourseDatabase(getDataSource().getConnection(), courseEdition).execute();
