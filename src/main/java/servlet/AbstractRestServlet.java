@@ -211,7 +211,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
@@ -225,7 +225,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
@@ -239,7 +239,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doHead(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doHead(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
@@ -253,7 +253,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
@@ -267,7 +267,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
@@ -281,7 +281,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doPut(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
@@ -295,7 +295,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    public void doTrace(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doTrace(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
     }
