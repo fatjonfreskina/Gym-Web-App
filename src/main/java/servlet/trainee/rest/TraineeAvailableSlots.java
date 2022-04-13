@@ -40,7 +40,7 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       // checkAcceptMediaType(req, resp);
+        //checkAcceptMediaType(req, resp);
 
         processRequest(req,resp);
     }
@@ -102,7 +102,7 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
                     new GetLectureTimeSlotsAvailableForUserByWeekDatabase(con, email, fromDate, toDate).execute();
 
             // Send the data as response in JSON format.
-            sendDataResponse(resp, l_slots, new TypeToken<List<LectureTimeSlot>>() {}.getType());
+            sendDataResponse(resp, l_slots);//, new TypeToken<List<LectureTimeSlot>>() {}.getType());
         }
         catch (Throwable th)
         {
