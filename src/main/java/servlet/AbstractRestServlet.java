@@ -2,7 +2,7 @@ package servlet;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import constants.ErrorCodes;
+import constants.Codes;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -58,32 +58,32 @@ public class AbstractRestServlet extends AbstractServlet
      * @return It can return 3 different error codes:
      * <ul>
      *     <li>
-     *          {@code ErrorCodes.OK} if the header "accept" is present in the HTTP request
+     *          {@code Codes.OK} if the header "accept" is present in the HTTP request
      *          and reports accepting JSON format.
      *     </li>
      *     <li>
-     *         {@code ErrorCodes.ACCEPT_MISSING} if the header "accept" is not present in the HTTP request.
+     *         {@code Codes.ACCEPT_MISSING} if the header "accept" is not present in the HTTP request.
      *     </li>
      *     <li>
-     *         {@code ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED} if the header "accept" is present in the HTTP request,
+     *         {@code Codes.MEDIA_TYPE_NOT_SUPPORTED} if the header "accept" is present in the HTTP request,
      *         but does not reports accepting JSON format.
      *     </li>
      * </ul>
      */
-    protected ErrorCodes checkAcceptMediaType(HttpServletRequest req)
+    protected Codes checkAcceptMediaType(HttpServletRequest req)
     {
         final String accept = req.getHeader(ACCEPT_HEADER);
 
         // Check if the "accept" HTTP header is not found in the request.
         if (accept == null)
-            return ErrorCodes.ACCEPT_MISSING;
+            return Codes.ACCEPT_MISSING;
 
         // Check if the "accept" HTTP header does not report accepting JSON format.
         if ((!accept.contains(JSON_MEDIA_TYPE)) && (!accept.equals(ALL_MEDIA_TYPE)))
-            return ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
+            return Codes.MEDIA_TYPE_NOT_SUPPORTED;
 
         // HTTP header "accept" reports accepting JSON format.
-        return ErrorCodes.OK;
+        return Codes.OK;
     }
 
 
@@ -94,32 +94,32 @@ public class AbstractRestServlet extends AbstractServlet
      * @return It can return 3 different error codes:
      * <ul>
      *     <li>
-     *          {@code ErrorCodes.OK} if the header "Content-Type" is present in the HTTP request
+     *          {@code Codes.OK} if the header "Content-Type" is present in the HTTP request
      *          and reports accepting JSON format.
      *     </li>
      *     <li>
-     *         {@code ErrorCodes.CONTENTTYPE_MISSING} if the header "Content-Type" is not present in the HTTP request.
+     *         {@code Codes.CONTENTTYPE_MISSING} if the header "Content-Type" is not present in the HTTP request.
      *     </li>
      *     <li>
-     *         {@code ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED} if the header "Content-Type" is present in the HTTP request,
+     *         {@code Codes.MEDIA_TYPE_NOT_SUPPORTED} if the header "Content-Type" is present in the HTTP request,
      *         but does not reports accepting JSON format.
      *     </li>
      * </ul>
      */
-    protected ErrorCodes checkContentTypeMediaType(HttpServletRequest req)
+    protected Codes checkContentTypeMediaType(HttpServletRequest req)
     {
         final String contentType = req.getContentType();
 
         // Check if the "Content-Type" HTTP header is not found in the request.
         if (contentType == null)
-            return ErrorCodes.CONTENTTYPE_MISSING;
+            return Codes.CONTENTTYPE_MISSING;
 
         // Check if the "Content-Type" HTTP header does not report accepting JSON format.
         if (!contentType.contains(JSON_MEDIA_TYPE))
-            return ErrorCodes.MEDIA_TYPE_NOT_SUPPORTED;
+            return Codes.MEDIA_TYPE_NOT_SUPPORTED;
 
         // HTTP header "Content-Type" reports accepting JSON format.
-        return ErrorCodes.OK;
+        return Codes.OK;
     }
 
 
@@ -154,7 +154,7 @@ public class AbstractRestServlet extends AbstractServlet
      * @param code The error to send in JSON format.
      * @throws IOException If something happens when writing the response to the output stream.
      */
-    protected void sendErrorResponse(HttpServletResponse res, ErrorCodes code) throws IOException
+    protected void sendErrorResponse(HttpServletResponse res, Codes code) throws IOException
     {
         // Set headers of the response.
         res.setContentType(JSON_MEDIA_TYPE);
@@ -183,7 +183,7 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 
 
@@ -197,7 +197,7 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 
 
@@ -211,7 +211,7 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doHead(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 
 
@@ -225,7 +225,7 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 
 
@@ -239,7 +239,7 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 
 
@@ -253,7 +253,7 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 
 
@@ -267,6 +267,6 @@ public class AbstractRestServlet extends AbstractServlet
     @Override
     protected void doTrace(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        sendErrorResponse(res, ErrorCodes.METHOD_NOT_ALLOWED);
+        sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
 }
