@@ -15,8 +15,11 @@
     <input type="hidden" name="redirect" value="${redirect}">
     <button type="submit" >Login</button>
 </form>
+
+<a href="<c:url value="/password_forgot"/>">Password forgot</a>
+
 <c:choose>
-    <c:when test="${message}">
+    <c:when test="${message != null}">
         <p><c:out value="${message.message}"/></p>
     </c:when>
 </c:choose>

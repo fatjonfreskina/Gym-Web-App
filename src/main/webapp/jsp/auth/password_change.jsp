@@ -21,7 +21,7 @@
 </form>
 
 <c:choose>
-    <c:when test="${message}">
+    <c:when test="${message != null}">
         <p><c:out value="${message.message}"/></p>
     </c:when>
 </c:choose>
