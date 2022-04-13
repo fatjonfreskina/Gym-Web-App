@@ -246,7 +246,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TraineeDeleteReservation</servlet-name>
-        <url-pattern>/trainee/rest/delete_reservation/*</url-pattern>
+        <url-pattern>/trainee/rest/reservation/room/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TraineeNewReservation</servlet-name>
@@ -334,7 +334,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetReservationsServlet</servlet-name>
-        <url-pattern>/trainee/rest/reservation/*</url-pattern>
+        <url-pattern>/trainee/rest/reservation/from-day/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

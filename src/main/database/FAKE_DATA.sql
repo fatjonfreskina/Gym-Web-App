@@ -5,10 +5,10 @@ INSERT INTO personroles VALUES ('dev@dev.dev','trainer');
 INSERT INTO personroles VALUES ('dev@dev.dev','secretary');
 
 --Users
-INSERT INTO person VALUES ('mario.rossi@example.com','Mario','Rossi','d41d8cd98f00b204e9800998ecf8427e','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);
-INSERT INTO person VALUES ('riccardo.bianchi@example.com','Riccardo','Bianchi','d41d8cd98f00b204e9800998ecf8427e','RCRBNC0000000000',TO_DATE('01/02/1970','DD/MM/YYYY'),'3000000002','Address of Riccardo Bianchi',null);
-INSERT INTO person VALUES ('luca.giallo@example.com','Luca','Giallo','d41d8cd98f00b204e9800998ecf8427e','LCLGLL0000000000',TO_DATE('01/03/1970','DD/MM/YYYY'),'3000000003','Address of Luca Giallo',null);
-INSERT INTO person VALUES ('stanley.corkery@example.com','Stanley','Corkery','d41d8cd98f00b204e9800998ecf8427e','GARCDBJVHEVHIILY',TO_DATE('21/02/1982','DD/MM/YYYY'),'8524881756','304 Jason Mills, Gradymouth, OK 59441',NULL);
+INSERT INTO person VALUES ('mario.rossi@example.com','Mario','Rossi','6613DDD54D6DB890EC06519714257DD4C2ABE8080229C86C900B57FA7552A8EC','RSSMRO0000000000',TO_DATE('01/01/1970','DD/MM/YYYY'),'3000000001','Address of Mario Rossi',null);
+INSERT INTO person VALUES ('riccardo.bianchi@example.com','Riccardo','Bianchi','6613DDD54D6DB890EC06519714257DD4C2ABE8080229C86C900B57FA7552A8EC','RCRBNC0000000000',TO_DATE('01/02/1970','DD/MM/YYYY'),'3000000002','Address of Riccardo Bianchi',null);
+INSERT INTO person VALUES ('luca.giallo@example.com','Luca','Giallo','6613DDD54D6DB890EC06519714257DD4C2ABE8080229C86C900B57FA7552A8EC','LCLGLL0000000000',TO_DATE('01/03/1970','DD/MM/YYYY'),'3000000003','Address of Luca Giallo',null);
+INSERT INTO person VALUES ('stanley.corkery@example.com','Stanley','Corkery','6613DDD54D6DB890EC06519714257DD4C2ABE8080229C86C900B57FA7552A8EC','GARCDBJVHEVHIILY',TO_DATE('21/02/1982','DD/MM/YYYY'),'8524881756','304 Jason Mills, Gradymouth, OK 59441',NULL);
 INSERT INTO person VALUES ('virginia.barrows@example.com','Virginia','Barrows','d41d8cd98f00b204e9800998ecf8427e','PHDMJRPQFLCGNXVF',TO_DATE('26/01/1988','DD/MM/YYYY'),'0195723168','7610 Kling Drive, Port Nealborough, MA 60511-1715',NULL);
 INSERT INTO person VALUES ('sondra.dubuque@example.com','Sondra','DuBuque','d41d8cd98f00b204e9800998ecf8427e','E4FHUQGI8YSMXC9O',TO_DATE('18/03/1999','DD/MM/YYYY'),'5280680379','Apt. 686 90669 Schroeder Center, Vivienfort, ID 47685',NULL);
 INSERT INTO person VALUES ('bart.collins@example.com','Bart','Collins','d41d8cd98f00b204e9800998ecf8427e','YOY6TKBDKLICSDBB',TO_DATE('20/11/1993','DD/MM/YYYY'),'9849796961','61356 Erin Harbor, Lake Sherman, IL 47716',NULL);
