@@ -51,7 +51,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName,date,startTime,null,null,null)).execute();
         } catch (SQLException | NamingException e) {
             error = true;
-            resultMessage = new Message(ErrorCodes.LECUTRETIMESLOT_NOT_FOUND.getErrorMessage(), true);
+            resultMessage = new Message(ErrorCodes.LECTURETIMESLOT_NOT_FOUND.getErrorMessage(), true);
         }
 
         //Execute only if previously no error has been generated

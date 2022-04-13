@@ -44,7 +44,7 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         Reader input = new InputStreamReader(req.getInputStream(), StandardCharsets.UTF_8);
-        final Reservation res = GSON.fromJson(input, Reservation.class);
+        Reservation res = GSON.fromJson(input, Reservation.class);
 
         // Retrieve trainee email by session.
         final HttpSession session = req.getSession(false);
@@ -54,6 +54,9 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             return;
         }
         final String email = session.getAttribute("email").toString();
+
+        res = new Reservation(res, email);
+
         try{
             //Check 1: requested reservation is related to a real lecture time slot
             LectureTimeSlot lts = new LectureTimeSlot(res.getRoom(), res.getLectureDate(), res.getLectureStartTime(), 0, null, null);

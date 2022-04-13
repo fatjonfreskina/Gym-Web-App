@@ -29,6 +29,13 @@ public class Reservation {
         this.lectureStartTime = lectureStartTime;
     }
 
+    public Reservation(Reservation r, String trainee){
+        this.trainee = trainee;
+        this.room = r.room;
+        this.lectureDate = r.lectureDate;
+        this.lectureStartTime = r.lectureStartTime;
+    }
+
 
     public final String getTrainee() {
         return trainee;
