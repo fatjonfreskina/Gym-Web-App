@@ -1,19 +1,15 @@
 package servlet.trainee.rest;
 
-import com.google.gson.Gson;
 import constants.ErrorCodes;
 import dao.reservation.InsertReservationDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import resource.Message;
 import resource.Reservation;
 import servlet.AbstractRestServlet;
-import servlet.AbstractServlet;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
@@ -27,8 +23,21 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        checkAcceptMediaType(req, resp);
-        checkContentTypeMediaType(req, resp);
+
+        ErrorCodes code = checkAcceptMediaType(req);
+        if (code != ErrorCodes.OK)
+        {
+            sendErrorResponse(resp, code);
+            return;
+        }
+
+        code = checkContentTypeMediaType(req);
+        if (code != ErrorCodes.OK)
+        {
+            sendErrorResponse(resp, code);
+            return;
+        }
+
         processRequest(req,resp);
     }
 
