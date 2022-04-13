@@ -29,6 +29,12 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
     private static final Pattern URI_REGEX = Pattern.compile(
             "/wa2122-gwa/trainee/rest/reservation/room/(.*)/date/(.*)/starttime/(.*)", Pattern.DOTALL);
 
+    //TODO: for debugging purposes only, must be canceled
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req, resp);
+    }
+
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
@@ -45,7 +51,6 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
             return;
         }
 
-        PrintWriter out = resp.getWriter();
         final String room = matcher.group(1);
         final Date date = Date.valueOf(matcher.group(2));
         final Time time = Time.valueOf(matcher.group(3));
@@ -74,7 +79,7 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
         Date today = new Date(millis);
         Time now = new Time(millis);
 
-        if (today.compareTo(reservationDate) <= 0 && now.compareTo(reservationTime) <= 0) {
+        if (today.compareTo(reservationDate) <  0 || (today.compareTo(reservationDate)  == 0 && now.compareTo(reservationTime) <= 0)) {
             return true;
         } else {
             return false;

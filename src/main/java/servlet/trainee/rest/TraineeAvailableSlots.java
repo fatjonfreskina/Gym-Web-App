@@ -40,7 +40,7 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        checkAcceptMediaType(req, resp);
+       // checkAcceptMediaType(req, resp);
 
         processRequest(req,resp);
     }
