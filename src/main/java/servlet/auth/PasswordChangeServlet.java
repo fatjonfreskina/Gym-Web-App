@@ -1,18 +1,20 @@
 package servlet.auth;
 
-import com.google.common.html.HtmlEscapers;
 import constants.Constants;
 import constants.ErrorCodes;
+import dao.passwordreset.DeletePasswordResetDatabase;
 import dao.passwordreset.GetPasswordResetDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.UpdatePersonDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import resource.Message;
 import resource.PasswordReset;
 import resource.Person;
 import servlet.AbstractServlet;
 import utils.EncryptionManager;
+import utils.InputValidation;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -29,25 +31,44 @@ public class PasswordChangeServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Read the token field from the request (GET parameter)
-        String token = req.getParameter("token"); //TODO: Declare a constant for String "token"
+        String token = req.getParameter(Constants.PASSWORDRESET_TOKEN);
         //Pass the token
-        req.setAttribute("token", token);
+        req.setAttribute(Constants.PASSWORDRESET_TOKEN, token);
         //Show the form to insert the new password
         req.getRequestDispatcher(Constants.PATH_PASSWORD_CHANGE).forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        //Manages errors inside this function
-        ErrorCodes status = null;
+        Message message = changePassword(req);
 
-        //Get the token (hidden attribute)
-        String token = req.getParameter("token");
+        if(message.isError()){
+            //Return the same page of password reset passing the error message
+            req.setAttribute(Constants.MESSAGE, message);
+            req.getRequestDispatcher(Constants.PATH_PASSWORD_CHANGE).forward(req, resp);
+        } else {
+            //Redirect to the login page passing the successful message
+            req.setAttribute(Constants.MESSAGE, message);
+            req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, resp);
+        }
 
+    }
+
+    /**
+     * Implements the logic of the password change method elaborating the request object
+     *
+     * @param req  HTTP request object
+     * @return Message with some information about the password change request
+     */
+    private Message changePassword(HttpServletRequest req) {
+
+        //Get the token (hidden attribute in the form)
+        String token = req.getParameter(Constants.PASSWORDRESET_TOKEN);
+
+        //Handle the case in which the token is null
         if (token == null) {
-            //TODO: Throw some error
-            return;
+            return new Message(ErrorCodes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         }
 
         Person actualPerson = null;
@@ -57,68 +78,54 @@ public class PasswordChangeServlet extends AbstractServlet {
             //Retrieve the PasswordReset instance
             PasswordReset passwordResetDatabase = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
             //Retrieve the Person associated
-            var email = passwordResetDatabase.getPerson();
             actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordResetDatabase.getPerson()).execute();
         } catch (SQLException | NamingException e) {
-            //TODO: Manage the error
+            //Something went wrong in the handling of the token
+            return new Message(ErrorCodes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         }
 
+        //If password reset is null it means that a password reset token has not been found in the database
         if (passwordReset == null) {
-            //Password reset record not found in the database
-            status = ErrorCodes.INTERNAL_ERROR;
+            return new Message(ErrorCodes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         }
 
         //Get from the request the new password and then change it
-        String raw_password = req.getParameter("password");
-        String raw_confirm = req.getParameter("password-confirm");
+        String raw_password = req.getParameter(Constants.PASSWORD);
+        String raw_confirm = req.getParameter(Constants.CONFIRM_PASSWORD);
 
-        //Implement some type of validation for the string field
-        String sanitized_password = HtmlEscapers.htmlEscaper().escape(raw_password);
+        //Validate the password field against XSS, the password is valid if it does not contain something suspicious
+        boolean valid = !InputValidation.containsXSS(raw_password);
 
-        //If the sanitized password is different from the raw one, the given password is not valid
-        boolean valid = raw_password.equals(sanitized_password);
-
-        //Check if the provided password is valid or contains something possibly malicious
-        if (valid) {
-
-            //Check if the password and the confirmation password are equal
-            if (raw_password.equals(raw_confirm)) {
-
-                //The password is valid and should be updated
-                try {
-
-                    String hashed = EncryptionManager.encrypt(raw_password);
-
-                    //Construct a new person with the same fields, except the password field
-                    Person newPerson = new Person(actualPerson.getEmail(), actualPerson.getName(), actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(), actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
-
-                    //Update the person
-                    new UpdatePersonDatabase(getDataSource().getConnection(), newPerson).execute();
-
-                    //No error occurred, password has been changed
-                    status = ErrorCodes.OK;
-
-                } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
-                    //TODO
-                    e.printStackTrace();
-                    status = ErrorCodes.INTERNAL_ERROR;
-                }
-
-            } else {
-                //The two provided passwords are not equal
-                //TODO
-                status = ErrorCodes.INTERNAL_ERROR;
-            }
-
-        } else {
-            // Input field has something nasty inside
-            status = ErrorCodes.INTERNAL_ERROR;
+        //If the input field contains something strange similar to JS code print an error
+        if (!valid) {
+            return new Message(ErrorCodes.PASSWORD_NOT_VALID.getErrorMessage(), true);
         }
 
-        //If an error has occurred while updating the password than show something
-        if (status != ErrorCodes.OK) {
-            // TODO: Handle errors
+
+        //Check if the password and the confirmation password are equal
+        if (!raw_password.equals(raw_confirm)) {
+            return new Message(ErrorCodes.DIFFERENT_PASSWORDS.getErrorMessage(), true);
+        }
+
+        //The password is valid and should be updated
+        try {
+
+            String hashed = EncryptionManager.encrypt(raw_password);
+            //Construct a new person with the same fields, except the password field
+            Person newPerson = new Person(actualPerson.getEmail(), actualPerson.getName(), actualPerson.getSurname(), hashed, actualPerson.getTaxCode(), actualPerson.getBirthDate(), actualPerson.getTelephone(), actualPerson.getAddress(), actualPerson.getAvatarPath());
+            //Update the person
+            new UpdatePersonDatabase(getDataSource().getConnection(), newPerson).execute();
+            //No error occurred, password has been changed, remove the token for password reset
+            new DeletePasswordResetDatabase(getDataSource().getConnection(), passwordReset);
+
+            //The procedure has terminated correctly, return a positive message
+            return new Message(ErrorCodes.OK.getErrorMessage(), false);
+
+        } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
+            //Create the error message if something went wrong
+            return new Message(ErrorCodes.INTERNAL_ERROR.getErrorMessage(), true);
         }
 
     }
+
 }

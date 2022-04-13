@@ -15,10 +15,16 @@
     <input type="hidden" name="token" value="${token}">
     <label for="password">New password:</label><br>
     <input type="password" id="password" name="password" placeholder="Insert your new password here" autoComplete="true"><br>
-    <label for="password-confirm">Confirm password:</label><br>
-    <input type="password" id="password-confirm" name="password-confirm" placeholder="Confirm your new password here" autoComplete="true"><br>
+    <label for="password_confirm">Confirm password:</label><br>
+    <input type="password" id="password_confirm" name="password-confirm" placeholder="Confirm your new password here" autoComplete="true"><br>
     <input type="submit" value="Submit">
 </form>
+
+<c:choose>
+    <c:when test="${message.error}">
+        <p><c:out value="${message.message}"/></p>
+    </c:when>
+</c:choose>
 
 </body>
 </html>

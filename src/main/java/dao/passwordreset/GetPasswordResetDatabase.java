@@ -1,13 +1,9 @@
 package dao.passwordreset;
 
 import constants.Constants;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.PasswordReset;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Get all password reset that belongs to the user specified to the query and that are still valid
@@ -17,7 +13,6 @@ import java.util.List;
  * @authon Marco Alessio
  */
 public class GetPasswordResetDatabase {
-    private static final Logger logger = LogManager.getLogger("marco_alessio_appender");
 
     private static final String STATEMENT = """
             SELECT person, expirationdate
