@@ -11,7 +11,7 @@ public enum ErrorCodes {
     OK(0, HttpServletResponse.SC_OK, "OK"),
     EMPTY_INPUT_FIELDS(-1, HttpServletResponse.SC_BAD_REQUEST, "One or more input fields are empty."),
     DIFFERENT_PASSWORDS(-2, HttpServletResponse.SC_CONFLICT, "Different Passwords"),
-    MINIMUM_AGE(-3, HttpServletResponse.SC_CONFLICT, "Minimum age not satified"),
+    MINIMUM_AGE(-3, HttpServletResponse.SC_CONFLICT, "Minimum age not satisfied"),
     NOT_TELEPHONE_NUMBER(-4, HttpServletResponse.SC_CONFLICT, "Not a telephone number"),
     INVALID_FIELDS(-5, HttpServletResponse.SC_BAD_REQUEST, "Invalid Fields"),
     INVALID_FILE_TYPE(-6, HttpServletResponse.SC_BAD_REQUEST, "Invalid file type"),
@@ -25,7 +25,7 @@ public enum ErrorCodes {
     OVERLAPPING(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping!"),
     NO_COURSES_TAUGHT(-15, HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
     NO_COURSES_HELD_NOW(-16, HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
-    FREE_TRIAL_ALREADY_DONE(-17, HttpServletResponse.SC_BAD_REQUEST, "Aldreay done free trial"),
+    FREE_TRIAL_ALREADY_DONE(-17, HttpServletResponse.SC_BAD_REQUEST, "Already done free trial"),
     OVELAPPING_SUBSCRIPTIONS(-18, HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
     EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
     ACCEPT_MISSING(-20, HttpServletResponse.SC_BAD_REQUEST, "Accept field missing"),
@@ -45,7 +45,8 @@ public enum ErrorCodes {
     TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_FORBIDDEN, "Trainee must be enrolled to the course to make a reservation"),
     RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present"),
     USER_HAS_NO_ROLE_ASSIGNED(-36, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it"),
-    CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type")
+    CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type"),
+    LECUTRETIMESLOT_NOT_FOUND(-39, HttpServletResponse.SC_NOT_FOUND, "LectureTimeSlot not found")
     ;
 
   private final int errorCode;

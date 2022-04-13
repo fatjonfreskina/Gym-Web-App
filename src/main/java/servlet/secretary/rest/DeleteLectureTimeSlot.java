@@ -1,5 +1,7 @@
 package servlet.secretary.rest;
 
+import com.google.gson.Gson;
+import constants.ErrorCodes;
 import dao.lecturetimeslot.DeleteLectureTimeSlotDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.person.GetPersonByEmailDatabase;
@@ -9,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
+import resource.Message;
 import resource.Person;
 import resource.Reservation;
 import servlet.AbstractServlet;
@@ -28,10 +31,11 @@ import java.util.List;
 public class DeleteLectureTimeSlot extends AbstractServlet {
 
     @Override
-    //TODO: Convert to doPost
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        //http://localhost:8080/wa2122-gwa/secretary/rest/deletelecturetimeslot?roomname=Stamina&date=2022-04-05&starttime=18:00:00
+        //Result of the request
+        Message resultMessage = null;
+        boolean error = false;
 
         //Parse the parameters
         String roomName = request.getParameter("roomname");
@@ -46,40 +50,47 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
         try {
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName,date,startTime,null,null,null)).execute();
         } catch (SQLException | NamingException e) {
-            //TODO: handle the errors
+            error = true;
+            resultMessage = new Message(ErrorCodes.LECUTRETIMESLOT_NOT_FOUND.getErrorMessage(), true);
         }
 
-        //List of person that will be notified
-        List<Person> noticeTo = null;
+        //Execute only if previously no error has been generated
+        if(!error) {
 
-        //DEBUG
-        response.setContentType("text/plain");
+            //List of person that will be notified
+            List<Person> noticeTo;
+
+            try {
+
+                //Get the collection of people that should be notified
+                noticeTo = new GetAllPeopleInReservationTimeSlotDatabase(getDataSource().getConnection(), toFind).execute();
+
+                //Iterate over all persons
+                for (Person p : noticeTo) {
+                    Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(), p.getEmail()).execute();
+                    //TODO: unlock mail sending             MailTypes.mailForCancellationLecture(person,lectureTimeSlot);
+                }
+
+                //Delete the LectureTimeSlot (all subscriptions have been removed)
+                new DeleteLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot).execute();
+
+            } catch (SQLException | NamingException e) {
+                error = true;
+                resultMessage = new Message(ErrorCodes.INTERNAL_ERROR.getErrorMessage(), true);
+            }
+        }
+
+        //Prepare to send feedback about the operation using a JSON object
+        response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("DEBUG MESSAGES");
-        out.println(roomName);
-        out.println(date);
-        out.println(startTime);
-        out.println(lectureTimeSlot);
 
-        try {
-
-            //Get the collection of people that should be notified
-            noticeTo = new GetAllPeopleInReservationTimeSlotDatabase(getDataSource().getConnection(),toFind).execute();
-
-            //Iterate over all persons
-            for (Person p: noticeTo) {
-                Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(),p.getEmail()).execute();
-                out.println("email to: " + person);
-                //TODO: unlock mail sending             MailTypes.mailForCancellationLecture(person,lectureTimeSlot);
-            }
-
-            //Delete the LectureTimeSlot (all subscriptions have been removed)
-            new DeleteLectureTimeSlotDatabase(getDataSource().getConnection(),lectureTimeSlot).execute();
-
-        } catch (SQLException | NamingException e) {
-            //TODO: Handle the error
+        //If no error has been generated then generate a success message
+        if(!error){
+            resultMessage = new Message("Operation completed", false);
         }
+
+        out.println(new Gson().toJson(resultMessage));
 
     }
 
