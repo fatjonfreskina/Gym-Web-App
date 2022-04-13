@@ -7,7 +7,7 @@
     <title>Add Account</title>
 </head>
 <body>
-    <jsp:include page="../include/header.jsp"/>
+<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
     <c:choose>
         <c:when test="${message != null}">
             <p><c:out value="${message.message}"/></p>

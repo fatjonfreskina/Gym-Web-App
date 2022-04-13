@@ -5,7 +5,7 @@
     <title>Manage Subscription</title>
 </head>
 <body>
-<!--<jsp:include page="../include/header.jsp"/>-->
+<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
 
 
 

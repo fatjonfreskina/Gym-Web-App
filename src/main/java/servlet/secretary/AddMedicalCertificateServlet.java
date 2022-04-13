@@ -66,10 +66,10 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
 
         if (registrable) // it means that params are ok for now
         {
+
             email = req.getParameter(Constants.MEDICALCERTIFICATE_PERSON);
             doctorName = req.getParameter(Constants.MEDICALCERTIFICATE_DOCTORNAME);
             expirationDate = Date.valueOf(req.getParameter(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE));
-
 
             //insertUser
             error = insertCertificate(email, expirationDate,doctorName, medicalCertificate);
@@ -107,21 +107,30 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
             error = ErrorCodes.INVALID_FIELDS;
         }
 
-        if (error.getErrorCode() == ErrorCodes.OK.getErrorCode())
+        try
         {
-            if (
-                    doctorName == null || doctorName.isEmpty() ||
-                    email == null || email.isEmpty() ||
-                    expirationDate == null) // Check if some fields are empty
+            if (error.getErrorCode() == ErrorCodes.OK.getErrorCode())
             {
-                error = ErrorCodes.EMPTY_INPUT_FIELDS;
-            }if (!InputValidation.isValidEmailAddress(email)) {
-                error = ErrorCodes.NOT_A_MAIL;
+                if (
+                        doctorName == null || doctorName.isEmpty() ||
+                                email == null || email.isEmpty() ||
+                                expirationDate == null) // Check if some fields are empty
+                {
+                    error = ErrorCodes.EMPTY_INPUT_FIELDS;
+
+                }else if (!InputValidation.isValidEmailAddress(email)) {
+                    error = ErrorCodes.NOT_A_MAIL;
+                }else if(!expirationDate.after(Calendar.getInstance().getTime())){
+                    error = ErrorCodes.INVALID_DATE;
+                }else if((new GetPersonByEmailDatabase(getDataSource().getConnection(),email).execute()) == null)
+                {
+                    error = ErrorCodes.EMAIL_NOT_FOUND;
+                }
             }
-            if(!expirationDate.after(Calendar.getInstance().getTime())){
-                error = ErrorCodes.INVALID_DATE;
-            }
+        }catch (SQLException | NamingException e) {
+            error = ErrorCodes.INTERNAL_ERROR;
         }
+
         return error;
     }
 

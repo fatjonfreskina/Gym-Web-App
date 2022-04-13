@@ -9,6 +9,7 @@ import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.lecturetimeslot.InsertLectureTimeSlotDatabase;
 import dao.person.GetListOfTeachersDatabase;
 import dao.room.GetListRoomsDatabase;
+import dao.subscriptiontype.InsertSubscriptionTypeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -384,6 +385,16 @@ public class AddCoursesServlet extends AbstractServlet
                                 c.add(Calendar.DATE, 7);
                                 pointerSunday = new Date(c.getTimeInMillis());
                             }
+                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,7,0)).execute();
+                            if(cost30 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,30,cost30)).execute();
+                            if(cost90 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,90,cost90)).execute();
+                            if(cost180 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,180,cost180)).execute();
+                            if(cost365 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,365,cost365)).execute();
+
                         }
                     } else
                         error = ErrorCodes.OVERLAPPING;

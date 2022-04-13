@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Andrea Pasin
  */
 public class InsertSubscriptionTypeDatabase {
-    private static final String STATEMENT = "INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (?, ?, ?, ?,)";
+    private static final String STATEMENT = "INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (?, ?, ?, ?)";
     private final Connection con;
 
     private final SubscriptionType subscriptionType;
@@ -39,6 +39,8 @@ public class InsertSubscriptionTypeDatabase {
             preparedStatement.setString(2, subscriptionType.getCourseName());
             preparedStatement.setInt(3, subscriptionType.getDuration());
             preparedStatement.setFloat(4, subscriptionType.getCost());
+
+            preparedStatement.execute();
         } finally {
             con.close();
         }
