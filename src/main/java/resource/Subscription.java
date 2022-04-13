@@ -36,6 +36,7 @@ public class Subscription {
     this.discount = discount;
     this.trainee = trainee;
   }
+
   public Subscription(int courseEditionID, String courseName) {
     this.courseEditionID = courseEditionID;
     this.courseName = courseName;
@@ -71,11 +72,12 @@ public class Subscription {
 
   @Override
   public String toString() {
+    //System.out.println(new Gson().toJson(this,Subscription.class));
     return "Subscription{" +
         "courseEditionID=" + courseEditionID +
         ", courseName='" + courseName + '\'' +
         ", duration=" + duration +
-        ", startDay=" + startDay +
+        ", startDay='" + startDay + '\'' +
         ", discount=" + discount +
         ", trainee='" + trainee + '\'' +
         '}';
@@ -86,6 +88,13 @@ public class Subscription {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Subscription that = (Subscription) o;
+    /*boolean equalCourse = courseEditionID == that.courseEditionID && Objects.equals(courseName, that.courseName),
+        equalTrainer = Objects.equals(trainee, that.trainee),
+        equalDuration = duration == that.duration,
+        equalDiscount = discount == that.discount,
+        equalStartDay = Objects.equals(startDay, that.startDay);
+    //System.out.println(startDay + " vs " + that.startDay);
+    //System.out.println(">>>%s,%s,%s,%s,%s".formatted(equalCourse, equalTrainer, equalDuration, equalDiscount, equalStartDay));*/
     return courseEditionID == that.courseEditionID && duration == that.duration && discount == that.discount && Objects.equals(courseName, that.courseName) && Objects.equals(startDay, that.startDay) && Objects.equals(trainee, that.trainee);
   }
 

@@ -10,6 +10,7 @@ public class Constants {
     public static final String RELATIVE_URL_PERSONALINFO = "/personal_info";
     public static final String RELATIVE_URL_UNAUTHORIZED = "/unauthorized";
     public static final String RELATIVE_URL_HOME = "/";
+    public static final String RELATIVE_URL_TRAINER_MANAGE_ATTENDANCE = "/trainer/attendance";
 
     //PATH PARAMETERS
     public static final String URL_PARAMETER_TRAINER_HOME_PAGE_ADD_WEEKS = "addWeeks";
@@ -44,6 +45,7 @@ public class Constants {
 
     //TRAINER PATHS
     public static final String PATH_TRAINER_HOME = "/jsp/trainer/home.jsp";
+    public static final String PATH_TRAINER_MANAGE_ATTENDANCE = "/jsp/trainer/manageAttendance.jsp";
 
     public static final String PATH_PERSONALINFO = "/jsp/personalinfo.jsp";
 
