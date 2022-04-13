@@ -46,7 +46,7 @@ public enum ErrorCodes {
     RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present"),
     USER_HAS_NO_ROLE_ASSIGNED(-36, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it"),
     CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type"),
-    LECUTRETIMESLOT_NOT_FOUND(-39, HttpServletResponse.SC_NOT_FOUND, "LectureTimeSlot not found")
+    LECTURETIMESLOT_NOT_FOUND(-39, HttpServletResponse.SC_NOT_FOUND, "LectureTimeSlot not found")
     ;
 
   private final int errorCode;
