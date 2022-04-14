@@ -11,7 +11,7 @@
         <th><a href="<c:url value="/calendar"/>">Calendar</a></th>
         <th><a href="<c:url value="/prices"/>">Prices</a></th>
         <th><a href="<c:url value="/staff"/>">Staff</a></th>
-        <th><a href="<c:url value="/aboutus"/>">Contact Us</a></th>
+        <th><a href="<c:url value="/contactus"/>">Contact Us</a></th>
         <c:choose>
             <c:when test="${empty sessionScope.roles}">
                 <th><a href="<c:url value="/register"/>">Register</a></th>

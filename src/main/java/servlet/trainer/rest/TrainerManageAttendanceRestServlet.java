@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.stream.Collectors;
 
 import javax.naming.NamingException;
 
@@ -21,9 +22,9 @@ import resource.Message;
 import resource.Reservation;
 import resource.Subscription;
 import resource.rest.TrainerAttendance;
+import service.GsonService;
 import service.TrainerService;
 import servlet.AbstractServlet;
-import utils.JsonTimeDeserializer;
 import utils.JsonTimeSerializer;
 
 /**
@@ -40,12 +41,10 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
 
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
 
-    //Retrieve the courses that Trainer teaches
     try {
       res.setContentType("application/json");
       res.setCharacterEncoding("UTF-8");
       PrintWriter out = res.getWriter();
-      //Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
       Gson gson = new GsonBuilder()
           .setDateFormat("yyyy-MM-dd")
           .registerTypeAdapter(Time.class, new JsonTimeSerializer())
@@ -67,24 +66,19 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
     boolean success = false;
     try {
       TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+      GsonService gsonService = new GsonService();
 
-      Gson gson = new GsonBuilder()
-          .setDateFormat("yyyy-MM-dd")
-          .registerTypeAdapter(Time.class, new JsonTimeDeserializer())
-          .create();
-      Subscription subscription = gson.fromJson(req.getReader(), Subscription.class);
-      logger.debug(loggerClass + "Subscription from body of post: " + subscription);
+      // GET RESERVATION FROM REQUEST
+      String param = req.getReader().lines().collect(Collectors.joining());
+      Subscription subscription = gsonService.getSubscriptionFromString(param);
+
       // PERFORM ACTION
       success = trainerService.addPresenceToCurrentLectureTimeSlot(subscription);
-    } catch (SQLException | NamingException | NullPointerException e) {
+    } catch (SQLException | NamingException e) {
       e.printStackTrace();
       sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       sendFeedback(res, e.getErrorCode());
-    } catch (JsonParseException e) {
-      e.printStackTrace();
-      logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, Codes.CONTENTTYPE_UNSUPPORTED);
     }
     //Return positive feedback
     if (success) sendFeedback(res, Codes.OK, false);
@@ -98,13 +92,11 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
 
     try {
       TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+      GsonService gsonService = new GsonService();
 
-      Gson gson = new GsonBuilder()
-          .setDateFormat("yyyy-MM-dd")
-          .registerTypeAdapter(Time.class, new JsonTimeDeserializer())
-          .create();
-      Reservation reservation = gson.fromJson(req.getReader(), Reservation.class);
-      logger.debug(loggerClass + "Reservation from post body:" + reservation);
+      // GET RESERVATION FROM REQUEST
+      String param = req.getReader().lines().collect(Collectors.joining());
+      Reservation reservation = gsonService.getReservationFromString(param);
 
       // PERFORM ACTION
       success = trainerService.removePresenceFromCurrentLectureTimeSlot(reservation);
@@ -114,9 +106,6 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
     } catch (CustomException e) {
       logger.error(loggerClass + e.getMessage());
       sendFeedback(res, e.getErrorCode());
-    } catch (JsonParseException e) {
-      logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, Codes.CONTENTTYPE_UNSUPPORTED);
     }
     //Return positive feedback
     if (success) sendFeedback(res, Codes.OK, false);
@@ -125,7 +114,6 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
   /* TODO FOR OTHER METHODS THROW NOT IMPLEMENTED */
 
   /* PRIVATE METHODS */
-
   private void sendFeedback(HttpServletResponse res, Codes error) throws IOException {
     sendFeedback(res, error, true);
   }

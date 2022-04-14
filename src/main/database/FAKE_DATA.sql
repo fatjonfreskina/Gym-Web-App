@@ -71,6 +71,7 @@ INSERT INTO courseedition VALUES (5, 'Bodybuilding');
 INSERT INTO courseedition VALUES (6, 'Calisthenics');
 
 --Course
+INSERT INTO teaches VALUES (5, 'Bodybuilding', 'dev@dev.dev');
 INSERT INTO teaches VALUES (1,'Powerlifting','giacomo.forza@example.com');
 INSERT INTO teaches VALUES (2,'Cardio','nathanial.prohaska@example.com');
 INSERT INTO teaches VALUES (3,'Yoga','shery.stamm@example.com');
@@ -786,3 +787,4 @@ INSERT INTO subscription (courseeditionid, coursename, duration, startday, disco
 INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-25', 0, 'bart.collins@example.com');
 INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 180, '2022-02-03', 0, 'cristi.schaden@example.com');
 INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 365, '2022-01-14', 0, 'alonzo.lindgren@example.com');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (5, 'Bodybuilding', 365, '2022-04-20', 0, 'alonzo.lindgren@example.com');

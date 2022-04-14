@@ -11,10 +11,10 @@ import java.io.IOException;
  *
  * @author Andrea Pasin
  */
-public class AboutUsServlet extends AbstractServlet {
+public class ContactUsServlet extends AbstractServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        req.getRequestDispatcher(Constants.PATH_ABOUTUS).forward(req, res);
+        req.getRequestDispatcher(Constants.PATH_CONTACT_US).forward(req, res);
     }
 }

@@ -2,6 +2,7 @@ package servlet.trainer;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 import constants.Constants;
 import constants.Codes;
 import constants.exeption.CustomException;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.*;
+import service.GsonService;
 import service.TrainerService;
 import servlet.AbstractServlet;
 import utils.JsonTimeDeserializer;
@@ -54,29 +56,19 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
 
     try {
       TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+      GsonService gsonService = new GsonService();
 
-      Gson gson = new GsonBuilder()
-          .setDateFormat("yyyy-MM-dd")
-          .registerTypeAdapter(Time.class, new JsonTimeDeserializer())
-          .create();
       if (action != null && action.equals("doDelete")) { //DELETE
-        // EXTRACTING PARAMETERS
-        String param = req.getParameter("reservation");
-        param = param.substring(param.indexOf("{"));
-
-        logger.debug(loggerClass + "Reservation from body of post: " + param);
-
-        Reservation reservation = gson.fromJson(param, Reservation.class);
-        logger.debug(loggerClass + "Reservation Deserialized: " + reservation);
+        // GET RESERVATION FROM REQUEST
+        String param = req.getParameter("reservation").substring(req.getParameter("reservation").indexOf("{"));
+        Reservation reservation = gsonService.getReservationFromString(param);
 
         // PERFORM ACTION
         success = trainerService.removePresenceFromCurrentLectureTimeSlot(reservation);
       } else {
-        String param = req.getParameter("subscription");
-        param = param.substring(param.indexOf("{"));
-        //logger.warn(loggerClass + "Subscription from body of post as string: " + param);
-        Subscription subscription = gson.fromJson(param, Subscription.class);
-        logger.debug(loggerClass + "Subscription from body of post: " + subscription);
+        // GET SUBSCRIPTION FROM REQUEST
+        String param = req.getParameter("subscription").substring(req.getParameter("subscription").indexOf("{"));
+        Subscription subscription = gsonService.getSubscriptionFromString(param);
 
         // PERFORM ACTION
         success = trainerService.addPresenceToCurrentLectureTimeSlot(subscription);
@@ -87,18 +79,17 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     } catch (CustomException e) {
       sendFeedback(req, e.getErrorCode());
     }
+
     if (success) {
       sendFeedback(req, Codes.OK, false);
       res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_TRAINER_MANAGE_ATTENDANCE);
     } else {
-      logger.debug(loggerClass + "success: " + success);
       req.getRequestDispatcher(Constants.PATH_TRAINER_MANAGE_ATTENDANCE).forward(req, res);
     }
 
   }
 
   /* PRIVATE METHODS */
-
   private void sendFeedback(HttpServletRequest req, Codes error) {
     sendFeedback(req, error, true);
   }
