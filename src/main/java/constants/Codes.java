@@ -57,8 +57,10 @@ public enum Codes {
       "date format should be in ISO 2014 [yyyy]-[MM]-[dd], " +
       "and time format should be in ISO 8601's 24-hour clock T[hh]:[mm]:[ss] "),
   NOT_ACCEPTABLE_MISSING_FIELDS(-44, HttpServletResponse.SC_NOT_ACCEPTABLE, "Request not acceptable, missing fields."),
-  WRONG_JSON_RESERVATION(-45, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Wrong json reservation"),
-  SLOTS_SOLD_OUT(-46, HttpServletResponse.SC_FORBIDDEN, "Slots for the requested reservation sold out")
+  NO_SUBSCRIPTION_TO_THE_COURSE(-45, HttpServletResponse.SC_NO_CONTENT, "Trainer has no Trainee subscribed to its course."),
+  SUBSCRIPTION_IS_NOT_CURRENTLY_VALID(-46, HttpServletResponse.SC_NO_CONTENT, "Subscription is not currently valid."),
+  WRONG_JSON_RESERVATION(-47, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Wrong json reservation"),
+  SLOTS_SOLD_OUT(-48, HttpServletResponse.SC_FORBIDDEN, "Slots for the requested reservation sold out")
   ;
   private final int errorCode;
   private final int httpCode;
