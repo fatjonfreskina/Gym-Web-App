@@ -1,73 +1,102 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Title</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css">
 
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+    <jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
 
+    <div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
 
-<div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
+    <jsp:include page="../include/footer.jsp"/>
 
+    <div id="modal-details" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Details about this course</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete this lecture</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Notify substitution</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<jsp:include page="../include/footer.jsp"/>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.10.2,npm/fullcalendar@5.10.2/locales-all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.29.2/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.2/min/locales.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.2/min/moment-with-locales.min.js"></script>
-
 
 <script>
 
     //Construct the calendar
-
     let calendarEl = document.getElementById('calendar');
-
     let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
-        initialDate: new Date(),        //Date of today
+        initialDate: new Date(),
         themeSystem: "bootstrap",
         headerToolbar: {
             left: '',
             center: 'title',
             right: 'prev,next today'
         },
-        eventClick: function(info) {
-            alert('Event: ' + info.event.title + ' - Take a look at the console');
-            console.log(info.event.extendedProps);
+        eventClick: function (info) {
             console.log(info.event);
-            //alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            //alert('View: ' + info.view.type);
-
-            // change the border color just for fun
-            info.el.style.borderColor = 'red';
+            console.log(info.event.extendedProps);
+            detailsModal.show();
         }
     });
 
-    //Attach render calendar to button for week change
-    $('body').on('click', 'button.fc-next-button', renderCalendar);
-    $('body').on('click', 'button.fc-prev-button', renderCalendar);
+    /**
+     * Returns the color associated to the course name, black for non associated courses
+     * @param courseName name of the course (string)
+     * @returns {string} color associated
+     */
+    function GetColorOfCourse(courseName) {
+        switch (courseName) {
+            case "Cardio":
+                return "DarkCyan";
+            case "Yoga":
+                return "YellowGreen";
+            case "Crossfit":
+                return "DarkRed";
+            case "Calisthenics":
+                return "LightSalmon";
+            case "Bodybuilding":
+                return "Indigo";
+            case "Powerlifting":
+                return "DarkSlateBlue";
+            default:
+                return "Black";
+        }
+    }
 
-    //Renders the calendar of this week
-    function renderCalendar(){
-
+    /**
+     * Performs a refresh of the calendar object of this page
+     */
+    /*
+    function renderCalendar() {
+        //Get the current active window of the calendar
         let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
         let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
-
+        //Perform the AJAX request to fill the calendar
         $.ajax({
             url: "<c:url value="/secretary/rest/getalllecturetimeslot"/>",
             data: {
@@ -77,36 +106,44 @@
             cache: false,
             type: "GET",
             dataType: 'json',
-            success: function(response) {
-
+            success: function (response) {
                 //Remove all the events
                 calendar.removeAllEvents();
-
-                for(const lts of response){
-
+                //Iterate over all the elements in the response
+                for (const lts of response) {
+                    //Create an event object
                     let event = {};
-
                     //Calculate dates
                     startDate = new Date(lts.dateTime)
                     event.start = startDate;
                     event.end = moment(startDate).add(2, 'hours').toDate();
-
+                    //Set title and background color based on the title
+                    event.title = lts.courseName;
+                    event.backgroundColor = GetColorOfCourse(lts.courseName);
+                    //Set some additional parameters
                     event.courseEditionId = lts.courseEditionId;
                     event.roomName = lts.roomName;
+                    //Add the element to the calendar
                     calendar.addEvent(event);
                 }
-
+                //Render the new calendar
                 calendar.render();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 console.log(xhr);
             }
         });
-
     }
+    */
 
-    renderCalendar();
+    //Initial render when page loaded
+    //renderCalendar();
 
+    //Attach render calendar to button for week change
+    //$('body').on('click', 'button.fc-next-button', renderCalendar);
+    //$('body').on('click', 'button.fc-prev-button', renderCalendar);
+
+    $("#modal-details").modal("show");
 
 </script>
 
