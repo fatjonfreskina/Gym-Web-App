@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 
     <div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
     </div>

@@ -7,7 +7,7 @@
     <title>Manage Roles</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 
     <c:choose>
         <c:when test="${message != null}">
