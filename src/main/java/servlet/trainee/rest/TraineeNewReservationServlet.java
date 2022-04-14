@@ -72,20 +72,14 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             return;
         }
         try{
-            Connection conn = getConnection();
             //Check 1: requested reservation is related to a real lecture time slot
             LectureTimeSlot lts = new LectureTimeSlot(res.getRoom(), res.getLectureDate(), res.getLectureStartTime(), 0, null, null);
-            if(new GetLectureTimeSlotByRoomDateStartTimeDatabase(conn,lts).execute() == null) {
+            if(new GetLectureTimeSlotByRoomDateStartTimeDatabase(getConnection(),lts).execute() == null) {
                 sendErrorResponse(resp, Codes.LECTURETIMESLOT_NOT_FOUND);
                 return;
             }
-            //Check 2: available slots for the requested reservation
-            if(new GetAvailableSlotsReservation(conn,res).execute() <=0 ){
-                sendErrorResponse(resp, Codes.ROOM_ALREADY_FULL);
-                return;
-            }
-            //Check 3: requested reservation is compatible with my subscriptions and is not over its expiration of the subscription
-            Date expiration = new GetSubscriptionExpirationByLTSDatabase(conn,lts,email).execute();
+            //Check 2: requested reservation is compatible with my subscriptions and is not over its expiration of the subscription
+            Date expiration = new GetSubscriptionExpirationByLTSDatabase(getConnection(),lts,email).execute();
             if(expiration == null){
                 sendErrorResponse(resp, Codes.TRAINEE_NOT_ENROLLED_TO_THE_COURSE);
                 return;
@@ -94,9 +88,13 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
                 sendErrorResponse(resp, Codes.SUBSCRIPION_EXPIRED_BEFORE);
                 return;
             }
-
+            //Check 3: available slots for the requested reservation
+            if(new GetAvailableSlotsReservation(getConnection(),res).execute() <=0 ){
+                sendErrorResponse(resp, Codes.ROOM_ALREADY_FULL);
+                return;
+            }
             //Check 4: not already present a reservation made by the same user in the same slot
-            if(new GetReservationByAllFields(conn,res).execute() != null) {
+            if(new GetReservationByAllFields(getConnection(),res).execute() != null) {
                 sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
                 return;
             }
