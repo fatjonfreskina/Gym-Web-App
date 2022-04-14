@@ -1,5 +1,8 @@
 package service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParseException;
 import constants.exeption.*;
 import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
 import dao.reservation.DeleteReservation;
@@ -13,10 +16,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.*;
 import resource.rest.TrainerAttendance;
+import utils.JsonTimeDeserializer;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,7 +58,6 @@ public class TrainerService {
     logger.trace(loggerClass + "checking isValidSubscription(" + subscription + "," + courseEdition + ")");
     if (isValidSubscription(subscription, courseEdition)) {
       logger.trace(loggerClass + "isValidSubscription");
-      //DataSource dataSource = getDataSource();
       List<Reservation> reservations = new GetListReservationByLectureDatabase(dataSource.getConnection(), lectureHeldNow).execute();
       logger.trace(loggerClass + "Reservations: " + reservations);
 
@@ -109,7 +113,7 @@ public class TrainerService {
 
     //Get the subscriptions for the course held now and their corresponding trainees
     List<Subscription> subscriptions = new GetValidSubscriptionsByCourseDatabase(dataSource.getConnection(), new CourseEdition(lectureHeldNow.getCourseEditionId(), lectureHeldNow.getCourseName())).execute();
-    //TODO reservations.stream().forEach(reservation ->{reservation.getTrainee();});
+
     for (Reservation r : reservations) {
       String trainee = r.getTrainee();
       subscriptions = subscriptions.stream().filter(subscription -> !subscription.getTrainee().equals(trainee)).collect(Collectors.toList());
@@ -117,6 +121,7 @@ public class TrainerService {
     return new TrainerAttendance(lectureHeldNow, reservations, subscriptions);
   }
 
+  /*PRIVATE METHODS*/
   private boolean isValidSubscription(Subscription subscription, CourseEdition courseEdition) throws NamingException, SQLException {
     if (subscription == null || courseEdition == null) return false;
     List<Subscription> subscriptionsList = new GetSubscriptionsByCourseDatabase(dataSource.getConnection(), courseEdition).execute();
