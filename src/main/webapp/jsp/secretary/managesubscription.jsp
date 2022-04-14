@@ -20,14 +20,14 @@
 
     <label>Search : </label><input type="text" name="partial_email" id="partial_email"><br>
     <label>Subscription Duration : </label>
-    <select name="subscription_duration">
+    <select name="duration">
         <option  value="7">Free</option><br>
         <option  value="30">Mothly</option><br>
         <option  value="90">Quaterly</option><br>
         <option  value="180">Half-Yearly</option><br>
         <option  value="365">Year</option><br>
     </select><br>
-    <label>Discount : </label><input type="number" min = "0" max ="100">
+    <label>Discount : </label><input type="number" name = "discount" min = "0" max ="100" value="0">
 
     <input type="submit" name="Submit"/>
 
@@ -55,8 +55,7 @@
 
                 for(const person of response)
                 {
-
-                    $("#list_emails").append("<li>" +person.email+"<input type='radio' name='trainee' value="+person.email+"/" + "></li>")
+                    $("#list_emails").append("<li>"+person.email + "<input type='radio' name = 'trainee' value = '"+person.email+"'"+"/></li>")
                 }
                 //.append("<li><a href=''>Link Text</a></li>");
             },
@@ -80,7 +79,7 @@
                 $("#list_last_date").empty()
                 for(const lastDate of response)
                 {
-                    $("#list_last_date").append("<li>" +lastDate.date+"<input type='radio' name='course_edition_id' value="+lastDate.courseEditionId+"/" + "></li>")
+                    $("#list_last_date").append("<li>" +lastDate.date+"<input type='radio' name='course_edition_id' value='"+lastDate.courseEditionId+"'/></li>")
                 }
             },
             error: function(xhr)

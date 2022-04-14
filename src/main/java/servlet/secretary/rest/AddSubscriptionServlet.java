@@ -2,6 +2,7 @@ package servlet.secretary.rest;
 
 import com.google.gson.Gson;
 import constants.Codes;
+import dao.courseedition.GetEndOrInitialDateCourseEditionDatabase;
 import dao.person.InsertPersonSubscriptionDatabase;
 import dao.subscription.GetFreeSubscriptionByTraineeAndCourseDatabase;
 import dao.subscription.GetValidSubscriptionByCourseAndTraineeDatabase;
@@ -16,7 +17,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Calendar;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class AddSubscriptionServlet extends AbstractServlet
 {
@@ -49,6 +56,21 @@ public class AddSubscriptionServlet extends AbstractServlet
 
             try
             {
+
+                //data finisci corso //dataodierna + duration
+                Date startingDateCourse = new GetEndOrInitialDateCourseEditionDatabase(
+                        getDataSource().getConnection(),new CourseEdition(courseEditionId,courseName)).executeMin();
+
+                Date endingDateCourse = new GetEndOrInitialDateCourseEditionDatabase(
+                        getDataSource().getConnection(),new CourseEdition(courseEditionId,courseName)).executeMax();
+
+                Date startSubscription = startingDateCourse;
+                if(!startingDateCourse.after((new Date(System.currentTimeMillis()))))
+                {
+                    startSubscription = new Date(System.currentTimeMillis());
+
+                }
+
                 if(duration == 7)
                 {
                     List<Subscription> lst =  new GetFreeSubscriptionByTraineeAndCourseDatabase(getDataSource().getConnection(),new Course(courseName,null),new Person(trainee,null,null,null,null,null,null,null,null)).execute();
@@ -64,13 +86,18 @@ public class AddSubscriptionServlet extends AbstractServlet
                             null,null,null,null,null,null,null)).execute();
                     if(!lst.isEmpty())
                         error = Codes.OVELAPPING_SUBSCRIPTIONS;
+                    //datafinecorso - datainizio >= duration
+
+                    if(( duration > DAYS.between(startSubscription.toLocalDate(),endingDateCourse.toLocalDate())))
+                        error = Codes.TYPE_SUBSCRIPTION_IVALID;
                 }
+
 
                 if(error == Codes.OK)
                 {
                     discount = discount == null ? 0 : discount;
                     new InsertPersonSubscriptionDatabase(getDataSource().getConnection(),
-                            new Subscription(courseEditionId,courseName,duration,new Date(System.currentTimeMillis()),discount,trainee)).execute();
+                            new Subscription(courseEditionId,courseName,duration,startSubscription,discount,trainee)).execute();
                 }
 
             } catch (SQLException | NamingException e) {
@@ -79,9 +106,9 @@ public class AddSubscriptionServlet extends AbstractServlet
         }
 
         if(error == Codes.OK)
-            out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
-        else
             out.print(new Gson().toJson(new Message(error.getErrorMessage(), false)));
+        else
+            out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
 
 
     }
