@@ -1,8 +1,10 @@
 package servlet.trainee.rest;
 
+import com.google.gson.JsonParseException;
 import constants.Constants;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
+import dao.reservation.GetAvailableSlotsReservation;
 import dao.reservation.GetReservationByAllFields;
 import dao.reservation.InsertReservationDatabase;
 import jakarta.servlet.ServletException;
@@ -44,8 +46,13 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException{
         Reader input = new InputStreamReader(req.getInputStream(), StandardCharsets.UTF_8);
-        Reservation res = GSON.fromJson(input, Reservation.class);
-
+        Reservation res;
+        try{
+            res = GSON.fromJson(input, Reservation.class);
+        }catch(JsonParseException e){
+            sendErrorResponse(resp, Codes.WRONG_JSON_RESERVATION);
+            return;
+        }
         // Retrieve trainee email by session.
         final HttpSession session = req.getSession(false);
         if (session == null)
@@ -61,22 +68,27 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             //Check 1: requested reservation is related to a real lecture time slot
             LectureTimeSlot lts = new LectureTimeSlot(res.getRoom(), res.getLectureDate(), res.getLectureStartTime(), 0, null, null);
             if(new GetLectureTimeSlotByRoomDateStartTimeDatabase(getConnection(),lts).execute() == null) {
-                sendErrorResponse(resp, Codes.LECUTRETIMESLOT_NOT_FOUND);
+                sendErrorResponse(resp, Codes.LECTURETIMESLOT_NOT_FOUND);
                 return;
             }
             //Check 2: available slots for the requested reservation
+            if(new GetAvailableSlotsReservation(getConnection(),res).execute() <=0 ){
+                sendErrorResponse(resp, Codes.SLOTS_SOLD_OUT);
+                return;
+            }
 
             //Check 3: requested reservation is compatible with my subscriptions
 
             //Check 4: requested reservation data is not over the expiration of the subscription
 
             //Check 5: not already present a reservation made by the same user in the same slot
-            if(new GetReservationByAllFields(getConnection(),res).execute() == null) {
+            if(new GetReservationByAllFields(getConnection(),res).execute() != null) {
                 sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
                 return;
             }
         }catch(Throwable e){
             sendErrorResponse(resp, Codes.INTERNAL_ERROR);
+            return;
         }
 
 
