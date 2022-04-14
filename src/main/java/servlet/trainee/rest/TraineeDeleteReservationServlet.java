@@ -27,10 +27,11 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
             "/wa2122-gwa/trainee/rest/reservation/room/(.*)/date/(.*)/starttime/(.*)", Pattern.DOTALL);
 
     //TODO: for debugging purposes only, must be canceled
+    /*
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
-    }
+    }*/
 
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
