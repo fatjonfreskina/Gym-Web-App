@@ -28,8 +28,9 @@
                     <p>Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete this lecture</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Notify substitution</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Change schedule</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete this lecture</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
