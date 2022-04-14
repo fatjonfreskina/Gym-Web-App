@@ -1,4 +1,4 @@
-package constants.exeption;
+package constants.exceptions;
 
 import constants.Codes;
 

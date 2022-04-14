@@ -44,7 +44,7 @@ import java.sql.Time;
 public class AbstractRestServlet extends AbstractServlet
 {
     //TODO: javadoc.
-    private static class DateDeserializer implements JsonDeserializer<Date>
+    private static final class DateDeserializer implements JsonDeserializer<Date>
     {
         @Override
         public Date deserialize(JsonElement jsonElement, Type typeOF,
@@ -61,7 +61,7 @@ public class AbstractRestServlet extends AbstractServlet
 
 
     //TODO: javadoc.
-    private static class TimeDeserializer implements JsonDeserializer<Time>
+    private static final class TimeDeserializer implements JsonDeserializer<Time>
     {
         @Override
         public Time deserialize(JsonElement jsonElement, Type typeOF,
