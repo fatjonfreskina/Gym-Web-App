@@ -19,7 +19,7 @@ public class Constants {
     public static final String PATH_THE_GYM = "/jsp/thegym.jsp";
     public static final String PATH_PRICES = "/jsp/prices.jsp";
     public static final String PATH_REGISTER = "/jsp/access/register.jsp";
-    public static final String PATH_ABOUTUS = "/jsp/aboutus.jsp";
+    public static final String PATH_CONTACT_US = "/jsp/contactus.jsp";
     public static final String PATH_CALENDAR = "/jsp/calendar.jsp";
     public static final String PATH_CONFIRMED_REGISTRATION = "/jsp/access/confirmed_registration.jsp";
     public static final String PATH_CONFIRM_REGISTRATION = "/jsp/access/confirm_registration.jsp";

@@ -106,8 +106,8 @@
         <servlet-class>servlet.PersonalInfoServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AboutUsServlet</servlet-name>
-        <jsp-file>/jsp/aboutus.jsp</jsp-file>
+        <servlet-name>ContactUsServlet</servlet-name>
+        <servlet-class>servlet.ContactUsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ConfirmRegistrationServlet</servlet-name>
@@ -278,8 +278,8 @@
         <url-pattern>/personal_info</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AboutUsServlet</servlet-name>
-        <url-pattern>/aboutus</url-pattern>
+        <servlet-name>ContactUsServlet</servlet-name>
+        <url-pattern>/contactus</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConfirmRegistrationServlet</servlet-name>
