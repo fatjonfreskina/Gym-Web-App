@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <c:if test="${null != sessionScope.avatarPath}">
-    <img src="./avatar" width="50px" height="50px">
+    <img src="./avatar" width="50px" height="50px" id="img">
 </c:if>
 <c:out value="${sessionScope.email}"/>
 <c:choose>
@@ -14,7 +15,6 @@
     <c:otherwise>
     </c:otherwise>
 </c:choose>
-
 
 
 

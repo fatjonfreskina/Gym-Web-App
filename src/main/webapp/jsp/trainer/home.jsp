@@ -7,11 +7,10 @@
     <title>GWA - Trainer Home page </title>
 </head>
 <body>
-<!--<c:import url="/jsp/include/icon.jsp"></c:import>-->
+<c:import url="/jsp/include/icon.jsp"/>
 
-<jsp:include page="../include/header.jsp"/>
-<br>
-<a href="<c:url value="/trainer/attendance"/>">Attendance</a>
+<jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
+
 <h1>Courses you teach</h1>
 <table>
     <thead>

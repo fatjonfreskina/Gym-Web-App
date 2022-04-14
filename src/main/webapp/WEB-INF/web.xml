@@ -104,6 +104,10 @@
     <servlet>
         <servlet-name>PersonalInfoServlet</servlet-name>
         <servlet-class>servlet.PersonalInfoServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>5242880</max-file-size><!-- 5MB -->
+            <max-request-size>10485760</max-request-size><!-- 10 MB-->
+        </multipart-config>
     </servlet>
     <servlet>
         <servlet-name>ContactUsServlet</servlet-name>

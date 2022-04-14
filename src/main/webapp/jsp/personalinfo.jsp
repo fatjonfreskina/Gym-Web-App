@@ -1,13 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Personal Info</title>
 </head>
 <body>
-    <!--<jsp:include page="/jsp/include/icon.jsp"/>-->
 
+<c:import url="include/icon.jsp"/>
+
+<nav>
+    <a href="<c:url value="/${defaultRole}"/>">My Home</a>
+</nav>
+
+
+
+<form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
     <table>
         <tr>
             <th>Tax Code:</th>
@@ -34,22 +43,27 @@
             <td><c:out value="${personalInfo.telephone}"/></td>
         </tr>
         <tr>
-            <th>Photo (optional):</th>
-            <td><c:out value="${personalInfo.avatarPath}"/></td>
+            <th>Avatar (optional):</th>
+            <td>
+                <c:if test="${null != sessionScope.avatarPath}">
+                    <img src="./avatar" width="50px" height="50px">
+                </c:if>
+                <input type="file" name="avatar"/>
+                <input type="submit" value="Change" />
+            </td>
         </tr>
         <tr>
             <th>Email:</th>
             <td><c:out value="${personalInfo.email}"/></td>
         </tr>
-        <tr>
-            <th>Password:</th>
-            <td><c:out value="${personalInfo.psw}"/></td>
-        </tr>
-        <tr>
-            <th>Medical Certificate (optional):</th>
-            <td>""</td>
-        </tr>
     </table>
+</form>
+
+<c:if test="${message != null}">
+    <c:out value="${message.message}"/>
+</c:if>
+
+
 
     <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
