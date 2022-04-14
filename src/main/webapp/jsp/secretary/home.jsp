@@ -14,6 +14,7 @@
     <jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
 
     <div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
+    </div>
 
     <jsp:include page="../include/footer.jsp"/>
 
@@ -60,7 +61,7 @@
         eventClick: function (info) {
             console.log(info.event);
             console.log(info.event.extendedProps);
-            detailsModal.show();
+            $("#modal-details").modal("show");
         }
     });
 
@@ -91,7 +92,6 @@
     /**
      * Performs a refresh of the calendar object of this page
      */
-    /*
     function renderCalendar() {
         //Get the current active window of the calendar
         let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
@@ -134,16 +134,13 @@
             }
         });
     }
-    */
 
     //Initial render when page loaded
-    //renderCalendar();
+    renderCalendar();
 
     //Attach render calendar to button for week change
-    //$('body').on('click', 'button.fc-next-button', renderCalendar);
-    //$('body').on('click', 'button.fc-prev-button', renderCalendar);
-
-    $("#modal-details").modal("show");
+    $('body').on('click', 'button.fc-next-button', renderCalendar);
+    $('body').on('click', 'button.fc-prev-button', renderCalendar);
 
 </script>
 
