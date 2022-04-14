@@ -7,6 +7,7 @@ import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.reservation.GetAvailableSlotsReservation;
 import dao.reservation.GetReservationByAllFields;
 import dao.reservation.InsertReservationDatabase;
+import dao.subscription.GetSubscriptionExpirationByLTSDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -71,22 +72,31 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             return;
         }
         try{
+            Connection conn = getConnection();
             //Check 1: requested reservation is related to a real lecture time slot
             LectureTimeSlot lts = new LectureTimeSlot(res.getRoom(), res.getLectureDate(), res.getLectureStartTime(), 0, null, null);
-            if(new GetLectureTimeSlotByRoomDateStartTimeDatabase(getConnection(),lts).execute() == null) {
+            if(new GetLectureTimeSlotByRoomDateStartTimeDatabase(conn,lts).execute() == null) {
                 sendErrorResponse(resp, Codes.LECTURETIMESLOT_NOT_FOUND);
                 return;
             }
             //Check 2: available slots for the requested reservation
-            if(new GetAvailableSlotsReservation(getConnection(),res).execute() <=0 ){
-                sendErrorResponse(resp, Codes.SLOTS_SOLD_OUT);
+            if(new GetAvailableSlotsReservation(conn,res).execute() <=0 ){
+                sendErrorResponse(resp, Codes.ROOM_ALREADY_FULL);
                 return;
             }
-            //Check 3: requested reservation is compatible with my subscriptions and is not over the expiration of the subscription
-
+            //Check 3: requested reservation is compatible with my subscriptions and is not over its expiration of the subscription
+            Date expiration = new GetSubscriptionExpirationByLTSDatabase(conn,lts,email).execute();
+            if(expiration == null){
+                sendErrorResponse(resp, Codes.TRAINEE_NOT_ENROLLED_TO_THE_COURSE);
+                return;
+            }
+            if(expiration.compareTo(res.getLectureDate()) <= 0){
+                sendErrorResponse(resp, Codes.SUBSCRIPION_EXPIRED_BEFORE);
+                return;
+            }
 
             //Check 4: not already present a reservation made by the same user in the same slot
-            if(new GetReservationByAllFields(getConnection(),res).execute() != null) {
+            if(new GetReservationByAllFields(conn,res).execute() != null) {
                 sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
                 return;
             }
@@ -97,8 +107,8 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
 
 
         try {
-            Connection con = getConnection();
-            new InsertReservationDatabase(con, res).execute();
+            Connection conn = getConnection();
+            new InsertReservationDatabase(conn, res).execute();
             sendDataResponse(resp, res);
 
         } catch (Throwable th) {

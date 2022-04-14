@@ -89,7 +89,7 @@ public class AddSubscriptionServlet extends AbstractServlet
                     //datafinecorso - datainizio >= duration
 
                     if(( duration > DAYS.between(startSubscription.toLocalDate(),endingDateCourse.toLocalDate())))
-                        error = Codes.TYPE_SUBSCRIPTION_IVALID;
+                        error = Codes.TYPE_SUBSCRIPTION_INVALID;
                 }
 
 
