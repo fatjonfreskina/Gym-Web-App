@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * @author Francesco Caldivezzi
  * */
-public class TimeSchedulesServlet extends AbstractRestServlet
+public class TimeSchedulesServlet extends AbstractServlet
 {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -57,13 +57,13 @@ public class TimeSchedulesServlet extends AbstractRestServlet
         }
         if(error == Codes.OK)
         {
-
-            //no error
             out.print(json);
         }else
         {
             out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
         }
+        out.flush();
+        out.close();
     }
 
 

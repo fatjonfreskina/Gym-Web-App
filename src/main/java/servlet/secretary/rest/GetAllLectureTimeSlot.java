@@ -79,6 +79,8 @@ public class GetAllLectureTimeSlot extends AbstractServlet {
         PrintWriter out = response.getWriter();
         String ltsJson = new Gson().toJson(myLectureTimeSlots);
         out.println(ltsJson);
+        out.flush();
+        out.close();
 
     }
 

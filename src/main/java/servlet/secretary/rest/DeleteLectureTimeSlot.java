@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author Riccardo Forzan
  */
-public class DeleteLectureTimeSlot extends AbstractRestServlet {
+public class DeleteLectureTimeSlot extends AbstractServlet {
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -40,6 +40,8 @@ public class DeleteLectureTimeSlot extends AbstractRestServlet {
 
         //Print the message (JSON encoded) regarding the status of the operation
         out.println(new Gson().toJson(message));
+        out.flush();
+        out.close();
     }
 
     /**

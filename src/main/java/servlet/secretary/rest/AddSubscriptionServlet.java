@@ -26,7 +26,7 @@ import java.util.List;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-public class AddSubscriptionServlet extends AbstractRestServlet
+public class AddSubscriptionServlet extends AbstractServlet
 {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -37,6 +37,10 @@ public class AddSubscriptionServlet extends AbstractRestServlet
         Integer courseEditionId = null;
         Integer discount = null;
         Integer duration= null;
+
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("utf-8");
 
         if((error = parseParams(req,resp)) == Codes.OK)
         {
@@ -104,9 +108,14 @@ public class AddSubscriptionServlet extends AbstractRestServlet
         }
 
         if(error == Codes.OK)
-            sendDataResponse(resp,new Message(error.getErrorMessage(),false));
+            out.print(new Gson().toJson(new Message(error.getErrorMessage(),false)));
+            //sendDataResponse(resp,new Message(error.getErrorMessage(),false));
         else
-            sendErrorResponse(resp,error);
+            out.print(new Gson().toJson(new Message(error.getErrorMessage(),true)));
+            //sendErrorResponse(resp,error);
+
+        out.flush();
+        out.close();
     }
 
     //parametri attesi : email, durata, corso, courseid, discount, startday(oggi) checkboxato,

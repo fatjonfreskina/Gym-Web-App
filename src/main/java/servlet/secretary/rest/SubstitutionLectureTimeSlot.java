@@ -42,7 +42,8 @@ public class SubstitutionLectureTimeSlot extends AbstractServlet {
 
         //Print the message (JSON encoded) regarding the status of the operation
         out.println(new Gson().toJson(message));
-
+        out.flush();
+        out.close();
     }
 
     /**
