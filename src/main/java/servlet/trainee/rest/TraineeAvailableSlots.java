@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 public class TraineeAvailableSlots extends AbstractRestServlet {
 
     private static final Pattern URI_REGEX = Pattern.compile(
-            "/wa2122-gwa/trainee/rest/available/from-day/(.*)/to-day/(.*)", Pattern.DOTALL);
+            "/wa2122-gwa/trainee/rest/available/from-date/(.*)/to-date/(.*)", Pattern.DOTALL);
 
 
     @Override

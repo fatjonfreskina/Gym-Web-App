@@ -82,6 +82,14 @@
     </servlet>
     <!-- Trainer REST Servlets -->
     <servlet>
+        <servlet-name>TrainerCoursesStatusRestServlet</servlet-name>
+        <servlet-class>servlet.trainer.rest.TrainerCoursesStatusRestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TrainerCalendarRestServlet</servlet-name>
+        <servlet-class>servlet.trainer.rest.TrainerCalendarRestServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TrainerManageAttendanceRestServlet</servlet-name>
         <servlet-class>servlet.trainer.rest.TrainerManageAttendanceRestServlet</servlet-class>
     </servlet>
@@ -245,6 +253,20 @@
         <servlet-name>TrainerManageAttendanceServlet</servlet-name>
         <url-pattern>/trainer/attendance</url-pattern>
     </servlet-mapping>
+    <!-- Trainer REST Servlet Mappings -->
+    <servlet-mapping>
+        <servlet-name>TrainerCoursesStatusRestServlet</servlet-name>
+        <url-pattern>/trainer/rest/courses_status</url-pattern>
+        <!-- TODO good to destructure it, for future development, in
+            /course
+            /course/{id}
+            now we do only what we need and specified in initial requirements
+        -->
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TrainerCalendarRestServlet</servlet-name>
+        <url-pattern>/trainer/rest/weekly_calendar</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TrainerManageAttendanceRestServlet</servlet-name>
         <url-pattern>/trainer/rest/attendance</url-pattern>
@@ -347,7 +369,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetReservationsServlet</servlet-name>
-        <url-pattern>/trainee/rest/reservation/from-day/*</url-pattern>
+        <url-pattern>/trainee/rest/reservation/from-date/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

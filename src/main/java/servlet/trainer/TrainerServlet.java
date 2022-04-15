@@ -31,6 +31,7 @@ import resource.LectureTimeSlot;
 import resource.Person;
 import resource.Teaches;
 import resource.view.CourseStatus;
+import service.TrainerService;
 import servlet.AbstractServlet;
 
 /**
@@ -43,73 +44,40 @@ public class TrainerServlet extends AbstractServlet {
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    HttpSession session = req.getSession(false);
+    String trainerEmail = session.getAttribute("email").toString();
+    logger.debug(loggerClass + "Trainer " + trainerEmail);
+
     try {
+      TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+
+      req.setAttribute("coursesStatus", trainerService.getTrainersCoursesStatus());
+
+      // OLD CODE for calendar implementation in jsp only:
       String[] addWeeksParameter = req.getParameterValues(Constants.URL_PARAMETER_TRAINER_HOME_PAGE_ADD_WEEKS);
-
-      HttpSession session = req.getSession(false);
-      String trainerEmail = session.getAttribute("email").toString();
-      logger.debug(loggerClass + "Trainer " + trainerEmail);
-
-      List<Teaches> coursesHeld = new GetTeachesByTrainerDatabase(getDataSource().getConnection(), new Person(trainerEmail, null, null, null, null, null, null, null, null)).execute();
-      logger.debug(loggerClass + "Courses held by trainer " + coursesHeld);
-
-      List<CourseStatus> courseStatuses = getCourseStatues(coursesHeld);
-      logger.debug(loggerClass + courseStatuses);
-
       int addWeeks = 0;
       if (addWeeksParameter != null)
-        if (addWeeksParameter.length > 0)
-          addWeeks = Integer.parseInt(addWeeksParameter[0]);
+        if (addWeeksParameter.length > 0) addWeeks = Integer.parseInt(addWeeksParameter[0]);
 
       LocalDate fromLocalDate = LocalDate.now().with(TemporalAdjusters.previous(DayOfWeek.MONDAY)).plusDays(7 * addWeeks);
       Date fromDate = Date.valueOf(fromLocalDate);
       Date toDate = Date.valueOf(LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)).plusDays(7 * addWeeks));
-      List<LectureTimeSlot> allLessonsInThisWeek = getAllLessonsInRange(coursesHeld, fromDate, toDate);
+
+      List<LectureTimeSlot> allLessonsInRange = trainerService.getAllLessonsInRange(fromDate, toDate);
 
       String week[] = new String[7];
       for (int i = 0; i < 7; i++) {
         week[i] = fromLocalDate.plusDays(i).toString();
       }
 
-      req.setAttribute("courseStatuses", courseStatuses);
-      req.setAttribute("slots", getWeeklySlotsFromLectureTimeSlots(allLessonsInThisWeek));
+      req.setAttribute("weeklyLTSs", allLessonsInRange);
+      req.setAttribute("slots", getWeeklySlotsFromLectureTimeSlots(allLessonsInRange));
       req.setAttribute("week", week);
       req.setAttribute("addWeeks", addWeeks);
     } catch (SQLException | NamingException e) {
       logger.error(e.getMessage());
     }
     req.getRequestDispatcher(Constants.PATH_TRAINER_HOME).forward(req, resp);
-  }
-
-  private List<CourseStatus> getCourseStatues(List<Teaches> coursesHeld) throws NamingException, SQLException {
-    List<CourseStatus> courseStatuses = new ArrayList<>();
-    for (Teaches c : coursesHeld) {
-      List<LectureTimeSlot> allLectures = new GetLectureTimeSlotsByCourseDatabase(getDataSource().getConnection(), new LectureTimeSlot(null, null, null, c.getCourseEdition(), c.getCourseName(), null)).execute();
-      int sum = 0;
-      for (LectureTimeSlot cur : allLectures) {
-        Date beforeDate = Date.valueOf(LocalDate.now().plusDays(0));//"2022-05-12");//
-        Time beforeTime = Time.valueOf(LocalTime.now());
-        if (cur.getDate().compareTo(beforeDate) < 0 || (cur.getDate().compareTo(beforeDate) == 0 && cur.getStartTime().before(beforeTime))) {
-          sum++;
-        }
-      }
-      int traineesNumber = new GetSubscriptionsByCourseDatabase(getDataSource().getConnection(), new CourseEdition(c.getCourseEdition(), c.getCourseName())).execute().size(), currentLessonNumber = sum, totalLessonsNumber = allLectures.size();
-      courseStatuses.add(new CourseStatus(c.getCourseName(), c.getCourseEdition(), traineesNumber, currentLessonNumber, totalLessonsNumber));
-    }
-    return courseStatuses;
-  }
-
-  private List<LectureTimeSlot> getAllLessonsInRange(List<Teaches> coursesHeld, Date from, Date to) throws NamingException, SQLException {
-    List<LectureTimeSlot> allLessonsInThisWeek = new ArrayList<>();
-    for (Teaches c : coursesHeld) {
-      List<LectureTimeSlot> curCourseWeek = new GetLectureTimeSlotsInRangeDatabase(getDataSource().getConnection(), from, to).execute();
-      curCourseWeek.forEach(l -> {
-        if (l.getCourseName().equals(c.getCourseName()) && l.getCourseEditionId() == c.getCourseEdition()) {
-          allLessonsInThisWeek.add(l);
-        }
-      });
-    }
-    return allLessonsInThisWeek;
   }
 
   private String[][] getWeeklySlotsFromLectureTimeSlots(List<LectureTimeSlot> lectureTimeSlots) {

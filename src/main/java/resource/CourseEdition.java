@@ -1,5 +1,7 @@
 package resource;
 
+import java.util.Objects;
+
 /**
  * This Java Bean contains all the info about a course edition
  *
@@ -36,5 +38,18 @@ public class CourseEdition {
             "ID=" + ID +
             ", courseName='" + courseName + '\'' +
             '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseEdition that = (CourseEdition) o;
+        return ID == that.ID && Objects.equals(courseName, that.courseName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, courseName);
     }
 }

@@ -13,7 +13,7 @@
     <label>Password : </label><input type="password" name="password" value="CIAO" autocomplete="on"><br/>
     <%-- Forwards the redirect parameter to LoginServlet --%>
     <input type="hidden" name="redirect" value="${redirect}">
-    <button type="submit" >Login</button>
+    <button type="submit" autofocus>Login</button>
 </form>
 
 <a href="<c:url value="/password_forgot"/>">Password forgot</a>

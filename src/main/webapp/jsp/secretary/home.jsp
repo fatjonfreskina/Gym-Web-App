@@ -25,17 +25,73 @@
                     <h5 class="modal-title">Details about this course</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"
+                                    data-toggle="modal" data-target="#modal-notify-substitution">
+                                Notify substitution
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal"
+                                    data-toggle="modal" data-target="#modal-change-schedule">
+                                Change schedule</button>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <button id="button-delete-lecturetimeslot" type="button" class="btn btn-danger btn-sm"
+                                    data-dismiss="modal">
+                                Delete this lecture
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Notify substitution</button>
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Change schedule</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Delete this lecture</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        Close
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="modal-notify-substitution" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Notify substitution</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-change-schedule" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change schedule</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
@@ -60,8 +116,8 @@
             right: 'prev,next today'
         },
         eventClick: function (info) {
-            console.log(info.event);
-            console.log(info.event.extendedProps);
+            //console.log(info.event);
+            //console.log(info.event.extendedProps);
             $("#modal-details").modal("show");
         }
     });
@@ -121,9 +177,16 @@
                     //Set title and background color based on the title
                     event.title = lts.courseName;
                     event.backgroundColor = GetColorOfCourse(lts.courseName);
-                    //Set some additional parameters
-                    event.courseEditionId = lts.courseEditionId;
-                    event.roomName = lts.roomName;
+
+                    let lectureTimeSlot = {};
+                    lectureTimeSlot.courseEditionId = lts.courseEditionId;
+                    lectureTimeSlot.roomName = lts.roomName;
+                    lectureTimeSlot.customdate = lts.date;
+                    lectureTimeSlot.customstartTime = lts.startTime;
+
+                    //Add the custom object to the calendar object
+                    event.customLTS = lectureTimeSlot;
+
                     //Add the element to the calendar
                     calendar.addEvent(event);
                 }
@@ -136,12 +199,39 @@
         });
     }
 
-    //Initial render when page loaded
-    renderCalendar();
-
     //Attach render calendar to button for week change
     $('body').on('click', 'button.fc-next-button', renderCalendar);
     $('body').on('click', 'button.fc-prev-button', renderCalendar);
+
+    //Initial render when page loaded
+    renderCalendar();
+
+    $("#button-delete-lecturetimeslot").click(() => {
+        if(confirm("Do you really want to delete?")){
+            $.ajax({
+                url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>",
+                type: "DELETE",
+                data: {
+                    "roomname" : "Energy",
+                    "date" : "apr 11, 2022",
+                    "starttime" : "10:00:00 AM"
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response);
+
+                    //If the request has been successful render the new calendar
+                    renderCalendar();
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
+    });
+
+
 
 </script>
 

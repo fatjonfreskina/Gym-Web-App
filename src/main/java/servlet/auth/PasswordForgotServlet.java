@@ -33,14 +33,13 @@ public class PasswordForgotServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //If a GET request has been sent, then the form to ask for a password reset is shown
-        /*HttpSession session = req.getSession(false);
-        if(session == null || session.getAttribute("email").toString().isEmpty())*/
+        HttpSession session = req.getSession(false);
+        if(session == null || session.getAttribute(Constants.EMAIL) == null)
             req.getRequestDispatcher(Constants.PATH_PASSWORD_FORGOT).forward(req, resp);
-        /*else{
-            req.setAttribute("email",session.getAttribute("email").toString());
+        else{
+            req.setAttribute(Constants.EMAIL, session.getAttribute(Constants.EMAIL).toString());
             doPost(req,resp);
-        }*/
-
+        }
     }
 
     @Override
@@ -70,6 +69,9 @@ public class PasswordForgotServlet extends AbstractServlet {
 
         //Read the token field from the request (GET parameter)
         String email = req.getParameter(Constants.EMAIL);
+        if (email == null)
+            email = req.getAttribute(Constants.EMAIL).toString();
+
 
         Person person = null;
         Connection conn = null;
