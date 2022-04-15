@@ -1,40 +1,9 @@
 \subsection{REST API Details}
 
-
-\subsubsection*{A resource}
-
+\subsection*{Secretary}
 
 \begin{itemize}
-    \item URL: \texttt{secretary/rest/listlikepersons}
-    \item Method: \texttt{GET}
-    \item URL Parameters:
-    	\begin{itemize}
-    		\item partial\_email = \{string\}    		
-    	\end{itemize}
-    \item Data Parameters: No data parameter
-    \item Success Response:\\
-    Code: 200 OK\\
-    Content: The list of users with an email that match the parameter provided
-    \item Error Response:\\
-    Code : 500 INTERNAL\_ERROR\\
-    Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
-    When : If there is an SQLException or a NamingException.\\
-------------------------------------------------------------------------------------------------------------------------------------
-    \item URL: \texttt{secretary/rest/timeschedules}
-    \item Method: \texttt{GET}
-    \item URL Parameters:
-    \begin{itemize}
-    	\item course\_name = \{string\}    		
-    \end{itemize}
-    \item Data Parameters: No data parameter
-    \item Success Response:\\
-    Code: 200 OK\\
-    Content: The  list of courseeditionid, day of the week and time for each edition of the given course        
-    \item Error Response:\\
-    Code : 500 INTERNAL\_ERROR\\
-    Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
-    When : If there is an SQLException or a NamingException.\\
-------------------------------------------------------------------------------------------------------------------------------------
+
     \item URL: \texttt{secretary/rest/addsubscription}
     \item Method: \texttt{POST}
     \item URL Parameters: No parameters are required in the URL
@@ -58,6 +27,10 @@
 	Code : 400 BAD\_REQUEST\\
 	Content : \{"message" : "Overlapping Subscriptions", "isError" : "True"\}\\
     When : The "user" request to subscribe for a courseedition that is already subscribed
+    
+    Code : 400 BAD\_REQUEST\\
+    Content : \{"message" : "Remaining days of the selected course are less than the subscription duration", "isError" : "True"\}\\
+    When : The duration of the course is less than the subscription duration
 	
 	Code : 400 BAD\_REQUEST\\
 	Content : \{"message" : "Already done free trial", "isError" : "True"\}\\
@@ -65,8 +38,7 @@
 	    
     Code : 500 INTERNAL\_ERROR\\
     Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
-    When : If there is an SQLException or a NamingException.
-    
-    
+    When : If there is an SQLException or a NamingException.\\
+    ------------------------------------------------------------------------------------------------------------------------------------
 \end{itemize}
 
