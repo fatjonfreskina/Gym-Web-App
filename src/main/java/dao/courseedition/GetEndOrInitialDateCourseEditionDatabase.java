@@ -7,6 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Francesco Caldivezzi
+ * */
 public class GetEndOrInitialDateCourseEditionDatabase {
 
     private static final String STATEMENT_MAX = """
