@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Riccardo Tumiati => sistema non funziona!!!
+ * @author Riccardo Tumiati
  */
 public class GetAvailableCourses {
     private final String statement =
