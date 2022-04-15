@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.*;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -40,6 +41,7 @@ public class AddSubscriptionServlet extends AbstractServlet
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("utf-8");
+
         if((error = parseParams(req,resp)) == Codes.OK)
         {
             trainee = req.getParameter("trainee");
@@ -106,11 +108,14 @@ public class AddSubscriptionServlet extends AbstractServlet
         }
 
         if(error == Codes.OK)
-            out.print(new Gson().toJson(new Message(error.getErrorMessage(), false)));
+            out.print(new Gson().toJson(new Message(error.getErrorMessage(),false)));
+            //sendDataResponse(resp,new Message(error.getErrorMessage(),false));
         else
-            out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
+            out.print(new Gson().toJson(new Message(error.getErrorMessage(),true)));
+            //sendErrorResponse(resp,error);
 
-
+        out.flush();
+        out.close();
     }
 
     //parametri attesi : email, durata, corso, courseid, discount, startday(oggi) checkboxato,

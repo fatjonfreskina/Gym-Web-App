@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav>
-    <a href="<c:url value="/"/>">Home</a>
+    <a href="<c:url value="/trainer"/>">Home</a>
     <a href="<c:url value="/trainer/attendance"/>">Attendance</a>
     <a href="<c:url value="/personal_info"/>">Personal Info</a>
     <a href="<c:url value="/logout"/>">Logout</a>

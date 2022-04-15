@@ -397,7 +397,7 @@ public class AddCoursesServlet extends AbstractServlet
 
                         }
                     } else
-                        error = Codes.OVERLAPPING;
+                        error = Codes.OVERLAPPING_COURSES;
                 } else
                     error = Codes.INTERNAL_ERROR;
 
@@ -410,7 +410,8 @@ public class AddCoursesServlet extends AbstractServlet
             } else {
                 message = new Message(error.getErrorMessage(), true);
             }
-        }
+        }else
+            message = new Message(error.getErrorMessage(),true);
 
         String messageJson = new Gson().toJson(message);
         PrintWriter out = res .getWriter();
@@ -586,7 +587,7 @@ public class AddCoursesServlet extends AbstractServlet
                         sundayTime[i] = Time.valueOf(sunday[i]);
                 }
 
-                if(!dateFirstEventDate.after(new Date(System.currentTimeMillis())))
+                if(dateFirstEventDate.toLocalDate().isBefore((new Date(System.currentTimeMillis()).toLocalDate())))
                 {
                     error = Codes.INVALID_FIELDS;
                 }else

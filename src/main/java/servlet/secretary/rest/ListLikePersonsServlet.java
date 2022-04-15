@@ -46,5 +46,7 @@ public class ListLikePersonsServlet extends AbstractServlet
         {
             out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
         }
+        out.flush();
+        out.close();
     }
 }

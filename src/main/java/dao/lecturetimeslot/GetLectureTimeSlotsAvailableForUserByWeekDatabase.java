@@ -8,6 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Andrea Pasin
+ * */
+
 public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
     private final String statement = "SELECT lts.roomname, lts.date, lts.starttime, lts.courseeditionid, lts.coursename, lts.substitution, ro.slots, r.reservations" +
             " FROM subscription AS s JOIN lecturetimeslot AS lts ON (s.courseeditionid = lts.courseeditionid AND s.coursename = lts.coursename)"+

@@ -5,7 +5,8 @@
     <title>Manage Attendance</title>
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
+<c:import url="/jsp/include/icon.jsp"/>
+<jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
 
 <c:choose>
     <c:when test="${empty error}">

@@ -1,27 +1,21 @@
 package service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParseException;
-import constants.exeption.*;
+import constants.exceptions.*;
 import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
 import dao.reservation.DeleteReservation;
 import dao.reservation.GetListReservationByLectureDatabase;
 import dao.reservation.InsertReservationDatabase;
 import dao.room.GetRoomByNameDatabase;
 import dao.subscription.GetSubscriptionsByCourseDatabase;
-import dao.subscription.GetValidSubscriptionsByCourseDatabase;
 import dao.teaches.GetTeachesByTrainerDatabase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.*;
 import resource.rest.TrainerAttendance;
-import utils.JsonTimeDeserializer;
 
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

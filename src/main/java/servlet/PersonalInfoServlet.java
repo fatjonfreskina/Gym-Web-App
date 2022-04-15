@@ -80,11 +80,6 @@ public class PersonalInfoServlet extends AbstractServlet
                                 new Person(p.getEmail(),p.getName(),p.getSurname(),p.getPsw(),p.getTaxCode(),p.getBirthDate(),p.getTelephone(),p.getAddress(),avatarPath)).execute();
                     }
                 }
-
-
-                    //aggingi path su db
-
-
             } catch (SQLException | NamingException e)
             {
                 error = Codes.INTERNAL_ERROR;

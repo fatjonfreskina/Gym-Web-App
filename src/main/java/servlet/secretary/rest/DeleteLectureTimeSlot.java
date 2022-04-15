@@ -12,6 +12,7 @@ import resource.LectureTimeSlot;
 import resource.Message;
 import resource.Person;
 import resource.Reservation;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -39,6 +40,8 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
 
         //Print the message (JSON encoded) regarding the status of the operation
         out.println(new Gson().toJson(message));
+        out.flush();
+        out.close();
     }
 
     /**

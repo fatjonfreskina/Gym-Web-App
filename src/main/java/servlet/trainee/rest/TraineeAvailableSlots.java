@@ -1,29 +1,18 @@
 package servlet.trainee.rest;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
 import constants.Constants;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotsAvailableForUserByWeekDatabase;
-import dao.person.GetStaffPeopleDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import resource.LectureTimeSlot;
-import resource.Message;
-import resource.Reservation;
 import resource.rest.LectureTimeSlotOccupation;
 import servlet.AbstractRestServlet;
-import servlet.AbstractServlet;
 
-import javax.naming.NamingException;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -41,12 +30,14 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        checkAcceptMediaType(req);
-
-        processRequest(req,resp);
-    }
-
-    private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        // Check that the request accepts JSON format.
+        //final ErrorCodes code = checkAcceptMediaType(req);
+        final Codes code = Codes.OK;  //To enable browser requests (no JSON accepted) to be executed.
+        if (code != Codes.OK)
+        {
+            sendErrorResponse(resp, code);
+            return;
+        }
 
         // Retrieve trainee email by session.
         final HttpSession session = req.getSession(false);

@@ -12,7 +12,9 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * @author Missing Author
+ * */
 public class GetWeeklyCalendarSlotByDateDatabase {
     private static final String STATEMENT =
             "SELECT roomname, date, starttime, courseeditionid, coursename, substitution, " +

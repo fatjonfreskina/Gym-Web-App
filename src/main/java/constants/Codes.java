@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * Error codes start with value 0 and goes down -1,-2 etc..
  */
 public enum Codes {
-  NO_CONTENT(204, HttpServletResponse.SC_NO_CONTENT, "NO CONTENT"),
-  PASSWORD_CAHNGED(1, HttpServletResponse.SC_OK, "Password has been changed!"),
+  NO_CONTENT(3, HttpServletResponse.SC_NO_CONTENT, "NO CONTENT"),
+  PASSWORD_CHANGED(2, HttpServletResponse.SC_OK, "Password has been changed!"),
   PASSWORD_RESET_SENT(1, HttpServletResponse.SC_OK, "Password reset email sent!"),
   OK(0, HttpServletResponse.SC_OK, "OK"),
   EMPTY_INPUT_FIELDS(-1, HttpServletResponse.SC_BAD_REQUEST, "One or more input fields are empty."),
@@ -24,7 +24,7 @@ public enum Codes {
   CONFIRMATION_NOT_FOUND(-11, HttpServletResponse.SC_BAD_REQUEST, "Registration not found"),
   BAD_REQUEST(-12, HttpServletResponse.SC_BAD_REQUEST, "Bad request"),
   NOT_AUTHENTICATED(-13, HttpServletResponse.SC_UNAUTHORIZED, "The provided credentials are wrong"),
-  OVERLAPPING(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping!"),
+  OVERLAPPING_COURSES(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping courses!"),
   NO_COURSES_TAUGHT(-15, HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
   NO_COURSES_HELD_NOW(-16, HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
   FREE_TRIAL_ALREADY_DONE(-17, HttpServletResponse.SC_BAD_REQUEST, "Already done free trial"),

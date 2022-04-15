@@ -5,7 +5,7 @@
     <title>Manage Subscription</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
 
@@ -39,7 +39,7 @@
 </form>
 
 <script>
-    $("#partial_email").change(function (){
+    $("#partial_email").on('input',function (){
         $.ajax({
             url: "<c:url value="/secretary/rest/listlikepersons"/>",
             data: {
@@ -57,7 +57,6 @@
                 {
                     $("#list_emails").append("<li>"+person.email + "<input type='radio' name = 'trainee' value = '"+person.email+"'"+"/></li>")
                 }
-                //.append("<li><a href=''>Link Text</a></li>");
             },
             error: function(xhr)
             {
@@ -88,7 +87,7 @@
             }
         });
     })
-
+    $("#course_name").trigger('change')
 </script>
 
 

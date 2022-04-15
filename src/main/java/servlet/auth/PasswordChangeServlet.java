@@ -113,7 +113,7 @@ public class PasswordChangeServlet extends AbstractServlet {
             new DeletePasswordResetDatabase(getDataSource().getConnection(), passwordReset).execute();
 
             //The procedure has terminated correctly, return a positive message
-            return new Message(Codes.PASSWORD_CAHNGED.getErrorMessage(), false);
+            return new Message(Codes.PASSWORD_CHANGED.getErrorMessage(), false);
 
         } catch (NoSuchAlgorithmException | SQLException | NamingException e) {
             //Create the error message if something went wrong

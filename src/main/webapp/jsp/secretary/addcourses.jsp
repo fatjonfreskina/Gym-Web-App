@@ -5,7 +5,7 @@
     <title>Add Courses</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 
 
 <form method="post">

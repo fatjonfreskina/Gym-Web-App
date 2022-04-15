@@ -8,6 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * @author Missing Author
+ * */
+
 public class GetAvailableSlotsReservation {
     private static final String STATEMENT = "SELECT (slots - reservations) as available_slots"+
             " FROM room JOIN"+

@@ -11,6 +11,7 @@ import resource.CourseEdition;
 import resource.LectureTimeSlot;
 import resource.Message;
 import resource.view.GeneralWeekHours;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -56,13 +57,12 @@ public class TimeSchedulesServlet extends AbstractServlet
         }
         if(error == Codes.OK)
         {
-            //no error
             out.print(json);
         }else
         {
             out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
         }
+        out.flush();
+        out.close();
     }
-
-
 }
