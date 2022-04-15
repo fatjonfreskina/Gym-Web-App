@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -32,13 +33,17 @@ public class GetAllLectureTimeSlot extends AbstractServlet {
 
         private final String roomName;
         private final String dateTime;
+        private final Date date;
+        private final Time startTime;
         private final Integer courseEditionId;
         private final String courseName;
         private final String substitution;
 
-        public MyLectureTimeSlot(String roomName, String dateTime, Integer courseEditionId, String courseName, String substitution) {
+        public MyLectureTimeSlot(String roomName, String dateTime, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {
             this.roomName = roomName;
             this.dateTime = dateTime;
+            this.date = date;
+            this.startTime = startTime;
             this.courseEditionId = courseEditionId;
             this.courseName = courseName;
             this.substitution = substitution;
@@ -68,7 +73,9 @@ public class GetAllLectureTimeSlot extends AbstractServlet {
             long time = lts.getDate().getTime() + lts.getStartTime().getTime();
             LocalDateTime starts = LocalDateTime.ofInstant(Instant.ofEpochMilli(time), TimeZone.getDefault().toZoneId());
             //Create custom object
-            MyLectureTimeSlot myLectureTimeSlot = new MyLectureTimeSlot(lts.getRoomName(), starts.toString(), lts.getCourseEditionId(), lts.getCourseName(), lts.getSubstitution());
+            MyLectureTimeSlot myLectureTimeSlot = new MyLectureTimeSlot(lts.getRoomName(), starts.toString(),
+                    lts.getDate(), lts.getStartTime(), lts.getCourseEditionId(),
+                    lts.getCourseName(), lts.getSubstitution());
             //Add to the collection
             myLectureTimeSlots.add(myLectureTimeSlot);
         }
