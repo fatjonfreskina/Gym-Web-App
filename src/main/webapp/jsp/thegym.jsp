@@ -1,61 +1,98 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>The Gym</title>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script><!-- -->
 </head>
-<body>
-    <jsp:include page="include/header.jsp"/><br>
-    <!-- <img src="${pageContext.request.contextPath}/images/the_gym-unsplash.jpg"> -->
-    <h1>Rooms</h1>
-    <div id="theGymCarousel" class="carousel slide" data-ride="carousel"><!--style="max-width: 600px;" -->
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#theGymCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#theGymCarousel" data-slide-to="1"></li>
-            <li data-target="#theGymCarousel" data-slide-to="2"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
+<body class="container d-flex justify-content-center flex-column align-items-center">
+<jsp:include page="include/header.jsp"/>
+<div style="width:600px !important;">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+        </div>
         <div class="carousel-inner">
-            <div class="item active">
-                <img width="600" height="333"
-                     src="<c:url value="/images/thegym/the_gym1.jpg"/>"
-
-                     alt="Gym Room">
-                     <!--https://images.unsplash.com/photo-1570829460005-c840387bb1ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"-->
-
+            <div class="carousel-item active">
+                <img width="600" height="333" src="<c:url value="/images/thegym/the_gym_unsplash_1.jpg"/>"
+                     class="d-block w-100" alt="Weight Room">
+                <div class="carousel-caption d-none d-md-block"
+                     style="background: rgba(0, 0, 0, 0.35); right: 0; left: 0;">
+                    <h5>Weight Room</h5>
+                    <%--<p>Weight room is for bodybuilder and powerlifters.</p>--%>
+                </div>
             </div>
-
-            <div class="item">
-                <img width="600" height="333"
-                     src="<c:url value="/images/thegym/the_gym2.jpg"/>"
-                     alt="Yoga Room">
+            <div class="carousel-item">
+                <img width="600" height="333" src="<c:url value="/images/thegym/the_gym_unsplash_2.jpg"/>"
+                     class="d-block w-100" alt="Yoga Room">
+                <div class="carousel-caption d-none d-md-block"
+                     style="background: rgba(0, 0, 0, 0.35); right: 0; left: 0;">
+                    <h5>Yoga Room</h5>
+                    <%--<p>Yoga room is for yoga classes.</p>--%>
+                </div>
             </div>
-
-            <div class="item">
-                <img width="600" height="333"
-                     src="<c:url value="/images/thegym/the_gym3.jpeg"/>"
-                     alt="Calisthenics Room">
+            <div class="carousel-item">
+                <img width="600" height="333" src="<c:url value="/images/thegym/the_gym_unsplash_3.jpg"/>"
+                     class="d-block w-100" alt="Calisthenics Room">
+                <div class="carousel-caption d-none d-md-block"
+                     style="background: rgba(0, 0, 0, 0.35); right: 0; left: 0;">
+                    <h5>Calisthenics Room</h5>
+                    <%--<p>Calisthenics Room is for calisthenics classes.</p>--%>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img width="600" height="333" src="<c:url value="/images/thegym/the_gym_unsplash_4.jpg"/>"
+                     class="d-block w-100" alt="Swimming Pool">
+                <div class="carousel-caption d-none d-md-block"
+                     style="background: rgba(0, 0, 0, 0.35); right: 0; left: 0;">
+                    <h5>Swimming Pool</h5>
+                    <%--<p>Swimming Pool is for swimming classes.</p>--%>
+                </div>
             </div>
         </div>
-
-        <!-- Left and right controls -->
-        <a class="left carousel-control" href="#theGymCarousel" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#theGymCarousel" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+</div>
 
-    <br><jsp:include page="include/footer.jsp"/>
+<h1>Rooms</h1>
+<div class="item">
+    <img width="300" height="200"
+         src="<c:url value="/images/thegym/the_gym_rooms.jpg"/>"
+         alt="Calisthenics Room">
+</div>
+
+<jsp:include page="include/footer.jsp"/>
 </body>
 </html>
