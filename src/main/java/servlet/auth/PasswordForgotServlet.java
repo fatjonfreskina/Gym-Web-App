@@ -8,6 +8,7 @@ import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import resource.Message;
 import resource.PasswordReset;
 import resource.Person;
@@ -32,7 +33,14 @@ public class PasswordForgotServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //If a GET request has been sent, then the form to ask for a password reset is shown
-        req.getRequestDispatcher(Constants.PATH_PASSWORD_FORGOT).forward(req, resp);
+        /*HttpSession session = req.getSession(false);
+        if(session == null || session.getAttribute("email").toString().isEmpty())*/
+            req.getRequestDispatcher(Constants.PATH_PASSWORD_FORGOT).forward(req, resp);
+        /*else{
+            req.setAttribute("email",session.getAttribute("email").toString());
+            doPost(req,resp);
+        }*/
+
     }
 
     @Override
