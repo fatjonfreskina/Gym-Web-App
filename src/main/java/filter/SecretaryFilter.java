@@ -19,35 +19,36 @@ import jakarta.servlet.http.HttpSession;
 public class SecretaryFilter extends AbstractFilter {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.filter.SecretaryFilter: ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   @Override
   public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+    logger.trace(loggerClass + "Filter for Secretary's restricted area");
 
     HttpSession session = req.getSession(false);
-    boolean loggedIn = session != null && session.getAttribute("email") != null;
+    logger.trace(loggerClass + "URI: " + req.getRequestURI());
+    boolean isRest = req.getRequestURI().contains("rest");
+    logger.trace(loggerClass + "isRest: " + isRest);
 
-    logger.debug(loggerClass + "Filter for Secretary");
-    if (loggedIn) {
-      List<String> roles = (List<String>) session.getAttribute("roles");
-      if (roles.contains("secretary")) {
-        ////////////////////////////////////////////////////////////////
-        if(!session.getAttribute("defaultRole").equals("secretary")){
-          session.setAttribute("defaultRole","secretary");
-        }
-        ///////////////////////////////////////////////////////////////
-        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
-        res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
-        chain.doFilter(req, res); // User is logged in, just continue request.
-      } else {
-        logger.info(loggerClass + "unauthorized user " + session.getAttribute("email") +
-            " with roles " + roles +
-            " tried to access the secretary's sections");
-        res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_UNAUTHORIZED); //Not authorized, show the proper page
+
+    List<String> roles = (List<String>) session.getAttribute("roles");
+    if (roles.contains("secretary")) {
+      ////////////////////////////////////////////////////////////////
+      if (!session.getAttribute("defaultRole").equals("secretary")) {
+        session.setAttribute("defaultRole", "secretary");
       }
+      ///////////////////////////////////////////////////////////////
+      res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+      res.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+      chain.doFilter(req, res); // User is logged in, just continue request.
     } else {
-      logger.info(loggerClass + "User not logged it");
-      res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN); // Not logged in, show login page.
+      logger.warn(loggerClass + "unauthorized user " + session.getAttribute("email") +
+          " with roles " + roles +
+          " tried to access the secretary's sections");
+      if (isRest)
+        sendRestResponse(res, HttpServletResponse.SC_FORBIDDEN, "Unauthorized User: user does not have enough privileges to perform the action!");
+      else
+        req.getRequestDispatcher(Constants.PATH_UNAUTHORIZED).forward(req, res); //Not authorized, show the proper page
     }
   }
 }

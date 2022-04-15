@@ -1,4 +1,4 @@
-package servlet.trainer.rest;
+package rest.trainer;
 
 import constants.Codes;
 import constants.Constants;
@@ -41,7 +41,7 @@ import java.util.List;
 public class TrainerCalendarRestServlet extends AbstractRestServlet {
 
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.servlet.trainer.rest.TrainerCalendarRestServlet: ";
+  private final String loggerClass = "gwa.rest.trainer.TrainerCalendarRestServlet: ";
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

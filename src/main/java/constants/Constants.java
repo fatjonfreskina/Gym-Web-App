@@ -6,9 +6,7 @@ public class Constants {
 
     //GENERAL APPLICATION PATHS
     public static final String RELATIVE_URL_LOGIN = "/login";
-    public static final String RELATIVE_URL_LOGOUT = "/logout";
     public static final String RELATIVE_URL_PERSONALINFO = "/personal_info";
-    public static final String RELATIVE_URL_UNAUTHORIZED = "/unauthorized";
     public static final String RELATIVE_URL_HOME = "/";
     public static final String RELATIVE_URL_TRAINER_MANAGE_ATTENDANCE = "/trainer/attendance";
 
@@ -27,6 +25,7 @@ public class Constants {
     public static final String PATH_COURSES = "/jsp/courses.jsp";
     public static final String PATH_STAFF = "/jsp/staff.jsp";
     public static final String PATH_ROLES = "/jsp/access/roles.jsp";
+    public static final String PATH_UNAUTHORIZED = "/jsp/access/unauthorized.jsp";
 
     //TRAINEE PATH
     public static final String PATH_TRAINEE = "/jsp/trainee/trainee.jsp";

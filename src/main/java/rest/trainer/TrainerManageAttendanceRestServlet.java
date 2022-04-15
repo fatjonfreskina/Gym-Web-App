@@ -1,4 +1,4 @@
-package servlet.trainer.rest;
+package rest.trainer;
 
 import java.io.IOException;
 import java.io.PrintWriter;

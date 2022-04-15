@@ -1,4 +1,4 @@
-package servlet.trainer.rest;
+package rest.trainer;
 
 import constants.Codes;
 import constants.Constants;

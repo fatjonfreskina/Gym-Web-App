@@ -138,7 +138,7 @@ From: <c:out value="${week[0]}"/> To: <c:out value="${week[6]}"/>
     function renderCalendar() {
         //Perform the AJAX request to fill the calendar
         $.ajax({
-            url: "<c:url value="/trainer/rest/weekly_calendar"/>",
+            url: "<c:url value="/rest/trainer/weekly_calendar"/>",
             data: {
                 "addWeeks": addWeeks,
             },
