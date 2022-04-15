@@ -1,29 +1,41 @@
 \subsection{REST API Summary}
 
-The rest API is studied to expiriment with multiple different approaches to the REST paradigm. 
-More in detail rest is not used to implement the login part, registration part a some pages related to the funtionalities of trainee, trainer and secretary.
-Part of URIs are filtered with different filters. TRAINEE indicates the filter that allow the access for trainees, TRAINER identifies the filter that allow the
-access to trainers and SECRETARY the one for secretaries.
-
+The REST API is studied to experiment with multiple different approaches to the REST paradigm. 
+Even though, the whole web application is not based on REST APIs, like login logic is still cookie based and session in stored on the server, different action can be performed through REST methods. 
+The following table describes which REST request can be performed. Each request goes through the chain of filters in order to be performed, those filters are listed in the last column.
 
 %describe the REST API. If needed, add a few lines of text here, describing the content of the table.
 
-\begin{longtable}{|p{.375\columnwidth}|p{.1\columnwidth} |p{.35\columnwidth}|p{.1\columnwidth}|}
-\textbf{URI} & \textbf{Method} & \textbf{Description} & \textbf{Filter} \\\hline
-secretary/rest/listlikepersons & GET & By specifing a string that is part of email return the list of users with such patter  & Secretary\\\hline
+\begin{longtable}{|p{.375\columnwidth}|p{.075\columnwidth} |p{.325\columnwidth}|p{.125\columnwidth}|}
+\textbf{URI} & \textbf{Method} & \textbf{Description} & \textbf{Filters} \\\hline
+secretary/rest/listlikepersons & GET & By specifing a string that is part of email return the list of users with such patter  & Login, Secretary\\\hline
 
-secretary/rest/timeschedules & GET & By specifing a string that is the name of a course it will return a list of courseeditionid, day of the week and time for each edition of the given course  & Secretary\\\hline
+secretary/rest/timeschedules & GET & By specifing a string that is the name of a course it will return a list of courseeditionid, day of the week and time for each edition of the given course  & Login, Secretary\\\hline
 
-secretary/rest/addsubscription & POST & By specifing an email of a user, name of a course, id of courseedition, discount, and duration it will add a subscription for the given user  & Secretary\\\hline
+secretary/rest/addsubscription & POST & By specifing an email of a user, name of a course, id of courseedition, discount, and duration it will add a subscription for the given user  & Login, Secretary\\\hline
 
-trainee/rest/available/from-date/\{date\}/to-date/\{date\} & GET & Get available lecture time slots for the specific user (logged in), according to his valid subscriptions and for the interval of dates specified in the URI & Trainee\\\hline
+trainee/rest/available/from-date/\{date\}/to-date/\{date\} & GET & Get available lecture time slots for the specific user (logged in), according to his valid subscriptions and for the interval of dates specified in the URI & Login, Trainee\\\hline
 
-trainee/rest/reservation/from-date/\{date\}/to-date/\{date\} & GET & Get all the reservations for the specific user (logged in) to his courses, for the period specified in the URI & Trainee\\\hline
+trainee/rest/reservation/from-date/\{date\}/to-date/\{date\} & GET & Get all the reservations for the specific user (logged in) to his courses, for the period specified in the URI & Login, Trainee\\\hline
 
-trainee/rest/reservation & POST & Create a new reservation, for the logged in user, in a specific lecture time slot of a specified course & Trainee\\\hline
+trainee/rest/reservation & POST & Create a new reservation, for the logged in user, in a specific lecture time slot of a specified course & Login, Trainee\\\hline
 
-trainee/rest/reservation/room/ \{room\}/date/\{date\}/starttime/\{time\} & DELETE & Delete a reservation made by the logged in user, specifying all the information (room, date, time) of the lecture time slot & Trainee\\\hline
+trainee/rest/reservation/room/ \{room\}/date/\{date\}/starttime/\{time\} & DELETE & Delete a reservation made by the logged in user, specifying all the information (room, date, time) of the lecture time slot. & Login, Trainee\\\hline
 
-\caption{Describe in this table your REST API}
+% TRAINERs REST APIs
+% GETs
+/rest/trainer/weekly\_calendar?addWeeks= \{weeks\} & GET & Returns all the LectureTimeSlots, as an ARRAY of JSON object, in a given week for the specific logged in trainer. By default the week is set to the current one but the API allows to retrieve also LectureTimeSlots from different weeks just by adding or subtracting \textit{weeks} parameter from the current week. & Login, Trainer\\\hline
+
+/rest/trainer/courses\_status & GET & Returns each course held by the logged in trainer with number of trainees and the current lesson number over all the lessons. All as a single JSON object. & Login, Trainer\\\hline
+
+/rest/trainer/attendance & GET & Returns a single JSON object composed by the current LectureTimeSlot, held by the logged in trainer, a list of reservations that represent all the presence to that lesson and finaly a list of subscriptions that represent all the trainees that are absent. & Login, Trainer\\\hline
+
+% POSTs
+/rest/trainer/attendance & POST & This API allows the logged-in trainer to mark as present a trainee, by giving its Subscription as JSON object in the body of the POST request. & Login, Trainer\\\hline
+
+% DELETEs
+/rest/trainer/attendance & DELETE & This API allows the logged-in trainer to mark as absent a trainee, by giving its Reservation as JSON object int the body of the DELETE request. & Login, Trainer\\\hline
+
+\caption{REST APIs}
 \label{tab:termGlossary}
 \end{longtable}

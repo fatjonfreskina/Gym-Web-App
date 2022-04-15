@@ -70,31 +70,62 @@
 		\item Contribution to the development of the Trainer section
 		\item Contribution to the design of the Sequence Diagram
 	\end{enumerate}
-	\item[Singh Harjot] Entity-Relationship Schema's description,
-	
-	implementation of the following \textit{\textbf{DAOs}:
-		% GET
-		GetLectureTimeSlotsByCourseDatabase,
-		GetLectureTimeSlotsByDateDatabase,
-		GetLectureTimeSlotsByRoomNameDatabase,
-		GetLectureTimeSlotsCurrentWeekDatabase,
-		% INSERT
-		InsertLectureTimeSlotDatabase,
-		% UPDATE
-		UpdateLectureTimeSlotDatabase,
-		% DELETE
-		DeleteLectureTimeSlotDatabase,
-	}
-	
-	implementation of the following \textit{\textbf{servlets}: 
-		... 
-	}
-	
-	implementation of the following \textit{\textbf{pages}: 
-		Trainer desktop and mobile version,
-	}
-	
-	preparation of the following schemas: ... .
+	\item[Singh Harjot] My contributions to this project are:
+	\begin{flushleft}
+	\begin{enumerate}
+		\item Contribuition to the Entity-Relationship Schema
+		\item Entity-Relationship Schema's description
+		\item Implementation of the following \textit{\textbf{BEANs}:
+			LectureTimeSlot, TrainerAttendance, CourseStatus
+		}
+		\item Implementation of the following \textit{\textbf{DAOs}:
+			% GET
+			GetLectureTimeSlotsByCourseDatabase,
+			GetLectureTimeSlotsByDateDatabase,
+			GetLectureTimeSlotsByRoomNameDatabase,
+			GetLectureTimeSlotsInRangeDatabase,
+			GetSubscriptionsByCourseDatabase,
+			(Contribution)GetListReservationByLectureDatabase,
+			(Contribution)GetRoomByNameDatabase,
+			% INSERT
+			InsertLectureTimeSlotDatabase,
+			% UPDATE
+			UpdateLectureTimeSlotDatabase,
+			% DELETE
+			DeleteLectureTimeSlotDatabase,
+			(Contribution)DeleteReservation,	
+		}
+		\item Implementation of the following \textit{\textbf{SERVLETs}: 
+			TrainerServlet,
+			TrainerManageAttendanceServlet,
+			% REST
+			TrainerCalendarRestServlet,
+			TrainerCoursesStatusServlet,
+			TrainerManageAttendanceRestServlet,
+		}
+		\item Implementation of the following \textit{\textbf{FILTERSs}: 
+			RestrictedAreaFilter,
+			TrainerFilter,
+			TraineeFilter,
+			SecretaryFilter,
+			AbstractFilter,
+		}
+		\item Implementation of the following \textit{\textbf{SERVICESs}: 
+			TrainerService,
+			GsonService,
+		}
+		\item Implementation of the following \textit{\textbf{PAGEs}: 
+			\begin{enumerate}
+				\item MOCKUPs: Trainer desktop and mobile version,	TheGym desktop version
+				\item JSPs: 
+					'/jsp/trainer/home.jsp',
+					'/jsp/trainer/manageAttendance.jsp',
+					'/jsp/thegym.jsp',
+					'/jsp/access/unauthorized.jsp',
+			\end{enumerate}
+		}
+	\end{enumerate}
+	\end{flushleft}
 	\item[Tumiati Riccardo] 
 	\begin{enumerate}
 		\item 
