@@ -14,9 +14,6 @@
     <a href="<c:url value="/${defaultRole}"/>">My Home</a>
 </nav>
 
-
-
-<form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
     <table>
         <tr>
             <th>Tax Code:</th>
@@ -48,16 +45,24 @@
                 <c:if test="${null != sessionScope.avatarPath}">
                     <img src="./avatar" width="50px" height="50px">
                 </c:if>
-                <input type="file" name="avatar"/>
-                <input type="submit" value="Change" />
+                <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
+                    <input type="file" name="avatar"/>
+                    <input type="submit" value="Change" />
+                </form>
             </td>
         </tr>
         <tr>
             <th>Email:</th>
             <td><c:out value="${personalInfo.email}"/></td>
         </tr>
+        <tr>
+            <th>Change password:</th>
+            <td>
+                <a href="<c:url value="/password_forgot"/>">Reset</a>
+            </td>
+        </tr>
     </table>
-</form>
+
 
 <c:if test="${message != null}">
     <c:out value="${message.message}"/>
