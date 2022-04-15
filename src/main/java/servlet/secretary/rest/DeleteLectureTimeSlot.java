@@ -93,8 +93,5 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
         } catch (SQLException | NamingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
-
     }
-
-
 }
