@@ -24,7 +24,7 @@ import java.sql.SQLException;
  */
 public class TrainerManageAttendanceServlet extends AbstractServlet {
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.servlet.trainer.TManageAttendanceS : ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   /* GET ALL RESERVATIONS AND SUBSCRIPTIONS */
   @Override

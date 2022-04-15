@@ -30,7 +30,8 @@ import java.util.stream.Collectors;
 public class TrainerService {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.service.trainer: ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
+
   private final DataSource dataSource;
   private final String trainerEmail;
 

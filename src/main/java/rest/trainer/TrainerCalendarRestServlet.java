@@ -41,7 +41,7 @@ import java.util.List;
 public class TrainerCalendarRestServlet extends AbstractRestServlet {
 
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.rest.trainer.TrainerCalendarRestServlet: ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

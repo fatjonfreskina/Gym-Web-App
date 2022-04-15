@@ -40,7 +40,7 @@ import servlet.AbstractServlet;
 public class TrainerServlet extends AbstractServlet {
 
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.servlet.trainer.TrainerServlet: ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

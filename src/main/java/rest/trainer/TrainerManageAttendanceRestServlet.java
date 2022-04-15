@@ -33,7 +33,7 @@ import utils.JsonTimeSerializer;
  */
 public class TrainerManageAttendanceRestServlet extends AbstractServlet {
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.servlet.trainer.rest.TraManAttRestS : ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   /* GET ALL RESERVATIONS AND SUBSCRIPTIONS */
   @Override
