@@ -65,6 +65,4 @@ public class TimeSchedulesServlet extends AbstractServlet
         out.flush();
         out.close();
     }
-
-
 }
