@@ -7,6 +7,14 @@
 </head>
 <body>
 <jsp:include page="/jsp/include/header.jsp"/>
+<c:choose>
+    <c:when test="${medicalCertificate != null}">
+        <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"></c:out>
+    </c:when>
+    <c:otherwise>
+        <c:out value="You do not have a Medical Certificate please go to the secretariat!!!"></c:out>
+    </c:otherwise>
+</c:choose>
 
 
 <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
