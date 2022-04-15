@@ -5,7 +5,7 @@
     <title>Manage Subscription</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
 

@@ -1,11 +1,9 @@
 package servlet.trainer;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParseException;
 import constants.Constants;
 import constants.Codes;
-import constants.exeption.CustomException;
+import constants.exceptions.CustomException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,12 +13,10 @@ import resource.*;
 import service.GsonService;
 import service.TrainerService;
 import servlet.AbstractServlet;
-import utils.JsonTimeDeserializer;
 
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Time;
 
 /**
  * @author Andrea Pasin

@@ -10,7 +10,7 @@ import javax.naming.NamingException;
 
 import com.google.gson.*;
 
-import constants.exeption.CustomException;
+import constants.exceptions.CustomException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

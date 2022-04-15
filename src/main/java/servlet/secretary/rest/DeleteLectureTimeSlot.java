@@ -54,6 +54,8 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
         Date date = Date.valueOf(request.getParameter("date"));
         Time startTime = Time.valueOf(request.getParameter("starttime"));
 
+        //TODO: Check, you can delete only after now()
+
         //Edited reservation
         Reservation toFind = new Reservation(roomName, date, startTime);
 

@@ -14,9 +14,9 @@ import constants.Codes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import constants.exeption.TrainerCoursesOverlapping;
-import constants.exeption.TrainerNoCourseHeld;
-import constants.exeption.TrainerNoCourseHeldNow;
+import constants.exceptions.TrainerCoursesOverlapping;
+import constants.exceptions.TrainerNoCourseHeld;
+import constants.exceptions.TrainerNoCourseHeldNow;
 import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
 import dao.reservation.DeleteReservation;
 import dao.reservation.GetListReservationByLectureDatabase;

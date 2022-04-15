@@ -8,6 +8,6 @@
     <title>Manage lectures</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecreatry.jsp"/>
+<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </body>
 </html>
