@@ -42,3 +42,55 @@
     ------------------------------------------------------------------------------------------------------------------------------------
 \end{itemize}
 
+\subsection*{Trainee}
+
+\begin{itemize}
+	
+	\item URL: \texttt{trainee/rest/reservation}
+	\item Method: \texttt{POST}
+	\item URL Parameters: No parameters are required in the URL
+	\item Data Parameters: 
+	\begin{itemize}
+		\item room = \{string\}
+		\item lectureDate = \{date\}
+		\item lectureStartTime = \{time\}
+	\end{itemize}
+	\item Success Response:
+	Code: 200 OK\\
+	Content: \{"trainee":\{string\},"room":\{string\},"lectureDate":\{date\},"lectureStartTime":\{time\}\}
+	\item Error Response:
+	
+	Code : 415 UNSUPPORTED MEDIA TYPE\\
+	Content : \{"message" : "Wrong json reservation", "isError" : "True"\}\\
+	When : If some of the mandatory parameters are not provided in Json format correctly
+	
+	Code : 400 BAD\_REQUEST\\
+	Content : \{"message" : "Can't insert date in the past!", "isError" : "True"\}\\
+	When : The "user" can't book a slot in the past
+	
+	Code : 404 NOT FOUND\\
+	Content : \{"message" : "LectureTimeSlot not found", "isError" : "True"\}\\
+	When : Can't book in a slot where isn't present a lecture.
+	
+	Code : 403 FORBIDDEN\\
+	Content : \{"message" : "Trainee must be enrolled to the course to make a reservation", "isError" : "True"\}\\
+	When : User can't make a reservation in a course where he isn't subscribed
+	
+	Code : 406 NOT ACCEPTABLE\\
+	Content : \{"message" : "Subscription expired before the requested reservation", "isError" : "True"\}\\
+	When : User can't make a reservation in a course where his subscription expired before the requested date.
+	
+	Code : 400 BAD REQUEST\\
+	Content : \{"message" : "There are no more spots left", "isError" : "True"\}\\
+	When : User can't book a slot where there aren't no more.
+	
+	Code : 409 CONFLICT\\
+	Content : \{"message" : "Reservation already present", "isError" : "True"\}\\
+	When : User can't book a slot two times.
+	
+	Code : 500 INTERNAL ERROR\\
+	Content : \{"message" : "An internal error occured", "isError" : "True"\}\\
+	When : If there is an SQLException or a NamingException.\\
+	------------------------------------------------------------------------------------------------------------------------------------
+\end{itemize}
+
