@@ -347,7 +347,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetReservationsServlet</servlet-name>
-        <url-pattern>/trainee/rest/reservation/from-day/*</url-pattern>
+        <url-pattern>/trainee/rest/reservation/from-date/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
