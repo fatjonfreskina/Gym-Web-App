@@ -10,6 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.*;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -25,7 +26,7 @@ import java.util.List;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-public class AddSubscriptionServlet extends AbstractServlet
+public class AddSubscriptionServlet extends AbstractRestServlet
 {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -37,9 +38,6 @@ public class AddSubscriptionServlet extends AbstractServlet
         Integer discount = null;
         Integer duration= null;
 
-        PrintWriter out = resp.getWriter();
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("utf-8");
         if((error = parseParams(req,resp)) == Codes.OK)
         {
             trainee = req.getParameter("trainee");
@@ -106,11 +104,9 @@ public class AddSubscriptionServlet extends AbstractServlet
         }
 
         if(error == Codes.OK)
-            out.print(new Gson().toJson(new Message(error.getErrorMessage(), false)));
+            sendDataResponse(resp,new Message(error.getErrorMessage(),false));
         else
-            out.print(new Gson().toJson(new Message(error.getErrorMessage(), true)));
-
-
+            sendErrorResponse(resp,error);
     }
 
     //parametri attesi : email, durata, corso, courseid, discount, startday(oggi) checkboxato,

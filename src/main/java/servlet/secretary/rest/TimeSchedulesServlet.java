@@ -11,6 +11,7 @@ import resource.CourseEdition;
 import resource.LectureTimeSlot;
 import resource.Message;
 import resource.view.GeneralWeekHours;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -25,7 +26,7 @@ import java.util.Set;
 /**
  * @author Francesco Caldivezzi
  * */
-public class TimeSchedulesServlet extends AbstractServlet
+public class TimeSchedulesServlet extends AbstractRestServlet
 {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,6 +57,7 @@ public class TimeSchedulesServlet extends AbstractServlet
         }
         if(error == Codes.OK)
         {
+
             //no error
             out.print(json);
         }else

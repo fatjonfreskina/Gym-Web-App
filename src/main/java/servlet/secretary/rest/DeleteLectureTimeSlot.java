@@ -12,6 +12,7 @@ import resource.LectureTimeSlot;
 import resource.Message;
 import resource.Person;
 import resource.Reservation;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -25,7 +26,7 @@ import java.util.List;
 /**
  * @author Riccardo Forzan
  */
-public class DeleteLectureTimeSlot extends AbstractServlet {
+public class DeleteLectureTimeSlot extends AbstractRestServlet {
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {

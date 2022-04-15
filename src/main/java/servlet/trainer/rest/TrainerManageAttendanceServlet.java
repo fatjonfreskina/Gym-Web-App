@@ -76,7 +76,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     } catch (TrainerNoCourseHeldNow e) {
       sendFeedback(res, Codes.NO_COURSES_HELD_NOW);
     } catch (TrainerCoursesOverlapping e) {
-      sendFeedback(res, Codes.OVERLAPPING);
+      sendFeedback(res, Codes.OVERLAPPING_COURSES);
     }
   }
 
@@ -123,7 +123,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       e.printStackTrace();
       sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (TrainerCoursesOverlapping e) {
-      sendFeedback(res, Codes.OVERLAPPING);
+      sendFeedback(res, Codes.OVERLAPPING_COURSES);
     } catch (TrainerNoCourseHeld e) {
       sendFeedback(res, Codes.NO_COURSES_TAUGHT);
     } catch (TrainerNoCourseHeldNow e) {
@@ -156,7 +156,7 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
       sendFeedback(res, Codes.INTERNAL_ERROR);
       return;
     } catch (TrainerCoursesOverlapping e) {
-      sendFeedback(res, Codes.OVERLAPPING);
+      sendFeedback(res, Codes.OVERLAPPING_COURSES);
     } catch (TrainerNoCourseHeld e) {
       sendFeedback(res, Codes.NO_COURSES_TAUGHT);
     } catch (TrainerNoCourseHeldNow e) {
