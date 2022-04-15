@@ -17,17 +17,19 @@
     <c:import url="/jsp/include/icon.jsp"/>
     <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
     <h1>Courses you teach</h1>
-    <table>
+    <table class="table table-striped">
         <thead>
         <tr>
-            <th>Course Name</th>
-            <th>Number of Trainees</th>
-            <th>Lesson n°</th>
+            <th scope="col">#</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Number of Trainees</th>
+            <th scope="col">Lesson n°</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="course" items="${coursesStatus}">
+        <c:forEach var="course" items="${coursesStatus}" varStatus="loop">
             <tr>
+                <th scope="row">${loop.index+1}</th>
                 <td><c:out value="${course.getCourseName()}"/>_<c:out
                         value="${course.getCourseEdition()}"/></td>
                 <td><c:out value="${course.getTraineesNumber()}"/></td>
@@ -38,7 +40,10 @@
         </tbody>
     </table>
     <br>
-    <div id="calendar" style="max-height:100%;max-width: calc(100% - 20px);margin: 40px auto;"/>
+    <div>
+        <div id="calendar"
+             style="height:auto;max-width: calc(100% - 20px);margin: 40px auto; text-transform: uppercase !important;"/>
+    </div>
 </div>
 <%-- OLD CALENDAR
 <c:if test="${empty addWeeks}">
@@ -96,16 +101,27 @@ From: <c:out value="${week[0]}"/> To: <c:out value="${week[6]}"/>
         initialDate: new Date(),
         themeSystem: "bootstrap",
         headerToolbar: {
-            left: '',
+            left: 'prev',
             center: 'title',
-            right: 'prev,next'
+            right: 'next'
         },
         allDaySlot: false,
-        eventClick: function (info) {
-            //console.log(info.event);
-            //console.log(info.event.extendedProps);
-            //$("#modal-details").modal("show");
-        }
+        slotLabelFormat: {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: false
+        },
+        eventTimeFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        },
+        slotMinTime: "05:00:00",
+        slotMaxTime: "23:00:00",
+        businessHours: false,
+        firstDay: 1,
+        slotDuration: '00:30',
+        nowIndicator: true,
     });
 
     /**
