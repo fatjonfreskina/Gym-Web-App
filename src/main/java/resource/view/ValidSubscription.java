@@ -5,6 +5,9 @@ import resource.Subscription;
 
 import java.util.Date;
 
+/*
+    @author Tumiati Riccardo
+ */
 public class ValidSubscription {
     private final Subscription subscription;
     private final Person trainer;

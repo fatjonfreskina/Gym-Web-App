@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author Missing Author
+ * @author Riccardo Tumiati
  * */
 
 public class GetAvailableSlotsReservation {

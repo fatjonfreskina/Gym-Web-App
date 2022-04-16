@@ -5,6 +5,7 @@ import java.util.Objects;
 /**
  * This Java Bean contains all the info about a course edition
  *
+ * @author Tumiati Riccardp
  * @author Francesco Caldivezzi
  */
 

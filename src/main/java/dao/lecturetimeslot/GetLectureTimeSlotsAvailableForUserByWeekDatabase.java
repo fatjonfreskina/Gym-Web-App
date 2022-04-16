@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Andrea Pasin
+ * @author Riccardo Tumiati
  * */
 
 public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {

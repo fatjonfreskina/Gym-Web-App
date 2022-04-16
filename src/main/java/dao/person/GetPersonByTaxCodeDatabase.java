@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author Riccardo Tumiati
  * @author Francesco Caldivezzi
  */
 public class GetPersonByTaxCodeDatabase {
