@@ -10,6 +10,7 @@ import dao.lecturetimeslot.InsertLectureTimeSlotDatabase;
 import dao.person.GetListOfTeachersDatabase;
 import dao.room.GetListRoomsDatabase;
 import dao.subscriptiontype.InsertSubscriptionTypeDatabase;
+import dao.teaches.InsertTeachesDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -395,15 +396,24 @@ public class AddCoursesServlet extends AbstractServlet
                             if(cost365 != null)
                                 new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,365,cost365)).execute();
 
+                            //Insert into teaches
+                            new InsertTeachesDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName),new Person(teacher)).execute();
+
+
                         }
                     } else
                         error = Codes.OVERLAPPING_COURSES;
                 } else
                     error = Codes.INTERNAL_ERROR;
 
+
+
+
             } catch (NamingException | SQLException exception) {
                 error = Codes.INTERNAL_ERROR;
             }
+
+
 
             if (error.getErrorCode() == Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), false);

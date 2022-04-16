@@ -18,16 +18,26 @@ import java.util.List;
  * @author Andrea Pasin
  */
 public class GetListForPrices {
-
     private static final String STATEMENT = """
-            SELECT courseeditionid,coursename,duration,T1.cost, max(date) as maxdate ,min(date) as mindate
+            SELECT T2.courseeditionid,T2.coursename,T2.duration,T2.cost, T2.maxdate ,T2.mindate,name,surname, T4.lecturesperweek
             FROM
-            (SELECT coursename,courseeditionid,duration,date, subscriptiontype.cost
-            FROM subscriptiontype natural join lecturetimeslot
-            where duration != 7 and date >= current_date
-            group by (coursename,courseeditionid,duration,date,subscriptiontype.cost)) AS T1\s
-            group by coursename,courseeditionid,duration,T1.cost
+            (SELECT courseeditionid,coursename,duration,T1.cost, max(date) AS maxdate ,min(date) AS mindate
+            FROM (SELECT coursename,courseeditionid,duration,date, subscriptiontype.cost
+            	  FROM subscriptiontype NATURAL JOIN lecturetimeslot
+            	  WHERE duration != 7 AND date >= current_date
+            	  GROUP BY (coursename,courseeditionid,duration,date,subscriptiontype.cost)) AS T1
+            GROUP BY coursename,courseeditionid,duration,T1.cost) AS T2
+            NATURAL JOIN teaches
+            JOIN person ON teaches.trainer=person.email
+            NATURAL JOIN (SELECT T3.coursename,T3.courseeditionid,AVG(T3.perweek) as lecturesperweek FROM
+            (SELECT coursename,courseeditionid, count(*) AS perweek
+            	  FROM subscriptiontype NATURAL JOIN lecturetimeslot
+            	  WHERE duration != 7 AND date >= current_date
+            	  GROUP BY (coursename,courseeditionid,duration,DATE_PART('week',date),subscriptiontype.cost)) AS T3
+            GROUP BY (T3.coursename,T3.courseeditionid)) AS T4
             """;
+
+
     private final Connection con;
 
     /**
@@ -56,7 +66,8 @@ public class GetListForPrices {
                         resultSet.getInt("duration"),
                         resultSet.getFloat("cost"),
                         resultSet.getDate("maxdate"),
-                        resultSet.getDate("mindate")));
+                        resultSet.getDate("mindate"),
+                        resultSet.getFloat("lecturesperweek")));
             }
 
         }
