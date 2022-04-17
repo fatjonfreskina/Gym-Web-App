@@ -64,10 +64,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-
+                        <label for="substitute">Select a substitute</label>
+                        <select id="substitute" name="substitute">
+                            <c:forEach var="teacher" items="${teachers}">
+                                <option value="${teacher.email}">
+                                    <c:out value="${teacher.name} ${teacher.surname}"/>
+                                </option>
+                            </c:forEach>
+                        </select>
+                        <label for="info-substitution">Extra info</label>
+                        <p>Add some extra information that will be embedded in the mail to the subscribed users</p>
+                        <textarea id="info-substitution" name="infosubstitution">
+                        </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Notify substitution</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -82,10 +94,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-
+                        <label for="new-start-time">Specify a new start time</label>
+                        <input type="time" id="new-start-time" name="newstarttime" min="09:00" max="20:00">
+                        <label>Specify a new date</label>
+                        <input type="date" id="new-date" name="newdate">
+                        <label for="newroom">Specify a new room</label>
+                        <select id="newroom" name="newroom">
+                            <c:forEach var="room" items="${rooms}">
+                                <option  value="${room.name}"><c:out value="${room.name}"/></option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Change schedule</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>

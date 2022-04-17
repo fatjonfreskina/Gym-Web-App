@@ -35,6 +35,7 @@ import java.util.Locale;
 public class DeleteLectureTimeSlot extends AbstractServlet {
 
     @Override
+    //TODO: Modify in doDelete
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //Try to perform the operation
         Message message = deleteLectureTimeSlot(request);
