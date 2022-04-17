@@ -14,7 +14,6 @@ import resource.Message;
 import resource.Person;
 import resource.Reservation;
 import servlet.AbstractServlet;
-import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -22,6 +21,11 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 /**
@@ -44,6 +48,7 @@ public class SubstitutionLectureTimeSlot extends AbstractServlet {
         out.println(new Gson().toJson(message));
         out.flush();
         out.close();
+
     }
 
     /**
@@ -52,12 +57,19 @@ public class SubstitutionLectureTimeSlot extends AbstractServlet {
      * @param request HTTP requests to process (containing the parameters)
      * @return Message regarding the status of the required operation
      */
-    private Message performSubstitution(HttpServletRequest request){
+    private Message performSubstitution(HttpServletRequest request) {
 
         //Parse the parameters
         String roomName = request.getParameter("roomname");
-        Date date = Date.valueOf(request.getParameter("date"));
-        Time startTime = Time.valueOf(request.getParameter("starttime"));
+
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
+                .append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
+        LocalDate localDate = LocalDate.parse(request.getParameter("date"), formatter);
+        Date date = new Date(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
+
+        LocalTime localTime = LocalTime.parse(request.getParameter("starttime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        Time startTime = Time.valueOf(localTime);
+
         String email = request.getParameter("substitution");
         //This field will be sent as a motivation in the email to notice all the subscribed users
         String notes = request.getParameter("notes");
@@ -67,7 +79,7 @@ public class SubstitutionLectureTimeSlot extends AbstractServlet {
         //Try to update the LectureTimeSlot
         try {
             //Get the LectureTimeSlot
-            lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(),new LectureTimeSlot(roomName,date,startTime,null,null,null)).execute();
+            lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName, date, startTime, null, null, null)).execute();
             //Create a new LectureTimeSlot updating the substitution field
             LectureTimeSlot updatedLectureTimeSlot = new LectureTimeSlot(lectureTimeSlot.getRoomName(), lectureTimeSlot.getDate(), lectureTimeSlot.getStartTime(), lectureTimeSlot.getCourseEditionId(), lectureTimeSlot.getCourseName(), email);
             //Update the LectureTimeSlot
@@ -77,14 +89,14 @@ public class SubstitutionLectureTimeSlot extends AbstractServlet {
         }
 
         //Notify all the subscribed people
-        Reservation reservation = new Reservation(roomName,date,startTime);
+        Reservation reservation = new Reservation(roomName, date, startTime);
 
         //Try to notify all the users
         try {
             List<Person> personList = new GetAllPeopleInReservationTimeSlotDatabase(getDataSource().getConnection(), reservation).execute();
             //Send a mail to each user
-            for(Person p:personList){
-                Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(),p.getEmail()).execute();
+            for (Person p : personList) {
+                Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(), p.getEmail()).execute();
                 //TODO: unlock mail sending          MailTypes.mailForTrainerChanged(person, lectureTimeSlot, notes);
             }
             return new Message(Codes.OK.getErrorMessage(), false);

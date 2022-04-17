@@ -181,6 +181,10 @@
         <servlet-class>servlet.secretary.rest.DeleteLectureTimeSlot</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SubstitutionLectureTimeSlot</servlet-name>
+        <servlet-class>servlet.secretary.rest.SubstitutionLectureTimeSlot</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
         <multipart-config>
             <max-file-size>5242880</max-file-size><!-- 5MB -->
@@ -224,6 +228,7 @@
         <servlet-name>ChooseRoleServlet</servlet-name>
         <servlet-class>servlet.access.ChooseRoleServlet</servlet-class>
     </servlet>
+
 
     <!-- Mapping between servlets and URIs -->
     <servlet-mapping>
@@ -346,6 +351,10 @@
     <servlet-mapping>
         <servlet-name>DeleteLectureTimeSlot</servlet-name>
         <url-pattern>/secretary/rest/deletelecturetimeslot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubstitutionLectureTimeSlot</servlet-name>
+        <url-pattern>/secretary/rest/substitutionlecturetimeslot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>

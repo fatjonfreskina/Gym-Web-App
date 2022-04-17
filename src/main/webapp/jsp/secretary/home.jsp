@@ -74,12 +74,14 @@
                         </select>
                         <label for="info-substitution">Extra info</label>
                         <p>Add some extra information that will be embedded in the mail to the subscribed users</p>
-                        <textarea id="info-substitution" name="infosubstitution">
-                        </textarea>
+                        <textarea id="info-substitution" name="info-substitution"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Notify substitution</button>
+                    <button type="button" id="button-notify-substitution"
+                            class="btn btn-primary btn-sm" data-dismiss="modal">
+                        Notify substitution
+                    </button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -113,7 +115,6 @@
             </div>
         </div>
     </div>
-
 
 </body>
 
@@ -238,14 +239,15 @@
 
             const roomNane = selectedEvent.roomName;
             const date = selectedEvent.customdate;
-            const starttime = selectedEvent.customstartTime;
+            const startTime = selectedEvent.customstartTime;
 
             if(confirm("Do you really want to delete?")){
                 $.ajax({
-                    url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({"roomname": roomNane, "date": date, "starttime": starttime}),
+                    url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({"roomname": roomNane, "date": date, "starttime": startTime}),
                     type: "DELETE",
                     success: function (response) {
                         console.log(response);
+                        //TODO: Show some alert
                         renderCalendar();
                     },
                     error: function (xhr) {
@@ -253,6 +255,45 @@
                     }
                 });
             }
+
+        } else {
+            console.log("Error, event not found");
+        }
+
+    });
+
+    $("#button-notify-substitution").click(() => {
+
+        if(selectedEvent !== undefined) {
+
+            const roomNane = selectedEvent.roomName;
+            const date = selectedEvent.customdate;
+            const startTime = selectedEvent.customstartTime;
+            const substituteEmail = $("#substitute").val();
+            const note = $("#info-substitution").val();
+
+            $.ajax({
+                url: "<c:url value="/secretary/rest/substitutionlecturetimeslot"/>",
+                type: "POST",
+                data: {
+                    "roomname" : roomNane,
+                    "date" : date,
+                    "starttime" : startTime,
+                    "substitution": substituteEmail,
+                    "notes": note
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response);
+                    //TODO: Show some alert
+                    renderCalendar();
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+
 
         } else {
             console.log("Error, event not found");
