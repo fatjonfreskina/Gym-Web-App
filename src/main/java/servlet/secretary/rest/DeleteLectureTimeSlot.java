@@ -12,7 +12,6 @@ import resource.LectureTimeSlot;
 import resource.Message;
 import resource.Person;
 import resource.Reservation;
-import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -27,7 +26,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Riccardo Forzan
@@ -36,7 +34,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
 
     @Override
     //TODO: Modify in doDelete
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //Try to perform the operation
         Message message = deleteLectureTimeSlot(request);
 

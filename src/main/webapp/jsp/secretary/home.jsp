@@ -139,7 +139,7 @@
         },
         eventClick: function (info) {
             //console.log(info.event);
-            //console.log(info.event.extendedProps);
+            console.log(info.event.extendedProps);
             $("#modal-details").modal("show");
         }
     });
@@ -231,19 +231,10 @@
     $("#button-delete-lecturetimeslot").click(() => {
         if(confirm("Do you really want to delete?")){
             $.ajax({
-                url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>",
-                type: "POST",
-                data: {
-                    "roomname" : "Energy",
-                    "date" : "apr 11, 2022",
-                    "starttime" : "10:00:00 AM"
-                },
-                cache: false,
-                dataType: 'json',
+                url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({"roomname": "Energy", "date" : "apr 18, 2022", "starttime":"10:00:00 AM"}),
+                type: "DELETE",
                 success: function (response) {
                     console.log(response);
-
-                    //If the request has been successful render the new calendar
                     renderCalendar();
                 },
                 error: function (xhr) {
