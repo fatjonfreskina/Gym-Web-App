@@ -25,8 +25,8 @@ public enum Codes {
   BAD_REQUEST(-12, HttpServletResponse.SC_BAD_REQUEST, "Bad request"),
   NOT_AUTHENTICATED(-13, HttpServletResponse.SC_UNAUTHORIZED, "The provided credentials are wrong"),
   OVERLAPPING_COURSES(-14, HttpServletResponse.SC_BAD_REQUEST, "There are overlapping courses!"),
-  NO_COURSES_TAUGHT(-15, HttpServletResponse.SC_BAD_REQUEST, "There are no courses you are teaching"),
-  NO_COURSES_HELD_NOW(-16, HttpServletResponse.SC_BAD_REQUEST, "There are no courses to be held right now"),
+  NO_COURSES_TAUGHT(-15, HttpServletResponse.SC_BAD_REQUEST, "There are no courses you teach!"),
+  NO_COURSES_HELD_NOW(-16, HttpServletResponse.SC_BAD_REQUEST, "There is no course you teach at this time!"),
   FREE_TRIAL_ALREADY_DONE(-17, HttpServletResponse.SC_BAD_REQUEST, "Already done free trial"),
   OVELAPPING_SUBSCRIPTIONS(-18, HttpServletResponse.SC_BAD_REQUEST, "Overlapping Subscription"),
   EMAIL_NOT_FOUND(-19, HttpServletResponse.SC_BAD_REQUEST, "Email not associated to a user"),
@@ -44,25 +44,26 @@ public enum Codes {
   UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unexpected error"),
   ROOM_ALREADY_FULL(-32, HttpServletResponse.SC_BAD_REQUEST, "There are no more spots left"),
   INVALID_DATE(-33, HttpServletResponse.SC_BAD_REQUEST, "Can't insert date in the past!"),
-  TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_FORBIDDEN, "Trainee must be enrolled to the course to make a reservation"),
-  RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present"),
-  RESERVATION_NOT_FOUND(-36, HttpServletResponse.SC_NO_CONTENT, "No Reservation found"),
+  TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_BAD_REQUEST, "Trainee is not enrolled to your course!"),
+  RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present!"),
+  RESERVATION_NOT_FOUND(-36, HttpServletResponse.SC_NO_CONTENT, "No Reservation found!"),
   USER_HAS_NO_ROLE_ASSIGNED(-37, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it"),
   CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type"),
   LECTURETIMESLOT_NOT_FOUND(-39, HttpServletResponse.SC_NOT_FOUND, "LectureTimeSlot not found"),
   TOKEN_NOT_FOUND(-40, HttpServletResponse.SC_NOT_FOUND, "Token for password reset not found"),
   PASSWORD_NOT_VALID(-41, HttpServletResponse.SC_CONFLICT, "Password is not valid"),
   PERSON_NOT_FOUND(-42, HttpServletResponse.SC_NOT_FOUND, "Person not found"),
-  WRONG_DATE_OR_TIME_FORMAT(-43, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Wrong date or time format, " +
-      "date format should be in ISO 2014 [yyyy]-[MM]-[dd], " +
-      "and time format should be in ISO 8601's 24-hour clock T[hh]:[mm]:[ss] "),
-  NOT_ACCEPTABLE_MISSING_FIELDS(-44, HttpServletResponse.SC_NOT_ACCEPTABLE, "Request not acceptable, missing fields."),
-  NO_SUBSCRIPTION_TO_THE_COURSE(-45, HttpServletResponse.SC_NO_CONTENT, "Trainer has no Trainee subscribed to its course."),
-  SUBSCRIPTION_IS_NOT_CURRENTLY_VALID(-46, HttpServletResponse.SC_NO_CONTENT, "Subscription is not currently valid."),
-  WRONG_JSON_RESERVATION(-47, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Wrong json reservation"),
+  WRONG_DATE_FORMAT(-43, /*422 Unprocessable Entity, NOT PRESENT */ HttpServletResponse.SC_BAD_REQUEST, "Wrong date format, date format should be in ISO 2014 [yyyy]-[MM]-[dd] format!"),
+  WRONG_TIME_FORMAT(-44, /*422 Unprocessable Entity, NOT PRESENT */ HttpServletResponse.SC_BAD_REQUEST, "Wrong time format, time format should be in ISO 8601's 24-hour clock T[hh]:[mm]:[ss] format!"),
+  NOT_ACCEPTABLE_MISSING_FIELDS(-45, HttpServletResponse.SC_BAD_REQUEST, "Request not acceptable, missing fields."),
+  NO_SUBSCRIPTION_TO_THE_COURSE(-46, HttpServletResponse.SC_NO_CONTENT, "Trainer has no Trainee subscribed to its course."),
+  SUBSCRIPTION_IS_NOT_CURRENTLY_VALID(-47, HttpServletResponse.SC_NO_CONTENT, "Subscription is not currently valid."),
+  WRONG_JSON_RESERVATION(-48, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Wrong json reservation"),
   TYPE_SUBSCRIPTION_INVALID(-49, HttpServletResponse.SC_BAD_REQUEST, "Remaining days of the selected course are less than the subscription duration"),
-  SUBSCRIPION_EXPIRED_BEFORE(-50,HttpServletResponse.SC_NOT_ACCEPTABLE, "Subscription expired before the requested reservation")
-  ;
+  SUBSCRIPION_EXPIRED_BEFORE(-50,HttpServletResponse.SC_NOT_ACCEPTABLE, "Subscription expired before the requested reservation"),
+  CONFLICT_BETWEEN_RESERVATION_AND_LECTURETIMESLOT_VALUES(-51, HttpServletResponse.SC_CONFLICT, "Conflict between Reservation and LectureTimeSlot values!"),
+  PARSING_ERROR(-52, HttpServletResponse.SC_BAD_REQUEST, "Wrong type for a field.");
+
   private final int errorCode;
   private final int httpCode;
   private final String errorMessage;
@@ -83,5 +84,14 @@ public enum Codes {
 
   public String getErrorMessage() {
     return errorMessage;
+  }
+
+  @Override
+  public String toString() {
+    return "Codes{" +
+        "errorCode=" + errorCode +
+        ", httpCode=" + httpCode +
+        ", errorMessage='" + errorMessage + '\'' +
+        '}';
   }
 }

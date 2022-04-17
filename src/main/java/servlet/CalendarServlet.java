@@ -1,6 +1,7 @@
 package servlet;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import constants.Constants;
 import dao.lecturetimeslot.GetWeeklyCalendarSlotByDateDatabase;
 import jakarta.servlet.ServletException;
@@ -37,7 +38,7 @@ public class CalendarServlet extends AbstractServlet {
         } catch (SQLException | NamingException ex) {
             //errore
         }
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         req.setAttribute("weeklyCalendar", gson.toJson(list));
         req.getRequestDispatcher(Constants.PATH_CALENDAR).forward(req, res);
     }

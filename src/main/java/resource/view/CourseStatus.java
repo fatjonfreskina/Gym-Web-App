@@ -1,5 +1,8 @@
 package resource.view;
 
+/**
+ * @author Harjot Singh
+ */
 public class CourseStatus {
   private final String courseName;
   private final int courseEdition;

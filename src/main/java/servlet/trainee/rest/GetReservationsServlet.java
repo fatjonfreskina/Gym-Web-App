@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
 public class GetReservationsServlet extends AbstractRestServlet
 {
     private static final Pattern URI_REGEX = Pattern.compile(
-            "/wa2122-gwa/trainee/rest/reservation/from-day/(.*)/to-day/(.*)", Pattern.DOTALL);
+            "/wa2122-gwa/trainee/rest/reservation/from-date/(.*)/to-date/(.*)", Pattern.DOTALL);
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException

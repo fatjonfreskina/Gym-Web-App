@@ -10,9 +10,11 @@
     <table>
         <thead>
             <tr>
-                <th>Course</th><th>Type of Subscription</th><th>Price</th><th>Min</th><th>Max</th>
+                <th>Course</th><th>Type of Subscription</th><th>Price</th><th>Min</th><th>Max</th><th>Trainers</th><th>PerWeek</th>
             </tr>
         </thead>
+
+
         <c:set var="last_courseName" value=""/>
         <c:set var="last_courseId" value=""/>
         <c:forEach var="prices" items="${pricesView}">
@@ -24,6 +26,13 @@
                         <td><c:out value="${prices.cost}"/></td>
                         <td><c:out value="${prices.min}"/></td>
                         <td><c:out value="${prices.max}"/></td>
+                        <c:set var="trainers" value=""/>
+                        <c:forEach var="trainer" items="${prices.trainers}">
+                            <c:set var="trainers" value="${trainers} ${trainer}"/>
+                        </c:forEach>
+                        <td><c:out value="${trainers}"/></td>
+                        <td><c:out value="${prices.lecturesPerWeek}"/></td>
+
                     </tr>
                 </c:when>
                 <c:otherwise>
@@ -36,6 +45,7 @@
             </c:choose>
             <c:set var="last_courseName" value="${prices.courseName}"/>
             <c:set var="last_courseId" value="${prices.courseEditionId}"/>
+
         </c:forEach>
     </table>
     <jsp:include page="/jsp/include/footer.jsp"/>

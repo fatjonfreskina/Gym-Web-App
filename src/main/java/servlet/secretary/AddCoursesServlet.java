@@ -3,16 +3,21 @@ package servlet.secretary;
 import com.google.gson.Gson;
 import constants.Codes;
 import constants.Constants;
+import dao.courseedition.DeleteCourseEditionDatabase;
 import dao.courseedition.GetAvailableCourses;
 import dao.courseedition.InsertCourseEditionDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.lecturetimeslot.InsertLectureTimeSlotDatabase;
 import dao.person.GetListOfTeachersDatabase;
+import dao.person.GetNumberLectureTeacherByTeacherDateTimeDatabase;
 import dao.room.GetListRoomsDatabase;
 import dao.subscriptiontype.InsertSubscriptionTypeDatabase;
+import dao.teaches.InsertTeachesDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import resource.*;
 import servlet.AbstractServlet;
 
@@ -35,6 +40,7 @@ import java.util.Objects;
  * */
 public class AddCoursesServlet extends AbstractServlet
 {
+    private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -188,138 +194,21 @@ public class AddCoursesServlet extends AbstractServlet
 
                 if (id != null) {
                     //need to find the first day after the specified date
-                    LocalDate event = dateFirstEvent.toLocalDate();
-                    Date pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
-                    Date pointerTuesday = tuesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.TUESDAY))) : null;
-                    Date pointerWednesday = wednesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY))) : null;
-                    Date pointerThursday = thursday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.THURSDAY))) : null;
-                    Date pointerFriday = friday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))) : null;
-                    Date pointerSaturday = saturday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))) : null;
-                    Date pointerSunday = sunday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SUNDAY))) : null;
 
-                    Calendar c = Calendar.getInstance();
-
-                    boolean fail = false;
-
-
-                    for (int i = 0; i < weeks && !fail; i++) {
-                        if (pointerMonday != null && !fail) {
-                            for (Time hour : monday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection()
-                                        , new LectureTimeSlot(room, pointerMonday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-
-                            //update date to next week
-                            c.setTime(pointerMonday);
-                            c.add(Calendar.DATE, 7);
-                            pointerMonday = new Date(c.getTimeInMillis());
-                        }
-
-                        if (pointerTuesday != null && !fail) {
-                            for (Time hour : tuesday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(room, pointerTuesday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-                            //update date to next week
-                            c.setTime(pointerTuesday);
-                            c.add(Calendar.DATE, 7);
-                            pointerTuesday = new Date(c.getTimeInMillis());
-                        }
-
-                        if (pointerWednesday != null && !fail) {
-                            for (Time hour : wednesday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(room, pointerWednesday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-
-                            //update date to next week
-                            c.setTime(pointerWednesday);
-                            c.add(Calendar.DATE, 7);
-                            pointerWednesday = new Date(c.getTimeInMillis());
-                        }
-
-                        if (pointerThursday != null && !fail) {
-                            for (Time hour : thursday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(room, pointerThursday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-
-                            //update date to next week
-                            c.setTime(pointerThursday);
-                            c.add(Calendar.DATE, 7);
-                            pointerThursday = new Date(c.getTimeInMillis());
-                        }
-
-
-                        if (pointerFriday != null && !fail) {
-                            for (Time hour : friday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(room, pointerFriday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-
-                            //update date to next week
-                            c.setTime(pointerFriday);
-                            c.add(Calendar.DATE, 7);
-                            pointerFriday = new Date(c.getTimeInMillis());
-                        }
-
-                        if (pointerSaturday != null && !fail) {
-                            for (Time hour : saturday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(room, pointerSaturday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-
-                            //update date to next week
-                            c.setTime(pointerSaturday);
-                            c.add(Calendar.DATE, 7);
-                            pointerSaturday = new Date(c.getTimeInMillis());
-                        }
-
-                        if (pointerSunday != null && !fail) {
-                            for (Time hour : sunday) {
-                                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(room, pointerSunday, hour, id, courseName, null)).execute();
-                                if (l != null) {
-                                    fail = true;
-                                    break;
-                                }
-                            }
-
-                            //update date to next week
-                            c.setTime(pointerSunday);
-                            c.add(Calendar.DATE, 7);
-                            pointerSunday = new Date(c.getTimeInMillis());
-                        }
-                    }
-
+                    boolean fail =
+                            overlappingLectures(room,id,courseName,dateFirstEvent,weeks,monday,tuesday,wednesday,thursday,friday,saturday,sunday) ||
+                            overlappingTeacherLectures(teacher,dateFirstEvent,weeks,monday,tuesday,wednesday,thursday,friday,saturday,sunday);
 
                     if (!fail) {
-                        pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
-                        pointerTuesday = tuesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.TUESDAY))) : null;
-                        pointerWednesday = wednesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY))) : null;
-                        pointerThursday = thursday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.THURSDAY))) : null;
-                        pointerFriday = friday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))) : null;
-                        pointerSaturday = saturday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))) : null;
-                        pointerSunday = sunday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SUNDAY))) : null;
-                        c = Calendar.getInstance();
+                        LocalDate event = dateFirstEvent.toLocalDate();
+                        Date pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
+                        Date pointerTuesday = tuesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.TUESDAY))) : null;
+                        Date pointerWednesday = wednesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY))) : null;
+                        Date pointerThursday = thursday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.THURSDAY))) : null;
+                        Date pointerFriday = friday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))) : null;
+                        Date pointerSaturday = saturday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))) : null;
+                        Date pointerSunday = sunday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SUNDAY))) : null;
+                        Calendar c = Calendar.getInstance();
 
                         for (int i = 0; i < weeks; i++) {
                             if (pointerMonday != null) {
@@ -395,15 +284,22 @@ public class AddCoursesServlet extends AbstractServlet
                             if(cost365 != null)
                                 new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,365,cost365)).execute();
 
+                            //Insert into teaches
+                            new InsertTeachesDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName),new Person(teacher)).execute();
                         }
-                    } else
+                    } else {
                         error = Codes.OVERLAPPING_COURSES;
+                        new DeleteCourseEditionDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName)).execute();
+                    }
                 } else
                     error = Codes.INTERNAL_ERROR;
 
             } catch (NamingException | SQLException exception) {
                 error = Codes.INTERNAL_ERROR;
+                logger.info("COURSES EXCEPTION= "+exception);
             }
+
+
 
             if (error.getErrorCode() == Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), false);
@@ -421,7 +317,7 @@ public class AddCoursesServlet extends AbstractServlet
 
     }
 
-    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         Codes error = Codes.OK;
 
@@ -434,7 +330,7 @@ public class AddCoursesServlet extends AbstractServlet
         String subscriptionType180 = null;
         String subscriptionType365 = null;
 
-        String[] monaday = null;
+        String[] monday = null;
         String[] tuesday = null;
         String[] wednesday = null;
         String[] thursday = null;
@@ -462,7 +358,7 @@ public class AddCoursesServlet extends AbstractServlet
             subscriptionType180 = req.getParameter("subscription_type_180");
             subscriptionType365 = req.getParameter("subscription_type_365");
 
-            monaday = req.getParameterValues("monday"); //ok
+            monday = req.getParameterValues("monday"); //ok
             tuesday = req.getParameterValues("tuesday");
             wednesday = req.getParameterValues("wednesday");
             thursday = req.getParameterValues("thursday");
@@ -478,7 +374,7 @@ public class AddCoursesServlet extends AbstractServlet
             cost180 = req.getParameter("cost_180");
             cost365 = req.getParameter("cost_365");
 
-            if(monaday == null && tuesday == null && wednesday == null && thursday==null && friday == null && saturday == null && sunday == null)
+            if(monday == null && tuesday == null && wednesday == null && thursday==null && friday == null && saturday == null && sunday == null)
                 error = Codes.EMPTY_INPUT_FIELDS;
             else if(cost30 == null && cost90 == null && cost180 == null && cost365 == null && "".equals(cost30) && "".equals(cost90) && "".equals(cost180) && "".equals(cost365))
                 error = Codes.EMPTY_INPUT_FIELDS;
@@ -539,11 +435,11 @@ public class AddCoursesServlet extends AbstractServlet
                 if(!Objects.equals(subscriptionType365, "") && subscriptionType365 != null)
                     subscriptionType365Integer = Integer.parseInt(subscriptionType365);
 
-                if(monaday != null)
+                if(monday != null)
                 {
-                    mondayTime = new Time[monaday.length];
+                    mondayTime = new Time[monday.length];
                     for(int i=0; i< mondayTime.length; i++)
-                        mondayTime[i] = Time.valueOf(monaday[i]);
+                        mondayTime[i] = Time.valueOf(monday[i]);
                 }
 
                 if(tuesday!= null)
@@ -617,6 +513,237 @@ public class AddCoursesServlet extends AbstractServlet
         //Time monday
         return error;
     }
+
+
+    private boolean overlappingLectures(String roomName, int courseEditionId, String courseName,Date dateFirstEvent,int weeks,
+                                        Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException
+    {
+        boolean fail = false;
+        LocalDate event = dateFirstEvent.toLocalDate();
+        Date pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
+        Date pointerTuesday = tuesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.TUESDAY))) : null;
+        Date pointerWednesday = wednesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY))) : null;
+        Date pointerThursday = thursday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.THURSDAY))) : null;
+        Date pointerFriday = friday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))) : null;
+        Date pointerSaturday = saturday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))) : null;
+        Date pointerSunday = sunday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SUNDAY))) : null;
+        Calendar calendar = Calendar.getInstance();
+
+
+        for (int i = 0; i < weeks; i++)
+        {
+            fail = overlapLecture(pointerMonday, monday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerMonday != null)
+            {
+                calendar.setTime(pointerMonday);
+                calendar.add(Calendar.DATE, 7);
+                pointerMonday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapLecture(pointerTuesday, tuesday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerTuesday != null)
+            {
+                calendar.setTime(pointerTuesday);
+                calendar.add(Calendar.DATE, 7);
+                pointerTuesday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapLecture(pointerWednesday, wednesday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerWednesday != null)
+            {
+                calendar.setTime(pointerWednesday);
+                calendar.add(Calendar.DATE, 7);
+                pointerWednesday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapLecture(pointerThursday, thursday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerThursday != null)
+            {
+                calendar.setTime(pointerThursday);
+                calendar.add(Calendar.DATE, 7);
+                pointerThursday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapLecture(pointerFriday, friday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerFriday != null)
+            {
+                calendar.setTime(pointerFriday);
+                calendar.add(Calendar.DATE, 7);
+                pointerFriday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapLecture(pointerSaturday, saturday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerSaturday != null)
+            {
+                calendar.setTime(pointerSaturday);
+                calendar.add(Calendar.DATE, 7);
+                pointerSaturday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapLecture(pointerSunday, sunday, roomName, courseEditionId, courseName);
+            if(fail)
+                break;
+            else if (pointerSunday != null)
+            {
+                calendar.setTime(pointerSunday);
+                calendar.add(Calendar.DATE, 7);
+                pointerSunday = new Date(calendar.getTimeInMillis());
+            }
+        }
+        return fail;
+
+    }
+
+    private boolean overlapLecture(Date date,Time[] hours, String roomName, int courseEditionId, String courseName) throws NamingException,SQLException
+    {
+        boolean fail = false;
+
+        if(date != null)
+        {
+            for(Time hour : hours)
+            {
+                LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(),
+                        new LectureTimeSlot(roomName, date, hour, courseEditionId, courseName, null)).execute();
+                if(l != null)
+                {
+                    fail = true;
+                    break;
+                }
+            }
+        }
+        return fail;
+    }
+
+
+
+    private boolean overlappingTeacherLectures(String teacher, Date dateFirstEvent, int weeks,
+                                               Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException
+    {
+        boolean fail = false;
+        LocalDate event = dateFirstEvent.toLocalDate();
+        Date pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
+        Date pointerTuesday = tuesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.TUESDAY))) : null;
+        Date pointerWednesday = wednesday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY))) : null;
+        Date pointerThursday = thursday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.THURSDAY))) : null;
+        Date pointerFriday = friday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))) : null;
+        Date pointerSaturday = saturday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SATURDAY))) : null;
+        Date pointerSunday = sunday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.SUNDAY))) : null;
+        Calendar calendar = Calendar.getInstance();
+
+
+        for (int i = 0; i < weeks; i++)
+        {
+            fail = overlapTeacherLecture(pointerMonday, monday, teacher);
+            if(fail)
+                break;
+            else if (pointerMonday != null)
+            {
+                calendar.setTime(pointerMonday);
+                calendar.add(Calendar.DATE, 7);
+                pointerMonday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapTeacherLecture(pointerTuesday, tuesday, teacher);
+            if(fail)
+                break;
+            else if (pointerTuesday != null)
+            {
+                calendar.setTime(pointerTuesday);
+                calendar.add(Calendar.DATE, 7);
+                pointerTuesday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapTeacherLecture(pointerWednesday, wednesday, teacher);
+            if(fail)
+                break;
+            else if (pointerWednesday != null)
+            {
+                calendar.setTime(pointerWednesday);
+                calendar.add(Calendar.DATE, 7);
+                pointerWednesday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapTeacherLecture(pointerThursday, thursday, teacher);
+            if(fail)
+                break;
+            else if (pointerThursday != null)
+            {
+                calendar.setTime(pointerThursday);
+                calendar.add(Calendar.DATE, 7);
+                pointerThursday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapTeacherLecture(pointerFriday, friday, teacher);
+            if(fail)
+                break;
+            else if (pointerFriday != null)
+            {
+                calendar.setTime(pointerFriday);
+                calendar.add(Calendar.DATE, 7);
+                pointerFriday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapTeacherLecture(pointerSaturday, saturday, teacher);
+            if(fail)
+                break;
+            else if (pointerSaturday != null)
+            {
+                calendar.setTime(pointerSaturday);
+                calendar.add(Calendar.DATE, 7);
+                pointerSaturday = new Date(calendar.getTimeInMillis());
+            }
+
+            fail = overlapTeacherLecture(pointerSunday, sunday, teacher);
+            if(fail)
+                break;
+            else if (pointerSunday != null)
+            {
+                calendar.setTime(pointerSunday);
+                calendar.add(Calendar.DATE, 7);
+                pointerSunday = new Date(calendar.getTimeInMillis());
+            }
+        }
+        return fail;
+
+    }
+
+    private boolean overlapTeacherLecture(Date date,Time[] hours, String teacher) throws NamingException,SQLException
+    {
+        boolean fail = false;
+
+        if(date != null)
+        {
+            for(Time hour : hours)
+            {
+                int count = new GetNumberLectureTeacherByTeacherDateTimeDatabase(getDataSource().getConnection(),
+                        new Person(teacher,null,null,null,null,null,null,null,null),
+                        new LectureTimeSlot(null,date,hour,null,null,null))
+                        .execute();
+                if(count > 0)
+                {
+                    fail = true;
+                    break;
+                }
+            }
+        }
+        return fail;
+    }
+
+
+
+
 
 
 

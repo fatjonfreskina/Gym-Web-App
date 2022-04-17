@@ -2,6 +2,9 @@ package resource.rest;
 
 import resource.LectureTimeSlot;
 
+/*
+    @author Tumiati Riccardo
+ */
 public class LectureTimeSlotOccupation extends LectureTimeSlot {
     private final int totalSlots;
     private final int occupiedSlots;

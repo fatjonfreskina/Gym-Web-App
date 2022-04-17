@@ -7,7 +7,6 @@ import java.sql.*;
 
 /**
  * @author Riccardo Forzan
- * @author Riccardo Tumiati
  * @author Francesco Caldivezzi
  */
 public class GetPersonByEmailDatabase {

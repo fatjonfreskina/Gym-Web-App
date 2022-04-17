@@ -5,7 +5,7 @@ import resource.Person;
 import java.sql.*;
 
 /**
- * @author Riccardo Tumiati
+ * @author Riccardo Forzan
  */
 public class InsertNewPersonDatabase {
     private static final String STATEMENT = "INSERT INTO person VALUES (?,?,?,?,?,?,?,?,?)";

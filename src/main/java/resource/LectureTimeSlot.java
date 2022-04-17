@@ -1,5 +1,7 @@
 package resource;
 
+import com.google.gson.annotations.Expose;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -8,12 +10,17 @@ import java.sql.Time;
  * @author Harjot Singh
  */
 public class LectureTimeSlot {
-
+  @Expose
   private final String roomName;
+  @Expose
   private final Date date;
+  @Expose
   private final Time startTime;
+  @Expose
   private final Integer courseEditionId;
+  @Expose
   private final String courseName;
+  @Expose
   private final String substitution;
 
   public LectureTimeSlot(String roomName, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {

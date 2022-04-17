@@ -24,7 +24,7 @@ import java.sql.SQLException;
  */
 public class TrainerManageAttendanceServlet extends AbstractServlet {
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = "gwa.servlet.trainer.TManageAttendanceS : ";
+  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   /* GET ALL RESERVATIONS AND SUBSCRIPTIONS */
   @Override
@@ -43,7 +43,8 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     req.getRequestDispatcher(Constants.PATH_TRAINER_MANAGE_ATTENDANCE).forward(req, res);
   }
 
-  /* INSERT A RESERVATION FROM SUBSCRIPTION! */
+  /* if action == doDelete DELETE A RESERVATION! */
+  /* else INSERT A RESERVATION FROM SUBSCRIPTION! */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();

@@ -3,6 +3,7 @@
 % For each group member, describe in detail the contribution to the project.
 
 \begin{description}
+
 	\item[Alessio Marco] I have contributed to this project by :
 	\begin{enumerate}
 		\item Contributing to the ER schema development.
@@ -13,18 +14,18 @@
 		\item Together with D'Antimo Simone, implementing "MailManager.java" class, that is in charge of managing all emails-related stuff.
 		\item Implemented "InputValidation.java" utility class, which performs input sanitization.
 	\end{enumerate}
-	\item[Caldivezzi Francesco] I have contributed to this project by :
-	
-		\begin{enumerate}
-		\item Contributing on the creation of the file populate.sql
-		\item Creating the "Room.java", "Teaches.java", "CourseEdition.java" Java Beans
-		\item Creating the "GetAvailableSlotsRoomByLectureTimeSlotDatabase.java", "GetListRoomsDatabase.java", "InsertTeachesDatabase.java", 	"DeleteEmailConfirmationByEmailDatabase.java", "GetEmailConfirmationByTokenDatabase.java", "InsertEmailConfirmationDatabase.java" "DeleteUserByEmailDatabase.java", "GetUserByTaxCodeDatabase.java", "InsertUserRoleDatabase.java", "GetLastMedicalCertificateByPersonDatabase.java", "GetListCoursesDatabase.java", "GetEndOrInitialDateCourseEditionDatabase.java", "InsertCourseEditionDatabase.java", "GetEmailConfirmationByTokenDatabase.java", "GetListEmailConfimationsExpired.java", "GetLastLecureForLectureTimeSlotDatabase.java", "GetLectureTimeSlotByRoomDateStartTimeDatabase.java", "GetListTimeScheduleForLectureTimeSlotDatabase.java", "GetLastMedicalCertfiticateByPersonDatabase.java", "DeletePersonByEmailDatabase.java","GetListOfTeachersDatabase.java", "GetListPersonByLikeEmailDatabase.java", "GetPersonRolesDatabase.java","InsertPersonRoleDatabase.java", "GetTeachesByTrainerDatabase.java" DAOs.
-		\item Creating the "PricesServlet.java", "RegistrationServlet.java" , "ConfirmRegistration.java", "AddCoursesServlet.java", "AddSubscriptionServlet.java", "ListLikePersonsServlet.java", "TimeSchedulesServlet.java" Servlets
-		\item Creating the "prices.jsp" , "registration.jsp", "confirm\_registration.jsp", "confirmed\_registration.jsp" JSPs	
-		\item Designed the Sequence Diagram		
-			
-		\end{enumerate}
 
+	\item[Caldivezzi Francesco] I have contributed to this project by :
+		\begin{flushleft}
+			\begin{enumerate}
+				\item Contributing on the creation of the file populate.sql
+				\item Creating the "Room.java", "Teaches.java", "CourseEdition.java" Java Beans
+				\item Creating the "GetAvailableSlotsRoomByLectureTimeSlotDatabase.java", "GetListRoomsDatabase.java", "InsertTeachesDatabase.java", 	"DeleteEmailConfirmationByEmailDatabase.java", "GetEmailConfirmationByTokenDatabase.java", "InsertEmailConfirmationDatabase.java" "DeleteUserByEmailDatabase.java", "GetUserByTaxCodeDatabase.java", "InsertUserRoleDatabase.java", "GetLastMedicalCertificateByPersonDatabase.java", "GetListCoursesDatabase.java", "GetEndOrInitialDateCourseEditionDatabase.java",  "InsertCourseEditionDatabase.java", "GetEmailConfirmationByTokenDatabase.java", "GetListEmailConfimationsExpired.java", "GetLastLecureForLectureTimeSlotDatabase.java", "GetLectureTimeSlotByRoomDateStartTimeDatabase.java", "GetListTimeScheduleForLectureTimeSlotDatabase.java", "GetLastMedicalCertfiticateByPersonDatabase.java", "DeletePersonByEmailDatabase.java","GetListOfTeachersDatabase.java", "GetListPersonByLikeEmailDatabase.java", "GetPersonRolesDatabase.java","InsertPersonRoleDatabase.java", "GetTeachesByTrainerDatabase.java" DAOs.
+				\item Creating the "PricesServlet.java", "RegistrationServlet.java" , "ConfirmRegistration.java", "AddCoursesServlet.java", "AddSubscriptionServlet.java", "ListLikePersonsServlet.java", "TimeSchedulesServlet.java" Servlets
+				\item Creating the "prices.jsp" , "registration.jsp", "confirm\_registration.jsp", "confirmed\_registration.jsp" JSPs	
+				\item Designed the Sequence Diagram			 		
+			\end{enumerate}
+		\end{flushleft}
 	\item[Campeol Alberto] Logical schema, physical design of gwa\_db (create.sql), Calendar balsamiq interface Mockup, MedicalCertificate DAOs and Java Bean.
 	\item[D'Antimo Simone] 
 	\begin{enumerate}
@@ -32,8 +33,11 @@
 		\item Description of ER entities,
 		\item Trainee balsamiq interface Mockup,
 		\item Trainee DAO, Person Java beans.
-		\item create files Login.html and Register.html  
+		\item create Mockup for Login and Register in html
 		\item Together with Alessio Marco, implementing classes, that is in charge of managing all emails-related stuff.
+		\item creation of mailManager class, from which every mail is formatted and sent
+	    \item Contribution for creating a couple of DAO
+	    \item Contribution to implement the secretary functionality, in particular Add Medical certificate DAO and JSP
 	\end{enumerate}
 	\item[Freskina Fatjon] :
 	\begin{enumerate}
@@ -66,30 +70,93 @@
 		\item Contribution to the development of the Trainer section
 		\item Contribution to the design of the Sequence Diagram
 	\end{enumerate}
-	\item[Singh Harjot] Entity-Relationship Schema's description,
-	
-	implementation of the following \textit{\textbf{DAOs}:
-		% GET
-		GetLectureTimeSlotsByCourseDatabase,
-		GetLectureTimeSlotsByDateDatabase,
-		GetLectureTimeSlotsByRoomNameDatabase,
-		GetLectureTimeSlotsCurrentWeekDatabase,
-		% INSERT
-		InsertLectureTimeSlotDatabase,
-		% UPDATE
-		UpdateLectureTimeSlotDatabase,
-		% DELETE
-		DeleteLectureTimeSlotDatabase,
+	\item[Singh Harjot] My contributions to this project are:
+	\begin{flushleft}
+	\begin{enumerate}
+		\item Contribuition to the Entity-Relationship Schema
+		\item Entity-Relationship Schema's description
+		\item Implementation of the following \textit{\textbf{BEANs}:
+			LectureTimeSlot, TrainerAttendance, CourseStatus
+		}
+		\item Implementation of the following \textit{\textbf{DAOs}:
+			% GET
+			GetLectureTimeSlotsByCourseDatabase,
+			GetLectureTimeSlotsByDateDatabase,
+			GetLectureTimeSlotsByRoomNameDatabase,
+			GetLectureTimeSlotsInRangeDatabase,
+			GetSubscriptionsByCourseDatabase,
+			(Contribution)GetListReservationByLectureDatabase,
+			(Contribution)GetRoomByNameDatabase,
+			% INSERT
+			InsertLectureTimeSlotDatabase,
+			% UPDATE
+			UpdateLectureTimeSlotDatabase,
+			% DELETE
+			DeleteLectureTimeSlotDatabase,
+			(Contribution)DeleteReservation,	
+		}
+		\item Implementation of the following \textit{\textbf{SERVLETs}: 
+			TrainerServlet,
+			TrainerManageAttendanceServlet,
+			% REST
+			TrainerCalendarRestServlet,
+			TrainerCoursesStatusServlet,
+			TrainerManageAttendanceRestServlet,
+		}
+		\item Implementation of the following \textit{\textbf{FILTERSs}: 
+			RestrictedAreaFilter,
+			TrainerFilter,
+			TraineeFilter,
+			SecretaryFilter,
+			AbstractFilter,
+		}
+		\item Implementation of the following \textit{\textbf{SERVICESs}: 
+			TrainerService,
+			GsonService,
+		}
+		\item Implementation of the following \textit{\textbf{PAGEs}: 
+			\begin{enumerate}
+				\item MOCKUPs: Trainer desktop and mobile version,	TheGym desktop version
+				\item JSPs: 
+					'/jsp/trainer/home.jsp',
+					'/jsp/trainer/manageAttendance.jsp',
+					'/jsp/thegym.jsp',
+					'/jsp/access/unauthorized.jsp',
+			\end{enumerate}
+		}
+	\end{enumerate}
+	\end{flushleft}
+	\item[Tumiati Riccardo] My contributions to this project are:
+	\begin{enumerate}
+		\item Contributing to design database 
+		\item Implementation of the following \textit{\textbf{DAOs}:
+			GetAvailableCourses,
+			GetLectureTimeSlotsAvailableForUserByWeekDatabase,
+			GetStaffPeopleDatabase,
+			GetAvailableSlotsReservation,
+			GetReservationByAllFields,
+			GetSubscriptionExpirationByLTSDatabase,
+			GetValidSubscriptionByTrainee
+		}
+	\item Implementation of the following \textit{\textbf{BEANSs}:
+		LectureTimeSlotOccupation,
+		Trainer,
+		ValidSubscription,
+		CourseEdition
 	}
-	
-	implementation of the following \textit{\textbf{servlets}: 
-		... 
+	\item Implementation of the following \textit{\textbf{SERVLETs}:
+		RetrieveAvatar,
+		TraineeServlet,
+		TraineeAvailableSlots,
+		TraineeNewReservationServlet,
+		StaffServlet
 	}
-	
-	implementation of the following \textit{\textbf{pages}: 
-		Trainer desktop and mobile version,
+	\item Implementation of the following \textit{\textbf{JSP PAGEs}:
+		staff.jsp,
+		trainee.jsp,
+		subscriptiontrainee.jsp
 	}
-	
-	preparation of the following schemas: ... .
-	\item[Tumiati Riccardo] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	\item Contribution to the devolopment of trainee area
+	\item Home balsamiq interface mockup
+	\end{enumerate}
 \end{description}

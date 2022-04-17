@@ -1,24 +1,60 @@
 \subsection{REST Error Codes}
 Here the list of errors defined in the application. The numeration starts with -1 and goes down decreasing.
 
-\begin{longtable}{|p{.15\columnwidth}|p{.3\columnwidth} |p{.5\columnwidth}|} 
+\begin{longtable}{|p{.11\columnwidth}|p{.3\columnwidth} |p{.55\columnwidth}|} 
 	\hline
 	\textbf{Error Code} & \textbf{HTTP Status Code} & \textbf{Description} \\	
-	-1 & BAD\_REQUEST \\
-	-2 & CONFLICT & \\	
-	-3 & CONFLICT & \\
-	-4 & CONFLICT & \\
-	-5 & BAD\_REQUEST & \\
-	-6 & BAD\_REQUEST & \\
-	-7 & INTERNAL\_SERVER\_ERROR & \\	
-	-8 & INTERNAL\_SERVER\_ERROR & \\
-	-9 & CONFLICT & \\
-	-10 & BAD\_REQUEST & \\
-	-11 & BAD\_REQUEST & \\
-	-12 & BAD\_REQUEST & \\
-	-13 & UNAUTHORIZED & \\
-
-	
-	
+	-1 &  BAD\_REQUEST & One or more input fields are empty. \\
+	-2 &  CONFLICT & Different Passwords \\
+	-3 &  CONFLICT & Minimum age not satisfied \\
+	-4 &  CONFLICT & Not a telephone number \\ 
+	-5 &  BAD\_REQUEST & Invalid Fields \\
+	-6 &  BAD\_REQUEST & Invalid file type \\ 
+	-7 &  INTERNAL\_SERVER\_ERROR & Cannot Upload File \\ 
+	-8 &  INTERNAL\_SERVER\_ERROR & An internal error occurred \\ 
+	-9 &  CONFLICT & User already present \\
+	-10 &  BAD\_REQUEST & Please provide a mail address \\ 
+	-11 &  BAD\_REQUEST & Registration not found \\ 
+	-12 &  BAD\_REQUEST & Bad request \\
+	-13 &  UNAUTHORIZED & The provided credentials are wrong \\ 
+	-14 &  BAD\_REQUEST & There are overlapping courses \\ 
+	-15 &  BAD\_REQUEST & There are no courses you are teaching \\ 
+	-16 &  BAD\_REQUEST & There are no courses to be held right now \\ 
+	-17 &  BAD\_REQUEST & Already done free trial \\
+	-18 &  BAD\_REQUEST & Overlapping Subscription \\ 
+	-19 &  BAD\_REQUEST & Email not associated to a user \\
+	-20 &  BAD\_REQUEST & Accept field missing \\
+	-21 &  NOT\_ACCEPTABLE & Requested media type not supported \\ 
+	-22 &  BAD\_REQUEST & Content type field missing \\
+	-23 &  METHOD\_NOT\_ALLOWED & DELETE operation not supported \\ 
+	-24 &  METHOD\_NOT\_ALLOWED & GET operation not supported \\
+	-25 &  METHOD\_NOT\_ALLOWED & HEAD operation not supported \\ 
+	-26 &  METHOD\_NOT\_ALLOWED & OPTIONS operation not supported \\ 
+	-27 &  METHOD\_NOT\_ALLOWED & POST operation not supported \\
+	-28 &  METHOD\_NOT\_ALLOWED & PUT operation not supported \\
+	-29 &  METHOD\_NOT\_ALLOWED & TRACE operation not supported \\ 
+	-30 &  METHOD\_NOT\_ALLOWED & Unsupported operation for the requested URI \\ 
+	-31 &  INTERNAL\_SERVER\_ERROR & Unexpected error \\
+	-32 &  BAD\_REQUEST & There are no more spots left \\ 
+	-33 &  BAD\_REQUEST & Can't insert date in the past \\
+	-34 &  BAD\_REQUEST & Trainee is not enrolled to your the course! \\
+	-35 &  CONFLICT & Reservation already present \\
+	-36 &  NO\_CONTENT & No Reservation found \\
+	-37 &  INTERNAL\_SERVER\_ERROR & User has no role assigned to it \\
+	-38 &  UNSUPPORTED\_MEDIA\_TYPE & Unsupported input media type \\
+	-39 &  NOT\_FOUND & LectureTimeSlot not found \\
+	-40 &  NOT\_FOUND & Token for password reset not found \\
+	-41 &  CONFLICT & Password is not valid \\
+	-42 &  NOT\_FOUND & Person not found \\
+	-43 &  BAD\_REQUEST & Wrong date format, date format should be in ISO 2014 [yyyy]-[MM]-[dd] format! \\
+	-44 &  BAD\_REQUEST & Wrong time format, time format should be in ISO 8601's 24-hour clock T[hh]:[mm]:[ss] format! \\
+	-45 &  BAD\_REQUEST & Request not acceptable and missing fields \\
+	-46 &  NO\_CONTENT & Trainer has no Trainee subscribed to its course \\ 
+	-47 &  NO\_CONTENT & Subscription is not currently valid \\
+	-48 &  UNSUPPORTED\_MEDIA\_TYPE & Wrong JSON reservation \\
+	-49 &  BAD\_REQUEST & Remaining days of the selected course are less than the subscription duration \\
+	-50 & NOT\_ACCEPTABLE & Subscription expired before the requested reservation \\
+	-51 & CONFLICT & Conflict between Reservation and LectureTimeSlot values! \\
+	-52 & BAD\_REQUEST & Wrong type for a field. \\
 	
 \end{longtable}

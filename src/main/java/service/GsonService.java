@@ -3,14 +3,20 @@ package service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
+import constants.Constants;
 import constants.exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.*;
+import utils.JsonDateDeserializer;
 import utils.JsonTimeDeserializer;
 
+import java.sql.Date;
 import java.sql.Time;
 
+/**
+ * @author Harjot Singh
+ */
 public class GsonService {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
@@ -18,10 +24,12 @@ public class GsonService {
   private final Gson gson;
 
   public GsonService() {
-    gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").registerTypeAdapter(Time.class, new JsonTimeDeserializer()).create();
+    gson = new GsonBuilder()
+        //.setDateFormat("yyyy-MM-dd")
+        .registerTypeAdapter(Time.class, new JsonTimeDeserializer()).registerTypeAdapter(Date.class, new JsonDateDeserializer()).create();
   }
 
-  public Reservation getReservationFromString(String string) throws WrongDateOrTimeFormat, NotAcceptableMissingFields {
+  public Reservation getReservationFromString(String string) throws WrongDateFormat, NotAcceptableMissingFields, ParsingError, WrongTimeFormat {
     try {
       logger.debug(loggerClass + "Reservation as String: " + string);
       Reservation reservation = gson.fromJson(string, Reservation.class);
@@ -37,11 +45,13 @@ public class GsonService {
       return reservation;
     } catch (JsonParseException | NumberFormatException e) {
       e.printStackTrace();
-      throw new WrongDateOrTimeFormat();
+      if (e.getMessage().contains(Constants.UNPARSABLE_DATE)) throw new WrongDateFormat();
+      else if (e.getMessage().contains(Constants.UNPARSABLE_TIME)) throw new WrongTimeFormat();
+      else throw new ParsingError();
     }
   }
 
-  public Subscription getSubscriptionFromString(String string) throws NotAcceptableMissingFields, WrongDateOrTimeFormat {
+  public Subscription getSubscriptionFromString(String string) throws NotAcceptableMissingFields, WrongDateFormat, ParsingError, WrongTimeFormat {
     try {
       logger.debug(loggerClass + "Subscription as String: " + string);
       Subscription subscription = gson.fromJson(string, Subscription.class);
@@ -57,7 +67,9 @@ public class GsonService {
       return subscription;
     } catch (JsonParseException | NumberFormatException e) {
       e.printStackTrace();
-      throw new WrongDateOrTimeFormat();
+      if (e.getMessage().contains(Constants.UNPARSABLE_DATE)) throw new WrongDateFormat();
+      else if (e.getMessage().contains(Constants.UNPARSABLE_TIME)) throw new WrongTimeFormat();
+      else throw new ParsingError();
     }
   }
 }
