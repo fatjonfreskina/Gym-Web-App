@@ -6,6 +6,9 @@ import resource.Subscription;
 
 import java.util.List;
 
+/**
+ * @author Harjot Singh
+ */
 public class TrainerAttendance {
   final private LectureTimeSlot lecture;
   final private List<Reservation> reservations;

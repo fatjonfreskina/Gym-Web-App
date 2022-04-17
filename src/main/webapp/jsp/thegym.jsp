@@ -90,7 +90,7 @@
 <div class="item">
     <img width="300" height="200"
          src="<c:url value="/images/thegym/the_gym_rooms.jpg"/>"
-         alt="Calisthenics Room">
+         alt="Rooms planimetry">
 </div>
 
 <jsp:include page="include/footer.jsp"/>

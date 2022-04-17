@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author Harjot Singh
+ */
 public class TrainerService {
 
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
@@ -43,15 +46,22 @@ public class TrainerService {
   }
 
   //D
-  public boolean removePresenceFromCurrentLectureTimeSlot(Reservation reservation) throws SQLException, ReservationNotFound, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow {
+  public boolean removePresenceFromCurrentLectureTimeSlot(Reservation reservation) throws SQLException, ReservationNotFound, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, ConflictBetweenReservationAndLectureTimeSlotValues {
     logger.trace(loggerClass + "Reservation:" + reservation);
 
-    //checkReservation(lectureTimeSlot,reservation);
-    getTrainersCurrentLectureTimeSlot(trainerEmail); //checking
-    Reservation deleted = new DeleteReservation(dataSource.getConnection(), reservation).execute();
-    if (deleted == null) {
-      logger.debug("NOT FOUND -> NOT DELETED");
-      throw new ReservationNotFound();
+    LectureTimeSlot curLesson = getTrainersCurrentLectureTimeSlot(trainerEmail);//checking
+    //delete iif reservation is for curLesson
+    if (curLesson.getStartTime().equals(reservation.getLectureStartTime()) &&
+        curLesson.getDate().equals(reservation.getLectureDate()) &&
+        curLesson.getRoomName().equals(reservation.getRoom())) {
+      Reservation deleted = new DeleteReservation(dataSource.getConnection(), reservation).execute();
+      if (deleted == null) {
+        logger.debug("NOT FOUND -> NOT DELETED");
+        throw new ReservationNotFound();
+      }
+    } else {
+      logger.debug(loggerClass + curLesson + "!=" + reservation);
+      throw new ConflictBetweenReservationAndLectureTimeSlotValues();
     }
     return true;
   }
@@ -131,7 +141,9 @@ public class TrainerService {
 
     //TODO INTERNAL ERROR? SECRETARY SHOULD NOT ADD IT IN FIRST PLACE
     if (lectureTimeSlots.size() > 1) throw new TrainerCoursesOverlapping();
-    return lectureTimeSlots.get(0);
+    LectureTimeSlot curr = lectureTimeSlots.get(0);
+    logger.debug(loggerClass + "CurrentLectureTimeSLot:" + curr);
+    return curr;
   }
 
   public List<CourseStatus> getTrainersCoursesStatus() throws SQLException {

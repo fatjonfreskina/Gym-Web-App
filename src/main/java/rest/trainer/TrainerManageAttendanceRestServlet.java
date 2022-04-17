@@ -24,14 +24,14 @@ import resource.Subscription;
 import resource.rest.TrainerAttendance;
 import service.GsonService;
 import service.TrainerService;
-import servlet.AbstractServlet;
+import servlet.AbstractRestServlet;
 import utils.JsonTimeSerializer;
 
 /**
  * @author Andrea Pasin
  * @author Harjot Singh
  */
-public class TrainerManageAttendanceRestServlet extends AbstractServlet {
+public class TrainerManageAttendanceRestServlet extends AbstractRestServlet {
   private final Logger logger = LogManager.getLogger("harjot_singh_logger");
   private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
@@ -45,16 +45,13 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
       res.setContentType("application/json");
       res.setCharacterEncoding("UTF-8");
       PrintWriter out = res.getWriter();
-      Gson gson = new GsonBuilder()
-          .setDateFormat("yyyy-MM-dd")
-          .registerTypeAdapter(Time.class, new JsonTimeSerializer())
-          .create();
+      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").registerTypeAdapter(Time.class, new JsonTimeSerializer()).create();
       out.print(gson.toJson(new TrainerService(getDataSource(), trainerEmail).getTrainerAttendance(), TrainerAttendance.class));
     } catch (SQLException | NamingException e) {
       logger.error(loggerClass + e.getMessage());
       sendFeedback(res, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
-      logger.error(loggerClass + e.getMessage());
+      logger.error(loggerClass + e.getErrorCode());
       sendFeedback(res, e.getErrorCode());
     }
   }
@@ -63,67 +60,73 @@ public class TrainerManageAttendanceRestServlet extends AbstractServlet {
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
-    boolean success = false;
-    try {
-      TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
-      GsonService gsonService = new GsonService();
+    Codes checkType = checkContentTypeMediaType(req);
+    if (checkType.getHTTPCode() != Codes.OK.getHTTPCode()) sendFeedback(res, checkType);
+    else {
+      boolean success = false;
+      try {
+        checkContentTypeMediaType(req);
+        TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+        GsonService gsonService = new GsonService();
 
-      // GET RESERVATION FROM REQUEST
-      String param = req.getReader().lines().collect(Collectors.joining());
-      Subscription subscription = gsonService.getSubscriptionFromString(param);
+        // GET RESERVATION FROM REQUEST
+        String param = req.getReader().lines().collect(Collectors.joining());
+        Subscription subscription = gsonService.getSubscriptionFromString(param);
 
-      // PERFORM ACTION
-      success = trainerService.addPresenceToCurrentLectureTimeSlot(subscription);
-    } catch (SQLException | NamingException e) {
-      e.printStackTrace();
-      sendFeedback(res, Codes.INTERNAL_ERROR);
-    } catch (CustomException e) {
-      sendFeedback(res, e.getErrorCode());
+        // PERFORM ACTION
+        success = trainerService.addPresenceToCurrentLectureTimeSlot(subscription);
+      } catch (SQLException | NamingException e) {
+        e.printStackTrace();
+        sendFeedback(res, Codes.INTERNAL_ERROR);
+      } catch (CustomException e) {
+        logger.error(loggerClass + e.getErrorCode());
+        sendFeedback(res, e.getErrorCode());
+      }
+      //Return positive feedback
+      if (success) sendFeedback(res, Codes.OK, false);
     }
-    //Return positive feedback
-    if (success) sendFeedback(res, Codes.OK, false);
   }
 
   /* DELETE A RESERVATION */
   @Override
   public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
-    boolean success = false;
+    Codes checkType = checkContentTypeMediaType(req);
+    if (checkType.getHTTPCode() != Codes.OK.getHTTPCode()) sendFeedback(res, checkType);
+    else {
+      boolean success = false;
 
-    try {
-      TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
-      GsonService gsonService = new GsonService();
+      try {
+        TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+        GsonService gsonService = new GsonService();
 
-      // GET RESERVATION FROM REQUEST
-      String param = req.getReader().lines().collect(Collectors.joining());
-      Reservation reservation = gsonService.getReservationFromString(param);
+        // GET RESERVATION FROM REQUEST
+        String param = req.getReader().lines().collect(Collectors.joining());
+        Reservation reservation = gsonService.getReservationFromString(param);
 
-      // PERFORM ACTION
-      success = trainerService.removePresenceFromCurrentLectureTimeSlot(reservation);
-    } catch (SQLException | NamingException e) {
-      logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, Codes.INTERNAL_ERROR);
-    } catch (CustomException e) {
-      logger.error(loggerClass + e.getMessage());
-      sendFeedback(res, e.getErrorCode());
+        // PERFORM ACTION
+        success = trainerService.removePresenceFromCurrentLectureTimeSlot(reservation);
+      } catch (SQLException | NamingException e) {
+        logger.error(loggerClass + e.getMessage());
+        sendFeedback(res, Codes.INTERNAL_ERROR);
+      }  catch (CustomException e) {
+        logger.error(loggerClass + e.getErrorCode());
+        sendFeedback(res, e.getErrorCode());
+      }
+      //Return positive feedback
+      if (success) sendFeedback(res, Codes.OK, false);
     }
-    //Return positive feedback
-    if (success) sendFeedback(res, Codes.OK, false);
   }
-
-  /* TODO FOR OTHER METHODS THROW NOT IMPLEMENTED */
 
   /* PRIVATE METHODS */
   private void sendFeedback(HttpServletResponse res, Codes error) throws IOException {
-    sendFeedback(res, error, true);
+    //sendFeedback(res, error, true);
+    // TODO CONTINUE
+    sendErrorResponse(res, error);
   }
 
   private void sendFeedback(HttpServletResponse res, Codes error, boolean isError) throws IOException {
-    String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
-    PrintWriter out = res.getWriter();
-    res.setStatus(error.getHTTPCode());
-    res.setContentType("application/json");
-    res.setCharacterEncoding("utf-8");
-    out.print(messageJson);
+    Message message = new Message(error.getErrorMessage(), isError);
+    this.sendDataResponse(res, message);
   }
 }

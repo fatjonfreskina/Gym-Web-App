@@ -161,5 +161,9 @@ public class Constants {
 
     public static final long DAY = 1000 * 60 * 60 * 24;
 
+  //JSON PARSE EXCEPTIONS MESSAGE
+  public static final String UNPARSABLE_TIME = "Unparsable time: ";
+  public static final String UNPARSABLE_DATE = "Unparsable date: ";
+
 
 }

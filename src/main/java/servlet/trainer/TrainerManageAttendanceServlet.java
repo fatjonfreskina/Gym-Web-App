@@ -43,7 +43,8 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     req.getRequestDispatcher(Constants.PATH_TRAINER_MANAGE_ATTENDANCE).forward(req, res);
   }
 
-  /* INSERT A RESERVATION FROM SUBSCRIPTION! */
+  /* if action == doDelete DELETE A RESERVATION! */
+  /* else INSERT A RESERVATION FROM SUBSCRIPTION! */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
