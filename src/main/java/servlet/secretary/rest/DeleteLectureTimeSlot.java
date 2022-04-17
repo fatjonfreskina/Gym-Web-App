@@ -69,7 +69,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
 
         //Check you are trying to delete a lecture after the date of today
         Date actual = new Date(System.currentTimeMillis());
-        if(date.after(actual)){
+        if(date.before(actual)){
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 

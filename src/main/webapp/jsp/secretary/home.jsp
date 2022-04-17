@@ -253,6 +253,7 @@
                     }
                 });
             }
+
         } else {
             console.log("Error, event not found");
         }

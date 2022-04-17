@@ -22,17 +22,12 @@ public class DeleteLectureTimeSlotDatabase {
     }
 
     public void execute() throws SQLException {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            ps = connection.prepareStatement(STATEMENT);
-            ps.setString(1,lts.getRoomName());
-            ps.setDate(2,lts.getDate());
-            ps.setTime(3,lts.getStartTime());
+        try (PreparedStatement ps = connection.prepareStatement(STATEMENT)) {
+            ps.setString(1, lts.getRoomName());
+            ps.setDate(2, lts.getDate());
+            ps.setTime(3, lts.getStartTime());
             ps.executeQuery();
         } finally {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
             connection.close();
         }
     }
