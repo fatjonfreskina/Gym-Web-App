@@ -33,9 +33,7 @@ public class GetLectureTimeSlotByRoomDateStartTimeDatabase {
             ps.setString(1, lectureTimeSlot.getRoomName());
             ps.setDate(2, lectureTimeSlot.getDate());
             ps.setTime(3, lectureTimeSlot.getStartTime());
-
             rs = ps.executeQuery();
-
 
             if (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);

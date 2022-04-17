@@ -210,7 +210,7 @@
         if(confirm("Do you really want to delete?")){
             $.ajax({
                 url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>",
-                type: "DELETE",
+                type: "POST",
                 data: {
                     "roomname" : "Energy",
                     "date" : "apr 11, 2022",

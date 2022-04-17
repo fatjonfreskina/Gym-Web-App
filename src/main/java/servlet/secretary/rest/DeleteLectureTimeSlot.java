@@ -21,7 +21,13 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Riccardo Forzan
@@ -29,7 +35,7 @@ import java.util.List;
 public class DeleteLectureTimeSlot extends AbstractServlet {
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //Try to perform the operation
         Message message = deleteLectureTimeSlot(request);
 
@@ -54,12 +60,18 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
 
         //Parse the parameters
         String roomName = request.getParameter("roomname");
-        Date date = Date.valueOf(request.getParameter("date"));
-        Time startTime = Time.valueOf(request.getParameter("starttime"));
+
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
+                .append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
+        LocalDate localDate = LocalDate.parse(request.getParameter("date"), formatter);
+        Date date = new Date(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
+
+        LocalTime localTime = LocalTime.parse(request.getParameter("starttime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        Time startTime = Time.valueOf(localTime);
 
         //Check you are trying to delete a lecture after the date of today
         Date actual = new Date(System.currentTimeMillis());
-        if(date.before(actual)){
+        if(date.after(actual)){
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
@@ -67,7 +79,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
         Reservation toFind = new Reservation(roomName, date, startTime);
 
         //Get the lectureTimeSlot
-        LectureTimeSlot lectureTimeSlot = null;
+        LectureTimeSlot lectureTimeSlot;
         try {
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName, date, startTime, null, null, null)).execute();
         } catch (SQLException | NamingException e) {
