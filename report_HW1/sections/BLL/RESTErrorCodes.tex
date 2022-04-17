@@ -36,8 +36,8 @@ Here the list of errors defined in the application. The numeration starts with -
 	-30 &  METHOD\_NOT\_ALLOWED & Unsupported operation for the requested URI \\ 
 	-31 &  INTERNAL\_SERVER\_ERROR & Unexpected error \\
 	-32 &  BAD\_REQUEST & There are no more spots left \\ 
-	-33 &  BAD\_REQUEST & Can\'t insert date in the past \\
-	-34 &  FORBIDDEN & Trainee must be enrolled to the course to make a reservation \\
+	-33 &  BAD\_REQUEST & Can't insert date in the past \\
+	-34 &  BAD\_REQUEST & Trainee is not enrolled to your the course! \\
 	-35 &  CONFLICT & Reservation already present \\
 	-36 &  NO\_CONTENT & No Reservation found \\
 	-37 &  INTERNAL\_SERVER\_ERROR & User has no role assigned to it \\
@@ -46,12 +46,15 @@ Here the list of errors defined in the application. The numeration starts with -
 	-40 &  NOT\_FOUND & Token for password reset not found \\
 	-41 &  CONFLICT & Password is not valid \\
 	-42 &  NOT\_FOUND & Person not found \\
-	-43 &  UNSUPPORTED\_MEDIA\_TYPE & Wrong date or time format \\
-	-44 &  NOT\_ACCEPTABLE & Request not acceptable and missing fields \\
-	-45 &  NO\_CONTENT & Trainer has no Trainee subscribed to its course \\ 
-	-46 &  NO\_CONTENT & Subscription is not currently valid \\
-	-47 &  UNSUPPORTED\_MEDIA\_TYPE & Wrong JSON reservation \\
+	-43 &  BAD\_REQUEST & Wrong date format, date format should be in ISO 2014 [yyyy]-[MM]-[dd] format! \\
+	-44 &  BAD\_REQUEST & Wrong time format, time format should be in ISO 8601's 24-hour clock T[hh]:[mm]:[ss] format! \\
+	-45 &  BAD\_REQUEST & Request not acceptable and missing fields \\
+	-46 &  NO\_CONTENT & Trainer has no Trainee subscribed to its course \\ 
+	-47 &  NO\_CONTENT & Subscription is not currently valid \\
+	-48 &  UNSUPPORTED\_MEDIA\_TYPE & Wrong JSON reservation \\
 	-49 &  BAD\_REQUEST & Remaining days of the selected course are less than the subscription duration \\
 	-50 & NOT\_ACCEPTABLE & Subscription expired before the requested reservation \\
+	-51 & CONFLICT & Conflict between Reservation and LectureTimeSlot values! \\
+	-52 & BAD\_REQUEST & Wrong type for a field. \\
 	
 \end{longtable}
