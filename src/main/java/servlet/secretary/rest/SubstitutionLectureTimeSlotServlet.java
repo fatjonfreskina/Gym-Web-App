@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * @author Riccardo Forzan
  */
-public class SubstitutionLectureTimeSlot extends AbstractServlet {
+public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,7 +83,7 @@ public class SubstitutionLectureTimeSlot extends AbstractServlet {
             //Create a new LectureTimeSlot updating the substitution field
             LectureTimeSlot updatedLectureTimeSlot = new LectureTimeSlot(lectureTimeSlot.getRoomName(), lectureTimeSlot.getDate(), lectureTimeSlot.getStartTime(), lectureTimeSlot.getCourseEditionId(), lectureTimeSlot.getCourseName(), email);
             //Update the LectureTimeSlot
-            new UpdateLectureTimeSlotDatabase(getDataSource().getConnection(), updatedLectureTimeSlot).execute();
+            new UpdateLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot, updatedLectureTimeSlot).execute();
         } catch (SQLException | NamingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }

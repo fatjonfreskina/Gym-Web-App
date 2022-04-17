@@ -26,7 +26,7 @@ public class DeleteLectureTimeSlotDatabase {
             ps.setString(1, lts.getRoomName());
             ps.setDate(2, lts.getDate());
             ps.setTime(3, lts.getStartTime());
-            ps.executeQuery();
+            ps.executeUpdate();
         } finally {
             connection.close();
         }

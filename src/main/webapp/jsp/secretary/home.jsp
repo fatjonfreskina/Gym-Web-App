@@ -96,12 +96,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <label for="new-start-time">Specify a new start time</label>
-                        <input type="time" id="new-start-time" name="newstarttime" min="09:00" max="20:00">
-                        <label>Specify a new date</label>
-                        <input type="date" id="new-date" name="newdate">
-                        <label for="newroom">Specify a new room</label>
-                        <select id="newroom" name="newroom">
+                        <label for="newStartTime">Specify a new start time</label>
+                        <input type="time" id="newStartTime" name="newStartTime" min="09:00" max="20:00">
+                        <label for="newDate">Specify a new date</label>
+                        <input type="date" id="newDate" name="newDate">
+                        <label for="newRoom">Specify a new room</label>
+                        <select id="newRoom" name="newRoom">
                             <c:forEach var="room" items="${rooms}">
                                 <option  value="${room.name}"><c:out value="${room.name}"/></option>
                             </c:forEach>
@@ -109,7 +109,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Change schedule</button>
+                    <button type="button" id="button-change-schedule"
+                            class="btn btn-primary btn-sm" data-dismiss="modal">Change schedule</button>
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -294,6 +295,48 @@
                 }
             });
 
+
+        } else {
+            console.log("Error, event not found");
+        }
+
+    });
+
+    $("#button-change-schedule").click(() => {
+
+        if(selectedEvent !== undefined) {
+
+            //Old parameters
+            const oldRoomName = selectedEvent.roomName;
+            const oldDate = selectedEvent.customdate;
+            const oldStartTime = selectedEvent.customstartTime;
+            //New updated parameters
+            const newRoomName = $('#newRoom').val();
+            const newDate = $('#newDate').val();
+            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]).format("hh:mm:ss A");
+
+            $.ajax({
+                url: "<c:url value="/secretary/rest/updatelecturetimeslot"/>",
+                type: "POST",
+                data: {
+                    "oldRoomName" : oldRoomName,
+                    "oldDate" : oldDate,
+                    "oldStartTime" : oldStartTime,
+                    "newRoomName" : newRoomName,
+                    "newDate" : newDate,
+                    "newStartTime" : newStartTime
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response);
+                    //TODO: Show some alert
+                    renderCalendar();
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
 
         } else {
             console.log("Error, event not found");

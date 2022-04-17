@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import java.util.TimeZone;
 /**
  * @author Riccardo Forzan
  */
-public class GetAllLectureTimeSlot extends AbstractServlet {
+public class GetAllLectureTimeSlotServlet extends AbstractServlet {
 
     /**
      * Helper class used to fill the calendar using AJAX

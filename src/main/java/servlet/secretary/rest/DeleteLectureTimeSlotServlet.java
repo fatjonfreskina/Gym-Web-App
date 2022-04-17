@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * @author Riccardo Forzan
  */
-public class DeleteLectureTimeSlot extends AbstractServlet {
+public class DeleteLectureTimeSlotServlet extends AbstractServlet {
 
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -99,6 +99,7 @@ public class DeleteLectureTimeSlot extends AbstractServlet {
             }
 
             //Delete the LectureTimeSlot (all subscriptions have been removed)
+            //TODO: Debug this
             new DeleteLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot).execute();
 
             //Operation has been completed successfully

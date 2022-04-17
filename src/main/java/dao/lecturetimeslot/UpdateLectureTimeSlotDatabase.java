@@ -11,35 +11,43 @@ import java.sql.SQLException;
 
 /**
  * @author Harjot Singh
+ * @author Riccardo Forzan
  */
 public class UpdateLectureTimeSlotDatabase {
-    private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-    private final String STATEMENT = "UPDATE lecturetimeslot SET courseeditionid = ?, coursename = ?, substitution = ? WHERE roomname = ? AND date = ? AND starttime = ?";
-    private final LectureTimeSlot lts;
+    private final String STATEMENT = """
+    UPDATE lecturetimeslot SET roomname = ?, date = ?, starttime = ?, courseeditionid = ?, coursename = ?, substitution = ? 
+    WHERE roomname = ? AND date = ? AND starttime = ?
+    """;
+    private final LectureTimeSlot oldLTS;
+    private final LectureTimeSlot newLTS;
     private final Connection connection;
 
-    public UpdateLectureTimeSlotDatabase(final Connection connection, final LectureTimeSlot lts) {
+    public UpdateLectureTimeSlotDatabase(final Connection connection, final LectureTimeSlot oldLTS, final LectureTimeSlot newLTS) {
         this.connection = connection;
-        this.lts = lts;
+        this.oldLTS = oldLTS;
+        this.newLTS = newLTS;
     }
 
     public void execute() throws SQLException {
         PreparedStatement ps = null;
-        ResultSet rs = null;
         LectureTimeSlot updatedLts = null;
         try {
             ps = connection.prepareStatement(STATEMENT);
-            ps.setInt(1, lts.getCourseEditionId());
-            ps.setString(2, lts.getCourseName());
-            ps.setString(3, lts.getSubstitution());
 
-            ps.setString(4, lts.getRoomName());
-            ps.setDate(5, lts.getDate());
-            ps.setTime(6, lts.getStartTime());
+            ps.setString(1, newLTS.getRoomName());
+            ps.setDate(2, newLTS.getDate());
+            ps.setTime(3, newLTS.getStartTime());
+            ps.setInt(4, newLTS.getCourseEditionId());
+            ps.setString(5, newLTS.getCourseName());
+            ps.setString(6, newLTS.getSubstitution());
 
-            rs = ps.executeQuery();
+            //Old primary key
+            ps.setString(7, oldLTS.getRoomName());
+            ps.setDate(8, oldLTS.getDate());
+            ps.setTime(9, oldLTS.getStartTime());
+
+            ps.executeUpdate();
         } finally {
-            if (rs != null) rs.close();
             if (ps != null) ps.close();
             connection.close();
         }

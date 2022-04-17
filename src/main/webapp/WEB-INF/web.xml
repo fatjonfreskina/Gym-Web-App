@@ -174,15 +174,19 @@
     </servlet>
     <servlet>
         <servlet-name>GetAllLectureTimeSlot</servlet-name>
-        <servlet-class>servlet.secretary.rest.GetAllLectureTimeSlot</servlet-class>
+        <servlet-class>servlet.secretary.rest.GetAllLectureTimeSlotServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteLectureTimeSlot</servlet-name>
-        <servlet-class>servlet.secretary.rest.DeleteLectureTimeSlot</servlet-class>
+        <servlet-class>servlet.secretary.rest.DeleteLectureTimeSlotServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SubstitutionLectureTimeSlot</servlet-name>
-        <servlet-class>servlet.secretary.rest.SubstitutionLectureTimeSlot</servlet-class>
+        <servlet-class>servlet.secretary.rest.SubstitutionLectureTimeSlotServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateLectureTimeSlot</servlet-name>
+        <servlet-class>servlet.secretary.rest.UpdateLectureTimeSlotServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddAccountServlet</servlet-name>
@@ -355,6 +359,10 @@
     <servlet-mapping>
         <servlet-name>SubstitutionLectureTimeSlot</servlet-name>
         <url-pattern>/secretary/rest/substitutionlecturetimeslot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateLectureTimeSlot</servlet-name>
+        <url-pattern>/secretary/rest/updatelecturetimeslot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
