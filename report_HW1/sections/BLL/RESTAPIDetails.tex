@@ -94,3 +94,103 @@
 	------------------------------------------------------------------------------------------------------------------------------------
 \end{itemize}
 
+\subsection*{Trainer}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\begin{itemize}
+	\item URL: \texttt{/rest/trainer/attendance}
+	\item Method: \texttt{POST}
+	\item Headers: 
+	\begin{itemize}
+		\item content-type: application/json,
+		\item Cookie: JSESSIONID=\{JSESSIONID\},
+	\end{itemize}
+	\item URL Parameters: No parameters are required in the URL
+	\item Data Parameters: {
+	\begin{itemize}
+		\item "courseEditionID": \{integer\},
+		\item "courseName": "\{string\}",
+		\item "duration": \{integer\},
+		\item "startDay": "\{string\}"(format: ISO 2014),
+		\item "discount": \{integer $|$ null\},
+		\item "trainee": "\{string\}"
+	\end{itemize}}
+	\item Success Response:\\
+	Code : \texttt{200 OK}\\
+	Content : \{ \\
+	\tab "message": "OK",\\
+	\tab "isError": false \\
+	\tab \}\\
+	When : If the request creates successfully a reservation.
+	
+	\item Error Response:
+	
+	Code : \texttt{401 UNAUTHORIZED}\\
+	Content : \{ \\
+	\tab "message": "User not logged in!",\\
+	\tab "isError": true \\
+	\tab \}\\
+	When : If the user is not authenticated or does not provide a Cookie header.
+		
+	Code : \texttt{403 FORBIDDEN}\\
+	Content : \{ \\
+	\tab "message": "Unauthorized User: user does not have enough privileges to perform the action!",\\
+	\tab "isError": true\\
+	\tab \}\\
+	When : If the authenticated user is not a trainer but has a different role.
+	
+	Code : \texttt{400 BAD\_REQUEST}\\
+	Content : \{\\
+	\tab "message": "There are no courses you teach!",\\
+	\tab "isError": true\\
+	\tab \}\\
+	When : If there are no courses taught by the trainer.
+	
+	Code : \texttt{400 BAD\_REQUEST}\\
+	Content : \{\\
+	\tab "message": "There is no course you teach at this time!",\\
+	\tab "isError": true\\
+	\tab \}\\
+	When : If there is no course at this time among the courses taught by the trainer.
+	
+	Code : \texttt{400 BAD\_REQUEST}\\
+	Content : \{ \\
+	\tab "message": "Request not acceptable, missing fields.",\\
+	\tab "isError": true \\
+	\tab \}\\
+	When : If the request does not contain all the required field, see Subscriptions BEAN.
+	
+	Code : \texttt{400 BAD\_REQUEST}\\
+	Content : \{ \\
+	\tab "message": "Wrong type for a field.",\\
+	\tab "isError": true \\
+	\tab \}\\
+	When : If the request contain a required field with a wrong type, see Subscriptions BEAN.
+	
+	Code : \texttt{400 BAD\_REQUEST}\\
+	Content : \{ \\
+	\tab "message": "Wrong date format, date format should be in ISO 2014  [yyyy]-[MM]-[dd] format!",\\
+	\tab "isError": true \\
+	\tab \}\\
+	When : If the request contain a date field with wrong format.
+	
+	Code : \texttt{400 BAD\_REQUEST}\\
+	Content : \{\\
+	\tab "message": "Trainee is not enrolled to your course!",\\
+	\tab "isError": true\\
+	\tab \}\\
+	When : If the trainee, in the subscription passed as body of the post, is not enrolled to the trainers course or contains wrong parameter.
+	
+	Code : \texttt{409 CONFLICT}\\
+	Content : \{ \\
+	\tab "message": "Reservation already present.",\\
+	\tab "isError": true \\
+	\tab \}\\
+	When : If there is already present a reservation for the subscription, in the body of the request.
+				
+	Code : \texttt{500 INTERNAL\_ERROR}\\
+	Content : \{ \\
+	\tab "message" : "An internal error occured",\\
+	\tab "isError": true \\
+	\tab \}\\
+	When : If there is an Internal Server error.\\
+\end{itemize}
