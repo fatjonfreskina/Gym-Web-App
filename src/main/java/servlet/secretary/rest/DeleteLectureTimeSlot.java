@@ -33,7 +33,6 @@ import java.util.List;
 public class DeleteLectureTimeSlot extends AbstractServlet {
 
     @Override
-    //TODO: Modify in doDelete
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //Try to perform the operation
         Message message = deleteLectureTimeSlot(request);

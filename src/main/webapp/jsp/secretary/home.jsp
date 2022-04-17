@@ -126,6 +126,9 @@
 
 <script>
 
+    //This variable contains the event which has been clicked in the calendar
+    let selectedEvent = undefined;
+
     //Construct the calendar
     let calendarEl = document.getElementById('calendar');
     let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -139,7 +142,8 @@
         },
         eventClick: function (info) {
             //console.log(info.event);
-            console.log(info.event.extendedProps);
+            //console.log(info.event.extendedProps);
+            selectedEvent = info.event.extendedProps.customLTS;
             $("#modal-details").modal("show");
         }
     });
@@ -229,22 +233,31 @@
     renderCalendar();
 
     $("#button-delete-lecturetimeslot").click(() => {
-        if(confirm("Do you really want to delete?")){
-            $.ajax({
-                url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({"roomname": "Energy", "date" : "apr 18, 2022", "starttime":"10:00:00 AM"}),
-                type: "DELETE",
-                success: function (response) {
-                    console.log(response);
-                    renderCalendar();
-                },
-                error: function (xhr) {
-                    console.log(xhr);
-                }
-            });
+
+        if(selectedEvent !== undefined) {
+
+            const roomNane = selectedEvent.roomName;
+            const date = selectedEvent.customdate;
+            const starttime = selectedEvent.customstartTime;
+
+            if(confirm("Do you really want to delete?")){
+                $.ajax({
+                    url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({"roomname": roomNane, "date": date, "starttime": starttime}),
+                    type: "DELETE",
+                    success: function (response) {
+                        console.log(response);
+                        renderCalendar();
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+            }
+        } else {
+            console.log("Error, event not found");
         }
+
     });
-
-
 
 </script>
 
