@@ -3,6 +3,7 @@ package servlet.secretary;
 import com.google.gson.Gson;
 import constants.Codes;
 import constants.Constants;
+import dao.courseedition.DeleteCourseEditionDatabase;
 import dao.courseedition.GetAvailableCourses;
 import dao.courseedition.InsertCourseEditionDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
@@ -15,6 +16,8 @@ import dao.teaches.InsertTeachesDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import resource.*;
 import servlet.AbstractServlet;
 
@@ -37,6 +40,7 @@ import java.util.Objects;
  * */
 public class AddCoursesServlet extends AbstractServlet
 {
+    private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -283,13 +287,16 @@ public class AddCoursesServlet extends AbstractServlet
                             //Insert into teaches
                             new InsertTeachesDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName),new Person(teacher)).execute();
                         }
-                    } else
+                    } else {
                         error = Codes.OVERLAPPING_COURSES;
+                        new DeleteCourseEditionDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName)).execute();
+                    }
                 } else
                     error = Codes.INTERNAL_ERROR;
 
             } catch (NamingException | SQLException exception) {
                 error = Codes.INTERNAL_ERROR;
+                logger.info("COURSES EXCEPTION= "+exception);
             }
 
 
@@ -323,7 +330,7 @@ public class AddCoursesServlet extends AbstractServlet
         String subscriptionType180 = null;
         String subscriptionType365 = null;
 
-        String[] monaday = null;
+        String[] monday = null;
         String[] tuesday = null;
         String[] wednesday = null;
         String[] thursday = null;
@@ -351,7 +358,7 @@ public class AddCoursesServlet extends AbstractServlet
             subscriptionType180 = req.getParameter("subscription_type_180");
             subscriptionType365 = req.getParameter("subscription_type_365");
 
-            monaday = req.getParameterValues("monday"); //ok
+            monday = req.getParameterValues("monday"); //ok
             tuesday = req.getParameterValues("tuesday");
             wednesday = req.getParameterValues("wednesday");
             thursday = req.getParameterValues("thursday");
@@ -367,7 +374,7 @@ public class AddCoursesServlet extends AbstractServlet
             cost180 = req.getParameter("cost_180");
             cost365 = req.getParameter("cost_365");
 
-            if(monaday == null && tuesday == null && wednesday == null && thursday==null && friday == null && saturday == null && sunday == null)
+            if(monday == null && tuesday == null && wednesday == null && thursday==null && friday == null && saturday == null && sunday == null)
                 error = Codes.EMPTY_INPUT_FIELDS;
             else if(cost30 == null && cost90 == null && cost180 == null && cost365 == null && "".equals(cost30) && "".equals(cost90) && "".equals(cost180) && "".equals(cost365))
                 error = Codes.EMPTY_INPUT_FIELDS;
@@ -428,11 +435,11 @@ public class AddCoursesServlet extends AbstractServlet
                 if(!Objects.equals(subscriptionType365, "") && subscriptionType365 != null)
                     subscriptionType365Integer = Integer.parseInt(subscriptionType365);
 
-                if(monaday != null)
+                if(monday != null)
                 {
-                    mondayTime = new Time[monaday.length];
+                    mondayTime = new Time[monday.length];
                     for(int i=0; i< mondayTime.length; i++)
-                        mondayTime[i] = Time.valueOf(monaday[i]);
+                        mondayTime[i] = Time.valueOf(monday[i]);
                 }
 
                 if(tuesday!= null)
