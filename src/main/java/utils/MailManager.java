@@ -11,9 +11,10 @@ import java.util.Properties;
 /**
  * This class is used to manage e-mail messages.
  *
- * @author Marco Alessio
+ * @author Marco Alessio, Simone D'Antimo
  */
-public class MailManager {
+public class MailManager
+{
     /*
     Connection parameters per e-mail provider:
 
@@ -37,7 +38,8 @@ public class MailManager {
      * @param password The password of the sender's e-mail address
      */
 
-    public MailManager(String host, int port, String email, String password) {
+    public MailManager(String host, int port, String email, String password)
+    {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.host", host);
@@ -50,9 +52,11 @@ public class MailManager {
         properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        session = Session.getInstance(properties, new Authenticator() {
+        session = Session.getInstance(properties, new Authenticator()
+        {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
+            protected PasswordAuthentication getPasswordAuthentication()
+            {
                 return new PasswordAuthentication(email, password);
             }
         });
@@ -72,7 +76,8 @@ public class MailManager {
      * @param text    : The text of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-    public void sendMail(String email, String subject, String text) throws MessagingException {
+    public void sendMail(String email, String subject, String text) throws MessagingException
+    {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 
@@ -96,7 +101,8 @@ public class MailManager {
      * @param content : The content of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-    public void sendMail(String email, String subject, Multipart content) throws MessagingException {
+    public void sendMail(String email, String subject, Multipart content) throws MessagingException
+    {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 
@@ -109,88 +115,5 @@ public class MailManager {
         msg.setContent(content);
 
         Transport.send(msg);
-    }
-
-
-    //TODO: Marco Alessio's testing code, do not touch!
-    //Currently it sends an e-mail with:
-    //- image + side text, at the top
-    //- text, below
-    //as HTML code.
-    public void sendMail__Testing(String email, String subject) throws Exception {
-        long t1 = System.currentTimeMillis();
-        final InternetAddress fromAddress = new InternetAddress(fromEmail);
-        final InternetAddress toAddress = new InternetAddress(email);
-        t1 = System.currentTimeMillis() - t1;
-
-
-        session.setDebug(true);
-
-        long t2 = System.currentTimeMillis();
-        Message msg = new MimeMessage(session);
-        msg.setFrom(fromAddress);
-        msg.setRecipient(Message.RecipientType.TO, toAddress);
-
-        final String htmlText =
-                """
-                        <div style="width:100%; height:128px;">
-                            <div style="width:150px; height:100%; float:left;">
-                                <img src="cid:logo_cid" alt="gwa_logo" width="128" height="128">
-                            </div>
-                            <div style="width:100%; height:100%;">
-                                <h3>GWA Gym</h3>
-                                Padua, Italy
-                            </div>
-                        </div>
-                        <h1>Useless text just to try.</h1>
-                        """;
-
-
-        Multipart multipart = new MimeMultipart();
-
-        BodyPart textPart = new MimeBodyPart();
-        //For text + image as attachment, use instead:
-        //textPart.setText("Trial text with no real use.");
-        textPart.setContent(htmlText, "text/html");
-
-        BodyPart imgPart = new MimeBodyPart();
-        imgPart.setDataHandler(new DataHandler(new FileDataSource(
-                "src\\main\\resources\\logo.png")));
-        //For text + image as attachment, use instead:
-        //imgPart.setFileName("logo.png");
-        imgPart.setHeader("Content-ID", "<logo_cid>");
-
-        //Add another HTML part => appended below that comes before.
-        BodyPart textPart2 = new MimeBodyPart();
-        textPart2.setContent("<h2>** Footer **</h2>", "text/html");
-
-        multipart.addBodyPart(textPart);
-        multipart.addBodyPart(imgPart);
-        multipart.addBodyPart(textPart2);
-
-        msg.setSentDate(new Date());
-        msg.setSubject(subject);
-        msg.setContent(multipart);
-        t2 = System.currentTimeMillis() - t2;
-
-        long t3 = System.currentTimeMillis();
-        Transport.send(msg);
-        t3 = System.currentTimeMillis() - t3;
-
-        final String debugInfo =
-                """
-                        Timings:
-                        1) Addresses creation: %d ms
-                        2) Preparing content:  %d ms
-                        3) Sending the e-mail: %d ms
-                                        
-                        """.formatted(t1, t2, t3);
-
-
-        if (true) {
-            System.out.println(debugInfo);
-
-            //throw new MessagingException(debugInfo);
-        }
     }
 }
