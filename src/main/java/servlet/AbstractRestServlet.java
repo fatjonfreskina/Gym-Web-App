@@ -1,15 +1,17 @@
 package servlet;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import constants.Codes;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.Message;
+import utils.DateJsonAdapter;
+import utils.TimeJsonAdapter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Type;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -43,49 +45,11 @@ import java.sql.Time;
  */
 public class AbstractRestServlet extends AbstractServlet
 {
-    //TODO: javadoc.
-    private static final class DateDeserializer implements JsonDeserializer<Date>
-    {
-        @Override
-        public Date deserialize(JsonElement jsonElement, Type typeOF,
-                                JsonDeserializationContext context) throws JsonParseException
-        {
-            try {
-                return Date.valueOf(jsonElement.getAsString());
-            } catch (IllegalArgumentException e) {
-                throw new JsonParseException("Unparsable date: \"" + jsonElement.getAsString()
-                        + "\". Supported formats: " + DATE_FORMAT);
-            }
-        }
-    }
-
-
-    //TODO: javadoc.
-    private static final class TimeDeserializer implements JsonDeserializer<Time>
-    {
-        @Override
-        public Time deserialize(JsonElement jsonElement, Type typeOF,
-                                JsonDeserializationContext context) throws JsonParseException
-        {
-            try {
-                return Time.valueOf(jsonElement.getAsString());
-            } catch (IllegalArgumentException e) {
-                throw new JsonParseException("Unparsable time: \"" + jsonElement.getAsString()
-                        + "\". Supported formats: " + TIME_FORMAT);
-            }
-        }
-    }
-
-
     protected static final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(Date.class, new DateDeserializer())
-            .registerTypeAdapter(Time.class, new TimeDeserializer())
-            //.setPrettyPrinting()
+            .setDateFormat("yyyy-MM-dd")
+            .registerTypeAdapter(Date.class, new DateJsonAdapter())
+            .registerTypeAdapter(Time.class, new TimeJsonAdapter())
             .create();
-
-
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
-    private static final String TIME_FORMAT = "HH:mm:ss";
 
     protected static final String ACCEPT_HEADER = "accept";
 

@@ -8,8 +8,8 @@ import constants.exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import resource.*;
-import utils.JsonDateDeserializer;
-import utils.JsonTimeDeserializer;
+import utils.DateJsonAdapter;
+import utils.TimeJsonAdapter;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -26,7 +26,7 @@ public class GsonService {
   public GsonService() {
     gson = new GsonBuilder()
         //.setDateFormat("yyyy-MM-dd")
-        .registerTypeAdapter(Time.class, new JsonTimeDeserializer()).registerTypeAdapter(Date.class, new JsonDateDeserializer()).create();
+        .registerTypeAdapter(Time.class, new TimeJsonAdapter()).registerTypeAdapter(Date.class, new DateJsonAdapter()).create();
   }
 
   public Reservation getReservationFromString(String string) throws WrongDateFormat, NotAcceptableMissingFields, ParsingError, WrongTimeFormat {

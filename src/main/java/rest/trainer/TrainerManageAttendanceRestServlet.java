@@ -25,7 +25,7 @@ import resource.rest.TrainerAttendance;
 import service.GsonService;
 import service.TrainerService;
 import servlet.AbstractRestServlet;
-import utils.JsonTimeSerializer;
+import utils.TimeJsonAdapter;
 
 /**
  * @author Andrea Pasin
@@ -45,7 +45,7 @@ public class TrainerManageAttendanceRestServlet extends AbstractRestServlet {
       res.setContentType("application/json");
       res.setCharacterEncoding("UTF-8");
       PrintWriter out = res.getWriter();
-      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").registerTypeAdapter(Time.class, new JsonTimeSerializer()).create();
+      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").registerTypeAdapter(Time.class, new TimeJsonAdapter()).create();
       out.print(gson.toJson(new TrainerService(getDataSource(), trainerEmail).getTrainerAttendance(), TrainerAttendance.class));
     } catch (SQLException | NamingException e) {
       logger.error(loggerClass + e.getMessage());
