@@ -93,7 +93,8 @@ public class PasswordForgotServlet extends AbstractServlet {
 
         //Generate a new token string of length 256
         try {
-            String token = EncryptionManager.encrypt(person.getAddress());
+            //Create a different token based on the time
+            String token = EncryptionManager.encrypt(person.getEmail() + System.currentTimeMillis());
             //Reopen a new connection
             conn = getDataSource().getConnection();
             //Take the actual date and add 24H
