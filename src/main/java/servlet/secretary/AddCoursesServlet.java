@@ -740,12 +740,4 @@ public class AddCoursesServlet extends AbstractServlet
         }
         return fail;
     }
-
-
-
-
-
-
-
-
 }
