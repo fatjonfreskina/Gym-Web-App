@@ -99,7 +99,6 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
             }
 
             //Delete the LectureTimeSlot (all subscriptions have been removed)
-            //TODO: Debug this
             new DeleteLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot).execute();
 
             //Operation has been completed successfully
