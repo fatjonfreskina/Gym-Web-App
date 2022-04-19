@@ -72,9 +72,22 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
         LocalTime newLocalTime = LocalTime.parse(request.getParameter("newStartTime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
         Time newStartTime = Time.valueOf(newLocalTime);
 
-        //TODO: Check date of the lesson you are trying to move is after the current date in millis
+        Date actual = new Date(System.currentTimeMillis());
+        //Check the date of the lesson you are trying to move is after the current date in millis
+        if(oldDate.before(actual)){
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
+        //Check the new date of the lesson you are trying to move is after the current date in millis
+        if(newDate.after(actual)){
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
 
-        //TODO: Check the lecture starts in the range 8:00 AM to 20:00 PM
+        //Check the lecture starts in the range 8:00 AM to 20:00 PM
+        LocalTime openingTime = LocalTime.parse("8:00:00 AM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        LocalTime closingTime = LocalTime.parse("20:00:00 PM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        if(newLocalTime.isAfter(openingTime) && newLocalTime.isBefore(closingTime)){
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
 
         //TODO: Check the new Date and Time in which you want to move the lecture does not do any overlap
 

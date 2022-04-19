@@ -280,7 +280,7 @@
                     "roomname" : roomNane,
                     "date" : date,
                     "starttime" : startTime,
-                    "substitution": substituteEmail,
+                    "n": substituteEmail,
                     "notes": note
                 },
                 cache: false,

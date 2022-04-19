@@ -37,13 +37,12 @@ import java.util.Objects;
 
 /**
  * @author Francesco Caldivezzi
- * */
-public class AddCoursesServlet extends AbstractServlet
-{
+ */
+public class AddCoursesServlet extends AbstractServlet {
     private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
+
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //request.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_COURSES).forward(request,response);
         //All the courses?
         //Tutti insegnati
@@ -53,38 +52,34 @@ public class AddCoursesServlet extends AbstractServlet
         List<Room> rooms = null;
         List<Course> courses = null;
         List<Person> teachers = null;
-        try
-        {
+        try {
             rooms = (new GetListRoomsDatabase(getDataSource().getConnection()).execute());
-            request.setAttribute("rooms",rooms);
+            request.setAttribute("rooms", rooms);
             courses = (new GetAvailableCoursesDatabase(getDataSource().getConnection())).execute();
-            request.setAttribute("courses",courses);
+            request.setAttribute("courses", courses);
             teachers = (new GetListOfTeachersDatabase(getDataSource().getConnection())).execute();
             //stabilire se solo email?? Informazioni pericolose
-            request.setAttribute("teachers",teachers);
-        }catch (SQLException | NamingException e)
-        {
+            request.setAttribute("teachers", teachers);
+        } catch (SQLException | NamingException e) {
             error = Codes.INTERNAL_ERROR;
         }
-        if(error != Codes.OK)
-        {
+        if (error != Codes.OK) {
             String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), true));
             PrintWriter out = response.getWriter();
             response.setContentType("application/json");
             response.setCharacterEncoding("utf-8");
             out.print(messageJson);
-        }else
-        {
-            request.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_COURSES).forward(request,response);
+        } else {
+            request.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_COURSES).forward(request, response);
         }
 
     }
+
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
-    {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Message message = null;
         Codes error = Codes.OK;
-        if((error = parseParams(req,res)) == Codes.OK) {
+        if ((error = parseParams(req, res)) == Codes.OK) {
             //Add course and lecture time slots
             String courseName = null;
             String teacher = null;
@@ -196,8 +191,8 @@ public class AddCoursesServlet extends AbstractServlet
                     //need to find the first day after the specified date
 
                     boolean fail =
-                            overlappingLectures(room,id,courseName,dateFirstEvent,weeks,monday,tuesday,wednesday,thursday,friday,saturday,sunday) ||
-                            overlappingTeacherLectures(teacher,dateFirstEvent,weeks,monday,tuesday,wednesday,thursday,friday,saturday,sunday);
+                            overlappingLectures(room, id, courseName, dateFirstEvent, weeks, monday, tuesday, wednesday, thursday, friday, saturday, sunday) ||
+                                    overlappingTeacherLectures(teacher, dateFirstEvent, weeks, monday, tuesday, wednesday, thursday, friday, saturday, sunday);
 
                     if (!fail) {
                         LocalDate event = dateFirstEvent.toLocalDate();
@@ -274,31 +269,30 @@ public class AddCoursesServlet extends AbstractServlet
                                 c.add(Calendar.DATE, 7);
                                 pointerSunday = new Date(c.getTimeInMillis());
                             }
-                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,7,0)).execute();
-                            if(cost30 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,30,cost30)).execute();
-                            if(cost90 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,90,cost90)).execute();
-                            if(cost180 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,180,cost180)).execute();
-                            if(cost365 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,365,cost365)).execute();
+                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(), new SubscriptionType(id, courseName, 7, 0)).execute();
+                            if (cost30 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(), new SubscriptionType(id, courseName, 30, cost30)).execute();
+                            if (cost90 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(), new SubscriptionType(id, courseName, 90, cost90)).execute();
+                            if (cost180 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(), new SubscriptionType(id, courseName, 180, cost180)).execute();
+                            if (cost365 != null)
+                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(), new SubscriptionType(id, courseName, 365, cost365)).execute();
 
                             //Insert into teaches
-                            new InsertTeachesDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName),new Person(teacher)).execute();
+                            new InsertTeachesDatabase(getDataSource().getConnection(), new CourseEdition(id, courseName), new Person(teacher)).execute();
                         }
                     } else {
                         error = Codes.OVERLAPPING_COURSES;
-                        new DeleteCourseEditionDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName)).execute();
+                        new DeleteCourseEditionDatabase(getDataSource().getConnection(), new CourseEdition(id, courseName)).execute();
                     }
                 } else
                     error = Codes.INTERNAL_ERROR;
 
             } catch (NamingException | SQLException exception) {
                 error = Codes.INTERNAL_ERROR;
-                logger.info("COURSES EXCEPTION= "+exception);
+                logger.info("COURSES EXCEPTION= " + exception);
             }
-
 
 
             if (error.getErrorCode() == Codes.OK.getErrorCode()) {
@@ -306,19 +300,18 @@ public class AddCoursesServlet extends AbstractServlet
             } else {
                 message = new Message(error.getErrorMessage(), true);
             }
-        }else
-            message = new Message(error.getErrorMessage(),true);
+        } else
+            message = new Message(error.getErrorMessage(), true);
 
         String messageJson = new Gson().toJson(message);
-        PrintWriter out = res .getWriter();
+        PrintWriter out = res.getWriter();
         res.setContentType("application/json");
         res.setCharacterEncoding("utf-8");
         out.print(messageJson);
 
     }
 
-    private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
-    {
+    private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Codes error = Codes.OK;
 
         String courseName = null;
@@ -347,8 +340,7 @@ public class AddCoursesServlet extends AbstractServlet
         String cost180 = null;
         String cost365 = null;
 
-        try
-        {
+        try {
             courseName = req.getParameter("course_name"); //ok
             teacher = req.getParameter("teacher");
             room = req.getParameter("room");
@@ -365,7 +357,7 @@ public class AddCoursesServlet extends AbstractServlet
             friday = req.getParameterValues("friday");
             saturday = req.getParameterValues("saturday");
             sunday = req.getParameterValues("sunday");
-            weeks =  req.getParameter("weeks");
+            weeks = req.getParameter("weeks");
 
             dateFirstEvent = req.getParameter("date_first_event"); //ok
 
@@ -374,13 +366,13 @@ public class AddCoursesServlet extends AbstractServlet
             cost180 = req.getParameter("cost_180");
             cost365 = req.getParameter("cost_365");
 
-            if(monday == null && tuesday == null && wednesday == null && thursday==null && friday == null && saturday == null && sunday == null)
+            if (monday == null && tuesday == null && wednesday == null && thursday == null && friday == null && saturday == null && sunday == null)
                 error = Codes.EMPTY_INPUT_FIELDS;
-            else if(cost30 == null && cost90 == null && cost180 == null && cost365 == null && "".equals(cost30) && "".equals(cost90) && "".equals(cost180) && "".equals(cost365))
+            else if (cost30 == null && cost90 == null && cost180 == null && cost365 == null && "".equals(cost30) && "".equals(cost90) && "".equals(cost180) && "".equals(cost365))
                 error = Codes.EMPTY_INPUT_FIELDS;
-            else if(subscriptionType30 == null && subscriptionType90 == null && subscriptionType180 == null && subscriptionType365 == null || "".equals(subscriptionType30) || "".equals(subscriptionType90) || "".equals(subscriptionType180) || "".equals(subscriptionType365))
+            else if (subscriptionType30 == null && subscriptionType90 == null && subscriptionType180 == null && subscriptionType365 == null || "".equals(subscriptionType30) || "".equals(subscriptionType90) || "".equals(subscriptionType180) || "".equals(subscriptionType365))
                 error = Codes.EMPTY_INPUT_FIELDS;
-            else if(courseName == null || dateFirstEvent == null || teacher == null && weeks == null || "".equals(dateFirstEvent) || "".equals(courseName) || "".equals(teacher) || "".equals(weeks) || room == null || "".equals(room))
+            else if (courseName == null || dateFirstEvent == null || teacher == null && weeks == null || "".equals(dateFirstEvent) || "".equals(courseName) || "".equals(teacher) || "".equals(weeks) || room == null || "".equals(room))
                 error = Codes.EMPTY_INPUT_FIELDS;
 
             //if(courseName == null || teacher == null || subscriptionType30)
@@ -410,103 +402,87 @@ public class AddCoursesServlet extends AbstractServlet
         Time[] saturdayTime = null;
         Time[] sundayTime = null;
 
-        if(error == Codes.OK)
-        {
+        if (error == Codes.OK) {
 
-            try
-            {
+            try {
                 weeksInteger = Integer.parseInt(weeks);
                 dateFirstEventDate = Date.valueOf(dateFirstEvent);
-                if(cost30 != null && !"".equals(cost30))
+                if (cost30 != null && !"".equals(cost30))
                     cost30Integer = Integer.parseInt(cost30);
-                if(cost90 != null && !"".equals(cost90))
+                if (cost90 != null && !"".equals(cost90))
                     cost90Integer = Integer.parseInt(cost90);
-                if(cost180 != null && !"".equals(cost180))
+                if (cost180 != null && !"".equals(cost180))
                     cost180Integer = Integer.parseInt(cost180);
-                if(cost365 != null && !"".equals(cost365))
+                if (cost365 != null && !"".equals(cost365))
                     cost365Integer = Integer.parseInt(cost365);
 
-                if(!Objects.equals(subscriptionType30, "") && subscriptionType30 != null)
+                if (!Objects.equals(subscriptionType30, "") && subscriptionType30 != null)
                     subscriptionType30Integer = Integer.parseInt(subscriptionType30);
-                if(!Objects.equals(subscriptionType90, "") && subscriptionType90 != null)
+                if (!Objects.equals(subscriptionType90, "") && subscriptionType90 != null)
                     subscriptionType90Integer = Integer.parseInt(subscriptionType90);
-                if(!Objects.equals(subscriptionType180, "") && subscriptionType180 != null)
+                if (!Objects.equals(subscriptionType180, "") && subscriptionType180 != null)
                     subscriptionType180Integer = Integer.parseInt(subscriptionType180);
-                if(!Objects.equals(subscriptionType365, "") && subscriptionType365 != null)
+                if (!Objects.equals(subscriptionType365, "") && subscriptionType365 != null)
                     subscriptionType365Integer = Integer.parseInt(subscriptionType365);
 
-                if(monday != null)
-                {
+                if (monday != null) {
                     mondayTime = new Time[monday.length];
-                    for(int i=0; i< mondayTime.length; i++)
+                    for (int i = 0; i < mondayTime.length; i++)
                         mondayTime[i] = Time.valueOf(monday[i]);
                 }
 
-                if(tuesday!= null)
-                {
+                if (tuesday != null) {
                     tuesdayTime = new Time[tuesday.length];
-                    for(int i=0; i< tuesdayTime.length; i++)
+                    for (int i = 0; i < tuesdayTime.length; i++)
                         tuesdayTime[i] = Time.valueOf(tuesday[i]);
                 }
 
-                if(wednesday!= null)
-                {
+                if (wednesday != null) {
                     wednesdayTime = new Time[wednesday.length];
-                    for(int i=0; i< wednesdayTime.length; i++)
+                    for (int i = 0; i < wednesdayTime.length; i++)
                         wednesdayTime[i] = Time.valueOf(wednesday[i]);
                 }
 
-                if(thursday!= null)
-                {
+                if (thursday != null) {
                     thursdayTime = new Time[thursday.length];
-                    for(int i=0; i< thursdayTime.length; i++)
+                    for (int i = 0; i < thursdayTime.length; i++)
                         thursdayTime[i] = Time.valueOf(thursday[i]);
                 }
-                if(friday!= null)
-                {
+                if (friday != null) {
                     fridayTime = new Time[friday.length];
-                    for(int i=0; i< fridayTime.length; i++)
+                    for (int i = 0; i < fridayTime.length; i++)
                         fridayTime[i] = Time.valueOf(friday[i]);
                 }
 
-                if(saturday!= null)
-                {
+                if (saturday != null) {
                     saturdayTime = new Time[saturday.length];
-                    for(int i=0; i< saturdayTime.length; i++)
+                    for (int i = 0; i < saturdayTime.length; i++)
                         saturdayTime[i] = Time.valueOf(saturday[i]);
                 }
 
-                if(sunday!= null)
-                {
+                if (sunday != null) {
                     sundayTime = new Time[sunday.length];
-                    for(int i=0; i< sundayTime.length; i++)
+                    for (int i = 0; i < sundayTime.length; i++)
                         sundayTime[i] = Time.valueOf(sunday[i]);
                 }
 
-                if(dateFirstEventDate.toLocalDate().isBefore((new Date(System.currentTimeMillis()).toLocalDate())))
-                {
+                if (dateFirstEventDate.toLocalDate().isBefore((new Date(System.currentTimeMillis()).toLocalDate()))) {
                     error = Codes.INVALID_FIELDS;
-                }else
-                {
+                } else {
 
-                    if(cost30Integer != null && subscriptionType30Integer != null)
-                    {
+                    if (cost30Integer != null && subscriptionType30Integer != null) {
                         //ok
 
-                    }else if(cost90Integer != null && subscriptionType90Integer != null)
-                    {
+                    } else if (cost90Integer != null && subscriptionType90Integer != null) {
                         //ok
-                    }else if(cost180Integer != null && subscriptionType180Integer != null)
-                    {
+                    } else if (cost180Integer != null && subscriptionType180Integer != null) {
 
-                    }else if(cost365Integer != null && subscriptionType365Integer != null)
-                    {
+                    } else if (cost365Integer != null && subscriptionType365Integer != null) {
 
-                    }else
+                    } else
                         error = Codes.INVALID_FIELDS;
                 }
-            }catch (Exception e)
-            {
+            } catch (Exception e) {
                 error = Codes.INVALID_FIELDS;
             }
         }
@@ -515,9 +491,8 @@ public class AddCoursesServlet extends AbstractServlet
     }
 
 
-    private boolean overlappingLectures(String roomName, int courseEditionId, String courseName,Date dateFirstEvent,int weeks,
-                                        Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException
-    {
+    private boolean overlappingLectures(String roomName, int courseEditionId, String courseName, Date dateFirstEvent, int weeks,
+                                        Time[] monday, Time[] tuesday, Time[] wednesday, Time[] thursday, Time[] friday, Time[] saturday, Time[] sunday) throws NamingException, SQLException {
         boolean fail = false;
         LocalDate event = dateFirstEvent.toLocalDate();
         Date pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
@@ -530,73 +505,65 @@ public class AddCoursesServlet extends AbstractServlet
         Calendar calendar = Calendar.getInstance();
 
 
-        for (int i = 0; i < weeks; i++)
-        {
+        for (int i = 0; i < weeks; i++) {
             fail = overlapLecture(pointerMonday, monday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerMonday != null)
-            {
+            else if (pointerMonday != null) {
                 calendar.setTime(pointerMonday);
                 calendar.add(Calendar.DATE, 7);
                 pointerMonday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapLecture(pointerTuesday, tuesday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerTuesday != null)
-            {
+            else if (pointerTuesday != null) {
                 calendar.setTime(pointerTuesday);
                 calendar.add(Calendar.DATE, 7);
                 pointerTuesday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapLecture(pointerWednesday, wednesday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerWednesday != null)
-            {
+            else if (pointerWednesday != null) {
                 calendar.setTime(pointerWednesday);
                 calendar.add(Calendar.DATE, 7);
                 pointerWednesday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapLecture(pointerThursday, thursday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerThursday != null)
-            {
+            else if (pointerThursday != null) {
                 calendar.setTime(pointerThursday);
                 calendar.add(Calendar.DATE, 7);
                 pointerThursday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapLecture(pointerFriday, friday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerFriday != null)
-            {
+            else if (pointerFriday != null) {
                 calendar.setTime(pointerFriday);
                 calendar.add(Calendar.DATE, 7);
                 pointerFriday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapLecture(pointerSaturday, saturday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerSaturday != null)
-            {
+            else if (pointerSaturday != null) {
                 calendar.setTime(pointerSaturday);
                 calendar.add(Calendar.DATE, 7);
                 pointerSaturday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapLecture(pointerSunday, sunday, roomName, courseEditionId, courseName);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerSunday != null)
-            {
+            else if (pointerSunday != null) {
                 calendar.setTime(pointerSunday);
                 calendar.add(Calendar.DATE, 7);
                 pointerSunday = new Date(calendar.getTimeInMillis());
@@ -606,18 +573,14 @@ public class AddCoursesServlet extends AbstractServlet
 
     }
 
-    private boolean overlapLecture(Date date,Time[] hours, String roomName, int courseEditionId, String courseName) throws NamingException,SQLException
-    {
+    private boolean overlapLecture(Date date, Time[] hours, String roomName, int courseEditionId, String courseName) throws NamingException, SQLException {
         boolean fail = false;
 
-        if(date != null)
-        {
-            for(Time hour : hours)
-            {
+        if (date != null) {
+            for (Time hour : hours) {
                 LectureTimeSlot l = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(),
                         new LectureTimeSlot(roomName, date, hour, courseEditionId, courseName, null)).execute();
-                if(l != null)
-                {
+                if (l != null) {
                     fail = true;
                     break;
                 }
@@ -627,10 +590,8 @@ public class AddCoursesServlet extends AbstractServlet
     }
 
 
-
     private boolean overlappingTeacherLectures(String teacher, Date dateFirstEvent, int weeks,
-                                               Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException
-    {
+                                               Time[] monday, Time[] tuesday, Time[] wednesday, Time[] thursday, Time[] friday, Time[] saturday, Time[] sunday) throws NamingException, SQLException {
         boolean fail = false;
         LocalDate event = dateFirstEvent.toLocalDate();
         Date pointerMonday = monday != null ? Date.valueOf(event.with(TemporalAdjusters.next(DayOfWeek.MONDAY))) : null;
@@ -643,73 +604,65 @@ public class AddCoursesServlet extends AbstractServlet
         Calendar calendar = Calendar.getInstance();
 
 
-        for (int i = 0; i < weeks; i++)
-        {
+        for (int i = 0; i < weeks; i++) {
             fail = overlapTeacherLecture(pointerMonday, monday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerMonday != null)
-            {
+            else if (pointerMonday != null) {
                 calendar.setTime(pointerMonday);
                 calendar.add(Calendar.DATE, 7);
                 pointerMonday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapTeacherLecture(pointerTuesday, tuesday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerTuesday != null)
-            {
+            else if (pointerTuesday != null) {
                 calendar.setTime(pointerTuesday);
                 calendar.add(Calendar.DATE, 7);
                 pointerTuesday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapTeacherLecture(pointerWednesday, wednesday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerWednesday != null)
-            {
+            else if (pointerWednesday != null) {
                 calendar.setTime(pointerWednesday);
                 calendar.add(Calendar.DATE, 7);
                 pointerWednesday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapTeacherLecture(pointerThursday, thursday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerThursday != null)
-            {
+            else if (pointerThursday != null) {
                 calendar.setTime(pointerThursday);
                 calendar.add(Calendar.DATE, 7);
                 pointerThursday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapTeacherLecture(pointerFriday, friday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerFriday != null)
-            {
+            else if (pointerFriday != null) {
                 calendar.setTime(pointerFriday);
                 calendar.add(Calendar.DATE, 7);
                 pointerFriday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapTeacherLecture(pointerSaturday, saturday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerSaturday != null)
-            {
+            else if (pointerSaturday != null) {
                 calendar.setTime(pointerSaturday);
                 calendar.add(Calendar.DATE, 7);
                 pointerSaturday = new Date(calendar.getTimeInMillis());
             }
 
             fail = overlapTeacherLecture(pointerSunday, sunday, teacher);
-            if(fail)
+            if (fail)
                 break;
-            else if (pointerSunday != null)
-            {
+            else if (pointerSunday != null) {
                 calendar.setTime(pointerSunday);
                 calendar.add(Calendar.DATE, 7);
                 pointerSunday = new Date(calendar.getTimeInMillis());
@@ -719,20 +672,16 @@ public class AddCoursesServlet extends AbstractServlet
 
     }
 
-    private boolean overlapTeacherLecture(Date date,Time[] hours, String teacher) throws NamingException,SQLException
-    {
+    private boolean overlapTeacherLecture(Date date, Time[] hours, String teacher) throws NamingException, SQLException {
         boolean fail = false;
 
-        if(date != null)
-        {
-            for(Time hour : hours)
-            {
+        if (date != null) {
+            for (Time hour : hours) {
                 int count = new GetNumberLectureTeacherByTeacherDateTimeDatabase(getDataSource().getConnection(),
-                        new Person(teacher,null,null,null,null,null,null,null,null),
-                        new LectureTimeSlot(null,date,hour,null,null,null))
+                        new Person(teacher, null, null, null, null, null, null, null, null),
+                        new LectureTimeSlot(null, date, hour, null, null, null))
                         .execute();
-                if(count > 0)
-                {
+                if (count > 0) {
                     fail = true;
                     break;
                 }
@@ -740,12 +689,6 @@ public class AddCoursesServlet extends AbstractServlet
         }
         return fail;
     }
-
-
-
-
-
-
 
 
 }
