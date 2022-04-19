@@ -8,6 +8,13 @@ The following table describes which REST request can be performed. Each request 
 
 \begin{longtable}{|p{.375\columnwidth}|p{.075\columnwidth} |p{.325\columnwidth}|p{.125\columnwidth}|}
 \textbf{URI} & \textbf{Method} & \textbf{Description} & \textbf{Filters} \\\hline
+
+secretary/rest/deletelecturetimeslot & DELETE & By specifing a roomname, date and starttime, it removes the lecturetimeslot (associated with those fields)  & Login, Secretary\\\hline
+
+secretary/rest/substitutionlecturetimeslot & POST & By specifing a roomname, date, starttime, email of the trainer that will substitute the lesson and notes (text), it will appy a substitution for that lecture & Login, Secretary\\\hline
+
+secretary/rest/updatelecturetimeslot & POST & By specifing a oldroomname, olddate, oldstarttime, newroomname, newdate, newstarttime it will update the lecture  & Login, Secretary\\\hline
+
 secretary/rest/listlikepersons & GET & By specifing a string that is part of email return the list of users with such patter  & Login, Secretary\\\hline
 
 secretary/rest/timeschedules & GET & By specifing a string that is the name of a course it will return a list of courseeditionid, day of the week and time for each edition of the given course  & Login, Secretary\\\hline
