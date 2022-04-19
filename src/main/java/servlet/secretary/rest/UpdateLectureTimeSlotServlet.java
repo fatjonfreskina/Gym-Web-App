@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.lecturetimeslot.UpdateLectureTimeSlotDatabase;
+import dao.person.GetNumberLectureTeacherByTeacherDateTimeDatabase;
 import dao.person.GetPersonByEmailDatabase;
+import dao.person.GetTrainerOfLectureTimeSlotDatabase;
 import dao.reservation.GetAllPeopleInReservationTimeSlotDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -74,18 +76,19 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
         Date actual = new Date(System.currentTimeMillis());
         //Check the date of the lesson you are trying to move is after the current date in millis
-        if(oldDate.before(actual)){
+        if (oldDate.before(actual)) {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
         //Check the new date of the lesson you are trying to move is after the current date in millis
-        if(newDate.after(actual)){
+        if (newDate.before(actual)) {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
+
         //Check the lecture starts in the range 8:00 AM to 20:00 PM
-        LocalTime openingTime = LocalTime.parse("8:00:00 AM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
-        LocalTime closingTime = LocalTime.parse("20:00:00 PM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
-        if(newLocalTime.isAfter(openingTime) && newLocalTime.isBefore(closingTime)){
+        LocalTime openingTime = LocalTime.parse("08:00:00 AM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        LocalTime closingTime = LocalTime.parse("08:00:00 PM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        if (newLocalTime.isBefore(openingTime) || newLocalTime.isAfter(closingTime)) {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
@@ -94,6 +97,8 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
         //Try to update the LectureTimeSlot
         try {
+
+
             //Get the LectureTimeSlot
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(),
                     new LectureTimeSlot(oldRoomName, oldDate, oldStartTime, null, null, null))
@@ -102,16 +107,22 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
             updatedLectureTimeSlot = new LectureTimeSlot(newRoomName, newDate, newStartTime,
                     lectureTimeSlot.getCourseEditionId(), lectureTimeSlot.getCourseName(),
                     lectureTimeSlot.getSubstitution());
+
+            Person trainer = new GetTrainerOfLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot).execute();
+            if(trainer == null){
+                return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
+            }
+
+            //Check the new Date and Time in which you want to move the lecture does not do any overlap
+            if (isOverlappingLecture(updatedLectureTimeSlot) || isOverlappingTrainer(updatedLectureTimeSlot,trainer)) {
+                return new Message(Codes.OVERLAPPING_COURSES.getErrorMessage(), true);
+            }
+
             //Update the LectureTimeSlot
             new UpdateLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot, updatedLectureTimeSlot)
                     .execute();
         } catch (SQLException | NamingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
-        }
-
-        //Check the new Date and Time in which you want to move the lecture does not do any overlap
-        if(isOverlappingLecture(updatedLectureTimeSlot) || isOverlappingTrainer(updatedLectureTimeSlot)){
-            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
         //Notify all the subscribed people
@@ -132,17 +143,17 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
     }
 
-    private boolean isOverlappingLecture(LectureTimeSlot updatedLectureTimeSlot){
-        //TODO
-
-        return true;
+    private boolean isOverlappingLecture(LectureTimeSlot updatedLectureTimeSlot) throws NamingException, SQLException {
+        LectureTimeSlot lectureTimeSlot =
+                new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), updatedLectureTimeSlot)
+                        .execute();
+        return lectureTimeSlot != null;
     }
 
-    private boolean isOverlappingTrainer(LectureTimeSlot updatedLectureTimeSlot){
-        //TODO
-
-        return true;
+    private boolean isOverlappingTrainer(LectureTimeSlot updatedLectureTimeSlot, Person trainer) throws NamingException, SQLException {
+        var count = new GetNumberLectureTeacherByTeacherDateTimeDatabase(getDataSource().getConnection(),
+                trainer, updatedLectureTimeSlot).execute();
+        return count != 0;
     }
-
 
 }

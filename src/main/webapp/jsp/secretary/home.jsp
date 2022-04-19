@@ -199,7 +199,9 @@
                     //Create an event object
                     let event = {};
                     //Calculate dates
-                    startDate = new Date(lts.dateTime)
+                    startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'))
+
+                    //startDate = new Date(lts.dateTime)
                     event.start = startDate;
                     event.end = moment(startDate).add(2, 'hours').toDate();
                     //Set title and background color based on the title
