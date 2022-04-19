@@ -43,7 +43,7 @@ public enum Codes {
   METHOD_NOT_ALLOWED(-30, HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Unsupported operation for the requested URI"),
   UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unexpected error"),
   ROOM_ALREADY_FULL(-32, HttpServletResponse.SC_BAD_REQUEST, "There are no more spots left"),
-  INVALID_DATE(-33, HttpServletResponse.SC_BAD_REQUEST, "Can't insert date in the past!"),
+  INVALID_DATE(-33, HttpServletResponse.SC_BAD_REQUEST, "The date specified is invalid"),
   TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_BAD_REQUEST, "Trainee is not enrolled to your course!"),
   RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present!"),
   RESERVATION_NOT_FOUND(-36, HttpServletResponse.SC_NO_CONTENT, "No Reservation found!"),
