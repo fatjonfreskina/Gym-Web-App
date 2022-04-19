@@ -4,7 +4,7 @@ import constants.exceptions.*;
 import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotsByCourseDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotsInRangeDatabase;
-import dao.reservation.DeleteReservation;
+import dao.reservation.DeleteReservationDatabase;
 import dao.reservation.GetListReservationByLectureDatabase;
 import dao.reservation.InsertReservationDatabase;
 import dao.room.GetRoomByNameDatabase;
@@ -54,7 +54,7 @@ public class TrainerService {
     if (curLesson.getStartTime().equals(reservation.getLectureStartTime()) &&
         curLesson.getDate().equals(reservation.getLectureDate()) &&
         curLesson.getRoomName().equals(reservation.getRoom())) {
-      Reservation deleted = new DeleteReservation(dataSource.getConnection(), reservation).execute();
+      Reservation deleted = new DeleteReservationDatabase(dataSource.getConnection(), reservation).execute();
       if (deleted == null) {
         logger.debug("NOT FOUND -> NOT DELETED");
         throw new ReservationNotFound();

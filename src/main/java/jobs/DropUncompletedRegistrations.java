@@ -1,7 +1,7 @@
 package jobs;
 
 import constants.Constants;
-import dao.emailconfirmation.GetListEmailConfimationsExpired;
+import dao.emailconfirmation.GetListEmailConfimationsExpiredDatabase;
 import dao.person.DeletePersonByEmailDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import resource.EmailConfirmation;
@@ -28,7 +28,7 @@ public class DropUncompletedRegistrations implements Runnable {
         try {
             ctx = new InitialContext();
             DataSource ds = (DataSource) ctx.lookup(Constants.DATASOURCE);
-            var gau = new GetListEmailConfimationsExpired(ds.getConnection(), new Timestamp(System.currentTimeMillis()));
+            var gau = new GetListEmailConfimationsExpiredDatabase(ds.getConnection(), new Timestamp(System.currentTimeMillis()));
             List<EmailConfirmation> emailConfirmations = gau.execute();
             for (EmailConfirmation email : emailConfirmations) {
                 Person toRemove = new GetPersonByEmailDatabase(ds.getConnection(), email.getPerson()).execute();

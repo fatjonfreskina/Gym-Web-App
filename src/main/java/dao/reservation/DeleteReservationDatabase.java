@@ -13,7 +13,7 @@ import java.sql.*;
  * @author Fatjon Freskina
  * @author Harjot Singh
  */
-public class DeleteReservation {
+public class DeleteReservationDatabase {
   private static final Logger logger = LogManager.getLogger("fatjon_freskina_logger");
   private static final String STATEMENT = """
       DELETE FROM reservation 
@@ -26,7 +26,7 @@ public class DeleteReservation {
   private final Connection con;
   private final Reservation reservation;
 
-  public DeleteReservation(final Connection con, final Reservation reservation) {
+  public DeleteReservationDatabase(final Connection con, final Reservation reservation) {
     this.con = con;
     this.reservation = reservation;
   }

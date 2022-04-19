@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Riccardo Tumiati
  */
-public class GetAvailableCourses {
+public class GetAvailableCoursesDatabase {
     private final String statement =
             "SELECT DISTINCT courseedition.coursename AS cname,description FROM courseedition " +
                     "INNER JOIN course ON courseedition.coursename = course.name " +
@@ -18,7 +18,7 @@ public class GetAvailableCourses {
     private final Connection con;
     private final Date today;
 
-    public GetAvailableCourses(final Connection con) {
+    public GetAvailableCoursesDatabase(final Connection con) {
         this.con = con;
         this.today = new Date(System.currentTimeMillis());
     }

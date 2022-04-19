@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * @author Andrea Pasin
  */
-public class GetEmailConfirmationIfExists {
+public class GetEmailConfirmationIfExistsDatabase {
 
     private static final String STATEMENT = "SELECT * FROM emailconfirmation WHERE person = ?";
     private final Connection connection;
@@ -22,7 +22,7 @@ public class GetEmailConfirmationIfExists {
      * @param connection        the connection to the database
      * @param emailConfirmation the email of the person to check if exists
      */
-    public GetEmailConfirmationIfExists(final Connection connection, final EmailConfirmation emailConfirmation) {
+    public GetEmailConfirmationIfExistsDatabase(final Connection connection, final EmailConfirmation emailConfirmation) {
         this.connection = connection;
         this.emailConfirmation = emailConfirmation;
     }

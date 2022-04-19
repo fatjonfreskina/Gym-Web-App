@@ -1,7 +1,7 @@
 package servlet;
 
 import constants.Constants;
-import dao.courseedition.GetAvailableCourses;
+import dao.courseedition.GetAvailableCoursesDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,7 +23,7 @@ public class CoursesServlet extends AbstractServlet{
         List<Course> courseList = null;
         Logger logger= LogManager.getLogger("andrea_pasin_logger");
         try {
-            courseList = new GetAvailableCourses(getDataSource().getConnection()).execute();
+            courseList = new GetAvailableCoursesDatabase(getDataSource().getConnection()).execute();
         } catch (SQLException | NamingException ex) {
             logger.info(ex);
         }

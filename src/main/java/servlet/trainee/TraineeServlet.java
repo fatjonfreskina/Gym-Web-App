@@ -2,7 +2,7 @@ package servlet.trainee;
 
 import constants.Constants;
 import dao.medicalcertificate.GetLastMedicalCertfiticateByPersonDatabase;
-import dao.subscription.GetValidSubscriptionByTrainee;
+import dao.subscription.GetValidSubscriptionByTraineeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ public class TraineeServlet extends AbstractServlet {
         String email = session.getAttribute("email").toString();
 
         try {
-            l_subscription = new GetValidSubscriptionByTrainee(getDataSource().getConnection(),email).execute();
+            l_subscription = new GetValidSubscriptionByTraineeDatabase(getDataSource().getConnection(),email).execute();
             medicalCertificate = new GetLastMedicalCertfiticateByPersonDatabase(getDataSource().getConnection(),
                     new Person(email,null,null,null,null,null,null,null,null)).execute();
 

@@ -2,7 +2,7 @@ package servlet.access;
 
 import constants.Codes;
 import constants.Constants;
-import dao.emailconfirmation.GetEmailConfirmationIfExists;
+import dao.emailconfirmation.GetEmailConfirmationIfExistsDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.GetPersonRolesDatabase;
 import jakarta.servlet.ServletException;
@@ -102,7 +102,7 @@ public class LoginServlet extends AbstractServlet {
         //Check if the person had confirmed the email
         EmailConfirmation emailStillToConfirm = null;
         try {
-            emailStillToConfirm = (new GetEmailConfirmationIfExists(getDataSource().getConnection(), new EmailConfirmation(person.getEmail())).execute());
+            emailStillToConfirm = (new GetEmailConfirmationIfExistsDatabase(getDataSource().getConnection(), new EmailConfirmation(person.getEmail())).execute());
         } catch (SQLException | NamingException e) {
             logger.info(e);
             error = Codes.INTERNAL_ERROR;

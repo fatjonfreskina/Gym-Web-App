@@ -2,17 +2,13 @@ package servlet;
 
 import constants.Constants;
 import dao.person.GetPersonByEmailDatabase;
-import dao.subscriptiontype.GetListForPrices;
-import dao.subscriptiontype.GetListSubscriptionTypeDatabase;
+import dao.subscriptiontype.GetListForPricesDatabase;
 import dao.teaches.GetListTeacherByCourseEditionDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.CourseEdition;
 import resource.Person;
-import resource.SubscriptionType;
 import resource.view.PricesView;
 
 import javax.naming.NamingException;
@@ -29,7 +25,7 @@ public class PricesServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<PricesView> list = null;
         try {
-            list = new GetListForPrices(getDataSource().getConnection()).execute();
+            list = new GetListForPricesDatabase(getDataSource().getConnection()).execute();
         } catch (SQLException | NamingException ex) {
 
         }

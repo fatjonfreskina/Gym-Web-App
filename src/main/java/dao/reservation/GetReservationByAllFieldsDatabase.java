@@ -1,26 +1,23 @@
 package dao.reservation;
 
 import constants.Constants;
-import resource.Person;
 import resource.Reservation;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
     @author Riccardo Tumiati
  */
-public class GetReservationByAllFields {
+public class GetReservationByAllFieldsDatabase {
     private static final String STATEMENT = "SELECT * FROM reservation WHERE lecturedate = ? and lectureroom= ? and lecturestarttime= ? and trainee = ? ";
     private final Connection con;
     private final Reservation reservation;
 
 
-    public GetReservationByAllFields(final Connection con, final Reservation reservation) {
+    public GetReservationByAllFieldsDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
         this.reservation = reservation;
     }

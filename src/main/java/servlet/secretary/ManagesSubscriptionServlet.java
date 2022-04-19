@@ -3,7 +3,7 @@ package servlet.secretary;
 import com.google.gson.Gson;
 import constants.Codes;
 import constants.Constants;
-import dao.courseedition.GetAvailableCourses;
+import dao.courseedition.GetAvailableCoursesDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public class ManagesSubscriptionServlet extends AbstractServlet
 
         try
         {
-            courses = (new GetAvailableCourses(getDataSource().getConnection())).execute();
+            courses = (new GetAvailableCoursesDatabase(getDataSource().getConnection())).execute();
             request.setAttribute("courses",courses);
         }catch (SQLException | NamingException e)
         {

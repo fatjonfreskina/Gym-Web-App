@@ -12,7 +12,7 @@ import java.util.List;
 /*
     @author Tumiati Riccardo
  */
-public class GetValidSubscriptionByTrainee {
+public class GetValidSubscriptionByTraineeDatabase {
     private static final String statement = "SELECT subscription.coursename as coursename, name, surname, startday+ (duration || ' day')::interval as expiration" +
             " FROM subscription JOIN teaches ON subscription.courseEditionId = teaches.courseEditionId and subscription.courseName = teaches.courseName"+
             " JOIN person ON teaches.trainer = person.email"+
@@ -20,7 +20,7 @@ public class GetValidSubscriptionByTrainee {
     private final Connection conn;
     private final String trainee_email;
 
-    public GetValidSubscriptionByTrainee(final Connection conn, final String email) {
+    public GetValidSubscriptionByTraineeDatabase(final Connection conn, final String email) {
         this.conn = conn;
         this.trainee_email = email;
     }

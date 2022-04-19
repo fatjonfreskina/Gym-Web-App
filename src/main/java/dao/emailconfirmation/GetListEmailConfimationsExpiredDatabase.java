@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * @author Francesco Caldivezzi
  */
-public class GetListEmailConfimationsExpired {
+public class GetListEmailConfimationsExpiredDatabase {
 
     private static final String STATEMENT = "select * from emailconfirmation where expirationdate <= ?";
     private final Connection connection;
     private Timestamp date;
 
-    public GetListEmailConfimationsExpired(final Connection connection, Timestamp date) {
+    public GetListEmailConfimationsExpiredDatabase(final Connection connection, Timestamp date) {
         this.connection = connection;
         this.date = date;
     }

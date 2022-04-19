@@ -1,7 +1,7 @@
 package servlet.trainee.rest;
 
 import constants.Codes;
-import dao.reservation.DeleteReservation;
+import dao.reservation.DeleteReservationDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -70,7 +70,7 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
         if (isDateAndTimeValid(date, time)) {
             try {
                 final Reservation reservation = new Reservation(email, room, date, time);
-                new DeleteReservation(getConnection(), reservation).execute();
+                new DeleteReservationDatabase(getConnection(), reservation).execute();
                 sendDataResponse(resp, reservation);
 
             } catch (Throwable e) {

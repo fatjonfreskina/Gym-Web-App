@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import constants.Codes;
 import constants.Constants;
 import dao.courseedition.DeleteCourseEditionDatabase;
-import dao.courseedition.GetAvailableCourses;
+import dao.courseedition.GetAvailableCoursesDatabase;
 import dao.courseedition.InsertCourseEditionDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.lecturetimeslot.InsertLectureTimeSlotDatabase;
@@ -57,7 +57,7 @@ public class AddCoursesServlet extends AbstractServlet
         {
             rooms = (new GetListRoomsDatabase(getDataSource().getConnection()).execute());
             request.setAttribute("rooms",rooms);
-            courses = (new GetAvailableCourses(getDataSource().getConnection())).execute();
+            courses = (new GetAvailableCoursesDatabase(getDataSource().getConnection())).execute();
             request.setAttribute("courses",courses);
             teachers = (new GetListOfTeachersDatabase(getDataSource().getConnection())).execute();
             //stabilire se solo email?? Informazioni pericolose

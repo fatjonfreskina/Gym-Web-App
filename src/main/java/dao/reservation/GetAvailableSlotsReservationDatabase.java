@@ -1,6 +1,5 @@
 package dao.reservation;
 
-import constants.Constants;
 import resource.Reservation;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
  * @author Riccardo Tumiati
  * */
 
-public class GetAvailableSlotsReservation {
+public class GetAvailableSlotsReservationDatabase {
     private static final String STATEMENT = "SELECT (slots - reservations) as available_slots"+
             " FROM room JOIN"+
                 " (SELECT lectureroom, count(*) AS reservations"+
@@ -24,7 +23,7 @@ public class GetAvailableSlotsReservation {
     private final Reservation reservation;
 
 
-    public GetAvailableSlotsReservation(final Connection con, final Reservation reservation) {
+    public GetAvailableSlotsReservationDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
         this.reservation = reservation;
     }

@@ -1,7 +1,5 @@
 package dao.subscriptiontype;
 
-import constants.Constants;
-import resource.SubscriptionType;
 import resource.view.PricesView;
 
 import java.sql.Connection;
@@ -17,7 +15,7 @@ import java.util.List;
  *
  * @author Andrea Pasin
  */
-public class GetListForPrices {
+public class GetListForPricesDatabase {
     private static final String STATEMENT = """
             SELECT T2.courseeditionid,T2.coursename,T2.duration,T2.cost, T2.maxdate ,T2.mindate,name,surname, T4.lecturesperweek
             FROM
@@ -45,7 +43,7 @@ public class GetListForPrices {
      *
      * @param con the connection to the database
      */
-    public GetListForPrices(final Connection con) {
+    public GetListForPricesDatabase(final Connection con) {
         this.con = con;
     }
 

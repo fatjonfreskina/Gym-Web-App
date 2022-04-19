@@ -4,8 +4,8 @@ import com.google.gson.JsonParseException;
 import constants.Constants;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
-import dao.reservation.GetAvailableSlotsReservation;
-import dao.reservation.GetReservationByAllFields;
+import dao.reservation.GetAvailableSlotsReservationDatabase;
+import dao.reservation.GetReservationByAllFieldsDatabase;
 import dao.reservation.InsertReservationDatabase;
 import dao.subscription.GetSubscriptionExpirationByLTSDatabase;
 import jakarta.servlet.ServletException;
@@ -96,13 +96,13 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             }
 
             //Check 3: available slots for the requested reservation
-            if (new GetAvailableSlotsReservation(getConnection(),res).execute() <=0) {
+            if (new GetAvailableSlotsReservationDatabase(getConnection(),res).execute() <=0) {
                 sendErrorResponse(resp, Codes.ROOM_ALREADY_FULL);
                 return;
             }
 
             //Check 4: not already present a reservation made by the same user in the same slot
-            if (new GetReservationByAllFields(getConnection(),res).execute() != null) {
+            if (new GetReservationByAllFieldsDatabase(getConnection(),res).execute() != null) {
                 sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
                 return;
             }
