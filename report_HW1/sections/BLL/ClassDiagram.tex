@@ -1,5 +1,10 @@
 \subsection{Class Diagram}
 
-\includegraphics[width=\columnwidth]{resources/ClassDiagram.png}
+\subsubsection{Trainee}
+\includegraphics[width=\columnwidth]{resources/ClassDiagram_traineeServlets.png}
 
 Here, there is the Class Diagram that handles the Trainee Resource (Dao omitted due to space). As we can see there are 5 main servlets for this resource : TraineeAvailableSlotsServlet, TraineeDeleteReservationServlet, GetReservationServlet, TraineeNewReservationServlet, TraineeServlet. The first four Servlet are used to manage the main operation that a trainee can do, while the first one manage the Trainee page generally.
+
+\subsubsection{Trainer}
+\includegraphics[width=\columnwidth]{resources/ClassDiagram_trainerServlets.png}
+The Class Diagram above handles the Trainer Resource. There are 5 main servlets for this resource : TrainerManageAttendanceRestServlet, TrainerManageAttendanceServlet, TrainerCoursesStatusRestServlet, TrainerCalendarRestServlet, and TrainerServlet. The first Servlet is used to manage attendance through REST API calls meanwhile the second does the same thing through JSP page. TrainerServlet returns trainer's courses with his current weekly schedule. TrainerCoursesStatusRestServlet and TrainerCalendarRestServlet does the same thing but through REST API calls.
