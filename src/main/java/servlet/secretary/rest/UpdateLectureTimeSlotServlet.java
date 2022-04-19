@@ -89,9 +89,8 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
-        //TODO: Check the new Date and Time in which you want to move the lecture does not do any overlap
-
         LectureTimeSlot lectureTimeSlot;
+        LectureTimeSlot updatedLectureTimeSlot;
 
         //Try to update the LectureTimeSlot
         try {
@@ -100,7 +99,7 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
                     new LectureTimeSlot(oldRoomName, oldDate, oldStartTime, null, null, null))
                     .execute();
             //Create a new LectureTimeSlot updating the substitution field
-            LectureTimeSlot updatedLectureTimeSlot = new LectureTimeSlot(newRoomName, newDate, newStartTime,
+            updatedLectureTimeSlot = new LectureTimeSlot(newRoomName, newDate, newStartTime,
                     lectureTimeSlot.getCourseEditionId(), lectureTimeSlot.getCourseName(),
                     lectureTimeSlot.getSubstitution());
             //Update the LectureTimeSlot
@@ -108,6 +107,11 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
                     .execute();
         } catch (SQLException | NamingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
+        }
+
+        //Check the new Date and Time in which you want to move the lecture does not do any overlap
+        if(isOverlappingLecture(updatedLectureTimeSlot) || isOverlappingTrainer(updatedLectureTimeSlot)){
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
         //Notify all the subscribed people
@@ -127,5 +131,18 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
         }
 
     }
+
+    private boolean isOverlappingLecture(LectureTimeSlot updatedLectureTimeSlot){
+        //TODO
+
+        return true;
+    }
+
+    private boolean isOverlappingTrainer(LectureTimeSlot updatedLectureTimeSlot){
+        //TODO
+
+        return true;
+    }
+
 
 }
