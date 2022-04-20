@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -32,6 +32,7 @@
             </tr>
             </thead>
             <tbody>
+            <jsp:useBean id="coursesStatus" scope="request" type="java.util.List"/>
             <c:forEach var="course" items="${coursesStatus}" varStatus="loop">
                 <tr>
                     <th scope="row">${loop.index+1}</th>
@@ -45,45 +46,10 @@
             </tbody>
         </table>
         <br>
-        <div id="trainer__calendar"/>
+        <div id="trainer__calendar"></div>
     </div>
 </div>
-<%-- OLD CALENDAR
-<c:if test="${empty addWeeks}">
-    <c:set var="addWeeks" value="${0}"/>
-</c:if>
-<a href="<c:url value="/trainer?addWeeks=${addWeeks-1}"/>">PreviousWeek</a>
-From: <c:out value="${week[0]}"/> To: <c:out value="${week[6]}"/>
-<a href="<c:url value="/trainer?addWeeks=${addWeeks+1}"/>">NextWeek</a>
-<table>
-    <thead>
-    <tr>
-        <th>TIME</th>
-        <th>MONDAY</th>
-        <th>TUESDAY</th>
-        <th>WEDNESDAY</th>
-        <th>THURSDAY</th>
-        <th>FRIDAY</th>
-        <th>SATURDAY</th>
-        <th>SUNDAY</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="slotRow" items="${slots}">
-        <tr>
-            <c:forEach var="slot" items="${slotRow}">
-                <td><c:out value="${slot}"/>&nbsp;&nbsp;&nbsp;</td>
-            </c:forEach>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>--%>
-<%--<c:forEach var="lts" items="${weeklyLTSs}">
-    <c:out value="${lts}"/>
-    <br>
-</c:forEach>--%>
 <jsp:include page="../include/footer.jsp"/>
-
 <script src="${pageContext.request.contextPath}/js/trainer-home.js"></script>
 </body>
 </html>

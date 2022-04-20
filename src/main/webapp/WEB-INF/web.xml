@@ -32,6 +32,7 @@
         <filter-name>LoggedInRequireAreaFilter</filter-name>
         <url-pattern>/trainer/*</url-pattern>
         <url-pattern>/rest/trainer/*</url-pattern>
+        <url-pattern>/rest/trainee/*</url-pattern>
 
         <url-pattern>/trainee/*</url-pattern>
         <url-pattern>/secretary/*</url-pattern>
@@ -44,6 +45,7 @@
         <filter-name>TrainerFilter</filter-name>
         <url-pattern>/trainer/*</url-pattern>
         <url-pattern>/rest/trainer/*</url-pattern>
+        <url-pattern>/rest/trainee/*</url-pattern> <!--TRAINER CAN ACCESS TRAINEE RESOURCE-->
     </filter-mapping>
 
     <filter-mapping>
@@ -169,6 +171,10 @@
         <servlet-class>servlet.trainee.rest.TraineeNewReservationServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>TraineeRestServlet</servlet-name>
+        <servlet-class>rest.trainee.TraineeRestServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ManagesSubscriptionServlet</servlet-name>
         <servlet-class>servlet.secretary.ManagesSubscriptionServlet</servlet-class>
     </servlet>
@@ -282,6 +288,10 @@
     <servlet-mapping>
         <servlet-name>TrainerManageAttendanceRestServlet</servlet-name>
         <url-pattern>/rest/trainer/attendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TraineeRestServlet</servlet-name>
+        <url-pattern>/rest/trainee/*</url-pattern>
     </servlet-mapping>
     <!-- -->
     <servlet-mapping>
