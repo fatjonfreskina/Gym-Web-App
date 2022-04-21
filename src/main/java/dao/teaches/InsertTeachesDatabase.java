@@ -44,6 +44,7 @@ public class InsertTeachesDatabase {
             preparedStatement.setInt(1, courseEdition.getId());
             preparedStatement.setString(2, courseEdition.getCourseName());
             preparedStatement.setString(3, trainer.getEmail());
+            preparedStatement.execute();
 
         } finally {
             con.close();

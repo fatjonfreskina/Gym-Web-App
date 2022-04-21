@@ -29,6 +29,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Arrays;
+import java.util.regex.Matcher;
 
 /**
  * @author Francesco Caldivezzi
@@ -199,44 +200,52 @@ public class RegisterServlet extends AbstractServlet {
 
 
     private Codes saveFile(Part file, String taxCode) throws IOException {
-        Codes error = Codes.OK;
-        File createDirectory;
         OutputStream writer = null;
         InputStream content = null;
-        String path = null;
 
-        if ((file != null) && file.getSize() != 0) {
-            if (!Arrays.stream(Constants.ACCEPTED_EXTENSIONS_AVATAR).
-                    anyMatch(file.getContentType().split(File.separator)[1]::equals))
-                error = Codes.INVALID_FILE_TYPE;
-            else
-                path = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode;
+        if ((file != null) && file.getSize() != 0)
+        {
+            final String filename = file.getSubmittedFileName();
+            final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
+            if (!matcher.find())
+                return Codes.INVALID_FILE_TYPE;
 
-            if (error.getErrorCode() == Codes.OK.getErrorCode()) //can proceed to save
+            final String extension = matcher.group(2);
+
+            final String dirPath = (Constants.AVATAR_PATH_FOLDER + "/" + taxCode).replace('/', File.separatorChar);
+
+            final File createDirectory = new File(dirPath);
+            if (!createDirectory.exists())
+                createDirectory.mkdir();
+
+            File[] files = createDirectory.listFiles();
+            if(files != null)
             {
-                createDirectory = new File(path);
-                if (!createDirectory.exists())
-                    createDirectory.mkdir();
-
-                path = path + File.separator + Constants.AVATAR + "." + file.getContentType().split(File.separator)[1];
-
-                try {
-                    writer = new FileOutputStream(path);
-                    content = file.getInputStream();
-                    int read = 0;
-                    final byte[] bytes = new byte[1024];
-                    while ((read = content.read(bytes)) != -1)
-                        writer.write(bytes, 0, read);
-                } catch (IOException e) {
-                    error = Codes.CANNOT_UPLOAD_FILE;
-                } finally {
-                    if (content != null)
-                        content.close();
-                    if (writer != null)
-                        writer.close();
+                for (File f: files)
+                {
+                    f.delete();
                 }
             }
+
+            final String filePath = dirPath + File.separator + Constants.AVATAR + "." + extension;
+
+            try {
+
+                writer = new FileOutputStream(filePath,false);
+                content = file.getInputStream();
+                int read = 0;
+                final byte[] bytes = new byte[1024];
+                while ((read = content.read(bytes)) != -1)
+                    writer.write(bytes, 0, read);
+            } catch (IOException e) {
+                return Codes.CANNOT_UPLOAD_FILE;
+            } finally {
+                if (content != null)
+                    content.close();
+                if (writer != null)
+                    writer.close();
+            }
         }
-        return error;
+        return Codes.OK;
     }
 }
