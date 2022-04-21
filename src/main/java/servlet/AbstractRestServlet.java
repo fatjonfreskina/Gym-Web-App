@@ -173,7 +173,7 @@ public class AbstractRestServlet extends AbstractServlet
 
         // Write the output.
         final PrintWriter out = res.getWriter();
-        out.print(GSON.toJson(new Message(code.getErrorMessage(), true)));
+        out.print(GSON.toJson(new Message(code.getErrorMessage(), code.getErrorCode()<0)));
 
         // Flush the output stream and close it.
         out.flush();

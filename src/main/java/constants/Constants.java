@@ -1,5 +1,7 @@
 package constants;
 
+import java.util.regex.Pattern;
+
 public class Constants {
 
     public static final String DATASOURCE = "java:/comp/env/jdbc/gwa-res";
@@ -156,8 +158,11 @@ public class Constants {
     public static final String MEDICAL_CERTIFICATE_PATH_FOLDER = "../gwa/medical_certificates";
 
     //ACCEPTED EXTENSIONS
-    public static final String[] ACCEPTED_EXTENSIONS_AVATAR = new String[]{"png", "jpg", "jpeg"};
-    public static final String[] ACCEPTED_EXTENSIONS_MEDICAL_CERTIFICATE = new String[]{"pdf"};
+    public static final Pattern ACCEPTED_AVATAR_FILENAME_REGEX = Pattern.compile(
+            "^(.*)\\.(png|jpg|jpeg)$", Pattern.DOTALL);
+
+    public static final Pattern ACCEPTED_MEDICAL_CERTIFICATE_FILENAME_REGEX = Pattern.compile(
+            "^(.*)\\.(pdf)$", Pattern.DOTALL);
 
     public static final long DAY = 1000 * 60 * 60 * 24;
 

@@ -6,7 +6,7 @@
 | Alessio       | Marco         | 1242412       |
 | Caldivezzi    | Francesco     | 2037893       |
 | Campeol       | Alberto       | 2064439       |
-| Dâ€™Antimo      | Simone        | 2052413       |
+| D’Antimo      | Simone        | 2052413       |
 | Forzan        | Riccardo      | 2057453       |
 | Freskina      | Fatjon        | 2056098       |
 | Pasin         | Andrea        | 2041605       |
@@ -22,3 +22,8 @@ The goal is to design a web application in order for those people to be able to 
 To make this webapp working correctly you need to :
 - create a folder inside the tomcat web server installation folder called "gwa"
 - then go inside gwa and create two other subdirectories called : "avatars" and "medical_certificates"
+
+Before using this webapp you have to create and eventually populate the database.
+You can follow the instructions in src/main/java/database/README.md.
+We have also created a Java class with path src/main/java/database/DataBaseUtils.java which allows you to create and populate your local database easily.
+ 

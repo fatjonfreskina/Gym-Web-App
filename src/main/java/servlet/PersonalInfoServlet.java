@@ -16,6 +16,8 @@ import javax.naming.NamingException;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Shows all the personal information about the current user (must be logged in).
@@ -58,26 +60,39 @@ public class PersonalInfoServlet extends AbstractServlet
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        Part avartar = null;
-        avartar = req.getPart("avatar");
+        Part avatar = req.getPart("avatar");
         HttpSession session = req.getSession(false);
         Codes error = Codes.OK;
-        Message message = new Message(error.getErrorMessage(), false);
         Person p = null;
-        if(avartar != null)
+
+
+        if(avatar != null)
         {
             try
             {
-                p = new GetPersonByEmailDatabase(getDataSource().getConnection(),(String) session.getAttribute("email")).execute();
-                if(avartar.getSize() != 0)
+                p = new GetPersonByEmailDatabase(getConnection(), session.getAttribute("email").toString()).execute();
+
+                if(avatar.getSize() != 0)
                 {
-                    error = saveFile(avartar,p.getTaxCode());
+                    error = saveFile(avatar, p.getTaxCode());
                     if(error == Codes.OK)
                     {
-                        String avatarPath = Constants.AVATAR_PATH_FOLDER + File.separator + p.getTaxCode() + File.separator
-                                + Constants.AVATAR + "." + avartar.getContentType().split(File.separator)[1];
-                        new UpdatePersonDatabase(getDataSource().getConnection(),
-                                new Person(p.getEmail(),p.getName(),p.getSurname(),p.getPsw(),p.getTaxCode(),p.getBirthDate(),p.getTelephone(),p.getAddress(),avatarPath)).execute();
+                        final String filename = avatar.getSubmittedFileName();
+                        final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
+                        if (matcher.find())
+                        {
+                            final String extension = matcher.group(2);
+
+                            final String avatarPath = Constants.AVATAR_PATH_FOLDER + File.separator + p.getTaxCode() +
+                                    File.separator + Constants.AVATAR + "." + extension;
+
+                            final Person person = new Person(p.getEmail(), p.getName(), p.getSurname(), p.getPsw(),
+                                    p.getTaxCode(), p.getBirthDate(), p.getTelephone(), p.getAddress(), avatarPath);
+
+                            new UpdatePersonDatabase(getConnection(), person).execute();
+                        }
+                        else
+                            error = Codes.INTERNAL_ERROR;
                     }
                 }
             } catch (SQLException | NamingException e)
@@ -89,70 +104,67 @@ public class PersonalInfoServlet extends AbstractServlet
         if (error != Codes.OK)
         {
             res.setStatus(error.getHTTPCode());
-            message = new Message(error.getErrorMessage(),true);
+            final Message message = new Message(error.getErrorMessage(),true);
             req.setAttribute(Constants.MESSAGE, message);
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
-
         }
         else
         {
             res.setStatus(error.getHTTPCode());
-            message = new Message(error.getErrorMessage(),false);
+            final Message message = new Message(error.getErrorMessage(),false);
             req.setAttribute(Constants.MESSAGE, message);
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
         }
     }
 
     private Codes saveFile(Part file, String taxCode) throws IOException {
-        Codes error = Codes.OK;
-        File createDirectory;
         OutputStream writer = null;
         InputStream content = null;
-        String path = null;
 
-        if ((file != null) && file.getSize() != 0) {
-            if (!Arrays.stream(Constants.ACCEPTED_EXTENSIONS_AVATAR).
-                    anyMatch(file.getContentType().split(File.separator)[1]::equals))
-                error = Codes.INVALID_FILE_TYPE;
-            else
-                path = Constants.AVATAR_PATH_FOLDER + File.separator + taxCode;
+        if ((file != null) && file.getSize() != 0)
+        {
+            final String filename = file.getSubmittedFileName();
+            final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
+            if (!matcher.find())
+                return Codes.INVALID_FILE_TYPE;
 
-            if (error.getErrorCode() == Codes.OK.getErrorCode()) //can proceed to save
+            final String extension = matcher.group(2);
+
+            final String dirPath = (Constants.AVATAR_PATH_FOLDER + "/" + taxCode).replace('/', File.separatorChar);
+
+            final File createDirectory = new File(dirPath);
+            if (!createDirectory.exists())
+                createDirectory.mkdir();
+
+            File[] files = createDirectory.listFiles();
+            if(files != null)
             {
-                createDirectory = new File(path);
-                if (!createDirectory.exists())
-                    createDirectory.mkdir();
-
-                File[] files = createDirectory.listFiles();
-                if(files != null)
+                for (File f: files)
                 {
-                    for (File f: files)
-                    {
-                        f.delete();
-                    }
-                }
-
-                path = path + File.separator + Constants.AVATAR + "." + file.getContentType().split(File.separator)[1];
-
-                try {
-
-                    writer = new FileOutputStream(path,false);
-                    content = file.getInputStream();
-                    int read = 0;
-                    final byte[] bytes = new byte[1024];
-                    while ((read = content.read(bytes)) != -1)
-                        writer.write(bytes, 0, read);
-                } catch (IOException e) {
-                    error = Codes.CANNOT_UPLOAD_FILE;
-                } finally {
-                    if (content != null)
-                        content.close();
-                    if (writer != null)
-                        writer.close();
+                    f.delete();
                 }
             }
+
+            final String filePath = dirPath + File.separator + Constants.AVATAR + "." + extension;
+
+            try {
+
+                writer = new FileOutputStream(filePath,false);
+                content = file.getInputStream();
+                int read = 0;
+                final byte[] bytes = new byte[1024];
+                while ((read = content.read(bytes)) != -1)
+                    writer.write(bytes, 0, read);
+            } catch (IOException e) {
+                return Codes.CANNOT_UPLOAD_FILE;
+            } finally {
+                if (content != null)
+                    content.close();
+                if (writer != null)
+                    writer.close();
+            }
         }
-        return error;
+        return Codes.OK;
     }
 
     public static void deleteFolder(File folder)

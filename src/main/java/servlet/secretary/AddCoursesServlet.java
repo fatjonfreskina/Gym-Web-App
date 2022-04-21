@@ -274,19 +274,20 @@ public class AddCoursesServlet extends AbstractServlet
                                 c.add(Calendar.DATE, 7);
                                 pointerSunday = new Date(c.getTimeInMillis());
                             }
-                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,7,0)).execute();
-                            if(cost30 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,30,cost30)).execute();
-                            if(cost90 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,90,cost90)).execute();
-                            if(cost180 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,180,cost180)).execute();
-                            if(cost365 != null)
-                                new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,365,cost365)).execute();
-
-                            //Insert into teaches
-                            new InsertTeachesDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName),new Person(teacher)).execute();
                         }
+                        new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,7,0)).execute();
+                        if(cost30 != null)
+                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,30,cost30)).execute();
+                        if(cost90 != null)
+                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,90,cost90)).execute();
+                        if(cost180 != null)
+                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,180,cost180)).execute();
+                        if(cost365 != null)
+                            new InsertSubscriptionTypeDatabase(getDataSource().getConnection(),new SubscriptionType(id,courseName,365,cost365)).execute();
+
+                        //Insert into teaches
+                        new InsertTeachesDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName),new Person(teacher)).execute();
+
                     } else {
                         error = Codes.OVERLAPPING_COURSES;
                         new DeleteCourseEditionDatabase(getDataSource().getConnection(),new CourseEdition(id,courseName)).execute();
@@ -296,7 +297,7 @@ public class AddCoursesServlet extends AbstractServlet
 
             } catch (NamingException | SQLException exception) {
                 error = Codes.INTERNAL_ERROR;
-                logger.info("COURSES EXCEPTION= "+exception);
+                exception.printStackTrace();
             }
 
 

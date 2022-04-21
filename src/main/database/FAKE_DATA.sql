@@ -63,12 +63,12 @@ INSERT INTO course VALUES ('Bodybuilding','Bodybuilding, a regimen of exercises 
 INSERT INTO course VALUES ('Calisthenics','Calisthenics is a form of strength training consisting of a variety of movements that exercise large muscle groups (gross motor movements), such as standing, grasping, pushing, etc. These exercises are often performed rhythmically and with minimal equipment, as bodyweight exercises.');
 
 --CourseEdition
-INSERT INTO courseedition VALUES (1, 'Powerlifting');
-INSERT INTO courseedition VALUES (2, 'Cardio');
-INSERT INTO courseedition VALUES (3, 'Yoga');
-INSERT INTO courseedition VALUES (4, 'Crossfit');
-INSERT INTO courseedition VALUES (5, 'Bodybuilding');
-INSERT INTO courseedition VALUES (6, 'Calisthenics');
+INSERT INTO courseedition VALUES (default, 'Powerlifting');
+INSERT INTO courseedition VALUES (default, 'Cardio');
+INSERT INTO courseedition VALUES (default, 'Yoga');
+INSERT INTO courseedition VALUES (default, 'Crossfit');
+INSERT INTO courseedition VALUES (default, 'Bodybuilding');
+INSERT INTO courseedition VALUES (default, 'Calisthenics');
 
 --Course
 INSERT INTO teaches VALUES (5, 'Bodybuilding', 'dev@dev.dev');
