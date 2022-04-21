@@ -1,4 +1,5 @@
 //Construct the calendar
+let contextPath = "/wa2122-gwa"
 let calendarEl = document.getElementById('trainer__calendar');
 let addWeeks = 0;
 let clickCnt = 0;
@@ -53,7 +54,7 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
 function renderCalendar() {
     //Perform the AJAX request to fill the calendar
     $.ajax({
-        url: "/wa2122-gwa/rest/trainer/weekly_calendar", data: {
+        url: contextPath + "/rest/trainer/weekly_calendar", data: {
             "addWeeks": addWeeks,
         }, cache: false, type: "GET", dataType: 'json', success: function (response) {
             //Remove all the events

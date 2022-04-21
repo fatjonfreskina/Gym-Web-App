@@ -1,10 +1,17 @@
+let contextPath = "/wa2122-gwa"
+
 GET_Trainee = (email) => {
     //Perform the AJAX request to fill the calendar
     return $.ajax({
-        url: "/rest/trainee/" + email, cache: false, type: "GET", dataType: 'json', success: (response) => {
+        url: contextPath + "/rest/trainee/" + email,
+        cache: false,
+        type: "GET",
+        dataType: 'json',
+        success: (response) => {
             //console.log("t:", response)
             return response;
-        }, error: (err) => {
+        },
+        error: (err) => {
             console.log(err);
             return err;
         }
@@ -14,11 +21,16 @@ GET_Trainee = (email) => {
 GET_TrainerAttendance = () => {
     //console.log("GET_TrainerAttendance");
     return $.ajax({
-        url: "/rest/trainer/attendance", cache: false, type: "GET", dataType: 'json', success: function (response) {
+        url: contextPath + "/rest/trainer/attendance",
+        cache: false,
+        type: "GET",
+        dataType: 'json',
+        success: function (response) {
             updateReservations(response);
             updateSubscriptions(response);
             return response;
-        }, error: function (err) {
+        },
+        error: function (err) {
             console.log(err);
             return null;
         }
@@ -40,7 +52,7 @@ POST_Subscription = (email) => {
     }
     //console.log("TO ADD", subscription);
     $.ajax({
-        url: "/rest/trainer/attendance",
+        url: contextPath + "/rest/trainer/attendance",
         cache: false,
         type: "POST",
         dataType: 'json',
@@ -59,7 +71,7 @@ POST_Subscription = (email) => {
 DELETE_Reservation = (email) => {
     let reservation = reservations.find(elem => elem.trainee = email);
     $.ajax({
-        url: "/rest/trainer/attendance",
+        url: contextPath + "/rest/trainer/attendance",
         cache: false,
         type: "DELETE",
         dataType: 'json',
