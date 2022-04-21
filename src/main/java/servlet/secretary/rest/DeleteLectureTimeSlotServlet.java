@@ -70,7 +70,7 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
                 DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
 
         //Validate the date, it must have minutes equal to 0 and seconds equal to 0
-        if(startLocalTime.getMinute() != 0 && startLocalTime.getSecond() != 0){
+        if(!isDateValid(startLocalTime)){
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
@@ -117,4 +117,9 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
     }
+
+    private boolean isDateValid(LocalTime time) {
+        return time.getMinute() == 0 && time.getSecond() == 0;
+    }
+
 }
