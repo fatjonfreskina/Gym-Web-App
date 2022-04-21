@@ -12,7 +12,7 @@ import java.sql.*;
  * */
 public class InsertCourseEditionDatabase {
 
-    private static final String STATEMENT = "INSERT INTO courseedition values(DEFAULT,?)";
+    private static final String STATEMENT = "INSERT INTO courseedition values(DEFAULT,?) returning *";
 
     private final Connection conn;
     private final CourseEdition courseEdition;
@@ -26,17 +26,22 @@ public class InsertCourseEditionDatabase {
     public Integer execute() throws SQLException
     {
         Integer key = null;
-        try (PreparedStatement ps = conn.prepareStatement(STATEMENT, Statement.RETURN_GENERATED_KEYS))
+        try (PreparedStatement ps = conn.prepareStatement(STATEMENT))
         {
 
             ps.setString(1, courseEdition.getCourseName());
-            ps.executeUpdate();
-            ResultSet resultSet = ps.getGeneratedKeys();
+            ResultSet resultSet =  ps.executeQuery();
             if(resultSet.next())
-                key = resultSet.getInt(1);
+                key = resultSet.getInt(Constants.COURSEEDITION_ID);
 
             //ps.execute();
-        } finally
+        }catch (Exception e)
+        {
+            System.out.println(e);
+
+        }
+
+        finally
         {
             conn.close();
         }
