@@ -2,6 +2,7 @@ package servlet.secretary.rest;
 
 import com.google.gson.Gson;
 import constants.Codes;
+import constants.DateTimeFormats;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.lecturetimeslot.UpdateLectureTimeSlotDatabase;
 import dao.person.GetNumberLectureTeacherByTeacherDateTimeDatabase;
@@ -23,11 +24,9 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.time.LocalDate;
+import java.text.ParseException;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 /**
@@ -55,23 +54,41 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
     private Message performUpdate(HttpServletRequest request) {
 
-        DateTimeFormatter formatter;
-
-        //Parse the parameters
+        //Parse the old parameters
         String oldRoomName = request.getParameter("oldRoomName");
-        formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
-        LocalDate oldLocalDate = LocalDate.parse(request.getParameter("oldDate"), formatter);
-        Date oldDate = new Date(Date.from(oldLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
-        LocalTime oldLocalTime = LocalTime.parse(request.getParameter("oldStartTime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        Date oldDate;
+        try {
+            oldDate = DateTimeFormats.dateConvert(
+                    DateTimeFormats.dateFormat.parse(request.getParameter("oldDate")));
+        } catch (ParseException e) {
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
+        LocalTime oldLocalTime = LocalTime.parse(request.getParameter("oldStartTime"),
+                DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
+        //Validate the date, it must have minutes equal to 0 and seconds equal to 0
+        if (!isDateValid(oldLocalTime)) {
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
         Time oldStartTime = Time.valueOf(oldLocalTime);
 
+        //Parse the new parameters
         String newRoomName = request.getParameter("newRoomName");
-        formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(DateTimeFormatter.ofPattern("yyyy-MM-dd")).toFormatter();
-        LocalDate newLocalDate = LocalDate.parse(request.getParameter("newDate"), formatter);
-        Date newDate = new Date(Date.from(newLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
-        LocalTime newLocalTime = LocalTime.parse(request.getParameter("newStartTime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        Date newDate;
+        try {
+            newDate = DateTimeFormats.dateConvert(
+                    DateTimeFormats.dateFormat.parse(request.getParameter("newDate")));
+        } catch (ParseException e) {
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
+
+        var dest  =request.getParameter("newStartTime").substring(0,8);
+
+        LocalTime newLocalTime = LocalTime.parse(request.getParameter("newStartTime").substring(0,8),
+                DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
+        //Validate the date, it must have minutes equal to 0 and seconds equal to 0
+        if (!isDateValid(newLocalTime)) {
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
         Time newStartTime = Time.valueOf(newLocalTime);
 
         Date actual = new Date(System.currentTimeMillis());
@@ -84,10 +101,12 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
+        //Check the lecture starts in the range 8:00:00 to 20:00:00
+        LocalTime openingTime = LocalTime.parse("08:00:00",
+                DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
+        LocalTime closingTime = LocalTime.parse("20:00:00",
+                DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
 
-        //Check the lecture starts in the range 8:00 AM to 20:00 PM
-        LocalTime openingTime = LocalTime.parse("08:00:00 AM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
-        LocalTime closingTime = LocalTime.parse("08:00:00 PM", DateTimeFormatter.ofPattern("hh:mm:ss a"));
         if (newLocalTime.isBefore(openingTime) || newLocalTime.isAfter(closingTime)) {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
@@ -97,7 +116,6 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
         //Try to update the LectureTimeSlot
         try {
-
 
             //Get the LectureTimeSlot
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(),
@@ -109,12 +127,13 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
                     lectureTimeSlot.getSubstitution());
 
             Person trainer = new GetTrainerOfLectureTimeSlotDatabase(getDataSource().getConnection(), lectureTimeSlot).execute();
-            if(trainer == null){
+
+            if (trainer == null) {
                 return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
             }
 
             //Check the new Date and Time in which you want to move the lecture does not do any overlap
-            if (isOverlappingLecture(updatedLectureTimeSlot) || isOverlappingTrainer(updatedLectureTimeSlot,trainer)) {
+            if (isOverlappingLecture(updatedLectureTimeSlot) || isOverlappingTrainer(updatedLectureTimeSlot, trainer)) {
                 return new Message(Codes.OVERLAPPING_COURSES.getErrorMessage(), true);
             }
 
@@ -143,14 +162,20 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
     }
 
-    private boolean isOverlappingLecture(LectureTimeSlot updatedLectureTimeSlot) throws NamingException, SQLException {
+    private boolean isDateValid(LocalTime time) {
+        return time.getMinute() == 0 && time.getSecond() == 0;
+    }
+
+    private boolean isOverlappingLecture(LectureTimeSlot updatedLectureTimeSlot)
+            throws NamingException, SQLException {
         LectureTimeSlot lectureTimeSlot =
                 new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), updatedLectureTimeSlot)
                         .execute();
         return lectureTimeSlot != null;
     }
 
-    private boolean isOverlappingTrainer(LectureTimeSlot updatedLectureTimeSlot, Person trainer) throws NamingException, SQLException {
+    private boolean isOverlappingTrainer(LectureTimeSlot updatedLectureTimeSlot, Person trainer)
+            throws NamingException, SQLException {
         var count = new GetNumberLectureTeacherByTeacherDateTimeDatabase(getDataSource().getConnection(),
                 trainer, updatedLectureTimeSlot).execute();
         return count != 0;

@@ -2,6 +2,7 @@ package servlet.secretary.rest;
 
 import com.google.gson.Gson;
 import constants.Codes;
+import constants.DateTimeFormats;
 import dao.lecturetimeslot.DeleteLectureTimeSlotDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.person.GetPersonByEmailDatabase;
@@ -20,11 +21,9 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.time.LocalDate;
+import java.text.ParseException;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 /**
@@ -59,17 +58,27 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
         //Parse the parameters
         String roomName = request.getParameter("roomname");
 
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
-        LocalDate localDate = LocalDate.parse(request.getParameter("date"), formatter);
-        Date date = new Date(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
+        Date date;
+        try {
+            var temp = DateTimeFormats.dateFormat.parse(request.getParameter("date"));
+            date = DateTimeFormats.dateConvert(temp);
+        } catch (ParseException e) {
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
 
-        LocalTime localTime = LocalTime.parse(request.getParameter("starttime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
-        Time startTime = Time.valueOf(localTime);
+        LocalTime startLocalTime = LocalTime.parse(request.getParameter("starttime"),
+                DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
+
+        //Validate the date, it must have minutes equal to 0 and seconds equal to 0
+        if(!isDateValid(startLocalTime)){
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
+
+        Time startTime = Time.valueOf(startLocalTime);
 
         //Check you are trying to delete a lecture after the date of today
         Date actual = new Date(System.currentTimeMillis());
-        if(date.before(actual)){
+        if (date.before(actual)) {
             return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
         }
 
@@ -108,4 +117,9 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
     }
+
+    private boolean isDateValid(LocalTime time) {
+        return time.getMinute() == 0 && time.getSecond() == 0;
+    }
+
 }
