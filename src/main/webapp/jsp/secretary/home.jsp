@@ -143,8 +143,8 @@
             right: 'prev,next today'
         },
         eventClick: function (info) {
-            //console.log(info.event);
-            //console.log(info.event.extendedProps);
+            console.log(info.event);
+            console.log(info.event.extendedProps);
             selectedEvent = info.event.extendedProps.customLTS;
             $("#modal-details").modal("show");
         }

@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
+import static constants.DateTimeFormats.dateFormat;
+import static constants.DateTimeFormats.timeFormat;
+
 /**
  * @author Riccardo Forzan
  */
@@ -32,8 +35,8 @@ public class GetAllLectureTimeSlotServlet extends AbstractServlet {
 
         private final String roomName;
         private final String dateTime;
-        private final Date date;
-        private final Time startTime;
+        private final String date;
+        private final String startTime;
         private final Integer courseEditionId;
         private final String courseName;
         private final String substitution;
@@ -41,8 +44,8 @@ public class GetAllLectureTimeSlotServlet extends AbstractServlet {
         public MyLectureTimeSlot(String roomName, String dateTime, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {
             this.roomName = roomName;
             this.dateTime = dateTime;
-            this.date = date;
-            this.startTime = startTime;
+            this.date = dateFormat.format(date);
+            this.startTime = timeFormat.format(startTime);
             this.courseEditionId = courseEditionId;
             this.courseName = courseName;
             this.substitution = substitution;
