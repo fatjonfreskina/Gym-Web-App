@@ -1,8 +1,6 @@
 \subsection{REST API Summary}
 
-The REST API is studied to experiment with multiple different approaches to the REST paradigm. 
-Even though, the whole web application is not based on REST APIs, like login logic is still cookie based and session in stored on the server, different action can be performed through REST methods. 
-The following table describes which REST request can be performed. Each request goes through the chain of filters in order to be performed, those filters are listed in the last column.
+The following table describes which REST request can be performed. Each request needs to go through the chain of filters in order to be performed, those filters are listed in the last column.
 
 %describe the REST API. If needed, add a few lines of text here, describing the content of the table.
 
@@ -11,11 +9,11 @@ The following table describes which REST request can be performed. Each request 
 
 secretary/rest/deletelecturetimeslot & DELETE & By specifing a roomname, date and starttime, it removes the lecturetimeslot (associated with those fields)  & Login, Secretary\\\hline
 
-secretary/rest/substitutionlecturetimeslot & POST & By specifing a roomname, date, starttime, email of the trainer that will substitute the lesson and notes (text), it will appy a substitution for that lecture & Login, Secretary\\\hline
+secretary/rest/substitutionlecturetimeslot & POST & By specifing a roomname, date, starttime, email of the trainer that will substitute the lesson and notes (text), it will apply a substitution for that lecture & Login, Secretary\\\hline
 
 secretary/rest/updatelecturetimeslot & POST & By specifing a oldroomname, olddate, oldstarttime, newroomname, newdate, newstarttime it will update the lecture  & Login, Secretary\\\hline
 
-secretary/rest/listlikepersons & GET & By specifing a string that is part of email return the list of users with such patter  & Login, Secretary\\\hline
+secretary/rest/listlikepersons & GET & By specifing a string that is part of an e-mail return the list of users with such pattern  & Login, Secretary\\\hline
 
 secretary/rest/timeschedules & GET & By specifing a string that is the name of a course it will return a list of courseeditionid, day of the week and time for each edition of the given course  & Login, Secretary\\\hline
 
@@ -25,23 +23,23 @@ trainee/rest/available/from-date/\{date\}/to-date/\{date\} & GET & Get available
 
 trainee/rest/reservation/from-date/\{date\}/to-date/\{date\} & GET & Get all the reservations for the specific user (logged in) to his courses, for the period specified in the URI & Login, Trainee\\\hline
 
-trainee/rest/reservation & POST & Create a new reservation, for the logged in user, in a specific lecture time slot of a specified course & Login, Trainee\\\hline
+trainee/rest/reservation & POST & Create a new reservation, for the logged in user, for a specific lecture time slot of a specified course & Login, Trainee\\\hline
 
 trainee/rest/reservation/room/ \{room\}/date/\{date\}/starttime/\{time\} & DELETE & Delete a reservation made by the logged in user, specifying all the information (room, date, time) of the lecture time slot. & Login, Trainee\\\hline
 
 % TRAINERs REST APIs
 % GETs
-/rest/trainer/weekly\_calendar?addWeeks= \{weeks\} & GET & Returns all the LectureTimeSlots, as an ARRAY of JSON object, in a given week for the specific logged in trainer. By default the week is set to the current one but the API allows to retrieve also LectureTimeSlots from different weeks just by adding or subtracting \textit{weeks} parameter from the current week. & Login, Trainer\\\hline
+/rest/trainer/weekly\_calendar & GET & Returns all the LectureTimeSlots, as an ARRAY of JSON object, in a given week for the specific logged in trainer. By default the week is set to the current one but the API allows to retrieve also LectureTimeSlots from different weeks just by adding or subtracting \textit{weeks} parameter from the current week. & Login, Trainer\\\hline
 
 /rest/trainer/courses\_status & GET & Returns each course held by the logged in trainer with number of trainees and the current lesson number over all the lessons. All as a single JSON object. & Login, Trainer\\\hline
 
-/rest/trainer/attendance & GET & Returns a single JSON object composed by the current LectureTimeSlot, held by the logged in trainer, a list of reservations that represent all the presence to that lesson and finaly a list of subscriptions that represent all the trainees that are absent. & Login, Trainer\\\hline
+/rest/trainer/attendance & GET & Returns a single JSON object composed by the current LectureTimeSlot, held by the logged in trainer, a list of reservations that represents all the attendances to that lesson and finally a list of subscriptions that represents all the trainees that are absent. & Login, Trainer\\\hline
 
 % POSTs
 /rest/trainer/attendance & POST & This API allows the logged-in trainer to mark as present a trainee, by giving its Subscription as JSON object in the body of the POST request. & Login, Trainer\\\hline
 
 % DELETEs
-/rest/trainer/attendance & DELETE & This API allows the logged-in trainer to mark as absent a trainee, by giving its Reservation as JSON object int the body of the DELETE request. & Login, Trainer\\\hline
+/rest/trainer/attendance & DELETE & This API allows the logged-in trainer to mark as absent a trainee, by giving its Reservation as JSON object into the body of the DELETE request. & Login, Trainer\\\hline
 
 \caption{REST APIs}
 \label{tab:termGlossary}

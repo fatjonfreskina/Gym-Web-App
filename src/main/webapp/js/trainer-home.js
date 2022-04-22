@@ -1,5 +1,6 @@
+let contextPath = $('#contextPathHolder').attr('data'); // "/wa2122-gwa"
+
 //Construct the calendar
-let contextPath = "/wa2122-gwa"
 let calendarEl = document.getElementById('trainer__calendar');
 let addWeeks = 0;
 let clickCnt = 0;
