@@ -7,6 +7,7 @@
     <jsp:include page="../include/bootstrap.jsp"/>
     <jsp:include page="../include/fullcalendar.jsp"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
 </head>
 <body>
 <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>

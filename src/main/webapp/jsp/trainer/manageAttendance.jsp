@@ -11,6 +11,7 @@
             src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
     <script src="${pageContext.request.contextPath}/js/trainer-attendance.js"></script>
 </head>
 <body>
