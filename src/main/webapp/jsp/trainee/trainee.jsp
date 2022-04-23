@@ -20,7 +20,7 @@
     </c:otherwise>
 </c:choose>
 <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
-<div id="trainer__calendar"></div>
+<div id="trainee__calendar"></div>
 <jsp:include page="/jsp/include/footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/trainee/trainee.js"></script>
 </body>
