@@ -1,3 +1,18 @@
+:root {
+    --blue-dark: #08273B; /*nav, */
+    --blue: #2E7DBA;
+    --blue-light: #4390C3; /*links, active link*/
+
+    --white: #fff; /*bg 1*/
+    --gray: #F6F6F6; /*bg 2*/
+    --gray-dark: #3A3A3A; /*title*/
+
+    --primary: #33414f;
+    --secondary: #fd0;
+
+}
+
+
 a,
 a:hover,
 a:focus,
@@ -7,42 +22,54 @@ a.active {
     text-decoration: none;
 }
 
-/* TRAINER HOME */
-.trainer__shift {
+main {
     margin-top: 66px;
 }
 
-.trainer__navbar {
-    background-color: #eee !important;
-    /*margin-bottom: 2px;*/
-    /*height: 100vh;*/
+.navbar {
+    min-height: 66px;
+    background-color: var(--primary) !important;
 }
 
-.trainer__navbar__menu {
-    min-height: 80vh;
-}
-
-.trainer__navbar__dropdown {
-    background-color: transparent;
-    border: 0;
-}
-
-@media (min-width: 768px) {
-    .trainer__navbar__menu {
-        min-height: auto;
-    }
-
-    .trainer__navbar__dropdown {
-        background-color: #fff;
-        border: 1px solid rgba(0, 0, 0, .15);
-    }
-}
-
-.trainer__navbar__menu > li > a {
-    /*color: #1ee2e7;*/
+.navbar__menu > li > a {
+    color: white;
     text-transform: uppercase !important;
     font-size: large;
     font-weight: bold;
+}
+
+.navbar__menu > li > a .active, .navbar__menu > li > a:hover {
+    color: var(--secondary);
+}
+
+.navbar__menu {
+    min-height: 80vh;
+}
+
+.navbar__dropdown {
+    background-color: transparent;
+    color: white;
+    border: 0;
+}
+
+.navbar__dropdown * {
+    color: white;
+}
+
+@media (min-width: 992px) {
+    .navbar__menu {
+        min-height: auto;
+    }
+
+    .navbar__dropdown {
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .15);
+        color: black;
+    }
+
+    .navbar__dropdown * {
+        color: black;
+    }
 }
 
 .trainer__container {
@@ -77,7 +104,8 @@ hr {
 }
 
 #reservationsTABLE td, /*#reservationsTABLE th,*/
-#subscriptionsTABLE td/*, #subscriptionsTABLE th*/ {
+#subscriptionsTABLE td /*, #subscriptionsTABLE th*/
+{
     text-align: center;
     vertical-align: middle;
     padding: 4px;

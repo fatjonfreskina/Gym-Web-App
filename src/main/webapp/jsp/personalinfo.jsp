@@ -1,18 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Personal Info</title>
+    <jsp:include page="include/bootstrap.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
+<jsp:include page="/jsp/include/header.jsp"/>
+<main>
+    <c:import url="include/icon.jsp"/>
 
-<c:import url="include/icon.jsp"/>
-
-<nav>
-    <a href="<c:url value="/${defaultRole}"/>">My Home</a>
-</nav>
+    <nav>
+        <a href="<c:url value="/${defaultRole}"/>">My Home</a>
+    </nav>
 
     <table>
         <tr>
@@ -47,7 +50,7 @@
                 </c:if>
                 <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
                     <input type="file" name="avatar"/>
-                    <input type="submit" value="Change" />
+                    <input type="submit" value="Change"/>
                 </form>
             </td>
         </tr>
@@ -64,12 +67,11 @@
     </table>
 
 
-<c:if test="${message != null}">
-    <c:out value="${message.message}"/>
-</c:if>
+    <c:if test="${message != null}">
+        <c:out value="${message.message}"/>
+    </c:if>
 
-
-
-    <jsp:include page="/jsp/include/footer.jsp"/>
+</main>
+<jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>

@@ -1,17 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Prices</title>
+    <jsp:include page="include/bootstrap.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-    <jsp:include page="/jsp/include/header.jsp"/><br>
+<jsp:include page="/jsp/include/header.jsp"/>
+<main>
     <table>
         <thead>
-            <tr>
-                <th>Course</th><th>Type of Subscription</th><th>Price</th><th>Min</th><th>Max</th><th>Trainers</th><th>PerWeek</th>
-            </tr>
+        <tr>
+            <th>Course</th>
+            <th>Type of Subscription</th>
+            <th>Price</th>
+            <th>Min</th>
+            <th>Max</th>
+            <th>Trainers</th>
+            <th>PerWeek</th>
+        </tr>
         </thead>
 
 
@@ -48,6 +57,7 @@
 
         </c:forEach>
     </table>
-    <jsp:include page="/jsp/include/footer.jsp"/>
+</main>
+<jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>
