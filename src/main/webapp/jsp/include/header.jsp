@@ -45,8 +45,30 @@
                         </li>
                     </c:when>
                     <c:otherwise>
-                        <li class="flex-grow-1 d-flex justify-content-md-end nav-item p-2">
-                            <a href="<c:url value="/${sessionScope.defaultRole}"/>">My Profile</a></li>
+                        <li class="nav-item dropdown flex-grow-1 d-flex justify-content-md-end">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                <c:choose>
+                                    <c:when test="${null != sessionScope.avatarPath}">
+                                        <img class="rounded-circle" src="./avatar" width="36px" height="36px">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <i class="fa-solid fa-user p-2"></i>
+                                    </c:otherwise>
+                                </c:choose>
+                            </a>
+                            <ul class="navbar__dropdown dropdown-menu dropdown-menu-md-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item disabled"><c:out value="${sessionScope.email}"/></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <c:forEach var="role" items="${sessionScope.roles}">
+                                    <li><a class="dropdown-item" href="<c:url value="/${role}"/>"><c:out value="${role}"/></a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+
                         <li class="nav-item p-2"><a href="<c:url value="/logout"/>">Logout</a></li>
                     </c:otherwise>
                 </c:choose>
