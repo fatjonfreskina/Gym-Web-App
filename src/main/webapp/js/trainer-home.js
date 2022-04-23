@@ -24,30 +24,33 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     firstDay: 1,
     slotDuration: '00:30',
     nowIndicator: true,
-    eventClick: function (info) {
-        let event = info.event;
-        let selectedLectureTimeSlot = event.extendedProps.lectureTimeSlot;
+    eventClick: clickHandler
+});
+function clickHandler (info) {
+    let event = info.event;
+    let selectedLectureTimeSlot = event.extendedProps.lectureTimeSlot;
 
-        clickCnt++;
-        if (clickCnt === 1) {
-            oneClickTimer = setTimeout(function () {
-                clickCnt = 0;
-                alert('By DOUBLE CLICKING on the current LectureTimeSlot you can manage attendances, you clicked once on:\n' + JSON.stringify(selectedLectureTimeSlot, null, 2));
-            }, 400);
-        } else if (clickCnt === 2) {
-            clearTimeout(oneClickTimer);
+    clickCnt++;
+    if (clickCnt === 1) {
+        oneClickTimer = setTimeout(function () {
             clickCnt = 0;
-            let now = Date.now()
-            if (event.start < now && event.end > now) {
-                //console.log("event:", selectedLectureTimeSlot);
-                location.href = location.href + "/attendance";
-            } else {
-                alert('By DOUBLE CLICKING on the CURRENT LectureTimeSlot you can manage attendances, you clicked on:\n' + JSON.stringify(selectedLectureTimeSlot, null, 2));
-                //console.log("not current lts:", selectedLectureTimeSlot)
-            }
+            alert('By DOUBLE CLICKING on the current LectureTimeSlot you can manage attendances, you clicked once on:\n' + JSON.stringify(selectedLectureTimeSlot, null, 2));
+        }, 400);
+    } else if (clickCnt === 2) {
+        clearTimeout(oneClickTimer);
+        clickCnt = 0;
+        let now = Date.now()
+        if (event.start < now && event.end > now) {
+            //console.log("event:", selectedLectureTimeSlot);
+            location.href = location.href + "/attendance";
+        } else {
+            alert('By DOUBLE CLICKING on the CURRENT LectureTimeSlot you can manage attendances, you clicked on:\n' + JSON.stringify(selectedLectureTimeSlot, null, 2));
+            //console.log("not current lts:", selectedLectureTimeSlot)
         }
     }
-});
+}
+
+
 
 /**
  * Performs a refresh of the calendar object of this page
