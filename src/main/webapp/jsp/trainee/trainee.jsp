@@ -4,6 +4,10 @@
 <html>
 <head>
     <title>Trainee page</title>
+    <jsp:include page="../include/bootstrap.jsp"/>
+    <jsp:include page="../include/fullcalendar.jsp"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
 </head>
 <body>
 <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
@@ -15,9 +19,9 @@
         <c:out value="You do not have a Medical Certificate please go to the secretary!!!"></c:out>
     </c:otherwise>
 </c:choose>
-
-
 <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+<div id="trainer__calendar"></div>
 <jsp:include page="/jsp/include/footer.jsp"/>
+<script src="${pageContext.request.contextPath}/js/trainee/trainee.js"></script>
 </body>
 </html>
