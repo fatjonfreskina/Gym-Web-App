@@ -11,6 +11,17 @@
 <jsp:include page="include/header.jsp"/>
 <main>
     <div class="container d-flex justify-content-center flex-column align-items-center">
+        <nav class="pt-2" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="<c:url value="/"/>">Home</a>
+                </li>
+                <li class="breadcrumb-item active"><a href="<c:url value="/the_gym"/>" aria-current="page">The Gym</a>
+                </li>
+            </ol>
+            <hr/>
+        </nav>
+        <%-- CAROUSEL --%>
         <div style="width:600px !important;">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">

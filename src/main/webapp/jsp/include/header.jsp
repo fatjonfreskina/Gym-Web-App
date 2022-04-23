@@ -11,6 +11,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <%--TODO add active class programmatically--%>
         <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
             <ul class="navbar__menu navbar-nav w-100 d-flex justify-content-lg-center align-items-lg-center">
                 <li class="nav-item p-2">
