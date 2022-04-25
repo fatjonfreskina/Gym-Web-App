@@ -5,11 +5,12 @@
 <head>
     <title>The Gym</title>
     <jsp:include page="include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
 <jsp:include page="include/header.jsp"/>
-<main>
+<main class="global-container">
     <div class="container d-flex justify-content-center flex-column align-items-center">
         <nav class="pt-2" aria-label="breadcrumb">
             <ol class="breadcrumb">

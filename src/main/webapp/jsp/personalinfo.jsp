@@ -6,11 +6,12 @@
 <head>
     <title>Personal Info</title>
     <jsp:include page="include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
 <jsp:include page="/jsp/include/header.jsp"/>
-<main>
+<main class="global-container">
     <c:import url="include/icon.jsp"/>
 
     <nav>
