@@ -4,21 +4,26 @@
 <html>
 <head>
     <title>Ask for password reset</title>
+    <jsp:include page="../include/bootstrap.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<h1>Ask for password reset</h1>
-
-<form method="POST" action="<c:url value="/password_forgot"/>" enctype="application/x-www-form-urlencoded">
-    <label for="email">Email address:</label><br>
-    <input type="text" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
-    <input type="submit" value="Submit">
-</form>
-
-<c:choose>
-    <c:when test="${message != null}">
-        <p><c:out value="${message.message}"/></p>
-    </c:when>
-</c:choose>
-
+<header>
+    <jsp:include page="../include/header.jsp"/>
+</header>
+<main class="global-container">
+    <form method="POST" action="<c:url value="/password_forgot"/>" enctype="application/x-www-form-urlencoded">
+        <label for="email">Email address:</label><br>
+        <input type="text" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <c:choose>
+        <c:when test="${message != null}">
+            <p><c:out value="${message.message}"/></p>
+        </c:when>
+    </c:choose>
+</main>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>
