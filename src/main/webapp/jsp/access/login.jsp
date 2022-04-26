@@ -3,14 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Login</title>
     <jsp:include page="../include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
-<main>
+<header>
+    <jsp:include page="../include/header.jsp"/>
+</header>
+<main class="global-container">
     <form method="post" action="<c:url value="/login"/>" enctype="application/x-www-form-urlencoded">
         <label>Email : </label><input type="text" name="email" value="dev@dev.dev" autocomplete="on"><br/>
         <label>Password : </label><input type="password" name="password" value="CIAO" autocomplete="on"><br/>
@@ -24,6 +26,5 @@
     </c:choose>
 </main>
 <jsp:include page="../include/footer.jsp"/>
-<br>
 </body>
 </html>

@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="/jsp/include/header.jsp"/>
+<header>
+    <jsp:include page="/jsp/include/header.jsp"/>
+</header>
 <main class="global-container">
     <div class="row">
         <div class="column">

@@ -1,11 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Add medical certificate</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/><br>
+<header>
+    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+</header>
+
 
 <form method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data">
 

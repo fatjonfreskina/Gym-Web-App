@@ -10,8 +10,9 @@
     <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
 </head>
 <body>
-<jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
-
+<header>
+    <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
+</header>
 <div class="overflow-auto trainer__shift">
     <div class="container trainer__container">
         <nav aria-label="breadcrumb">

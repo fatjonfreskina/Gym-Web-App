@@ -3,14 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Unauthorized</title>
     <jsp:include page="../include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
-<main>
+<header>
+    <jsp:include page="../include/header.jsp"/>
+</header>
+<main class="global-container">
     <h1>UNAUTHORIZED</h1>
     <p>You do not have privilege to access this resource.</p>
 </main>

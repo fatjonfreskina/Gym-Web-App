@@ -14,8 +14,9 @@
     <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="/jsp/include/header.jsp"/>
-
+<header>
+    <jsp:include page="/jsp/include/header.jsp"/>
+</header>
 <main class="global-container">
     <table class="table table-sm table-bordered text-center align-middle">
         <thead class="thead-dark">

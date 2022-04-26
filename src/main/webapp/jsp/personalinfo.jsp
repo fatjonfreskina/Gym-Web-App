@@ -10,14 +10,10 @@
     <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="/jsp/include/header.jsp"/>
+<header>
+    <jsp:include page="/jsp/include/header.jsp"/>
+</header>
 <main class="global-container">
-    <c:import url="include/icon.jsp"/>
-
-    <nav>
-        <a href="<c:url value="/${defaultRole}"/>">My Home</a>
-    </nav>
-
     <table>
         <tr>
             <th>Tax Code:</th>

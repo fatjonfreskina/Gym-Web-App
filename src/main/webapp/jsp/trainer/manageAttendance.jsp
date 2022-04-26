@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Manage Attendance</title>
@@ -15,7 +16,9 @@
     <script src="${pageContext.request.contextPath}/js/trainer-attendance.js"></script>
 </head>
 <body>
-<jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
+<header>
+    <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
+</header>
 <div class="d-flex flex-column h-100">
     <div class="container trainer__shift">
         <nav aria-label="breadcrumb">

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Secretary</title>
@@ -9,7 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css">
 </head>
 <body>
-    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+    <header>
+        <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+    </header>
+
 
     <div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
     </div>

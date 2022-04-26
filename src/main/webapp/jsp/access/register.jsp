@@ -3,14 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Register</title>
     <jsp:include page="../include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="../include/header.jsp"/>
-<main>
+<header>
+    <jsp:include page="../include/header.jsp"/>
+</header>
+<main class="global-container">
     <form method="post" action="<c:url value="/register"/>" enctype="multipart/form-data">
         <label>Tax Code : </label><input type="text" name="tax_code" value="0123456789012345"><br/>
         <!-- pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required-->

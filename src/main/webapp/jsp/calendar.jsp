@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
-<jsp:include page="include/header.jsp"/>
+<header>
+    <jsp:include page="include/header.jsp"/>
+</header>
 <main class="global-container">
     <form method="post" action="<c:url value="/register"/>" enctype="multipart/form-data">
         <label>Search Calendar for : </label><input type="date" name="calendar_date"><br/>

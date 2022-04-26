@@ -10,7 +10,9 @@
     <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
 </head>
 <body>
-<jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
+<header>
+    <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
+</header>
 <c:choose>
     <c:when test="${medicalCertificate != null}">
         <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"/>

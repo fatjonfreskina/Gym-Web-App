@@ -1,11 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Manage Subscription</title>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+<header>
+    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+</header>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
 
