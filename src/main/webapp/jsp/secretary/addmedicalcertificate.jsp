@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Add medical certificate</title>
+    <link rel="stylesheet" href="<c:url value="/css/formStyle.css"/>">
 </head>
 <body>
 <header>
@@ -11,7 +12,8 @@
 </header>
 
 
-<form method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data">
+<div class="container">
+<form class="center" method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data">
 
     <label>Email : </label><input type="text" name="person" value=""><br/>
     <label>Expiration Date : </label><input type="date" name="expirationdate" value="2023-01-01"><br/>
@@ -20,7 +22,7 @@
 
     <button type="submit" >Add certificate</button>
 </form>
-
+</div>
 <c:choose>
     <c:when test="${message.error}">
         <p><c:out value="${message.message}"/></p>
