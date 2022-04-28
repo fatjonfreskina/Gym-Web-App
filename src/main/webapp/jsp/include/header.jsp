@@ -45,9 +45,18 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarRightDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    <!-- Load user avatar if any -->
+                    <c:choose>
+                        <c:when test="${null != sessionScope.avatarPath}">
+                            <img class="rounded-circle" src="./avatar" width="36px" height="36px">
+                        </c:when>
+                        <c:otherwise>
+                            <i class="fa-solid fa-user p-2"></i>
+                        </c:otherwise>
+                    </c:choose>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarRightDropdown">
+                    <!-- Load options -->
                     <c:choose>
                         <c:when test="${empty sessionScope.roles}">
                             <a class="dropdown-item" href="<c:url value="/register"/>">Register</a>
