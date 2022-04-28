@@ -5,34 +5,48 @@
 <head>
     <title>Manage Roles</title>
     <meta charset="UTF-8">
+    <jsp:include page="../include/bootstrap.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
+<main class="global-container">
+    <form method="post" enctype="application/x-www-form-urlencoded">
 
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email :</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email">
+            </div>
+        </div>
 
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Role : </label>
+            <div class="col-sm-3">
+                <input  type="checkbox" id="trainee" name="trainee" />
+                <label for="trainee">Trainee</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="trainer" id="trainer"/>
+                <label for="trainer">Trainer</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="secretary" id="secretary"/>
+                <label for="secretary">Secretary</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary btn-lg">Update</button>
+    </form>
     <c:choose>
         <c:when test="${message != null}">
             <p><c:out value="${message.message}"/></p>
         </c:when>
     </c:choose>
-
-    <form method="post" enctype="application/x-www-form-urlencoded">
-
-        <label>Email : </label><input type="email" name="email" value=""><br/>
-        <div>
-            <label>Role : </label>
-            <input type="checkbox" id="trainee" name="trainee"/>
-            <label for="trainee">Trainee</label>
-            <input type="checkbox" name="trainer" id="trainer"/>
-            <label for="trainer">Trainer</label>
-            <input type="checkbox" name="secretary" id="secretary"/>
-            <label for="secretary">Secretary</label>
-        </div>
-        <button type="submit" >Update</button>
-    </form>
-
-    <jsp:include page="../include/footer.jsp"/>
+</main>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

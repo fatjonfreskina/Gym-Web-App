@@ -14,7 +14,6 @@
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
 <main class="global-container">
-
     <form method="post" enctype="multipart/form-data">
         <div class="form-group row">
             <label for="tax_code" class="col-sm-2 col-form-label">Tax Code :</label>

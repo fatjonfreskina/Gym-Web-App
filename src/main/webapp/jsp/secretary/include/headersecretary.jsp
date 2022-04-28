@@ -11,7 +11,6 @@
     <a href="<c:url value="/secretary/manageroles"/>">Manage Roles</a> <!--Alberto-->
     <a href="<c:url value="/secretary/addMedicalCertificate"/>">Add Medical Certificates</a><!-- Simone -->
     <a href="<c:url value="/secretary/managessubscription"/>">Manage Subscription</a> <!-- Francesco -->
-    <a href="<c:url value="/secretary"/>">Manages Lectures (Substitution)</a>
     <a href="<c:url value="/personal_info"/>">Personal Info</a>
     <a href="<c:url value="/logout"/>">Logout</a>
     <!-- Riccardo -->
