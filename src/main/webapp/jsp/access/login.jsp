@@ -13,12 +13,27 @@
     <jsp:include page="../include/header.jsp"/>
 </header>
 <main class="global-container">
-    <form method="post" action="<c:url value="/login"/>" enctype="application/x-www-form-urlencoded">
-        <label>Email : </label><input type="text" name="email" value="dev@dev.dev" autocomplete="on"><br/>
-        <label>Password : </label><input type="password" name="password" value="CIAO" autocomplete="on"><br/>
-        <button type="submit" autofocus>Login</button>
+    <form method="post" action="<c:url value="/login"/>">
+
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email :</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="password" class="col-sm-2 col-form-label">Password :</label>
+            <div class="col-sm-10">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password">
+            </div>
+        </div>
+
+        <a href="<c:url value="/password_forgot"/>" class="link-primary">Password forgot</a> <br/>
+
+        <button type="submit" class="btn btn-outline-primary btn-lg">Login</button>
     </form>
-    <a href="<c:url value="/password_forgot"/>">Password forgot</a>
+
     <c:choose>
         <c:when test="${message != null}">
             <p><c:out value="${message.message}"/></p>
