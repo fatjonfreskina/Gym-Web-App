@@ -5,7 +5,7 @@
 <head>
     <title>GWA</title>
     <meta charset="UTF-8">
-
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
 <header>
