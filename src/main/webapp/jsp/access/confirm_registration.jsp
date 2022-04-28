@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<html>
+<html lang="en">
 <head>
     <title>Confirm Registration</title>
+    <meta charset="UTF-8">
 </head>
 <body>
 <a href="<c:url value="/"/>">Home</a>

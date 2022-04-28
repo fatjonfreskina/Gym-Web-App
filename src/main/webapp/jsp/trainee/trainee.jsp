@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Trainee page</title>
+    <meta charset="UTF-8">
     <jsp:include page="../include/bootstrap.jsp"/>
     <jsp:include page="../include/fullcalendar.jsp"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">

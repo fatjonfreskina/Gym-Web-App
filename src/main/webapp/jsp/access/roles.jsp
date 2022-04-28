@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Roles</title>
+    <meta charset="UTF-8">
     <jsp:include page="../include/bootstrap.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
     <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">

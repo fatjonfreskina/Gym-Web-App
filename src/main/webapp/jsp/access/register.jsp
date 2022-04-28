@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <title>Register</title>
+    <meta charset="UTF-8">
     <jsp:include page="../include/bootstrap.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
     <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">

@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Manage Attendance</title>
+    <meta charset="UTF-8">
     <jsp:include page="../include/bootstrap.jsp"/>
     <jsp:include page="../include/fullcalendar.jsp"/>
     <%--DATATABLES--%>
