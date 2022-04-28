@@ -7,13 +7,14 @@
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="../include/fullcalendar/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/secretary/calendar.css"/>">
 </head>
 <body>
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
 
-<div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
+<div id="calendar" class="secretary-home-calendar">
 </div>
 
 <jsp:include page="../include/footer.jsp"/>
