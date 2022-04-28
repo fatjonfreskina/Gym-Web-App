@@ -6,7 +6,7 @@
     <title>GWA - Trainer Home page </title>
     <meta charset="UTF-8">
     <jsp:include page="../include/bootstrap.jsp"/>
-    <jsp:include page="../include/fullcalendar.jsp"/>
+    <jsp:include page="../include/fullcalendar/fullcalendar.jsp"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
     <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
 </head>

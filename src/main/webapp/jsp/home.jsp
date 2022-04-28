@@ -5,7 +5,7 @@
 <head>
     <title>GWA</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <jsp:include page="/jsp/include/stylesheets.jsp"/>
 </head>
 <body>
 <header>
@@ -20,5 +20,6 @@
     <br/>
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>
