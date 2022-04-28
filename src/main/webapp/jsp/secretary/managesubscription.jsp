@@ -18,7 +18,7 @@
     <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">
 
         <div class="form-group row">
-            <label for="course_name" class="col-sm-3 col-form-label">Course Name : </label>
+            <label for="course_name" class="col-sm-3 col-form-label">Course Name :</label>
             <div class="col-sm-9">
                 <select name="course_name" id="course_name" class="form-control">
                     <c:forEach var="course" items="${courses}">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group row">
-            <label for="duration" class="col-sm-3 col-form-label">Subscription Duration : </label>
+            <label for="duration" class="col-sm-3 col-form-label">Subscription Duration :</label>
             <div class="col-sm-9">
                 <select id="duration" class="form-control" name="duration">
                     <option  value="7">Free</option>
@@ -49,22 +49,27 @@
         </div>
 
         <div class="form-group row">
-            <label for="discount" class="col-sm-2 col-form-label">Discount : </label>
+            <label for="discount" class="col-sm-2 col-form-label">Discount :</label>
             <div class="col-sm-10">
                 <input type="number" id="discount" name = "discount" min = "0" max ="100" value="0" class="form-control"/>
             </div>
         </div>
 
+        <div class="form-group row">
+            <label for="list_emails" class="col-sm-2 col-form-label">Users :</label>
+            <div class="col-sm-10">
+                <ul id="list_emails" class="list-group"></ul>
+            </div>
+        </div>
 
-        <ul id="list_emails" class="list-group"></ul>
-        <ul id="list_last_date" class="list-group"></ul>
+        <div class="form-group row">
+            <label for="list_last_date" class="col-sm-2 col-form-label">Last Event :</label>
+            <div class="col-sm-10">
+                <ul id="list_last_date" class="list-group"></ul>
+            </div>
+        </div>
 
         <input type="submit" name="Submit" class="btn btn-outline-primary btn-lg"/>
-
-
-
-
-
     </form>
 </main>
 
