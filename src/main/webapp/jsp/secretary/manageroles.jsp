@@ -20,7 +20,7 @@
 
     <form method="post" enctype="application/x-www-form-urlencoded">
 
-        <label>Email : </label><input type="text" name="email" value=""><br/>
+        <label>Email : </label><input type="email" name="email" value=""><br/>
         <div>
             <label>Role : </label>
             <input type="checkbox" id="trainee" name="trainee"/>

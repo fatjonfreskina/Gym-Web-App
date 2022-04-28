@@ -21,7 +21,7 @@
     </select><br>
 
 
-    <label>Search : </label><input type="text" name="partial_email" id="partial_email"><br>
+    <label>Search : </label><input type="search" name="partial_email" id="partial_email"><br>
     <label>Subscription Duration : </label>
     <select name="duration">
         <option  value="7">Free</option><br>

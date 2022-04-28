@@ -15,7 +15,7 @@
 <main class="global-container">
     <form method="POST" action="<c:url value="/password_forgot"/>" enctype="application/x-www-form-urlencoded">
         <label for="email">Email address:</label><br>
-        <input type="text" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
+        <input type="email" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
         <input type="submit" value="Submit">
     </form>
     <c:choose>

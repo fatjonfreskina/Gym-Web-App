@@ -24,7 +24,7 @@
         <label>Address : </label><input type="text" name="address" value="0"><br/>
         <label>Telephone Number : </label><input type="tel" name="telephone_number" value="0123456789"><br>
         <label>Avatar (Optional) : </label><input type="file" name="avatar" ><br/>
-        <label>Email : </label><input type="text" name="email" value=""><br/>
+        <label>Email : </label><input type="email" name="email" value=""><br/>
         <div>
             <label>Role : </label>
             <input type="checkbox" id="trainee" name="trainee"/>
