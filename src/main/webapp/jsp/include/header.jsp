@@ -2,78 +2,70 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<nav class="navbar fixed-top w-100 navbar-expand-lg navbar-dark bg-dark ">
-    <div class="container-fluid container">
-        <a class="navbar-brand fs-3 fw-bold" href="">GWA</a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"/>
 
-        <%--TODO add active class programmatically--%>
-        <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-            <ul class="navbar__menu navbar-nav w-100 d-flex justify-content-lg-center align-items-lg-center">
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/"/>">Home</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/the_gym"/>">The Gym</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/courses"/>">Courses</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/calendar"/>">Calendar</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/prices"/>">Prices</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/staff"/>">Staff</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a href="<c:url value="/contactus"/>">Contact Us</a>
-                </li>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
-                <c:choose>
-                    <c:when test="${empty sessionScope.roles}">
-                        <li class="flex-grow-1 d-flex justify-content-lg-end align-items-end align-items-lg-center nav-item p-2">
-                            <a href="<c:url value="/register"/>">Register</a>
-                        </li>
-                        <li class="nav-item p-2">
-                            <a href="<c:url value="/login"/>">Login</a>
-                        </li>
-                    </c:when>
-                    <c:otherwise>
-                        <li class="nav-item dropdown flex-grow-1 d-flex justify-content-md-end">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <c:choose>
-                                    <c:when test="${null != sessionScope.avatarPath}">
-                                        <img class="rounded-circle" src="./avatar" width="36px" height="36px">
-                                    </c:when>
-                                    <c:otherwise>
-                                        <i class="fa-solid fa-user p-2"></i>
-                                    </c:otherwise>
-                                </c:choose>
-                            </a>
-                            <ul class="navbar__dropdown dropdown-menu dropdown-menu-md-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item disabled"><c:out value="${sessionScope.email}"/></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <c:forEach var="role" items="${sessionScope.roles}">
-                                    <li><a class="dropdown-item" href="<c:url value="/${role}"/>"><c:out value="${role}"/></a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </li>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-                        <li class="nav-item p-2"><a href="<c:url value="/logout"/>">Logout</a></li>
-                    </c:otherwise>
-                </c:choose>
-            </ul>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item p-2 active">
+                <a href="<c:url value="/"/>">Home</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="<c:url value="/the_gym"/>">The Gym</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="<c:url value="/courses"/>">Courses</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="<c:url value="/calendar"/>">Calendar</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="<c:url value="/prices"/>">Prices</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="<c:url value="/staff"/>">Staff</a>
+            </li>
+            <li class="nav-item p-2">
+                <a href="<c:url value="/contactus"/>">Contact Us</a>
+            </li>
+        </ul>
+        <!-- Right dropdown of the navbar -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarRightDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarRightDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
     </div>
 </nav>
+</body>
+
+</html>
+
