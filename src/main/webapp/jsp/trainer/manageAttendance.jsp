@@ -5,8 +5,7 @@
 <head>
     <title>Manage Attendance</title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/bootstrap.jsp"/>
-    <jsp:include page="../include/fullcalendar/fullcalendar.jsp"/>
+    <jsp:include page="/jsp/include/style.jsp"/>
     <%--DATATABLES--%>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8"
@@ -105,5 +104,6 @@
         <jsp:include page="../include/footer.jsp"/>
     </div>
 </div>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

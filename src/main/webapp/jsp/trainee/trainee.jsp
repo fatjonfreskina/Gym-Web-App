@@ -5,9 +5,8 @@
 <head>
     <title>Trainee page</title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/bootstrap.jsp"/>
-    <jsp:include page="../include/fullcalendar/fullcalendar.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="../include/fullcalendar/style.jsp"/>
     <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
 </head>
 <body>
@@ -26,5 +25,8 @@
 <div id="trainee__calendar"></div>
 <jsp:include page="/jsp/include/footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/trainee/trainee.js"></script>
+
+<jsp:include page="../include/fullcalendar/scripts.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

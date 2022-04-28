@@ -10,9 +10,8 @@
 <head>
     <title>Prices</title>
     <meta charset="UTF-8">
-    <jsp:include page="include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
-    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
+    <jsp:include page="/jsp/include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
 <header>
@@ -95,5 +94,6 @@
     </table>
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

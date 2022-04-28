@@ -4,15 +4,13 @@
 <html lang="en">
 <head>
     <title>Add Courses</title>
+    <jsp:include page="/jsp/include/style.jsp"/>
     <meta charset="UTF-8">
 </head>
 <body>
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
-
-
-
 <form method="post">
     <label>Course Name :</label>
     <select name="course_name">
@@ -148,5 +146,6 @@
 </form>
 
 <jsp:include page="../include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

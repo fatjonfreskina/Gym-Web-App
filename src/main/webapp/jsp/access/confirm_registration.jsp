@@ -4,6 +4,7 @@
 <head>
     <title>Confirm Registration</title>
     <meta charset="UTF-8">
+    <jsp:include page="/jsp/include/style.jsp"/>
 </head>
 <body>
 <a href="<c:url value="/"/>">Home</a>

@@ -5,10 +5,8 @@
 <head>
     <title>GWA - Trainer Home page </title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/bootstrap.jsp"/>
-    <jsp:include page="../include/fullcalendar/fullcalendar.jsp"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
+    <jsp:include page="/jsp/include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
 <header>
@@ -53,6 +51,6 @@
     </div>
 </div>
 <jsp:include page="../include/footer.jsp"/>
-<script src="${pageContext.request.contextPath}/js/trainer-home.js"></script>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

@@ -4,6 +4,7 @@
 <head>
     <title>Confirmed Registration</title>
     <meta charset="UTF-8">
+    <jsp:include page="/jsp/include/style.jsp"/>
 </head>
 <body>
 
@@ -19,6 +20,6 @@
 
 
 
-
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

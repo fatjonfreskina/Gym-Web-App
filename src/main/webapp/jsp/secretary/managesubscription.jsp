@@ -5,8 +5,8 @@
 <head>
     <title>Manage Subscription</title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
+    <jsp:include page="/jsp/include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
 <header>
@@ -127,5 +127,6 @@
 
 </script>
 <jsp:include page="../include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

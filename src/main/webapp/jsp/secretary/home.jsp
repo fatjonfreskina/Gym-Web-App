@@ -5,7 +5,7 @@
 <head>
     <title>Secretary</title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/style.jsp"/>
+    <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="../include/fullcalendar/style.jsp"/>
 </head>
 <body>
@@ -349,6 +349,6 @@
     });
 
 </script>
-
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>
