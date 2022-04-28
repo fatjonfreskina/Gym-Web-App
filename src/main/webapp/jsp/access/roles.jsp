@@ -5,9 +5,8 @@
 <head>
     <title>Roles</title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
-    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
+    <jsp:include page="../include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
 <header>
@@ -35,5 +34,6 @@
     </form>
 </main>
 <jsp:include page="../include/footer.jsp"/>
+<jsp:include page="../include/scripts.jsp"/>
 </body>
 </html>

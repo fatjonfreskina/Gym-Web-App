@@ -5,7 +5,7 @@
 <head>
     <title>GWA</title>
     <meta charset="UTF-8">
-    <jsp:include page="/jsp/include/stylesheets.jsp"/>
+    <jsp:include page="/jsp/include/style.jsp"/>
 </head>
 <body>
 <header>

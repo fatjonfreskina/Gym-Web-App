@@ -5,129 +5,123 @@
 <head>
     <title>Secretary</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css">
+    <jsp:include page="../include/style.jsp"/>
+    <jsp:include page="../include/fullcalendar/style.jsp"/>
 </head>
 <body>
-    <header>
-        <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
-    </header>
+<header>
+    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+</header>
 
+<div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
+</div>
 
-    <div id="calendar" style="max-height:100%;max-width: 80%;margin: 40px auto;">
-    </div>
+<jsp:include page="../include/footer.jsp"/>
 
-    <jsp:include page="../include/footer.jsp"/>
-
-    <div id="modal-details" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Details about this course</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"
-                                    data-toggle="modal" data-target="#modal-notify-substitution">
-                                Notify substitution
-                            </button>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal"
-                                    data-toggle="modal" data-target="#modal-change-schedule">
-                                Change schedule</button>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <button id="button-delete-lecturetimeslot" type="button" class="btn btn-danger btn-sm"
-                                    data-dismiss="modal">
-                                Delete this lecture
-                            </button>
-                        </div>
+<div id="modal-details" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Details about this course</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"
+                                data-toggle="modal" data-target="#modal-notify-substitution">
+                            Notify substitution
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal"
+                                data-toggle="modal" data-target="#modal-change-schedule">
+                            Change schedule
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <button id="button-delete-lecturetimeslot" type="button" class="btn btn-danger btn-sm"
+                                data-dismiss="modal">
+                            Delete this lecture
+                        </button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
-                        Close
-                    </button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="modal-notify-substitution" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Notify substitution</h5>
+<div id="modal-notify-substitution" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Notify substitution</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <label for="substitute">Select a substitute</label>
+                    <select id="substitute" name="substitute">
+                        <c:forEach var="teacher" items="${teachers}">
+                            <option value="${teacher.email}">
+                                <c:out value="${teacher.name} ${teacher.surname}"/>
+                            </option>
+                        </c:forEach>
+                    </select>
+                    <label for="info-substitution">Extra info</label>
+                    <p>Add some extra information that will be embedded in the mail to the subscribed users</p>
+                    <textarea id="info-substitution" name="info-substitution"></textarea>
                 </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <label for="substitute">Select a substitute</label>
-                        <select id="substitute" name="substitute">
-                            <c:forEach var="teacher" items="${teachers}">
-                                <option value="${teacher.email}">
-                                    <c:out value="${teacher.name} ${teacher.surname}"/>
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <label for="info-substitution">Extra info</label>
-                        <p>Add some extra information that will be embedded in the mail to the subscribed users</p>
-                        <textarea id="info-substitution" name="info-substitution"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="button-notify-substitution"
-                            class="btn btn-primary btn-sm" data-dismiss="modal">
-                        Notify substitution
-                    </button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="button-notify-substitution"
+                        class="btn btn-primary btn-sm" data-dismiss="modal">
+                    Notify substitution
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div id="modal-change-schedule" class="modal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Change schedule</h5>
+<div id="modal-change-schedule" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change schedule</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <label for="newStartTime">Specify a new start time</label>
+                    <input type="time" id="newStartTime" name="newStartTime" min="09:00" max="20:00">
+                    <label for="newDate">Specify a new date</label>
+                    <input type="date" id="newDate" name="newDate">
+                    <label for="newRoom">Specify a new room</label>
+                    <select id="newRoom" name="newRoom">
+                        <c:forEach var="room" items="${rooms}">
+                            <option value="${room.name}"><c:out value="${room.name}"/></option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <label for="newStartTime">Specify a new start time</label>
-                        <input type="time" id="newStartTime" name="newStartTime" min="09:00" max="20:00">
-                        <label for="newDate">Specify a new date</label>
-                        <input type="date" id="newDate" name="newDate">
-                        <label for="newRoom">Specify a new room</label>
-                        <select id="newRoom" name="newRoom">
-                            <c:forEach var="room" items="${rooms}">
-                                <option  value="${room.name}"><c:out value="${room.name}"/></option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" id="button-change-schedule"
-                            class="btn btn-primary btn-sm" data-dismiss="modal">Change schedule</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="button-change-schedule"
+                        class="btn btn-primary btn-sm" data-dismiss="modal">Change schedule
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/locales-all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.2/moment.min.js"></script>
+<jsp:include page="../include/scripts.jsp"/>
+<jsp:include page="../include/fullcalendar/scripts.jsp"/>
+<jsp:include page="../include/moment/scripts.jsp"/>
 
 <script>
 
@@ -242,15 +236,19 @@
 
     $("#button-delete-lecturetimeslot").click(() => {
 
-        if(selectedEvent !== undefined) {
+        if (selectedEvent !== undefined) {
 
             const roomNane = selectedEvent.roomName;
             const date = selectedEvent.customdate;
             const startTime = selectedEvent.customstartTime;
 
-            if(confirm("Do you really want to delete?")){
+            if (confirm("Do you really want to delete?")) {
                 $.ajax({
-                    url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({"roomname": roomNane, "date": date, "starttime": startTime}),
+                    url: "<c:url value="/secretary/rest/deletelecturetimeslot"/>" + '?' + $.param({
+                        "roomname": roomNane,
+                        "date": date,
+                        "starttime": startTime
+                    }),
                     type: "DELETE",
                     success: function (response) {
                         console.log(response);
@@ -271,7 +269,7 @@
 
     $("#button-notify-substitution").click(() => {
 
-        if(selectedEvent !== undefined) {
+        if (selectedEvent !== undefined) {
 
             const roomNane = selectedEvent.roomName;
             const date = selectedEvent.customdate;
@@ -283,9 +281,9 @@
                 url: "<c:url value="/secretary/rest/substitutionlecturetimeslot"/>",
                 type: "POST",
                 data: {
-                    "roomname" : roomNane,
-                    "date" : date,
-                    "starttime" : startTime,
+                    "roomname": roomNane,
+                    "date": date,
+                    "starttime": startTime,
                     "n": substituteEmail,
                     "notes": note
                 },
@@ -310,7 +308,7 @@
 
     $("#button-change-schedule").click(() => {
 
-        if(selectedEvent !== undefined) {
+        if (selectedEvent !== undefined) {
 
             //Old parameters
             const oldRoomName = selectedEvent.roomName;
@@ -325,12 +323,12 @@
                 url: "<c:url value="/secretary/rest/updatelecturetimeslot"/>",
                 type: "POST",
                 data: {
-                    "oldRoomName" : oldRoomName,
-                    "oldDate" : oldDate,
-                    "oldStartTime" : oldStartTime,
-                    "newRoomName" : newRoomName,
-                    "newDate" : newDate,
-                    "newStartTime" : newStartTime
+                    "oldRoomName": oldRoomName,
+                    "oldDate": oldDate,
+                    "oldStartTime": oldStartTime,
+                    "newRoomName": newRoomName,
+                    "newDate": newDate,
+                    "newStartTime": newStartTime
                 },
                 cache: false,
                 dataType: 'json',
@@ -352,4 +350,5 @@
 
 </script>
 
+</body>
 </html>

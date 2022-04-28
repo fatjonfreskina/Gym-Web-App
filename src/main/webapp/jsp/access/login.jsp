@@ -5,9 +5,8 @@
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
-    <jsp:include page="../include/bootstrap.jsp"/>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>">
-    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
+    <jsp:include page="../include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
 <header>
@@ -19,14 +18,16 @@
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
             <div class="col-sm-10">
-                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email" value="dev@dev.dev">
+                <input type="email" name="email" id="email" maxlength="40" class="form-control"
+                       placeholder="Enter Email" value="dev@dev.dev">
             </div>
         </div>
 
         <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password :</label>
             <div class="col-sm-10">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" value="CIAO">
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password"
+                       value="CIAO">
             </div>
         </div>
 
@@ -42,5 +43,6 @@
     </c:choose>
 </main>
 <jsp:include page="../include/footer.jsp"/>
+<jsp:include page="../include/scripts.jsp"/>
 </body>
 </html>
