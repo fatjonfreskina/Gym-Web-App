@@ -5,12 +5,14 @@
 <head>
     <title>Manage Subscription</title>
     <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
 </head>
 <body>
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
 
 
 <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">

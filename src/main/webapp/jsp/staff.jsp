@@ -19,8 +19,8 @@
         <ul>
             <c:forEach var="trainer" items="${trainerlist}">
                 <li>
-                    <img src="<c:url value="/images/staff/${trainer.person.name}-${trainer.person.surname}.jpg"></c:url>"
-                         width="15%" height="15%">
+                    <img src="<c:url value="/images/staff/${trainer.person.name}-${trainer.person.surname}.jpg"/>"
+                         width="15%" height="15%" alt="Image ${trainer.person.name}">
                     <b><c:out value="${trainer.person.surname}"/> <c:out value="${trainer.person.name}"/>:</b>
                     <c:forEach var="teach" items="${trainer.teaches}" varStatus="loop">
                         <c:out value="${teach.courseName}"/>

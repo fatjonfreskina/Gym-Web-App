@@ -15,10 +15,18 @@
 </header>
 <main class="global-container">
     <form method="POST" action="<c:url value="/password_forgot"/>" enctype="application/x-www-form-urlencoded">
-        <label for="email">Email address:</label><br>
-        <input type="email" id="email" name="email" placeholder="Insert your email here" autoComplete="true"><br>
-        <input type="submit" value="Submit">
+
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email :</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email" />
+            </div>
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg" />
     </form>
+
+
     <c:choose>
         <c:when test="${message != null}">
             <p><c:out value="${message.message}"/></p>
