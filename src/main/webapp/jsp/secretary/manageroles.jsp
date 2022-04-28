@@ -12,6 +12,7 @@
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
+
 <main class="global-container">
     <form method="post" enctype="application/x-www-form-urlencoded">
 
@@ -38,15 +39,18 @@
             </div>
         </div>
 
+        <jsp:include page="/jsp/include/messages.jsp"/>
+
         <button type="submit" class="btn btn-outline-primary btn-lg">Update</button>
     </form>
-    <c:choose>
-        <c:when test="${message != null}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
+<script>
+    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+        $(".alert").slideUp(500);
+    });
+</script>
+
 </html>
