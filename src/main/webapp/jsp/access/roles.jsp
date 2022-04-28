@@ -19,7 +19,6 @@
             <form method="post" action="<c:url value="/access/roles"/>">
                 <input type="submit" name="trainee" value="Trainee">
             </form>
-
         </c:if>
         <c:if test="${role=='trainer'}">
             <form method="post" action="<c:url value="/access/roles"/>">

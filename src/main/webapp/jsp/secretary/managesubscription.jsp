@@ -5,44 +5,69 @@
 <head>
     <title>Manage Subscription</title>
     <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-
+    <jsp:include page="../include/bootstrap.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/global_style.css"/>">
 </head>
 <body>
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+<main class="global-container">
+    <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">
+
+        <div class="form-group row">
+            <label for="course_name" class="col-sm-3 col-form-label">Course Name : </label>
+            <div class="col-sm-9">
+                <select name="course_name" id="course_name" class="form-control">
+                    <c:forEach var="course" items="${courses}">
+                        <option  value="${course.name}"><c:out value="${course.name}"/> </option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="partial_email" class="col-sm-2 col-form-label" >Search :</label>
+            <div class="col-sm-10">
+                <input type="search" name="partial_email" id="partial_email" class="form-control" placeholder="Insert Email">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="duration" class="col-sm-3 col-form-label">Subscription Duration : </label>
+            <div class="col-sm-9">
+                <select id="duration" class="form-control" name="duration">
+                    <option  value="7">Free</option>
+                    <option  value="30">Mothly</option>
+                    <option  value="90">Quaterly</option>
+                    <option  value="180">Half-Yearly</option>
+                    <option  value="365">Year</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="discount" class="col-sm-2 col-form-label">Discount : </label>
+            <div class="col-sm-10">
+                <input type="number" id="discount" name = "discount" min = "0" max ="100" value="0" class="form-control"/>
+            </div>
+        </div>
+
+
+        <ul id="list_emails" class="list-group"></ul>
+        <ul id="list_last_date" class="list-group"></ul>
+
+        <input type="submit" name="Submit" class="btn btn-outline-primary btn-lg"/>
 
 
 
-<form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">
-    <label>Course Name : </label>
-    <select name="course_name" id="course_name">
-        <c:forEach var="course" items="${courses}">
-            <option  value="${course.name}"><c:out value="${course.name}"/> </option><br>
-        </c:forEach>
-    </select><br>
 
 
-    <label>Search : </label><input type="search" name="partial_email" id="partial_email"><br>
-    <label>Subscription Duration : </label>
-    <select name="duration">
-        <option  value="7">Free</option><br>
-        <option  value="30">Mothly</option><br>
-        <option  value="90">Quaterly</option><br>
-        <option  value="180">Half-Yearly</option><br>
-        <option  value="365">Year</option><br>
-    </select><br>
-    <label>Discount : </label><input type="number" name = "discount" min = "0" max ="100" value="0">
+    </form>
+</main>
 
-    <input type="submit" name="Submit"/>
-
-    <ul id="list_emails"></ul>
-    <ul id="list_last_date"></ul>
-
-
-
-</form>
 
 <script>
     $("#partial_email").on('input',function (){
@@ -61,7 +86,7 @@
 
                 for(const person of response)
                 {
-                    $("#list_emails").append("<li>"+person.email + "<input type='radio' name = 'trainee' value = '"+person.email+"'"+"/></li>")
+                    $("#list_emails").append("<li class='list-group-item'>"+"<input type='radio' name = 'trainee' value = '"+person.email+"'"+"/>"+" "+person.email+"</li>")
                 }
             },
             error: function(xhr)
@@ -84,7 +109,7 @@
                 $("#list_last_date").empty()
                 for(const lastDate of response)
                 {
-                    $("#list_last_date").append("<li>" +lastDate.date+"<input type='radio' name='course_edition_id' value='"+lastDate.courseEditionId+"'/></li>")
+                    $("#list_last_date").append("<li class='list-group-item'>"+"<input type='radio' name='course_edition_id' value='"+lastDate.courseEditionId+"'/>"+" "+lastDate.date+"</li>")
                 }
             },
             error: function(xhr)
@@ -94,10 +119,8 @@
         });
     })
     $("#course_name").trigger('change')
+
 </script>
-
-
-
 <jsp:include page="../include/footer.jsp"/>
 </body>
 </html>
