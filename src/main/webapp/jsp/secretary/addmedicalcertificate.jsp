@@ -55,6 +55,6 @@
 
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
-<script src="<c:url value="/js/message_delay.js"/>"></script>
+<script src="<c:url value="/js/message-delay.js"/>"></script>
 </body>
 </html>
