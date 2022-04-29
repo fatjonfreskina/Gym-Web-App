@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <img src="<c:url value="/images/GWA_logo.svg"/>" alt="Logo" width="10%"/>
     <button
             class="navbar-toggler"
             type="button"
