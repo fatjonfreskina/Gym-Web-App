@@ -15,7 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
 <main class="global-container">
-    <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">
+    <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>" id="form">
 
         <div class="form-group row">
             <label for="course_name" class="col-sm-3 col-form-label">Course Name :</label>
@@ -31,7 +31,14 @@
         <div class="form-group row">
             <label for="partial_email" class="col-sm-2 col-form-label" >Search :</label>
             <div class="col-sm-10">
-                <input type="search" name="partial_email" id="partial_email" class="form-control" placeholder="Insert Email">
+                <div class="input-group rounded">
+                    <input type="search" name="partial_email" id="partial_email" class="form-control rounded" placeholder="Insert Email" aria-label="Search" aria-describedby="search-addon">
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+
+
             </div>
         </div>
 
@@ -69,63 +76,15 @@
             </div>
         </div>
 
+        <div id="show-message">
+
+        </div>
+
         <input type="submit" name="Submit" class="btn btn-outline-primary btn-lg"/>
     </form>
 </main>
 
-
-<script>
-    $("#partial_email").on('input',function (){
-        $.ajax({
-            url: "<c:url value="/secretary/rest/listlikepersons"/>",
-            data: {
-                "partial_email" : $("#partial_email").val()
-            },
-            cache: false,
-            type: "GET",
-            dataType: 'json',
-            success: function(response) {
-                $("#list_emails").empty()
-
-                console.log(response)
-
-                for(const person of response)
-                {
-                    $("#list_emails").append("<li class='list-group-item'>"+"<input type='radio' name = 'trainee' value = '"+person.email+"'"+"/>"+" "+person.email+"</li>")
-                }
-            },
-            error: function(xhr)
-            {
-                console.log(xhr);
-            }
-        });
-    })
-
-    $("#course_name").change(function (){
-        $.ajax({
-            url: "<c:url value="/secretary/rest/timeschedules"/>",
-            data: {
-                "course_name" : $("#course_name").val()
-            },
-            cache: false,
-            type: "GET",
-            dataType: 'json',
-            success: function(response) {
-                $("#list_last_date").empty()
-                for(const lastDate of response)
-                {
-                    $("#list_last_date").append("<li class='list-group-item'>"+"<input type='radio' name='course_edition_id' value='"+lastDate.courseEditionId+"'/>"+" "+lastDate.date+"</li>")
-                }
-            },
-            error: function(xhr)
-            {
-                console.log(xhr);
-            }
-        });
-    })
-    $("#course_name").trigger('change')
-
-</script>
+<script src="<c:url value="/js/secretary/manage-subscription.js"/>"></script>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 </body>

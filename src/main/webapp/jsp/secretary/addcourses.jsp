@@ -224,6 +224,10 @@
             </div>
         </div>
 
+        <div id="show-message">
+
+        </div>
+
         <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg" />
     </form>
 </main>
@@ -232,30 +236,7 @@
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 <jsp:include page="/jsp/include/select_multiple/script.jsp"/>
+<script src="<c:url value="/js/secretary/add-courses.js"/>"></script>
+
 </body>
-
-<script>
-
-    $("#form").submit(function(e){
-        e.preventDefault()
-        console.log("PIPPO")
-
-        const formValues= $(this).serialize();
-
-        $.ajax({
-            url: "<c:url value="/secretary/addcourses"/>",
-            cache: false,
-            type: "POST",
-            data : formValues,
-            success: function (response) {
-                console.log(response)
-            },
-            error: function (xhr) {
-                console.log(xhr);
-            }
-        });
-
-    });
-</script>
-
 </html>

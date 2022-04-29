@@ -124,6 +124,8 @@
 <jsp:include page="../include/fullcalendar/scripts.jsp"/>
 <jsp:include page="../include/moment/scripts.jsp"/>
 
+
+
 <script>
 
     //This variable contains the event which has been clicked in the calendar
