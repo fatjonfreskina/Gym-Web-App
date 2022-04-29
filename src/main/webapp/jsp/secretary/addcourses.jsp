@@ -16,7 +16,7 @@
 </header>
 
 <main class="global-container">
-    <form method="post">
+    <form method="post" action="<c:url value="/secretary/addcourses"/>" id="form">
 
         <div class="form-group row">
             <label for="course_name" class="col-sm-3 col-form-label">Course Name :</label>
@@ -60,51 +60,45 @@
                 <input type="checkbox" name="subscription_type_30" value="30" id="subscription_type_30">
                 <label for="subscription_type_30">30</label>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="cost_30">Price:</label>
+            <label class="col-sm-2 col-form-label" for="cost_30" >Price:</label>
             <div class="col-sm-9">
                 <input type="number" name="cost_30" min="1" class="form-control" id="cost_30" placeholder="Enter Price Subscription Monthly">
             </div>
         </div>
+
+
 
         <div class="form-group row">
             <div class="col-sm-1 col-form-label">
                 <input type="checkbox" name="subscription_type_90" value="90" id="subscription_type_90">
                 <label for="subscription_type_90">90</label>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="cost_90">Price:</label>
+            <label class="col-sm-2 col-form-label" for="cost_90">Price:</label>
             <div class="col-sm-9">
                 <input type="number" name="cost_90" min="1" class="form-control" id="cost_90" placeholder="Enter Price Subscription Quaterly">
             </div>
         </div>
+
+
 
         <div class="form-group row">
             <div class="col-sm-1 col-form-label">
                 <input type="checkbox" name="subscription_type_180" value="180" id="subscription_type_180">
                 <label for="subscription_type_180">180</label>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="cost_180">Price:</label>
+            <label class="col-sm-2 col-form-label" for="cost_180">Price:</label>
             <div class="col-sm-9">
                 <input type="number" name="cost_180" min="1" class="form-control" id="cost_180" placeholder="Enter Price Subscription Half-Yearly">
             </div>
         </div>
+
 
         <div class="form-group row">
             <div class="col-sm-1 col-form-label">
                 <input type="checkbox" name="subscription_type_365" value="365" id="subscription_type_365">
                 <label for="subscription_type_365">365</label>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label" for="cost_365">Price:</label>
+            <label class="col-sm-2 col-form-label" for="cost_365">Price:</label>
             <div class="col-sm-9">
                 <input type="number" name="cost_365" min="1" class="form-control" id="cost_365" placeholder="Enter Price Subscription Yearly">
             </div>
@@ -239,4 +233,29 @@
 <jsp:include page="/jsp/include/scripts.jsp"/>
 <jsp:include page="/jsp/include/select_multiple/script.jsp"/>
 </body>
+
+<script>
+
+    $("#form").submit(function(e){
+        e.preventDefault()
+        console.log("PIPPO")
+
+        const formValues= $(this).serialize();
+
+        $.ajax({
+            url: "<c:url value="/secretary/addcourses"/>",
+            cache: false,
+            type: "POST",
+            data : formValues,
+            success: function (response) {
+                console.log(response)
+            },
+            error: function (xhr) {
+                console.log(xhr);
+            }
+        });
+
+    });
+</script>
+
 </html>
