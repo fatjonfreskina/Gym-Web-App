@@ -30,13 +30,11 @@
             </div>
         </div>
 
+        <jsp:include page="/jsp/include/message.jsp"/>
+
         <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg" />
     </form>
-    <c:choose>
-        <c:when test="${message != null}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>
+
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>

@@ -90,15 +90,14 @@
             </div>
         </div>
 
+        <jsp:include page="/jsp/include/message.jsp"/>
+
         <button type="submit" class="btn btn-outline-primary btn-lg">Register</button>
     </form>
-    <c:choose>
-        <c:when test="${message.error}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>
+
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/message_delay.js"/>"></script>
 </body>
 </html>

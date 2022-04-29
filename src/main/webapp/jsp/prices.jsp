@@ -87,10 +87,8 @@
                 </c:choose>
                 <c:set var="last_courseName" value="${prices.courseName}"/>
                 <c:set var="last_courseId" value="${prices.courseEditionId}"/>
-
             </c:forEach>
         </tbody>
-
     </table>
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>

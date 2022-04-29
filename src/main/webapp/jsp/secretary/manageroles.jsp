@@ -39,18 +39,13 @@
             </div>
         </div>
 
-        <jsp:include page="/jsp/include/messages.jsp"/>
+        <jsp:include page="/jsp/include/message.jsp"/>
 
         <button type="submit" class="btn btn-outline-primary btn-lg">Update</button>
     </form>
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/message_delay.js"/>"></script>
 </body>
-<script>
-    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
-        $(".alert").slideUp(500);
-    });
-</script>
-
 </html>

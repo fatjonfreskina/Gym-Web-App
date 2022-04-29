@@ -41,23 +41,20 @@
             <label for="file" class="col-sm-3 col-form-label" >Medical Certificate:</label>
             <div class="col-sm-9">
                 <div class="custom-file">
-                    <input type="file" name="medical_certificate" class="form-control" id="file">
+                    <input type="file" name="medical_certificate" id="file">
                     <label class="custom-file-label" for="file">Choose File</label>
                 </div>
             </div>
         </div>
 
+        <jsp:include page="/jsp/include/message.jsp"/>
+
         <button type="submit" class="btn btn-outline-primary btn-lg" >Add Certificate</button>
     </form>
-
-    <c:choose>
-        <c:when test="${message.error}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>
 </main>
 
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/message_delay.js"/>"></script>
 </body>
 </html>

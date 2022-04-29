@@ -43,7 +43,7 @@
             <th>Avatar (optional):</th>
             <td>
                 <c:if test="${null != sessionScope.avatarPath}">
-                    <img src="./avatar" width="50px" height="50px">
+                    <img src="<c:url value="/avatar"/>" width="50px" height="50px">
                 </c:if>
                 <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
                     <input type="file" name="avatar"/>
@@ -63,13 +63,11 @@
         </tr>
     </table>
 
-
-    <c:if test="${message != null}">
-        <c:out value="${message.message}"/>
-    </c:if>
+    <jsp:include page="/jsp/include/message.jsp"/>
 
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/message_delay.js"/>"></script>
 </body>
 </html>
