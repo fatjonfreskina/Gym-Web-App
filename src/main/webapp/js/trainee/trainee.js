@@ -31,8 +31,10 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
  */
 function renderCalendar() {
     //Perform the AJAX request to fill the calendar
+    let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
+    let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
     $.ajax({
-        url: contextPath + "/trainee/rest/available/from-date/2022-4-18/to-date/2022-4-24", cache: false, type: "GET", dataType: 'json', success: function (response) {
+        url: contextPath+"/trainee/rest/available/from-date/"+start+"/to-date/"+end, cache: false, type: "GET", dataType: 'json', success: function (response) {
             //Remove all the events
             calendar.removeAllEvents();
             //Iterate over all the elements in the response
