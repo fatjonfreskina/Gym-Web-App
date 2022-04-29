@@ -23,6 +23,6 @@
 <jsp:include page="include/scripts.jsp"/>
 <jsp:include page="include/fullcalendar/scripts.jsp"/>
 <jsp:include page="include/moment/scripts.jsp"/>
-<script src="<c:url value="/js/common-calendar.js"/>"></script>
+<script src="<c:url value="/js/calendar.js"/>"></script>
 </body>
 </html>

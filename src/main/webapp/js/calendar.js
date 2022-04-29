@@ -1,4 +1,3 @@
-
 //Construct the calendar
 let calendarEl = document.getElementById('calendar');
 let calendar = new FullCalendar.Calendar(calendarEl, {
@@ -11,12 +10,6 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
         right: 'prev,next'
     },
     allDaySlot: false,
-    /*slotLabelFormat: {
-        hour: 'numeric', minute: '2-digit', hour12: false
-    },
-    eventTimeFormat: {
-        hour: '2-digit', minute: '2-digit', hour12: false
-    },*/
     slotMinTime: "05:00:00",
     slotMaxTime: "23:00:00",
     businessHours: false,
@@ -103,6 +96,5 @@ function renderCalendar() {
 //Attach render calendar to button for week change
 $('body').on('click', 'button.fc-next-button', renderCalendar);
 $('body').on('click', 'button.fc-prev-button', renderCalendar);
-$('body').on('click', 'button.fc-today-button', renderCalendar);
 //Initial render when page loaded
 renderCalendar(calendar);
