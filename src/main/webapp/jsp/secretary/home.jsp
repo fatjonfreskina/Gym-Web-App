@@ -181,7 +181,7 @@
         let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
         //Perform the AJAX request to fill the calendar
         $.ajax({
-            url: "<c:url value="/secretary/rest/getalllecturetimeslot"/>",
+            url: "<c:url value="/rest/getalllecturetimeslot"/>",
             data: {
                 "start": start,
                 "end": end,
@@ -231,7 +231,6 @@
     //Attach render calendar to button for week change
     $('body').on('click', 'button.fc-next-button', renderCalendar);
     $('body').on('click', 'button.fc-prev-button', renderCalendar);
-
     //Initial render when page loaded
     renderCalendar();
 

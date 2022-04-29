@@ -1,4 +1,4 @@
-package servlet.secretary.rest;
+package servlet.rest;
 
 import com.google.gson.Gson;
 import dao.lecturetimeslot.GetAllLectureTimeSlotDatabase;
@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -26,7 +27,7 @@ import static constants.DateTimeFormats.timeFormat;
 /**
  * @author Riccardo Forzan
  */
-public class GetAllLectureTimeSlotServlet extends AbstractServlet {
+public class GetAllLectureTimeSlotServlet extends AbstractRestServlet {
 
     /**
      * Helper class used to fill the calendar using AJAX
@@ -82,15 +83,7 @@ public class GetAllLectureTimeSlotServlet extends AbstractServlet {
             myLectureTimeSlots.add(myLectureTimeSlot);
         }
 
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-
-        PrintWriter out = response.getWriter();
-        String ltsJson = new Gson().toJson(myLectureTimeSlots);
-        out.println(ltsJson);
-        out.flush();
-        out.close();
-
+        sendDataResponse(response,myLectureTimeSlots);
     }
 
 }

@@ -180,7 +180,7 @@
     </servlet>
     <servlet>
         <servlet-name>GetAllLectureTimeSlot</servlet-name>
-        <servlet-class>servlet.secretary.rest.GetAllLectureTimeSlotServlet</servlet-class>
+        <servlet-class>servlet.rest.GetAllLectureTimeSlotServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteLectureTimeSlot</servlet-name>
@@ -360,7 +360,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GetAllLectureTimeSlot</servlet-name>
-        <url-pattern>/secretary/rest/getalllecturetimeslot</url-pattern>
+        <url-pattern>/rest/getalllecturetimeslot</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteLectureTimeSlot</servlet-name>

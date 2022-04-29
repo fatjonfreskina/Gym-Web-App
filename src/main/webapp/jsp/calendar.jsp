@@ -8,19 +8,21 @@
     <title>Calendar</title>
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="include/fullcalendar/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/secretary/calendar.css"/>">
 </head>
 <body>
 <header>
     <jsp:include page="include/header.jsp"/>
 </header>
 <main class="global-container">
-    <form method="post" action="<c:url value="/register"/>" enctype="multipart/form-data">
-        <label>Search Calendar for : </label><input type="date" name="calendar_date"><br/>
-    </form>
-    <c:out value="${weeklyCalendar}"/>
+    <div id="calendar">
+    </div>
 </main>
-<jsp:include page="include/footer.jsp"/>
-<jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="include/scripts.jsp"/>
+<jsp:include page="include/fullcalendar/scripts.jsp"/>
+<jsp:include page="include/moment/scripts.jsp"/>
+<script src="<c:url value="/js/common-calendar.js"/>"></script>
 </body>
 </html>

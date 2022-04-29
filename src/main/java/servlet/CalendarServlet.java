@@ -24,22 +24,8 @@ import java.util.List;
 
 public class CalendarServlet extends AbstractServlet {
 
-    /**
-     * The JSON UTF-8 MIME media type
-     */
-    private static final String JSON_UTF_8_MEDIA_TYPE = "application/json; charset=utf-8";
-
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //res.setContentType(JSON_UTF_8_MEDIA_TYPE);
-        List<WeeklyCalendarSlot> list = null;
-        try {
-            list = new GetWeeklyCalendarSlotByDateDatabase(getDataSource().getConnection(), Date.valueOf(LocalDate.now())).execute();
-        } catch (SQLException | NamingException ex) {
-            //errore
-        }
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        req.setAttribute("weeklyCalendar", gson.toJson(list));
         req.getRequestDispatcher(Constants.PATH_CALENDAR).forward(req, res);
     }
 }

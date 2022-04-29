@@ -18,22 +18,6 @@ import java.util.List;
 public class SecretaryServlet extends AbstractServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Person> teachers = null;
-        try {
-            teachers = (new GetListOfTeachersDatabase(getDataSource().getConnection())).execute();
-        } catch (SQLException | NamingException e) {
-            e.printStackTrace();
-        }
-        List<Room> rooms = null;
-        try {
-            rooms = (new GetListRoomsDatabase(getDataSource().getConnection()).execute());
-        } catch (SQLException | NamingException e) {
-            e.printStackTrace();
-        }
-        request.setAttribute("rooms",rooms);
-        request.setAttribute("teachers", teachers);
         request.getRequestDispatcher(Constants.PATH_SECRETARY_HOME).forward(request, response);
     }
-
-
 }
