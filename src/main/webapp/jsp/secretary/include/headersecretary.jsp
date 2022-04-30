@@ -41,6 +41,7 @@
             </li>
         </ul>
         <!-- Right dropdown of the navbar -->
+        <!-- Right dropdown of the navbar -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarRightDropdown" role="button" data-toggle="dropdown"
