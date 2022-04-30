@@ -21,7 +21,38 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
 function clickHandler(info) {
     let event = info.event;
     let selectedLectureTimeSlot = event.extendedProps.customLTS;
-    console.log(selectedLectureTimeSlot)
+    if(selectedLectureTimeSlot.booked)
+        insertReservation(selectedLectureTimeSlot)
+    else
+        deleteReservation(selectedLectureTimeSlot)
+
+    renderCalendar()
+}
+
+function insertReservation(slts){
+    value = {}
+    value.room = slts.roomName;
+    value.lectureDate = slts.customDate;
+    value.lectureStartTime = slts.customStartTime;
+    res = JSON.stringify(value)
+    $.ajax({
+        url: "trainee/rest/reservation",
+        async: false,
+        cache: false,
+        type: "POST",
+        contentType : "application/json",
+        data : res,
+    });
+}
+
+function deleteReservation(slts){
+    $.ajax({
+        url: "trainee/rest/reservation/room/"+slts.roomName+"/date/"+slts.customDate+"/starttime/"+slts.customStartTime,
+        async: false,
+        cache: false,
+        type: "DELETE",
+        dataType: 'json'
+    });
 }
 
 /**
@@ -97,8 +128,9 @@ function renderCalendar() {
                     }
                 }
 
-                //Set title and background color based on the title
-                event.title = lts.courseName;
+                let title = "COURSE NAME: "+lts.courseName;
+                title+= " AVAILABLE SLOTS: "+(lts.totalSlots - lts.occupiedSlots);
+                event.title = title;
                 if(present)
                     event.backgroundColor = GetColorOfCourse("Reserved");
                 else
@@ -107,9 +139,10 @@ function renderCalendar() {
                 lectureTimeSlot.courseEditionId = lts.courseEditionId;
                 lectureTimeSlot.courseName = lts.courseName
                 lectureTimeSlot.roomName = lts.roomName;
-                lectureTimeSlot.customdate = lts.date;
-                lectureTimeSlot.customstartTime = lts.startTime;
+                lectureTimeSlot.customDate = lts.date;
+                lectureTimeSlot.customStartTime = lts.startTime;
                 lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
+                lectureTimeSlot.booked = !present
 
 
                 //Add the custom object to the calendar object
