@@ -44,5 +44,4 @@ public class DropUncompletedRegistrations implements Runnable {
         }
     }
 
-
 }
