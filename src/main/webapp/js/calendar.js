@@ -5,7 +5,7 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     initialDate: new Date(),
     themeSystem: "bootstrap",
     headerToolbar: {
-        left: '',
+        left: 'today',
         center: 'title',
         right: 'prev,next'
     },
@@ -92,9 +92,10 @@ function renderCalendar() {
     });
 }
 
-
-//Attach render calendar to button for week change
-$('body').on('click', 'button.fc-next-button', renderCalendar);
-$('body').on('click', 'button.fc-prev-button', renderCalendar);
 //Initial render when page loaded
 renderCalendar(calendar);
+
+//Attach render calendar to button for week change
+$('button.fc-next-button').click(renderCalendar);
+$('button.fc-prev-button').click(renderCalendar);
+$('button.fc-today-button').click(renderCalendar);
