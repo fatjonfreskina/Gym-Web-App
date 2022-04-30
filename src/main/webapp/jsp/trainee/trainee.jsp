@@ -14,14 +14,18 @@
 <header>
     <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
 </header>
-<c:choose>
-    <c:when test="${medicalCertificate != null}">
-        <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"/>
-    </c:when>
-    <c:otherwise>
-        <c:out value="You do not have a Medical Certificate please go to the secretary!!!"/>
-    </c:otherwise>
-</c:choose>
+
+<main class="global-container">
+    <c:choose>
+        <c:when test="${medicalCertificate != null}">
+            <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"/>
+        </c:when>
+        <c:otherwise>
+            <c:out value="You do not have a Medical Certificate please go to the secretary!!!"/>
+        </c:otherwise>
+    </c:choose>
+</main>
+
 <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
 <div id="trainee__calendar"></div>
 <jsp:include page="/jsp/include/footer.jsp"/>
