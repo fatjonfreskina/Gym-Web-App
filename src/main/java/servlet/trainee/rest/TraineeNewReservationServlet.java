@@ -96,7 +96,7 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             }
 
             //Check 3: available slots for the requested reservation
-            if (new GetAvailableSlotsReservationDatabase(getConnection(),res).execute() <=0) {
+            if (new GetAvailableSlotsReservationDatabase(getConnection(),res).execute() == 0) {
                 sendErrorResponse(resp, Codes.ROOM_ALREADY_FULL);
                 return;
             }
