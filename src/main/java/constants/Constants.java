@@ -4,12 +4,29 @@ import java.util.regex.Pattern;
 
 public class Constants {
 
+    /**
+     * Datasource of the application
+     */
     public static final String DATASOURCE = "java:/comp/env/jdbc/gwa-res";
 
-    //GENERAL APPLICATION PATHS
+    /**
+     * URL that corresponds to the login page
+     */
     public static final String RELATIVE_URL_LOGIN = "/login";
+
+    /**
+     * URL that corresponds to the personal info of the user
+     */
     public static final String RELATIVE_URL_PERSONALINFO = "/personal_info";
+
+    /**
+     * URL that corresponds to the homepage
+     */
     public static final String RELATIVE_URL_HOME = "/";
+
+    /**
+     * URL that corresponds to the trainer attendance
+     */
     public static final String RELATIVE_URL_TRAINER_MANAGE_ATTENDANCE = "/trainer/attendance";
 
     //PATH PARAMETERS
@@ -166,9 +183,8 @@ public class Constants {
 
     public static final long DAY = 1000 * 60 * 60 * 24;
 
-  //JSON PARSE EXCEPTIONS MESSAGE
-  public static final String UNPARSABLE_TIME = "Unparsable time: ";
-  public static final String UNPARSABLE_DATE = "Unparsable date: ";
-
+    //JSON PARSE EXCEPTIONS MESSAGE
+    public static final String UNPARSABLE_TIME = "Unparsable time: ";
+    public static final String UNPARSABLE_DATE = "Unparsable date: ";
 
 }

@@ -2,15 +2,30 @@ package constants.exceptions;
 
 import constants.Codes;
 
+/**
+ * Custom exception
+ *
+ * @author Harjot Singh
+ */
 public class CustomException extends Exception {
-  final private Codes code;
+    final private Codes code;
 
-  public CustomException(final Codes code) {
-    super(code.getErrorMessage());
-    this.code = code;
-  }
+    /**
+     * Constructs a new instance of CustomException
+     *
+     * @param {@see constants.Codes} error code to be printed
+     */
+    public CustomException(final Codes code) {
+        super(code.getErrorMessage());
+        this.code = code;
+    }
 
-  public Codes getErrorCode() {
-    return code;
-  }
+    /**
+     * Returns the error code associated to this exception
+     *
+     * @return {@see constants.Codes} associated to this exception
+     */
+    public Codes getErrorCode() {
+        return code;
+    }
 }
