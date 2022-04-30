@@ -14,9 +14,6 @@ import java.sql.SQLException;
  */
 public class TraineeService {
 
-  private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
-
   private final DataSource dataSource;
 
   public TraineeService(DataSource dataSource) {
@@ -24,10 +21,8 @@ public class TraineeService {
   }
 
   public Trainee getTraineeByEmail(String traineeEmail) throws SQLException, TraineeNotFound {
-    logger.debug(loggerClass + "traineeEmail " + traineeEmail);
     if (InputValidation.isValidEmailAddress(traineeEmail)) {
       Trainee trainee = new GetTraineeByEmailDatabase(dataSource.getConnection(), traineeEmail).execute();
-      logger.debug(loggerClass + trainee);
       if (trainee == null) throw new TraineeNotFound();
       return trainee;
     } else throw new TraineeNotFound();

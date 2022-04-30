@@ -4,13 +4,29 @@ import java.text.SimpleDateFormat;
 
 /**
  * This class contains the date and time format constants used in the application
+ *
+ * @author Riccardo Forzan
  */
 public class DateTimeFormats {
 
+    /**
+     * String representation of the pattern associated to date
+     */
     public static final String dateFormatPattern = "yyyy-MM-dd";
+
+    /**
+     * String representation of the pattern associated to time
+     */
     public static final String timeFormatPattern = "HH:mm:ss";
 
+    /**
+     * Static object used to format dates
+     */
     public static final SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
+
+    /**
+     * Static object used to format times
+     */
     public static final SimpleDateFormat timeFormat = new SimpleDateFormat(timeFormatPattern);
 
     /**

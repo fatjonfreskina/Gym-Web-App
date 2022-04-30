@@ -1,12 +1,10 @@
 package jobs;
 
 import constants.Constants;
-import dao.person.GetAllPersonsDatabase;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
-import jakarta.mail.MessagingException;
+import dao.person.GetAllPersonsDatabase;
 import resource.MedicalCertificate;
 import resource.Person;
-import utils.MailTypes;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -80,7 +78,7 @@ public class MedicalCertificateExpiration implements Runnable {
 
         } catch (NamingException | SQLException e) {
             //Print exception to logs of Tomcat
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }
