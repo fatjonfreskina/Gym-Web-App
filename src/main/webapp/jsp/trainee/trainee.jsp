@@ -14,20 +14,26 @@
 <header>
     <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
 </header>
-<c:choose>
-    <c:when test="${medicalCertificate != null}">
-        <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"/>
-    </c:when>
-    <c:otherwise>
-        <c:out value="You do not have a Medical Certificate please go to the secretary!!!"/>
-    </c:otherwise>
-</c:choose>
-<jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
-<div id="trainee__calendar"></div>
+<main class="global-container">
+    <c:choose>
+        <c:when test="${medicalCertificate != null}">
+            <div id = "v_certificate">
+                <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"/>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div id = "v_certificate">
+                <c:out value="You do not have a Medical Certificate please go to the secretary!!!"/>
+            </div>
+        </c:otherwise>
+    </c:choose>
+    <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+    <div id="trainee__calendar"></div>
+    <jsp:include page="../include/scripts.jsp"/>
+    <jsp:include page="../include/fullcalendar/scripts.jsp"/>
+    <jsp:include page="../include/moment/scripts.jsp"/>
+    <script src="<c:url value="/js/trainee/trainee.js"/>"></script>
+</main>
 <jsp:include page="/jsp/include/footer.jsp"/>
-<script src="${pageContext.request.contextPath}/js/trainee/trainee.js"></script>
-
-<jsp:include page="../include/fullcalendar/scripts.jsp"/>
-<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>
