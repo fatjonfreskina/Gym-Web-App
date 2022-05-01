@@ -1,5 +1,17 @@
 //Construct the calendar
 let calendarEl = document.getElementById('trainee__calendar');
+let selectedLectureTimeSlot = undefined;
+let c_course_name = document.getElementById('c-course-name');
+let c_course_date = document.getElementById('c-course-date');
+let c_course_startTime = document.getElementById('c-course-startTime');
+let c_course_endTime = document.getElementById('c-course-endTime');
+let c_course_roomName = document.getElementById('c-course-roomName');
+let d_course_name = document.getElementById('d-course-name');
+let d_course_date = document.getElementById('d-course-date');
+let d_course_startTime = document.getElementById('d-course-startTime');
+let d_course_endTime = document.getElementById('d-course-endTime');
+let d_course_roomName = document.getElementById('d-course-roomName');
+
 let calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridWeek',
     initialDate: new Date(),
@@ -20,20 +32,29 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
 
 function clickHandler(info) {
     let event = info.event;
-    let selectedLectureTimeSlot = event.extendedProps.customLTS;
-    if(selectedLectureTimeSlot.booked)
-        insertReservation(selectedLectureTimeSlot)
-    else
-        deleteReservation(selectedLectureTimeSlot)
-
-    renderCalendar()
+    selectedLectureTimeSlot = event.extendedProps.customLTS;
+    console.log(selectedLectureTimeSlot)
+    if(selectedLectureTimeSlot.booked){
+        c_course_name.textContent = selectedLectureTimeSlot.courseName
+        c_course_date.textContent = selectedLectureTimeSlot.customDate
+        c_course_startTime.textContent = selectedLectureTimeSlot.customStartTime
+        c_course_roomName.textContent = selectedLectureTimeSlot.roomName
+        $("#c-reservation").modal("show");
+    }
+    else{
+        d_course_name.textContent = selectedLectureTimeSlot.courseName
+        d_course_date.textContent = selectedLectureTimeSlot.customDate
+        d_course_startTime.textContent = selectedLectureTimeSlot.customStartTime
+        d_course_roomName.textContent = selectedLectureTimeSlot.roomName
+        $("#d-reservation").modal("show");
+    }
 }
 
-function insertReservation(slts){
+function insertReservation(){
     value = {}
-    value.room = slts.roomName;
-    value.lectureDate = slts.customDate;
-    value.lectureStartTime = slts.customStartTime;
+    value.room = selectedLectureTimeSlot.roomName;
+    value.lectureDate = selectedLectureTimeSlot.customDate;
+    value.lectureStartTime = selectedLectureTimeSlot.customStartTime;
     res = JSON.stringify(value)
     $.ajax({
         url: "trainee/rest/reservation",
@@ -45,9 +66,9 @@ function insertReservation(slts){
     });
 }
 
-function deleteReservation(slts){
+function deleteReservation(){
     $.ajax({
-        url: "trainee/rest/reservation/room/"+slts.roomName+"/date/"+slts.customDate+"/starttime/"+slts.customStartTime,
+        url: "trainee/rest/reservation/room/"+selectedLectureTimeSlot.roomName+"/date/"+selectedLectureTimeSlot.customDate+"/starttime/"+selectedLectureTimeSlot.customStartTime,
         async: false,
         cache: false,
         type: "DELETE",
@@ -156,6 +177,26 @@ function renderCalendar() {
         }
     });
 }
+
+$("#button-delete-reservation").click(() => {
+    if (selectedLectureTimeSlot !== undefined) {
+        deleteReservation();
+        selectedLectureTimeSlot = undefined;
+        renderCalendar();
+    } else {
+        console.log("Error, event not found");
+    }
+});
+
+$("#button-save-reservation").click(() => {
+    if (selectedLectureTimeSlot !== undefined) {
+        insertReservation();
+        selectedLectureTimeSlot = undefined;
+        renderCalendar();
+    } else {
+        console.log("Error, event not found");
+    }
+});
 
 
 //Attach render calendar to button for week change

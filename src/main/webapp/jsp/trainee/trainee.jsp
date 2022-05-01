@@ -29,6 +29,54 @@
     </c:choose>
     <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
     <div id="trainee__calendar"></div>
+
+    <div id="c-reservation" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Confirm reservation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div>Course name: &emsp;<span id="c-course-name"></span></div>
+              <div>Date: &emsp;<span id="c-course-date"></span></div>
+              <div>Start time: &emsp;<span id="c-course-startTime"></span></div>
+              <div>Room name: &emsp;<span id="c-course-roomName"></span></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="button-save-reservation" class="btn btn-primary" data-dismiss="modal">Save reservation</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="d-reservation" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete reservation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>Course name: &emsp;<span id="d-course-name"></span></div>
+            <div>Date: &emsp;<span id="d-course-date"></span></div>
+            <div>Start time: &emsp;<span id="d-course-startTime"></span></div>
+            <div>Room name: &emsp;<span id="d-course-roomName"></span></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="button-delete-reservation" class="btn btn btn-danger" data-dismiss="modal">Delete reservation</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <jsp:include page="../include/scripts.jsp"/>
     <jsp:include page="../include/fullcalendar/scripts.jsp"/>
     <jsp:include page="../include/moment/scripts.jsp"/>
