@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg color-navbar-footer">
     <a class="navbar-brand" href="#">Navbar</a>
     <button
             class="navbar-toggler"
@@ -19,31 +19,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item p-2 active">
-                <a href="<c:url value="/"/>">Home</a>
+                <a class="navbar-elements-light" href="<c:url value="/"/>">Home</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/secretary"/>">My Profile</a>
+                <a class="navbar-elements-light" href="<c:url value="/secretary"/>">My Profile</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/secretary/addcourses"/>">Add Courses</a>
+                <a class="navbar-elements-light" href="<c:url value="/secretary/addcourses"/>">Add Courses</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/secretary/addaccount"/>">Add Account</a>
+                <a class="navbar-elements-light" href="<c:url value="/secretary/addaccount"/>">Add Account</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/secretary/manageroles"/>">Manage Roles</a>
+                <a class="navbar-elements-light" href="<c:url value="/secretary/manageroles"/>">Manage Roles</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/secretary/addMedicalCertificate"/>">Add Medical Certificates</a>
+                <a class="navbar-elements-light" href="<c:url value="/secretary/addMedicalCertificate"/>">Add Medical Certificates</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/secretary/managessubscription"/>">Manage Subscription</a>
+                <a class="navbar-elements-light" href="<c:url value="/secretary/managessubscription"/>">Manage Subscription</a>
             </li>
         </ul>
         <!-- Right dropdown of the navbar -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarRightDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle navbar-elements-light" id="navbarRightDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <!-- Load user avatar if any -->
                     <c:choose>

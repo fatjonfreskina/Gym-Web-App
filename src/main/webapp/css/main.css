@@ -3,3 +3,11 @@
     margin: 5% 15% 5% 15%;
 }
 
+.navbar-elements-light{
+    color: white !important;
+}
+
+/* NAVBAR */
+.color-navbar-footer {
+    background-color: #33414f !important;
+}

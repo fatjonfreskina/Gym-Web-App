@@ -14,11 +14,9 @@
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
-
 <main class="global-container">
     <div id="calendar" class="secretary-home-calendar">
     </div>
-    <jsp:include page="../include/footer.jsp"/>
     <div id="modal-details" class="modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -119,6 +117,7 @@
         </div>
     </div>
 </main>
+<jsp:include page="../include/footer.jsp"/>
 <jsp:include page="../include/scripts.jsp"/>
 <jsp:include page="../include/fullcalendar/scripts.jsp"/>
 <jsp:include page="../include/moment/scripts.jsp"/>

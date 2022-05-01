@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg color-navbar-footer">
     <img src="<c:url value="/images/GWA_logo.svg"/>" alt="Logo" width="10%"/>
     <button
             class="navbar-toggler"
@@ -19,31 +19,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item p-2 active">
-                <a href="<c:url value="/"/>">Home</a>
+                <a class="navbar-elements-light" href="<c:url value="/"/>">Home</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/the_gym"/>">The Gym</a>
+                <a class="navbar-elements-light" href="<c:url value="/the_gym"/>">The Gym</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/courses"/>">Courses</a>
+                <a class="navbar-elements-light" href="<c:url value="/courses"/>">Courses</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/calendar"/>">Calendar</a>
+                <a class="navbar-elements-light" href="<c:url value="/calendar"/>">Calendar</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/prices"/>">Prices</a>
+                <a class="navbar-elements-light" href="<c:url value="/prices"/>">Prices</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/staff"/>">Staff</a>
+                <a class="navbar-elements-light" href="<c:url value="/staff"/>">Staff</a>
             </li>
             <li class="nav-item p-2">
-                <a href="<c:url value="/contactus"/>">Contact Us</a>
+                <a class="navbar-elements-light" href="<c:url value="/contactus"/>">Contact Us</a>
             </li>
         </ul>
         <!-- Right dropdown of the navbar -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarRightDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle navbar-elements-light"  id="navbarRightDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <!-- Load user avatar if any -->
                     <c:choose>
