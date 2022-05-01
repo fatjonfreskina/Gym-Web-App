@@ -2,6 +2,9 @@
     --min-heigth-navavar : 10vh;
 }
 
+body {
+    background-color: #e8ecdc !important;
+}
 
 .global-container {
     margin-top: var(--min-heigth-navavar);
