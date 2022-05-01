@@ -21,7 +21,7 @@
 
 
                     <object data="<c:url value="/images/staff/${trainer.person.name}-${trainer.person.surname}.jpg"/>" type="image/jpg" width="15%" height="15%">
-                        <img src="<c:url value="/images/staff/Annis-Dach.jpg"/>" width="15%" height="15%"/>
+                        <img src="<c:url value="/images/staff/default-user-image.jpg"/>" width="15%" height="15%"/>
                     </object>
 
 
