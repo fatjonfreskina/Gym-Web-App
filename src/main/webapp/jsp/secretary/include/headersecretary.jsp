@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<nav class="navbar navbar-expand-lg color-navbar-footer">
-    <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg color-navbar-footer fixed-top">
+    <img src="<c:url value="/images/GWA_logo.svg"/>" alt="Logo" width="10%"/>
     <button
             class="navbar-toggler"
             type="button"
@@ -38,6 +38,9 @@
             </li>
             <li class="nav-item p-2">
                 <a class="navbar-elements-light" href="<c:url value="/secretary/managessubscription"/>">Manage Subscription</a>
+            </li>
+            <li class="nav-item p-2">
+                <a class="navbar-elements-light" href="<c:url value="/personal_info"/>">Personal Info</a>
             </li>
         </ul>
         <!-- Right dropdown of the navbar -->

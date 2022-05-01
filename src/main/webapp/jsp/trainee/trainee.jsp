@@ -24,10 +24,11 @@
             <c:out value="You do not have a Medical Certificate please go to the secretary!!!"/>
         </c:otherwise>
     </c:choose>
+    <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+    <div id="trainee__calendar"></div>
 </main>
 
-<jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
-<div id="trainee__calendar"></div>
+
 <jsp:include page="/jsp/include/footer.jsp"/>
 <script src="${pageContext.request.contextPath}/js/trainee/trainee.js"></script>
 

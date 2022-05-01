@@ -1,6 +1,17 @@
+:root{
+    --min-heigth-navavar : 10vh;
+}
+
+
 .global-container {
+    margin-top: var(--min-heigth-navavar);
     min-height: 100vh;
-    margin: 5% 15% 5% 15%;
+    padding: 5% 15% 5% 15%;
+}
+
+
+.navbar{
+    min-height: var(--min-heigth-navavar);
 }
 
 .navbar-elements-light{
@@ -10,4 +21,10 @@
 /* NAVBAR */
 .color-navbar-footer {
     background-color: #33414f !important;
+}
+
+/*Burger Icon White*/
+.navbar-toggler-icon
+{
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1.0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
 }
