@@ -1,98 +1,58 @@
-let contextPath = $('#contextPathHolder').attr('data'); // "/wa2122-gwa"
-
 //Construct the calendar
 let calendarEl = document.getElementById('trainee__calendar');
-let addWeeks = 0;
-let clickCnt = 0;
 let calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridWeek',
     initialDate: new Date(),
     themeSystem: "bootstrap",
     headerToolbar: {
-        left: 'prev', center: 'title', right: 'next'
+        left: '',
+        center: 'title',
+        right: 'prev,next'
     },
     allDaySlot: false,
-    slotLabelFormat: {
-        hour: 'numeric', minute: '2-digit', hour12: false
-    },
-    eventTimeFormat: {
-        hour: '2-digit', minute: '2-digit', hour12: false
-    },
     slotMinTime: "05:00:00",
     slotMaxTime: "23:00:00",
     businessHours: false,
     firstDay: 1,
-    slotDuration: '00:30',
     nowIndicator: true,
+    eventClick: clickHandler
 });
 
-/**
- * Performs a refresh of the calendar object of this page
- */
-function renderCalendar() {
-    //Perform the AJAX request to fill the calendar
-    let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
-    let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
+function clickHandler(info) {
+    let event = info.event;
+    let selectedLectureTimeSlot = event.extendedProps.customLTS;
+    if(selectedLectureTimeSlot.booked)
+        insertReservation(selectedLectureTimeSlot)
+    else
+        deleteReservation(selectedLectureTimeSlot)
+
+    renderCalendar()
+}
+
+function insertReservation(slts){
+    value = {}
+    value.room = slts.roomName;
+    value.lectureDate = slts.customDate;
+    value.lectureStartTime = slts.customStartTime;
+    res = JSON.stringify(value)
     $.ajax({
-        url: "trainee/rest/reservation/from-date/"+start+"/to-date/"+end,
+        url: "trainee/rest/reservation",
         async: false,
         cache: false,
-        type: "GET",
-        dataType: 'json',
-        success: function (response) {
-            reservations = response
-        }
+        type: "POST",
+        contentType : "application/json",
+        data : res,
     });
-    //Perform the AJAX request to fill the calendar
+}
+
+function deleteReservation(slts){
     $.ajax({
-        url: "trainee/rest/available/from-date/"+start+"/to-date/"+end,
+        url: "trainee/rest/reservation/room/"+slts.roomName+"/date/"+slts.customDate+"/starttime/"+slts.customStartTime,
+        async: false,
         cache: false,
-        type: "GET",
-        dataType: 'json',
-        success: function (response) {
-            //Remove all the events
-            calendar.removeAllEvents();
-            //Iterate over all the elements in the response
-            console.log(response)
-            for (const lts of response) {
-                console.log(lts)
-                //Create an event object
-                let event = {};
-                //Calculate dates
-                startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'))
-                event.start = startDate;
-                event.end = moment(startDate).add(2, 'hours').toDate();
-                event.title = lts.courseName;
-                event.backgroundColor = GetColorOfCourse(lts.courseName);
-
-                //Add the custom object to the calendar object
-                event.lectureTimeSlot = lts;
-
-                //Add the element to the calendar
-                calendar.addEvent(event);
-                console.log(event)
-            }
-            //Render the new calendar
-            calendar.render();
-        }, error: function (xhr) {
-            console.log(xhr);
-        }
+        type: "DELETE",
+        dataType: 'json'
     });
-}
-
-function nextWeek() {
-    addWeeks = addWeeks + 1;
-    renderCalendar();
-}
-
-function prevWeek() {
-    addWeeks = addWeeks - 1;
-    renderCalendar();
-}
-
-function goToToday() {
-    addWeeks = 0;
-    renderCalendar();
 }
 
 /**
@@ -119,12 +79,87 @@ function GetColorOfCourse(courseName) {
     }
 }
 
+/**
+ * Performs a refresh of the calendar object of this page
+ */
+function renderCalendar() {
+    //Get the current active window of the calendar
+    let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
+    let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
+    let reservations = null
+    $.ajax({
+            url: "trainee/rest/reservation/from-date/"+start+"/to-date/"+end,
+            async: false,
+            cache: false,
+            type: "GET",
+            dataType: 'json',
+            success: function (response) {
+                reservations = response
+            }
+    });
+    //Perform the AJAX request to fill the calendar
+    $.ajax({
+        url: "trainee/rest/available/from-date/"+start+"/to-date/"+end,
+        cache: false,
+        type: "GET",
+        dataType: 'json',
+        success: function (response) {
+            //Remove all the events
+            calendar.removeAllEvents();
+            //Iterate over all the elements in the response
+            for (const lts of response) {
+                //Create an event object
+                let event = {};
+                //Calculate dates
+                startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
 
-//Initial render when page loaded
-renderCalendar();
+                event.start = startDate;
+                event.end = moment(startDate).add(2, 'hours').toDate();
+
+                let present = false;
+                for(let i = 0; i<reservations.length; i++){
+                    if(
+                        reservations[i].room.localeCompare(lts.roomName)==0 &&
+                        reservations[i].lectureDate.localeCompare(lts.date)==0 &
+                        reservations[i].lectureStartTime.localeCompare(lts.startTime)==0){
+                        reservations.splice(i,1)
+                        present = true;
+                        break;
+                    }
+                }
+
+                let title = "COURSE NAME: "+lts.courseName;
+                title+= " AVAILABLE SLOTS: "+(lts.totalSlots - lts.occupiedSlots);
+                event.title = title;
+                if(present)
+                    event.backgroundColor = GetColorOfCourse("Reserved");
+                else
+                    event.backgroundColor = GetColorOfCourse(lts.courseName);
+                let lectureTimeSlot = {};
+                lectureTimeSlot.courseEditionId = lts.courseEditionId;
+                lectureTimeSlot.courseName = lts.courseName
+                lectureTimeSlot.roomName = lts.roomName;
+                lectureTimeSlot.customDate = lts.date;
+                lectureTimeSlot.customStartTime = lts.startTime;
+                lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
+                lectureTimeSlot.booked = !present
+
+
+                //Add the custom object to the calendar object
+                event.customLTS = lectureTimeSlot;
+
+                //Add the element to the calendar
+                calendar.addEvent(event);
+            }
+            //Render the new calendar
+            calendar.render();
+        }
+    });
+}
+
 
 //Attach render calendar to button for week change
-let $body = $('body');
-$body.on('click', 'button.fc-next-button', nextWeek);
-$body.on('click', 'button.fc-prev-button', prevWeek);
-//$body.on('click', 'button.fc-today-button', goToToday());
+$('body').on('click', 'button.fc-next-button', renderCalendar);
+$('body').on('click', 'button.fc-prev-button', renderCalendar);
+//Initial render when page loaded
+renderCalendar(calendar);
