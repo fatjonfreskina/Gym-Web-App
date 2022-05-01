@@ -5,7 +5,7 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     initialDate: new Date(),
     themeSystem: "bootstrap",
     headerToolbar: {
-        left: 'today',
+        left: '',
         center: 'title',
         right: 'prev,next'
     },

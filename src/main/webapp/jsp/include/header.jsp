@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #33414f; color:white;">
+<nav class="navbar navbar-expand-lg color-navbar-footer fixed-top">
     <img src="<c:url value="/images/GWA_logo.svg"/>" alt="Logo" width="10%"/>
     <button
             class="navbar-toggler"
