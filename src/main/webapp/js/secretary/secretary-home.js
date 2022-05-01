@@ -121,7 +121,7 @@ $("#button-delete-lecturetimeslot").click(() => {
 
         if (confirm("Do you really want to delete?")) {
             $.ajax({
-                url: "rest/deletelecturetimeslot" + '?' + $.param({
+                url: "secretary/rest/deletelecturetimeslot" + '?' + $.param({
                     "roomname": roomNane,
                     "date": date,
                     "starttime": startTime
@@ -134,6 +134,7 @@ $("#button-delete-lecturetimeslot").click(() => {
                 },
                 error: function (xhr) {
                     console.log(xhr);
+                    console.log("SONO QUI")
                 }
             });
         }
@@ -155,7 +156,7 @@ $("#button-notify-substitution").click(() => {
         const note = $("#info-substitution").val();
 
         $.ajax({
-            url: "rest/substitutionlecturetimeslot",
+            url: "secretary/rest/substitutionlecturetimeslot",
             type: "POST",
             data: {
                 "roomname": roomNane,
@@ -197,7 +198,7 @@ $("#button-change-schedule").click(() => {
         const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]).format("hh:mm:ss A");
 
         $.ajax({
-            url: "rest/updatelecturetimeslot",
+            url: "secretary/rest/updatelecturetimeslot",
             type: "POST",
             data: {
                 "oldRoomName": oldRoomName,
