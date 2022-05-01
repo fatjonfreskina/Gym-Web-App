@@ -34,16 +34,46 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Confirm reservation</h5>
+            <h5 class="text-primary modal-title">Confirm reservation</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-              <div>Course name: &emsp;<span id="c-course-name"></span></div>
-              <div>Date: &emsp;<span id="c-course-date"></span></div>
-              <div>Start time: &emsp;<span id="c-course-startTime"></span></div>
-              <div>Room name: &emsp;<span id="c-course-roomName"></span></div>
+            <div class="container">
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Course name:</span>
+					</div>
+					<div class="col-sm">
+						<span id="c-course-name"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Date:</span>
+					</div>
+					<div class="col-sm">
+						<span id="c-course-date"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Start time:</span>
+					</div>
+					<div class="col-sm">
+						<span id="c-course-startTime"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Room name:</span>
+					</div>
+					<div class="col-sm">
+						<span id="c-course-roomName"></span>
+					</div>
+				</div>
+			</div>
           </div>
           <div class="modal-footer">
             <button type="button" id="button-save-reservation" class="btn btn-primary" data-dismiss="modal">Save reservation</button>
@@ -57,16 +87,46 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Delete reservation</h5>
+            <h5 class="text-danger modal-title">Delete reservation</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <div>Course name: &emsp;<span id="d-course-name"></span></div>
-            <div>Date: &emsp;<span id="d-course-date"></span></div>
-            <div>Start time: &emsp;<span id="d-course-startTime"></span></div>
-            <div>Room name: &emsp;<span id="d-course-roomName"></span></div>
+            <div class="container">
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Course name:</span>
+					</div>
+					<div class="col-sm">
+						<span id="d-course-name"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Date:</span>
+					</div>
+					<div class="col-sm">
+						<span id="d-course-date"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Start time:</span>
+					</div>
+					<div class="col-sm">
+						<span id="d-course-startTime"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-light bg-dark">Room name:</span>
+					</div>
+					<div class="col-sm">
+						<span id="d-course-roomName"></span>
+					</div>
+				</div>
+			</div>
           </div>
           <div class="modal-footer">
             <button type="button" id="button-delete-reservation" class="btn btn btn-danger" data-dismiss="modal">Delete reservation</button>
