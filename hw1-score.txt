@@ -1,0 +1,22 @@
+"SCORE: 9.75
+
+
+COMMENTS ABOUT THE HOMEWORK:
+
+– Maven and compilation are OK
+– Javadoc on classes (mostly) missing and problems when generating it
+- Clear objectives and functionalities
+- Good ER / relational schema
+- Very well done mock-up
+- Class diagram and sequence diagram OK
+- REST API and its documentation OK
+- Good use of Filter for authentication and for distinguishing among user roles
+- Good use of Java Faker and Mail
+- Good organisation of classes, use of enums, etc.
+- Avoid using String concatenation in toString (or elsewhere): it kills performance
+- Nice to have a README.md
+
+
+CONTRIBUTION TO THE HOMEWORK:
+
+- Good contribution by all team members"
