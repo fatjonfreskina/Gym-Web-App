@@ -44,7 +44,7 @@
             <div class="container">
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Course name:</span>
+						<span class="text-dark">Course name:</span>
 					</div>
 					<div class="col-sm">
 						<span id="c-course-name"></span>
@@ -52,7 +52,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Date:</span>
+						<span class="text-dark">Date:</span>
 					</div>
 					<div class="col-sm">
 						<span id="c-course-date"></span>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Start time:</span>
+						<span class="text-dark">Start time:</span>
 					</div>
 					<div class="col-sm">
 						<span id="c-course-startTime"></span>
@@ -68,7 +68,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Room name:</span>
+						<span class="text-dark">Room name:</span>
 					</div>
 					<div class="col-sm">
 						<span id="c-course-roomName"></span>
@@ -97,7 +97,7 @@
             <div class="container">
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Course name:</span>
+						<span class="text-dark">Course name:</span>
 					</div>
 					<div class="col-sm">
 						<span id="d-course-name"></span>
@@ -105,7 +105,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Date:</span>
+						<span class="text-dark">Date:</span>
 					</div>
 					<div class="col-sm">
 						<span id="d-course-date"></span>
@@ -113,7 +113,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Start time:</span>
+						<span class="text-dark">Start time:</span>
 					</div>
 					<div class="col-sm">
 						<span id="d-course-startTime"></span>
@@ -121,7 +121,7 @@
 				</div>
 				<div class="row">
 					<div class="col-sm">
-						<span class="text-light bg-dark">Room name:</span>
+						<span class="text-dark">Room name:</span>
 					</div>
 					<div class="col-sm">
 						<span id="d-course-roomName"></span>
@@ -131,6 +131,34 @@
           </div>
           <div class="modal-footer">
             <button type="button" id="button-delete-reservation" class="btn btn btn-danger" data-dismiss="modal">Delete reservation</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	<div id="e-reservation" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="text-warning modal-title">Reservation Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+				<div class="row">
+					<div class="col-sm">
+						<span class="text-dark">Error:</span>
+					</div>
+					<div class="col-sm">
+						<span id="e-message"></span>
+					</div>
+				</div>
+			</div>
+          </div>
+          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>

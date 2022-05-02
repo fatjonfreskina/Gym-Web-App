@@ -11,6 +11,7 @@ let d_course_date = document.getElementById('d-course-date');
 let d_course_startTime = document.getElementById('d-course-startTime');
 let d_course_endTime = document.getElementById('d-course-endTime');
 let d_course_roomName = document.getElementById('d-course-roomName');
+let e_message = document.getElementById('e-message');
 
 let calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridWeek',
@@ -27,13 +28,51 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     businessHours: false,
     firstDay: 1,
     nowIndicator: true,
-    eventClick: clickHandler
+    eventClick: clickHandler,
+    eventContent: function(info){
+         let container = document.createElement('div')
+         container.className = 'container'
+
+         let row1 = document.createElement('div')
+         row1.className = 'row'
+         let c12 = document.createElement('div')
+         c12.className = 'col-sm font-weight-bold text-uppercase'
+         c12.innerHTML = info.event._def.extendedProps.customLTS.courseName
+         row1.appendChild(c12)
+
+         let row2 = document.createElement('div')
+         row2.className = 'row'
+         let c21 = document.createElement('div')
+         c21.className = 'col-sm'
+         c21.innerHTML = 'Slots: '
+         let c22 = document.createElement('div')
+         c22.className = 'col-sm'
+         c22.innerHTML = info.event._def.extendedProps.customLTS.availableSlots
+         row2.appendChild(c21)
+         row2.appendChild(c22)
+
+         let row3 = document.createElement('div')
+         row3.className = 'row'
+         let c31 = document.createElement('div')
+         c31.className = 'col-sm'
+         c31.innerHTML = 'Room: '
+         let c32 = document.createElement('div')
+         c32.className = 'col-sm'
+         c32.innerHTML = info.event._def.extendedProps.customLTS.roomName
+         row3.appendChild(c31)
+         row3.appendChild(c32)
+
+         container.appendChild(row1)
+         container.appendChild(row2)
+         container.appendChild(row3)
+         let arrayOfDomNodes = [ container ]
+         return { domNodes: arrayOfDomNodes }
+    }
 });
 
 function clickHandler(info) {
     let event = info.event;
     selectedLectureTimeSlot = event.extendedProps.customLTS;
-    console.log(selectedLectureTimeSlot)
     if(selectedLectureTimeSlot.booked){
         c_course_name.textContent = selectedLectureTimeSlot.courseName
         c_course_date.textContent = selectedLectureTimeSlot.customDate
@@ -63,6 +102,10 @@ function insertReservation(){
         type: "POST",
         contentType : "application/json",
         data : res,
+        error: function (response) {
+            e_message.textContent = response.responseJSON.message;
+            $("#e-reservation").modal("show");
+        }
     });
 }
 
@@ -72,7 +115,11 @@ function deleteReservation(){
         async: false,
         cache: false,
         type: "DELETE",
-        dataType: 'json'
+        dataType: 'json',
+        error: function (response) {
+            e_message.textContent = response.responseJSON.message;
+            $("#e-reservation").modal("show");
+        }
     });
 }
 
@@ -149,9 +196,7 @@ function renderCalendar() {
                     }
                 }
 
-                let title = "COURSE NAME: "+lts.courseName;
-                title+= " AVAILABLE SLOTS: "+(lts.totalSlots - lts.occupiedSlots);
-                event.title = title;
+                event.title = lts.courseName;
                 if(present)
                     event.backgroundColor = GetColorOfCourse("Reserved");
                 else
