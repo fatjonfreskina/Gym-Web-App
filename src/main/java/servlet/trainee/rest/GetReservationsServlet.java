@@ -31,15 +31,14 @@ public class GetReservationsServlet extends AbstractRestServlet
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         // Check that the request accepts JSON format.
-        //final ErrorCodes code = checkAcceptMediaType(req);
-        final Codes code = Codes.OK;  //To enable browser requests (no JSON accepted) to be executed.
+        final Codes code = checkAcceptMediaType(req);
         if (code != Codes.OK)
         {
             sendErrorResponse(res, code);
             return;
         }
 
-        // Retrieve trainee email by session.
+        // Retrieve trainee email by current session.
         final HttpSession session = req.getSession(false);
         final String email = session.getAttribute("email").toString();
 
@@ -56,7 +55,6 @@ public class GetReservationsServlet extends AbstractRestServlet
         final String fromString = matcher.group(1);
         final String toString = matcher.group(2);
 
-        // TODO: input sanitization.
         Date fromDate;
         Date toDate;
 

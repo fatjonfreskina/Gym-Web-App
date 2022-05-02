@@ -15,44 +15,58 @@ import resource.Person;
 import javax.naming.NamingException;
 import java.io.*;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Shows all the personal information about the current user (must be logged in).
+ *
  * @author Marco Alessio
  */
 public class PersonalInfoServlet extends AbstractServlet
 {
+    /**
+     * Retrieves the "Personal Info" page, which shows all personal information about the logged-in user.
+     * @param req The HTTP request.
+     * @param res The HTTP response.
+     * @throws ServletException If some internal error happens.
+     * @throws IOException If something happens when writing the response to the output stream.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
-        //Old version way to get the "email" of the user.
-        //final String email = req.getParameter("email");
+        // Retrieve the email of the user from the session.
 
         HttpSession session = req.getSession(false);
-        //This should never happen, given the use of PersonalInfoFilter.
         if (session == null)
-            res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+        {
+            // This should never happen, given the use of PersonalInfoFilter.
 
-        final String email = (String) session.getAttribute(Constants.EMAIL);
-        //This should never happen, given the use of PersonalInfoFilter.
+            res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+            return;
+        }
+
+        final String email = session.getAttribute(Constants.EMAIL).toString();
         if (email == null)
+        {
+            // This should never happen, given the use of PersonalInfoFilter.
+
             res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+            return;
+        }
 
+        // Retrieve all data about the given user.
         Person person;
-
         try
         {
-            //TODO: is still needed to query from the database, or the data is already available through the session object?
             person = new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute();
         } catch (NamingException | SQLException e)
         {
-            //This should never happen, given the use of PersonalInfoFilter.
+            // This should never happen, given the use of PersonalInfoFilter.
+
             throw new ServletException(e);
         }
 
+        // Generate "Personal Info" page.
         req.setAttribute("personalInfo", person);
         req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
     }
@@ -66,7 +80,7 @@ public class PersonalInfoServlet extends AbstractServlet
         Person p = null;
 
 
-        if(avatar != null)
+        if (avatar != null)
         {
             try
             {
