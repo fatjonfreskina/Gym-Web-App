@@ -18,7 +18,6 @@
 <main class="global-container">
     <div id="calendar" class="secretary-home-calendar">
     </div>
-    <jsp:include page="../include/footer.jsp"/>
     <div id="modal-details" class="modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">

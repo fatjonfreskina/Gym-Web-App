@@ -15,7 +15,9 @@ import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,10 @@ public class TraineeServlet extends AbstractServlet {
             l_subscription = new GetValidSubscriptionByTraineeDatabase(getDataSource().getConnection(),email).execute();
             medicalCertificate = new GetLastMedicalCertfiticateByPersonDatabase(getDataSource().getConnection(),
                     new Person(email,null,null,null,null,null,null,null,null)).execute();
+
+            if(medicalCertificate != null && medicalCertificate.getExpirationDate().toLocalDate().isBefore(LocalDate.now())){
+                medicalCertificate = null;
+            }
 
             m = new Message("Subscriptions retrieved correctly and also medicalcertificate");
         } catch (NamingException e) {

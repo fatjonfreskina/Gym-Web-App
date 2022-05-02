@@ -17,18 +17,19 @@
 <main class="global-container">
     <c:choose>
         <c:when test="${medicalCertificate != null}">
-            <div id = "v_certificate">
-                <c:out value="Your Medical Certificate Expires : ${medicalCertificate.expirationDate}"/>
+            <div id = "v_certificate" class = "text-success">
+                Medical Certificate status: present and valid
             </div>
+            <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+            <div id="trainee__calendar"></div>
         </c:when>
         <c:otherwise>
-            <div id = "v_certificate">
-                <c:out value="You do not have a Medical Certificate please go to the secretary!!!"/>
+            <div id = "e_certificate" class = "text-danger">
+                Medical Certificate status: absent or expired
             </div>
+            <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
         </c:otherwise>
     </c:choose>
-    <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
-    <div id="trainee__calendar"></div>
 
     <div id="c-reservation" class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-dialog-centered" role="document">

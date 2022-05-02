@@ -38,8 +38,8 @@ public class GetLastMedicalCertfiticateByPersonDatabase {
         MedicalCertificate ret= null;
         try {
             pstmt = conn.prepareStatement(STATEMENT);
-            pstmt.setString(1, Constants.PERSON_EMAIL);
-            pstmt.setString(2, Constants.PERSON_EMAIL);
+            pstmt.setString(1, person.getEmail());
+            pstmt.setString(2, person.getEmail());
             rs = pstmt.executeQuery();
             if (rs.next())
             {
