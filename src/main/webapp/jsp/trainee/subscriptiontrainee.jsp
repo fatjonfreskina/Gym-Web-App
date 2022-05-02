@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<h3>Course that you subscribed to</h3>
-<table class="table table-striped">
-    <thead>
+<table class="table">
+    <thead class="thead-dark">
     <tr>
-        <th scope='col'>Course name</th>
+        <th class = 'text-warning' scope='col'>Your subscriptions</th>
         <th scope='col'>Trainer</th>
         <th scope='col'>Expiration</th>
     </tr>

@@ -17,16 +17,19 @@
 <main class="global-container">
     <c:choose>
         <c:when test="${medicalCertificate != null}">
-            <div id = "v_certificate" class = "text-success">
+            <div id = "v_certificate" class = "text-success font-weight-bold text-center">
                 Medical Certificate status: present and valid
             </div>
+            <hr class="my-4">
             <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
+            <hr class="my-4">
             <div id="trainee__calendar"></div>
         </c:when>
         <c:otherwise>
-            <div id = "e_certificate" class = "text-danger">
+            <div id = "e_certificate" class = "text-danger font-weight-bold text-center">
                 Medical Certificate status: absent or expired
             </div>
+            <hr class="my-4">
             <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
         </c:otherwise>
     </c:choose>
