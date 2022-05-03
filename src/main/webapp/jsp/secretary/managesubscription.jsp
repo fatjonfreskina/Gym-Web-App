@@ -12,7 +12,6 @@
 <header>
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
 <main class="global-container">
     <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>" id="form">
@@ -76,8 +75,12 @@
             </div>
         </div>
 
-        <div id="show-message">
-
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
 
         <input type="submit" name="Submit" class="btn btn-outline-primary btn-lg"/>
