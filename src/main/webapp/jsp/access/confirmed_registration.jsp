@@ -5,6 +5,7 @@
     <title>Confirmed Registration</title>
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="/jsp/include/favicon.jsp"/>
 </head>
 <body>
 

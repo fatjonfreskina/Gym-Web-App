@@ -8,6 +8,7 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="../include/fullcalendar/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/secretary/calendar.css"/>">
+    <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>

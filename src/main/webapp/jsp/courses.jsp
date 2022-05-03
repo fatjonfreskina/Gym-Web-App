@@ -6,6 +6,7 @@
     <title>Courses</title>
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
