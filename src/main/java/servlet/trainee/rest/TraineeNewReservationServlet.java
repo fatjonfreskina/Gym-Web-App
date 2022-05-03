@@ -26,11 +26,22 @@ import java.sql.Time;
 
 
 /**
- * TODO: aggiungere testo che descrive cosa fa la servlet.
- * @author Tumiati Riccardo, Marco Alessio, Fatjon Freskina
+ * Rest servlet used to add a reservation
+ *
+ * @author Tumiati Riccardo
+ * @author Marco Alessio
+ * @author Fatjon Freskina
  */
 public class TraineeNewReservationServlet extends AbstractRestServlet {
 
+    /**
+     * Handles the post request by adding a reservation
+     *
+     * @param req the request
+     * @param resp  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -51,6 +62,14 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
         processRequest(req,resp);
     }
 
+    /**
+     * Auxiliary method to handle the post request by adding a reservation
+     *
+     * @param req the request
+     * @param resp  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Reader input = new InputStreamReader(req.getInputStream(), StandardCharsets.UTF_8);
         Reservation res;
@@ -122,6 +141,12 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
         }
     }
 
+    /**
+     * Checks if a reservation is valid according to its date and time
+     *
+     * @param reservationDate the date of the reservation
+     * @param reservationTime  the time of the reservation
+     */
     private boolean isDateAndTimeValid(Date reservationDate, Time reservationTime)
     {
         long millis = System.currentTimeMillis();

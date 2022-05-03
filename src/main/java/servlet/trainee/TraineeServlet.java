@@ -20,8 +20,19 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Servlet handling requests for the Trainee home page
+ */
 public class TraineeServlet extends AbstractServlet {
+    /**
+     * Handles the get request by retrieving the courses for which a trainee is subscribed, the
+     * status of his/her medical certificate and a message of error/success
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Message m;
         List<ValidSubscription> l_subscription = new ArrayList<>();
