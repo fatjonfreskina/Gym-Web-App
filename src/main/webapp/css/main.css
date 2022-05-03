@@ -31,3 +31,15 @@ body {
 {
     background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1.0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
 }
+
+/*Carousel*/
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-size: 50%, 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.5);
+}
