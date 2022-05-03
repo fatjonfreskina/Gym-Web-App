@@ -18,9 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Servlet that handles http get requests for the Prices web page
+ *
  * @author Francesco Caldivezzi
  */
 public class PricesServlet extends AbstractServlet {
+    /**
+     * Handles the get request by sending a response with various information for the courses (e.g. prices, trainers, subscriptions...)
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<PricesView> list = null;

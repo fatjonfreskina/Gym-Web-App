@@ -15,9 +15,19 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * Servlet that handles http get requests for the Courses web page
+ *
  * @author Andrea Pasin
  */
 public class CoursesServlet extends AbstractServlet{
+    /**
+     * Handles the get request by sending a response containing the different courses held in the gym
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<Course> courseList = null;

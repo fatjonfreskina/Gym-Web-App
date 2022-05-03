@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * Return a list of reservations of a user within a given date interval.
+ * Rest servlet used to retrieve the reservations of a trainee
  *
  * @author Marco Alessio
  */
@@ -27,6 +27,15 @@ public class GetReservationsServlet extends AbstractRestServlet
     private static final Pattern URI_REGEX = Pattern.compile(
             "/wa2122-gwa/trainee/rest/reservation/from-date/(.*)/to-date/(.*)", Pattern.DOTALL);
 
+    /**
+     * Handles the get requests by retrieving the reservations of a trainee in the provided interval
+     * of time
+     *
+     * @param req the request.
+     * @param res the response.
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {

@@ -17,6 +17,7 @@ import service.TrainerService;
 import servlet.AbstractServlet;
 
 /**
+ * Servlet handling requests for the Trainer home page
  * @author Harjot Singh
  */
 public class TrainerServlet extends AbstractServlet {
@@ -24,6 +25,15 @@ public class TrainerServlet extends AbstractServlet {
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
   private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
+  /**
+   * Handles the get request by retrieving the page with the courses taught by the trainer
+   * and their statuses
+   *
+   * @param req  the request
+   * @param resp  the response
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     HttpSession session = req.getSession(false);

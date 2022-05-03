@@ -72,6 +72,15 @@ public class PersonalInfoServlet extends AbstractServlet
     }
 
 
+    /**
+     * Handles the post request by saving the avatar and sending a response message representing if the request has been
+     * successfully processed
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         Part avatar = req.getPart("avatar");
@@ -131,6 +140,13 @@ public class PersonalInfoServlet extends AbstractServlet
         }
     }
 
+    /**
+     * Saves the avatar
+     * @param file  the file
+     * @param taxCode  the user tax code
+     * @return
+     * @throws IOException
+     */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         OutputStream writer = null;
         InputStream content = null;
@@ -181,6 +197,10 @@ public class PersonalInfoServlet extends AbstractServlet
         return Codes.OK;
     }
 
+    /**
+     * Deletes a given folder
+     * @param folder  the folder to delete
+     */
     public static void deleteFolder(File folder)
     {
         File[] files = folder.listFiles();
