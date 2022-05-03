@@ -19,14 +19,14 @@
         <div class="form-group row">
             <label for="password" class="col-sm-2 col-form-label">Password :</label>
             <div class="col-sm-10">
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="confirm_password" class="col-sm-3 col-form-label">Confirm Password :</label>
             <div class="col-sm-9">
-                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" />
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" required/>
             </div>
         </div>
 
