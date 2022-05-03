@@ -46,3 +46,16 @@ body {
 .alert-box-message{
     margin: 0;
 }
+
+@media (max-width: 992px) {
+    .hidden-icon-menu{
+        display: none;
+    }
+}
+
+@media (min-width: 992px){
+    .compressed-navbar-actions{
+        display: none;
+    }
+}
+
