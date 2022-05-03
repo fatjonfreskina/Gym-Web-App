@@ -58,7 +58,7 @@
         <div class="form-group row">
             <label for="discount" class="col-sm-2 col-form-label">Discount :</label>
             <div class="col-sm-10">
-                <input type="number" id="discount" name = "discount" min = "0" max ="100" value="0" class="form-control"/>
+                <input type="number" id="discount" name = "discount" min = "0" max ="100" value="0" class="form-control" />
             </div>
         </div>
 
