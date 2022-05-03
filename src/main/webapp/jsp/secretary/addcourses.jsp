@@ -7,7 +7,7 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/select_multiple/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
-
+    <jsp:include page="/jsp/include/favicon.jsp"/>
     <meta charset="UTF-8">
 </head>
 <body>

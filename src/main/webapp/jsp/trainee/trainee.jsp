@@ -6,6 +6,7 @@
     <title>Trainee page</title>
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="/jsp/include/favicon.jsp"/>
     <jsp:include page="../include/fullcalendar/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
     <link id="contextPathHolder" data="${pageContext.request.contextPath}"/>
