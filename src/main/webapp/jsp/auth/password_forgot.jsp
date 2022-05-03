@@ -18,7 +18,8 @@
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
             <div class="col-sm-10">
-                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email" />
+                <input type="email" name="email" id="email" maxlength="40" class="form-control"
+                       placeholder="Enter Email" required/>
             </div>
         </div>
 

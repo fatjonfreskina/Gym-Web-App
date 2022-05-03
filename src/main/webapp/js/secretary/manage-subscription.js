@@ -63,4 +63,5 @@ $("#course_name").change(function (){
         }
     });
 })
+
 $("#course_name").trigger('change')
