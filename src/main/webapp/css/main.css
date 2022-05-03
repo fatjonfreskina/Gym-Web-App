@@ -47,12 +47,17 @@ body {
     margin: 0;
 }
 
+/* < */
 @media (max-width: 992px) {
     .hidden-icon-menu{
         display: none;
     }
+    .navbar{
+        min-height: var(--min-heigth-navavar);
+    }
 }
 
+/*>*/
 @media (min-width: 992px){
     .compressed-navbar-actions{
         display: none;
