@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Servlet used to login
+ *
  * @author Andrea Pasin
  * @author Francesco Caldivezzi
  * @author Harjot Singh
@@ -35,6 +37,13 @@ public class LoginServlet extends AbstractServlet {
 
     private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
 
+    /**
+     * Handles the get request by providing the correct page
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
@@ -47,6 +56,13 @@ public class LoginServlet extends AbstractServlet {
         }
     }
 
+    /**
+     * Handles the post request by confirming/refusing the user's request to login
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email;
@@ -186,7 +202,15 @@ public class LoginServlet extends AbstractServlet {
         logger.info("Login: error =" + error.getErrorMessage());
     }
 
-
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return  a confirmation/error message
+     * @throws ServletException
+     * @throws IOException
+     */
     private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email = null;
         String password = null;

@@ -32,15 +32,32 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 
 /**
+ * Servlet used to register a user
  * @author Francesco Caldivezzi
  */
 public class RegisterServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by providing the correct page to register
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher(Constants.PATH_REGISTER).forward(req, res);
     }
 
+    /**
+     * Handles the post request by adding a user to the database if his/her credentials
+     * are valid
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
@@ -94,6 +111,15 @@ public class RegisterServlet extends AbstractServlet {
     }
 
 
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return  a confirmation/error message
+     * @throws ServletException
+     * @throws IOException
+     */
     public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
         String firstName = null;
@@ -150,6 +176,20 @@ public class RegisterServlet extends AbstractServlet {
         return error;
     }
 
+    /**
+     * Inserts a user into the database
+     * @param taxCode  the user's tax code
+     * @param firstName  the user's first name
+     * @param lastName  the user's last name
+     * @param address  the user's address
+     * @param email  the user's email
+     * @param password  the user's password
+     * @param telephoneNumber  the user's telephone number
+     * @param birthDate  the user's birthdate
+     * @param avatar  the user's avatar
+     * @param role  the user's role
+     * @return
+     */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
                             String password, String telephoneNumber, Date birthDate, Part avatar, String role) {
         Codes error = Codes.OK;
@@ -199,6 +239,13 @@ public class RegisterServlet extends AbstractServlet {
     }
 
 
+    /**
+     * Saves the avatar file
+     * @param file  the avatar file
+     * @param taxCode  the user's tax code
+     * @return
+     * @throws IOException
+     */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         OutputStream writer = null;
         InputStream content = null;

@@ -10,12 +10,22 @@ import org.apache.logging.log4j.Logger;
 import servlet.AbstractServlet;
 
 import java.io.*;
-/*
-    @author Riccardo Tumiati
+
+/**
+ * Servlet used to retrieve an avatar for a user
+ *
+ * @author Riccardo Tumiati
  */
 public class RetrieveAvatar extends AbstractServlet {
     private static final Logger LOGGER = LogManager.getLogger("riccardo_tumiati_logger");
 
+    /**
+     * Handles the get request by retrieving the avatar image of a user
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         HttpSession session = req.getSession(false);
         if (session == null)

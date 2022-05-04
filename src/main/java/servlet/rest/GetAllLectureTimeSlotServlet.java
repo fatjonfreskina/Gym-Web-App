@@ -25,6 +25,7 @@ import static constants.DateTimeFormats.dateFormat;
 import static constants.DateTimeFormats.timeFormat;
 
 /**
+ * Rest servlet to retrieve all the lectures in a given period
  * @author Riccardo Forzan
  */
 public class GetAllLectureTimeSlotServlet extends AbstractRestServlet {
@@ -54,6 +55,15 @@ public class GetAllLectureTimeSlotServlet extends AbstractRestServlet {
 
     }
 
+    /**
+     * Handles the get request by retrieving all the lectures held in a given period
+     * of time
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

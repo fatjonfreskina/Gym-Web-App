@@ -23,10 +23,19 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
+ * Servlet used to confirm a registration of a user
+ *
  * @author Francesco Caldivezzi
  */
 public class ConfirmRegistrationServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by confirming the registration of a user according to a token
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String tokenUser = req.getParameter("token");
