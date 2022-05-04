@@ -17,8 +17,20 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Rest servlet used to get a list of users by their partial email addresses
+ * @author Francesco Caldivezzi
+ */
 public class ListLikePersonsServlet extends AbstractServlet
 {
+    /**
+     * Handles the get request by retrieving all the users having a partial email address
+     * that matches with the one provided
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Codes error = Codes.OK;

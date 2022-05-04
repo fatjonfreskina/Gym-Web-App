@@ -30,10 +30,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
+ * Rest servlet used to update the lecture time slot if a trainer cannot hold
+ * a lecture on a specific day and time
+ *
  * @author Riccardo Forzan
  */
 public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
+    /**
+     * Handles the post request by updating the lecture time/day
+     * and sending a confirmation/error message
+     *
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -52,6 +64,11 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
     }
 
+    /**
+     * Updates the lecture time/date
+     * @param request  the request
+     * @return  a confirmation/error message
+     */
     private Message performUpdate(HttpServletRequest request) {
 
         //Parse the old parameters
@@ -162,10 +179,24 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
 
     }
 
+    /**
+     * Checks the validity of a date
+     * @param time  the time without time-zone
+     * @return  true if the date is valid, false otherwise
+     */
     private boolean isDateValid(LocalTime time) {
         return time.getMinute() == 0 && time.getSecond() == 0;
     }
 
+    /**
+     * Checks if there are lectures held in the same class, at the same time, on the
+     * same day
+     *
+     * @param updatedLectureTimeSlot  the lecture to be updated
+     * @return  true if there are overlapping lectures, false otherwise
+     * @throws NamingException
+     * @throws SQLException
+     */
     private boolean isOverlappingLecture(LectureTimeSlot updatedLectureTimeSlot)
             throws NamingException, SQLException {
         LectureTimeSlot lectureTimeSlot =
@@ -174,6 +205,15 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
         return lectureTimeSlot != null;
     }
 
+    /**
+     * Checks if a trainer has to hold lectures at the same time, on the same day
+     *
+     * @param updatedLectureTimeSlot  the lecture to be updated
+     * @param trainer  the trainer
+     * @return  true if there are overlapping lectures, false otherwise
+     * @throws NamingException
+     * @throws SQLException
+     */
     private boolean isOverlappingTrainer(LectureTimeSlot updatedLectureTimeSlot, Person trainer)
             throws NamingException, SQLException {
         var count = new GetNumberLectureTeacherByTeacherDateTimeDatabase(getDataSource().getConnection(),
