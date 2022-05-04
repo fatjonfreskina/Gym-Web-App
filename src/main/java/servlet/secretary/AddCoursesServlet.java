@@ -36,11 +36,24 @@ import java.util.Objects;
 
 
 /**
+ * Servlet used by a secretary to add a course to the list of courses
+ * taught in a period of time
+ *
  * @author Francesco Caldivezzi
  * */
 public class AddCoursesServlet extends AbstractServlet
 {
     private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
+
+    /**
+     * Handles the get request by retrieving all the possible rooms, courses and teachers
+     * in order to later add a specific course according to these parameters
+     *
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -79,6 +92,15 @@ public class AddCoursesServlet extends AbstractServlet
         }
 
     }
+
+    /**
+     * Handles the post request by adding a course to the database
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
@@ -317,7 +339,15 @@ public class AddCoursesServlet extends AbstractServlet
         out.print(messageJson);
 
     }
-
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return  a confirmation/error message
+     * @throws ServletException
+     * @throws IOException
+     */
     private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         Codes error = Codes.OK;
@@ -516,6 +546,26 @@ public class AddCoursesServlet extends AbstractServlet
     }
 
 
+    /**
+     * Checks if there are overlapping lectures: there can't be 2 courses held in the same classroom
+     * at the same time on the same day.
+     *
+     * @param roomName  the room
+     * @param courseEditionId  the course edition
+     * @param courseName  the name of the course
+     * @param dateFirstEvent  the date of the first lecture of a given course
+     * @param weeks  the number of weeks the given course lasts
+     * @param monday  the times of lectures on monday
+     * @param tuesday  the times of lectures tuesday
+     * @param wednesday  the times of lectures wednesday
+     * @param thursday  the times of lectures thursday
+     * @param friday  the times of lectures friday
+     * @param saturday  the times of lectures saturday
+     * @param sunday  the times of lectures sunday
+     * @return  true if there are overlapping lectures, false otherwise
+     * @throws NamingException
+     * @throws SQLException
+     */
     private boolean overlappingLectures(String roomName, int courseEditionId, String courseName,Date dateFirstEvent,int weeks,
                                         Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException
     {
@@ -627,7 +677,23 @@ public class AddCoursesServlet extends AbstractServlet
         return fail;
     }
 
-
+    /**
+     * Checks if there are overlapping lectures. The Trainer cannot be teaching 2 courses
+     * at the same time on the same day
+     * @param teacher the trainer
+     * @param dateFirstEvent  the date of the first lecture of a given course
+     * @param weeks  the number of weeks the given course lasts
+     * @param monday  the times of lectures on monday
+     * @param tuesday  the times of lectures tuesday
+     * @param wednesday  the times of lectures wednesday
+     * @param thursday  the times of lectures thursday
+     * @param friday  the times of lectures friday
+     * @param saturday  the times of lectures saturday
+     * @param sunday  the times of lectures sunday
+     * @return  true if there are overlapping lectures, false otherwise
+     * @throws NamingException
+     * @throws SQLException
+     */
 
     private boolean overlappingTeacherLectures(String teacher, Date dateFirstEvent, int weeks,
                                                Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException

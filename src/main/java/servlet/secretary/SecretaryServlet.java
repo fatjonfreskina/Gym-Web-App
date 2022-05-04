@@ -15,7 +15,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet handling requests for the Secretary home page
+ */
 public class SecretaryServlet extends AbstractServlet {
+    /**
+     * Handles the get request by retrieving the different rooms and teachers
+     *
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Person> teachers = null;

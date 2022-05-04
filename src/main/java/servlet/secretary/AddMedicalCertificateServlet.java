@@ -28,15 +28,35 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * Servlet used by a secretary to add the medical certificate of a user
+ *
  * @author Simone D'Antimo
- * */
+ */
 
 public class AddMedicalCertificateServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by retrieving the opportune page
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_CERTIFICATE).forward(req, res);
     }
+
+    /**
+     * Handles the post request by associating a medical certificate to a user and saving
+     * the corresponding file
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -89,6 +109,15 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         }
     }
 
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return
+     * @throws ServletException
+     * @throws IOException
+     */
     public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String email = null;
@@ -134,6 +163,14 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         return error;
     }
 
+    /**
+     * Adds the medical certificate to the database
+     * @param email  the user email
+     * @param expirationDate  the expiration date of the medical certificate
+     * @param doctorName  the name of the Doctor who signed the medical certificate
+     * @param medicalCertificate  the medical certificate
+     * @return  a confirmation/error message
+     */
     private Codes insertCertificate(String email, Date expirationDate, String doctorName, Part medicalCertificate) {
 
         Codes error = Codes.OK;
@@ -183,6 +220,14 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
         return error;
     }
 
+    /**
+     * Saves the medical certificate file
+     *
+     * @param file  the file to save
+     * @param taxCode  the user tax code
+     * @return  a confirmation/error message
+     * @throws IOException
+     */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         Codes error = Codes.OK;
         File createDirectory;

@@ -35,15 +35,34 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
 /**
+ * Servlet used by a secretary to add an account for a user
+ *
  * @author Alberto Campeol
  */
 public class AddAccountServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by retrieving the opportune page
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_ACCOUNT).forward(req, res);
     }
 
+    /**
+     * Handles the post request by adding a user to the database with his/her corresponding
+     * roles
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
@@ -104,7 +123,15 @@ public class AddAccountServlet extends AbstractServlet {
 
     }
 
-
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return  a confirmation/error message
+     * @throws ServletException
+     * @throws IOException
+     */
     public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
         String firstName = null;
@@ -163,6 +190,20 @@ public class AddAccountServlet extends AbstractServlet {
         return error;
     }
 
+    /**
+     * Adds a user to the database
+     * @param taxCode  the user's tax code
+     * @param firstName  the user's first name
+     * @param lastName  the user's last name
+     * @param address  the user's address
+     * @param email  the user's email
+     * @param password  the user's password
+     * @param telephoneNumber  the user's telephone number
+     * @param birthDate  the user's birthdate
+     * @param avatar  the user's avatar
+     * @param roles  the user's role
+     * @return
+     */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
                             String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles) {
         Codes error = Codes.OK;
@@ -225,6 +266,13 @@ public class AddAccountServlet extends AbstractServlet {
     }
 
 
+    /**
+     * Saves the avatar of a user
+     * @param file  the user's avatar file
+     * @param taxCode  the user's tax code
+     * @return a confirmation/error message
+     * @throws IOException
+     */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         OutputStream writer = null;
         InputStream content = null;
@@ -275,6 +323,11 @@ public class AddAccountServlet extends AbstractServlet {
         return Codes.OK;
     }
 
+    /**
+     * Generates a random password
+     * @param len  the password length
+     * @return  the password as a {@code String}
+     */
     public static String generateRandomPassword(int len)
     {
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
