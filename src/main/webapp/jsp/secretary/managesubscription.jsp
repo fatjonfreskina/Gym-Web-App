@@ -88,8 +88,9 @@
     </form>
 </main>
 
-<script src="<c:url value="/js/secretary/manage-subscription.js"/>"></script>
+
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/secretary/manage-subscription.js"/>"></script>
 </body>
 </html>

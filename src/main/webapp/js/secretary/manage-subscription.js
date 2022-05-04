@@ -14,6 +14,7 @@ $(document).ready(function() {
             data: formValues,
             success: function (response) {
                 messageBody.empty()
+                console.log(response.message)
                 messageBody.text(response.message)
                 alertBox.show()
                 alertBox.fadeTo(2000, 500).slideUp(500, function () {
@@ -41,7 +42,7 @@ $(document).ready(function() {
                 let emailList = $("#list_emails")
                 emailList.empty()
                 for (const person of response) {
-                    emailList.append(`<li class='list-group-item'><input type='radio' name='trainee' value='` + person.email + `'/>{person.email}</li>`)
+                    emailList.append("<li class='list-group-item'><input type='radio' name='trainee' value='" + person.email + "'/> " + person.email + "</li>")
                 }
             },
             error: function (data) {
@@ -68,7 +69,7 @@ $(document).ready(function() {
             success: function (response) {
                 listLastDate.empty()
                 for (const lastDate of response) {
-                    listLastDate.append(`<li class='list-group-item'><input type='radio' name='course_edition_id' value='`+ lastDate.courseEditionId + `'/>{lastDate.date}</li>`)
+                    listLastDate.append("<li class='list-group-item'><input type='radio' name='course_edition_id' value='" + lastDate.courseEditionId + "'/> " + lastDate.date + "</li>")
                 }
             },
             error: function (xhr) {

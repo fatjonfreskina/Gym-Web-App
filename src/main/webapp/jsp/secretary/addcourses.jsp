@@ -225,10 +225,6 @@
             </div>
         </div>
 
-        <div id="show-message">
-
-        </div>
-
         <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
             <p id="alert-message-body" class="alert-box-message">
             </p>
