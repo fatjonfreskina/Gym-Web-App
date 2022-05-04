@@ -42,10 +42,33 @@
             <li class="nav-item p-2">
                 <a class="navbar-elements-light" href="<c:url value="/personal_info"/>">Personal Info</a>
             </li>
+            <c:choose>
+                <c:when test="${empty sessionScope.roles}">
+                    <li class="compressed-navbar-actions nav-item p-2">
+                        <a class="navbar-elements-light" href="<c:url value="/register"/>">Register</a>
+                    </li>
+                    <li class="compressed-navbar-actions nav-item p-2">
+                        <a class="navbar-elements-light" href="<c:url value="/login"/>">Login</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="compressed-navbar-actions nav-item p-2">
+                        <a class="navbar-elements-light disabled">You are logged in as : <c:out value="${sessionScope.email}"/></a>
+                    </li>
+                    <c:forEach var="role" items="${sessionScope.roles}" >
+                        <li class="compressed-navbar-actions nav-item p-2">
+                            <a class="navbar-elements-light" href="<c:url value="/${role}"/>"><c:out value="${role}"/></a>
+                        </li>
+                    </c:forEach>
+                    <li class="compressed-navbar-actions nav-item p-2">
+                        <a class="navbar-elements-light" href="<c:url value="/logout"/>">Logout</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
         <!-- Right dropdown of the navbar -->
         <!-- Right dropdown of the navbar -->
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto hidden-icon-menu">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbar-elements-light" id="navbarRightDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">

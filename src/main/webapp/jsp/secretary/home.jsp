@@ -124,6 +124,5 @@
 <jsp:include page="../include/fullcalendar/scripts.jsp"/>
 <jsp:include page="../include/moment/scripts.jsp"/>
 <script src="<c:url value="/js/secretary/secretary-home.js"/>"></script>
-<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>
