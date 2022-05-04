@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Service handling different operations performed by a trainer
+ *
  * @author Harjot Singh
  */
 public class TrainerService {
@@ -33,11 +35,27 @@ public class TrainerService {
     private final DataSource dataSource;
     private final String trainerEmail;
 
+    /**
+     * The constructor
+     * @param dataSource  the datasource from which data is retrieved
+     * @param trainerEmail  the trainer's email
+     */
     public TrainerService(DataSource dataSource, String trainerEmail) {
         this.dataSource = dataSource;
         this.trainerEmail = trainerEmail;
     }
 
+    /**
+     * Removes an attendance from the current lecture a trainer is holding
+     * @param reservation  the reservation
+     * @return  true if the reservation has been removed, false otherwise
+     * @throws SQLException
+     * @throws ReservationNotFound
+     * @throws TrainerCoursesOverlapping
+     * @throws TrainerNoCourseHeld
+     * @throws TrainerNoCourseHeldNow
+     * @throws ConflictBetweenReservationAndLectureTimeSlotValues
+     */
     public boolean removePresenceFromCurrentLectureTimeSlot(Reservation reservation) throws SQLException, ReservationNotFound, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, ConflictBetweenReservationAndLectureTimeSlotValues {
 
         LectureTimeSlot curLesson = getTrainersCurrentLectureTimeSlot(trainerEmail);//checking
@@ -55,6 +73,17 @@ public class TrainerService {
         return true;
     }
 
+    /**
+     * Adds an attendance to the current lecture a trainer is holding
+     * @param subscription  the subscription of a trainee
+     * @return  true if the reservation has been added, false otherwise
+     * @throws SQLException
+     * @throws ReservationNotFound
+     * @throws TrainerCoursesOverlapping
+     * @throws TrainerNoCourseHeld
+     * @throws TrainerNoCourseHeldNow
+     * @throws ConflictBetweenReservationAndLectureTimeSlotValues
+     */
     public boolean addPresenceToCurrentLectureTimeSlot(Subscription subscription) throws NamingException, SQLException, ReservationAlreadyPresent, RoomAlreadyFull, TraineeNotEnrolledToTheCourse, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, SubscriptionNotStartedOrTerminated {
         LectureTimeSlot lectureHeldNow = getTrainersCurrentLectureTimeSlot(trainerEmail);
         CourseEdition courseEdition = new CourseEdition(lectureHeldNow.getCourseEditionId(), lectureHeldNow.getCourseName());
@@ -81,7 +110,16 @@ public class TrainerService {
         return true; //is always true or it will throw an error
     }
 
-    //G
+    /**
+     * Gets the attendances and subscriptions
+     * of different trainees according to the lecture the trainer is holding
+     * @return  the trainees attending the trainer's lecture or subscribed to the trainer's course
+     * @throws SQLException
+     * @throws TrainerCoursesOverlapping
+     * @throws TrainerNoCourseHeld
+     * @throws TrainerNoCourseHeldNow
+     * @throws NoSubscriptionToTheCourse
+     */
     public TrainerAttendance getTrainerAttendance() throws SQLException, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, NoSubscriptionToTheCourse {
         LectureTimeSlot lectureHeldNow = getTrainersCurrentLectureTimeSlot(trainerEmail);
 
@@ -107,6 +145,15 @@ public class TrainerService {
         return new TrainerAttendance(lectureHeldNow, reservations, subscriptions);
     }
 
+    /**
+     * Gets a trainer current lecture
+     * @param trainerEmail  the email of a trainer
+     * @return  the lecture a trainer has to hold at the current moment
+     * @throws SQLException
+     * @throws TrainerNoCourseHeldNow  if the trainer has no course to hold right now
+     * @throws TrainerCoursesOverlapping
+     * @throws TrainerNoCourseHeld
+     */
     public LectureTimeSlot getTrainersCurrentLectureTimeSlot(String trainerEmail) throws SQLException, TrainerNoCourseHeldNow, TrainerCoursesOverlapping, TrainerNoCourseHeld {
         List<Teaches> teaches = new GetTeachesByTrainerDatabase(dataSource.getConnection(), new Person(trainerEmail)).execute();
 
@@ -128,6 +175,11 @@ public class TrainerService {
         return curr;
     }
 
+    /**
+     * Gets the statuses of the trainer's courses
+     * @return  the statuses of the trainer's courses
+     * @throws SQLException
+     */
     public List<CourseStatus> getTrainersCoursesStatus() throws SQLException {
         List<CourseEdition> coursesHeld = getTrainersCourses();
 
@@ -152,6 +204,14 @@ public class TrainerService {
         return coursesStatus;
     }
 
+    /**
+     * Gets all the lectures a trainer has to hold in a given range
+     * @param from  the starting date
+     * @param to  the ending date
+     * @return  all the lectures a trainer has to hold
+     * @throws NamingException
+     * @throws SQLException
+     */
     public List<LectureTimeSlot> getAllLessonsInRange(Date from, Date to) throws NamingException, SQLException {
         List<CourseEdition> coursesHeld = getTrainersCourses();
         List<LectureTimeSlot> allLessonInRange = new ArrayList<>();

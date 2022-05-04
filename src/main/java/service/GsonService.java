@@ -17,18 +17,32 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
+ * Service handling json
+ *
  * @author Harjot Singh
  */
 public class GsonService {
 
     private final Gson gson;
 
+    /**
+     * The constructor
+     */
     public GsonService() {
         gson = new GsonBuilder()
                 //.setDateFormat("yyyy-MM-dd")
                 .registerTypeAdapter(Time.class, new TimeJsonAdapter()).registerTypeAdapter(Date.class, new DateJsonAdapter()).create();
     }
 
+    /**
+     * Deserializes a json string to a {@code Reservation}
+     * @param string  the reservation as {@code String}
+     * @return  the reservation
+     * @throws WrongDateFormat
+     * @throws NotAcceptableMissingFields
+     * @throws ParsingError
+     * @throws WrongTimeFormat
+     */
     public Reservation getReservationFromString(String string) throws WrongDateFormat, NotAcceptableMissingFields, ParsingError, WrongTimeFormat {
         try {
             Reservation reservation = gson.fromJson(string, Reservation.class);
@@ -47,6 +61,15 @@ public class GsonService {
         }
     }
 
+    /**
+     * Deserializes a json string to a {@code Subscription}
+     * @param string  the subscription as {@code String}
+     * @return  the subscription
+     * @throws WrongDateFormat
+     * @throws NotAcceptableMissingFields
+     * @throws ParsingError
+     * @throws WrongTimeFormat
+     */
     public Subscription getSubscriptionFromString(String string) throws NotAcceptableMissingFields, WrongDateFormat, ParsingError, WrongTimeFormat {
         try {
             Subscription subscription = gson.fromJson(string, Subscription.class);
