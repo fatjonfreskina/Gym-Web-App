@@ -22,6 +22,8 @@ import service.TrainerService;
 import servlet.AbstractRestServlet;
 
 /**
+ * Rest servlet used to manage the attendances by a trainer
+ *
  * @author Andrea Pasin
  * @author Harjot Singh
  */
@@ -30,6 +32,14 @@ public class TrainerManageAttendanceRestServlet extends AbstractRestServlet {
   private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   /* GET ALL RESERVATIONS AND SUBSCRIPTIONS */
+
+  /**
+   * Handles the get request by retrieving all reservations and subscriptions
+   * @param req the request
+   * @param res the response
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -47,6 +57,16 @@ public class TrainerManageAttendanceRestServlet extends AbstractRestServlet {
   }
 
   /* INSERT A RESERVATION FROM SUBSCRIPTION! */
+
+  /**
+   * Handles the post request by adding a reservation for a user subscribed to the
+   * course held by a trainer
+   *
+   * @param req the request
+   * @param res the response
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
@@ -78,6 +98,15 @@ public class TrainerManageAttendanceRestServlet extends AbstractRestServlet {
   }
 
   /* DELETE A RESERVATION */
+
+  /**
+   * Handles the delete request by deleting a reservation for a given lecture
+   *
+   * @param req the request
+   * @param res the response
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();

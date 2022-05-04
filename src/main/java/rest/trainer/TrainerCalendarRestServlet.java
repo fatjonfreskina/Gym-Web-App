@@ -36,6 +36,8 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * Rest servlet used to get the calendar for a trainer
+ *
  * @author Harjot Singh
  */
 public class TrainerCalendarRestServlet extends AbstractRestServlet {
@@ -43,6 +45,13 @@ public class TrainerCalendarRestServlet extends AbstractRestServlet {
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
   private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
+  /**
+   * Handles the get request by providing the schedules of courses held by a trainer
+   * @param req the request
+   * @param res the response
+   * @throws ServletException
+   * @throws IOException
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     HttpSession session = req.getSession(false);
