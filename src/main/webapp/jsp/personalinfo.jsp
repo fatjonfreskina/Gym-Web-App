@@ -15,6 +15,7 @@
     <jsp:include page="/jsp/include/header.jsp"/>
 </header>
 <main class="global-container">
+
     <table>
         <tr>
             <th>Tax Code:</th>
@@ -43,12 +44,24 @@
         <tr>
             <th>Avatar (optional):</th>
             <td>
-                <c:if test="${null != sessionScope.avatarPath}">
-                    <img src="<c:url value="/avatar"/>" width="50px" height="50px">
-                </c:if>
                 <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
-                    <input type="file" name="avatar"/>
-                    <input type="submit" value="Change"/>
+                    <div class="form-group row">
+                        <div class="col-sm-3">
+                            <c:if test="${null != sessionScope.avatarPath}">
+                                <img src="<c:url value="/avatar"/>" width="50px" height="50px" alt="Avatar">
+                            </c:if>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="custom-file">
+                                <input type="file" name="avatar" id="file" class="custom-file-input">
+                                <label class="custom-file-label" for="file">Choose File</label>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="submit" value="Change" class="btn btn-outline-primary btn-lg"/>
+                        </div>
+                    </div>
                 </form>
             </td>
         </tr>

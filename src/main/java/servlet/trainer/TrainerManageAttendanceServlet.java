@@ -120,8 +120,9 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
    * @param isError  true if it is an error, false if it is a successful message
    */
   private void sendFeedback(HttpServletRequest req, Codes error, boolean isError) {
-    String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
-    logger.error(loggerClass + messageJson);
-    req.setAttribute("error", messageJson);
+    //String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
+    //logger.error(loggerClass + messageJson);
+    //Message message =
+    req.setAttribute("message", new Message(error.getErrorMessage(),isError));
   }
 }
