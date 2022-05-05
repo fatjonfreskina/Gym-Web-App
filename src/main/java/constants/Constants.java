@@ -2,6 +2,9 @@ package constants;
 
 import java.util.regex.Pattern;
 
+/**
+ * Class that contains all constant values used across the whole application
+ */
 public class Constants {
 
     /**
@@ -179,7 +182,6 @@ public class Constants {
      */
     public static final String PASSWORD_CHANGE_URL = "http://127.0.0.1:8080/wa2122-gwa/password_change?token=";
 
-    //PARAMETERS POST/GET CONSTANTS
     /**
      * Name of the parameter passed using GET or POST method for the field tax code
      */
@@ -260,71 +262,229 @@ public class Constants {
      */
     public static final String PERSONROLES_ROLE = "role";
 
-    //person
+    /**
+     * Person's object field name for email attribute
+     */
     public static final String PERSON_EMAIL = "email";
+
+    /**
+     * Person's object field name for name attribute
+     */
     public static final String PERSON_NAME = "name";
+
+    /**
+     * Person's object field name for surname attribute
+     */
     public static final String PERSON_SURNAME = "surname";
+
+    /**
+     * Person's object field name for password attribute
+     */
     public static final String PERSON_PSW = "psw";
+
+    /**
+     * Person's object field name for taxcode attribute
+     */
     public static final String PERSON_TAXCODE = "taxcode";
+
+    /**
+     * Person's object field name for birth date attribute
+     */
     public static final String PERSON_BIRTHDATE = "birthdate";
+
+    /**
+     * Person's object field name for telephone attribute
+     */
     public static final String PERSON_TELEPHONE = "telephone";
+
+    /**
+     * Person's object field name for address attribute
+     */
     public static final String PERSON_ADDRESS = "address";
+
+    /**
+     * Person's object field name for avatar path attribute
+     */
     public static final String PERSON_AVATARPATH = "avatarpath";
 
-    //passwordreset
+    /**
+     * PasswordReset's object field name for token attribute
+     */
     public static final String PASSWORDRESET_TOKEN = "token";
+
+    /**
+     * PasswordReset's object field name for expiration date attribute
+     */
     public static final String PASSWORDRESET_EXPIRATIONDATE = "expirationdate";
+
+    /**
+     * PasswordReset's object field name for person attribute
+     */
     public static final String PASSWORDRESET_PERSON = "person";
 
-    //medicalcertificate
+    /**
+     * MedicalCertificate's object field name for person attribute
+     */
     public static final String MEDICALCERTIFICATE_PERSON = "person";
+
+    /**
+     * MedicalCertificate's object field name for expiration date attribute
+     */
     public static final String MEDICALCERTIFICATE_EXPIRATIONDATE = "expirationdate";
+
+    /**
+     * MedicalCertificate's object field name for doctor name attribute
+     */
     public static final String MEDICALCERTIFICATE_DOCTORNAME = "doctorname";
+
+    /**
+     * MedicalCertificate's object field name for path attribute
+     */
     public static final String MEDICALCERTIFICATE_PATH = "path";
 
-    //reservation
+    /**
+     * Reservation's object field name for trainee attribute
+     */
     public static final String RESERVATION_TRAINEE = "trainee";
+
+    /**
+     * Reservation's object field name for lecture room attribute
+     */
     public static final String RESERVATION_LECTUREROOM = "lectureroom";
+
+    /**
+     * Reservation's object field name for lecture date attribute
+     */
     public static final String RESERVATION_LECTUREDATE = "lecturedate";
+
+    /**
+     * Reservation's object field name for lecture start time attribute
+     */
     public static final String RESERVATION_LECTURESTARTTIME = "lecturestarttime";
 
-    //teaches
+    /**
+     * Teaches' object field name for course edition id attribute
+     */
     public static final String TEACHES_COURSEEDITIONID = "courseeditionid";
+
+    /**
+     * Teaches' object field name for course name attribute
+     */
     public static final String TEACHES_COURSENAME = "coursename";
+
+    /**
+     * Teaches' object field name for trainer attribute
+     */
     public static final String TEACHES_TRAINER = "trainer";
 
-    //room
+    /**
+     * Room's object field name for name attribute
+     */
     public static final String ROOM_NAME = "name";
+
+    /**
+     * Room's object field name for slots attribute
+     */
     public static final String ROOM_SLOTS = "slots";
 
-    //lecturetimeslot
+    /**
+     * LectureTimeSlot's object field name for room name attribute
+     */
     public static final String LECTURETIMESLOT_ROOMNAME = "roomname";
+
+    /**
+     * LectureTimeSlot's object field name for date attribute
+     */
     public static final String LECTURETIMESLOT_DATE = "date";
+
+    /**
+     * LectureTimeSlot's object field name for start time attribute
+     */
     public static final String LECTURETIMESLOT_STARTTIME = "starttime";
+
+    /**
+     * LectureTimeSlot's object field name for course edition id attribute
+     */
     public static final String LECTURETIMESLOT_COURSEEDITIONID = "courseeditionid";
+
+    /**
+     * LectureTimeSlot's object field name for course name attribute
+     */
     public static final String LECTURETIMESLOT_COURSENAME = "coursename";
+
+    /**
+     * LectureTimeSlot's object field name for substitution attribute
+     */
     public static final String LECTURETIMESLOT_SUBSTITUTION = "substitution";
 
-    //coursedition
+    /**
+     * CourseEdition's object field name for id attribute
+     */
     public static final String COURSEEDITION_ID = "id";
+
+    /**
+     * CourseEdition's object field name for name attribute
+     */
     public static final String COURSEEDITION_NAME = "name";
 
-    //course
+    /**
+     * Course's object field name for name attribute
+     */
     public static final String COURSE_NAME = "name";
+
+    /**
+     * Course's object field name for description attribute
+     */
     public static final String COURSE_DESCRIPTION = "description";
 
-    //subscriptiontype
+    /**
+     * SubscriptionType's object field name for course edition id attribute
+     */
     public static final String SUBSCRIPTIONTYPE_COURSEEDITIONID = "courseeditionid";
+
+    /**
+     * SubscriptionType's object field name for course name id attribute
+     */
     public static final String SUBSCRIPTIONTYPE_COURSENAME = "coursename";
+
+    /**
+     * SubscriptionType's object field name for duration attribute
+     */
     public static final String SUBSCRIPTIONTYPE_DURATION = "duration";
+
+    /**
+     * SubscriptionType's object field name for cost attribute
+     */
     public static final String SUBSCRIPTIONTYPE_COST = "cost";
 
-    //subscription
+    /**
+     * Subscription's object field name for course edition id attribute
+     */
     public static final String SUBSCRIPTION_COURSEEDITIONID = "courseeditionid";
+
+    /**
+     * Subscription's object field name for course name attribute
+     */
     public static final String SUBSCRIPTION_COURSENAME = "coursename";
+
+    /**
+     * Subscription's object field name for duration attribute
+     */
     public static final String SUBSCRIPTION_DURATION = "duration";
+
+    /**
+     * Subscription's object field name for start day attribute
+     */
     public static final String SUBSCRIPTION_STARTDAY = "startday";
+
+    /**
+     * Subscription's object field name for trainee attribute
+     */
     public static final String SUBSCRIPTION_TRAINEE = "trainee";
+
+    /**
+     * Subscription's object field name for discount attribute
+     */
     public static final String SUBSCRIPTION_DISCOUNT = "discount";
 
     /**
