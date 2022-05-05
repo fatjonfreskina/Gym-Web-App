@@ -46,7 +46,7 @@ public class SubscriptionType {
     }
 
     /**
-     * Get the ID of the edition of the course
+     * Gets the ID of the edition of the course
      *
      * @return the ID of the edition of the considered course
      */
@@ -55,7 +55,7 @@ public class SubscriptionType {
     }
 
     /**
-     * Get the name of the course
+     * Gets the name of the course
      *
      * @return the name of the course
      */
@@ -64,7 +64,7 @@ public class SubscriptionType {
     }
 
     /**
-     * Get the duration of the subscription
+     * Gets the duration of the subscription
      *
      * @return the duration of the subscription in days
      */
@@ -73,7 +73,7 @@ public class SubscriptionType {
     }
 
     /**
-     * Get the cost of the subscription
+     * Gets the cost of the subscription
      *
      * @return the cost of the type of subscription in the current currency
      */

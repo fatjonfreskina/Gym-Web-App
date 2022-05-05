@@ -29,10 +29,18 @@ public class Message {
 
     }
 
+    /**
+     * Gets the message
+     * @return  the message
+     */
     public final String getMessage() {
         return message;
     }
 
+    /**
+     * Returns if this message represents an error
+     * @return  true if the message is an error, false otherwise
+     */
     public final boolean isError() {
         return isError;
     }
