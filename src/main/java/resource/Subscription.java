@@ -26,7 +26,7 @@ public class Subscription {
    * @param duration        duration of the subscription (in days)
    * @param startDay        date from which the subscription starts
    * @param discount        discount applied to the price of the subscription
-   * @param trainee
+   * @param trainee         email of the trainer
    */
   public Subscription(int courseEditionID, String courseName, int duration, Date startDay, int discount, String trainee) {
     this.courseEditionID = courseEditionID;

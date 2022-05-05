@@ -15,6 +15,14 @@ public class Reservation {
   private final Date lectureDate;
   private final Time lectureStartTime;
 
+  /**
+   *
+   * @param trainee           Email of the trainee
+   * @param room              The name of the room
+   * @param lectureDate       Date of the lecture as Date
+   * @param lectureStartTime  The time the lecture starts
+   */
+
   public Reservation(String trainee, String room, Date lectureDate, Time lectureStartTime) {
     this.trainee = trainee;
     this.room = room;

@@ -34,6 +34,14 @@ public class TraineeRestServlet extends AbstractRestServlet {
   private static final Pattern URI_REGEX = Pattern.compile(
       "/rest/trainee/(.*)", Pattern.DOTALL);
 
+  /**
+   *
+   * @param req The HTTP request.
+   * @param res The HTTP response.
+   * @throws ServletException
+   * @throws IOException
+   */
+
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     try {

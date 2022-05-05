@@ -15,6 +15,11 @@ public class TypeOfRoles {
         return role;
     }
 
+    /**
+     * Get the roles available
+     *
+     * @return A string concatenated with the possible roles
+     */
     @Override
     public String toString() {
         return "TypeOfRoles{" +
