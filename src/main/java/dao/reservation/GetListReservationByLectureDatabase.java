@@ -19,12 +19,22 @@ public class GetListReservationByLectureDatabase {
     private final Connection con;
     private final LectureTimeSlot lectureTimeSlot;
 
+    /**
+     *
+     * @param con the connection to the database
+     * @param lectureTimeSlot
+     */
 
     public GetListReservationByLectureDatabase(final Connection con, final LectureTimeSlot lectureTimeSlot) {
         this.con = con;
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
+    /**
+     *
+     * @return A List of Lectures matching the query (given date, room, start time)
+     * @throws SQLException
+     */
     public List<Reservation> execute() throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
