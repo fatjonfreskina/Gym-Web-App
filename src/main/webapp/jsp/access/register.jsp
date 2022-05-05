@@ -101,6 +101,14 @@
 
         <jsp:include page="/jsp/include/message.jsp"/>
 
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
         <button type="submit" class="btn btn-outline-primary btn-lg">Register</button>
     </form>
 
