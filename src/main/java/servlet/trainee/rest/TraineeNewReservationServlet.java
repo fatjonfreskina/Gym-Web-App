@@ -4,6 +4,7 @@ import com.google.gson.JsonParseException;
 import constants.Constants;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
+import dao.medicalcertificate.GetLastMedicalCertfiticateByPersonDatabase;
 import dao.reservation.GetAvailableSlotsReservationDatabase;
 import dao.reservation.GetReservationByAllFieldsDatabase;
 import dao.reservation.InsertReservationDatabase;
@@ -13,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import resource.LectureTimeSlot;
+import resource.MedicalCertificate;
+import resource.Person;
 import resource.Reservation;
 import servlet.AbstractRestServlet;
 
@@ -23,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 
 /**
@@ -123,6 +127,14 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             //Check 4: not already present a reservation made by the same user in the same slot
             if (new GetReservationByAllFieldsDatabase(getConnection(),res).execute() != null) {
                 sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
+                return;
+            }
+
+            //Check 5: user's medical certificate not valid
+            MedicalCertificate medicalCertificate = new GetLastMedicalCertfiticateByPersonDatabase(getDataSource().getConnection(),
+                    new Person(email,null,null,null,null,null,null,null,null)).execute();
+            if(medicalCertificate == null || medicalCertificate.getExpirationDate().toLocalDate().isBefore(LocalDate.now())){
+                sendErrorResponse(resp, Codes.BAD_REQUEST);
                 return;
             }
         } catch(Throwable th) {
