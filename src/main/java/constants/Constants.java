@@ -29,36 +29,114 @@ public class Constants {
      */
     public static final String RELATIVE_URL_TRAINER_MANAGE_ATTENDANCE = "/trainer/attendance";
 
-    //PATH PARAMETERS
+    /**
+     * URL parameter for adding a week
+     */
     public static final String URL_PARAMETER_TRAINER_HOME_PAGE_ADD_WEEKS = "addWeeks";
 
-    //GENERAL APPLICATION PATHS
+    /**
+     * Path to the gym JSP page
+     */
     public static final String PATH_THE_GYM = "/jsp/thegym.jsp";
+
+    /**
+     * Path to prices JSP page
+     */
     public static final String PATH_PRICES = "/jsp/prices.jsp";
+
+    /**
+     * Path to register JSP page
+     */
     public static final String PATH_REGISTER = "/jsp/access/register.jsp";
+
+    /**
+     * Path to contact us JSP page
+     */
     public static final String PATH_CONTACT_US = "/jsp/contactus.jsp";
+
+    /**
+     * Path to calendar JSP page
+     */
     public static final String PATH_CALENDAR = "/jsp/calendar.jsp";
+
+    /**
+     * Path to confirmed registration JSP page
+     */
     public static final String PATH_CONFIRMED_REGISTRATION = "/jsp/access/confirmed_registration.jsp";
+
+    /**
+     * Path to confirm registration JSP page
+     */
     public static final String PATH_CONFIRM_REGISTRATION = "/jsp/access/confirm_registration.jsp";
+
+    /**
+     * Path to login JSP page
+     */
     public static final String PATH_LOGIN = "/jsp/access/login.jsp";
+
+    /**
+     * Path to courses JSP page
+     */
     public static final String PATH_COURSES = "/jsp/courses.jsp";
+
+    /**
+     * Path to staff JSP page
+     */
     public static final String PATH_STAFF = "/jsp/staff.jsp";
+
+    /**
+     * Path to roles JSP page
+     */
     public static final String PATH_ROLES = "/jsp/access/roles.jsp";
+
+    /**
+     * Path to unauthorized JSP page
+     */
     public static final String PATH_UNAUTHORIZED = "/jsp/access/unauthorized.jsp";
 
-    //TRAINEE PATH
+    /**
+     * Path for the trainee JSP page
+     */
     public static final String PATH_TRAINEE = "/jsp/trainee/trainee.jsp";
 
-    //PASSWORD FLOW PATHS
+    /**
+     * Path for password forgot JSP page
+     */
     public static final String PATH_PASSWORD_FORGOT = "/jsp/auth/password_forgot.jsp";
+
+    /**
+     * Path for password change JSP page
+     */
     public static final String PATH_PASSWORD_CHANGE = "/jsp/auth/password_change.jsp";
 
-    //SECRETARY APPLICATION PATH
+    /**
+     * Path for secretary's home JSP page
+     */
     public static final String PATH_SECRETARY_HOME = "/jsp/secretary/home.jsp";
+
+    /**
+     * Path for secretary's add courses JSP page
+     */
     public static final String PATH_SECRETARY_ADD_COURSES = "/jsp/secretary/addcourses.jsp";
+
+    /**
+     * Path for secretary's manage subscriptions JSP page
+     */
     public static final String PATH_SECRETARY_MANAGES_SUBSCRIPTION = "/jsp/secretary/managesubscription.jsp";
+
+    /**
+     * Path for secretary's add account JSP page
+     */
     public static final String PATH_SECRETARY_ADD_ACCOUNT = "/jsp/secretary/addaccount.jsp";
+
+    /**
+     * Path for secretary's role management JSP page
+     */
     public static final String PATH_SECRETARY_MANAGE_ROLES = "/jsp/secretary/manageroles.jsp";
+
+    /**
+     * Path for secretary's add medical certificate JSP page
+     */
     public static final String PATH_SECRETARY_ADD_CERTIFICATE = "/jsp/secretary/addmedicalcertificate.jsp";
 
     //TRAINER PATHS
