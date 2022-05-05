@@ -26,10 +26,21 @@ public class DeleteReservationDatabase {
   private final Connection con;
   private final Reservation reservation;
 
+  /**
+   *
+   * @param con the connection to the database
+   * @param reservation the reservation object
+   */
   public DeleteReservationDatabase(final Connection con, final Reservation reservation) {
     this.con = con;
     this.reservation = reservation;
   }
+
+  /**
+   *
+   * @return the Reservation object that has been removed
+   * @throws SQLException
+   */
 
   public Reservation execute() throws SQLException {
     Reservation deletedReservation = null;

@@ -22,8 +22,8 @@ public class InsertReservationDatabase {
 
     /**
      *
-     * @param con the connection to the database
-     * @param reservation the reservation object that needs to be inserted
+     * @param con  the connection to the database
+     * @param reservation  the reservation object that needs to be inserted
      */
 
     public InsertReservationDatabase(final Connection con, final Reservation reservation) {

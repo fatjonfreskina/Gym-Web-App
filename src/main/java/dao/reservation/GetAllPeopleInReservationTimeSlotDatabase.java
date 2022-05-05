@@ -12,7 +12,9 @@ import java.util.List;
  * @auhor Riccardo Forzan
  */
 public class GetAllPeopleInReservationTimeSlotDatabase {
-
+    /**
+     * The query looks for all the users registered to a lecture given the lecture date, room, and start time
+     */
     private static final String STATEMENT = "SELECT person.* FROM reservation INNER JOIN person ON person.email = reservation.trainee WHERE lecturedate = ? and lectureroom= ? and lecturestarttime= ?";
 
     private final Connection con;
@@ -24,6 +26,11 @@ public class GetAllPeopleInReservationTimeSlotDatabase {
         this.reservation = reservation;
     }
 
+    /**
+     *
+     * @return the list containing Person objects that matched the query: all the persons registered for a lecture time slot
+     * @throws SQLException
+     */
     public List<Person> execute() throws SQLException {
 
         PreparedStatement preparedStatement = null;

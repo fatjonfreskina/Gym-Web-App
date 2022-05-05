@@ -9,17 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Return a list of reservations of a user within a given date interval.
- * It requires as input parameters:
- * <ul>
- *     <li>The email address of the user.</li>
- *     <li>The start date of the interval.</li>
- *     <li>The end date of the interval.</li>
- * </ul>
  *
  * @author Fatjon Freskina, Marco Alessio
  */
 public class GetListReservationByEmailAndDateDatabase
+        /**
+         * The query statement, select the fields of lecture time slot given a trainee and a date greater and smaller
+         * than the passed one
+         */
 {
     private static final String STATEMENT = """
             SELECT lectureroom, lecturedate, lecturestarttime
@@ -33,8 +30,16 @@ public class GetListReservationByEmailAndDateDatabase
     private final Date fromDate;
     private final Date toDate;
 
+    /**
+     *
+     * @param con  the connection to the database
+     * @param email  the email parameter
+     * @param fromDate  the date, lower bound
+     * @param toDate  the date, higher bound
+     */
     public GetListReservationByEmailAndDateDatabase(final Connection con, final String email,
                                                     final Date fromDate, final Date toDate)
+
     {
         this.con = con;
         this.email = email;
@@ -42,6 +47,11 @@ public class GetListReservationByEmailAndDateDatabase
         this.toDate = toDate;
     }
 
+    /**
+     *
+     * @return the list containing Reservation object that matched the query; if no match returns null
+     * @throws SQLException
+     */
     public List<Reservation> execute() throws SQLException
     {
         PreparedStatement pstmt = null;
