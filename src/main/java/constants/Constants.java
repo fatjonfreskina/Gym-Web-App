@@ -139,45 +139,125 @@ public class Constants {
      */
     public static final String PATH_SECRETARY_ADD_CERTIFICATE = "/jsp/secretary/addmedicalcertificate.jsp";
 
-    //TRAINER PATHS
+    /**
+     * Path for trainer's home JSP page
+     */
     public static final String PATH_TRAINER_HOME = "/jsp/trainer/home.jsp";
+
+    /**
+     * Path for trainer's manage attendance JSP page
+     */
     public static final String PATH_TRAINER_MANAGE_ATTENDANCE = "/jsp/trainer/manageAttendance.jsp";
 
+    /**
+     * Path for user's personal JSP page
+     */
     public static final String PATH_PERSONALINFO = "/jsp/personalinfo.jsp";
 
-    //EMAIL CONSTANTS
+    /**
+     * Email address that would be ideally used to send emails from our jobs
+     */
     public static final String NOREPLYEMAIL = "noreply@gwa.com";
-    public static final String HOST = "localhost";
+
+    /**
+     *
+     */
     public static final String MAILSMTPHOST = "mail.smtp.host";
+
+    /**
+     * Name of this host
+     */
+    public static final String HOST = "localhost";
+
+    /**
+     * Template URL for confirmation
+     */
     public static final String CONFIRMATION_URL = "http://127.0.0.1:8080/wa2122-gwa/confirm_registration?token=";
+
+    /**
+     * Template URL for changing password
+     */
     public static final String PASSWORD_CHANGE_URL = "http://127.0.0.1:8080/wa2122-gwa/password_change?token=";
 
     //PARAMETERS POST/GET CONSTANTS
+    /**
+     * Name of the parameter passed using GET or POST method for the field tax code
+     */
     public static final String TAX_CODE = "tax_code";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field first name
+     */
     public static final String FIRST_NAME = "first_name";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field last name
+     */
     public static final String LAST_NAME = "last_name";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field birth date
+     */
     public static final String BIRTH_DATE = "birth_date";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field address
+     */
     public static final String ADDRESS = "address";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field telephone number
+     */
     public static final String TELEPHONE_NUMBER = "telephone_number";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field avatar
+     */
     public static final String AVATAR = "avatar";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field email
+     */
     public static final String EMAIL = "email";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field password
+     */
     public static final String PASSWORD = "password";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field confirm password
+     */
     public static final String CONFIRM_PASSWORD = "confirm_password";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field medical certificate
+     */
     public static final String MEDICAL_CERTIFICATE = "medical_certificate";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field message
+     */
     public static final String MESSAGE = "message";
 
-    //FIELDS DELLE TABELLE NOMETABELLA_NOMEFIELD
-
-    //emailconfirmation
+    /**
+     * Name of the parameter passed using GET or POST method for the field person
+     */
     public static final String EMAILCONFIRMATION_PERSON = "person";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field token
+     */
     public static final String EMAILCONFIRMATION_TOKEN = "token";
+
+    /**
+     * Name of the parameter passed using GET or POST method for the field expiration date
+     */
     public static final String EMAILCONFIRMATION_EXPIRATIONDATE = "expirationdate";
 
-    //typeofroles
-    public static final String TYPEOFROLES_ROLE = "role";
-
-    //personroles
-    public static final String PERSONROLES_PERSON = "person";
+    /**
+     * Name of the parameter passed using GET or POST method for the field role
+     */
     public static final String PERSONROLES_ROLE = "role";
 
     //person
@@ -247,22 +327,41 @@ public class Constants {
     public static final String SUBSCRIPTION_TRAINEE = "trainee";
     public static final String SUBSCRIPTION_DISCOUNT = "discount";
 
-
-    //UPLOAD FILE CONSTANTS
+    /**
+     * Path for storing avatars inside the application
+     */
     public static final String AVATAR_PATH_FOLDER = "../gwa/avatars";
+
+    /**
+     * Path for storing medical certificates inside the application
+     */
     public static final String MEDICAL_CERTIFICATE_PATH_FOLDER = "../gwa/medical_certificates";
 
-    //ACCEPTED EXTENSIONS
+    /**
+     * Regex to specify which file name are accepted for avatar file
+     */
     public static final Pattern ACCEPTED_AVATAR_FILENAME_REGEX = Pattern.compile(
             "^(.*)\\.(png|jpg|jpeg)$", Pattern.DOTALL);
 
+    /**
+     * Regex to specify which file name are accepted for medical certificate file
+     */
     public static final Pattern ACCEPTED_MEDICAL_CERTIFICATE_FILENAME_REGEX = Pattern.compile(
             "^(.*)\\.(pdf)$", Pattern.DOTALL);
 
+    /**
+     * Duration of a day expressed in milliseconds
+     */
     public static final long DAY = 1000 * 60 * 60 * 24;
 
-    //JSON PARSE EXCEPTIONS MESSAGE
+    /**
+     * JSON exception thrown when an error occurred in parsing time
+     */
     public static final String UNPARSABLE_TIME = "Unparsable time: ";
+
+    /**
+     * JSON exception thrown when an error occurred in parsing date
+     */
     public static final String UNPARSABLE_DATE = "Unparsable date: ";
 
 }
