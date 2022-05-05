@@ -23,14 +23,26 @@ public class Teaches {
     this.trainer = trainer;
   }
 
+  /**
+   * Gets the course edition
+   * @return  the course edition
+   */
   public final int getCourseEdition() {
     return courseEdition;
   }
 
+  /**
+   * Gets the course name
+   * @return  the course name
+   */
   public final String getCourseName() {
     return courseName;
   }
 
+  /**
+   * Gets the trainer
+   * @return  the trainer
+   */
   public final String getTrainer() {
     return trainer;
   }

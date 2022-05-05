@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.util.Objects;
 
 /**
+ * Java Bean used to represent a reservation
  * @author Fatjon Freskina
  * @author Harjot Singh
  */
@@ -16,13 +17,12 @@ public class Reservation {
   private final Time lectureStartTime;
 
   /**
-   *
+   * Constructor for this class
    * @param trainee           Email of the trainee
    * @param room              The name of the room
    * @param lectureDate       Date of the lecture as Date
    * @param lectureStartTime  The time the lecture starts
    */
-
   public Reservation(String trainee, String room, Date lectureDate, Time lectureStartTime) {
     this.trainee = trainee;
     this.room = room;
@@ -30,6 +30,12 @@ public class Reservation {
     this.lectureStartTime = lectureStartTime;
   }
 
+  /**
+   * Constructor for this class
+   * @param room              The name of the room
+   * @param lectureDate       Date of the lecture as Date
+   * @param lectureStartTime  The time the lecture starts
+   */
   public Reservation(String room, Date lectureDate, Time lectureStartTime) {
     this.trainee = null;
     this.room = room;
@@ -37,6 +43,12 @@ public class Reservation {
     this.lectureStartTime = lectureStartTime;
   }
 
+  /**
+   * Constructor for this class
+   * @param trainee           Email of the trainee
+   * @param r  the reservation
+   * @param trainee  the trainee
+   */
     public Reservation(Reservation r, String trainee){
         this.trainee = trainee;
         this.room = r.room;
@@ -45,18 +57,34 @@ public class Reservation {
     }
 
 
+  /**
+   * Gets the trainee associated to this reservation
+   * @return  the trainee associated to this reservation
+   */
   public final String getTrainee() {
     return trainee;
   }
 
+  /**
+   * Gets the room associated to this reservation
+   * @return  the room associated to this reservation
+   */
   public final String getRoom() {
     return room;
   }
 
+  /**
+   * Gets the lecture date associated to this reservation
+   * @return  the lecture date associated to this reservation
+   */
   public final Date getLectureDate() {
     return lectureDate;
   }
 
+  /**
+   * Gets the lecture start time associated to this reservation
+   * @return  the lecture start time associated to this reservation
+   */
   public final Time getLectureStartTime() {
     return lectureStartTime;
   }

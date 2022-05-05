@@ -37,6 +37,12 @@ public class Subscription {
     this.trainee = trainee;
   }
 
+  /**
+   * Parametric constructor for Subscription
+   *
+   * @param courseEditionID ID of a course edition
+   * @param courseName      name of the course
+   */
   public Subscription(int courseEditionID, String courseName) {
     this.courseEditionID = courseEditionID;
     this.courseName = courseName;
@@ -46,26 +52,50 @@ public class Subscription {
     this.trainee = null;
   }
 
+  /**
+   * Gets the course edition
+   * @return  the course edition
+   */
   public int getCourseEditionID() {
     return courseEditionID;
   }
 
+  /**
+   * Gets the course name
+   * @return  the course name
+   */
   public String getCourseName() {
     return courseName;
   }
 
+  /**
+   * Gets the course duration
+   * @return  the course duration
+   */
   public int getDuration() {
     return duration;
   }
 
+  /**
+   * Gets the starting day of the course
+   * @return  the starting day of the course
+   */
   public Date getStartDay() {
     return startDay;
   }
 
+  /**
+   * Gets the discount
+   * @return  the discount
+   */
   public int getDiscount() {
     return discount;
   }
 
+  /**
+   * Gets the trainee
+   * @return  the trainee
+   */
   public String getTrainee() {
     return trainee;
   }
