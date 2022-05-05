@@ -97,11 +97,14 @@ function insertReservation(){
     res = JSON.stringify(value)
     $.ajax({
         url: "trainee/rest/reservation",
-        async: false,
         cache: false,
         type: "POST",
         contentType : "application/json",
         data : res,
+        success: function(response) {
+            selectedLectureTimeSlot = undefined;
+            renderCalendar()
+        }
         error: function (response) {
             e_message.textContent = response.responseJSON.message;
             $("#e-reservation").modal("show");
@@ -112,10 +115,13 @@ function insertReservation(){
 function deleteReservation(){
     $.ajax({
         url: "trainee/rest/reservation/room/"+selectedLectureTimeSlot.roomName+"/date/"+selectedLectureTimeSlot.customDate+"/starttime/"+selectedLectureTimeSlot.customStartTime,
-        async: false,
         cache: false,
         type: "DELETE",
         dataType: 'json',
+        success: function(response) {
+            selectedLectureTimeSlot = undefined;
+            renderCalendar()
+        }
         error: function (response) {
             e_message.textContent = response.responseJSON.message;
             $("#e-reservation").modal("show");
@@ -226,8 +232,6 @@ function renderCalendar() {
 $("#button-delete-reservation").click(() => {
     if (selectedLectureTimeSlot !== undefined) {
         deleteReservation();
-        selectedLectureTimeSlot = undefined;
-        renderCalendar();
     } else {
         console.log("Error, event not found");
     }
@@ -236,8 +240,6 @@ $("#button-delete-reservation").click(() => {
 $("#button-save-reservation").click(() => {
     if (selectedLectureTimeSlot !== undefined) {
         insertReservation();
-        selectedLectureTimeSlot = undefined;
-        renderCalendar();
     } else {
         console.log("Error, event not found");
     }
