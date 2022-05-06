@@ -181,8 +181,8 @@ function renderCalendar() {
 						//Create an event object
 						let event = {};
 						//Calculate dates
-						startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
-
+						//startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
+                        startDate = new Date(Date.parse(lts.date + 'T' + lts.startTime.toString()));
 						event.start = startDate;
 						event.end = moment(startDate).add(2, 'hours').toDate();
 

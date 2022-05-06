@@ -75,7 +75,9 @@ $(document).ready(function() {
                     //Create an event object
                     let event = {};
                     //Calculate dates
-                    startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
+                    //startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
+                    startDate = new Date(Date.parse(lts.date + 'T' + lts.startTime.toString()));
+
                     //TODO fix date management
                     //console.log(moment(lts.dateTime).toDate());
                     //startDate = new Date(lts.dateTime);
