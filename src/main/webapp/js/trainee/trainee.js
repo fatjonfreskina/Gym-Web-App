@@ -103,8 +103,8 @@ function insertReservation(){
         data : res,
         success: function(response) {
             selectedLectureTimeSlot = undefined;
-            renderCalendar()
-        }
+            renderCalendar();
+        },
         error: function (response) {
             e_message.textContent = response.responseJSON.message;
             $("#e-reservation").modal("show");
@@ -120,8 +120,8 @@ function deleteReservation(){
         dataType: 'json',
         success: function(response) {
             selectedLectureTimeSlot = undefined;
-            renderCalendar()
-        }
+            renderCalendar();
+        },
         error: function (response) {
             e_message.textContent = response.responseJSON.message;
             $("#e-reservation").modal("show");
