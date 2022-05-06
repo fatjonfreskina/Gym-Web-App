@@ -22,6 +22,9 @@ import java.util.List;
  * @author Francesco Caldivezzi
  */
 public class DropUncompletedRegistrations implements Runnable {
+    /**
+     * Runs this job by dropping users who have not completed their registration yet
+     */
     @Override
     public void run() {
         Context ctx = null;
