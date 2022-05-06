@@ -11,7 +11,9 @@
     <jsp:include page="../include/datatables/style.jsp"/>
 </head>
 <body>
-<jsp:include page="/jsp/include/header.jsp"/>
+<header>
+    <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
+</header>
 <main class="global-container">
     <c:choose>
         <c:when test="${empty message}">
