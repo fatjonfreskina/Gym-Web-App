@@ -23,11 +23,20 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
         right: 'prev,next'
     },
     allDaySlot: false,
+    timeFormat: 'HH:mm',
     slotMinTime: "05:00:00",
     slotMaxTime: "23:00:00",
-    businessHours: false,
+    slotLabelFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    },
     firstDay: 1,
-    nowIndicator: true,
+    eventTimeFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    },
     eventClick: clickHandler,
     eventContent: function(info){
          let container = document.createElement('div')
