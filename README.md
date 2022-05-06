@@ -21,11 +21,11 @@
 * [Users of the web app](#users-of-the-web-app)
 * [Necessary steps before usage](#necessary-steps-before-usage)
 
-## General description of the web app <a name="general-description-of-the-web-app"></a>
+## <a name="general-description-of-the-web-app"></a> General description of the web app 
 This web application is designed to be used for the management of a gym. It can be used by both the users attending the various courses offered by the gym and by the trainers/secretaries.<br />
 The aim of this web application is to simplify the users' tasks, allowing to manage courses, attendances and subscriptions with only a few clicks.
 
-## Users of the web app
+## <a name="users-of-the-web-app"></a> Users of the web app
 This web application has been implemented for different users, each one of them having different functionalities available.
 ### Guest
 The Guest represents a user who accesses the web application without logging in. He will be able to have a general insight of the gym.
@@ -36,7 +36,7 @@ The Trainer represents a logged-in user who teaches one or more courses. Each Tr
 ### Secretary
 The Secretary represents a logged-in user who takes care of the correct and timely management of secretarial activities regarding the gym.
 
-## Necessary steps before usage
+## <a name="necessary-steps-before-usage"></a>Necessary steps before usage
 To make this webapp working correctly you need to :
 - create a folder inside the tomcat web server installation folder called `gwa`
 - then go inside gwa and create two other subdirectories called : `avatars` and `medical_certificates`
