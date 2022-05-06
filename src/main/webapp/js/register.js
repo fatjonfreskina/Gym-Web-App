@@ -1,16 +1,17 @@
 $(document).ready(function() {
     const form = $('#form')
-    //const birtDate = $('#birth_date')
+    const birtDate = $('#birth_date')
     const password = $('#password')
     const confirmedPassword = $('#confirm_password')
     const telephone = $('#telephone_number')
+    const buttonRegister = $('#btn-register')
 
     //error boxes
     let alertBox = $("#alert-box")
     alertBox.hide()
     let messageBody = $("#alert-message-body")
 
-    form.one(function (e) {
+    buttonRegister.click(function (e) {
         e.preventDefault();
 
         //telephone control
@@ -29,12 +30,12 @@ $(document).ready(function() {
             }
         }
 
-        //TODO : age control
-        /*if(moment(birtDate.val()).fromNow() < 14)
+        // < 14 years
+        if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < 14)
         {
             showMessage("Provided Telephone not valid")
             return
-        }*/
+        }
 
         //password are not the same
         if(password.val() !== confirmedPassword.val())
@@ -42,7 +43,8 @@ $(document).ready(function() {
             showMessage("Password Are Different")
             return
         }
-        $(this).submit()
+        //TODO: .jpg,.jpeg,.png 5mb
+        form.submit()
     })
 
     function showMessage(message) {
@@ -53,5 +55,4 @@ $(document).ready(function() {
             $(this).slideUp(500);
         });
     }
-
 })
