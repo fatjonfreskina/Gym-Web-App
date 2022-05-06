@@ -13,10 +13,29 @@ import java.util.List;
  * @author Riccardo Forzan
  */
 public class GetAllLectureTimeSlotDatabase {
+    /**
+     * Query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date BETWEEN ? AND ?";
+    /**
+     * Connection to the database
+     */
     private final Connection connection;
+    /**
+     * Date limit (result must be after this date)
+     */
     private final Date startDate;
+    /**
+     * Date limit (result must be before this date)
+     */
     private final Date endDate;
+
+    /**
+     *
+     * @param connection the connection to the database
+     * @param startDate Date limit ( result must be after this date )
+     * @param endDate Date limit ( result must be before this date )
+     */
 
     public GetAllLectureTimeSlotDatabase(Connection connection, Date startDate, Date endDate) {
         this.connection = connection;
@@ -24,6 +43,11 @@ public class GetAllLectureTimeSlotDatabase {
         this.endDate = endDate;
     }
 
+    /**
+     *
+     * @return the list containing LectureTimeSlot objects that matched the query
+     * @throws SQLException
+     */
     public List<LectureTimeSlot> execute() throws SQLException {
         ArrayList<LectureTimeSlot> resultSet = new ArrayList<>();
         PreparedStatement ps;

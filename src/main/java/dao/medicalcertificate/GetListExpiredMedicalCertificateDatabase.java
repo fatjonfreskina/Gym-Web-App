@@ -16,6 +16,10 @@ import java.util.List;
  * @author Alberto Campeol
  */
 public class GetListExpiredMedicalCertificateDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT mc.person, name, surname, address, telephone, taxCode," + " birthdate, avatarpath, psw, courseeditionid, coursename, " + "startday, date(startday + duration * INTERVAL '1 day') AS finalday, expirationdate " + "FROM subscription AS s JOIN medicalcertificate AS mc ON s.trainee = mc.person " + "JOIN person AS p ON s.trainee = p.email " + "WHERE startday + duration * INTERVAL '1 day' >= NOW() AND expirationdate <= now() " + "AND NOT EXISTS (SELECT person FROM medicalcertificate WHERE person = mc.person AND expirationdate > now())";
 
     private final Connection conn;

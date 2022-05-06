@@ -13,15 +13,28 @@ import java.util.List;
  */
 public class GetMedicalCertificateDatabase {
 
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM medicalcertificate WHERE person = ?";
     private final Connection con;
     private final Person person;
 
+    /**
+     *
+     * @param con the connection to the database
+     * @param person the person object
+     */
     public GetMedicalCertificateDatabase(Connection con, Person person) {
         this.con = con;
         this.person = person;
     }
 
+    /**
+     *
+     * @return the list containing MedicalCertificate object that matched the query
+     * @throws SQLException
+     */
     public List<MedicalCertificate> execute() throws SQLException {
 
         ResultSet resultSet = null;

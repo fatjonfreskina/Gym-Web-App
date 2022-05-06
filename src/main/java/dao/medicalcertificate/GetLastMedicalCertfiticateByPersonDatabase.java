@@ -17,21 +17,41 @@ import java.util.List;
 
 public class GetLastMedicalCertfiticateByPersonDatabase {
 
+    /**
+     * The SELECT query to execute on the database
+     */
     private static final String STATEMENT = """
             select *
             from medicalcertificate
             where person = ? and expirationdate = (select max(expirationdate) from medicalcertificate where person = ?)            
             """;
+
+    /**
+     * Connection to the database
+     */
     private final Connection conn;
+
+    /**
+     * Person object
+     */
     private final Person person;
 
-
+    /**
+     *
+     * @param conn the database connection
+     * @param person the person object
+     */
     public GetLastMedicalCertfiticateByPersonDatabase(final Connection conn, final Person person)
     {
         this.conn = conn;
         this.person = person;
     }
 
+    /**
+     *
+     * @return MedicalCertificate object matched by the query
+     * @throws SQLException
+     */
     public MedicalCertificate execute() throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;

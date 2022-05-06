@@ -10,16 +10,37 @@ import java.sql.*;
  * @author Alberto Campeol
  */
 public class InsertMedicalCertificateDatabase {
-    private static final String STATEMENT = "INSERT INTO medicalcertificate(person, expirationdate, doctorname, path) VALUES (?, ?, ?, ?)";
-    private final Connection con;
-    private final MedicalCertificate mc;
-    private static final Logger logger = LogManager.getLogger("alberto_campeol_appender");
 
+    /**
+     * The query to be executed
+     */
+    private static final String STATEMENT = "INSERT INTO medicalcertificate(person, expirationdate, doctorname, path) VALUES (?, ?, ?, ?)";
+
+    /**
+     * The connection to the database
+     */
+    private final Connection con;
+
+    /**
+     * The Medical certificate object
+     */
+    private final MedicalCertificate mc;
+
+    /**
+     *
+     * @param con the connection to the database
+     * @param mc the medical certificate object
+     */
     public InsertMedicalCertificateDatabase(final Connection con, final MedicalCertificate mc) {
         this.con = con;
         this.mc = mc;
     }
 
+    /**
+     * Executes the query
+     *
+     * @throws SQLException
+     */
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
             preparedStatement.setString(1, mc.getPersonEmail());
@@ -28,13 +49,7 @@ public class InsertMedicalCertificateDatabase {
             preparedStatement.setString(4, mc.getPath());
 
             preparedStatement.execute();
-            logger.debug("[INFO] InsertMedicalCertificateDatabase - %s - Medical Certificate inserted successfully.\n".formatted(
-                    new Timestamp(System.currentTimeMillis())));
-        } catch (SQLException ex) {
-            logger.error("[INFO] InsertMedicalCertificateDatabase - %s - An exception occurred during insertion.\n%s\n".
-                    formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
 
-            throw ex;
         } finally {
             con.close();
         }
