@@ -35,12 +35,11 @@ public class GetAllLectureTimeSlotDatabase {
     private final Date endDate;
 
     /**
-     *
      * Parametric constructor
      *
      * @param connection the connection to the database
-     * @param startDate Date limit ( result must be after this date )
-     * @param endDate Date limit ( result must be before this date )
+     * @param startDate  Date limit ( result must be after this date )
+     * @param endDate    Date limit ( result must be before this date )
      */
     public GetAllLectureTimeSlotDatabase(Connection connection, Date startDate, Date endDate) {
         this.connection = connection;
@@ -49,9 +48,10 @@ public class GetAllLectureTimeSlotDatabase {
     }
 
     /**
+     * Executes the query to retrieve all the lecture time slots
      *
      * @return the list containing LectureTimeSlot objects that matched the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<LectureTimeSlot> execute() throws SQLException {
         ArrayList<LectureTimeSlot> resultSet = new ArrayList<>();
