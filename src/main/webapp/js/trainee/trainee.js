@@ -162,70 +162,68 @@ function renderCalendar() {
     let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
     let reservations = null
     $.ajax({
-            url: "trainee/rest/reservation/from-date/"+start+"/to-date/"+end,
-            async: false,
-            cache: false,
-            type: "GET",
-            dataType: 'json',
-            success: function (response) {
-                reservations = response
-            }
-    });
-    //Perform the AJAX request to fill the calendar
-    $.ajax({
-        url: "trainee/rest/available/from-date/"+start+"/to-date/"+end,
-        cache: false,
-        type: "GET",
-        dataType: 'json',
-        success: function (response) {
-            //Remove all the events
-            calendar.removeAllEvents();
-            //Iterate over all the elements in the response
-            for (const lts of response) {
-                //Create an event object
-                let event = {};
-                //Calculate dates
-                startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
+		url: "trainee/rest/reservation/from-date/"+start+"/to-date/"+end,
+		cache: false,
+		type: "GET",
+		dataType: 'json',
+		success: function (response) {
+			reservations = response
+			$.ajax({
+				url: "trainee/rest/available/from-date/"+start+"/to-date/"+end,
+				cache: false,
+				type: "GET",
+				dataType: 'json',
+				success: function (response) {
+					//Remove all the events
+					calendar.removeAllEvents();
+					//Iterate over all the elements in the response
+					for (const lts of response) {
+						//Create an event object
+						let event = {};
+						//Calculate dates
+						startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
 
-                event.start = startDate;
-                event.end = moment(startDate).add(2, 'hours').toDate();
+						event.start = startDate;
+						event.end = moment(startDate).add(2, 'hours').toDate();
 
-                let present = false;
-                for(let i = 0; i<reservations.length; i++){
-                    if(
-                        reservations[i].room.localeCompare(lts.roomName)==0 &&
-                        reservations[i].lectureDate.localeCompare(lts.date)==0 &
-                        reservations[i].lectureStartTime.localeCompare(lts.startTime)==0){
-                        reservations.splice(i,1)
-                        present = true;
-                        break;
-                    }
-                }
+						let present = false;
+						for(let i = 0; i<reservations.length; i++){
+							if(
+								reservations[i].room.localeCompare(lts.roomName)==0 &&
+								reservations[i].lectureDate.localeCompare(lts.date)==0 &
+								reservations[i].lectureStartTime.localeCompare(lts.startTime)==0){
+								reservations.splice(i,1)
+								present = true;
+								break;
+							}
+						}
 
-                event.title = lts.courseName;
-                if(present)
-                    event.backgroundColor = GetColorOfCourse("Reserved");
-                else
-                    event.backgroundColor = GetColorOfCourse(lts.courseName);
-                let lectureTimeSlot = {};
-                lectureTimeSlot.courseEditionId = lts.courseEditionId;
-                lectureTimeSlot.courseName = lts.courseName
-                lectureTimeSlot.roomName = lts.roomName;
-                lectureTimeSlot.customDate = lts.date;
-                lectureTimeSlot.customStartTime = lts.startTime;
-                lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
-                lectureTimeSlot.booked = !present
+						event.title = lts.courseName;
+						if(present)
+							event.backgroundColor = GetColorOfCourse("Reserved");
+						else
+							event.backgroundColor = GetColorOfCourse(lts.courseName);
+						let lectureTimeSlot = {};
+						lectureTimeSlot.courseEditionId = lts.courseEditionId;
+						lectureTimeSlot.courseName = lts.courseName
+						lectureTimeSlot.roomName = lts.roomName;
+						lectureTimeSlot.customDate = lts.date;
+						lectureTimeSlot.customStartTime = lts.startTime;
+						lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
+						lectureTimeSlot.booked = !present
 
 
-                //Add the custom object to the calendar object
-                event.customLTS = lectureTimeSlot;
+						//Add the custom object to the calendar object
+						event.customLTS = lectureTimeSlot;
 
-                //Add the element to the calendar
-                calendar.addEvent(event);
-            }
-            //Render the new calendar
-            calendar.render();
-        }
+						//Add the element to the calendar
+						calendar.addEvent(event);
+					}
+					//Render the new calendar
+					calendar.render();
+				}
+			});
+		}
     });
 }
 
