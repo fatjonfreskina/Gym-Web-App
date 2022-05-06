@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DAO class used to get a valid subscription associated to a course and a trainee
  * @author Andrea Pasin
  */
 public class GetValidSubscriptionByCourseAndTraineeDatabase {
@@ -19,12 +20,24 @@ public class GetValidSubscriptionByCourseAndTraineeDatabase {
     private final CourseEdition course;
     private final Person person;
 
+    /**
+     * Constructor for this class
+     * @param connection  the database connection
+     * @param course  the course
+     * @param person  the trainee
+     */
     public GetValidSubscriptionByCourseAndTraineeDatabase(final Connection connection, final CourseEdition course, final Person person) {
         this.connection = connection;
         this.course = course;
         this.person=person;
     }
 
+    /**
+     * Executes the sql statement retrieving the list of valid subscriptions associated to a trainee and
+     * a course
+     * @return  the list of valid subscriptions
+     * @throws SQLException
+     */
     public List<Subscription> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;

@@ -16,6 +16,7 @@ import resource.CourseEdition;
 import resource.Subscription;
 
 /**
+ * DAO class used to get the subscriptions associated to a course
  * @author Harjot Singh
  */
 public class GetSubscriptionsByCourseDatabase {
@@ -26,11 +27,21 @@ public class GetSubscriptionsByCourseDatabase {
   private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
   private final String loggerClass = "gwa.dao.subscription.GetSByCourseD: ";
 
+  /**
+   * Constructor for this class
+   * @param connection  the database connection
+   * @param course  the course
+   */
   public GetSubscriptionsByCourseDatabase(final Connection connection, final CourseEdition course) {
     this.connection = connection;
     this.course = course;
   }
 
+  /**
+   * Executes the sql statement retrieving the list of subscriptions associated to a given course
+   * @return  the list of subscriptions associated to a given course
+   * @throws SQLException
+   */
   public List<Subscription> execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
