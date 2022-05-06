@@ -15,10 +15,20 @@ $(document).ready(function() {
             right: 'prev,next'
         },
         allDaySlot: false,
+        timeFormat: 'HH:mm',
         slotMinTime: "05:00:00",
         slotMaxTime: "23:00:00",
-        businessHours: false,
+        slotLabelFormat: {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        },
         firstDay: 1,
+        eventTimeFormat: {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        },
         nowIndicator: true,
         eventClick: function (info) {
             selectedEvent = info.event.extendedProps.customLTS;

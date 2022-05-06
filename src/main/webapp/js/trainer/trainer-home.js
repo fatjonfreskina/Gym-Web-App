@@ -9,20 +9,25 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     initialDate: new Date(),
     themeSystem: "bootstrap",
     headerToolbar: {
-        left: 'prev', center: 'title', right: 'next'
+        left: '',
+        center: 'title',
+        right: 'prev,next'
     },
     allDaySlot: false,
-    slotLabelFormat: {
-        hour: 'numeric', minute: '2-digit', hour12: false
-    },
-    eventTimeFormat: {
-        hour: '2-digit', minute: '2-digit', hour12: false
-    },
+    timeFormat: 'HH:mm',
     slotMinTime: "05:00:00",
     slotMaxTime: "23:00:00",
-    businessHours: false,
+    slotLabelFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    },
     firstDay: 1,
-    slotDuration: '00:30',
+    eventTimeFormat: {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    },
     nowIndicator: true,
     eventClick: clickHandler
 });
