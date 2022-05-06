@@ -8,12 +8,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * Gets the EmailConfirmation object associated to a person
+ *
  * @author Andrea Pasin
  */
 public class GetEmailConfirmationIfExistsDatabase {
 
+    /**
+     * Query to execute on the database
+     */
     private static final String STATEMENT = "SELECT * FROM emailconfirmation WHERE person = ?";
+
+    /**
+     * Database connection
+     */
     private final Connection connection;
+
+    /**
+     * EmailConfirmation object
+     */
     private final EmailConfirmation emailConfirmation;
 
     /**
@@ -27,6 +40,12 @@ public class GetEmailConfirmationIfExistsDatabase {
         this.emailConfirmation = emailConfirmation;
     }
 
+    /**
+     * Gets the EmailConfirmation object associated to the person
+     *
+     * @return EmailConfirmation associated to the person (if any)
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public EmailConfirmation execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
