@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * This DAO is used to retrieve the medical certificate of a user from the database
+ *
  * @author Riccardo Forzan
  */
 public class GetMedicalCertificateDatabase {

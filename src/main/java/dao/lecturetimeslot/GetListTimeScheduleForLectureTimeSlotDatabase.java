@@ -10,26 +10,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * This DAO is used to get the time schedule for a lecture time slot
+ *
  * @author Francesco Caldivezzi
  * */
 public class GetListTimeScheduleForLectureTimeSlotDatabase
 {
+    /**
+     * The SELECT query to be executed
+     */
     private final String STATEMENT = "select distinct to_char(date,'Dy') as date,starttime,courseeditionid " +
             "from lecturetimeslot join courseedition on lecturetimeslot.courseeditionid=courseedition.id and lecturetimeslot.coursename=courseedition.coursename " +
             "where date >= current_date and courseedition.coursename = ? " +
             "group by date,starttime,courseeditionid " +
             "order by courseeditionid desc";
 
-
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
+
+    /**
+     * The course edition to pass for the query
+     */
     private final CourseEdition courseEdition;
 
+    /**
+     *
+     * Parametric constructor
+     *
+     * @param connection the connection to the database
+     * @param courseEdition the course edition that needs to be passed to the query
+     */
     public GetListTimeScheduleForLectureTimeSlotDatabase(final Connection connection, CourseEdition courseEdition)
     {
         this.connection = connection;
         this.courseEdition = courseEdition;
     }
 
+    /**
+     *
+     * Execute the query
+     *
+     * @return a list of GeneralWeekHours object that matched the query
+     * @throws SQLException
+     */
     public List<GeneralWeekHours> execute() throws SQLException
     {
         PreparedStatement ps = null;

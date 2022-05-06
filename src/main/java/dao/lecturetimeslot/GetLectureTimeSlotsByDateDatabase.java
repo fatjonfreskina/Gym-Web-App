@@ -10,21 +10,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * This DAO is used to get a list of lecture time slots by passing a range of Dates
+ *
  * @author Harjot Singh
  */
 public class GetLectureTimeSlotsByDateDatabase {
-  private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date >= ? and date <= ?";
+
+  /**
+   * The query to be executed
+   */
   // Can not use == to compare dates therefore use <= and >= instead
+  private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date >= ? and date <= ?";
+
+  /**
+   * Date to insert in the query
+   */
   private final Date date;
 
+  /**
+   * The connection to the database
+   */
   private final Connection connection;
-  private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
 
+  /**
+   *
+   * Parametric constructor
+   *
+   * @param connection to the database
+   * @param date to be inserted in the query
+   */
   public GetLectureTimeSlotsByDateDatabase(final Connection connection, final Date date) {
     this.connection = connection;
     this.date = date;
   }
 
+  /**
+   *
+   * Execute the query
+   *
+   * @return a list containing LectureTimeSlot objects that matched the query
+   * @throws SQLException
+   */
   public List<LectureTimeSlot> execute() throws SQLException {
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -35,7 +62,6 @@ public class GetLectureTimeSlotsByDateDatabase {
       ps.setDate(2, date);
 
       rs = ps.executeQuery();
-      logger.debug("gwa.dao.GetLTSByDateD: query executed successfully, retrieving data...");
       while (rs.next()) {
         String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
         Date date = rs.getDate(Constants.LECTURETIMESLOT_DATE);
@@ -45,12 +71,8 @@ public class GetLectureTimeSlotsByDateDatabase {
         String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUTION);
         LectureTimeSlot lts = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
 
-        logger.debug("gwa.dao.GetLTSByDateD: Retrieved " + lts);
         result.add(lts);
       }
-    } catch (SQLException ex) {
-      logger.error("gwa.dao.GetLTSByDateD: " + ex.getMessage());
-      throw ex;
     } finally {
       if (rs != null) rs.close();
       if (ps != null) ps.close();

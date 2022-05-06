@@ -11,19 +11,44 @@ import java.sql.*;
  * @author Andrea Pasin
  */
 public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date = CURRENT_DATE " +
             "and starttime <= CURRENT_TIME " +
             "and (starttime + INTERVAL '2 hour') >= CURRENT_TIME " +
             "and courseeditionid= ?;";
+
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
+
+    /**
+     * The lectureTimeSlot object
+     */
     private final LectureTimeSlot lectureTimeSlot;
 
-
+    /**
+     *
+     * Parametric constructor
+     *
+     * @param connection the connection to the database
+     * @param lectureTimeSlot the lectureTimeSlot object to be retrieved
+     */
     public GetLectureTimeSlotByCourseEditionIdNowDatabase(final Connection connection, final LectureTimeSlot lectureTimeSlot) {
         this.connection = connection;
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
+    /**
+     *
+     * Executes the query
+     *
+     * @return LectureTimeSlot object that matched the query
+     * @throws SQLException
+     */
     public LectureTimeSlot execute() throws SQLException
     {
         PreparedStatement ps = null;
@@ -34,7 +59,6 @@ public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
             ps.setInt(1, lectureTimeSlot.getCourseEditionId());
 
             rs = ps.executeQuery();
-
 
             if (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);

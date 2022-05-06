@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Gets an
- *
  * @author Francesco Caldivezzi
  */
 public class GetEmailConfirmationByTokenDatabase {

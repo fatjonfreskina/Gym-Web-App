@@ -1,12 +1,13 @@
 package dao.medicalcertificate;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.MedicalCertificate;
 
 import java.sql.*;
 
 /**
+ *
+ * This DAO is used to insert a medical certificate of a user in the database
+ *
  * @author Alberto Campeol
  */
 public class InsertMedicalCertificateDatabase {
@@ -28,8 +29,10 @@ public class InsertMedicalCertificateDatabase {
 
     /**
      *
+     * Parametric constructor
+     *
      * @param con the connection to the database
-     * @param mc the medical certificate object
+     * @param mc the medical certificate object to be inserted
      */
     public InsertMedicalCertificateDatabase(final Connection con, final MedicalCertificate mc) {
         this.con = con;
@@ -37,6 +40,7 @@ public class InsertMedicalCertificateDatabase {
     }
 
     /**
+     *
      * Executes the query
      *
      * @throws SQLException

@@ -1,28 +1,50 @@
 package dao.lecturetimeslot;
 
-import constants.Constants;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
 import java.sql.*;
 
 /**
+ *
+ * This DAO is used to insert a lecture time slot in the database
+ *
  * @author Harjot Singh
  */
 public class InsertLectureTimeSlotDatabase {
 
+  /**
+   * The INSERT query to be executed
+   */
   private final String STATEMENT = "INSERT INTO lecturetimeslot(roomname, date, starttime, courseeditionid,coursename,substitution)" + "VALUES (?, ?, ?, ?, ?, ?) ";
 
+  /**
+   * The LectureTimeSlot object
+   */
   private final LectureTimeSlot lts;
+
+  /**
+   * The connection to the database
+   */
   private final Connection connection;
 
-
+  /**
+   *
+   * Parametric constructor
+   *
+   * @param connection the connection to the database
+   * @param lts the lecture time slot to be inserted
+   */
   public InsertLectureTimeSlotDatabase(final Connection connection, final LectureTimeSlot lts) {
     this.connection = connection;
     this.lts = lts;
   }
 
+  /**
+   *
+   * Execute the insert
+   *
+   * @throws SQLException
+   */
   public void execute() throws SQLException {
     PreparedStatement ps = null;
 

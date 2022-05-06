@@ -8,13 +8,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
+ *
+ * This DAO is used to get the last medical certificate
+ *
  * @author Francesco Caldivezzi
  * */
-
 public class GetLastMedicalCertfiticateByPersonDatabase {
 
     /**
@@ -38,8 +38,10 @@ public class GetLastMedicalCertfiticateByPersonDatabase {
 
     /**
      *
+     * Parametric constructor
+     *
      * @param conn the database connection
-     * @param person the person object
+     * @param person the person object to be passed to the query
      */
     public GetLastMedicalCertfiticateByPersonDatabase(final Connection conn, final Person person)
     {
@@ -48,6 +50,8 @@ public class GetLastMedicalCertfiticateByPersonDatabase {
     }
 
     /**
+     *
+     * Execute the query
      *
      * @return MedicalCertificate object matched by the query
      * @throws SQLException

@@ -8,24 +8,33 @@ import resource.LectureTimeSlot;
 import java.sql.*;
 
 /**
+ *
+ * This DAO is used to delete a lectureTimeSlot from the database by passing the room, date and time
+ *
  * @author Harjot Singh
  * @author Riccardo Forzan
  */
 public class DeleteLectureTimeSlotDatabase {
+
     /**
      * Query to execute on the database
      */
     private static final String STATEMENT = "DELETE FROM lecturetimeslot WHERE roomname=? AND date=? AND starttime=?";
+
     /**
      * LectureTimeSlot object to remove from the database
      */
     private final LectureTimeSlot lts;
+
     /**
      * Database connection
      */
     private final Connection connection;
 
     /**
+     *
+     * Parametric constructor
+     *
      * @param connection database connection
      * @param lts Lecture time slot object to remove
      */

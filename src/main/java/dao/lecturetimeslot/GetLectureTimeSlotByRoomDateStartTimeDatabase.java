@@ -10,20 +10,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This DAO is used to get the lecture time slot from the database by passing the room,date and start time
+ *
  * @author Francesco Caldivezzi
  */
-
 public class GetLectureTimeSlotByRoomDateStartTimeDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE roomname = ? and date = ? and starttime=?";
+
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
+
+    /**
+     * The LectureTimeSlot object to be re
+     */
     private final LectureTimeSlot lectureTimeSlot;
 
-
+    /**
+     *
+     * Parametric constructor
+     *
+     * @param connection to the database
+     * @param lectureTimeSlot object to be passed to the query
+     */
     public GetLectureTimeSlotByRoomDateStartTimeDatabase(final Connection connection, final LectureTimeSlot lectureTimeSlot) {
         this.connection = connection;
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
+    /**
+     *
+     * Execute the query
+     *
+     * @return LectureTimeSlot object that matched the  query
+     * @throws SQLException
+     */
     public LectureTimeSlot execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;

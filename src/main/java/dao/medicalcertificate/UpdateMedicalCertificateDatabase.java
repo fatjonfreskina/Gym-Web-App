@@ -1,15 +1,15 @@
 package dao.medicalcertificate;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.MedicalCertificate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 /**
+ *
+ * This DAO is used to update a medical certificateof a user in the database
+ *
  * @author Alberto Campeol
  */
 public class UpdateMedicalCertificateDatabase {
@@ -32,7 +32,7 @@ public class UpdateMedicalCertificateDatabase {
     /**
      *
      * @param con the connection to the database
-     * @param mc the medical certificate object
+     * @param mc the medical certificate object to update
      */
     public UpdateMedicalCertificateDatabase(final Connection con, final MedicalCertificate mc) {
         this.con = con;

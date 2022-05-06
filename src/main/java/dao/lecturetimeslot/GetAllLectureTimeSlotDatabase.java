@@ -8,23 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Get all LectureTimeSlot between the two specified dates
+ * This DAO is used get all LectureTimeSlot between the two specified dates
  *
  * @author Riccardo Forzan
  */
 public class GetAllLectureTimeSlotDatabase {
+
     /**
      * Query to be executed
      */
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date BETWEEN ? AND ?";
+
     /**
      * Connection to the database
      */
     private final Connection connection;
+
     /**
      * Date limit (result must be after this date)
      */
     private final Date startDate;
+
     /**
      * Date limit (result must be before this date)
      */
@@ -32,11 +36,12 @@ public class GetAllLectureTimeSlotDatabase {
 
     /**
      *
+     * Parametric constructor
+     *
      * @param connection the connection to the database
      * @param startDate Date limit ( result must be after this date )
      * @param endDate Date limit ( result must be before this date )
      */
-
     public GetAllLectureTimeSlotDatabase(Connection connection, Date startDate, Date endDate) {
         this.connection = connection;
         this.startDate = startDate;
