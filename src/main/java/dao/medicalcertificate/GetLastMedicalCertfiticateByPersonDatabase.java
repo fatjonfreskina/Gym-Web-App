@@ -10,11 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
  * This DAO is used to get the last medical certificate
  *
  * @author Francesco Caldivezzi
- * */
+ */
 public class GetLastMedicalCertfiticateByPersonDatabase {
 
     /**
@@ -37,36 +36,32 @@ public class GetLastMedicalCertfiticateByPersonDatabase {
     private final Person person;
 
     /**
-     *
      * Parametric constructor
      *
-     * @param conn the database connection
+     * @param conn   the database connection
      * @param person the person object to be passed to the query
      */
-    public GetLastMedicalCertfiticateByPersonDatabase(final Connection conn, final Person person)
-    {
+    public GetLastMedicalCertfiticateByPersonDatabase(final Connection conn, final Person person) {
         this.conn = conn;
         this.person = person;
     }
 
     /**
-     *
      * Execute the query
      *
      * @return MedicalCertificate object matched by the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public MedicalCertificate execute() throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        MedicalCertificate ret= null;
+        MedicalCertificate ret = null;
         try {
             pstmt = conn.prepareStatement(STATEMENT);
             pstmt.setString(1, person.getEmail());
             pstmt.setString(2, person.getEmail());
             rs = pstmt.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 ret = new MedicalCertificate(
                         rs.getString(Constants.MEDICALCERTIFICATE_PERSON),
                         rs.getDate(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE),
