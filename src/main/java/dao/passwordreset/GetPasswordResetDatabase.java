@@ -10,25 +10,46 @@ import java.sql.*;
  * (expiration time not yet reached).
  *
  * @author Riccardo Forzan
- * @authon Marco Alessio
+ * @author Marco Alessio
  */
 public class GetPasswordResetDatabase {
 
+    /**
+     * Select statement to execute on the database
+     */
     private static final String STATEMENT = """
             SELECT person, expirationdate
             FROM passwordreset
             WHERE token = ?
             """;
 
+    /**
+     * Connection to the database
+     */
     private final Connection con;
 
+    /**
+     * Token from which information will be retrieved
+     */
     private final String token;
 
+    /**
+     * Parametric constructor
+     *
+     * @param con   database connection
+     * @param token password reset token
+     */
     public GetPasswordResetDatabase(final Connection con, final String token) {
         this.con = con;
         this.token = token;
     }
 
+    /**
+     * Gets a password reset from the database
+     *
+     * @return PasswordReset object associated with the token string given
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public PasswordReset execute() throws SQLException {
 
         PasswordReset item = null;
