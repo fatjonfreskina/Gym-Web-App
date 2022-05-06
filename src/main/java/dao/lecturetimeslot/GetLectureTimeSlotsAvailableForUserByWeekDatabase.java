@@ -12,16 +12,16 @@ import java.util.List;
  * This DAO is used to get available lecture time slots in a week for a user
  *
  * @author Riccardo Tumiati
- * */
+ */
 public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
 
     /**
      * The SELECT query to be executed
      */
     private final String statement = "SELECT lts.roomname, lts.date, lts.starttime, lts.courseeditionid, lts.coursename, lts.substitution, ro.slots, r.reservations" +
-            " FROM subscription AS s JOIN lecturetimeslot AS lts ON (s.courseeditionid = lts.courseeditionid AND s.coursename = lts.coursename)"+
-            " JOIN room AS ro ON (lts.roomname = ro.name)"+
-            " LEFT JOIN (SELECT lectureroom,lecturedate,lecturestarttime, count(*) AS reservations FROM reservation GROUP BY lectureroom,lecturedate,lecturestarttime) AS r ON (lts.roomname = r.lectureroom AND lts.date = r.lecturedate AND lts.starttime = r.lecturestarttime)"+
+            " FROM subscription AS s JOIN lecturetimeslot AS lts ON (s.courseeditionid = lts.courseeditionid AND s.coursename = lts.coursename)" +
+            " JOIN room AS ro ON (lts.roomname = ro.name)" +
+            " LEFT JOIN (SELECT lectureroom,lecturedate,lecturestarttime, count(*) AS reservations FROM reservation GROUP BY lectureroom,lecturedate,lecturestarttime) AS r ON (lts.roomname = r.lectureroom AND lts.date = r.lecturedate AND lts.starttime = r.lecturestarttime)" +
             " WHERE s.trainee = ? AND s.startday+ (s.duration || ' day')::interval>CURRENT_DATE AND lts.date>= ? AND lts.date<= ?";
 
     /**
@@ -45,15 +45,14 @@ public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
     private final Date toDate;
 
     /**
-     *
      * Parametric constructor
      *
-     * @param conn the connection to the database
-     * @param email the email of the user
+     * @param conn     the connection to the database
+     * @param email    the email of the user
      * @param fromDate Date from which to look for
-     * @param toDate Date up to look for
+     * @param toDate   Date up to look for
      */
-    public GetLectureTimeSlotsAvailableForUserByWeekDatabase(Connection conn, String email, Date fromDate, Date toDate){
+    public GetLectureTimeSlotsAvailableForUserByWeekDatabase(Connection conn, String email, Date fromDate, Date toDate) {
         this.conn = conn;
         this.email = email;
         this.fromDate = fromDate;
@@ -61,11 +60,10 @@ public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
     }
 
     /**
-     *
      * Execute the query
      *
      * @return a list containing LectureTimeSlotOccupation object that matched the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<LectureTimeSlotOccupation> execute() throws SQLException {
         PreparedStatement stm = null;
@@ -75,8 +73,8 @@ public class GetLectureTimeSlotsAvailableForUserByWeekDatabase {
         try {
             stm = conn.prepareStatement(statement);
             stm.setString(1, email);
-            stm.setDate(2,fromDate);
-            stm.setDate(3,toDate);
+            stm.setDate(2, fromDate);
+            stm.setDate(3, toDate);
             rs = stm.executeQuery();
 
             while (rs.next()) {

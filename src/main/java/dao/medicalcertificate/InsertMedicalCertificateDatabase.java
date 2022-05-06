@@ -2,10 +2,12 @@ package dao.medicalcertificate;
 
 import resource.MedicalCertificate;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
- *
  * This DAO is used to insert a medical certificate of a user in the database
  *
  * @author Alberto Campeol
@@ -28,11 +30,10 @@ public class InsertMedicalCertificateDatabase {
     private final MedicalCertificate mc;
 
     /**
-     *
      * Parametric constructor
      *
      * @param con the connection to the database
-     * @param mc the medical certificate object to be inserted
+     * @param mc  the medical certificate object to be inserted
      */
     public InsertMedicalCertificateDatabase(final Connection con, final MedicalCertificate mc) {
         this.con = con;
@@ -40,10 +41,9 @@ public class InsertMedicalCertificateDatabase {
     }
 
     /**
-     *
      * Executes the query
      *
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {

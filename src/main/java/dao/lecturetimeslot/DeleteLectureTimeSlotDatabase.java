@@ -1,14 +1,12 @@
 package dao.lecturetimeslot;
 
-import constants.Constants;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
- *
  * This DAO is used to delete a lectureTimeSlot from the database by passing the room, date and time
  *
  * @author Harjot Singh
@@ -32,11 +30,10 @@ public class DeleteLectureTimeSlotDatabase {
     private final Connection connection;
 
     /**
-     *
      * Parametric constructor
      *
      * @param connection database connection
-     * @param lts Lecture time slot object to remove
+     * @param lts        Lecture time slot object to remove
      */
     public DeleteLectureTimeSlotDatabase(final Connection connection, final LectureTimeSlot lts) {
         this.connection = connection;
@@ -45,7 +42,8 @@ public class DeleteLectureTimeSlotDatabase {
 
     /**
      * Executes the statement to remove the object from the database
-     * @throws SQLException
+     *
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public void execute() throws SQLException {
         try (PreparedStatement ps = connection.prepareStatement(STATEMENT)) {

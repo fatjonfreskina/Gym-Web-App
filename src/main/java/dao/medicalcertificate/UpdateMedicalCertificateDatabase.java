@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
  * This DAO is used to update a medical certificateof a user in the database
  *
  * @author Alberto Campeol
@@ -30,9 +29,10 @@ public class UpdateMedicalCertificateDatabase {
     private final MedicalCertificate mc;
 
     /**
+     * Parametric constructor
      *
      * @param con the connection to the database
-     * @param mc the medical certificate object to update
+     * @param mc  the medical certificate object to update
      */
     public UpdateMedicalCertificateDatabase(final Connection con, final MedicalCertificate mc) {
         this.con = con;

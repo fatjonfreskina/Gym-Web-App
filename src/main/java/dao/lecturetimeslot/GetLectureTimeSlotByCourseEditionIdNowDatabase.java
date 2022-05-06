@@ -31,10 +31,9 @@ public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
     private final LectureTimeSlot lectureTimeSlot;
 
     /**
-     *
      * Parametric constructor
      *
-     * @param connection the connection to the database
+     * @param connection      the connection to the database
      * @param lectureTimeSlot the lectureTimeSlot object to be retrieved
      */
     public GetLectureTimeSlotByCourseEditionIdNowDatabase(final Connection connection, final LectureTimeSlot lectureTimeSlot) {
@@ -43,14 +42,12 @@ public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
     }
 
     /**
-     *
      * Executes the query
      *
      * @return LectureTimeSlot object that matched the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
-    public LectureTimeSlot execute() throws SQLException
-    {
+    public LectureTimeSlot execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         LectureTimeSlot result = null;
@@ -69,8 +66,7 @@ public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
                 String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUTION);
                 result = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
             }
-        }  finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
             if (ps != null)

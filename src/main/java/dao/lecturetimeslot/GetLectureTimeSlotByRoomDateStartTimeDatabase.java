@@ -1,13 +1,9 @@
 package dao.lecturetimeslot;
 
 import constants.Constants;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This DAO is used to get the lecture time slot from the database by passing the room,date and start time
@@ -32,10 +28,9 @@ public class GetLectureTimeSlotByRoomDateStartTimeDatabase {
     private final LectureTimeSlot lectureTimeSlot;
 
     /**
-     *
      * Parametric constructor
      *
-     * @param connection to the database
+     * @param connection      to the database
      * @param lectureTimeSlot object to be passed to the query
      */
     public GetLectureTimeSlotByRoomDateStartTimeDatabase(final Connection connection, final LectureTimeSlot lectureTimeSlot) {
@@ -44,11 +39,10 @@ public class GetLectureTimeSlotByRoomDateStartTimeDatabase {
     }
 
     /**
-     *
      * Execute the query
      *
      * @return LectureTimeSlot object that matched the  query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public LectureTimeSlot execute() throws SQLException {
         PreparedStatement ps = null;

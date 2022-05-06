@@ -20,10 +20,19 @@ public class GetMedicalCertificateDatabase {
      * The SELECT query to be executed
      */
     private static final String STATEMENT = "SELECT * FROM medicalcertificate WHERE person = ?";
+
+    /**
+     * Database connection object
+     */
     private final Connection con;
+
+    /**
+     * Person for which the medical certificate should be retrieved
+     */
     private final Person person;
 
     /**
+     * Parametric constructor
      *
      * @param con the connection to the database
      * @param person the person object
@@ -34,9 +43,10 @@ public class GetMedicalCertificateDatabase {
     }
 
     /**
+     * Executes the statement for retrieving the medical certificate from the database
      *
      * @return the list containing MedicalCertificate object that matched the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<MedicalCertificate> execute() throws SQLException {
 

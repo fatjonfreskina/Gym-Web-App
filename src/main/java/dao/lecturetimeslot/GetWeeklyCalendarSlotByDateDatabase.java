@@ -10,12 +10,13 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- *
+ * TODO: Review the comment on this DAO
  * This DAO is used to get the weekly slots of a course by passing the date
  *
- * @author //TODO : Missing Author, check if the description is ok
- * */
+ * @author Alberto Campeol
+ */
 public class GetWeeklyCalendarSlotByDateDatabase {
 
     /**
@@ -43,11 +44,10 @@ public class GetWeeklyCalendarSlotByDateDatabase {
     private final Connection connection;
 
     /**
-     *
      * Parametric constructor
      *
      * @param connection the connection to the database
-     * @param date the date to be passed to the query
+     * @param date       the date to be passed to the query
      */
     public GetWeeklyCalendarSlotByDateDatabase(final Connection connection, final Date date) {
         this.connection = connection;
@@ -55,11 +55,10 @@ public class GetWeeklyCalendarSlotByDateDatabase {
     }
 
     /**
-     *
      * Execute the query
      *
      * @return a list of WeeklyCalendarSlot objects that matched the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<WeeklyCalendarSlot> execute() throws SQLException {
         PreparedStatement ps = null;

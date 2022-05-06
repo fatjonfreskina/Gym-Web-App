@@ -20,11 +20,11 @@ INSERT INTO person VALUES ('richifenomeno@gmail.com','Giacomo','Forza','d41d8cd9
 INSERT INTO person VALUES ('riccardo178tumiati@gmail.com','Shery','Stamm','d41d8cd98f00b204e9800998ecf8427e','WTUZV4V1DE1UFFUI',TO_DATE('17/10/1970','DD/MM/YYYY'),'6161813924','86778 Bogisich Road, Zoeview, AK 87873-9690',NULL);
 INSERT INTO person VALUES ('simonedantimo3@gmail.com','Nathanial','Prohaska','d41d8cd98f00b204e9800998ecf8427e','RE1BE14AWWYX2Y4L',TO_DATE('06/01/1961','DD/MM/YYYY'),'1396809182','Suite 023 30803 Nader Valleys, Sengerville, PA 07282-1307',NULL);
 INSERT INTO person VALUES ('harjot.98@hotmail.com','Annis','Dach','d41d8cd98f00b204e9800998ecf8427e','IPYMLKCHRMOKJODO',TO_DATE('10/03/1990','DD/MM/YYYY'),'2220710877','Apt. 119 610 Kyle Vista, Dorcasborough, AZ 07445',NULL);
-INSERT INTO person VALUES ('cyrus.hammes@example.com','Cyrus','Hammes','d41d8cd98f00b204e9800998ecf8427e','KJADPAVW8KX5S0UQ',TO_DATE('22/02/1985','DD/MM/YYYY'),'0519398218','Apt. 168 747 Daniel Glen, East Keenan, OH 35920',NULL);
-INSERT INTO person VALUES ('alfonso.gibson@example.com','Alfonso','Gibson','d41d8cd98f00b204e9800998ecf8427e','RURTNQXG5SNSRLFC',TO_DATE('26/02/1973','DD/MM/YYYY'),'1559357297','5964 Lori Stravenue, Port Tyreeborough, AR 17660',NULL);
-INSERT INTO person VALUES ('carmine.sipes@example.com','Carmine','Sipes','d41d8cd98f00b204e9800998ecf8427e','LCRKVACORBCT753D',TO_DATE('04/06/1997','DD/MM/YYYY'),'8151088748','99860 Lavonne Mall, New Lloyd, DE 43817-1522',NULL);
-INSERT INTO person VALUES ('dorris.trantow@example.com','Dorris','Trantow','d41d8cd98f00b204e9800998ecf8427e','BQQWDHZRKXT9A5YI',TO_DATE('30/10/1983','DD/MM/YYYY'),'6740753156','9688 Pacocha Port, New Bryan, IN 26529',NULL);
-INSERT INTO person VALUES ('kraig.larkin@example.com','Kraig','Larkin','d41d8cd98f00b204e9800998ecf8427e','T9XQHGBJ2NOYFJ0X',TO_DATE('31/12/1996','DD/MM/YYYY'),'0488874925','Apt. 444 157 Roob Bridge, South Earlean, CO 81294-2901',NULL);
+INSERT INTO person VALUES ('classe1g.viola@gmail.com','Cyrus','Hammes','d41d8cd98f00b204e9800998ecf8427e','KJADPAVW8KX5S0UQ',TO_DATE('22/02/1985','DD/MM/YYYY'),'0519398218','Apt. 168 747 Daniel Glen, East Keenan, OH 35920',NULL);
+INSERT INTO person VALUES ('lupin.zombie9900@gmail.com','Alfonso','Gibson','d41d8cd98f00b204e9800998ecf8427e','RURTNQXG5SNSRLFC',TO_DATE('26/02/1973','DD/MM/YYYY'),'1559357297','5964 Lori Stravenue, Port Tyreeborough, AR 17660',NULL);
+INSERT INTO person VALUES ('vendettav@gmail.com','Carmine','Sipes','d41d8cd98f00b204e9800998ecf8427e','LCRKVACORBCT753D',TO_DATE('04/06/1997','DD/MM/YYYY'),'8151088748','99860 Lavonne Mall, New Lloyd, DE 43817-1522',NULL);
+INSERT INTO person VALUES ('alberto.campeol@outlook.it','Dorris','Trantow','d41d8cd98f00b204e9800998ecf8427e','BQQWDHZRKXT9A5YI',TO_DATE('30/10/1983','DD/MM/YYYY'),'6740753156','9688 Pacocha Port, New Bryan, IN 26529',NULL);
+INSERT INTO person VALUES ('simonedantimo2@gmail.com','Kraig','Larkin','d41d8cd98f00b204e9800998ecf8427e','T9XQHGBJ2NOYFJ0X',TO_DATE('31/12/1996','DD/MM/YYYY'),'0488874925','Apt. 444 157 Roob Bridge, South Earlean, CO 81294-2901',NULL);
 
 --Roles Persons
 INSERT INTO personroles VALUES ('mario.rossi@example.com','trainee');
