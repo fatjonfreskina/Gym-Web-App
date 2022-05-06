@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DAO class used to get users booked for a lecture
  * @auhor Riccardo Forzan
  */
 public class GetAllPeopleInReservationTimeSlotDatabase {
@@ -21,13 +22,18 @@ public class GetAllPeopleInReservationTimeSlotDatabase {
     private final Reservation reservation;
 
 
+    /**
+     * Constructor for this class
+     * @param con  the database connection
+     * @param reservation  the reservation
+     */
     public GetAllPeopleInReservationTimeSlotDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
         this.reservation = reservation;
     }
 
     /**
-     *
+     * Executes the sql statement retrieving the list of users containing that matched the query
      * @return the list containing Person objects that matched the query: all the persons registered for a lecture time slot
      * @throws SQLException
      */

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DAO class used to get the list of reservations from a lecture
  * @author Andrea Pasin
  * @author Harjot Singh
  */
@@ -20,7 +21,7 @@ public class GetListReservationByLectureDatabase {
     private final LectureTimeSlot lectureTimeSlot;
 
     /**
-     *
+     * Constructor for this class
      * @param con  the connection to the database
      * @param lectureTimeSlot  the lecture time slot object
      */
@@ -31,8 +32,8 @@ public class GetListReservationByLectureDatabase {
     }
 
     /**
-     *
-     * @return A List of Lectures matching the query (given date, room, start time)
+     * Executes the sql statement returning the list of reservation
+     * @return a list of reservations matching the query
      * @throws SQLException
      */
     public List<Reservation> execute() throws SQLException {

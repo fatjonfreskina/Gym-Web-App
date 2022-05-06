@@ -14,7 +14,6 @@ import java.sql.*;
  * @author Harjot Singh
  */
 public class DeleteReservationDatabase {
-  private static final Logger logger = LogManager.getLogger("fatjon_freskina_logger");
   private static final String STATEMENT = """
       DELETE FROM reservation 
       WHERE trainee = ? 
@@ -37,7 +36,7 @@ public class DeleteReservationDatabase {
   }
 
   /**
-   *
+   * Executes the sql statement to get the reservation
    * @return the Reservation object that has been removed
    * @throws SQLException
    */
@@ -58,13 +57,8 @@ public class DeleteReservationDatabase {
         String room = rs.getString(Constants.RESERVATION_LECTUREROOM);
         deletedReservation = new Reservation(trainee, room, date, startTime);
 
-        logger.debug("gwa.dao.DeleteReservationD: %s DELETED SUCCESSFULLY.".formatted(new Timestamp(System.currentTimeMillis()), deletedReservation.toString()));
-      } else
-        logger.debug("gwa.dao.DeleteReservationD: %s NOT FOUND.".formatted(new Timestamp(System.currentTimeMillis()), reservation.toString()));
-    } catch (SQLException ex) {
-      logger.error("gwa.dao.DeleteReservationD: " + ex.getMessage());
-      throw ex;
-    } finally {
+       }
+    }finally {
       if (rs != null) rs.close();
       con.close();
     }

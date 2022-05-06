@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * DAO class used to get the available slots for a lecture
  * @author Riccardo Tumiati
  * */
 
@@ -26,7 +27,7 @@ public class GetAvailableSlotsReservationDatabase {
     private final Reservation reservation;
 
     /**
-     *
+     * Constructor for this class
      * @param con the connection to the database
      * @param reservation the reservation object
      */
@@ -36,7 +37,7 @@ public class GetAvailableSlotsReservationDatabase {
     }
 
     /**
-     *
+     * Executes the sql statements retrieving the available slots
      * @return the available slots as integer number
      * @throws SQLException if the are
      */

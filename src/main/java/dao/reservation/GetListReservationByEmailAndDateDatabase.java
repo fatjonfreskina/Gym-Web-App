@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * DAO class used to get the list of reservations by an email and a date
  * @author Fatjon Freskina, Marco Alessio
  */
 public class GetListReservationByEmailAndDateDatabase
@@ -31,7 +31,7 @@ public class GetListReservationByEmailAndDateDatabase
     private final Date toDate;
 
     /**
-     *
+     * Constructor for this class
      * @param con  the connection to the database
      * @param email  the email parameter
      * @param fromDate  the date, lower bound
@@ -48,7 +48,7 @@ public class GetListReservationByEmailAndDateDatabase
     }
 
     /**
-     *
+     * Executes the sql statement
      * @return the list containing Reservation object that matched the query; if no match returns null
      * @throws SQLException
      */
