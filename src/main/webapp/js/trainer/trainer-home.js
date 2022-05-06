@@ -1,4 +1,4 @@
-let contextPath = $('#contextPathHolder').attr('data'); // "/wa2122-gwa"
+let contextPath =  "/wa2122-gwa"
 
 //Construct the calendar
 let calendarEl = document.getElementById('trainer__calendar');

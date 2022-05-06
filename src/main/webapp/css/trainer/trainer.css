@@ -1,0 +1,28 @@
+.trainer__container {
+    min-width: 400px;
+}
+
+#trainer__calendar {
+    height: auto;
+    max-height: calc(80vh);
+    max-width: calc(100% - 20px);
+    margin: 40px auto;
+    text-transform: uppercase !important;
+}
+
+#reservationsTABLE td, /*#reservationsTABLE th,*/
+#subscriptionsTABLE td /*, #subscriptionsTABLE th*/
+{
+    text-align: center;
+    vertical-align: middle;
+    padding: 4px;
+}
+
+.trainer__manage__present, .trainer__manage__absent {
+    padding: 10px 0;
+
+}
+
+.trainer__manage__present > h1, .trainer__manage__absent > h1 {
+    margin-bottom: -10px;
+}

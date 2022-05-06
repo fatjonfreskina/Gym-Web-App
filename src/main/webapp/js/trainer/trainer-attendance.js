@@ -1,4 +1,4 @@
-let contextPath = $('#contextPathHolder').attr('data'); // "/wa2122-gwa"
+let contextPath = "/wa2122-gwa"
 
 GET_Trainee = (email) => {
     //Perform the AJAX request to fill the calendar

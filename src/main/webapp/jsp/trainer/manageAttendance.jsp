@@ -3,74 +3,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Manage Attendance</title>
+    <title>Manage Attendance </title>
     <meta charset="UTF-8">
-    <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="../include/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
-
+    <link rel="stylesheet" href="<c:url value="/css/trainer/trainer.css"/>">
+    <jsp:include page="../include/datatables/style.jsp"/>
 </head>
 <body>
-<header>
-    <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
-</header>
+<jsp:include page="/jsp/include/header.jsp"/>
 <main class="global-container">
     <c:choose>
         <c:when test="${empty message}">
             <jsp:useBean id="trainerAttendance" scope="request" type="resource.rest.TrainerAttendance"/>
-            <div class="">
-                <h1>Manage Attendance</h1>
-                <div class="container">
-                    <div class="d-flex justify-content-start align-items-start">
-                        <h3 class="mr-5">Lecture:</h3>
-                        <h3>
-                            <c:out value="${trainerAttendance.lecture.courseName}"/>
-                            <c:out value="${trainerAttendance.lecture.courseEditionId}"/>
-                        </h3>
-                    </div>
-                    <div class="d-flex justify-content-start align-items-start">
-                        <h3 class="mr-5">Details: </h3>
-                        <h3>
-                            <c:out value="${trainerAttendance.lecture.roomName}"/>
-                            <c:out value="${trainerAttendance.lecture.date}"/>
-                            <c:out value="${trainerAttendance.lecture.startTime}"/>
-                        </h3>
-                    </div>
+            <div class="row">
+                <h1 class="col-sm-3">Lecture:</h1>
+                <h1 class="col-sm-9">
+                    <c:out value="${trainerAttendance.lecture.courseName}"/>
+                    <c:out value="${trainerAttendance.lecture.courseEditionId}"/>
+                </h1>
+            </div>
+            <div class="row">
+                <h1 class="col-sm-3">Details: </h1>
+                <h1 class="col-sm-9">
+                    <c:out value="${trainerAttendance.lecture.roomName}"/>
+                    <c:out value="${trainerAttendance.lecture.date}"/>
+                    <c:out value="${trainerAttendance.lecture.startTime}"/>
+                </h1>
+            </div>
+            <br/>
+            <div class="row">
+                <h3>Present</h3>
+                <div class="table-responsive">
+                    <table id="reservationsTABLE" class="table table-striped w-100">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col" class="text-end">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="trainer__manage d-flex flex-wrap flex-lg-nowrap">
-                <div class="trainer__manage__present w-100 py-2 px-1 p-xl-4">
-                    <h1>Present </h1>
-                    <div class="table-responsive">
-                        <table id="reservationsTABLE" class="table table-striped w-100">
-                            <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Surname</th>
-                                <th scope="col">EMAIL</th>
-                                <th scope="col" class="text-end">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="trainer__manage__absent w-100 py-2 px-1 p-xl-4">
-                    <h1>Absent </h1>
-                    <div class="table-responsive">
-                        <table id="subscriptionsTABLE" class="table table-striped w-100">
-                            <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Surname</th>
-                                <th scope="col">EMAIL</th>
-                                <th scope="col" class="text-end">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+            <br/>
+            <div class="row">
+                <h3>Absent</h3>
+                <div class="table-responsive">
+                    <table id="subscriptionsTABLE" class="table table-striped w-100">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col" class="text-end">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </c:when>
@@ -78,7 +72,9 @@
     <jsp:include page="/jsp/include/message.jsp"/>
 </main>
 <jsp:include page="../include/footer.jsp"/>
-<jsp:include page="/jsp/include/scripts.jsp"/>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
+<jsp:include page="../include/scripts.jsp"/>
+<jsp:include page="../include/datatables/script.jsp"/>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="<c:url value="/js/trainer/trainer-attendance.js"/>"></script>
 </body>
 </html>

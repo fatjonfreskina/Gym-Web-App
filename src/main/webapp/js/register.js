@@ -29,7 +29,7 @@ $(document).ready(function() {
             }
         }
 
-        //age control
+        //TODO : age control
         /*if(moment(birtDate.val()).fromNow() < 14)
         {
             showMessage("Provided Telephone not valid")

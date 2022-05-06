@@ -170,11 +170,12 @@
     </div>
 
 
-    <jsp:include page="../include/scripts.jsp"/>
-    <jsp:include page="../include/fullcalendar/scripts.jsp"/>
-    <jsp:include page="../include/moment/scripts.jsp"/>
-    <script src="<c:url value="/js/trainee/trainee.js"/>"></script>
+
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
+<jsp:include page="../include/scripts.jsp"/>
+<jsp:include page="../include/fullcalendar/scripts.jsp"/>
+<jsp:include page="../include/moment/scripts.jsp"/>
+<script src="<c:url value="/js/trainee/trainee.js"/>"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <jsp:include page="../include/fullcalendar/style.jsp"/>
 </head>
 <body>
 <header>
@@ -37,10 +38,12 @@
         </c:forEach>
         </tbody>
     </table>
-    <br>
     <div id="trainer__calendar"></div>
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="../include/fullcalendar/scripts.jsp"/>
+<jsp:include page="../include/moment/scripts.jsp"/>
+<script src="<c:url value="/js/trainer/trainer-home.js"/>"></script>
 </body>
 </html>
