@@ -12,6 +12,9 @@ import java.sql.SQLException;
  * */
 
 public class GetAvailableSlotsReservationDatabase {
+    /**
+     * The query statement: aims to find the available slots for a lecture time slot
+     */
     private static final String STATEMENT = "SELECT (slots - reservations) as available_slots"+
             " FROM room JOIN"+
                 " (SELECT lectureroom, count(*) AS reservations"+
@@ -22,12 +25,21 @@ public class GetAvailableSlotsReservationDatabase {
     private final Connection con;
     private final Reservation reservation;
 
-
+    /**
+     *
+     * @param con the connection to the database
+     * @param reservation the reservation object
+     */
     public GetAvailableSlotsReservationDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
         this.reservation = reservation;
     }
 
+    /**
+     *
+     * @return the available slots as integer number
+     * @throws SQLException if the are
+     */
     public int execute() throws SQLException {
 
         PreparedStatement preparedStatement = null;

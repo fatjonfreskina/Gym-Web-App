@@ -7,6 +7,8 @@ import resource.*;
 import java.security.NoSuchAlgorithmException;
 
 /**
+ * Class used to handle the emails sent by the application
+ *
  * @author Simone D'Antimo
  * @author Franceco Caldivezzi
  * @author Riccardo Forzan
@@ -21,6 +23,7 @@ public class MailTypes {
 
     /**
      * Mail sent to confirm the account
+     *
      * @param person recipient of the message
      * @throws MessagingException thrown if there is an error while sending
      */
@@ -33,8 +36,9 @@ public class MailTypes {
 
     /**
      * Mail sent to confirm the account
+     *
      * @param person recipient of the message
-     * @throws MessagingException thrown if there is an error while sending
+     * @throws MessagingException       thrown if there is an error while sending
      * @throws NoSuchAlgorithmException thrown if there is an error while calculating the token
      */
     public static void mailForConfirmRegistration(Person person) throws MessagingException, NoSuchAlgorithmException {
@@ -46,7 +50,8 @@ public class MailTypes {
 
     /**
      * This mail is sent when someone subscribed for a course in our gym (to the secretary)
-     * @param person recipient of the message
+     *
+     * @param person       recipient of the message
      * @param subscription subscription data to be sent
      * @throws MessagingException thrown if there is an error while sending
      */
@@ -60,7 +65,8 @@ public class MailTypes {
 
     /**
      * This mail is sent when someone requests for a password changes
-     * @param person recipient of the message
+     *
+     * @param person        recipient of the message
      * @param passwordReset password reset token to be sent
      * @throws MessagingException thrown if there is an error while sending
      */
@@ -73,6 +79,7 @@ public class MailTypes {
 
     /**
      * This mail is sent when someone has a new a medical certificate inserted
+     *
      * @param person recipient of the message
      * @throws MessagingException thrown if there is an error while sending
      */
@@ -84,7 +91,8 @@ public class MailTypes {
 
     /**
      * This mail is sent when the medical certificate is expiring
-     * @param person recipient of the message
+     *
+     * @param person             recipient of the message
      * @param medicalCertificate medical certificate near to expiration date
      * @throws MessagingException thrown if there is an error while sending
      */
@@ -98,7 +106,8 @@ public class MailTypes {
 
     /**
      * This mail is sent when a lecture is deleted
-     * @param person recipient of the message
+     *
+     * @param person          recipient of the message
      * @param lectureTimeSlot lecture time slot deleted
      * @throws MessagingException thrown if there is an error while sending
      */
@@ -111,15 +120,16 @@ public class MailTypes {
 
     /**
      * This mail is sent when a substitution for a trainer has been specified
-     * @param person recipient of the message
+     *
+     * @param person          recipient of the message
      * @param lectureTimeSlot lecture time slot modified
-     * @param motivation more details can be provided by the secretary
+     * @param motivation      more details can be provided by the secretary
      * @throws MessagingException thrown if there is an error while sending
      */
     @SuppressWarnings("unused")
     public static void mailForTrainerChanged(Person person, LectureTimeSlot lectureTimeSlot, String motivation) throws MessagingException {
         String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is cancelled\n";
-        if(motivation != null) {
+        if (motivation != null) {
             emailContent += motivation;
         }
         emailContent += "We really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";

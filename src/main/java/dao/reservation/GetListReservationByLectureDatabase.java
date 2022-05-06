@@ -21,8 +21,8 @@ public class GetListReservationByLectureDatabase {
 
     /**
      *
-     * @param con the connection to the database
-     * @param lectureTimeSlot
+     * @param con  the connection to the database
+     * @param lectureTimeSlot  the lecture time slot object
      */
 
     public GetListReservationByLectureDatabase(final Connection con, final LectureTimeSlot lectureTimeSlot) {

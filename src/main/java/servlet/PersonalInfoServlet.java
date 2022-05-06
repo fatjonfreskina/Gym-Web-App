@@ -74,12 +74,11 @@ public class PersonalInfoServlet extends AbstractServlet
 
     /**
      * Handles the post request by saving the avatar and sending a response message representing if the request has been
-     * successfully processed
-     *
-     * @param req  the request
-     * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * successfully processed.
+     * @param req  The HTTP request.
+     * @param res  The HTTP response.
+     * @throws ServletException If some internal error happens.
+     * @throws IOException If something happens when writing the response to the output stream.
      */
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
@@ -88,18 +87,20 @@ public class PersonalInfoServlet extends AbstractServlet
         Codes error = Codes.OK;
         Person p = null;
 
-
         if (avatar != null)
         {
             try
             {
+                // Retrieve user data from the database.
                 p = new GetPersonByEmailDatabase(getConnection(), session.getAttribute("email").toString()).execute();
 
-                if(avatar.getSize() != 0)
+                if (avatar.getSize() != 0)
                 {
+                    // Save the avatar of the user to disk.
                     error = saveFile(avatar, p.getTaxCode());
-                    if(error == Codes.OK)
+                    if (error == Codes.OK)
                     {
+                        // Update the path to the avatar image file of the given user in the database.
                         final String filename = avatar.getSubmittedFileName();
                         final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
                         if (matcher.find())
@@ -123,12 +124,16 @@ public class PersonalInfoServlet extends AbstractServlet
                 error = Codes.INTERNAL_ERROR;
             }
         }
+
         req.setAttribute("personalInfo", p);
+
+        // Return the appropriate error message and send back to the "Personal Info" page.
         if (error != Codes.OK)
         {
             res.setStatus(error.getHTTPCode());
             final Message message = new Message(error.getErrorMessage(),true);
             req.setAttribute(Constants.MESSAGE, message);
+
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
         }
         else
@@ -136,23 +141,22 @@ public class PersonalInfoServlet extends AbstractServlet
             res.setStatus(error.getHTTPCode());
             final Message message = new Message(error.getErrorMessage(),false);
             req.setAttribute(Constants.MESSAGE, message);
+
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
         }
     }
 
     /**
-     * Saves the avatar
-     * @param file  the file
-     * @param taxCode  the user tax code
-     * @return
-     * @throws IOException
+     * Saves the avatar of a given user in the filesystem.
+     * @param file The file containing the avatar image to store.
+     * @param taxCode The user's tax code.
+     * @return An error code, indicating if and what error occurred.
      */
-    private Codes saveFile(Part file, String taxCode) throws IOException {
-        OutputStream writer = null;
-        InputStream content = null;
-
+    private Codes saveFile(Part file, String taxCode)
+    {
         if ((file != null) && file.getSize() != 0)
         {
+            // Build the path to the avatar folder of the given user, which will contain his/her avatar image.
             final String filename = file.getSubmittedFileName();
             final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
             if (!matcher.find())
@@ -162,10 +166,12 @@ public class PersonalInfoServlet extends AbstractServlet
 
             final String dirPath = (Constants.AVATAR_PATH_FOLDER + "/" + taxCode).replace('/', File.separatorChar);
 
+            // Create the avatar folder of the given user, if it does not exist yet.
             final File createDirectory = new File(dirPath);
             if (!createDirectory.exists())
                 createDirectory.mkdir();
 
+            // Delete any existing, if any, file inside the avatar folder of the given user.
             File[] files = createDirectory.listFiles();
             if(files != null)
             {
@@ -177,43 +183,23 @@ public class PersonalInfoServlet extends AbstractServlet
 
             final String filePath = dirPath + File.separator + Constants.AVATAR + "." + extension;
 
-            try {
-
-                writer = new FileOutputStream(filePath,false);
-                content = file.getInputStream();
-                int read = 0;
+            // Copy the data from the input file to the output one.
+            try (InputStream content = file.getInputStream();
+                 OutputStream writer = new FileOutputStream(filePath,false))
+            {
                 final byte[] bytes = new byte[1024];
+
+                int read;
                 while ((read = content.read(bytes)) != -1)
                     writer.write(bytes, 0, read);
-            } catch (IOException e) {
+            } catch (IOException e)
+            {
                 return Codes.CANNOT_UPLOAD_FILE;
-            } finally {
-                if (content != null)
-                    content.close();
-                if (writer != null)
-                    writer.close();
             }
-        }
-        return Codes.OK;
-    }
 
-    /**
-     * Deletes a given folder
-     * @param folder  the folder to delete
-     */
-    public static void deleteFolder(File folder)
-    {
-        File[] files = folder.listFiles();
-        if(files!=null)
-        { //some JVMs return null for empty dirs
-            for(File f: files) {
-                if(f.isDirectory()) {
-                    deleteFolder(f);
-                } else {
-                    f.delete();
-                }
-            }
+            return Codes.OK;
         }
-        folder.delete();
+
+        return Codes.CANNOT_UPLOAD_FILE;
     }
 }

@@ -13,6 +13,7 @@ import java.sql.Date;
  * @author Harjot Singh, Marco Alessio
  */
 public class DateJsonAdapter implements JsonSerializer<Date>, JsonDeserializer<Date> {
+
     /**
      * Deserialize a {@code Date} object from JSON data.
      *
@@ -34,7 +35,6 @@ public class DateJsonAdapter implements JsonSerializer<Date>, JsonDeserializer<D
         }
     }
 
-
     /**
      * Serialize a {@code Date} object to JSON format.
      *
@@ -47,4 +47,5 @@ public class DateJsonAdapter implements JsonSerializer<Date>, JsonDeserializer<D
     public JsonElement serialize(Date date, Type type, JsonSerializationContext context) {
         return new JsonPrimitive(date.toString());
     }
+
 }

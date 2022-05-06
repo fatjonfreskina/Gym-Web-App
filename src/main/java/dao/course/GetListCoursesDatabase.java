@@ -2,7 +2,6 @@ package dao.course;
 
 import constants.Constants;
 import resource.Course;
-import resource.Person;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,43 +11,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Gets a list of all the courses from the database
+ *
  * @author Francesco Caldivezzi
- * */
-public class GetListCoursesDatabase
-{
+ */
+public class GetListCoursesDatabase {
 
-    public class GetListOfTeachersDatabase
-    {
-        private static final String STATEMENT = "SELECT * FROM course";
+    /**
+     * Statement to be executed
+     */
+    private static final String STATEMENT = "SELECT * FROM course";
 
-        private final Connection connection;
+    /**
+     * Connection to the database
+     */
+    private final Connection connection;
 
-        public GetListOfTeachersDatabase(final Connection connection)
-        {
-            this.connection = connection;
-        }
-
-        public List<Course> execute() throws SQLException
-        {
-            PreparedStatement stm = null;
-            ResultSet rs = null;
-            List<Course> result = new ArrayList<>();
-            try {
-                stm = connection.prepareStatement(STATEMENT);
-
-                rs = stm.executeQuery();
-
-                while (rs.next())
-                    result.add(new Course(rs.getString(Constants.COURSE_NAME),rs.getString(Constants.COURSE_DESCRIPTION)));
-
-            } finally {
-                if (stm != null)
-                    stm.close();
-                if (rs != null)
-                    rs.close();
-                connection.close();
-            }
-            return result;
-        }
+    /**
+     * Parametric constructor
+     *
+     * @param connection connection to the database
+     */
+    public GetListCoursesDatabase(final Connection connection) {
+        this.connection = connection;
     }
+
+    /**
+     * Gets a list of all the courses loaded into the database
+     * @return list of courses
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
+    public List<Course> execute() throws SQLException {
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<Course> result = new ArrayList<>();
+        try {
+            stm = connection.prepareStatement(STATEMENT);
+
+            rs = stm.executeQuery();
+
+            while (rs.next())
+                result.add(new Course(rs.getString(Constants.COURSE_NAME), rs.getString(Constants.COURSE_DESCRIPTION)));
+
+        } finally {
+            if (stm != null)
+                stm.close();
+            if (rs != null)
+                rs.close();
+            connection.close();
+        }
+        return result;
+    }
+
 }

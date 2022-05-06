@@ -15,7 +15,7 @@
 </header>
 <main class="global-container">
     <c:choose>
-        <c:when test="${empty error}">
+        <c:when test="${empty message}">
             <jsp:useBean id="trainerAttendance" scope="request" type="resource.rest.TrainerAttendance"/>
             <div class="">
                 <h1>Manage Attendance</h1>
@@ -74,16 +74,11 @@
                 </div>
             </div>
         </c:when>
-        <c:when test="${!empty error}">
-            <jsp:useBean id="error" scope="request" type="java.lang.String"/>
-            Error:
-            <br>
-            <c:out value="${error}"/>
-            <br>
-        </c:when>
     </c:choose>
+    <jsp:include page="/jsp/include/message.jsp"/>
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/message-delay.js"/>"></script>
 </body>
 </html>

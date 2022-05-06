@@ -11,7 +11,8 @@ public class TypeOfRoles {
 
     /**
      * Initializes this class
-     * @param role  the role
+     *
+     * @param role the role
      */
     public TypeOfRoles(String role) {
         this.role = role;
@@ -19,7 +20,8 @@ public class TypeOfRoles {
 
     /**
      * Gets the role
-     * @return  the role
+     *
+     * @return the role
      */
     public String getRole() {
         return role;
@@ -32,9 +34,7 @@ public class TypeOfRoles {
      */
     @Override
     public String toString() {
-        return "TypeOfRoles{" +
-            "role='" + role + '\'' +
-            '}';
+        return String.format("TypeOfRoles{role='%s'}", this.role);
     }
 }
 

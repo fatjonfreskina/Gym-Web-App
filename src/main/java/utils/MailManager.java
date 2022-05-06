@@ -1,9 +1,8 @@
 package utils;
 
-import jakarta.activation.DataHandler;
-import jakarta.activation.FileDataSource;
 import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 import java.util.Date;
 import java.util.Properties;
@@ -13,19 +12,8 @@ import java.util.Properties;
  *
  * @author Marco Alessio, Simone D'Antimo
  */
-public class MailManager
-{
-    /*
-    Connection parameters per e-mail provider:
+public class MailManager {
 
-                    Host:                       Port:           Cryptographic option:
-    - Gmail         smtp.gmail.com              465             SSL (must enable sender account's option
-                                                                "Less secure app access" first)
-    - Hotmail       smtp.live.com               25 / 587        STARTTLS
-                                                465             SSL
-    - Libero        smtp.libero.it              465             SSL
-    - Outlook       smtp-mail.outlook.com       587             STARTTLS
-    */
     private final String fromEmail;
     private final Session session;
 
@@ -38,8 +26,7 @@ public class MailManager
      * @param password The password of the sender's e-mail address
      */
 
-    public MailManager(String host, int port, String email, String password)
-    {
+    public MailManager(String host, int port, String email, String password) {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.host", host);
@@ -52,11 +39,9 @@ public class MailManager
         properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        session = Session.getInstance(properties, new Authenticator()
-        {
+        session = Session.getInstance(properties, new Authenticator() {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication()
-            {
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, password);
             }
         });
@@ -76,8 +61,7 @@ public class MailManager
      * @param text    : The text of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-    public void sendMail(String email, String subject, String text) throws MessagingException
-    {
+    public void sendMail(String email, String subject, String text) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 
@@ -101,8 +85,7 @@ public class MailManager
      * @param content : The content of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-    public void sendMail(String email, String subject, Multipart content) throws MessagingException
-    {
+    public void sendMail(String email, String subject, Multipart content) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 

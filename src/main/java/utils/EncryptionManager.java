@@ -12,15 +12,21 @@ import java.security.NoSuchAlgorithmException;
  * @author Francesco Caldivezzi
  */
 public class EncryptionManager {
+
+    /**
+     * Algorithm used for encryption
+     */
     private static final String TYPE_ENCRIPTION = "SHA-256";
 
     /**
      * Encrypts a provided {@code String} through SHA-256
-     * @param string  the {@code String} to encrypt
-     * @return  the encrypted {@code String}
-     * @throws NoSuchAlgorithmException
+     *
+     * @param string the {@code String} to encrypt
+     * @return the encrypted {@code String}
+     * @throws NoSuchAlgorithmException if the algorithm specified is not available on the given machine
      */
     public static String encrypt(String string) throws NoSuchAlgorithmException {
-        return DatatypeConverter.printHexBinary(MessageDigest.getInstance(TYPE_ENCRIPTION).digest(string.getBytes(StandardCharsets.UTF_8)));
+        return DatatypeConverter.printHexBinary(MessageDigest.getInstance(TYPE_ENCRIPTION)
+                .digest(string.getBytes(StandardCharsets.UTF_8)));
     }
 }
