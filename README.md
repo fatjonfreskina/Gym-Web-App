@@ -22,7 +22,7 @@
 * [Necessary steps before usage](#necessary-steps-before-usage)
 
 ## General description of the web-app
-This web application is designed to be used for the management of a gym. It can be used by both the users attending the various courses offered by the gym and by the trainers/secretaries.\
+This web application is designed to be used for the management of a gym. It can be used by both the users attending the various courses offered by the gym and by the trainers/secretaries.<br />
 The aim of this web application is to simplify the users' tasks, allowing to manage courses, attendances and subscriptions with only a few clicks.
 
 ## Users of the web-app
@@ -41,7 +41,7 @@ To make this webapp working correctly you need to :
 - create a folder inside the tomcat web server installation folder called `gwa`
 - then go inside gwa and create two other subdirectories called : `avatars` and `medical_certificates`
 
-Before using this webapp you have to create and eventually populate the database.\
-You can follow the instructions in `src/main/java/database/README.md`.\
+Before using this webapp you have to create and eventually populate the database.<br />
+You can follow the instructions in `src/main/java/database/README.md`.<br />
 We have also created a Java class with path `src/main/java/database/DataBaseUtils.java` which allows you to create and populate your local database easily.
  
