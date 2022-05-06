@@ -20,7 +20,7 @@
             <label for="tax_code" class="col-sm-2 col-form-label">Tax Code :</label>
             <div class="col-sm-10">
                 <input type="text" name="tax_code" minlength="16" maxlength="16" id="tax_code"
-                       class="form-control" placeholder="Insert Tax Code" required value="0123456789012345">
+                       class="form-control" placeholder="Insert Tax Code" required >
             </div>
         </div>
 
@@ -30,7 +30,7 @@
             <label for="first_name" class="col-sm-2 col-form-label">First Name :</label>
             <div class="col-sm-10">
                 <input type="text" name="first_name" maxlength="30" id="first_name" class="form-control"
-                       placeholder="Insert First Name" required value="a">
+                       placeholder="Insert First Name" required >
             </div>
         </div>
 
@@ -38,14 +38,14 @@
             <label for="last_name" class="col-sm-2 col-form-label">Last Name :</label>
             <div class="col-sm-10">
                 <input type="text" name="last_name" maxlength="30" id="last_name" class="form-control"
-                       placeholder="Insert Last Name" required value="a">
+                       placeholder="Insert Last Name" required >
             </div>
         </div>
 
         <div class="form-group row">
             <label for="birth_date" class="col-sm-2 col-form-label">Birth Date :</label>
             <div class="col-sm-10">
-                <input type="date" name="birth_date" id="birth_date" class="form-control" required value="1999-09-06">
+                <input type="date" name="birth_date" id="birth_date" class="form-control" required >
             </div>
         </div>
 
@@ -53,7 +53,7 @@
             <label for="address" class="col-sm-2 col-form-label" >Address :</label>
             <div class="col-sm-10">
                 <input type="text" name="address" id="address" class="form-control"
-                       placeholder="Insert Address" required value="0">
+                       placeholder="Insert Address" required >
             </div>
         </div>
 
@@ -61,7 +61,7 @@
             <label for="telephone_number" class="col-sm-3 col-form-label">Telephone Number :</label>
             <div class="col-sm-9">
                 <input type="tel" name="telephone_number" id="telephone_number"
-                       class="form-control" placeholder="Insert Telephone Number" required value="0">
+                       class="form-control" placeholder="Insert Telephone Number" required >
             </div>
         </div>
 
@@ -79,7 +79,7 @@
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
             <div class="col-sm-10">
                 <input type="email" name="email" id="email" maxlength="40"
-                       class="form-control" placeholder="Enter Email" required value="a@a">
+                       class="form-control" placeholder="Enter Email" required >
             </div>
         </div>
 
@@ -87,7 +87,7 @@
             <label for="password" class="col-sm-2 col-form-label">Password :</label>
             <div class="col-sm-10">
                 <input type="password" name="password" id="password" class="form-control"
-                       placeholder="Password" required value="a">
+                       placeholder="Password" required >
             </div>
         </div>
 
@@ -95,7 +95,7 @@
             <label for="confirm_password" class="col-sm-3 col-form-label">Confirm Password :</label>
             <div class="col-sm-9">
                 <input type="password" name="confirm_password" id="confirm_password"
-                       class="form-control" placeholder="Confirm Password" required value="a">
+                       class="form-control" placeholder="Confirm Password" required >
             </div>
         </div>
 
@@ -104,7 +104,7 @@
         <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
             <p id="alert-message-body" class="alert-box-message">
             </p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
