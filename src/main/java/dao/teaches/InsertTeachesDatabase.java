@@ -38,6 +38,7 @@ public class InsertTeachesDatabase {
 
     /**
      * Execute the sql statement defined above
+     * @throws SQLException
      */
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
