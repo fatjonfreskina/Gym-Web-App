@@ -21,11 +21,11 @@
 * [Users of the web app](#users-of-the-web-app)
 * [Necessary steps before usage](#necessary-steps-before-usage)
 
-## General description of the web-app
+## General description of the web app <a name="general-description-of-the-web-app"></a>
 This web application is designed to be used for the management of a gym. It can be used by both the users attending the various courses offered by the gym and by the trainers/secretaries.<br />
 The aim of this web application is to simplify the users' tasks, allowing to manage courses, attendances and subscriptions with only a few clicks.
 
-## Users of the web-app
+## Users of the web app
 This web application has been implemented for different users, each one of them having different functionalities available.
 ### Guest
 The Guest represents a user who accesses the web application without logging in. He will be able to have a general insight of the gym.
