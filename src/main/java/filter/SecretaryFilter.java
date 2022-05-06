@@ -11,10 +11,19 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * The filter class for the secretary area
  * @author Harjot Singh
  */
 public class SecretaryFilter extends AbstractFilter {
 
+    /**
+     * Filters request allowing only secretaries to access the area
+     * @param req  the request
+     * @param res  the response
+     * @param chain  the cain of filters
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 

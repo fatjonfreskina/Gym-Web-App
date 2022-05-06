@@ -12,21 +12,38 @@ import java.io.PrintWriter;
 
 
 /**
+ * The abstract filter class. It will be extended by the specific filters
+ *
  * @author Harjot Singh
  * @author Francesco Caldivezzi
  */
 public class AbstractFilter extends HttpFilter {
 
+  /**
+   * Initializes this class
+   * @param config  the configuration
+   * @throws ServletException
+   */
   @Override
   public void init(FilterConfig config) throws ServletException {
 
   }
 
+  /**
+   * Destroys this class
+   */
   @Override
   public void destroy() {
 
   }
 
+  /**
+   * Sends the rest response
+   * @param res  the http response
+   * @param errorCode  the error code
+   * @param message  the message
+   * @throws IOException
+   */
   protected void sendRestResponse(HttpServletResponse res, int errorCode, String message) throws IOException {
     // Set headers of the response.
     res.setContentType("application/json");
