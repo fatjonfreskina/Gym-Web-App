@@ -10,11 +10,21 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
+ * This class represents a filter for a restricted area
+ *
  * @author Harjot Singh
  * @author AvatarFilter PersonalInfoFilter
  */
 public class RestrictedAreaFilter extends AbstractFilter {
 
+    /**
+     * Filters the requests based on their authorization
+     * @param req  the request
+     * @param res  the response
+     * @param chain  the chain of filters
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 

@@ -23,6 +23,9 @@ import java.util.List;
  */
 public class MedicalCertificateExpiration implements Runnable {
 
+    /**
+     * Runs this job by notifying users if their medical certificate has expired
+     */
     @Override
     public void run() {
 
