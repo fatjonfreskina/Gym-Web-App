@@ -78,6 +78,7 @@
                             <c:forEach var="role" items="${sessionScope.roles}">
                                 <a class="dropdown-item" href="<c:url value="/${role}"/>"><c:out value="${role}"/></a>
                             </c:forEach>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<c:url value="/logout"/>">Logout</a>
                         </c:otherwise>
                     </c:choose>

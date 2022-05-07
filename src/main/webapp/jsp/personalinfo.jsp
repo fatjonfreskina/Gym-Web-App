@@ -12,7 +12,30 @@
 </head>
 <body>
 <header>
-    <jsp:include page="/jsp/include/header.jsp"/>
+    <c:choose>
+        <c:when test="${empty defaultRole}">
+            <jsp:include page="/jsp/include/header.jsp"/>
+        </c:when>
+        <c:otherwise>
+            <c:choose>
+                <c:when test="${defaultRole eq 'trainee'}">
+                    <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
+                </c:when>
+
+                <c:when test="${defaultRole eq 'trainer'}">
+                    <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
+                </c:when>
+
+                <c:when test="${defaultRole eq 'secretary'}">
+                    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+                </c:when>
+
+                <c:otherwise>
+                    <jsp:include page="/jsp/include/header.jsp"/>
+                </c:otherwise>
+            </c:choose>
+        </c:otherwise>
+    </c:choose>
 </header>
 <main class="global-container">
 
