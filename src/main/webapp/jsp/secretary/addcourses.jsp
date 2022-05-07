@@ -238,7 +238,6 @@
     </form>
 </main>
 
-
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 <jsp:include page="/jsp/include/select_multiple/script.jsp"/>
