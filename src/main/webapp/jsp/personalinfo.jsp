@@ -12,6 +12,8 @@
 </head>
 <body>
 <header>
+
+    <%-- ********** Choose the correct Header to use, given the currently selected role. ********** --%>
     <c:choose>
         <c:when test="${empty defaultRole}">
             <jsp:include page="/jsp/include/header.jsp"/>
