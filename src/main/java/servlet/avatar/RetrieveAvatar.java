@@ -26,20 +26,23 @@ public class RetrieveAvatar extends AbstractServlet {
      * @throws ServletException
      * @throws IOException
      */
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        if (session == null)
+        if (session == null) {
             res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+            return;
+        }
 
-        final String avatarPath = (String) session.getAttribute("avatarPath");
-        final String s_avatarPath[] =  avatarPath.split("\\.");
-        final String format = s_avatarPath[s_avatarPath.length-1];
+        final String avatarPath = session.getAttribute("avatarPath").toString()
+                .replace('/', File.separatorChar);
+        final String[] s_avatarPath =  avatarPath.split("\\.");
+        final String format = s_avatarPath[s_avatarPath.length - 1];
 
         res.setContentType("image/"+format);
         File file = new File(avatarPath);
         res.setContentLength((int)file.length());
 
-        try{
+        try {
             FileInputStream in = new FileInputStream(file);
             OutputStream out = res.getOutputStream();
 
@@ -51,7 +54,8 @@ public class RetrieveAvatar extends AbstractServlet {
             }
             out.close();
             in.close();
-        }catch(FileNotFoundException e){
+        }
+        catch(FileNotFoundException e) {
             LOGGER.error("Avatar file not found");
             req.getRequestDispatcher(Constants.RELATIVE_URL_HOME).forward(req, res);
         }

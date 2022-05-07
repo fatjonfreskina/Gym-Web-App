@@ -43,45 +43,47 @@
 
     <div class="container">
 
-        <%-- ********** AVATAR ********** --%>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Avatar :</label>
+        <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
 
-            <div class="col-sm-9">
-                <c:choose>
-                    <c:when test="${null != personalInfo.avatarPath}">
-                        <img src="<c:url value="/avatar"/>"
-                             width="100%" alt="Avatar">
-                    </c:when>
-                    <c:otherwise>
-                        <img src="<c:url value="/images/staff/default-user-image.jpg"/>"
-                             width="100%" alt="Avatar">
-                    </c:otherwise>
-                </c:choose>
+            <%-- ********** AVATAR ********** --%>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Avatar :</label>
+
+                <div class="col-sm-9 avatar-image-box">
+
+                    <%-- Inline styling info is needed since some browsers
+                         like Firefox does not support classes for images. --%>
+                    <c:choose>
+                        <c:when test="${null != personalInfo.avatarPath}">
+                            <img src="<c:url value="/avatar"/>"
+                                 style="max-width: 100%; max-height: 100%"
+                                 alt="Avatar">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="<c:url value="/images/staff/default-user-image.jpg"/>"
+                                 style="max-width: 100%; max-height: 100%"
+                                 alt="Avatar">
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
-        </div>
 
-        <%-- ********** CHANGE AVATAR ********** --%>
-        <div class="form-group row">
-            <label class="col-sm-3 col-form-label"></label>
+            <%-- ********** CHANGE AVATAR ********** --%>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"></label>
 
-            <div class="col-sm-9">
-                <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            <div class="custom-file">
-                                <input type="file" name="avatar" id="file" class="custom-file-input">
-                                <label class="custom-file-label" for="file">Choose File</label>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <input type="submit" value="Change" class="btn btn-outline-primary btn-lg"/>
-                        </div>
+                <div class="col-sm-6">
+                    <div class="custom-file">
+                        <input type="file" name="avatar" id="file" class="custom-file-input">
+                        <label class="custom-file-label" for="file">Choose File: </label>
                     </div>
-                </form>
+                </div>
+
+                <div class="col-sm-3">
+                    <input type="submit" value="Change" class="btn btn-outline-primary btn-lg"/>
+                </div>
             </div>
-        </div>
+        </form>
 
         <%-- ********** TAX CODE ********** --%>
         <div class="form-group row">

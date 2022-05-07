@@ -43,8 +43,14 @@ body {
     background-color: rgba(128, 128, 128, 0.5);
 }
 
-.alert-box-message{
+.alert-box-message {
     margin: 0;
+}
+
+.avatar-image-box {
+    aspect-ratio: 4.0/3.0;
+    overflow: hidden;
+    object-fit: scale-down;
 }
 
 /* < */

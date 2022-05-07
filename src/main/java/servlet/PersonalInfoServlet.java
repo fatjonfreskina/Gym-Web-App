@@ -12,7 +12,9 @@ import jakarta.servlet.http.Part;
 import resource.Message;
 import resource.Person;
 
+import javax.imageio.ImageIO;
 import javax.naming.NamingException;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
@@ -114,6 +116,8 @@ public class PersonalInfoServlet extends AbstractServlet
                                     p.getTaxCode(), p.getBirthDate(), p.getTelephone(), p.getAddress(), avatarPath);
 
                             new UpdatePersonDatabase(getConnection(), person).execute();
+
+                            req.setAttribute("personalInfo", person);
                         }
                         else
                             error = Codes.INTERNAL_ERROR;
@@ -125,7 +129,7 @@ public class PersonalInfoServlet extends AbstractServlet
             }
         }
 
-        req.setAttribute("personalInfo", p);
+        //req.setAttribute("personalInfo", p);
 
         // Return the appropriate error message and send back to the "Personal Info" page.
         if (error != Codes.OK)
@@ -181,8 +185,52 @@ public class PersonalInfoServlet extends AbstractServlet
                 }
             }
 
-            final String filePath = dirPath + File.separator + Constants.AVATAR + "." + extension;
+            //final String filePath = dirPath + File.separator + Constants.AVATAR + "." + extension;
 
+            //TODO: quick fix for bug "avatarPath has extension .jpg no matter what", just save as jpg and call it a day.
+            //@author Marco Alessio
+            final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + ".jpg");
+
+            try {
+                BufferedImage img = ImageIO.read(file.getInputStream());
+
+                //TODO: quick fix for "Personal Info" avatar layout issue.
+                //Just save the portion of image relevant to show.
+                //@author Marco Alessio
+
+                final int width = img.getWidth();
+                final int height = img.getHeight();
+                final double aspectRatio = (double)width / (double)height;
+
+                final int ratioWidthTarget = 4;
+                final int ratioHeightTarget = 3;
+                final double ratioTarget = (double)ratioWidthTarget / (double)ratioHeightTarget; //4:3
+
+                final int newWidth, newHeight;
+                if (aspectRatio >= ratioTarget) //Image larger than target aspect ratio.
+                {
+                    newHeight = (height / ratioHeightTarget) * ratioHeightTarget;
+                    newWidth = (newHeight / ratioHeightTarget) * ratioWidthTarget;
+                }
+                else //Image higher than target aspect ratio.
+                {
+                    newWidth = (width / ratioWidthTarget) * ratioWidthTarget;
+                    newHeight = (newWidth / ratioWidthTarget) * ratioHeightTarget;
+                }
+
+                final int x = (width - newWidth) / 2;
+                final int y = (height - newHeight) / 2;
+
+                img = img.getSubimage(x, y, newWidth, newHeight);
+
+                ImageIO.write(img, "jpg", saveFile);
+            }
+            catch (IOException e)
+            {
+                return Codes.CANNOT_UPLOAD_FILE;
+            }
+
+            /*
             // Copy the data from the input file to the output one.
             try (InputStream content = file.getInputStream();
                  OutputStream writer = new FileOutputStream(filePath,false))
@@ -196,6 +244,7 @@ public class PersonalInfoServlet extends AbstractServlet
             {
                 return Codes.CANNOT_UPLOAD_FILE;
             }
+            */
 
             return Codes.OK;
         }
