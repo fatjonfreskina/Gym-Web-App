@@ -56,12 +56,15 @@
                     <c:choose>
                         <c:when test="${null != personalInfo.avatarPath}">
                             <img src="<c:url value="/avatar"/>"
+                                 onerror="this.src='<c:url value="/images/staff/default-user-image-avatar.jpg"/>';"
                                  style="max-width: 100%; max-height: 100%"
+                                 width="100%" height="100%"
                                  alt="Avatar">
                         </c:when>
                         <c:otherwise>
-                            <img src="<c:url value="/images/staff/default-user-image.jpg"/>"
+                            <img src="<c:url value="/images/staff/default-user-image-avatar.jpg"/>"
                                  style="max-width: 100%; max-height: 100%"
+                                 width="100%" height="100%"
                                  alt="Avatar">
                         </c:otherwise>
                     </c:choose>
@@ -74,8 +77,8 @@
 
                 <div class="col-sm-6">
                     <div class="custom-file">
-                        <input type="file" name="avatar" id="file" class="custom-file-input">
-                        <label class="custom-file-label" for="file">Choose File: </label>
+                        <input type="file" name="avatar" id="avatar" class="custom-file-input">
+                        <label class="custom-file-label" for="avatar">Choose File: </label>
                     </div>
                 </div>
 

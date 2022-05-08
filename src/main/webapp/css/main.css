@@ -50,7 +50,7 @@ body {
 .avatar-image-box {
     aspect-ratio: 4.0/3.0;
     overflow: hidden;
-    object-fit: scale-down;
+    object-fit: cover;
 }
 
 /* < */

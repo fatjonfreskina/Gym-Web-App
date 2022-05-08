@@ -109,8 +109,15 @@ public class PersonalInfoServlet extends AbstractServlet
                         {
                             final String extension = matcher.group(2);
 
+                            /*
+                            There is a bug in "RetrieveAvatar" servlet, where it expects the avatar to always be called
+                            "avatar.jpg". Therefore, if the input image has not ".jpg" extension, it will fail to
+                            retrieve the avatar. This may happen for PNG images, and also for JPEG images with extension
+                            ".jpeg".
+                            */
                             final String avatarPath = Constants.AVATAR_PATH_FOLDER + File.separator + p.getTaxCode() +
-                                    File.separator + Constants.AVATAR + "." + extension;
+                                    File.separator + Constants.AVATAR + "." + "jpg";
+                                    //+ extension;
 
                             final Person person = new Person(p.getEmail(), p.getName(), p.getSurname(), p.getPsw(),
                                     p.getTaxCode(), p.getBirthDate(), p.getTelephone(), p.getAddress(), avatarPath);
@@ -185,66 +192,24 @@ public class PersonalInfoServlet extends AbstractServlet
                 }
             }
 
-            //final String filePath = dirPath + File.separator + Constants.AVATAR + "." + extension;
-
-            //TODO: quick fix for bug "avatarPath has extension .jpg no matter what", just save as jpg and call it a day.
-            //@author Marco Alessio
-            final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + ".jpg");
-
-            try {
+            /*
+            Reads the given file to an image file, and save it to disk as JPEG image. This is done for 2 reasons:
+            1) Perform input validation
+            2) There is a bug in "RetrieveAvatar" servlet, where it expects the avatar to always be called
+               "avatar.jpg". Therefore, if the input image has not ".jpg" extension, it will fail to retrieve the
+               avatar. This may happen for PNG images, and also for JPEG images with extension ".jpeg".
+            */
+            try
+            {
                 BufferedImage img = ImageIO.read(file.getInputStream());
 
-                //TODO: quick fix for "Personal Info" avatar layout issue.
-                //Just save the portion of image relevant to show.
-                //@author Marco Alessio
-
-                final int width = img.getWidth();
-                final int height = img.getHeight();
-                final double aspectRatio = (double)width / (double)height;
-
-                final int ratioWidthTarget = 4;
-                final int ratioHeightTarget = 3;
-                final double ratioTarget = (double)ratioWidthTarget / (double)ratioHeightTarget; //4:3
-
-                final int newWidth, newHeight;
-                if (aspectRatio >= ratioTarget) //Image larger than target aspect ratio.
-                {
-                    newHeight = (height / ratioHeightTarget) * ratioHeightTarget;
-                    newWidth = (newHeight / ratioHeightTarget) * ratioWidthTarget;
-                }
-                else //Image higher than target aspect ratio.
-                {
-                    newWidth = (width / ratioWidthTarget) * ratioWidthTarget;
-                    newHeight = (newWidth / ratioWidthTarget) * ratioHeightTarget;
-                }
-
-                final int x = (width - newWidth) / 2;
-                final int y = (height - newHeight) / 2;
-
-                img = img.getSubimage(x, y, newWidth, newHeight);
-
+                final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + ".jpg");
                 ImageIO.write(img, "jpg", saveFile);
             }
-            catch (IOException e)
+            catch (Throwable e)
             {
                 return Codes.CANNOT_UPLOAD_FILE;
             }
-
-            /*
-            // Copy the data from the input file to the output one.
-            try (InputStream content = file.getInputStream();
-                 OutputStream writer = new FileOutputStream(filePath,false))
-            {
-                final byte[] bytes = new byte[1024];
-
-                int read;
-                while ((read = content.read(bytes)) != -1)
-                    writer.write(bytes, 0, read);
-            } catch (IOException e)
-            {
-                return Codes.CANNOT_UPLOAD_FILE;
-            }
-            */
 
             return Codes.OK;
         }

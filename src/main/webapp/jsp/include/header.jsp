@@ -71,7 +71,9 @@
                     <!-- Load user avatar if any -->
                     <c:choose>
                         <c:when test="${null != sessionScope.avatarPath}">
-                            <img class="rounded-circle" src="<c:url value="/avatar"/>" width="36px" height="36px">
+                            <img class="rounded-circle" src="<c:url value="/avatar"/>"
+                                 onerror="this.src='<c:url value="/images/staff/default-user-image.jpg"/>';"
+                                 width="36px" height="36px">
                         </c:when>
                         <c:otherwise>
                             <i class="fa-solid fa-user p-2"></i>
