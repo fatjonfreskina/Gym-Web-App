@@ -171,7 +171,30 @@ public class Person {
     }
 
     @Override
-    //TODO: Refactor this method
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Person{email=");
+        sb.append(email);
+        sb.append(", name='");
+        sb.append(name);
+        sb.append(", surname='");
+        sb.append(surname);
+        sb.append(", psw='");
+        sb.append(psw);
+        sb.append(", taxCode='");
+        sb.append(taxCode);
+        sb.append(", birthDate='");
+        sb.append(birthDate);
+        sb.append(", telephone='");
+        sb.append(telephone);
+        sb.append(", address='");
+        sb.append(address);
+        sb.append(", avatarPath='");
+        sb.append(avatarPath);
+        sb.append("'}");
+        return sb.toString();
+    }
+     /* //TODO check if refactor is ok before deleting
     public String toString() {
         return "Person{" +
                 "email='" + email + '\'' +
@@ -185,4 +208,5 @@ public class Person {
                 ", avatarPath='" + avatarPath + '\'' +
                 '}';
     }
+      */
 }
