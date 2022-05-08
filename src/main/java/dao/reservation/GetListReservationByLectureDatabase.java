@@ -4,12 +4,16 @@ import constants.Constants;
 import resource.LectureTimeSlot;
 import resource.Reservation;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * DAO class used to get the list of reservations from a lecture
+ *
  * @author Andrea Pasin
  * @author Harjot Singh
  */
@@ -22,8 +26,9 @@ public class GetListReservationByLectureDatabase {
 
     /**
      * Constructor for this class
-     * @param con  the connection to the database
-     * @param lectureTimeSlot  the lecture time slot object
+     *
+     * @param con             the connection to the database
+     * @param lectureTimeSlot the lecture time slot object
      */
 
     public GetListReservationByLectureDatabase(final Connection con, final LectureTimeSlot lectureTimeSlot) {
@@ -33,8 +38,9 @@ public class GetListReservationByLectureDatabase {
 
     /**
      * Executes the sql statement returning the list of reservation
+     *
      * @return a list of reservations matching the query
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<Reservation> execute() throws SQLException {
         PreparedStatement pstmt = null;
@@ -53,8 +59,7 @@ public class GetListReservationByLectureDatabase {
             while (rs.next()) {
                 reservations.add(new Reservation(rs.getString(Constants.RESERVATION_TRAINEE), rs.getString(Constants.RESERVATION_LECTUREROOM), rs.getDate(Constants.RESERVATION_LECTUREDATE), rs.getTime(Constants.RESERVATION_LECTURESTARTTIME)));
             }
-        }
-        finally {
+        } finally {
             if (rs != null) {
                 rs.close();
             }

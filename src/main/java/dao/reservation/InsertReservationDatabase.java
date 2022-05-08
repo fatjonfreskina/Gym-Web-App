@@ -1,13 +1,14 @@
 package dao.reservation;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.Reservation;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * DAO class used to insert a reservation into the database
+ *
  * @author Fatjon Freskina
  */
 
@@ -23,8 +24,9 @@ public class InsertReservationDatabase {
 
     /**
      * Constructor for this class
-     * @param con  the connection to the database
-     * @param reservation  the reservation object that needs to be inserted
+     *
+     * @param con         the connection to the database
+     * @param reservation the reservation object that needs to be inserted
      */
 
     public InsertReservationDatabase(final Connection con, final Reservation reservation) {
@@ -34,7 +36,8 @@ public class InsertReservationDatabase {
 
     /**
      * Executes the sql statement which inserts the reservation into the database
-     * @throws SQLException
+     *
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public void execute() throws SQLException {
         try (PreparedStatement stm = con.prepareStatement(STATEMENT)) {

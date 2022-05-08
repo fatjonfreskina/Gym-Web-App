@@ -1,7 +1,6 @@
 package dao.reservation;
 
 import constants.Constants;
-import jakarta.servlet.http.HttpSession;
 import resource.Reservation;
 
 import java.sql.*;
@@ -10,6 +9,7 @@ import java.util.List;
 
 /**
  * DAO class used to get the list of reservations by an email and a date
+ *
  * @author Fatjon Freskina, Marco Alessio
  */
 public class GetListReservationByEmailAndDateDatabase
@@ -32,15 +32,14 @@ public class GetListReservationByEmailAndDateDatabase
 
     /**
      * Constructor for this class
-     * @param con  the connection to the database
-     * @param email  the email parameter
-     * @param fromDate  the date, lower bound
-     * @param toDate  the date, higher bound
+     *
+     * @param con      the connection to the database
+     * @param email    the email parameter
+     * @param fromDate the date, lower bound
+     * @param toDate   the date, higher bound
      */
     public GetListReservationByEmailAndDateDatabase(final Connection con, final String email,
-                                                    final Date fromDate, final Date toDate)
-
-    {
+                                                    final Date fromDate, final Date toDate) {
         this.con = con;
         this.email = email;
         this.fromDate = fromDate;
@@ -49,18 +48,17 @@ public class GetListReservationByEmailAndDateDatabase
 
     /**
      * Executes the sql statement
+     *
      * @return the list containing Reservation object that matched the query; if no match returns null
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
-    public List<Reservation> execute() throws SQLException
-    {
+    public List<Reservation> execute() throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         final List<Reservation> reservations = new ArrayList<>();
 
-        try
-        {
+        try {
             pstmt = con.prepareStatement(STATEMENT);
             pstmt.setString(1, email);
             pstmt.setDate(2, fromDate);
@@ -68,17 +66,14 @@ public class GetListReservationByEmailAndDateDatabase
 
             rs = pstmt.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 final String room = rs.getString(Constants.RESERVATION_LECTUREROOM);
                 final Date date = rs.getDate(Constants.RESERVATION_LECTUREDATE);
                 final Time startTime = rs.getTime(Constants.RESERVATION_LECTURESTARTTIME);
 
                 reservations.add(new Reservation(room, date, startTime));
             }
-        }
-        finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
 

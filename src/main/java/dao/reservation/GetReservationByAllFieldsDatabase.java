@@ -10,6 +10,7 @@ import java.sql.SQLException;
 
 /**
  * DAO used to get a reservation
+ *
  * @author Riccardo Tumiati
  */
 public class GetReservationByAllFieldsDatabase {
@@ -23,8 +24,9 @@ public class GetReservationByAllFieldsDatabase {
 
     /**
      * Constructor for this class
-     * @param con  the connection to the database
-     * @param reservation  the reservation object to be selected in the query
+     *
+     * @param con         the connection to the database
+     * @param reservation the reservation object to be selected in the query
      */
     public GetReservationByAllFieldsDatabase(final Connection con, final Reservation reservation) {
         this.con = con;
@@ -33,8 +35,9 @@ public class GetReservationByAllFieldsDatabase {
 
     /**
      * Executes the sql statement
+     *
      * @return the reservation object that matches the query; if there is no match returns null
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public Reservation execute() throws SQLException {
 
