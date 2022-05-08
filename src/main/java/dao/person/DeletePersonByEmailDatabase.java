@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
  * This DAO is used to delete a Person from the database
  *
  * @author Francesco Caldivezzi
@@ -30,11 +29,10 @@ public class DeletePersonByEmailDatabase {
     private final Person person;
 
     /**
-     *
      * Parametric constructor
      *
      * @param connection the connection to the database
-     * @param person the person object to be deleted
+     * @param person     the person object to be deleted
      */
     public DeletePersonByEmailDatabase(final Connection connection, final Person person) {
         this.connection = connection;
@@ -42,7 +40,6 @@ public class DeletePersonByEmailDatabase {
     }
 
     /**
-     *
      * Executes the delete query
      *
      * @throws SQLException is thrown if something goes wrong while querying the database

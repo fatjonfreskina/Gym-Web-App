@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
  * This DAO deletes the role of a person from the database
  *
  * @author Alberto Campeol
@@ -30,11 +29,10 @@ public class DeletePersonRoleDatabase {
     private final Person p;
 
     /**
-     *
      * Parametric constructor
      *
      * @param conn the connection to the database
-     * @param p the person object whose role needs to be deleted
+     * @param p    the person object whose role needs to be deleted
      */
     public DeletePersonRoleDatabase(final Connection conn, final Person p) {
         this.conn = conn;
@@ -42,7 +40,6 @@ public class DeletePersonRoleDatabase {
     }
 
     /**
-     *
      * Executes the delete query
      *
      * @throws SQLException is thrown if something goes wrong while querying the database

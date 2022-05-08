@@ -3,12 +3,14 @@ package dao.person;
 import constants.Constants;
 import resource.Person;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * This DAO is used to get all the persons in the database
  *
  * @author Riccardo Forzan
@@ -35,7 +37,6 @@ public class GetAllPersonsDatabase {
     }
 
     /**
-     *
      * Executes the SELECT query
      *
      * @return a list containing Person objects that matched the query

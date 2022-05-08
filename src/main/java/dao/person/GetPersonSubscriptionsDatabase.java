@@ -15,9 +15,20 @@ import java.util.List;
  */
 public class GetPersonSubscriptionsDatabase {
 
+    /**
+     * Query to be executed
+     */
     private static final String STATEMENT =
             "SELECT * FROM subscription WHERE trainee = ?";
+
+    /**
+     * Connection to the database
+     */
     private final Connection con;
+
+    /**
+     * Person to get the subscriptions from
+     */
     private final Person trainee;
 
     /**
