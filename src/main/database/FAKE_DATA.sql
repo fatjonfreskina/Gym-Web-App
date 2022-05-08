@@ -13,45 +13,45 @@ INSERT INTO person VALUES ('fatjon.freskina@outlook.com','Virginia','Barrows','d
 INSERT INTO person VALUES ('riccardo.forzan@studenti.unipd.it','Sondra','DuBuque','d41d8cd98f00b204e9800998ecf8427e','E4FHUQGI8YSMXC9O',TO_DATE('18/03/1999','DD/MM/YYYY'),'5280680379','Apt. 686 90669 Schroeder Center, Vivienfort, ID 47685',NULL);
 INSERT INTO person VALUES ('andrea.pasin.1@studenti.unipd.it','Bart','Collins','d41d8cd98f00b204e9800998ecf8427e','YOY6TKBDKLICSDBB',TO_DATE('20/11/1993','DD/MM/YYYY'),'9849796961','61356 Erin Harbor, Lake Sherman, IL 47716',NULL);
 INSERT INTO person VALUES ('harjot.singh@studenti.unipd.it','Cristi','Schaden','d41d8cd98f00b204e9800998ecf8427e','DI2RTBAM8YWBSI5R',TO_DATE('14/06/1993','DD/MM/YYYY'),'8696726751','0149 Goyette Ports, West Crystalhaven, MN 53493',NULL);
-INSERT INTO person VALUES ('riccardo.tumiati@studenti.unipd.it','Alonzo','Lindgren','d41d8cd98f00b204e9800998ecf8427e','MQRCLW9GUXOEOCZE',TO_DATE('02/08/1987','DD/MM/YYYY'),'0537593185','3249 Tanna Motorway, West Marlena, AK 22530',NULL);
+INSERT INTO person VALUES ('simonedantimo2@gmail.com','Alonzo','Lindgren','d41d8cd98f00b204e9800998ecf8427e','MQRCLW9GUXOEOCZE',TO_DATE('02/08/1987','DD/MM/YYYY'),'0537593185','3249 Tanna Motorway, West Marlena, AK 22530',NULL);
 INSERT INTO person VALUES ('francesco.caldivezzi@hotmail.it','Bao','Glover','d41d8cd98f00b204e9800998ecf8427e','W3CT5DQZUF3OIO2E',TO_DATE('03/12/1964','DD/MM/YYYY'),'6742914291','Suite 500 383 Myung Isle, West Hazelfort, KS 54896-0334',NULL);
 INSERT INTO person VALUES ('fation.freskina@gmail.com','Altha','Ruecker','d41d8cd98f00b204e9800998ecf8427e','7IM7ZA79M0JKEDOE',TO_DATE('27/09/1959','DD/MM/YYYY'),'7216835609','34074 Luciano Loaf, Timton, IN 24432-9964',NULL);
 INSERT INTO person VALUES ('richifenomeno@gmail.com','Giacomo','Forza','d41d8cd98f00b204e9800998ecf8427e','GCMFRZ0000000000',TO_DATE('01/06/1980','DD/MM/YYYY'),'3000000004','Address of Giacomo Forza',null);
-INSERT INTO person VALUES ('riccardo178tumiati@gmail.com','Shery','Stamm','d41d8cd98f00b204e9800998ecf8427e','WTUZV4V1DE1UFFUI',TO_DATE('17/10/1970','DD/MM/YYYY'),'6161813924','86778 Bogisich Road, Zoeview, AK 87873-9690',NULL);
+INSERT INTO person VALUES ('shery.stamm@example.com','Shery','Stamm','d41d8cd98f00b204e9800998ecf8427e','WTUZV4V1DE1UFFUI',TO_DATE('17/10/1970','DD/MM/YYYY'),'6161813924','86778 Bogisich Road, Zoeview, AK 87873-9690',NULL);
 INSERT INTO person VALUES ('simonedantimo3@gmail.com','Nathanial','Prohaska','d41d8cd98f00b204e9800998ecf8427e','RE1BE14AWWYX2Y4L',TO_DATE('06/01/1961','DD/MM/YYYY'),'1396809182','Suite 023 30803 Nader Valleys, Sengerville, PA 07282-1307',NULL);
 INSERT INTO person VALUES ('harjot.98@hotmail.com','Annis','Dach','d41d8cd98f00b204e9800998ecf8427e','IPYMLKCHRMOKJODO',TO_DATE('10/03/1990','DD/MM/YYYY'),'2220710877','Apt. 119 610 Kyle Vista, Dorcasborough, AZ 07445',NULL);
 INSERT INTO person VALUES ('classe1g.viola@gmail.com','Cyrus','Hammes','d41d8cd98f00b204e9800998ecf8427e','KJADPAVW8KX5S0UQ',TO_DATE('22/02/1985','DD/MM/YYYY'),'0519398218','Apt. 168 747 Daniel Glen, East Keenan, OH 35920',NULL);
 INSERT INTO person VALUES ('lupin.zombie9900@gmail.com','Alfonso','Gibson','d41d8cd98f00b204e9800998ecf8427e','RURTNQXG5SNSRLFC',TO_DATE('26/02/1973','DD/MM/YYYY'),'1559357297','5964 Lori Stravenue, Port Tyreeborough, AR 17660',NULL);
 INSERT INTO person VALUES ('vendettav@gmail.com','Carmine','Sipes','d41d8cd98f00b204e9800998ecf8427e','LCRKVACORBCT753D',TO_DATE('04/06/1997','DD/MM/YYYY'),'8151088748','99860 Lavonne Mall, New Lloyd, DE 43817-1522',NULL);
 INSERT INTO person VALUES ('alberto.campeol@outlook.it','Dorris','Trantow','d41d8cd98f00b204e9800998ecf8427e','BQQWDHZRKXT9A5YI',TO_DATE('30/10/1983','DD/MM/YYYY'),'6740753156','9688 Pacocha Port, New Bryan, IN 26529',NULL);
-INSERT INTO person VALUES ('simonedantimo2@gmail.com','Kraig','Larkin','d41d8cd98f00b204e9800998ecf8427e','T9XQHGBJ2NOYFJ0X',TO_DATE('31/12/1996','DD/MM/YYYY'),'0488874925','Apt. 444 157 Roob Bridge, South Earlean, CO 81294-2901',NULL);
+
 
 --Roles Persons
-INSERT INTO personroles VALUES ('mario.rossi@example.com','trainee');
-INSERT INTO personroles VALUES ('riccardo.bianchi@example.com','trainee');
-INSERT INTO personroles VALUES ('luca.giallo@example.com','trainee');
-INSERT INTO personroles VALUES ('stanley.corkery@example.com','trainee');
-INSERT INTO personroles VALUES ('virginia.barrows@example.com','trainee');
-INSERT INTO personroles VALUES ('sondra.dubuque@example.com','trainee');
-INSERT INTO personroles VALUES ('bart.collins@example.com','trainee');
-INSERT INTO personroles VALUES ('cristi.schaden@example.com','trainee');
-INSERT INTO personroles VALUES ('alonzo.lindgren@example.com','trainee');
-INSERT INTO personroles VALUES ('bao.glover@example.com','trainee');
-INSERT INTO personroles VALUES ('altha.ruecker@example.com','trainee');
-INSERT INTO personroles VALUES ('giacomo.forza@example.com','trainer');
+INSERT INTO personroles VALUES ('marco.alessio.1@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('francesco.caldivezzi@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('alberto.campeol.1@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('simone.dantimo@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('fatjon.freskina@outlook.com','trainee');
+INSERT INTO personroles VALUES ('riccardo.forzan@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('andrea.pasin.1@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('harjot.singh@studenti.unipd.it','trainee');
+INSERT INTO personroles VALUES ('simonedantimo2@gmail.com','trainee');
+INSERT INTO personroles VALUES ('francesco.caldivezzi@hotmail.it','trainee');
+INSERT INTO personroles VALUES ('fation.freskina@gmail.com','trainee');
+INSERT INTO personroles VALUES ('richifenomeno@gmail.com','trainer');
 INSERT INTO personroles VALUES ('shery.stamm@example.com','trainer');
-INSERT INTO personroles VALUES ('nathanial.prohaska@example.com','trainer');
-INSERT INTO personroles VALUES ('annis.dach@example.com','trainer');
-INSERT INTO personroles VALUES ('cyrus.hammes@example.com','trainer');
-INSERT INTO personroles VALUES ('alfonso.gibson@example.com','secretary');
-INSERT INTO personroles VALUES ('carmine.sipes@example.com','secretary');
-INSERT INTO personroles VALUES ('dorris.trantow@example.com','secretary');
-INSERT INTO personroles VALUES ('kraig.larkin@example.com','secretary');
+INSERT INTO personroles VALUES ('simonedantimo3@gmail.com','trainer');
+INSERT INTO personroles VALUES ('harjot.98@hotmail.com','trainer');
+INSERT INTO personroles VALUES ('classe1g.viola@gmail.com','trainer');
+INSERT INTO personroles VALUES ('lupin.zombie9900@gmail.com','secretary');
+INSERT INTO personroles VALUES ('vendettav@gmail.com','secretary');
+INSERT INTO personroles VALUES ('alberto.campeol@outlook.it','secretary');
+
 
 --Medical certificate
-INSERT INTO medicalcertificate VALUES ('mario.rossi@example.com',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
-INSERT INTO medicalcertificate VALUES ('riccardo.bianchi@example.com',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
-INSERT INTO medicalcertificate VALUES ('luca.giallo@example.com',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('marco.alessio.1@studenti.unipd.it',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('francesco.caldivezzi@studenti.unipd.it',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
+INSERT INTO medicalcertificate VALUES ('alberto.campeol.1@studenti.unipd.it',TO_DATE('01/01/2023','DD/MM/YYYY'),'Doctor Sport', 'FAKE_PATH_FOR_FILE');
 --Missing
 
 --Courses
@@ -72,12 +72,12 @@ INSERT INTO courseedition VALUES (default, 'Calisthenics');
 
 --Course
 INSERT INTO teaches VALUES (5, 'Bodybuilding', 'dev@dev.dev');
-INSERT INTO teaches VALUES (1,'Powerlifting','giacomo.forza@example.com');
-INSERT INTO teaches VALUES (2,'Cardio','nathanial.prohaska@example.com');
+INSERT INTO teaches VALUES (1,'Powerlifting','richifenomeno@gmail.com');
+INSERT INTO teaches VALUES (2,'Cardio','simonedantimo3@gmail.com');
 INSERT INTO teaches VALUES (3,'Yoga','shery.stamm@example.com');
-INSERT INTO teaches VALUES (4,'Crossfit','nathanial.prohaska@example.com');
-INSERT INTO teaches VALUES (5,'Bodybuilding','cyrus.hammes@example.com');
-INSERT INTO teaches VALUES (6,'Calisthenics','annis.dach@example.com');
+INSERT INTO teaches VALUES (4,'Crossfit','simonedantimo3@gmail.com');
+INSERT INTO teaches VALUES (5,'Bodybuilding','classe1g.viola@gmail.com');
+INSERT INTO teaches VALUES (6,'Calisthenics','harjot.98@hotmail.com');
 
 --Room
 --LectureTimeSlot
@@ -546,6 +546,8 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-05-30', ' 18:00:00', 1, 'Powerlifting', NULL);
 
 --Wednesday
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 14:00:00', 5, 'Bodybuilding', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-01', ' 14:00:00', 1, 'Powerlifting', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 16:00:00', 5, 'Bodybuilding', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 18:00:00', 1, 'Powerlifting', NULL);
 
@@ -623,117 +625,117 @@ INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VA
 INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('dev@dev.dev', 'Stamina', '2022-06-28', ' 18:00:00');
 
 --Mario Rossi: Books Stamina from 18 to 20 every Tuesday for Cardio
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-04-19', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-04-26', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-05-03', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-05-10', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-05-17', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-05-24', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-05-31', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-06-07', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-06-14', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-06-21', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('mario.rossi@example.com', 'Stamina', '2022-06-28', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-04-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-04-12', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-04-19', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-04-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-05-03', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-05-10', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-05-17', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-05-24', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-05-31', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-06-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-06-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-06-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('marco.alessio.1@studenti.unipd.it', 'Stamina', '2022-06-28', ' 18:00:00');
 
 --Riccardo Bianchi: Books Stamina from 18 to 20 every Tuesday for Cardio
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-04-05', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-04-12', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-04-19', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-04-26', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-05-03', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-05-10', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-05-17', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-05-24', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-05-31', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-06-07', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-06-14', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-06-21', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('riccardo.bianchi@example.com', 'Stamina', '2022-06-28', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-04-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-04-12', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-04-19', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-04-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-05-03', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-05-10', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-05-17', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-05-24', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-05-31', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-06-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-06-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-06-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('francesco.caldivezzi@studenti.unipd.it', 'Stamina', '2022-06-28', ' 18:00:00');
 
 --Luca Giallo: Books Strength Calisthenics every possible day
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-04', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-06', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-11', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-13', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-18', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-20', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-25', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-04-27', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-02', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-04', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-09', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-11', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-16', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-18', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-23', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-25', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-05-30', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-01', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-06', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-08', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-13', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-15', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-20', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-22', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-27', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('luca.giallo@example.com', 'Strength', '2022-06-29', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-11', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-20', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-25', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-04-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-02', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-11', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-23', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-25', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-05-30', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-01', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-08', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-15', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-20', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-22', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alberto.campeol.1@studenti.unipd.it', 'Strength', '2022-06-29', ' 18:00:00');
 
 --Stanley Corkery: Books Strength Calisthenics some days
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-04-04', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-04-06', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-04-13', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-04-18', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-04-20', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-04-27', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-05-02', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-05-04', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-05-09', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-05-16', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-05-18', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-05-25', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-06-06', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-06-08', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-06-13', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-06-15', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-06-27', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('stanley.corkery@example.com', 'Strength', '2022-06-29', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-04-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-04-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-04-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-04-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-04-20', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-04-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-05-02', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-05-04', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-05-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-05-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-05-18', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-05-25', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-06-06', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-06-08', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-06-13', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-06-15', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-06-27', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simone.dantimo@studenti.unipd.it', 'Strength', '2022-06-29', ' 18:00:00');
 
 --Cristi Schaden: Books Stamina for Yoga some days
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-05', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-07', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-08', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-14', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-15', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-19', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-21', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-04-26', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-05-05', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-05-10', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-05-17', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-05-20', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-05-26', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-06-09', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-06-10', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('cristi.schaden@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-05', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-08', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-15', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-19', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-04-26', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-05-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-05-10', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-05-17', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-05-20', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-05-26', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-06-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-06-10', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-06-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('harjot.singh@studenti.unipd.it', 'Stamina', '2022-06-21', ' 20:00:00');
 
 --Alonzo Lindgren: Books Stamina for Yoga some days
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-05', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-07', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-14', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-15', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-19', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-21', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-04-26', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-05-05', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-05-17', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-05-20', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-06-09', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-06-10', ' 20:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-06-16', ' 18:00:00');
-INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('alonzo.lindgren@example.com', 'Stamina', '2022-06-21', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-05', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-07', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-14', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-15', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-19', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-21', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-04-26', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-05-05', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-05-17', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-05-20', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-06-09', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-06-10', ' 20:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-06-16', ' 18:00:00');
+INSERT INTO reservation (trainee, lectureroom, lecturedate, lecturestarttime) VALUES  ('simonedantimo2@gmail.com', 'Stamina', '2022-06-21', ' 20:00:00');
 
 --Calisthenics
 INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (6, 'Calisthenics', 7, 0);
@@ -778,13 +780,13 @@ INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUE
 INSERT INTO subscriptiontype (courseeditionid, coursename, duration, cost) VALUES (4, 'Crossfit', 365, 280.0);
 
 --Subscriptions
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-27', 0, 'mario.rossi@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-02', 0, 'riccardo.bianchi@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 365, '2022-01-08', 0, 'luca.giallo@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 180, '2022-02-15', 0, 'stanley.corkery@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (4, 'Crossfit', 30, '2022-03-27', 0, 'virginia.barrows@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-08', 0, 'sondra.dubuque@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-25', 0, 'bart.collins@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 180, '2022-02-03', 0, 'cristi.schaden@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 365, '2022-01-14', 0, 'alonzo.lindgren@example.com');
-INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (5, 'Bodybuilding', 365, '2022-04-20', 0, 'alonzo.lindgren@example.com');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-27', 0, 'marco.alessio.1@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (2, 'Cardio', 180, '2022-03-02', 0, 'francesco.caldivezzi@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 365, '2022-01-08', 0, 'alberto.campeol.1@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (6, 'Calisthenics', 180, '2022-02-15', 0, 'simone.dantimo@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (4, 'Crossfit', 30, '2022-03-27', 0, 'fatjon.freskina@outlook.com');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-08', 0, 'riccardo.forzan@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (1, 'Powerlifting', 90, '2022-01-25', 0, 'andrea.pasin.1@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 180, '2022-02-03', 0, 'harjot.singh@studenti.unipd.it');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (3, 'Yoga', 365, '2022-01-14', 0, 'simonedantimo2@gmail.com');
+INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (5, 'Bodybuilding', 365, '2022-04-20', 0, 'simonedantimo2@gmail.com');

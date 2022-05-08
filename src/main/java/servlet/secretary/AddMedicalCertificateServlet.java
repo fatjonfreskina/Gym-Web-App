@@ -40,8 +40,8 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -54,8 +54,8 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -114,9 +114,9 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @return
-     * @throws ServletException
-     * @throws IOException
+     * @return the error/confirmation message
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -226,7 +226,7 @@ public class AddMedicalCertificateServlet extends AbstractServlet {
      * @param file  the file to save
      * @param taxCode  the user tax code
      * @return  a confirmation/error message
-     * @throws IOException
+     * @throws IOException if there is an error when writing the file
      */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         Codes error = Codes.OK;

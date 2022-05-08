@@ -128,7 +128,25 @@ public class LectureTimeSlot {
     }
 
     @Override
-    //TODO: Refactor this method
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("LectureTimeSlot{roomName=");
+        sb.append(roomName);
+        sb.append(", date='");
+        sb.append(date);
+        sb.append(", startTime='");
+        sb.append(startTime);
+        sb.append(", courseEditionId='");
+        sb.append(courseEditionId);
+        sb.append(", courseName='");
+        sb.append(courseName);
+        sb.append(", substitution='");
+        sb.append(substitution);
+        sb.append("'}");
+        return sb.toString();
+    }
+ /* //TODO check if refactor is ok before deleting
+
     public String toString() {
         return "LectureTimeSlot{" +
                 "roomName='" + roomName + '\'' +
@@ -139,4 +157,6 @@ public class LectureTimeSlot {
                 ", substitution='" + substitution + '\'' +
                 '}';
     }
+  */
 }
+

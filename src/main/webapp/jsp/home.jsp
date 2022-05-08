@@ -15,6 +15,14 @@
     <jsp:include page="/jsp/include/header.jsp"/>
 </header>
 <main class="global-container">
+    <h1>
+        ARE YOU READY TO GET FIT, STRONG AND MOTIVATED?
+    </h1>
+    <p>
+        Welcome to GWA! <br>
+        In this gym you will find only the best courses and trainers that will help you to reach
+        all your goals.
+    </p>
     <div class="carousel-main-box">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">

@@ -17,6 +17,15 @@
 </header>
 
 <main class="global-container">
+
+    <!-- VISUALIZZA MESSAGGIO -->
+    <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <p id="alert-message-body" class="alert-box-message">
+        </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <div id="calendar" class="secretary-home-calendar">
     </div>
     <div id="modal-actions-course" class="modal" tabindex="-1">

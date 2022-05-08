@@ -18,8 +18,8 @@ public class TheGymServlet extends AbstractServlet {
      * Handles the get request
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -107,7 +107,25 @@ public class Subscription {
     }
 
     @Override
-    //TODO: Refactor this method
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Subscription{courseEditionID=");
+        sb.append(courseEditionID);
+        sb.append(", courseName='");
+        sb.append(courseName);
+        sb.append(", duration='");
+        sb.append(duration);
+        sb.append(", startDay='");
+        sb.append(startDay);
+        sb.append(", discount='");
+        sb.append(discount);
+        sb.append(", trainee='");
+        sb.append(trainee);
+        sb.append("'}");
+        return sb.toString();
+    }
+    /*
+    //TODO check if refactor is ok before deleting
     public String toString() {
         return "Subscription{" +
                 "courseEditionID=" + courseEditionID +
@@ -118,7 +136,7 @@ public class Subscription {
                 ", trainee='" + trainee + '\'' +
                 '}';
     }
-
+    */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

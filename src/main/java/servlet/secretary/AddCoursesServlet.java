@@ -43,7 +43,6 @@ import java.util.Objects;
  * */
 public class AddCoursesServlet extends AbstractServlet
 {
-    private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
 
     /**
      * Handles the get request by retrieving all the possible rooms, courses and teachers
@@ -51,8 +50,8 @@ public class AddCoursesServlet extends AbstractServlet
      *
      * @param request  the request
      * @param response  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -98,8 +97,8 @@ public class AddCoursesServlet extends AbstractServlet
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
@@ -345,8 +344,8 @@ public class AddCoursesServlet extends AbstractServlet
      * @param req  the request
      * @param res  the response
      * @return  a confirmation/error message
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     private Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
@@ -563,8 +562,8 @@ public class AddCoursesServlet extends AbstractServlet
      * @param saturday  the times of lectures saturday
      * @param sunday  the times of lectures sunday
      * @return  true if there are overlapping lectures, false otherwise
-     * @throws NamingException
-     * @throws SQLException
+     * @throws NamingException if it was not possible to access the datasource
+     * @throws SQLException if there is an error concerning the database
      */
     private boolean overlappingLectures(String roomName, int courseEditionId, String courseName,Date dateFirstEvent,int weeks,
                                         Time[] monday,Time[] tuesday,Time[] wednesday,Time[] thursday,Time[] friday,Time[] saturday,Time[] sunday) throws NamingException,SQLException
@@ -691,8 +690,8 @@ public class AddCoursesServlet extends AbstractServlet
      * @param saturday  the times of lectures saturday
      * @param sunday  the times of lectures sunday
      * @return  true if there are overlapping lectures, false otherwise
-     * @throws NamingException
-     * @throws SQLException
+     * @throws NamingException if it was not possible to access the datasource
+     * @throws SQLException if there is an error concerning the database
      */
 
     private boolean overlappingTeacherLectures(String teacher, Date dateFirstEvent, int weeks,

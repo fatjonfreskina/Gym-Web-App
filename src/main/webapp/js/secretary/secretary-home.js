@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    let alertBox = $("#alert-box")
+    alertBox.hide()
+    let messageBody = $("#alert-message-body")
+
     //This variable contains the event which has been clicked in the calendar
     let selectedEvent = undefined;
 
@@ -113,7 +117,7 @@ $(document).ready(function() {
                 calendar.render();
             },
             error: function (xhr) {
-                console.log(xhr);
+                showMessage("Some unknown server side error occurred")
             }
         });
     }
@@ -147,14 +151,13 @@ $(document).ready(function() {
                         renderCalendar();
                     },
                     error: function (xhr) {
-                        console.log(xhr);
-                        console.log("SONO QUI")
+                        showMessage("Some unknown server side error occurred")
                     }
                 });
             }
 
         } else {
-            console.log("Error, event not found");
+            showMessage("Some unknown server side error occurred")
         }
 
     });
@@ -187,13 +190,13 @@ $(document).ready(function() {
                     renderCalendar();
                 },
                 error: function (xhr) {
-                    console.log(xhr);
+                    showMessage("Some unknown server side error occurred")
                 }
             });
 
 
         } else {
-            console.log("Error, event not found");
+            showMessage("Some unknown server side error occurred")
         }
 
     });
@@ -251,5 +254,14 @@ $(document).ready(function() {
         }
 
     });
+
+    function showMessage(message) {
+        messageBody.empty()
+        messageBody.text(message)
+        alertBox.show()
+        alertBox.fadeTo(2000, 500).slideUp(500, function () {
+            $(this).slideUp(500);
+        });
+    }
 
 });

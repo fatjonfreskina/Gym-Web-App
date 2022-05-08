@@ -25,8 +25,6 @@ import java.sql.SQLException;
  * @author Harjot Singh
  */
 public class TrainerManageAttendanceServlet extends AbstractServlet {
-  private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
 
   /**
@@ -35,8 +33,8 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
    *
    * @param req  the request
    * @param res  the response
-   * @throws ServletException
-   * @throws IOException
+   * @throws ServletException if some internal error happens
+   * @throws IOException if it was not possible to forward the request and write the response
    */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -46,7 +44,6 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     try {
       req.setAttribute("trainerAttendance", new TrainerService(getDataSource(), trainerEmail).getTrainerAttendance());
     } catch (SQLException | NamingException e) {
-      logger.error(loggerClass + e.getMessage());
       sendFeedback(req, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       sendFeedback(req, e.getErrorCode());
@@ -60,8 +57,8 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
    *
    * @param req  the request
    * @param res  the response
-   * @throws ServletException
-   * @throws IOException
+   * @throws ServletException if some internal error happens
+   * @throws IOException if it was not possible to forward the request and write the response
    */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
