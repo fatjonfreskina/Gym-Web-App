@@ -16,7 +16,7 @@
 </header>
 <main class="global-container">
     <div class="carousel-main-box">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active bg-info"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="1" class="bg-info"></li>

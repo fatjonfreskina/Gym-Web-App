@@ -18,7 +18,7 @@ import java.util.List;
 public class GetListForPricesDatabase {
 
     private static final String STATEMENT = """
-            SELECT T2.courseeditionid,T2.coursename,T2.duration,T2.cost, T2.maxdate ,T2.mindate,name,surname, T4.lecturesperweek
+            SELECT DISTINCT T2.courseeditionid,T2.coursename,T2.duration,T2.cost, T2.maxdate ,T2.mindate, T4.lecturesperweek
             FROM
             (SELECT courseeditionid,coursename,duration,T1.cost, max(date) AS maxdate ,min(date) AS mindate
             FROM (SELECT coursename,courseeditionid,duration,date, subscriptiontype.cost

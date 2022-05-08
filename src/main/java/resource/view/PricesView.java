@@ -148,6 +148,17 @@ public class PricesView {
         return trainers;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "PricesView{" +
+                "courseEditionId=" + courseEditionId +
+                ", courseName='" + courseName + '\'' +
+                ", duration=" + duration +
+                ", cost=" + cost +
+                ", min=" + min +
+                ", max=" + max +
+                ", lecturesPerWeek=" + lecturesPerWeek +
+                ", trainers=" + trainers +
+                '}';
+    }
 }

@@ -13,84 +13,76 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/table.css"/>">
 </head>
 <body>
 <header>
     <jsp:include page="/jsp/include/header.jsp"/>
 </header>
 <main class="global-container">
-    <table class="table table-sm table-bordered text-center align-middle">
-        <thead class="thead-dark">
-        <tr>
-            <th class="header">Course</th>
-            <th class="header">Type of Subscription</th>
-            <th class="header">Price</th>
-            <th class="header">First Event</th>
-            <th class="header">Last Event</th>
-            <th class="header">Trainers</th>
-            <th class="header">Days Per Week</th>
-        </tr>
-        </thead>
-        <tbody>
-            <c:set var="last_courseName" value=""/>
-            <c:set var="last_courseId" value=""/>
-            <%
-                int startIndex = -1;
-                List<Integer> rowsSpans = new ArrayList<>();
-            %>
-            <c:forEach var="prices" items="${pricesView}">
-                <c:choose>
-                    <c:when test="${!prices.courseName.equals(last_courseName) || !prices.courseEditionId.equals(last_courseId)}">
-                        <%
-                            rowsSpans.add(1);
-                            startIndex++;
-                        %>
-                    </c:when>
-                    <c:otherwise>
-                        <%
-                            rowsSpans.set(startIndex,rowsSpans.get(startIndex)+1);
-                        %>
-                    </c:otherwise>
-                </c:choose>
-                <c:set var="last_courseName" value="${prices.courseName}"/>
-                <c:set var="last_courseId" value="${prices.courseEditionId}"/>
-            </c:forEach>
-            <% request.setAttribute("rowsSpans",rowsSpans); %>
-
-            <c:set var="last_courseName" value=""/>
-            <c:set var="last_courseId" value=""/>
-            <% startIndex = -1; %>
-            <c:forEach var="prices" items="${pricesView}">
-                <c:choose>
-                    <c:when test="${!prices.courseName.equals(last_courseName) || !prices.courseEditionId.equals(last_courseId)}">
-                        <tr>
-                            <% request.setAttribute("startIndex",++startIndex); %>
-                            <td rowspan="<c:out value="${rowsSpans[startIndex]}"/>"><c:out value="${prices.courseName}"/></td>
-                            <td><c:out value="${prices.duration}"/></td>
-                            <td><c:out value="${prices.cost}"/></td>
-                            <td rowspan="<c:out value="${rowsSpans[startIndex]}"/>" ><c:out value="${prices.min}"/></td>
-                            <td rowspan="<c:out value="${rowsSpans[startIndex]}"/>" ><c:out value="${prices.max}"/></td>
-                            <c:set var="trainers" value=""/>
-                            <c:forEach var="trainer" items="${prices.trainers}">
-                                <c:set var="trainers" value="${trainers} ${trainer}"/>
-                            </c:forEach>
-
-                            <td rowspan="<c:out value="${rowsSpans[startIndex]}"/>" ><c:out value="${trainers}"/></td>
-                            <td rowspan="<c:out value="${rowsSpans[startIndex]}"/>" ><c:out value="${prices.lecturesPerWeek}"/></td>
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                        <tr class="row100 head">
+                            <th class="cell100 column1">Course</th>
+                            <th class="cell100 column2">Type</th>
+                            <th class="cell100 column3">Price</th>
+                            <th class="cell100 column4">From-To</th>
+                            <th class="cell100 column5">Trainers</th>
+                            <th class="cell100 column6">Per week</th>
                         </tr>
-                    </c:when>
-                    <c:otherwise>
-                        <tr>
-                            <td><c:out value="${prices.duration}"/></td>
-                            <td><c:out value="${prices.cost}"/></td>
-                        </tr>
-                    </c:otherwise>
-                </c:choose>
-                <c:set var="last_courseName" value="${prices.courseName}"/>
-                <c:set var="last_courseId" value="${prices.courseEditionId}"/>
-            </c:forEach>
-        </tbody>
-    </table>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table100-body js-pscroll ps ps--active-y">
+                    <table>
+                        <tbody>
+
+
+                        <c:set var="last_courseName" value=""/>
+                        <c:set var="last_courseId" value=""/>
+                        <c:forEach var="prices" items="${pricesView}">
+                            <c:choose>
+                                <c:when test="${!prices.courseName.equals(last_courseName) || !prices.courseEditionId.equals(last_courseId)}">
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"><c:out value="${prices.courseName}"/></td>
+                                        <td class="cell100 column2"><c:out value="${prices.duration}"/> days</td>
+                                        <td class="cell100 column3"><c:out value="${prices.cost}"/> €</td>
+                                        <td class="cell100 column4"><c:out value="${prices.min}"/> to <c:out value="${prices.max}"/></td>
+                                        <c:set var="trainers" value=""/>
+                                        <c:forEach var="trainer" items="${prices.trainers}">
+                                            <c:set var="trainers" value="${trainers} ${trainer}"/>
+                                        </c:forEach>
+                                        <td class="cell100 column5"><c:out value="${trainers}"></c:out></td>
+                                        <td class="cell100 column6"><c:out value="${prices.lecturesPerWeek}"></c:out></td>
+
+                                    </tr>
+                                </c:when>
+                                <c:otherwise>
+                                    <tr>
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"></td>
+                                        <td class="cell100 column2"><c:out value="${prices.duration}"/> days</td>
+                                        <td class="cell100 column3"><c:out value="${prices.cost}"/> €</td>
+                                    <td class="cell100 column4"></td>
+                                    <td class="cell100 column5"></td>
+                                    <td class="cell100 column6"></td>
+                                    </tr>
+
+                                </c:otherwise>
+                            </c:choose>
+                            <c:set var="last_courseName" value="${prices.courseName}"/>
+                            <c:set var="last_courseId" value="${prices.courseEditionId}"/>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </div>
+    </div>
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
