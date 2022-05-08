@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * DAO class used to get users booked for a lecture
  *
- * @auhor Riccardo Forzan
+ * @author Riccardo Forzan
  */
 public class GetAllPeopleInReservationTimeSlotDatabase {
 

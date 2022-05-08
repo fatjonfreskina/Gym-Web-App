@@ -22,7 +22,7 @@ public class AbstractServlet extends HttpServlet {
 
     /**
      * Initializes the servlet instance
-     * @param config
+     * @param config The Servlet Configuration
      * @throws ServletException if some internal error happens
      */
     @Override
