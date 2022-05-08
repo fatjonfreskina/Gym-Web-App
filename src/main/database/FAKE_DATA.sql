@@ -547,7 +547,7 @@ INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursen
 
 --Wednesday
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 14:00:00', 5, 'Bodybuilding', NULL);
-INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 14:00:00', 1, 'Powerlifting', NULL);
+INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Strength', '2022-06-01', ' 14:00:00', 1, 'Powerlifting', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 16:00:00', 5, 'Bodybuilding', NULL);
 INSERT INTO lecturetimeslot (roomname, date, starttime, courseeditionid, coursename, substitution) VALUES ('Power', '2022-06-01', ' 18:00:00', 1, 'Powerlifting', NULL);
 
