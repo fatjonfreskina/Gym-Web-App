@@ -12,16 +12,18 @@ import java.util.List;
 
 /**
  * The filter class for the trainee area
+ *
  * @author Harjot Singh
  */
 public class TraineeFilter extends AbstractFilter {
     /**
      * Filters request allowing only trainees to access the area
-     * @param req  the request
-     * @param res  the response
-     * @param chain  the cain of filters
-     * @throws IOException
-     * @throws ServletException
+     *
+     * @param req   the request
+     * @param res   the response
+     * @param chain the cain of filters
+     * @throws IOException      if some error occurs while writing the response
+     * @throws ServletException if either the request or response are not of the expected types or any other error occurs
      */
     @Override
     public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {

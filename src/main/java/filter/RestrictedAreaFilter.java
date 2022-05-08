@@ -22,8 +22,8 @@ public class RestrictedAreaFilter extends AbstractFilter {
      * @param req  the request
      * @param res  the response
      * @param chain  the chain of filters
-     * @throws IOException
-     * @throws ServletException
+     * @throws IOException if some error occurs while writing the response
+     * @throws ServletException if either the request or response are not of the expected types or any other error occurs
      */
     @Override
     public void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {

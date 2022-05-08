@@ -4,7 +4,10 @@ import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.io.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +35,13 @@ public class DataBaseUtils {
     private static final String FAKE_DATABASE_FILEPATH = "src/main/database/FAKE_DATA.sql";
     private static final String DROP_DATABASE_FILEPATH = "src/main/database/DROP.sql";
 
+    /**
+     * Main class used to prepare the database
+     *
+     * @param args arguments (0 expected)
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     * @throws IOException  is thrown if something goes wrong while reading the source files
+     */
     public static void main(String[] args) throws SQLException, IOException {
 
         System.out.println("COMMAND LINE TOOL FOR DATABASE MANAGEMENT, USE:");
@@ -189,11 +199,6 @@ public class DataBaseUtils {
 
         }
 
-    }
-
-    private static void createMedicalCertificate() {
-        //TODO: create a medical certificate for the inserted user
-        throw new UnsupportedOperationException("Still to be implemented");
     }
 
     /**
