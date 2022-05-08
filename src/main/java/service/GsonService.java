@@ -38,10 +38,10 @@ public class GsonService {
      * Deserializes a json string to a {@code Reservation}
      * @param string  the reservation as {@code String}
      * @return  the reservation
-     * @throws WrongDateFormat
-     * @throws NotAcceptableMissingFields
-     * @throws ParsingError
-     * @throws WrongTimeFormat
+     * @throws WrongDateFormat if the date format is wrong
+     * @throws NotAcceptableMissingFields if there is a missing field
+     * @throws ParsingError if there is an error while parsing
+     * @throws WrongTimeFormat if the time format is not valid
      */
     public Reservation getReservationFromString(String string) throws WrongDateFormat, NotAcceptableMissingFields, ParsingError, WrongTimeFormat {
         try {
@@ -65,10 +65,10 @@ public class GsonService {
      * Deserializes a json string to a {@code Subscription}
      * @param string  the subscription as {@code String}
      * @return  the subscription
-     * @throws WrongDateFormat
-     * @throws NotAcceptableMissingFields
-     * @throws ParsingError
-     * @throws WrongTimeFormat
+     * @throws WrongDateFormat if the date format is wrong
+     * @throws NotAcceptableMissingFields if there is a missing field
+     * @throws ParsingError if there is an error while parsing
+     * @throws WrongTimeFormat if the time format is not valid
      */
     public Subscription getSubscriptionFromString(String string) throws NotAcceptableMissingFields, WrongDateFormat, ParsingError, WrongTimeFormat {
         try {

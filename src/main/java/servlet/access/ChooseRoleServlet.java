@@ -21,8 +21,8 @@ public class ChooseRoleServlet  extends AbstractServlet {
      * Handles the get request by providing the correct page to choose a role
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -35,8 +35,8 @@ public class ChooseRoleServlet  extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
