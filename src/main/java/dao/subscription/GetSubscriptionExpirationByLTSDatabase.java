@@ -8,11 +8,17 @@ import java.sql.*;
  * @author Riccardo Tumiati
  */
 public class GetSubscriptionExpirationByLTSDatabase {
-    private final String STATEMENT = "SELECT startday+ (duration || ' day')::interval AS expiration"+
-            " FROM lecturetimeslot AS lts JOIN subscription AS s ON (lts.courseeditionid = s.courseeditionid AND lts.coursename = s.coursename)"+
-            " WHERE s.trainee = ? AND lts.roomname = ? AND lts.date = ? AND lts.starttime = ?";
+
+    private final String STATEMENT = """
+            SELECT startday+ (duration || ' day')::interval AS expiration
+            FROM lecturetimeslot AS lts JOIN subscription AS s ON (lts.courseeditionid = s.courseeditionid AND lts.coursename = s.coursename)
+            WHERE s.trainee = ? AND lts.roomname = ? AND lts.date = ? AND lts.starttime = ?
+            """;
+
     private final Connection conn;
+
     private final LectureTimeSlot lts;
+
     private final String email;
 
     /**
@@ -30,7 +36,7 @@ public class GetSubscriptionExpirationByLTSDatabase {
     /**
      * Executes the sql statement retrieving the subscription expiration date from a given lecture
      * @return the subscription expiration date
-     * @throws SQLException
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public Date execute() throws SQLException {
         PreparedStatement stm = null;
