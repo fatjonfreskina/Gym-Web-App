@@ -34,6 +34,7 @@ public class GetListSubscriptionTypeDatabase {
      * Execute a select query to retrieve the list of types of subscription from the database
      *
      * @return the list of SubscriptionType retrieved from the database
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<SubscriptionType> execute() throws SQLException {
         PreparedStatement preparedStatement = null;

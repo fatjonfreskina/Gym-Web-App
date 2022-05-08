@@ -3,7 +3,6 @@ package dao.teaches;
 import constants.Constants;
 import resource.CourseEdition;
 import resource.Person;
-import resource.Teaches;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,17 +13,20 @@ import java.util.List;
 
 /**
  * DAO class used to get the list of teacher by a given course edition
+ *
  * @author Andrea Pasin
  */
 public class GetListTeacherByCourseEditionDatabase {
+
     private static final String STATEMENT = "SELECT * FROM teaches WHERE courseeditionid = ? and coursename= ?";
     private final Connection con;
     private final CourseEdition courseEdition;
 
     /**
      * Constructor for this class
-     * @param con  the database connection
-     * @param courseEdition  the course edition
+     *
+     * @param con           the database connection
+     * @param courseEdition the course edition
      */
     public GetListTeacherByCourseEditionDatabase(final Connection con, final CourseEdition courseEdition) {
         this.con = con;
@@ -33,8 +35,9 @@ public class GetListTeacherByCourseEditionDatabase {
 
     /**
      * Executes the sql statement retrieving the list of trainers for the given course edition
-     * @return  the list of trainers for the given course edition
-     * @throws SQLException
+     *
+     * @return the list of trainers for the given course edition
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<Person> execute() throws SQLException {
         List<Person> result = new ArrayList<>();

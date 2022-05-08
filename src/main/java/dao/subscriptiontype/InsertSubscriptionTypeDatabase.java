@@ -32,6 +32,8 @@ public class InsertSubscriptionTypeDatabase {
 
     /**
      * Execute an Insert query to insert the provided SubscriptionType into the subscriptiontype table
+     *
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {

@@ -16,6 +16,7 @@ import java.util.List;
  * @author Andrea Pasin
  */
 public class GetListForPricesDatabase {
+
     private static final String STATEMENT = """
             SELECT T2.courseeditionid,T2.coursename,T2.duration,T2.cost, T2.maxdate ,T2.mindate,name,surname, T4.lecturesperweek
             FROM
@@ -51,6 +52,7 @@ public class GetListForPricesDatabase {
      * Execute a select query to retrieve the list of types of subscription from the database
      *
      * @return the list of SubscriptionType retrieved from the database
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<PricesView> execute() throws SQLException {
         PreparedStatement preparedStatement = null;
@@ -60,7 +62,7 @@ public class GetListForPricesDatabase {
             preparedStatement = con.prepareStatement(STATEMENT);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                list.add(new PricesView(resultSet.getInt("courseeditionid"),resultSet.getString("coursename"),
+                list.add(new PricesView(resultSet.getInt("courseeditionid"), resultSet.getString("coursename"),
                         resultSet.getInt("duration"),
                         resultSet.getFloat("cost"),
                         resultSet.getDate("maxdate"),
@@ -68,8 +70,7 @@ public class GetListForPricesDatabase {
                         resultSet.getFloat("lecturesperweek")));
             }
 
-        }
-        finally{
+        } finally {
             if (resultSet != null)
                 resultSet.close();
             if (preparedStatement != null)

@@ -3,7 +3,6 @@ package dao.teaches;
 
 import resource.CourseEdition;
 import resource.Person;
-import resource.SubscriptionType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,7 +37,8 @@ public class InsertTeachesDatabase {
 
     /**
      * Execute the sql statement defined above
-     * @throws SQLException
+     *
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {
