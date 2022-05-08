@@ -13,11 +13,12 @@ public class LectureTimeSlotOccupation extends LectureTimeSlot {
 
     /**
      * Constructor for this class
-     * @param l  the lecture
-     * @param total_slots  the total number of slots
-     * @param occupied_slots  the total number of slots already booked
+     *
+     * @param l              the lecture
+     * @param total_slots    the total number of slots
+     * @param occupied_slots the total number of slots already booked
      */
-    public LectureTimeSlotOccupation(LectureTimeSlot l, int total_slots, int occupied_slots){
+    public LectureTimeSlotOccupation(LectureTimeSlot l, int total_slots, int occupied_slots) {
         super(l);
         this.totalSlots = total_slots;
         this.occupiedSlots = occupied_slots;
@@ -25,7 +26,8 @@ public class LectureTimeSlotOccupation extends LectureTimeSlot {
 
     /**
      * Gets the total number of slots
-     * @return  the total number of slots
+     *
+     * @return the total number of slots
      */
     public int getTotalSlots() {
         return totalSlots;
@@ -33,7 +35,8 @@ public class LectureTimeSlotOccupation extends LectureTimeSlot {
 
     /**
      * Gets the number of already booked slots
-     * @return  the number of already booked slots
+     *
+     * @return the number of already booked slots
      */
     public int getOccupiedSlots() {
         return occupiedSlots;

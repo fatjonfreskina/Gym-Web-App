@@ -19,10 +19,11 @@ public class Room {
         this.name = name;
         this.slots = slots;
     }
+
     /**
      * Constructor for this class
      *
-     * @param name  the name of the room
+     * @param name the name of the room
      */
     public Room(String name) {
         this.name = name;
@@ -31,7 +32,8 @@ public class Room {
 
     /**
      * Gets the room name
-     * @return  the room name
+     *
+     * @return the room name
      */
     public final String getName() {
         return name;
@@ -39,7 +41,8 @@ public class Room {
 
     /**
      * Gets the slots of the room
-     * @return  the slots of the room
+     *
+     * @return the slots of the room
      */
     public final int getSlots() {
         return slots;

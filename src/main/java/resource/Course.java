@@ -2,6 +2,7 @@ package resource;
 
 /**
  * Java Bean representing a course
+ *
  * @author Francesco Caldivezzi
  */
 public class Course {
@@ -11,8 +12,9 @@ public class Course {
 
     /**
      * Constructor for this class
-     * @param name  the course name
-     * @param description  the course's description
+     *
+     * @param name        the course name
+     * @param description the course's description
      */
     public Course(String name, String description) {
         this.name = name;
@@ -21,7 +23,8 @@ public class Course {
 
     /**
      * Gets the course name
-     * @return  the course name
+     *
+     * @return the course name
      */
     public final String getName() {
         return name;
@@ -29,7 +32,8 @@ public class Course {
 
     /**
      * Gets the description of the course
-     * @return  the description of the course
+     *
+     * @return the description of the course
      */
     public final String getDescription() {
         return description;

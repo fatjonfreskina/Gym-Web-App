@@ -9,7 +9,6 @@ package resource;
  * @author Andrea Pasin
  */
 
-
 public class SubscriptionType {
     private final int courseEditionID;
     private final String courseName;

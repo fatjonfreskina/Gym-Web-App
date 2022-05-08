@@ -7,6 +7,7 @@ import java.sql.Time;
 
 /**
  * Java Bean representing a lecture for a course on a given date and time
+ *
  * @author Francesco Caldivezzi
  * @author Harjot Singh
  */
@@ -26,12 +27,13 @@ public class LectureTimeSlot {
 
     /**
      * Constructor for this class
-     * @param roomName  the room
-     * @param date  the date when the lecture is held
-     * @param startTime  the starting time of the lecture
-     * @param courseEditionId  the course edition associated to this lesson
-     * @param courseName  the course name
-     * @param substitution  the trainer who substitutes the principal trainer
+     *
+     * @param roomName        the room
+     * @param date            the date when the lecture is held
+     * @param startTime       the starting time of the lecture
+     * @param courseEditionId the course edition associated to this lesson
+     * @param courseName      the course name
+     * @param substitution    the trainer who substitutes the principal trainer
      */
     public LectureTimeSlot(String roomName, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {
         this.roomName = roomName;
@@ -41,10 +43,12 @@ public class LectureTimeSlot {
         this.courseName = courseName;
         this.substitution = substitution;
     }
+
     /**
      * Constructor for this class
-     * @param courseEditionId  the course edition associated to this lesson
-     * @param courseName  the course name
+     *
+     * @param courseEditionId the course edition associated to this lesson
+     * @param courseName      the course name
      */
     public LectureTimeSlot(int courseEditionId, String courseName) {
         this.roomName = null;
@@ -54,8 +58,10 @@ public class LectureTimeSlot {
         this.courseName = courseName;
         this.substitution = null;
     }
+
     /**
      * Constructor for this class
+     *
      * @param l the lecture
      */
     public LectureTimeSlot(LectureTimeSlot l) {
@@ -69,50 +75,61 @@ public class LectureTimeSlot {
 
     /**
      * Gets the room
-     * @return  the room
+     *
+     * @return the room
      */
     public final String getRoomName() {
         return roomName;
     }
+
     /**
      * Gets the date
-     * @return  the date
+     *
+     * @return the date
      */
     public final Date getDate() {
         return date;
     }
+
     /**
      * Gets the start time
-     * @return  the start time
+     *
+     * @return the start time
      */
     public final Time getStartTime() {
         return startTime;
     }
+
     /**
      * Gets the course edition
-     * @return  the course edition
+     *
+     * @return the course edition
      */
     public final int getCourseEditionId() {
         return courseEditionId;
     }
+
     /**
      * Gets the course name
-     * @return  the course name
+     *
+     * @return the course name
      */
     public final String getCourseName() {
         return courseName;
     }
+
     /**
      * Gets the substitute
-     * @return  the substitute
+     *
+     * @return the substitute
      */
     public final String getSubstitution() {
         return substitution;
     }
 
     @Override
+    //TODO: Refactor this method
     public String toString() {
-        //return new Gson().toJson(this,LectureTimeSlot.class);
         return "LectureTimeSlot{" +
                 "roomName='" + roomName + '\'' +
                 ", date='" + date + '\'' +

@@ -27,7 +27,8 @@ public class CourseEdition {
 
     /**
      * Gets the course edition id
-     * @return  the course edition id
+     *
+     * @return the course edition id
      */
     public final int getId() {
         return ID;
@@ -35,7 +36,8 @@ public class CourseEdition {
 
     /**
      * Gets the course name
-     * @return  the course name
+     *
+     * @return the course name
      */
     public final String getCourseName() {
         return courseName;
@@ -43,7 +45,7 @@ public class CourseEdition {
 
     @Override
     public String toString() {
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         sb.append("CourseEdition{ID=");
         sb.append(ID);
         sb.append(", courseName='");

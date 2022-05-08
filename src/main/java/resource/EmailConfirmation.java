@@ -15,18 +15,21 @@ public class EmailConfirmation {
 
     /**
      * The constructor for this class
-     * @param person  the person associated to this email confirmation
-     * @param token  the token associated to this email confirmation
-     * @param expirationDate  the expiration date
+     *
+     * @param person         the person associated to this email confirmation
+     * @param token          the token associated to this email confirmation
+     * @param expirationDate the expiration date
      */
     public EmailConfirmation(final String person, final String token, final Timestamp expirationDate) {
         this.person = person;
         this.token = token;
         this.expirationDate = expirationDate;
     }
+
     /**
      * The constructor for this class
-     * @param person  the person associated to this email confirmation
+     *
+     * @param person the person associated to this email confirmation
      */
     public EmailConfirmation(final String person) {
         this.person = person;
@@ -36,7 +39,8 @@ public class EmailConfirmation {
 
     /**
      * Gets the person
-     * @return  the person
+     *
+     * @return the person
      */
     public String getPerson() {
         return person;
@@ -44,7 +48,8 @@ public class EmailConfirmation {
 
     /**
      * Gets the token
-     * @return  the token
+     *
+     * @return the token
      */
     public String getToken() {
         return token;
@@ -52,7 +57,8 @@ public class EmailConfirmation {
 
     /**
      * Gets the expiration date
-     * @return  the expiration date
+     *
+     * @return the expiration date
      */
     public Timestamp getExpirationDate() {
         return expirationDate;

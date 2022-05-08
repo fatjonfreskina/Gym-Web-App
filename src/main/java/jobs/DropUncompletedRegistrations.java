@@ -22,6 +22,7 @@ import java.util.List;
  * @author Francesco Caldivezzi
  */
 public class DropUncompletedRegistrations implements Runnable {
+
     /**
      * Runs this job by dropping users who have not completed their registration yet
      */
@@ -46,5 +47,6 @@ public class DropUncompletedRegistrations implements Runnable {
             e.printStackTrace();
         }
     }
+
 
 }
