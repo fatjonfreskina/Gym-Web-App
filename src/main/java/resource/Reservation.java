@@ -98,7 +98,21 @@ public class Reservation {
     }
 
     @Override
-    //TODO: Refactor this method
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Reservation{trainee=");
+        sb.append(trainee);
+        sb.append(", room='");
+        sb.append(room);
+        sb.append(", lectureDate='");
+        sb.append(lectureDate);
+        sb.append(", lectureStartTime='");
+        sb.append(lectureStartTime);
+        sb.append("'}");
+        return sb.toString();
+    }
+
+    /* //TODO check if refactor is ok before deleting
     public String toString() {
         return "Reservation{" +
                 "trainee='" + trainee + '\'' +
@@ -107,6 +121,8 @@ public class Reservation {
                 ", lectureStartTime='" + lectureStartTime + '\'' +
                 '}';
     }
+
+     */
 
     @Override
     public boolean equals(Object o) {
