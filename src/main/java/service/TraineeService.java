@@ -30,8 +30,8 @@ public class TraineeService {
    * Gets a trainee by his/her email
    * @param traineeEmail  the trainee's email
    * @return  the trainee
-   * @throws SQLException
-   * @throws TraineeNotFound
+   * @throws SQLException if there is an issue with the datasource
+   * @throws TraineeNotFound if the trainee is not found
    */
   public Trainee getTraineeByEmail(String traineeEmail) throws SQLException, TraineeNotFound {
     if (InputValidation.isValidEmailAddress(traineeEmail)) {

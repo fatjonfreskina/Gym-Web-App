@@ -41,8 +41,8 @@ public class RegisterServlet extends AbstractServlet {
      * Handles the get request by providing the correct page to register
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -55,8 +55,8 @@ public class RegisterServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -117,10 +117,8 @@ public class RegisterServlet extends AbstractServlet {
      * @param req  the request
      * @param res  the response
      * @return  a confirmation/error message
-     * @throws ServletException
-     * @throws IOException
      */
-    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) {
         String taxCode = null;
         String firstName = null;
         String lastName = null;
@@ -188,7 +186,7 @@ public class RegisterServlet extends AbstractServlet {
      * @param birthDate  the user's birthdate
      * @param avatar  the user's avatar
      * @param role  the user's role
-     * @return
+     * @return an error/confirmation message
      */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
                             String password, String telephoneNumber, Date birthDate, Part avatar, String role) {
@@ -243,8 +241,8 @@ public class RegisterServlet extends AbstractServlet {
      * Saves the avatar file
      * @param file  the avatar file
      * @param taxCode  the user's tax code
-     * @return
-     * @throws IOException
+     * @return an error/confirmation message
+     * @throws IOException if there is an issue when writing the file
      */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         OutputStream writer = null;

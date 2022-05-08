@@ -17,14 +17,13 @@ import java.io.*;
  * @author Riccardo Tumiati
  */
 public class RetrieveAvatar extends AbstractServlet {
-    private static final Logger LOGGER = LogManager.getLogger("riccardo_tumiati_logger");
 
     /**
      * Handles the get request by retrieving the avatar image of a user
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
@@ -56,7 +55,6 @@ public class RetrieveAvatar extends AbstractServlet {
             in.close();
         }
         catch(FileNotFoundException e) {
-            LOGGER.error("Avatar file not found");
             req.getRequestDispatcher(Constants.RELATIVE_URL_HOME).forward(req, res);
         }
     }

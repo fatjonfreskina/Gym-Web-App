@@ -34,8 +34,8 @@ public class PasswordChangeServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param resp  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,8 +52,8 @@ public class PasswordChangeServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param resp  the response
-     * @throws IOException
-     * @throws ServletException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {

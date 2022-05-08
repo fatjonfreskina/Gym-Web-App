@@ -49,12 +49,12 @@ public class TrainerService {
      * Removes an attendance from the current lecture a trainer is holding
      * @param reservation  the reservation
      * @return  true if the reservation has been removed, false otherwise
-     * @throws SQLException
-     * @throws ReservationNotFound
-     * @throws TrainerCoursesOverlapping
-     * @throws TrainerNoCourseHeld
-     * @throws TrainerNoCourseHeldNow
-     * @throws ConflictBetweenReservationAndLectureTimeSlotValues
+     * @throws SQLException if there is an error concerning the sql database
+     * @throws ReservationNotFound if the reservation is not found
+     * @throws TrainerCoursesOverlapping if the trainer courses are overlapping
+     * @throws TrainerNoCourseHeld if the trainer does not hold any course
+     * @throws TrainerNoCourseHeldNow if there is no course to be held now
+     * @throws ConflictBetweenReservationAndLectureTimeSlotValues if there are conflicts
      */
     public boolean removePresenceFromCurrentLectureTimeSlot(Reservation reservation) throws SQLException, ReservationNotFound, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, ConflictBetweenReservationAndLectureTimeSlotValues {
 
@@ -77,12 +77,10 @@ public class TrainerService {
      * Adds an attendance to the current lecture a trainer is holding
      * @param subscription  the subscription of a trainee
      * @return  true if the reservation has been added, false otherwise
-     * @throws SQLException
-     * @throws ReservationNotFound
-     * @throws TrainerCoursesOverlapping
-     * @throws TrainerNoCourseHeld
-     * @throws TrainerNoCourseHeldNow
-     * @throws ConflictBetweenReservationAndLectureTimeSlotValues
+     * @throws SQLException if there is an error concerning the sql database
+     * @throws TrainerCoursesOverlapping if the trainer courses are overlapping
+     * @throws TrainerNoCourseHeld if the trainer does not hold any course
+     * @throws TrainerNoCourseHeldNow if there is no course to be held now
      */
     public boolean addPresenceToCurrentLectureTimeSlot(Subscription subscription) throws NamingException, SQLException, ReservationAlreadyPresent, RoomAlreadyFull, TraineeNotEnrolledToTheCourse, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, SubscriptionNotStartedOrTerminated {
         LectureTimeSlot lectureHeldNow = getTrainersCurrentLectureTimeSlot(trainerEmail);
@@ -114,11 +112,11 @@ public class TrainerService {
      * Gets the attendances and subscriptions
      * of different trainees according to the lecture the trainer is holding
      * @return  the trainees attending the trainer's lecture or subscribed to the trainer's course
-     * @throws SQLException
-     * @throws TrainerCoursesOverlapping
-     * @throws TrainerNoCourseHeld
-     * @throws TrainerNoCourseHeldNow
-     * @throws NoSubscriptionToTheCourse
+     * @throws SQLException if there is an error concerning the sql database
+     * @throws TrainerCoursesOverlapping if the trainer courses are overlapping
+     * @throws TrainerNoCourseHeld if the trainer does not hold any course
+     * @throws TrainerNoCourseHeldNow if there is no course to be held now
+     * @throws NoSubscriptionToTheCourse if there is no subscription to the course
      */
     public TrainerAttendance getTrainerAttendance() throws SQLException, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, NoSubscriptionToTheCourse {
         LectureTimeSlot lectureHeldNow = getTrainersCurrentLectureTimeSlot(trainerEmail);
@@ -149,10 +147,10 @@ public class TrainerService {
      * Gets a trainer current lecture
      * @param trainerEmail  the email of a trainer
      * @return  the lecture a trainer has to hold at the current moment
-     * @throws SQLException
-     * @throws TrainerNoCourseHeldNow  if the trainer has no course to hold right now
-     * @throws TrainerCoursesOverlapping
-     * @throws TrainerNoCourseHeld
+     * @throws SQLException if there is an error concerning the sql database
+     * @throws TrainerCoursesOverlapping if the trainer courses are overlapping
+     * @throws TrainerNoCourseHeld if the trainer does not hold any course
+     * @throws TrainerNoCourseHeldNow if there is no course to be held now
      */
     public LectureTimeSlot getTrainersCurrentLectureTimeSlot(String trainerEmail) throws SQLException, TrainerNoCourseHeldNow, TrainerCoursesOverlapping, TrainerNoCourseHeld {
         List<Teaches> teaches = new GetTeachesByTrainerDatabase(dataSource.getConnection(), new Person(trainerEmail)).execute();
@@ -178,7 +176,7 @@ public class TrainerService {
     /**
      * Gets the statuses of the trainer's courses
      * @return  the statuses of the trainer's courses
-     * @throws SQLException
+     * @throws SQLException if there is an error concerning the sql database
      */
     public List<CourseStatus> getTrainersCoursesStatus() throws SQLException {
         List<CourseEdition> coursesHeld = getTrainersCourses();
@@ -209,8 +207,8 @@ public class TrainerService {
      * @param from  the starting date
      * @param to  the ending date
      * @return  all the lectures a trainer has to hold
-     * @throws NamingException
-     * @throws SQLException
+     * @throws NamingException if there is an issue concerning the datasource
+     * @throws SQLException if there is an error concerning the sql database
      */
     public List<LectureTimeSlot> getAllLessonsInRange(Date from, Date to) throws NamingException, SQLException {
         List<CourseEdition> coursesHeld = getTrainersCourses();
