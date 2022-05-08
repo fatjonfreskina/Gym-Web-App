@@ -32,7 +32,7 @@ $(document).ready(function() {
         nowIndicator: true,
         eventClick: function (info) {
             selectedEvent = info.event.extendedProps.customLTS;
-            $("#modal-details").modal("show");
+            $("#modal-actions-course").modal("show");
         }
     });
 
