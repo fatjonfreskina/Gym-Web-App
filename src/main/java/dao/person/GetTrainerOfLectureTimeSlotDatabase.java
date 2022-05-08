@@ -10,19 +10,46 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Retireves the trainer for a given lecture time slot
+ *
+ * @author Francesco Caldivezzi
+ */
 public class GetTrainerOfLectureTimeSlotDatabase {
 
+    /**
+     * Query to be executed
+     */
     private static final String STATEMENT = """
-    SELECT person.* FROM teaches JOIN person ON person.email = teaches.trainer WHERE courseeditionid = ? AND coursename = ?
-    """;
+            SELECT person.* FROM teaches JOIN person ON person.email = teaches.trainer WHERE courseeditionid = ? AND coursename = ?
+            """;
+
+    /**
+     * Database connection
+     */
     private final Connection con;
+
+    /**
+     * LectureTimeSlot to get the trainer
+     */
     private final LectureTimeSlot lectureTimeSlot;
 
+    /**
+     * Parametric constructor
+     * @param con database connection
+     * @param lectureTimeSlot LectureTimeSlot to get the trainer
+     */
     public GetTrainerOfLectureTimeSlotDatabase(Connection con, LectureTimeSlot lectureTimeSlot) {
         this.con = con;
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
+    /**
+     * Executes the query
+     *
+     * @return people with role trainer associated to the given lecture time slot
+     * @throws SQLException thrown if something goes wrong while querying the database
+     */
     public Person execute() throws SQLException {
         Person person = null;
         PreparedStatement preparedStatement = null;
