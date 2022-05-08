@@ -262,10 +262,27 @@ $(document).ready(function () {
             const oldRoomName = selectedEvent.roomName;
             const oldDate = selectedEvent.customdate;
             const oldStartTime = selectedEvent.customstartTime;
+
             //New updated parameters
             const newRoomName = $('#newRoom').val();
-            const newDate = $('#newDate').val();
-            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]).format("HH:mm:ss");
+            const newDate = moment($('#newDate').val());
+            const newDateFormatted = newDate.format("YYYY-MM-DD");
+            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]);
+            const newStartTimeFormatted = newStartTime.format("HH:mm:ss");
+
+            const now = moment();
+
+            //Check newDate >= actual date
+            if(!newDate.isSameOrAfter(now, 'day')){
+                showWarningMessage("Provided date is invalid");
+                return;
+            }
+
+            //If the date is the same of today check the time given is after now
+            if( newDate.isSame(now, 'day') && newStartTime.isBefore(now.format("HH:mm:ss")) ){
+                showWarningMessage("Provided time is invalid");
+                return;
+            }
 
             $.ajax({
                 url: "secretary/rest/updatelecturetimeslot",
@@ -275,8 +292,8 @@ $(document).ready(function () {
                     "oldDate": oldDate,
                     "oldStartTime": oldStartTime,
                     "newRoomName": newRoomName,
-                    "newDate": newDate,
-                    "newStartTime": newStartTime
+                    "newDate": newDateFormatted,
+                    "newStartTime": newStartTimeFormatted
                 },
                 cache: false,
                 dataType: 'json',
