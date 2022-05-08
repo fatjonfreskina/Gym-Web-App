@@ -35,6 +35,7 @@ public class GetPersonSubscriptionsDatabase {
      * Parametric constructor of the class
      *
      * @param con JDBC connection to the database
+     * @param trainee the trainee
      */
     public GetPersonSubscriptionsDatabase(final Connection con, final Person trainee) {
         this.con = con;
@@ -45,7 +46,7 @@ public class GetPersonSubscriptionsDatabase {
      * Retrieves all the subscriptions associated to a user
      *
      * @return List of all the subscriptions associated to the given trainee
-     * @throws SQLException
+     * @throws SQLException if there is an issue concerning the database
      */
     public List<Subscription> execute() throws SQLException {
         PreparedStatement preparedStatement = null;

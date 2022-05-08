@@ -49,7 +49,6 @@ public class Reservation {
     /**
      * Constructor for this class
      *
-     * @param trainee Email of the trainee
      * @param r       the reservation
      * @param trainee the trainee
      */

@@ -60,8 +60,8 @@ public class AddAccountServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException If some internal error happens.
+     * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -129,8 +129,8 @@ public class AddAccountServlet extends AbstractServlet {
      * @param req  the request
      * @param res  the response
      * @return  a confirmation/error message
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException If some internal error happens.
+     * @throws IOException If something happens when writing the response to the output stream.
      */
     public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
@@ -202,7 +202,7 @@ public class AddAccountServlet extends AbstractServlet {
      * @param birthDate  the user's birthdate
      * @param avatar  the user's avatar
      * @param roles  the user's role
-     * @return
+     * @return an error/confirmation message
      */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
                             String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles) {

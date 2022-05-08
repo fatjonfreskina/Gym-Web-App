@@ -24,10 +24,8 @@ import java.util.regex.Pattern;
  */
 public class TraineeRestServlet extends AbstractRestServlet {
 
-    private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
     private static final Pattern URI_REGEX = Pattern.compile(
             "/rest/trainee/(.*)", Pattern.DOTALL);
-    private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
     /**
      * @param req The HTTP request.
@@ -56,11 +54,9 @@ public class TraineeRestServlet extends AbstractRestServlet {
             }
         } catch (SQLException |
                 NamingException e) {
-            logger.error(loggerClass + e.getMessage());
             sendErrorResponse(res, Codes.INTERNAL_ERROR);
         } catch (
                 TraineeNotFound e) {
-            logger.error(loggerClass + e.getErrorCode());
             sendErrorResponse(res, e.getErrorCode());
         }
     }

@@ -45,17 +45,32 @@ import java.sql.Time;
  */
 public class AbstractRestServlet extends AbstractServlet
 {
+    /**
+     * The GSON builder
+     */
     protected static final Gson GSON = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
             .registerTypeAdapter(Date.class, new DateJsonAdapter())
             .registerTypeAdapter(Time.class, new TimeJsonAdapter())
             .create();
 
+    /**
+     * The accept header
+     */
     protected static final String ACCEPT_HEADER = "accept";
 
+    /**
+     * The utf8 encoding
+     */
     protected static final String UTF8_ENCODING = "utf-8";
 
+    /**
+     * The json media type
+     */
     protected static final String JSON_MEDIA_TYPE = "application/json";
+    /**
+     * All media types
+     */
     protected static final String ALL_MEDIA_TYPE = "*/*";
 
 

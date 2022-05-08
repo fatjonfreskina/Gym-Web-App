@@ -39,7 +39,6 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
      *
      * @param request the request
      * @param response the response
-     * @return Message regarding the status of the required operation
      * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override

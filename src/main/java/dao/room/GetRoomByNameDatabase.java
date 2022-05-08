@@ -36,7 +36,7 @@ public class GetRoomByNameDatabase {
     /**
      * Executes the query
      *
-     * @returns Room object with the name specified
+     * @return Room object with the name specified
      * @throws SQLException thrown if something goes wrong while querying the database
      */
     public Room execute() throws SQLException {

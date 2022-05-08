@@ -13,12 +13,29 @@ import java.util.Objects;
  * @author Simone D'Antimo
  */
 public class Person {
+    /**
+     * The trainee role
+     */
     public static final String ROLE_TRAINEE = "trainee";
+    /**
+     * The trainer role
+     */
     public static final String ROLE_TRAINER = "trainer";
+    /**
+     * The secretary role
+     */
     public static final String ROLE_SECRETARY = "secretary";
-
+    /**
+     * The telephone length
+     */
     public static final int LENGTH_TELEPHONE = 10;
+    /**
+     * The minimum age
+     */
     public static final int MIN_AGE = 14;
+    /**
+     * The adult age
+     */
     public static final int ADULT_AGE = 18;
 
     @Expose

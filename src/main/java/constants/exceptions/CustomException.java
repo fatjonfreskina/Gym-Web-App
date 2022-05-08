@@ -8,12 +8,15 @@ import constants.Codes;
  * @author Harjot Singh
  */
 public class CustomException extends Exception {
+    /**
+     * The error code
+     */
     final private Codes code;
 
     /**
      * Constructs a new instance of CustomException
      *
-     * @param {@see constants.Codes} error code to be printed
+     * @param code {@see constants.Codes} error code to be printed
      */
     public CustomException(final Codes code) {
         super(code.getErrorMessage());

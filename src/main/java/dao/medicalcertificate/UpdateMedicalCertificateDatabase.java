@@ -42,7 +42,7 @@ public class UpdateMedicalCertificateDatabase {
     /**
      * Executes the update
      *
-     * @throws SQLException
+     * @throws SQLException if there is an issue concerning the database
      */
     public void execute() throws SQLException {
         try (PreparedStatement preparedStatement = con.prepareStatement(STATEMENT)) {

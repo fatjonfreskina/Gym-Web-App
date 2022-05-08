@@ -81,6 +81,11 @@ public class TrainerService {
      * @throws TrainerCoursesOverlapping if the trainer courses are overlapping
      * @throws TrainerNoCourseHeld if the trainer does not hold any course
      * @throws TrainerNoCourseHeldNow if there is no course to be held now
+     * @throws NamingException if there is an error regarding the datasource
+     * @throws ReservationAlreadyPresent if the reservation is already present
+     * @throws RoomAlreadyFull if the room is already full
+     * @throws TraineeNotEnrolledToTheCourse if the trainee is not enrolled to the course
+     * @throws SubscriptionNotStartedOrTerminated no subscription started
      */
     public boolean addPresenceToCurrentLectureTimeSlot(Subscription subscription) throws NamingException, SQLException, ReservationAlreadyPresent, RoomAlreadyFull, TraineeNotEnrolledToTheCourse, TrainerCoursesOverlapping, TrainerNoCourseHeld, TrainerNoCourseHeldNow, SubscriptionNotStartedOrTerminated {
         LectureTimeSlot lectureHeldNow = getTrainersCurrentLectureTimeSlot(trainerEmail);
