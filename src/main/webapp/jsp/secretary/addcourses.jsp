@@ -224,11 +224,11 @@
                        placeholder="Enter Number Of Weeks" />
             </div>
         </div>
-
+        <!-- VISUALIZZA MESSAGGIO -->
         <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
             <p id="alert-message-body" class="alert-box-message">
             </p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -240,6 +240,7 @@
 
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="/jsp/include/moment/scripts.jsp"/>
 <jsp:include page="/jsp/include/select_multiple/script.jsp"/>
 <script src="<c:url value="/js/secretary/add-courses.js"/>"></script>
 

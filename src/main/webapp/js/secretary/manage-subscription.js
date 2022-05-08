@@ -4,8 +4,23 @@ $(document).ready(function() {
     alertBox.hide()
     let messageBody = $("#alert-message-body")
 
+
+
     $("#form").submit(function (e) {
         e.preventDefault()
+
+        if($("input[name=trainee]:checked").length === 0)
+        {
+            showMessage("You need to select a User")
+            return
+        }
+
+        if($("input[name=course_edition_id]:checked").length === 0)
+        {
+            showMessage("You need to select a Date")
+            return
+        }
+
         const formValues = $(this).serialize();
         $.ajax({
             url: "rest/addsubscription",
@@ -22,9 +37,7 @@ $(document).ready(function() {
                 });
             },
             error: function (data) {
-                alertBox.show()
-                messageBody.empty()
-                messageBody.text("Some unknown server side error occurred")
+                showMessage("Some unknown server side error occurred")
             }
         });
     });
@@ -46,9 +59,7 @@ $(document).ready(function() {
                 }
             },
             error: function (data) {
-                alertBox.show()
-                messageBody.empty()
-                messageBody.text("Some unknown server side error occurred")
+                showMessage("Some unknown server side error occurred")
             }
 
         });
@@ -73,13 +84,20 @@ $(document).ready(function() {
                 }
             },
             error: function (xhr) {
-                alertBox.show()
-                messageBody.empty()
-                messageBody.text("Some unknown server side error occurred")
+                showMessage("Some unknown server side error occurred")
             }
         });
     })
 
     courseName.trigger('change')
 
+
+    function showMessage(message) {
+        messageBody.empty()
+        messageBody.text(message)
+        alertBox.show()
+        alertBox.fadeTo(2000, 500).slideUp(500, function () {
+            $(this).slideUp(500);
+        });
+    }
 });
