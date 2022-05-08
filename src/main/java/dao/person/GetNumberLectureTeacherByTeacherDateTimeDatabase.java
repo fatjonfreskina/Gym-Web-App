@@ -11,6 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * This DAO is used to GET the lecture's number of a teacher for a particular course
+ *
+ * @author //TODO : find the author, check if description is ok
+ */
 public class GetNumberLectureTeacherByTeacherDateTimeDatabase {
 
     private static final String STATEMENT = """
@@ -22,18 +28,43 @@ public class GetNumberLectureTeacherByTeacherDateTimeDatabase {
                          lecturetimeslot.coursename = teaches.coursename and
                          email = ? and date = ? and starttime = ?                        
             """;
+
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
+
+    /**
+     * The instructor to be passed to the query
+     */
     private final Person teacher;
+
+    /**
+     * The lecture time slot to be passed to the query
+     */
     private final LectureTimeSlot lectureTimeSlot;
 
-
-
+    /**
+     *
+     * Parametric constructor
+     *
+     * @param connection the connection to the database
+     * @param teacher the teacher as a Person object to be passed
+     * @param lectureTimeSlot the LectureTimeSlot
+     */
     public GetNumberLectureTeacherByTeacherDateTimeDatabase(final Connection connection, final Person teacher,final  LectureTimeSlot lectureTimeSlot) {
         this.connection = connection;
         this.teacher = teacher;
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
+    /**
+     *
+     * Executes the SELECT
+     *
+     * @return an Integer containing the number of lectures that matched the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public Integer execute() throws SQLException
     {
 

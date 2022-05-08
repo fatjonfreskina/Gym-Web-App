@@ -13,19 +13,41 @@ import java.util.List;
 
 
 /**
+ *
+ * This DAO is used to GET the list of the instructors from the database
+ *
  * @author Francesco Caldivezzi
 * */
-public class GetListOfTeachersDatabase
-{
+public class GetListOfTeachersDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM person join personroles ON personroles.person = person.email WHERE role = 'trainer'";
 
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
 
+    /**
+     *
+     * Parametric contructor
+     *
+     * @param connection the connection to the database
+     */
     public GetListOfTeachersDatabase(final Connection connection)
     {
         this.connection = connection;
     }
 
+    /**
+     *
+     * Executes the select
+     *
+     * @return a list containing Person objects that matched the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<Person> execute() throws SQLException
     {
         PreparedStatement stm = null;

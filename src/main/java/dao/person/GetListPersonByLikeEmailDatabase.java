@@ -12,19 +12,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * This DAO is used to GET the list of users by searching for a pattern in the email
+ *
  * @author Francesco Caldivezzi
  * */
 public class GetListPersonByLikeEmailDatabase {
 
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * from person where email like ?";
+
+    /**
+     * The connection to the database
+     */
     private final Connection con;
+
+    /**
+     * The String pattern to be passed to the query
+     */
     private final String like;
+
+    /**
+     *
+     * Parametric constructor
+     *
+     * @param con the connection to the database
+     * @param like the String pattern to be passed to the query
+     */
     public GetListPersonByLikeEmailDatabase(Connection con,String like)
     {
         this.con = con;
         this.like = like;
     }
 
+    /**
+     *
+     * Executes the SELECT query
+     *
+     * @return a list containing Person objects that matched the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<Person> execute() throws SQLException
     {
         PreparedStatement preparedStatement = null;
