@@ -13,9 +13,20 @@ import java.sql.SQLException;
  */
 public class UpdatePersonSubscriptionDatabase {
 
+    /**
+     * Query to be executed
+     */
     private static final String STATEMENT =
             "UPDATE subscription SET startday = ?, discount = ?, trainee = ? WHERE courseeditionid = ?, coursename = ?, duration = ?;";
+
+    /**
+     * Database connection
+     */
     private final Connection con;
+
+    /**
+     * Subscription object to update
+     */
     private final Subscription subscription;
 
     /**
