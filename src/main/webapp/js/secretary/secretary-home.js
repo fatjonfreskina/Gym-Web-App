@@ -1,8 +1,61 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
-    let alertBox = $("#alert-box")
-    alertBox.hide()
-    let messageBody = $("#alert-message-body")
+    /**
+     * Shows a success message in the appropriate alert
+     * @param message message to show
+     */
+    function showSuccessMessage(message) {
+
+        const messageBody = $('#alert-success-message-body')
+        messageBody.empty()
+        messageBody.text(message)
+
+        const alertBox = $('#alert-success');
+        alertBox.show();
+
+        alertBox.fadeTo(2000, 500).slideUp(500, function () {
+            $(this).slideUp(500);
+        });
+
+    }
+
+    /**
+     * Shows an error / warning message in the appropriate alert
+     * @param message message to show
+     */
+    function showWarningMessage(message) {
+
+        const messageBody = $('#alert-warning-message-body')
+        messageBody.empty()
+        messageBody.text(message)
+
+        const alertBox = $('#alert-warning');
+        alertBox.show();
+
+        alertBox.fadeTo(2000, 500).slideUp(500, function () {
+            $(this).slideUp(500);
+        });
+
+    }
+
+    /**
+     * Manages a response object returned by the server.
+     * If the object given does not have the two expected fields returns an alert with a default message and prints
+     * to the console the object that is not compliant with the standardA
+     * @param response object returned by the server
+     */
+    function manageServerResponse(response){
+        if(response.isError === undefined || response.message === undefined){
+            showWarningMessage("Error while understanding the response");
+            console.log(response);
+            return;
+        }
+        if(response.isError == true){
+            showWarningMessage(response.message);
+        } else {
+            showSuccessMessage(response.message);
+        }
+    }
 
     //This variable contains the event which has been clicked in the calendar
     let selectedEvent = undefined;
@@ -117,12 +170,13 @@ $(document).ready(function() {
                 calendar.render();
             },
             error: function (xhr) {
-                showMessage("Some unknown server side error occurred")
+                showWarningMessage("Error while rendering the calendar");
+                //console.log(xhr);
             }
         });
     }
 
-    //Attach render calendar to button for week change
+    //Override default buttons behaviour
     $('body').on('click', 'button.fc-next-button', renderCalendar);
     $('body').on('click', 'button.fc-prev-button', renderCalendar);
 
@@ -146,17 +200,18 @@ $(document).ready(function() {
                     }),
                     type: "DELETE",
                     success: function (response) {
-                        showMessage(response);
+                        manageServerResponse(response);
                         renderCalendar();
                     },
                     error: function (xhr) {
-                        showMessage("Some unknown server side error occurred");
+                        showWarningMessage("Internal error");
+                        //console.log(xhr);
                     }
                 });
             }
 
         } else {
-            showMessage("Some unknown server side error occurred")
+            showWarningMessage("Event not found");
         }
 
     });
@@ -184,17 +239,17 @@ $(document).ready(function() {
                 cache: false,
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response);
+                    manageServerResponse(response);
                     renderCalendar();
                 },
                 error: function (xhr) {
-                    showMessage("Some unknown server side error occurred")
+                    showWarningMessage("Internal error");
+                    //console.log(xhr);
                 }
             });
 
-
         } else {
-            showMessage("Some unknown server side error occurred")
+            showWarningMessage("Event not found");
         }
 
     });
@@ -209,17 +264,8 @@ $(document).ready(function() {
             const oldStartTime = selectedEvent.customstartTime;
             //New updated parameters
             const newRoomName = $('#newRoom').val();
-            const newDate = moment($('#newDate').val());
-            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]);
-            const newStartTimeFormatted = newStartTime.format("hh:mm:ss A");
-
-            //Check newDate >= actual date
-            if(!newDate.isSameOrAfter(now, 'day')){
-                showMessage("Provided date is invalid");
-                return;
-            }
-
-            //TODO: Check start time is after now
+            const newDate = $('#newDate').val();
+            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]).format("HH:mm:ss");
 
             $.ajax({
                 url: "secretary/rest/updatelecturetimeslot",
@@ -230,33 +276,24 @@ $(document).ready(function() {
                     "oldStartTime": oldStartTime,
                     "newRoomName": newRoomName,
                     "newDate": newDate,
-                    "newStartTime": newStartTimeFormatted
+                    "newStartTime": newStartTime
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response);
+                    manageServerResponse(response);
                     renderCalendar();
                 },
                 error: function (xhr) {
-                    showMessage("Error");
-                    console.log(xhr);
+                    showWarningMessage("Internal error");
+                    //console.log(xhr);
                 }
             });
 
         } else {
-            showMessage("Error, event not found");
+            showWarningMessage("Event not found");
         }
 
     });
-
-    function showMessage(message) {
-        messageBody.empty()
-        messageBody.text(message)
-        alertBox.show()
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-    }
 
 });
