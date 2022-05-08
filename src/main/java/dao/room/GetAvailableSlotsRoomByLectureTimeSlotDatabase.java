@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 /**
  * DAO class that can be used to check before a user try to book a lecturetimeslot if there are available slots for booking it
  *
@@ -41,6 +40,7 @@ public class GetAvailableSlotsRoomByLectureTimeSlotDatabase {
      * Execute an the query and provide the number of available slots
      *
      * @return the number of available slots
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public int execute() throws SQLException {
         PreparedStatement pstmt = null;
