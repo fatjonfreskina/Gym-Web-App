@@ -155,7 +155,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Password :</label>
             <div class="col-sm-9">
-                <a class="form-control" href="<c:url value="/password_forgot"/>">Reset</a>
+                <a class="btn btn-outline-primary btn-lg" href="<c:url value="/password_forgot"/>">Change</a>
             </div>
         </div>
 
