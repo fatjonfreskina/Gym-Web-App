@@ -211,8 +211,19 @@ $(document).ready(function() {
             const oldStartTime = selectedEvent.customstartTime;
             //New updated parameters
             const newRoomName = $('#newRoom').val();
-            const newDate = $('#newDate').val();
-            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]).format("hh:mm:ss A");
+            const newDate = moment($('#newDate').val());
+            const newStartTime = moment($('#newStartTime').val(), ["hh:mm"]);
+            const newStartTimeFormatted = newStartTime.format("hh:mm:ss A");
+
+            //Check newDate >= actual date
+            if(!newDate.isSameOrAfter(now, 'day')){
+                console.log("Provided date is invalid");
+                //TODO: Show some alert
+                return;
+            }
+
+            //TODO: Check start time is after now
+
 
             $.ajax({
                 url: "secretary/rest/updatelecturetimeslot",
@@ -223,21 +234,22 @@ $(document).ready(function() {
                     "oldStartTime": oldStartTime,
                     "newRoomName": newRoomName,
                     "newDate": newDate,
-                    "newStartTime": newStartTime
+                    "newStartTime": newStartTimeFormatted
                 },
                 cache: false,
                 dataType: 'json',
                 success: function (response) {
                     console.log(response);
-                    //TODO: Show some alert
                     renderCalendar();
                 },
                 error: function (xhr) {
-                    showMessage("Some unknown server side error occurred")
+                    //TODO: Show some alert
+                    console.log(xhr);
                 }
             });
 
         } else {
+            //TODO: Show some alert
             console.log("Error, event not found");
         }
 
