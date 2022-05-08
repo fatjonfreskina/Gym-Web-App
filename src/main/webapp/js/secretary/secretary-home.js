@@ -146,12 +146,11 @@ $(document).ready(function() {
                     }),
                     type: "DELETE",
                     success: function (response) {
-                        console.log(response);
-                        //TODO: Show some alert
+                        showMessage(response);
                         renderCalendar();
                     },
                     error: function (xhr) {
-                        showMessage("Some unknown server side error occurred")
+                        showMessage("Some unknown server side error occurred");
                     }
                 });
             }
@@ -186,7 +185,6 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function (response) {
                     console.log(response);
-                    //TODO: Show some alert
                     renderCalendar();
                 },
                 error: function (xhr) {
@@ -217,13 +215,11 @@ $(document).ready(function() {
 
             //Check newDate >= actual date
             if(!newDate.isSameOrAfter(now, 'day')){
-                console.log("Provided date is invalid");
-                //TODO: Show some alert
+                showMessage("Provided date is invalid");
                 return;
             }
 
             //TODO: Check start time is after now
-
 
             $.ajax({
                 url: "secretary/rest/updatelecturetimeslot",
@@ -243,14 +239,13 @@ $(document).ready(function() {
                     renderCalendar();
                 },
                 error: function (xhr) {
-                    //TODO: Show some alert
+                    showMessage("Error");
                     console.log(xhr);
                 }
             });
 
         } else {
-            //TODO: Show some alert
-            console.log("Error, event not found");
+            showMessage("Error, event not found");
         }
 
     });
