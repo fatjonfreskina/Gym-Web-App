@@ -13,7 +13,7 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
-    <link rel="stylesheet" href="<c:url value="/css/table.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/tableprices.css"/>">
 </head>
 <body>
 <header>
