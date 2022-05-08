@@ -29,9 +29,8 @@ public class TraineeServlet extends AbstractServlet {
      * status of his/her medical certificate and a message of error/success
      *
      * @param req  the request
-     * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Message m;

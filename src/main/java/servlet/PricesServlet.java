@@ -25,13 +25,12 @@ import java.util.List;
  * @author Francesco Caldivezzi
  */
 public class PricesServlet extends AbstractServlet {
-    private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
     /**
      * Handles the get request by sending a response with various information for the courses (e.g. prices, trainers, subscriptions...)
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -56,7 +55,6 @@ public class PricesServlet extends AbstractServlet {
             }
             toShow.add(new PricesView(p.getCourseEditionId(),p.getCourseName(),p.getDuration(),p.getCost(),p.getMin(),p.getMax(),trainers,(float)p.getLecturesPerWeek()));
         }
-        logger.error(toShow.toString());
 
         req.setAttribute("pricesView", toShow);
         req.getRequestDispatcher(Constants.PATH_PRICES).forward(req, res);

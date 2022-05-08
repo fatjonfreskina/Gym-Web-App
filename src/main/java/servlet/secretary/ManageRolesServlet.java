@@ -26,8 +26,8 @@ public class ManageRolesServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -40,8 +40,8 @@ public class ManageRolesServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -98,11 +98,9 @@ public class ManageRolesServlet extends AbstractServlet {
      *
      * @param req  the request
      * @param res  the response
-     * @return
-     * @throws ServletException
-     * @throws IOException
+     * @return an error/confirmation message
      */
-    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) {
         String email = null;
         Codes error = Codes.OK;
         try

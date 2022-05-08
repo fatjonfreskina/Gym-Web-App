@@ -20,6 +20,13 @@
     <jsp:include page="/jsp/include/header.jsp"/>
 </header>
 <main class="global-container">
+    <h1>
+        PRICES
+    </h1>
+    <p>
+        In this page it is possible to see the prices based for each possible subscription. <br>
+        SOMETHING ELSE TO ADD HERE...
+    </p>
     <div class="container-table100">
         <div class="wrap-table100">
             <div class="table100 ver1 m-b-110">

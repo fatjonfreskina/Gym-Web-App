@@ -16,7 +16,6 @@ import java.io.IOException;
  */
 public class ChooseRoleServlet  extends AbstractServlet {
 
-    private final Logger logger = LogManager.getLogger("andrea_pasin_logger");
 
     /**
      * Handles the get request by providing the correct page to choose a role
@@ -44,19 +43,16 @@ public class ChooseRoleServlet  extends AbstractServlet {
         HttpSession session = req.getSession(false);
         if (req.getParameter("trainee") != null) {
             session.setAttribute("defaultRole", "trainee");
-            logger.info("SET DEFAULT ROLE TO TRAINEE");
             res.sendRedirect(req.getContextPath()+"/trainee");
             return;
         }
         if (req.getParameter("trainer") != null) {
             session.setAttribute("defaultRole", "trainer");
-            logger.info("SET DEFAULT ROLE TO TRAINER");
             res.sendRedirect(req.getContextPath()+"/trainer");
             return;
         }
         if (req.getParameter("secretary") != null) {
             session.setAttribute("defaultRole", "secretary");
-            logger.info("SET DEFAULT ROLE TO SECRETARY");
             res.sendRedirect(req.getContextPath()+"/secretary");
         }
     }

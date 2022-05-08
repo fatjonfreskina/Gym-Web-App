@@ -40,8 +40,8 @@ public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
      *
      * @param request the request
      * @param response the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

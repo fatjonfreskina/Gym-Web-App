@@ -37,8 +37,8 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
      * to the availability of rooms and to his/her subscriptions
      * @param req the request
      * @param resp  the response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

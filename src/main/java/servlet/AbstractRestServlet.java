@@ -213,11 +213,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doHead(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doHead(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
@@ -227,11 +226,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
@@ -255,11 +253,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
@@ -269,11 +266,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doTrace(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doTrace(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }

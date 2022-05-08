@@ -22,8 +22,6 @@ import servlet.AbstractServlet;
  */
 public class TrainerServlet extends AbstractServlet {
 
-  private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
   /**
    * Handles the get request by retrieving the page with the courses taught by the trainer
@@ -31,8 +29,8 @@ public class TrainerServlet extends AbstractServlet {
    *
    * @param req  the request
    * @param resp  the response
-   * @throws ServletException
-   * @throws IOException
+   * @throws ServletException if some internal error happens
+   * @throws IOException if it was not possible to forward the request and write the response
    */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,7 +41,6 @@ public class TrainerServlet extends AbstractServlet {
       TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
       req.setAttribute("coursesStatus", trainerService.getTrainersCoursesStatus());
     } catch (SQLException | NamingException e) {
-      logger.error(loggerClass + e.getMessage());
     }
     req.getRequestDispatcher(Constants.PATH_TRAINER_HOME).forward(req, resp);
   }
