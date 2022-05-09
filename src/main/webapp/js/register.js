@@ -34,7 +34,7 @@ $(document).ready(function() {
         // < 14 years
         if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < 14)
         {
-            showMessage("Provided Telephone not valid")
+            showMessage("You must be at least 14 years old to sign in")
             return
         }
 
