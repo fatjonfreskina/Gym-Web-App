@@ -14,16 +14,22 @@
     <jsp:include page="/jsp/include/header.jsp"/>
 </header>
 <main class="global-container">
-    <table>
+    <ul>
         <c:forEach var="course" items="${courseList}">
-            <tr>
-                <td><img src="<c:url value="/images/courses/${course.name}.jpg"/>" alt="Image ${course.name}" width="20%"
-                         height="20%"/></td>
-                <td><c:out value="${course.name}"/></td>
-                <td><c:out value="${course.description}"/></td>
-            </tr>
+            <li class="d-flex pt-5">
+                <div style="min-width: 150px;width: 150px; height: 150px;">
+                    <img class="rounded-circle" src="<c:url value="/images/courses/${course.name}.jpg"/>"
+                         alt="Image ${course.name}"
+                         width="100%"
+                         height="100%"/>
+                </div>
+                <div class="d-flex align-items-start justify-content-start flex-column pl-3 h-100">
+                    <h1><c:out value="${course.name}"/></h1>
+                    <p class="m-0"><c:out value="${course.description}"/></p>
+                </div>
+            </li>
         </c:forEach>
-    </table>
+    </ul>
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
