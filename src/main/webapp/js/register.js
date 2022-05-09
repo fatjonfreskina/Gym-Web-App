@@ -5,6 +5,7 @@ $(document).ready(function() {
     const confirmedPassword = $('#confirm_password')
     const telephone = $('#telephone_number')
     const buttonRegister = $('#btn-register')
+    const file = $('#file')
 
     //error boxes
     let alertBox = $("#alert-box")
@@ -43,7 +44,19 @@ $(document).ready(function() {
             showMessage("Password Are Different")
             return
         }
-        //TODO: .jpg,.jpeg,.png 5mb
+
+        //File check
+        if (file !== undefined){
+            if(!isFileTypeValid()){
+                showMessage("File type must be .jpg, .jpeg, .png")
+                return
+            }
+            if(!isFileSizeValid()){
+                showMessage("File size must be smaller than 5MB")
+                return
+            }
+        }
+
         form.submit()
     })
 
@@ -54,5 +67,37 @@ $(document).ready(function() {
         alertBox.fadeTo(2000, 500).slideUp(500, function () {
             $(this).slideUp(500);
         });
+    }
+
+    function isFileTypeValid() {
+        const fileInput =
+            document.getElementById('file');
+
+        const filePath = fileInput.value;
+
+        // Allowed file type
+        const allowedExtensions =
+            /(\.jpg|\.jpeg|\.png)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            return false       //Show error message
+        }
+        else {
+            return true        //Proceed with validation
+        }
+    }
+
+    function isFileSizeValid(){
+        const fileInput =
+            document.getElementById('file');
+
+        // 5 MB
+        if (fileInput.files[0].size/1024 > 5120){
+
+            return false //File is too big
+        }
+        else {
+            return true //Proceed with validation
+        }
     }
 })
