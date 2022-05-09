@@ -18,19 +18,21 @@
     <c:if test="${not empty trainerlist}">
         <ul>
             <c:forEach var="trainer" items="${trainerlist}">
-                <li>
-
-
-                    <object data="<c:url value="/images/staff/${trainer.person.name}-${trainer.person.surname}.jpg"/>" type="image/jpg" width="15%" height="15%">
-                        <img src="<c:url value="/images/staff/default-user-image.jpg"/>" width="15%" height="15%"/>
-                    </object>
-
-
-                    <b><c:out value="${trainer.person.surname}"/> <c:out value="${trainer.person.name}"/>:</b>
-                    <c:forEach var="teach" items="${trainer.teaches}" varStatus="loop">
-                        <c:out value="${teach.courseName}"/>
-                        <c:if test="${!loop.last}">,</c:if>
-                    </c:forEach>
+                <li class="d-flex pt-5">
+                    <div style="width: 150px; height: 150px;">
+                        <object class="rounded-circle"
+                                data="<c:url value="/images/staff/${trainer.person.name}-${trainer.person.surname}.jpg"/>"
+                                type="image/jpg" width="150px" height="150px">
+                            <img class="rounded-circle" src="<c:url value="/images/staff/default-user-image.jpg"/>"
+                                 width="100%" height="100%"/>
+                        </object>
+                    </div>
+                    <div class="d-flex align-items-start justify-content-start flex-column pl-3 h-100">
+                        <h1><c:out value="${trainer.person.surname}"/> <c:out value="${trainer.person.name}"/></h1>
+                        <c:forEach var="teach" items="${trainer.teaches}" varStatus="loop">
+                            <p class="font-weight-bold m-0"><c:out value="${teach.courseName}"/></p>
+                        </c:forEach>
+                    </div>
                 </li>
             </c:forEach>
         </ul>
