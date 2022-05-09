@@ -6,7 +6,7 @@
     <title>Add medical certificate</title>
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
-    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+   <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
     <jsp:include page="/jsp/include/favicon.jsp"/>
 </head>
 <body>
@@ -37,7 +37,7 @@
                  <input id="doctor_name" type="text" name="doctorname" value="" class="form-control" placeholder="Enter Doctor Name" maxlength="30" required>
             </div>
         </div>
-
+        <jsp:include page="/jsp/include/message.jsp"/>
         <div class="form-group row">
             <label for="file" class="col-sm-3 col-form-label" >Medical Certificate:</label>
             <div class="col-sm-9">
@@ -50,12 +50,16 @@
 
         <jsp:include page="/jsp/include/message.jsp"/>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg" >Add Certificate</button>
+        <button type="submit" id="btn-send" class="btn btn-outline-primary btn-lg" >Add Certificate</button>
     </form>
 </main>
 
 <jsp:include page="../include/footer.jsp"/>
+
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="/jsp/include/moment/scripts.jsp"/>
 <script src="<c:url value="/js/message-delay.js"/>"></script>
+<script src="<c:url value="/js/secretary/add-medical-certificate.js"/>"></script>
+
 </body>
 </html>
