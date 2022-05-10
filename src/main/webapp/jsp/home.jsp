@@ -24,7 +24,7 @@
             border-radius: 25px;
             width: auto;
             height: auto;
-            background-color:#B0B0B0;
+            background-color:#C0C0C0;
             margin-top: 20px;
             overflow:hidden;
             clear: right;
@@ -36,7 +36,7 @@
             border-radius: 25px;
             width: auto;
             height: auto;
-            background-color: #B0B0B0;
+            background-color: #C0C0C0;
             margin-top: 20px;
             overflow:hidden;
             clear: left;
@@ -83,6 +83,15 @@
         div.clearright:hover>div.translatetopright{
             transform: translateY(-50px);;
         }
+        a.secondarylink:link {
+            color: rgb(33, 37, 41);
+        }
+        a.secondarylink:hover {
+            color: rgb(33, 37, 41);
+        }
+        a.secondarylink:visited {
+            color: rgb(33, 37, 41);
+        }
 
 
     </style>
@@ -107,7 +116,12 @@
             We offer you the possibility to attend several courses, ranging from Yoga to Powerlifting.<br>
             Each course will be held in a well-equipped room.
         </div>
-        <div class="translatetopleft">DISCOVER MORE</div>
+        <div class="translatetopleft">
+            <a class="secondarylink" href="<c:url value="/courses"/>">
+                <h2>DISCOVER MORE</h2>
+            </a>
+        </div>
+
     </div>
     <div class="clearright">
         <img class="right" src="<c:url value="/images/photo_gym_2.jpg"/>" alt=""width="25%" height="250px"/>
@@ -116,7 +130,11 @@
             In our gym trainers are all qualified and experienced to make you reach all your goals.<br>
             Each trainer has been chosen carefully in order to provide you the best training sessions.
         </div>
-        <div class="translatetopright">DISCOVER MORE</div>
+        <div class="translatetopright">
+            <a class="secondarylink" href="<c:url value="/staff"/>">
+                <h2>DISCOVER MORE</h2>
+            </a>
+        </div>
 
     </div>
     <div class="clearleft">
@@ -128,7 +146,11 @@
             the course you want to attend. <br>
             There are also discounts when buying long time subscriptions!
         </div>
-        <div class="translatetopleft">DISCOVER MORE</div>
+        <div class="translatetopleft">
+            <a class="secondarylink" href="<c:url value="/prices"/>">
+                <h2>DISCOVER MORE</h2>
+            </a>
+        </div>
     </div>
     <div class="clearright">
         <img class="right" src="<c:url value="/images/browsing.jpg"/>" alt="" width="25%" height="250px"/>
@@ -138,7 +160,7 @@
             experience in our gym from here.<br>
             You can book attendances for courses, handle your personal information and much more.
         </div>
-        <div class="translatetopright">DISCOVER MORE</div>
+
     </div>
     <!--<div class="carousel-main-box">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
