@@ -8,12 +8,24 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <style>
+        .carousel-main-box{
+            width:600px;
+            height:500px;
+            margin: auto;
+        }
+        .carouselimg {
+            object-fit: cover;
+            height: 500px;
+        }
+    </style>
 </head>
 <body>
 <header>
     <jsp:include page="include/header.jsp"/>
 </header>
 <main class="global-container">
+
 
     <div class="carousel-main-box">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -24,27 +36,27 @@
                 <li data-target="#carouselExampleCaptions" data-slide-to="3" class="bg-info"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="4" class="bg-info"></li>
             </ol>
-            <div class="carousel-inner">
+            <div class="carousel-inner " >
                 <div class="carousel-item active">
-                    <img src="<c:url value="/images/thegym/the_gym_unsplash_1.jpg"/>" class="d-block w-100"  alt="Photo Gym 1">
+                    <img src="<c:url value="/images/thegym/the_gym_unsplash_1.jpg"/>" class="d-block w-100 carouselimg"  alt="Photo Gym 1" >
                     <div class="carousel-caption d-none d-md-block text-info">
                         <h5>Weight Room</h5>
                     </div>
                 </div>
                 <div class="carousel-item text-info">
-                    <img src="<c:url value="/images/thegym/the_gym_unsplash_2.jpg"/>" class="d-block w-100"  alt="Photo Gym 2">
+                    <img src="<c:url value="/images/thegym/the_gym_unsplash_2.jpg"/>" class="d-block w-100 carouselimg"  alt="Photo Gym 2" >
                     <div class="carousel-caption d-none d-md-block text-info">
                         <h5>Yoga Room</h5>
                     </div>
                 </div>
                 <div class="carousel-item text-info">
-                    <img src="<c:url value="/images/thegym/the_gym_unsplash_3.jpg"/>" class="d-block w-100"  alt="Photo Gym 3">
+                    <img src="<c:url value="/images/thegym/the_gym_unsplash_3.jpg"/>" class="d-block w-100 carouselimg"  alt="Photo Gym 3" >
                     <div class="carousel-caption d-none d-md-block text-info">
                         <h5>Calisthenics Room</h5>
                     </div>
                 </div>
                 <div class="carousel-item text-info">
-                    <img src="<c:url value="/images/thegym/the_gym_unsplash_4.jpg"/>" class="d-block w-100"  alt="Photo Gym 4">
+                    <img src="<c:url value="/images/thegym/the_gym_unsplash_4.jpg"/>" class="d-block w-100 carouselimg"  alt="Photo Gym 4" >
                     <div class="carousel-caption d-none d-md-block text-info">
                         <h5>Swimming Pool</h5>
                     </div>
