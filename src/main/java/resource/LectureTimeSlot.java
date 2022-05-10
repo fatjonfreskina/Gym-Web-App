@@ -127,6 +127,11 @@ public class LectureTimeSlot {
         return substitution;
     }
 
+    /**
+     *  Gets a lecture time slot in String format
+     *
+     * @return lecture time slot
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -145,18 +150,5 @@ public class LectureTimeSlot {
         sb.append("'}");
         return sb.toString();
     }
- /* //TODO check if refactor is ok before deleting
-
-    public String toString() {
-        return "LectureTimeSlot{" +
-                "roomName='" + roomName + '\'' +
-                ", date='" + date + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", courseEditionId=" + courseEditionId +
-                ", courseName='" + courseName + '\'' +
-                ", substitution='" + substitution + '\'' +
-                '}';
-    }
-  */
 }
 

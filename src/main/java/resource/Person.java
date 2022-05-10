@@ -187,43 +187,33 @@ public class Person {
         return Objects.equals(email, person.email);
     }
 
+    /**
+     * Gets a String version of the person
+     *
+     * @return the person
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Person{email=");
+        sb.append("Person{email='");
         sb.append(email);
-        sb.append(", name='");
+        sb.append("', name='");
         sb.append(name);
-        sb.append(", surname='");
+        sb.append("', surname='");
         sb.append(surname);
-        sb.append(", psw='");
+        sb.append("', psw='");
         sb.append(psw);
-        sb.append(", taxCode='");
+        sb.append("', taxCode='");
         sb.append(taxCode);
-        sb.append(", birthDate='");
+        sb.append("', birthDate='");
         sb.append(birthDate);
-        sb.append(", telephone='");
+        sb.append("', telephone='");
         sb.append(telephone);
-        sb.append(", address='");
+        sb.append("', address='");
         sb.append(address);
-        sb.append(", avatarPath='");
+        sb.append("', avatarPath='");
         sb.append(avatarPath);
         sb.append("'}");
         return sb.toString();
     }
-     /* //TODO check if refactor is ok before deleting
-    public String toString() {
-        return "Person{" +
-                "email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", psw='" + psw + '\'' +
-                ", taxCode='" + taxCode + '\'' +
-                ", birthDate=" + birthDate +
-                ", telephone='" + telephone + '\'' +
-                ", address='" + address + '\'' +
-                ", avatarPath='" + avatarPath + '\'' +
-                '}';
-    }
-      */
 }

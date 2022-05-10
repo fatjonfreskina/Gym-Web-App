@@ -96,33 +96,30 @@ public class Reservation {
         return lectureStartTime;
     }
 
+    /**
+     * Gets the String version a reservation
+     *
+     * @return the reservation
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Reservation{trainee=");
+        sb.append("Reservation{trainee='");
         sb.append(trainee);
-        sb.append(", room='");
+        sb.append("', room='");
         sb.append(room);
-        sb.append(", lectureDate='");
+        sb.append("', lectureDate='");
         sb.append(lectureDate);
-        sb.append(", lectureStartTime='");
+        sb.append("', lectureStartTime='");
         sb.append(lectureStartTime);
         sb.append("'}");
         return sb.toString();
     }
-
-    /* //TODO check if refactor is ok before deleting
-    public String toString() {
-        return "Reservation{" +
-                "trainee='" + trainee + '\'' +
-                ", room='" + room + '\'' +
-                ", lectureDate='" + lectureDate + '\'' +
-                ", lectureStartTime='" + lectureStartTime + '\'' +
-                '}';
-    }
-
+    /**
+     * Compare two reservation
+     * @param o a reservation
+     * @return true if equals, false otherwise
      */
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -131,6 +128,11 @@ public class Reservation {
         return Objects.equals(trainee, that.trainee) && Objects.equals(room, that.room) && Objects.equals(lectureDate, that.lectureDate) && Objects.equals(lectureStartTime, that.lectureStartTime);
     }
 
+    /**
+     * Return the hash code of reservation
+     *
+     * @return hash code of the reservation
+     */
     @Override
     public int hashCode() {
         return Objects.hash(trainee, room, lectureDate, lectureStartTime);

@@ -106,37 +106,35 @@ public class Subscription {
         return trainee;
     }
 
+    /**
+     * Gets a String version of the subscription
+     *
+     * @return the subscription
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Subscription{courseEditionID=");
+        sb.append("Subscription{courseEditionID='");
         sb.append(courseEditionID);
-        sb.append(", courseName='");
+        sb.append("', courseName='");
         sb.append(courseName);
-        sb.append(", duration='");
+        sb.append("', duration='");
         sb.append(duration);
-        sb.append(", startDay='");
+        sb.append("', startDay='");
         sb.append(startDay);
-        sb.append(", discount='");
+        sb.append("', discount='");
         sb.append(discount);
-        sb.append(", trainee='");
+        sb.append("', trainee='");
         sb.append(trainee);
         sb.append("'}");
         return sb.toString();
     }
-    /*
-    //TODO check if refactor is ok before deleting
-    public String toString() {
-        return "Subscription{" +
-                "courseEditionID=" + courseEditionID +
-                ", courseName='" + courseName + '\'' +
-                ", duration=" + duration +
-                ", startDay='" + startDay + '\'' +
-                ", discount=" + discount +
-                ", trainee='" + trainee + '\'' +
-                '}';
-    }
-    */
+    /**
+     * Compare two subscriptions
+     *
+     * @param o a subscription
+     * @return true if they are equals, false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -152,6 +150,11 @@ public class Subscription {
         return courseEditionID == that.courseEditionID && duration == that.duration && discount == that.discount && Objects.equals(courseName, that.courseName) && Objects.equals(startDay, that.startDay) && Objects.equals(trainee, that.trainee);
     }
 
+    /**
+     * Gets the hash code of the subscription
+     *
+     * @return the hash code of the subscription
+     */
     @Override
     public int hashCode() {
         return Objects.hash(courseEditionID, courseName, duration, startDay, discount, trainee);
