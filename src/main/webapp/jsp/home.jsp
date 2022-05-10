@@ -8,7 +8,43 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <style>
+        img.left{
+            float: left;
+            margin-right: 20px;
+        }
+        img.right{
+            float: right;
+            margin-left: 20px;
+        }
 
+        div.clearleft {
+            box-shadow: 5px 10px 18px #888888;
+            border-radius: 25px;
+            width: auto;
+            height: auto;
+            background-color:#909090;
+            margin-top: 20px;
+            overflow:auto;
+            clear: right;
+        }
+        div.clearright {
+            box-shadow: 5px 10px 18px #888888;
+            border-radius: 25px;
+            width: auto;
+            height: auto;
+            background-color: #909090;
+            margin-top: 20px;
+            overflow:auto;
+            clear: left;
+        }
+        div.description{
+            padding: 0px 20px 0 20px;
+        }
+        h2.sub{
+            padding: 20px 20px 0 20px;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -18,12 +54,48 @@
     <h1>
         ARE YOU READY TO GET FIT, STRONG AND MOTIVATED?
     </h1>
-    <p>
+    <div>
         Welcome to GWA! <br>
         In this gym you will find only the best courses and trainers that will help you to reach
         all your goals.
-    </p>
-    <div class="carousel-main-box">
+    </div>
+    <div class="clearleft">
+        <img class="left" src="<c:url value="/images/photo_gym_1.jpg"/>" alt="" width="300" height="300"/>
+        <h2 class="sub">Many possible courses</h2>
+        <div class="description">
+            We offer you the possibility to attend several courses, ranging from Yoga to Powerlifting.<br>
+            Each course will be held in a well-equipped room.
+        </div>
+    </div>
+    <div class="clearright">
+        <img class="right" src="<c:url value="/images/photo_gym_2.jpg"/>" alt="" width="300" height="300"/>
+        <h2 class="sub">Only the best trainers</h2>
+        <div class="description">
+            In our gym trainers are all qualified and experienced to make you reach all your goals.<br>
+            Each trainer has been chosen carefully in order to provide you the best training sessions.
+        </div>
+
+    </div>
+    <div class="clearleft">
+        <img class="left" src="<c:url value="/images/photo_gym_3.jpg"/>" alt="" width="300" height="300"/>
+        <h2 class="sub">Affordable prices</h2>
+        <div class="description">
+            All our courses have affordable prices.<br>
+            We offer different subscription plans based on
+            the course you want to attend. <br>
+            There are also discounts when buying long time subscriptions!
+        </div>
+    </div>
+    <div class="clearright">
+        <img class="right" src="<c:url value="/images/photo_gym_4.jpg"/>" alt="" width="300" height="300"/>
+        <h2 class="sub">Manage everything from here</h2>
+        <div class="description">
+            By creating an account it will be possible to manage everything related to your
+            experience in our gym from here.<br>
+            You can book attendances for courses, handle your personal information and much more.
+        </div>
+    </div>
+    <!--<div class="carousel-main-box">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active bg-info"></li>
@@ -73,7 +145,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div>
+    </div>-->
 </main>
 <jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
