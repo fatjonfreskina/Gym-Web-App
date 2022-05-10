@@ -31,7 +31,7 @@
         <directory>${basedir}/target</directory>
 
         <!-- name of the generated package -->
-        <finalName>${project.artifactId}-${project.version}</finalName>
+        <finalName>${project.artifactId}</finalName>
 
         <plugins>
             <!-- compiler plugin: source and target code -->

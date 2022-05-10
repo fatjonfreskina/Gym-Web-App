@@ -21,6 +21,7 @@
     <div id="calendar">
     </div>
 </main>
+<jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="include/scripts.jsp"/>
 <jsp:include page="include/fullcalendar/scripts.jsp"/>
 <jsp:include page="include/moment/scripts.jsp"/>
