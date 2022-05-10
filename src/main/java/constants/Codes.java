@@ -180,102 +180,102 @@ public enum Codes {
     UNEXPECTED_ERROR(-31, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unexpected error"),
 
     /**
-     *
+     *  Returned when in the slot there are no more spots left.
      */
     ROOM_ALREADY_FULL(-32, HttpServletResponse.SC_BAD_REQUEST, "There are no more spots left"),
 
     /**
-     *
+     *  Returned when the received date is not valid.
      */
     INVALID_DATE(-33, HttpServletResponse.SC_BAD_REQUEST, "The date specified is invalid"),
 
     /**
-     *
+     *  Returned when a trainee is not enrolled to a certain course
      */
     TRAINEE_NOT_ENROLLED_TO_THE_COURSE(-34, HttpServletResponse.SC_BAD_REQUEST, "Trainee is not enrolled to your course!"),
 
     /**
-     *
+     *  Returned when a trainee try to book a slot when he had already done.
      */
     RESERVATION_ALREADY_PRESENT(-35, HttpServletResponse.SC_CONFLICT, "Reservation already present!"),
 
     /**
-     *
+     *  Returned when reservation aren't found
      */
     RESERVATION_NOT_FOUND(-36, HttpServletResponse.SC_NO_CONTENT, "No Reservation found!"),
 
     /**
-     *
+     *  Returned when a user hasn't any role assigned
      */
     USER_HAS_NO_ROLE_ASSIGNED(-37, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "User has no role assigned to it"),
 
     /**
-     *
+     *  Returned when the request field 'content-type' is unsupported
      */
     CONTENTTYPE_UNSUPPORTED(-38, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Unsupported input media type"),
 
     /**
-     *
+     *  Returned when a lecture time slot isn't found
      */
     LECTURETIMESLOT_NOT_FOUND(-39, HttpServletResponse.SC_NOT_FOUND, "LectureTimeSlot not found"),
 
     /**
-     *
+     *  Returned when the token for password reset isn't found
      */
     TOKEN_NOT_FOUND(-40, HttpServletResponse.SC_NOT_FOUND, "Token for password reset not found"),
 
-    /**
-     *
+    /**date
+     *  Returned when the inserted password isn't valid
      */
     PASSWORD_NOT_VALID(-41, HttpServletResponse.SC_CONFLICT, "Password is not valid"),
 
     /**
-     *
+     *  Returned when a person isn't found
      */
     PERSON_NOT_FOUND(-42, HttpServletResponse.SC_NOT_FOUND, "Person not found"),
 
     /**
-     *
+     *  Returned when the received date is in a wrong format, not valid for the server
      */
     WRONG_DATE_FORMAT(-43, /*422 Unprocessable Entity, NOT PRESENT */ HttpServletResponse.SC_BAD_REQUEST, "Wrong date format, date format should be in ISO 2014 [yyyy]-[MM]-[dd] format!"),
 
     /**
-     *
+     * Returned when the received time is in a wrong format, not valid for the server
      */
     WRONG_TIME_FORMAT(-44, /*422 Unprocessable Entity, NOT PRESENT */ HttpServletResponse.SC_BAD_REQUEST, "Wrong time format, time format should be in ISO 8601's 24-hour clock T[hh]:[mm]:[ss] format!"),
 
     /**
-     *
+     *  Returned when the request is not acceptable because there are some missing fields
      */
     NOT_ACCEPTABLE_MISSING_FIELDS(-45, HttpServletResponse.SC_BAD_REQUEST, "Request not acceptable, missing fields."),
 
     /**
-     *
+     *  Returned when a trainer hasn't any trainee subscribed to his course
      */
     NO_SUBSCRIPTION_TO_THE_COURSE(-46, HttpServletResponse.SC_NO_CONTENT, "Trainer has no Trainee subscribed to its course."),
 
     /**
-     *
+     *  Returned when a subscription isn't currently available
      */
     SUBSCRIPTION_IS_NOT_CURRENTLY_VALID(-47, HttpServletResponse.SC_NO_CONTENT, "Subscription is not currently valid."),
 
     /**
-     *
+     *  Returned when a received JSON reservation is in wrong format for the server
      */
     WRONG_JSON_RESERVATION(-48, HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Wrong json reservation"),
 
     /**
-     *
+     *  Returned when remaining days of the selected course are less than the subscription duration
      */
     TYPE_SUBSCRIPTION_INVALID(-49, HttpServletResponse.SC_BAD_REQUEST, "Remaining days of the selected course are less than the subscription duration"),
 
     /**
-     *
+     *  Returned when a user try to reserve a slot when his subscription is expired before
      */
     SUBSCRIPION_EXPIRED_BEFORE(-50, HttpServletResponse.SC_NOT_ACCEPTABLE, "Subscription expired before the requested reservation"),
 
     /**
-     *
+     *  Returned when there is a conflict between a reservation and a lecture time slot
      */
     CONFLICT_BETWEEN_RESERVATION_AND_LECTURETIMESLOT_VALUES(-51, HttpServletResponse.SC_CONFLICT, "Conflict between Reservation and LectureTimeSlot values!"),
 
