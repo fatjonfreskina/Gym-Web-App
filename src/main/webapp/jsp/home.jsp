@@ -23,7 +23,7 @@
             border-radius: 25px;
             width: auto;
             height: auto;
-            background-color:#909090;
+            background-color:#B0B0B0;
             margin-top: 20px;
             overflow:auto;
             clear: right;
@@ -33,7 +33,7 @@
             border-radius: 25px;
             width: auto;
             height: auto;
-            background-color: #909090;
+            background-color: #B0B0B0;
             margin-top: 20px;
             overflow:auto;
             clear: left;
@@ -87,7 +87,7 @@
         </div>
     </div>
     <div class="clearright">
-        <img class="right" src="<c:url value="/images/photo_gym_4.jpg"/>" alt="" width="300" height="300"/>
+        <img class="right" src="<c:url value="/images/browsing.jpg"/>" alt="" width="300" height="300"/>
         <h2 class="sub">Manage everything from here</h2>
         <div class="description">
             By creating an account it will be possible to manage everything related to your
