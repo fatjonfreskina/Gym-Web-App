@@ -90,7 +90,11 @@
             color: rgb(33, 37, 41);
         }
         a.secondarylink:visited {
-            color: rgb(33, 37, 41);
+            color: rgb(31, 37, 41);
+        }
+        .discover{
+            font-size: 30px;
+            font-weight: bold;
         }
 
 
@@ -118,7 +122,7 @@
         </div>
         <div class="translatetopleft">
             <a class="secondarylink" href="<c:url value="/courses"/>">
-                <h2>DISCOVER MORE</h2>
+                <div class="discover">DISCOVER MORE</div>
             </a>
         </div>
 
@@ -132,7 +136,7 @@
         </div>
         <div class="translatetopright">
             <a class="secondarylink" href="<c:url value="/staff"/>">
-                <h2>DISCOVER MORE</h2>
+                <div class="discover">DISCOVER MORE</div>
             </a>
         </div>
 
@@ -148,7 +152,7 @@
         </div>
         <div class="translatetopleft">
             <a class="secondarylink" href="<c:url value="/prices"/>">
-                <h2>DISCOVER MORE</h2>
+                <div class="discover">DISCOVER MORE</div>
             </a>
         </div>
     </div>
