@@ -43,13 +43,22 @@
 
     <div class="container">
 
-        <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data">
+        <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data" id="form">
 
+            <div class="form-group row">
+                <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p id="alert-message-body" class="alert-box-message">
+                    </p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
             <%-- ********** AVATAR ********** --%>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Avatar :</label>
 
-                <div class="col-sm-9 avatar-image-box">
+                <div class="col-sm-3 avatar-image-box">
 
                     <%-- Inline styling info is needed since some browsers
                          like Firefox does not support classes for images. --%>
@@ -86,6 +95,7 @@
                     <input type="submit" value="Change" class="btn btn-outline-primary btn-lg"/>
                 </div>
             </div>
+
         </form>
 
         <%-- ********** TAX CODE ********** --%>
@@ -169,7 +179,9 @@
 
 <jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="/jsp/include/moment/scripts.jsp"/>
 <script src="<c:url value="/js/message-delay.js"/>"></script>
+<script src="<c:url value="/js/personal_info.js"/>"></script>
 
 </body>
 </html>
