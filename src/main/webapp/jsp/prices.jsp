@@ -21,7 +21,7 @@
 </header>
 <main class="global-container">
     <h1>
-        PRICES
+        Prices
     </h1>
     <p>
         In this page it is possible to see the prices based for each possible subscription. <br>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>About Us</title>
+    <title>Contact us</title>
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
