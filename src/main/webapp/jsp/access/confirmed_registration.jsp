@@ -25,7 +25,7 @@
         </c:otherwise>
     </c:choose>
 </main>
-
 <jsp:include page="/jsp/include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>

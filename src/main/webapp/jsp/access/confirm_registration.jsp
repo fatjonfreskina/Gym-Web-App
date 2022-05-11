@@ -16,6 +16,6 @@
     <h2>PLEASE CHECK YOUR EMAIL AND CONFIRM YOUR REGISTRATION</h2>
 </main>
  <jsp:include page="/jsp/include/footer.jsp"/>
-
+<jsp:include page="/jsp/include/scripts.jsp"/>
 </body>
 </html>
