@@ -4,12 +4,16 @@
 <head>
     <title>Confirm Registration</title>
     <meta charset="UTF-8">
-    <jsp:include page="/jsp/include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
     <jsp:include page="/jsp/include/favicon.jsp"/>
 </head>
 <body>
-<a href="<c:url value="/"/>">Home</a>
-  PLEASE CHECK YOUR EMAIL AND CONFIRM YOUR REGISTRATION
-<jsp:include page="/jsp/include/footer.jsp"/>
+<header>
+    <jsp:include page="../include/header.jsp"/>
+</header>
+<main class="global-container">
+    <h2>PLEASE CHECK YOUR EMAIL AND CONFIRM YOUR REGISTRATION</h2>
+</main>
+ <jsp:include page="/jsp/include/footer.jsp"/>
 </body>
 </html>
