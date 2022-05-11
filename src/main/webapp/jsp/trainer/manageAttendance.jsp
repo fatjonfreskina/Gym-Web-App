@@ -12,7 +12,7 @@
 </head>
 <body>
 <header>
-    <jsp:include page="/jsp/trainee/include/headertrainee.jsp"/>
+    <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
 </header>
 <main class="global-container">
     <c:choose>
