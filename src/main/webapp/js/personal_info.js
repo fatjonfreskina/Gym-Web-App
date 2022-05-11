@@ -1,6 +1,5 @@
 $(document).ready(function() {
-    const form = $('#form')
-    const file = $('#file')
+    let form = document.getElementById('form')
 
     //error boxes
     let alertBox = $("#alert-box")
@@ -45,7 +44,7 @@ $(document).ready(function() {
 
     function isFileTypeValid() {
         const fileInput =
-            document.getElementById('file');
+            document.getElementById('avatar');
 
         const filePath = fileInput.value;
 
@@ -63,7 +62,7 @@ $(document).ready(function() {
 
     function isFileSizeValid(){
         const fileInput =
-            document.getElementById('file');
+            document.getElementById('avatar');
 
         // 5 MB
         if (fileInput.files[0].size/1024 > 5120){
