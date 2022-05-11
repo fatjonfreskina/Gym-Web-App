@@ -106,7 +106,7 @@ public class AddAccountServlet extends AbstractServlet {
             if (req.getParameter(Person.ROLE_TRAINEE) != null)
                 isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
             boolean roles[] = {isSecretary, isTrainee, isTrainer};
-            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, roles);
+            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, roles,req);
             if (error.getErrorCode() != Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), true);
                 registrable = false;
@@ -202,10 +202,11 @@ public class AddAccountServlet extends AbstractServlet {
      * @param birthDate  the user's birthdate
      * @param avatar  the user's avatar
      * @param roles  the user's role
+     * @param req the request
      * @return an error/confirmation message
      */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
-                            String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles) {
+                            String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles,HttpServletRequest req) {
         Codes error = Codes.OK;
         Person p1 = null;
         Person p2 = null;
@@ -248,6 +249,9 @@ public class AddAccountServlet extends AbstractServlet {
                             PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp,p.getEmail());
                             //Insert the password reset into the database
                             new InsertPasswordResetDatabase(conn, passwordReset).execute();
+
+                            if(pathImg != null)
+                                req.getSession(false).setAttribute("avatarPath",pathImg);
                             MailTypes.mailForPasswordChanges(p, passwordReset);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
                             error = Codes.INTERNAL_ERROR;

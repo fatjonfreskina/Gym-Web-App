@@ -98,16 +98,13 @@ public class PersonalInfoServlet extends AbstractServlet
 
                 if (avatar.getSize() != 0)
                 {
-                    // Save the avatar of the user to disk.
-                    error = saveFile(avatar, p.getTaxCode());
-                    if (error == Codes.OK)
+
+                    // Update the path to the avatar image file of the given user in the database.
+                    final String filename = avatar.getSubmittedFileName();
+                    final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
+                    if (matcher.find())
                     {
-                        // Update the path to the avatar image file of the given user in the database.
-                        final String filename = avatar.getSubmittedFileName();
-                        final Matcher matcher = Constants.ACCEPTED_AVATAR_FILENAME_REGEX.matcher(filename);
-                        if (matcher.find())
-                        {
-                            final String extension = matcher.group(2);
+                        final String extension = matcher.group(2);
 
                             /*
                             There is a bug in "RetrieveAvatar" servlet, where it expects the avatar to always be called
@@ -115,20 +112,26 @@ public class PersonalInfoServlet extends AbstractServlet
                             retrieve the avatar. This may happen for PNG images, and also for JPEG images with extension
                             ".jpeg".
                             */
-                            final String avatarPath = Constants.AVATAR_PATH_FOLDER + File.separator + p.getTaxCode() +
-                                    File.separator + Constants.AVATAR + "." + "jpg";
-                                    //+ extension;
-
+                        final String avatarPath = Constants.AVATAR_PATH_FOLDER + File.separator + p.getTaxCode() +
+                                File.separator + Constants.AVATAR + "." + extension;
+                        //+ extension;
+                        // Save the avatar of the user to disk.
+                        error = saveFile(avatar, p.getTaxCode());
+                        if (error == Codes.OK)
+                        {
                             final Person person = new Person(p.getEmail(), p.getName(), p.getSurname(), p.getPsw(),
                                     p.getTaxCode(), p.getBirthDate(), p.getTelephone(), p.getAddress(), avatarPath);
 
                             new UpdatePersonDatabase(getConnection(), person).execute();
 
+                            session.setAttribute("avatarPath",avatarPath);
+
                             req.setAttribute("personalInfo", person);
                         }
-                        else
-                            error = Codes.INTERNAL_ERROR;
                     }
+                    else
+                        error = Codes.INTERNAL_ERROR;
+
                 }
             } catch (SQLException | NamingException e)
             {
@@ -203,8 +206,10 @@ public class PersonalInfoServlet extends AbstractServlet
             {
                 BufferedImage img = ImageIO.read(file.getInputStream());
 
-                final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + ".jpg");
-                ImageIO.write(img, "jpg", saveFile);
+                final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + "."+extension);
+                ImageIO.write(img, extension, saveFile);
+
+
             }
             catch (Throwable e)
             {

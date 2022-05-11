@@ -61,7 +61,7 @@ $(document).ready(function() {
         }
 
 
-            const formValues = $(this).serialize();
+        const formValues = $(this).serialize();
         $.ajax({
             url: "addcourses",
             cache: false,

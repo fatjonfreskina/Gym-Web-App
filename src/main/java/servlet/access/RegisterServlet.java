@@ -11,6 +11,7 @@ import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import resource.EmailConfirmation;
 import resource.Message;
@@ -93,7 +94,7 @@ public class RegisterServlet extends AbstractServlet {
             avatar = req.getPart(Constants.AVATAR);
 
             //insertUser
-            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, Person.ROLE_TRAINEE);
+            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, Person.ROLE_TRAINEE,req);
             if (error.getErrorCode() != Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), true);
                 registrable = false;
@@ -186,10 +187,11 @@ public class RegisterServlet extends AbstractServlet {
      * @param birthDate  the user's birthdate
      * @param avatar  the user's avatar
      * @param role  the user's role
+     * @param req the request
      * @return an error/confirmation message
      */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
-                            String password, String telephoneNumber, Date birthDate, Part avatar, String role) {
+                            String password, String telephoneNumber, Date birthDate, Part avatar, String role,HttpServletRequest req) {
         Codes error = Codes.OK;
         Person p1 = null;
         Person p2 = null;
@@ -218,7 +220,8 @@ public class RegisterServlet extends AbstractServlet {
                             new InsertPersonRoleDatabase(getDataSource().getConnection(), p, role).execute();
                             (new InsertEmailConfirmationDatabase(getDataSource().getConnection(), new EmailConfirmation(p.getEmail(), EncryptionManager.encrypt(email),
                                     new Timestamp(System.currentTimeMillis() + Constants.DAY)))).execute();
-
+                            if(pathImg != null)
+                                req.getSession(false).setAttribute("avatarPath",pathImg);
                             MailTypes.mailForConfirmRegistration(p);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
                             error = Codes.INTERNAL_ERROR;
