@@ -9,17 +9,24 @@ $(document).ready(function() {
     alertBox.hide()
     let messageBody = $("#alert-message-body")
 
+    //handle file upload label change
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
     buttonRegister.click(function (e) {
         e.preventDefault();
         let now = new Date();
         // check if date is in the past
         if(expirationdate.val() < now)
         {
-            showMessage("Provided Telephone not valid")
+            showMessage("Expiration date is not valid")
             return
         }
+        let avatar = document.getElementById("file")
         //File check
-        if (file !== undefined){
+        if (avatar.files.length !== 0 ){
             if(!isFileTypeValid()){
                 showMessage("File type must be a .pdf")
                 return
@@ -43,15 +50,12 @@ $(document).ready(function() {
     }
 
     function isFileTypeValid() {
-        const fileInput =
-            document.getElementById('file');
-
+        const fileInput = document.getElementById('file');
         const filePath = fileInput.value;
-
         // Allowed file type
-        const allowedExtensions = "pdf"
+        const allowedExtensions = /(\.pdf)$/i;
 
-        if (allowedExtensions != filePath) {
+        if (!allowedExtensions.exec(filePath)) {
             return false       //Show error message
         }
         else {

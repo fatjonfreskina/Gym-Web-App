@@ -92,7 +92,7 @@
         </div>
 
         <jsp:include page="/jsp/include/message.jsp"/>
-        <!-- VISUALIZZA MESSAGGIO -->
+        <!-- alert box for messages -->
         <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
             <p id="alert-message-body" class="alert-box-message">
             </p>

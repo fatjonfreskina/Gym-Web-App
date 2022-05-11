@@ -15,7 +15,7 @@
 </header>
 
 <main class="global-container">
-    <form method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data">
+    <form method="post" action="<c:url value="/secretary/addMedicalCertificate"/>" enctype="multipart/form-data" id="form">
 
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
@@ -37,18 +37,25 @@
                  <input id="doctor_name" type="text" name="doctorname" value="" class="form-control" placeholder="Enter Doctor Name" maxlength="30" required>
             </div>
         </div>
-        <jsp:include page="/jsp/include/message.jsp"/>
         <div class="form-group row">
             <label for="file" class="col-sm-3 col-form-label" >Medical Certificate:</label>
             <div class="col-sm-9">
                 <div class="custom-file">
-                    <input type="file" name="medical_certificate" id="file" required>
+                    <input type="file" name="medical_certificate" id="file" class="custom-file-input"required>
                     <label class="custom-file-label" for="file">Choose File</label>
                 </div>
             </div>
         </div>
 
         <jsp:include page="/jsp/include/message.jsp"/>
+        <!-- alert box for messages -->
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
         <button type="submit" id="btn-send" class="btn btn-outline-primary btn-lg" >Add Certificate</button>
     </form>

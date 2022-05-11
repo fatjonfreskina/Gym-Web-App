@@ -15,7 +15,7 @@
 </header>
 
 <main class="global-container">
-    <form method="post" enctype="application/x-www-form-urlencoded">
+    <form method="post" enctype="application/x-www-form-urlencoded" id="form">
 
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
@@ -41,12 +41,22 @@
         </div>
 
         <jsp:include page="/jsp/include/message.jsp"/>
+        <!-- alert box for messages -->
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg">Update</button>
+        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-update">Update</button>
     </form>
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="/jsp/include/moment/scripts.jsp"/>
 <script src="<c:url value="/js/message-delay.js"/>"></script>
+<script src="<c:url value="/js/secretary/manage_roles.js"/>"></script>
 </body>
 </html>
