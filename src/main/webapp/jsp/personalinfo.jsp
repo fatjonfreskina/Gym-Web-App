@@ -86,7 +86,7 @@
 
                 <div class="col-sm-6">
                     <div class="custom-file">
-                        <input type="file" name="avatar" id="avatar" class="custom-file-input">
+                        <input type="file" name="avatar" id="avatar" class="custom-file-input" required>
                         <label class="custom-file-label" for="avatar">Choose File: </label>
                     </div>
                 </div>

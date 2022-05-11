@@ -17,8 +17,7 @@ $(document).ready(function() {
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-        showMessage("pippero")
-        return
+        //TODO: CHECK WRONG?? ALSO BACKEND
         let avatar = document.getElementById("avatar")
         //File check
         if (avatar.files.length !== 0 )
