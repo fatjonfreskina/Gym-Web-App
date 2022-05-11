@@ -21,7 +21,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    buttonRegister.click(function (e) {
+    form.addEventListener("submit",function (e) {
         e.preventDefault();
 
         //telephone control

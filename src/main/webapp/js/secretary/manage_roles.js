@@ -7,7 +7,7 @@ $(document).ready(function() {
     alertBox.hide()
     let messageBody = $("#alert-message-body")
 
-    buttonUpdate.click(function (e) {
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
         let isTrainee = document.getElementById("trainee").checked
         let isTrainer = document.getElementById("trainer").checked
