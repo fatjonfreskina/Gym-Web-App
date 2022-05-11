@@ -70,3 +70,30 @@ body {
     }
 }
 
+@font-face {
+    font-family: 'myFirstFont';
+    src: url("/wa2122-gwa/css/fonts/Sansation_Light.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'myFirstFont';
+    src: url("/wa2122-gwa/css/fonts/Sansation_Bold.ttf") format('truetype');
+    font-weight: bold;
+}
+h1{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+h2{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+p{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 20px;
+}
+div{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 20px;
+}

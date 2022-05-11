@@ -12,10 +12,12 @@
         img.left{
             float: left;
             margin-right: 20px;
+            object-fit: cover;
         }
         img.right{
             float: right;
             margin-left: 20px;
+            object-fit: cover;
         }
 
         div.clearleft {
@@ -64,7 +66,7 @@
             right:0;
             width: 75%;
             height: 50px;
-            background-color:rgb(0, 96, 128,0.5);
+            background-color:#ff8484;
             transition: transform 250ms;
         }
         div.clearleft:hover>div.translatetopleft{
@@ -77,7 +79,7 @@
             left:0;
             width: 75%;
             height: 50px;
-            background-color:rgb(0, 96, 128,0.5);
+            background-color:#ff8484;
             transition: transform 250ms;
         }
         div.clearright:hover>div.translatetopright{
@@ -93,6 +95,7 @@
             color: rgb(31, 37, 41);
         }
         .discover{
+            font-family: 'myFirstFont', sans-serif;
             font-size: 30px;
             font-weight: bold;
         }

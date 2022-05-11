@@ -18,6 +18,8 @@
             object-fit: cover;
             height: 500px;
         }
+
+
     </style>
 </head>
 <body>
@@ -25,8 +27,14 @@
     <jsp:include page="include/header.jsp"/>
 </header>
 <main class="global-container">
+    <h1>Our gym</h1>
+    <div>
+        Our gym is composed of many rooms, each one having all the best equipment to allow you to perform the best
+        training sessions. <br>
+        Each room is dedicated to specific courses and has a limited number of slots in order to have the most
+        personalized experience possible.
 
-
+    </div>
     <div class="carousel-main-box">
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
