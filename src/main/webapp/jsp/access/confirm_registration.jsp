@@ -5,6 +5,7 @@
     <title>Confirm Registration</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
 </head>
 <body>
@@ -15,5 +16,6 @@
     <h2>PLEASE CHECK YOUR EMAIL AND CONFIRM YOUR REGISTRATION</h2>
 </main>
  <jsp:include page="/jsp/include/footer.jsp"/>
+
 </body>
 </html>
