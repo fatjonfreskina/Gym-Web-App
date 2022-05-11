@@ -12,10 +12,12 @@
         img.left{
             float: left;
             margin-right: 20px;
+            object-fit: cover;
         }
         img.right{
             float: right;
             margin-left: 20px;
+            object-fit: cover;
         }
 
         div.clearleft {
@@ -93,6 +95,7 @@
             color: rgb(31, 37, 41);
         }
         .discover{
+            font-family: 'myFirstFont', sans-serif;
             font-size: 30px;
             font-weight: bold;
         }
