@@ -15,7 +15,6 @@ $(document).ready(function() {
     //handle file upload label change
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
-        console.log(fileName)
         if(fileName === "")
             fileName = "Choose File"
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
