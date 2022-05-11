@@ -66,7 +66,7 @@
             right:0;
             width: 75%;
             height: 50px;
-            background-color:rgb(0, 96, 128,0.5);
+            background-color:#ff8484;
             transition: transform 250ms;
         }
         div.clearleft:hover>div.translatetopleft{
@@ -79,7 +79,7 @@
             left:0;
             width: 75%;
             height: 50px;
-            background-color:rgb(0, 96, 128,0.5);
+            background-color:#ff8484;
             transition: transform 250ms;
         }
         div.clearright:hover>div.translatetopright{
