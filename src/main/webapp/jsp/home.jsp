@@ -172,8 +172,8 @@
                 <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active bg-info"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="1" class="bg-info"></li>
                 <li data-target="#carouselExampleCaptions" data-slide-to="2" class="bg-info"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="3" class="bg-info"></li>
-                <li data-target="#carouselExampleCaptions" data-slide-to="4" class="bg-info"></li>
+                <%--<li data-target="#carouselExampleCaptions" data-slide-to="3" class="bg-info"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="4" class="bg-info"></li>--%>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -188,7 +188,7 @@
                         <h5>Photo Gym 2</h5>
                     </div>
                 </div>
-                <div class="carousel-item text-info">
+                <%--<div class="carousel-item text-info">
                     <img src="<c:url value="/images/photo_gym_3.jpg"/>" class="d-block w-100" alt="Photo Gym 3">
                     <div class="carousel-caption d-none d-md-block text-info">
                         <h5>Photo Gym 3</h5>
@@ -199,7 +199,7 @@
                     <div class="carousel-caption d-none d-md-block text-info">
                         <h5>Photo Gym 4</h5>
                     </div>
-                </div>
+                </div>--%>
                 <div class="carousel-item text-info">
                     <img src="<c:url value="/images/the_gym-unsplash.jpg"/>" class="d-block w-100" alt="The Gym Unsplash">
                     <div class="carousel-caption d-none d-md-block text-info">

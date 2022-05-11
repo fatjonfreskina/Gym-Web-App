@@ -149,7 +149,7 @@ public class AddAccountServlet extends AbstractServlet {
             address = req.getParameter(Constants.ADDRESS);
             email = req.getParameter(Constants.EMAIL);
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
-            Integer.parseInt(telephoneNumber);
+            Long.parseLong(telephoneNumber);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
 
         } catch (IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date

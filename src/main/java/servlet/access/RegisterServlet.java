@@ -139,7 +139,7 @@ public class RegisterServlet extends AbstractServlet {
             password = req.getParameter(Constants.PASSWORD);
             confirmPassword = req.getParameter(Constants.CONFIRM_PASSWORD);
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
-            Integer.parseInt(telephoneNumber);
+            Long.parseLong(telephoneNumber);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
 
         } catch (IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date

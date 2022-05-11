@@ -14,7 +14,7 @@
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
 <main class="global-container">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" action="<c:url value="/secretary/addaccount"/>" enctype="multipart/form-data" id="form">
         <div class="form-group row">
             <label for="tax_code" class="col-sm-2 col-form-label">Tax Code :</label>
             <div class="col-sm-10">
@@ -92,14 +92,24 @@
         </div>
 
         <jsp:include page="/jsp/include/message.jsp"/>
+        <!-- VISUALIZZA MESSAGGIO -->
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg">Register</button>
+        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-register">Register</button>
     </form>
 
 
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="/jsp/include/moment/scripts.jsp"/>
 <script src="<c:url value="/js/message-delay.js"/>"></script>
+<script src="<c:url value="/js/register.js"/>"></script>
 </body>
 </html>
