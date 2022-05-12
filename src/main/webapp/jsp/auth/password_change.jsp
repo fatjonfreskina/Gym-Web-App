@@ -32,6 +32,15 @@
         </div>
 
         <jsp:include page="/jsp/include/message.jsp"/>
+        <!-- alert box for messages -->
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
 
         <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg" />
     </form>
@@ -39,5 +48,7 @@
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/message-delay.js"/>"></script>
+<script src="<c:url value="/js/password-change.js"/>"></script>
 </body>
 </html>
