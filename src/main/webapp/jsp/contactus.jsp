@@ -14,6 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 50px;
         }
         div.contacts{
             padding: 20px;
@@ -21,12 +22,12 @@
         }
         span.contact{
             margin: 10px;
-
         }
         div.title{
             font-weight: bold;
             display: inline;
         }
+
     </style>
 </head>
 <body>
