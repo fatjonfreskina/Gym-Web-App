@@ -32,6 +32,8 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     eventClick: clickHandler
 });
 function clickHandler (info) {
+
+
     let event = info.event;
     let selectedLectureTimeSlot = event.extendedProps.lectureTimeSlot;
 
@@ -39,18 +41,25 @@ function clickHandler (info) {
     if (clickCnt === 1) {
         oneClickTimer = setTimeout(function () {
             clickCnt = 0;
-            alert('By DOUBLE CLICKING on the current LectureTimeSlot you can manage attendances, you clicked once on:\n' + JSON.stringify(selectedLectureTimeSlot, null, 2));
+            $("#lecture-title").empty();
+            $("#lecture-info").empty();
+            $("#lecture-title").append("Lecture : "+selectedLectureTimeSlot.courseName+" "+selectedLectureTimeSlot.date);
+            $("#lecture-info").append("Start Time : "+ selectedLectureTimeSlot.startTime+ "<br/>");
+            $("#lecture-info").append("Room : "+ selectedLectureTimeSlot.roomName);
+            $("#modal-info-course").modal("show");
         }, 400);
     } else if (clickCnt === 2) {
         clearTimeout(oneClickTimer);
         clickCnt = 0;
         let now = Date.now()
         if (event.start < now && event.end > now) {
-            //console.log("event:", selectedLectureTimeSlot);
             location.href = location.href + "/attendance";
         } else {
-            alert('By DOUBLE CLICKING on the CURRENT LectureTimeSlot you can manage attendances, you clicked on:\n' + JSON.stringify(selectedLectureTimeSlot, null, 2));
-            //console.log("not current lts:", selectedLectureTimeSlot)
+            $("#lecture-title").empty();
+            $("#lecture-info").empty();
+            $("#lecture-title").append("Wrong Time!");
+            $("#lecture-info").append("No Lectures right now! <br> Please, try again when there is a lecture");
+            $("#modal-info-course").modal("show");
         }
     }
 }

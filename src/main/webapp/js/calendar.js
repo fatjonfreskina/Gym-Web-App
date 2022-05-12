@@ -58,10 +58,9 @@ $(document).ready(function() {
     function renderCalendar() {
         //Get the current active window of the calendar
         let start = moment(calendar.view.activeStart).format('YYYY-MM-DD');
-        console.log(start)
+
         let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
 
-        console.log(calendar)
         //Perform the AJAX request to fill the calendar
         $.ajax({
             url: "rest/getalllecturetimeslot",
@@ -75,18 +74,13 @@ $(document).ready(function() {
             success: function (response) {
                 //Remove all the events
                 calendar.removeAllEvents();
-                console.log(response)
                 //Iterate over all the elements in the response
                 for (const lts of response) {
                     //Create an event object
                     let event = {};
                     //Calculate dates
 
-                    console.log(lts.date)
-
                     startDate = new Date(Date.parse(lts.date + 'T' + lts.startTime.toString()));
-
-                    console.log(startDate)
 
                     event.start = startDate;
                     event.end = moment(startDate).add(2, 'hours').toDate();
@@ -108,8 +102,6 @@ $(document).ready(function() {
                 }
                 //Render the new calendar
                 calendar.render();
-
-                console.log(calendar)
             }
         });
     }

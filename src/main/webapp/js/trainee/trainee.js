@@ -229,7 +229,8 @@ function renderCalendar() {
 						calendar.addEvent(event);
 					}
 					//Render the new calendar
-					calendar.render();
+                    if(calendarEl != null)
+					    calendar.render();
 				}
 			});
 		}

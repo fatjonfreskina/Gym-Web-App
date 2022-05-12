@@ -109,7 +109,8 @@
             </button>
         </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-register">Register</button>
+        <!-- float.right-->
+        <button type="submit" class="btn btn-outline-primary btn-lg text-rigth" id="btn-register">Register</button>
     </form>
 
 </main>
