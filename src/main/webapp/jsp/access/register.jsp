@@ -101,7 +101,7 @@
 
         <jsp:include page="/jsp/include/message.jsp"/>
         <!-- VISUALIZZA MESSAGGIO -->
-        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
             <p id="alert-message-body" class="alert-box-message">
             </p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" >

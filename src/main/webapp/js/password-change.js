@@ -6,7 +6,6 @@ $(document).ready(function() {
 
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     form.one(function (e) {

@@ -1,6 +1,5 @@
 $(document).ready(function() {
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     const cost30 = $('#cost_30')

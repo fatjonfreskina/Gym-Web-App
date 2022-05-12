@@ -9,7 +9,6 @@ $(document).ready(function() {
 
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     //handle file upload label change
