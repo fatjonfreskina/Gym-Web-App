@@ -136,4 +136,29 @@ $(document).ready(function() {
             return true //Proceed with validation
         }
     }
+    //TODO: minimal password check
+    /*
+    function isPswSafe(){
+        var psw = document.getElementById("psw");
+
+        //Check length
+        if(psw.length < 8 || psw.length > 16) {
+             document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";
+             return false; }
+
+        //Check at least 1 upper case and 1 lower case
+        var lowerCaseLetters = /[a-z]/g;
+        var upperCaseLetters = /[A-Z]/g;
+        if (!psw.match(upperCaseLetters) || !psw.match(lowerCaseLetters)){
+            return false }
+
+        //Check 1 number
+        var numbers = /[0-9]/g;
+        if (!psw.match(numbers)) {
+            return false }
+
+        return true;
+
+    }
+    */
 })
