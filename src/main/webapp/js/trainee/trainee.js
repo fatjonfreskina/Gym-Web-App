@@ -38,58 +38,61 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
         hour12: false
     },
     eventClick: clickHandler,
-    eventContent: function(info){
-         let container = document.createElement('div')
-         container.className = 'container'
+    eventContent: function (info) {
+        let container = document.createElement('div')
+        container.className = 'container'
 
-         let row1 = document.createElement('div')
-         row1.className = 'row'
-         let c12 = document.createElement('div')
-         c12.className = 'col-sm font-weight-bold text-uppercase'
-         c12.innerHTML = info.event._def.extendedProps.customLTS.courseName
-         row1.appendChild(c12)
+        let row1 = document.createElement('div')
+        row1.className = 'row'
+        let c12 = document.createElement('div')
+        c12.className = 'col-sm font-weight-bold text-uppercase'
+        c12.innerHTML = info.event._def.extendedProps.customLTS.courseName
+        row1.appendChild(c12)
 
-         let row2 = document.createElement('div')
-         row2.className = 'row'
-         let c21 = document.createElement('div')
-         c21.className = 'col-sm'
-         c21.innerHTML = 'Slots:'
-         let c22 = document.createElement('div')
-         c22.className = 'col-sm'
-         c22.innerHTML = info.event._def.extendedProps.customLTS.availableSlots
-         row2.appendChild(c21)
-         row2.appendChild(c22)
+        let row2 = document.createElement('div')
+        row2.className = 'row'
+        let c21 = document.createElement('div')
+        c21.className = 'col-sm'
+        c21.innerHTML = 'Slots:'
+        let c22 = document.createElement('div')
+        c22.className = 'col-sm'
+        c22.innerHTML = info.event._def.extendedProps.customLTS.availableSlots
+        row2.appendChild(c21)
+        row2.appendChild(c22)
 
-         let row3 = document.createElement('div')
-         row3.className = 'row'
-         let c31 = document.createElement('div')
-         c31.className = 'col-sm'
-         c31.innerHTML = 'Room:'
-         let c32 = document.createElement('div')
-         c32.className = 'col-sm'
-         c32.innerHTML = info.event._def.extendedProps.customLTS.roomName
-         row3.appendChild(c31)
-         row3.appendChild(c32)
+        let row3 = document.createElement('div')
+        row3.className = 'row'
+        let c31 = document.createElement('div')
+        c31.className = 'col-sm'
+        c31.innerHTML = 'Room:'
+        let c32 = document.createElement('div')
+        c32.className = 'col-sm'
+        c32.innerHTML = info.event._def.extendedProps.customLTS.roomName
+        row3.appendChild(c31)
+        row3.appendChild(c32)
 
-         container.appendChild(row1)
-         container.appendChild(row2)
-         container.appendChild(row3)
-         let arrayOfDomNodes = [ container ]
-         return { domNodes: arrayOfDomNodes }
+        container.appendChild(row1)
+        container.appendChild(row2)
+        container.appendChild(row3)
+        let arrayOfDomNodes = [container]
+        return {domNodes: arrayOfDomNodes}
     }
 });
 
+/**
+ * Function associated to the click of a calendar object
+ * @param info object that has been clicked
+ */
 function clickHandler(info) {
     let event = info.event;
     selectedLectureTimeSlot = event.extendedProps.customLTS;
-    if(selectedLectureTimeSlot.booked){
+    if (selectedLectureTimeSlot.booked) {
         c_course_name.textContent = selectedLectureTimeSlot.courseName
         c_course_date.textContent = selectedLectureTimeSlot.customDate
         c_course_startTime.textContent = selectedLectureTimeSlot.customStartTime
         c_course_roomName.textContent = selectedLectureTimeSlot.roomName
         $("#c-reservation").modal("show");
-    }
-    else{
+    } else {
         d_course_name.textContent = selectedLectureTimeSlot.courseName
         d_course_date.textContent = selectedLectureTimeSlot.customDate
         d_course_startTime.textContent = selectedLectureTimeSlot.customStartTime
@@ -98,7 +101,10 @@ function clickHandler(info) {
     }
 }
 
-function insertReservation(){
+/**
+ * Performs the AJAX call to insert a new reservation
+ */
+function insertReservation() {
     value = {}
     value.room = selectedLectureTimeSlot.roomName;
     value.lectureDate = selectedLectureTimeSlot.customDate;
@@ -108,31 +114,36 @@ function insertReservation(){
         url: "trainee/rest/reservation",
         cache: false,
         type: "POST",
-        contentType : "application/json",
-        data : res,
-        success: function(response) {
+        contentType: "application/json",
+        data: res,
+        success: function (response) {
             selectedLectureTimeSlot = undefined;
             renderCalendar()
         },
         error: function (response) {
-            e_message.textContent = response.responseJSON.message;
+            //console.log(response.responseJSON.message);
+            e_message.textContent = "An internal error occurred while inserting";
             $("#e-reservation").modal("show");
         }
     });
 }
 
-function deleteReservation(){
+/**
+ * Performs the AJAX call to delete a reservation
+ */
+function deleteReservation() {
     $.ajax({
-        url: "trainee/rest/reservation/room/"+selectedLectureTimeSlot.roomName+"/date/"+selectedLectureTimeSlot.customDate+"/starttime/"+selectedLectureTimeSlot.customStartTime,
+        url: "trainee/rest/reservation/room/" + selectedLectureTimeSlot.roomName + "/date/" + selectedLectureTimeSlot.customDate + "/starttime/" + selectedLectureTimeSlot.customStartTime,
         cache: false,
         type: "DELETE",
         dataType: 'json',
-        success: function(response) {
+        success: function (response) {
             selectedLectureTimeSlot = undefined;
             renderCalendar()
         },
         error: function (response) {
-            e_message.textContent = response.responseJSON.message;
+            //console.log(response.responseJSON.message);
+            e_message.textContent = "An internal error occurred while deleting";
             $("#e-reservation").modal("show");
         }
     });
@@ -171,91 +182,106 @@ function renderCalendar() {
     let end = moment(calendar.view.activeEnd).format('YYYY-MM-DD');
     let reservations = null
     $.ajax({
-		url: "trainee/rest/reservation/from-date/"+start+"/to-date/"+end,
-		cache: false,
-		type: "GET",
-		dataType: 'json',
-		success: function (response) {
-			reservations = response
-			$.ajax({
-				url: "trainee/rest/available/from-date/"+start+"/to-date/"+end,
-				cache: false,
-				type: "GET",
-				dataType: 'json',
-				success: function (response) {
-					//Remove all the events
-					calendar.removeAllEvents();
-					//Iterate over all the elements in the response
-					for (const lts of response) {
-						//Create an event object
-						let event = {};
-						//Calculate dates
-						//startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
+        url: "trainee/rest/reservation/from-date/" + start + "/to-date/" + end,
+        cache: false,
+        type: "GET",
+        dataType: 'json',
+        success: function (response) {
+            reservations = response
+            $.ajax({
+                url: "trainee/rest/available/from-date/" + start + "/to-date/" + end,
+                cache: false,
+                type: "GET",
+                dataType: 'json',
+                success: function (response) {
+                    //Remove all the events
+                    calendar.removeAllEvents();
+                    //Iterate over all the elements in the response
+                    for (const lts of response) {
+                        //Create an event object
+                        let event = {};
+                        //Calculate dates
+                        //startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
                         startDate = new Date(Date.parse(lts.date + 'T' + lts.startTime.toString()));
-						event.start = startDate;
-						event.end = moment(startDate).add(2, 'hours').toDate();
+                        event.start = startDate;
+                        event.end = moment(startDate).add(2, 'hours').toDate();
 
-						let present = false;
-						for(let i = 0; i<reservations.length; i++){
-							if(
-								reservations[i].room.localeCompare(lts.roomName)==0 &&
-								reservations[i].lectureDate.localeCompare(lts.date)==0 &
-								reservations[i].lectureStartTime.localeCompare(lts.startTime)==0){
-								reservations.splice(i,1)
-								present = true;
-								break;
-							}
-						}
+                        let present = false;
+                        for (let i = 0; i < reservations.length; i++) {
+                            if (
+                                reservations[i].room.localeCompare(lts.roomName) == 0 &&
+                                reservations[i].lectureDate.localeCompare(lts.date) == 0 &
+                                reservations[i].lectureStartTime.localeCompare(lts.startTime) == 0) {
+                                reservations.splice(i, 1)
+                                present = true;
+                                break;
+                            }
+                        }
 
-						event.title = lts.courseName;
-						if(present)
-							event.backgroundColor = GetColorOfCourse("Reserved");
-						else
-							event.backgroundColor = GetColorOfCourse(lts.courseName);
-						let lectureTimeSlot = {};
-						lectureTimeSlot.courseEditionId = lts.courseEditionId;
-						lectureTimeSlot.courseName = lts.courseName
-						lectureTimeSlot.roomName = lts.roomName;
-						lectureTimeSlot.customDate = lts.date;
-						lectureTimeSlot.customStartTime = lts.startTime;
-						lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
-						lectureTimeSlot.booked = !present
+                        event.title = lts.courseName;
+                        if (present)
+                            event.backgroundColor = GetColorOfCourse("Reserved");
+                        else
+                            event.backgroundColor = GetColorOfCourse(lts.courseName);
+                        let lectureTimeSlot = {};
+                        lectureTimeSlot.courseEditionId = lts.courseEditionId;
+                        lectureTimeSlot.courseName = lts.courseName
+                        lectureTimeSlot.roomName = lts.roomName;
+                        lectureTimeSlot.customDate = lts.date;
+                        lectureTimeSlot.customStartTime = lts.startTime;
+                        lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
+                        lectureTimeSlot.booked = !present
 
 
-						//Add the custom object to the calendar object
-						event.customLTS = lectureTimeSlot;
+                        //Add the custom object to the calendar object
+                        event.customLTS = lectureTimeSlot;
 
-						//Add the element to the calendar
-						calendar.addEvent(event);
-					}
-					//Render the new calendar
-                    if(calendarEl != null)
-					    calendar.render();
-				}
-			});
-		}
+                        //Add the element to the calendar
+                        calendar.addEvent(event);
+                    }
+                    //Render the new calendar
+                    if (calendarEl != null)
+                        calendar.render();
+                },
+                error: function (response) {
+                    //console.log(response.responseJSON.message);
+                    e_message.textContent = "An internal error occurred while loading the calendar";
+                    $("#e-reservation").modal("show");
+                }
+            });
+        }
     });
 }
 
+/**
+ * Associates a function to the click of the button
+ */
 $("#button-delete-reservation").click(() => {
     if (selectedLectureTimeSlot !== undefined) {
         deleteReservation();
     } else {
-        console.log("Error, event not found");
+        //console.log("Error, event not found");
+        e_message.textContent = "No event has been selected";
+        $("#e-reservation").modal("show");
     }
 });
 
+/**
+ * Associates a function to the click of the button
+ */
 $("#button-save-reservation").click(() => {
     if (selectedLectureTimeSlot !== undefined) {
         insertReservation();
     } else {
-        console.log("Error, event not found");
+        //console.log("Error, event not found");
+        e_message.textContent = "No event has been selected";
+        $("#e-reservation").modal("show");
     }
 });
-
 
 //Attach render calendar to button for week change
 $('body').on('click', 'button.fc-next-button', renderCalendar);
 $('body').on('click', 'button.fc-prev-button', renderCalendar);
+
 //Initial render when page loaded
 renderCalendar(calendar);
