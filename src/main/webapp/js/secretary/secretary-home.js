@@ -303,7 +303,6 @@ $(document).ready(function () {
                 },
                 error: function (xhr) {
                     showWarningMessage("Internal error");
-                    //console.log(xhr);
                 }
             });
 

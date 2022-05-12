@@ -6,7 +6,6 @@ $(document).ready(function() {
 
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     //handle file upload label change
@@ -15,7 +14,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.submit(function (e) {
+    form.one(function (e) {
         e.preventDefault();
         let now = new Date();
         // check if date is in the past

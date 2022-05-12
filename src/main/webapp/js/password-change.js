@@ -9,7 +9,7 @@ $(document).ready(function() {
     alertBox.hide()
     let messageBody = $("#alert-message-body")
 
-    form.submit(function (e) {
+    form.one(function (e) {
         e.preventDefault();
 
         //password are not the same

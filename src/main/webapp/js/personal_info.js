@@ -14,7 +14,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.submit(function (e) {
+    form.one(function (e) {
         e.preventDefault();
         //TODO: CHECK WRONG?? ALSO BACKEND
 
