@@ -175,12 +175,12 @@ public class Constants {
     /**
      * Template URL for confirmation
      */
-    public static final String CONFIRMATION_URL = "http://127.0.0.1:8080/wa2122-gwa/confirm_registration?token=";
+    public static final String CONFIRMATION_URL = "http://localhost:8080/wa2122_gwa_war/confirm_registration?token=";
 
     /**
      * Template URL for changing password
      */
-    public static final String PASSWORD_CHANGE_URL = "http://127.0.0.1:8080/wa2122-gwa/password_change?token=";
+    public static final String PASSWORD_CHANGE_URL = "http://localhost:8080/wa2122_gwa_war/password_change?token=";
 
     /**
      * Name of the parameter passed using GET or POST method for the field tax code
