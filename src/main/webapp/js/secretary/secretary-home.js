@@ -171,7 +171,6 @@ $(document).ready(function () {
             },
             error: function (xhr) {
                 showWarningMessage("Error while rendering the calendar");
-                //console.log(xhr);
             }
         });
     }

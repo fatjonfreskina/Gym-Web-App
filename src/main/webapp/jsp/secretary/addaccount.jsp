@@ -59,8 +59,8 @@
         </div>
 
         <div class="form-group row">
-            <label for="file" class="col-sm-3 col-form-label">Avatar (Optional) :</label>
-            <div class="col-sm-9">
+            <label for="file" class="col-sm-2 col-form-label">Avatar (Optional) :</label>
+            <div class="col-sm-10">
                 <div class="custom-file">
                     <input type="file" name="avatar" id="file" class="custom-file-input">
                     <label class="custom-file-label" for="file">Choose File</label>

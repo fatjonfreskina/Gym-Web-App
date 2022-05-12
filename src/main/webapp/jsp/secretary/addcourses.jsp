@@ -218,8 +218,8 @@
 
 
         <div class="form-group row">
-            <label for="weeks" class="col-sm-2 col-form-label">Duration weeks : </label>
-            <div class="col-sm-10">
+            <label for="weeks" class="col-sm-3 col-form-label">Duration weeks : </label>
+            <div class="col-sm-9">
                 <input type="number" name="weeks" min="1" max="52" id="weeks" class="form-control"
                        placeholder="Enter Number Of Weeks" />
             </div>
