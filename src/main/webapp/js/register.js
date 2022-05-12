@@ -20,7 +20,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.addEventListener("submit",function (e) {
+    form.submit(function (e) {
         e.preventDefault();
 
         //telephone control

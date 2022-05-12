@@ -4,9 +4,10 @@ $(document).ready(function() {
     alertBox.hide()
     let messageBody = $("#alert-message-body")
 
+    const form = $('#form')
 
 
-    $("#form").submit(function (e) {
+    form.submit(function (e) {
         e.preventDefault()
 
         if($("input[name=trainee]:checked").length === 0)

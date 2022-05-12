@@ -14,7 +14,7 @@
     <jsp:include page="../include/header.jsp"/>
 </header>
 <main class="global-container">
-    <form method="POST" action="<c:url value="/password_change"/>" enctype="application/x-www-form-urlencoded">
+    <form method="POST" action="<c:url value="/password_change"/>" enctype="application/x-www-form-urlencoded" id="form">
         <input type="hidden" name="token" value="${token}">
 
         <div class="form-group row">

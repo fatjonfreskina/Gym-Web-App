@@ -23,7 +23,9 @@ $(document).ready(function() {
     const saturday = $('#saturday')
     const sunday = $('#sunday')
 
-    $("#form").submit(function (e) {
+    const form = $('#form')
+
+    form.submit(function (e) {
         e.preventDefault()
 
         //correctness of checkboxes

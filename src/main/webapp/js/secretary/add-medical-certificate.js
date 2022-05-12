@@ -15,7 +15,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    buttonRegister.click(function (e) {
+    form.submit(function (e) {
         e.preventDefault();
         let now = new Date();
         // check if date is in the past
