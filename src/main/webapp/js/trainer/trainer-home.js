@@ -1,4 +1,8 @@
-let contextPath =  "/wa2122-gwa"
+let contextPath = "/wa2122-gwa"
+
+let lectureTitle = $("#lecture-title");
+let lectureInfo = $("#lecture-info");
+let modalInfo = $("#modal-info-course");
 
 //Construct the calendar
 let calendarEl = document.getElementById('trainer__calendar');
@@ -31,22 +35,27 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     nowIndicator: true,
     eventClick: clickHandler
 });
-function clickHandler (info) {
 
+/**
+ * Handles the click of an event in the calendar
+ * @param info event clicked in the calendar
+ */
+function clickHandler(info) {
 
     let event = info.event;
     let selectedLectureTimeSlot = event.extendedProps.lectureTimeSlot;
 
     clickCnt++;
+
     if (clickCnt === 1) {
         oneClickTimer = setTimeout(function () {
             clickCnt = 0;
-            $("#lecture-title").empty();
-            $("#lecture-info").empty();
-            $("#lecture-title").append("Lecture : "+selectedLectureTimeSlot.courseName+" "+selectedLectureTimeSlot.date);
-            $("#lecture-info").append("Start Time : "+ selectedLectureTimeSlot.startTime+ "<br/>");
-            $("#lecture-info").append("Room : "+ selectedLectureTimeSlot.roomName);
-            $("#modal-info-course").modal("show");
+            lectureTitle.empty();
+            lectureInfo.empty();
+            lectureTitle.append("Lecture : " + selectedLectureTimeSlot.courseName + " " + selectedLectureTimeSlot.date);
+            lectureInfo.append("Start Time : " + selectedLectureTimeSlot.startTime + "<br/>");
+            lectureInfo.append("Room : " + selectedLectureTimeSlot.roomName);
+            modalInfo.modal("show");
         }, 400);
     } else if (clickCnt === 2) {
         clearTimeout(oneClickTimer);
@@ -55,16 +64,14 @@ function clickHandler (info) {
         if (event.start < now && event.end > now) {
             location.href = location.href + "/attendance";
         } else {
-            $("#lecture-title").empty();
-            $("#lecture-info").empty();
-            $("#lecture-title").append("Wrong Time!");
-            $("#lecture-info").append("No Lectures right now! <br> Please, try again when there is a lecture");
-            $("#modal-info-course").modal("show");
+            lectureTitle.empty();
+            lectureInfo.empty();
+            lectureTitle.append("Wrong Time!");
+            lectureInfo.append("No Lectures right now! <br> Please, try again when there is a lecture");
+            modalInfo.modal("show");
         }
     }
 }
-
-
 
 /**
  * Performs a refresh of the calendar object of this page
@@ -96,24 +103,26 @@ function renderCalendar() {
             }
             //Render the new calendar
             calendar.render();
-        }, error: function (xhr) {
-            console.log(xhr);
+        }, error: function (response) {
+            //console.log(response);
+            showWarningMessage("Error while loading the calendar");
         }
     });
 }
 
+/**
+ * Go to the next week on the calendar
+ */
 function nextWeek() {
     addWeeks = addWeeks + 1;
     renderCalendar();
 }
 
+/**
+ * Go to the previous week on the calendar
+ */
 function prevWeek() {
     addWeeks = addWeeks - 1;
-    renderCalendar();
-}
-
-function goToToday() {
-    addWeeks = 0;
     renderCalendar();
 }
 
@@ -141,7 +150,6 @@ function GetColorOfCourse(courseName) {
     }
 }
 
-
 //Initial render when page loaded
 renderCalendar();
 
@@ -149,4 +157,22 @@ renderCalendar();
 let $body = $('body');
 $body.on('click', 'button.fc-next-button', nextWeek);
 $body.on('click', 'button.fc-prev-button', prevWeek);
-//$body.on('click', 'button.fc-today-button', goToToday());
+
+/**
+ * Shows an error / warning message in the appropriate alert
+ * @param message message to show
+ */
+function showWarningMessage(message) {
+
+    const messageBody = $('#alert-warning-message-body')
+    messageBody.empty()
+    messageBody.text(message)
+
+    const alertBox = $('#alert-warning');
+    alertBox.show();
+
+    alertBox.fadeTo(2000, 500).slideUp(500, function () {
+        $(this).slideUp(500);
+    });
+
+}
