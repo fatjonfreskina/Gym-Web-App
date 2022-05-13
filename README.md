@@ -41,6 +41,9 @@ To make this webapp working correctly you need to :
 - create a folder inside the tomcat web server installation folder called `gwa`
 - then go inside gwa and create two other subdirectories called : `avatars` and `medical_certificates`
 
+To make the email system working correctly you also need to put the image
+located at `src/main/webapp/images/logo.jpg` in the `gwa` folder located inside your tomcat web server installation folder
+
 Before using this webapp you have to create and eventually populate the database.<br />
 You can follow the instructions in `src/main/java/database/README.md`.<br />
 We have also created a Java class with path `src/main/java/database/DataBaseUtils.java` which allows you to create and populate your local database easily.
