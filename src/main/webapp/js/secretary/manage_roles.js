@@ -4,10 +4,9 @@ $(document).ready(function() {
 
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
-    form.addEventListener("submit", function (e) {
+    form.one(function (e) {
         e.preventDefault();
         let isTrainee = document.getElementById("trainee").checked
         let isTrainer = document.getElementById("trainer").checked

@@ -1,6 +1,5 @@
 $(document).ready(function() {
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     const cost30 = $('#cost_30')
@@ -23,7 +22,9 @@ $(document).ready(function() {
     const saturday = $('#saturday')
     const sunday = $('#sunday')
 
-    $("#form").submit(function (e) {
+    const form = $('#form')
+
+    form.submit(function (e) {
         e.preventDefault()
 
         //correctness of checkboxes

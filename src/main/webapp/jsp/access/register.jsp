@@ -58,16 +58,16 @@
         </div>
 
         <div class="form-group row">
-            <label for="telephone_number" class="col-sm-3 col-form-label">Telephone Number :</label>
-            <div class="col-sm-9">
+            <label for="telephone_number" class="col-sm-2 col-form-label">Telephone Number :</label>
+            <div class="col-sm-10">
                 <input type="tel" name="telephone_number" id="telephone_number"
                        class="form-control" placeholder="Insert Telephone Number" required >
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="file" class="col-sm-3 col-form-label" >Avatar (Optional) :</label>
-            <div class="col-sm-9">
+            <label for="file" class="col-sm-2 col-form-label" >Avatar (Optional) :</label>
+            <div class="col-sm-10">
                 <div class="custom-file">
                     <input type="file" name="avatar" id="file" class="custom-file-input">
                     <label class="custom-file-label" for="file">Choose File</label>
@@ -92,8 +92,8 @@
         </div>
 
         <div class="form-group row">
-            <label for="confirm_password" class="col-sm-3 col-form-label">Confirm Password :</label>
-            <div class="col-sm-9">
+            <label for="confirm_password" class="col-sm-2 col-form-label">Confirm Password :</label>
+            <div class="col-sm-10">
                 <input type="password" name="confirm_password" id="confirm_password"
                        class="form-control" placeholder="Confirm Password" required >
             </div>
@@ -101,7 +101,7 @@
 
         <jsp:include page="/jsp/include/message.jsp"/>
         <!-- VISUALIZZA MESSAGGIO -->
-        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
             <p id="alert-message-body" class="alert-box-message">
             </p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
@@ -109,7 +109,8 @@
             </button>
         </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-register">Register</button>
+        <!-- float.right-->
+        <button type="submit" class="btn btn-outline-primary btn-lg text-rigth" id="btn-register">Register</button>
     </form>
 
 </main>

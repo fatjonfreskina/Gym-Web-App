@@ -29,8 +29,8 @@
         </div>
 
         <div class="form-group row">
-            <label for="partial_email" class="col-sm-2 col-form-label" >Search :</label>
-            <div class="col-sm-10">
+            <label for="partial_email" class="col-sm-3 col-form-label" >Search :</label>
+            <div class="col-sm-9">
                 <div class="input-group rounded">
                     <input type="search" name="partial_email" id="partial_email" class="form-control rounded" placeholder="Insert Email" aria-label="Search" aria-describedby="search-addon">
                     <span class="input-group-text border-0" id="search-addon">
@@ -56,27 +56,27 @@
         </div>
 
         <div class="form-group row">
-            <label for="discount" class="col-sm-2 col-form-label">Discount :</label>
-            <div class="col-sm-10">
+            <label for="discount" class="col-sm-3 col-form-label">Discount :</label>
+            <div class="col-sm-9">
                 <input type="number" id="discount" name = "discount" min = "0" max ="100" value="0" class="form-control" />
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="list_emails" class="col-sm-2 col-form-label">Users :</label>
-            <div class="col-sm-10">
+            <label for="list_emails" class="col-sm-3 col-form-label">Users :</label>
+            <div class="col-sm-9">
                 <ul id="list_emails" class="list-group"></ul>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="list_last_date" class="col-sm-2 col-form-label">Last Event :</label>
-            <div class="col-sm-10">
+            <label for="list_last_date" class="col-sm-3 col-form-label">Last Event :</label>
+            <div class="col-sm-9">
                 <ul id="list_last_date" class="list-group"></ul>
             </div>
         </div>
 
-        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
             <p id="alert-message-body" class="alert-box-message">
             </p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -14,7 +14,17 @@
     <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
 </header>
 <main class="global-container">
+
+    <div id="alert-warning" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
+        <p id="alert-warning-message-body" class="alert-box-message">
+        </p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     <h1>Courses you teach</h1>
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -38,7 +48,28 @@
         </c:forEach>
         </tbody>
     </table>
+
     <div id="trainer__calendar"></div>
+
+    <div id="modal-info-course" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="lecture-title">Lecture</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container text-center" id="lecture-info">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>

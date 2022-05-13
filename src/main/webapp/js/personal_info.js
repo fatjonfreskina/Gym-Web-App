@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let form = document.getElementById('form')
+    const form = $('#form')
 
     //error boxes
     let alertBox = $("#alert-box")
@@ -14,10 +14,12 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.addEventListener("submit", function (e) {
+    form.one(function (e) {
         e.preventDefault();
         //TODO: CHECK WRONG?? ALSO BACKEND
+
         let avatar = document.getElementById("avatar")
+
         //File check
         if (avatar.files.length !== 0 )
         {

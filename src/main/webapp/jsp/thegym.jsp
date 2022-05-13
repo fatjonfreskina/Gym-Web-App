@@ -12,7 +12,9 @@
         .carousel-main-box{
             width:600px;
             height:500px;
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
         }
         .carouselimg {
             object-fit: cover;

@@ -2,23 +2,21 @@ $(document).ready(function() {
 
     const password = $('#password')
     const confirmedPassword = $('#confirm_password')
-    const buttonRegister = $('#btn-register')
-
+    const form = $('#form')
 
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
-    form.addEventListener("submit",function (e) {
+    form.one(function (e) {
         e.preventDefault();
 
-            //password are not the same
-            if(password.val() !== confirmedPassword.val())
-            {
-                showMessage("Password Are Different")
-                return
-            }
+        //password are not the same
+        if(password.val() !== confirmedPassword.val())
+        {
+            showMessage("Password Are Different")
+            return
+        }
         form.submit()
     })
 

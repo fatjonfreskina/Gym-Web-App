@@ -9,7 +9,6 @@ $(document).ready(function() {
 
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     //handle file upload label change
@@ -20,7 +19,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.addEventListener("submit",function (e) {
+    form.one(function (e) {
         e.preventDefault();
 
         //telephone control
