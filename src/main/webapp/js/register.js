@@ -19,13 +19,13 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.one(function (e) {
+    form.one("submit", function (e) {
         e.preventDefault();
 
         //telephone control
         if (telephone.val().length !== 10)
         {
-            showMessage("Telephone length is not correct")
+            showMessage("Telephone length is not correct");
             return;
         }
         else
@@ -92,7 +92,7 @@ $(document).ready(function() {
             }
         }
 
-        form.submit()
+        form.submit();
     })
 
     function showMessage(message) {
