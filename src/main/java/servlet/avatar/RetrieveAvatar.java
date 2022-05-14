@@ -10,26 +10,38 @@ import org.apache.logging.log4j.Logger;
 import servlet.AbstractServlet;
 
 import java.io.*;
-/*
-    @author Riccardo Tumiati
+
+/**
+ * Servlet used to retrieve an avatar for a user
+ *
+ * @author Riccardo Tumiati
  */
 public class RetrieveAvatar extends AbstractServlet {
-    private static final Logger LOGGER = LogManager.getLogger("riccardo_tumiati_logger");
 
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+    /**
+     * Handles the get request by retrieving the avatar image of a user
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        if (session == null)
+        if (session == null) {
             res.sendRedirect(req.getContextPath() + Constants.RELATIVE_URL_LOGIN);
+            return;
+        }
 
-        final String avatarPath = (String) session.getAttribute("avatarPath");
-        final String s_avatarPath[] =  avatarPath.split("\\.");
-        final String format = s_avatarPath[s_avatarPath.length-1];
+        final String avatarPath = session.getAttribute("avatarPath").toString()
+                .replace('/', File.separatorChar);
+        final String[] s_avatarPath =  avatarPath.split("\\.");
+        final String format = s_avatarPath[s_avatarPath.length - 1];
 
         res.setContentType("image/"+format);
         File file = new File(avatarPath);
         res.setContentLength((int)file.length());
 
-        try{
+        try {
             FileInputStream in = new FileInputStream(file);
             OutputStream out = res.getOutputStream();
 
@@ -41,8 +53,8 @@ public class RetrieveAvatar extends AbstractServlet {
             }
             out.close();
             in.close();
-        }catch(FileNotFoundException e){
-            LOGGER.error("Avatar file not found");
+        }
+        catch(FileNotFoundException e) {
             req.getRequestDispatcher(Constants.RELATIVE_URL_HOME).forward(req, res);
         }
     }

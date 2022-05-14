@@ -14,6 +14,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class InitListener implements ServletContextListener {
 
+    /**
+     * Initializes the listener for different jobs to be executed
+     *
+     * @param sce the context
+     */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 

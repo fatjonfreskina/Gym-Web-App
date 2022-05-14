@@ -24,10 +24,20 @@ import java.util.Set;
 
 
 /**
+ * Rest servlet used to get the schedule for a given course
+ *
  * @author Francesco Caldivezzi
  * */
 public class TimeSchedulesServlet extends AbstractServlet
 {
+    /**
+     * Handles the get request by retrieving the schedule for a given course
+     *
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

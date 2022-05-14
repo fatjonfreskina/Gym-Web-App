@@ -1,3 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-    Copyright &copy; GWA
+<footer class="text-center text-light text-lg-start color-navbar-footer">
+    <div class="text-center p-3">
+        Copyright &copy; GWA
+    </div>
+</footer>

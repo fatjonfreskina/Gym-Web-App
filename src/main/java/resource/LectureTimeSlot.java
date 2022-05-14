@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.Time;
 
 /**
+ * Java Bean representing a lecture for a course on a given date and time
+ *
  * @author Francesco Caldivezzi
  * @author Harjot Singh
  */
@@ -23,6 +25,16 @@ public class LectureTimeSlot {
     @Expose
     private final String substitution;
 
+    /**
+     * Constructor for this class
+     *
+     * @param roomName        the room
+     * @param date            the date when the lecture is held
+     * @param startTime       the starting time of the lecture
+     * @param courseEditionId the course edition associated to this lesson
+     * @param courseName      the course name
+     * @param substitution    the trainer who substitutes the principal trainer
+     */
     public LectureTimeSlot(String roomName, Date date, Time startTime, Integer courseEditionId, String courseName, String substitution) {
         this.roomName = roomName;
         this.date = date;
@@ -32,6 +44,12 @@ public class LectureTimeSlot {
         this.substitution = substitution;
     }
 
+    /**
+     * Constructor for this class
+     *
+     * @param courseEditionId the course edition associated to this lesson
+     * @param courseName      the course name
+     */
     public LectureTimeSlot(int courseEditionId, String courseName) {
         this.roomName = null;
         this.date = null;
@@ -41,6 +59,11 @@ public class LectureTimeSlot {
         this.substitution = null;
     }
 
+    /**
+     * Constructor for this class
+     *
+     * @param l the lecture
+     */
     public LectureTimeSlot(LectureTimeSlot l) {
         this.roomName = l.roomName;
         this.date = l.date;
@@ -50,40 +73,82 @@ public class LectureTimeSlot {
         this.substitution = l.substitution;
     }
 
+    /**
+     * Gets the room
+     *
+     * @return the room
+     */
     public final String getRoomName() {
         return roomName;
     }
 
+    /**
+     * Gets the date
+     *
+     * @return the date
+     */
     public final Date getDate() {
         return date;
     }
 
+    /**
+     * Gets the start time
+     *
+     * @return the start time
+     */
     public final Time getStartTime() {
         return startTime;
     }
 
+    /**
+     * Gets the course edition
+     *
+     * @return the course edition
+     */
     public final int getCourseEditionId() {
         return courseEditionId;
     }
 
+    /**
+     * Gets the course name
+     *
+     * @return the course name
+     */
     public final String getCourseName() {
         return courseName;
     }
 
+    /**
+     * Gets the substitute
+     *
+     * @return the substitute
+     */
     public final String getSubstitution() {
         return substitution;
     }
 
+    /**
+     *  Gets a lecture time slot in String format
+     *
+     * @return lecture time slot
+     */
     @Override
     public String toString() {
-        //return new Gson().toJson(this,LectureTimeSlot.class);
-        return "LectureTimeSlot{" +
-                "roomName='" + roomName + '\'' +
-                ", date='" + date + '\'' +
-                ", startTime='" + startTime + '\'' +
-                ", courseEditionId=" + courseEditionId +
-                ", courseName='" + courseName + '\'' +
-                ", substitution='" + substitution + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("LectureTimeSlot{roomName=");
+        sb.append(roomName);
+        sb.append(", date='");
+        sb.append(date);
+        sb.append(", startTime='");
+        sb.append(startTime);
+        sb.append(", courseEditionId='");
+        sb.append(courseEditionId);
+        sb.append(", courseName='");
+        sb.append(courseName);
+        sb.append(", substitution='");
+        sb.append(substitution);
+        sb.append("'}");
+        return sb.toString();
     }
 }
+

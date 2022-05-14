@@ -19,14 +19,23 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
+ * Servlet handling requests for managing the attendances by a trainer
+ *
  * @author Andrea Pasin
  * @author Harjot Singh
  */
 public class TrainerManageAttendanceServlet extends AbstractServlet {
-  private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
 
-  /* GET ALL RESERVATIONS AND SUBSCRIPTIONS */
+
+  /**
+   * Handles the get request by retrieving the reservations for a lecture and all the trainees
+   * subscribed to the course taught in that lecture
+   *
+   * @param req  the request
+   * @param res  the response
+   * @throws ServletException if some internal error happens
+   * @throws IOException if it was not possible to forward the request and write the response
+   */
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -35,7 +44,6 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     try {
       req.setAttribute("trainerAttendance", new TrainerService(getDataSource(), trainerEmail).getTrainerAttendance());
     } catch (SQLException | NamingException e) {
-      logger.error(loggerClass + e.getMessage());
       sendFeedback(req, Codes.INTERNAL_ERROR);
     } catch (CustomException e) {
       sendFeedback(req, e.getErrorCode());
@@ -43,8 +51,15 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
     req.getRequestDispatcher(Constants.PATH_TRAINER_MANAGE_ATTENDANCE).forward(req, res);
   }
 
-  /* if action == doDelete DELETE A RESERVATION! */
-  /* else INSERT A RESERVATION FROM SUBSCRIPTION! */
+  /**
+   * Handles the post request by analyzing the action performed by the trainer and, based on it,
+   * deletes a reservation or inserts a reservation from a trainee subscribed to the given course
+   *
+   * @param req  the request
+   * @param res  the response
+   * @throws ServletException if some internal error happens
+   * @throws IOException if it was not possible to forward the request and write the response
+   */
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
     String trainerEmail = req.getSession(false).getAttribute("email").toString();
@@ -86,14 +101,25 @@ public class TrainerManageAttendanceServlet extends AbstractServlet {
 
   }
 
-  /* PRIVATE METHODS */
+  /**
+   * Auxiliary method to sends a successful message or an error message
+   * @param req  the http request
+   * @param error  the error or successful message to send
+   */
   private void sendFeedback(HttpServletRequest req, Codes error) {
     sendFeedback(req, error, true);
   }
 
+  /**
+   * Auxiliary method to sends a successful message or an error message
+   * @param req  the http request
+   * @param error  the error or successful message to send
+   * @param isError  true if it is an error, false if it is a successful message
+   */
   private void sendFeedback(HttpServletRequest req, Codes error, boolean isError) {
-    String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
-    logger.error(loggerClass + messageJson);
-    req.setAttribute("error", messageJson);
+    //String messageJson = new Gson().toJson(new Message(error.getErrorMessage(), isError));
+    //logger.error(loggerClass + messageJson);
+    //Message message =
+    req.setAttribute("message", new Message(error.getErrorMessage(),isError));
   }
 }

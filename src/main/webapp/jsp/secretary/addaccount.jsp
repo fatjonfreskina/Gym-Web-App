@@ -3,39 +3,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Add Account</title>
+    <meta charset="UTF-8">
+    <jsp:include page="/jsp/include/style.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <jsp:include page="/jsp/include/favicon.jsp"/>
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
-    <c:choose>
-        <c:when test="${message != null}">
-            <p><c:out value="${message.message}"/></p>
-        </c:when>
-    </c:choose>
-    <form method="post" enctype="multipart/form-data">
-
-        <label>Tax Code : </label><input type="text" name="tax_code" value="0123450123456789"><br/><!-- pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required-->
-        <label>First Name : </label><input type="text" name="first_name" value="z"><br/>
-        <label>Last Name : </label><input type="text" name="last_name" value="z"><br/>
-        <label>Birth Date : </label><input type="date" name="birth_date" value="1999-09-06"><br/>
-        <label>Address : </label><input type="text" name="address" value="0"><br/>
-        <label>Telephone Number : </label><input type="tel" name="telephone_number" value="0123456789"><br>
-        <label>Avatar (Optional) : </label><input type="file" name="avatar" ><br/>
-        <label>Email : </label><input type="text" name="email" value=""><br/>
-        <div>
-            <label>Role : </label>
-            <input type="checkbox" id="trainee" name="trainee"/>
-            <label for="trainee">Trainee</label>
-            <input type="checkbox" name="trainer" id="trainer"/>
-            <label for="trainer">Trainer</label>
-            <input type="checkbox" name="secretary" id="secretary"/>
-            <label for="secretary">Secretary</label>
+<header>
+    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+</header>
+<main class="global-container">
+    <form method="post" action="<c:url value="/secretary/addaccount"/>" enctype="multipart/form-data" id="form">
+        <div class="form-group row">
+            <label for="tax_code" class="col-sm-2 col-form-label">Tax Code :</label>
+            <div class="col-sm-10">
+                <input type="text" name="tax_code" id="tax_code" minlength="16" maxlength="16" class="form-control" placeholder="Insert Tax Code" required>
+            </div>
         </div>
-        <button type="submit" >Register</button>
+
+        <!-- pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$" required-->
+        <div class="form-group row">
+            <label for="first_name" class="col-sm-2 col-form-label">First Name :</label>
+            <div class="col-sm-10">
+                <input type="text" name="first_name" id="first_name" maxlength="30" class="form-control" placeholder="Insert First Name" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="last_name" class="col-sm-2 col-form-label">Last Name :</label>
+            <div class="col-sm-10">
+                <input type="text" name="last_name" id="last_name" maxlength="30" class="form-control" placeholder="Insert Last Name" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="birth_date" class="col-sm-2 col-form-label">Birth Date :</label>
+            <div class="col-sm-10">
+                <input type="date" name="birth_date" id="birth_date" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="address" class="col-sm-2 col-form-label">Address :</label>
+            <div class="col-sm-10">
+                <input type="text" name="address" id="address" class="form-control" placeholder="Insert Address" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="telephone_number" class="col-sm-2 col-form-label">Telephone Number :</label>
+            <div class="col-sm-10">
+                <input type="tel" name="telephone_number" id="telephone_number" class="form-control" placeholder="Insert Telephone Number" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="file" class="col-sm-2 col-form-label">Avatar (Optional) :</label>
+            <div class="col-sm-10">
+                <div class="custom-file">
+                    <input type="file" name="avatar" id="file" class="custom-file-input">
+                    <label class="custom-file-label" for="file">Choose File</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="email" class="col-sm-2 col-form-label">Email :</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label">Role : </label>
+            <div class="col-sm-3">
+                <input  type="checkbox" id="trainee" name="trainee" />
+                <label for="trainee">Trainee</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="trainer" id="trainer"/>
+                <label for="trainer">Trainer</label>
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" name="secretary" id="secretary"/>
+                <label for="secretary">Secretary</label>
+            </div>
+        </div>
+
+        <jsp:include page="/jsp/include/message.jsp"/>
+        <!-- alert box for messages -->
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-register">Register</button>
     </form>
 
 
-    <jsp:include page="../include/footer.jsp"/>
+</main>
+<jsp:include page="../include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
+<jsp:include page="/jsp/include/moment/scripts.jsp"/>
+<script src="<c:url value="/js/message-delay.js"/>"></script>
+<script src="<c:url value="/js/register.js"/>"></script>
 </body>
 </html>

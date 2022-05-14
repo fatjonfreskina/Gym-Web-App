@@ -9,19 +9,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * This DAO is used to retrieve the medical certificate of a user from the database
+ *
  * @author Riccardo Forzan
  */
 public class GetMedicalCertificateDatabase {
 
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM medicalcertificate WHERE person = ?";
+
+    /**
+     * Database connection object
+     */
     private final Connection con;
+
+    /**
+     * Person for which the medical certificate should be retrieved
+     */
     private final Person person;
 
+    /**
+     * Parametric constructor
+     *
+     * @param con the connection to the database
+     * @param person the person object
+     */
     public GetMedicalCertificateDatabase(Connection con, Person person) {
         this.con = con;
         this.person = person;
     }
 
+    /**
+     * Executes the statement for retrieving the medical certificate from the database
+     *
+     * @return the list containing MedicalCertificate object that matched the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<MedicalCertificate> execute() throws SQLException {
 
         ResultSet resultSet = null;

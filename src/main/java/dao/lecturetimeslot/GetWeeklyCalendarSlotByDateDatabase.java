@@ -1,7 +1,5 @@
 package dao.lecturetimeslot;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.LectureTimeSlot;
 import resource.Person;
 import resource.view.WeeklyCalendarSlot;
@@ -12,10 +10,18 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * @author Missing Author
- * */
+ * TODO: Review the comment on this DAO
+ * This DAO is used to get the weekly slots of a course by passing the date
+ *
+ * @author Alberto Campeol
+ */
 public class GetWeeklyCalendarSlotByDateDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT =
             "SELECT roomname, date, starttime, courseeditionid, coursename, substitution, " +
                     "tr.email as trainer_email, tr.name as trainer_name, tr.surname as trainer_surname, tr.psw as trainer_psw, " +
@@ -27,15 +33,33 @@ public class GetWeeklyCalendarSlotByDateDatabase {
                     "LEFT JOIN person AS sub ON substitution = sub.email " +
                     "WHERE date >= ? AND date <= ? ORDER BY date,starttime ASC";
 
+    /**
+     * The date to be passed to the query
+     */
     private final Date date;
-    private final Connection connection;
-    private static final Logger logger = LogManager.getLogger("alberto_campeol_appender");
 
+    /**
+     * The connection to the database
+     */
+    private final Connection connection;
+
+    /**
+     * Parametric constructor
+     *
+     * @param connection the connection to the database
+     * @param date       the date to be passed to the query
+     */
     public GetWeeklyCalendarSlotByDateDatabase(final Connection connection, final Date date) {
         this.connection = connection;
         this.date = date;
     }
 
+    /**
+     * Execute the query
+     *
+     * @return a list of WeeklyCalendarSlot objects that matched the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<WeeklyCalendarSlot> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -48,8 +72,7 @@ public class GetWeeklyCalendarSlotByDateDatabase {
             ps.setDate(2, to);
 
             rs = ps.executeQuery();
-            logger.debug("[DEBUG] gwa.dao.GetWeeklyCalendarSlotByDateD - %s - query executed successfully, retrieving data...\n".formatted(
-                    new Timestamp(System.currentTimeMillis())));
+
             while (rs.next()) {
                 String roomName = rs.getString("roomname");
                 Date date = rs.getDate("date");
@@ -83,15 +106,8 @@ public class GetWeeklyCalendarSlotByDateDatabase {
                             rs.getString("avatarPath")
                     );
                 }
-
-                logger.debug("[DEBUG] gwa.dao.GetWeeklyCalendarSlotByDateD - %s - Retrieved: %s.\n".formatted(
-                        new Timestamp(System.currentTimeMillis()), lts.toString()));
                 result.add(new WeeklyCalendarSlot(lts, trainer, sub_trainer));
             }
-        } catch (SQLException ex) {
-            logger.error("[ERROR] gwa.dao.GetWeeklyCalendarSlotByDateD - %s - Exception:\n%s\n".
-                    formatted(new Timestamp(System.currentTimeMillis()), ex.getMessage()));
-            throw ex;
         } finally {
             if (rs != null)
                 rs.close();

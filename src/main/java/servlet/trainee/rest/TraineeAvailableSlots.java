@@ -18,8 +18,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * TODO: aggiungere testo che descrive cosa fa la servlet.
-    @author Tumiati Riccardo, Marco Alessio, Fatjon Freskina
+ * Rest servlet used to retrieve the lecture-time-slots that a trainee can book according
+ * to the availability of rooms and to his/her subscriptions
+ *
+ * @author Tumiati Riccardo
+ * @author Marco Alessio
+ * @author Fatjon Freskina
  */
 
 public class TraineeAvailableSlots extends AbstractRestServlet {
@@ -28,16 +32,19 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
             "/wa2122-gwa/trainee/rest/available/from-date/(.*)/to-date/(.*)", Pattern.DOTALL);
 
 
+    /**
+     * Handles get request by retrieving the lecture-time-slots that a trainee can book according
+     * to the availability of rooms and to his/her subscriptions
+     * @param req the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Check that the request accepts JSON format.
         //final ErrorCodes code = checkAcceptMediaType(req);
         final Codes code = Codes.OK;  //To enable browser requests (no JSON accepted) to be executed.
-        if (code != Codes.OK)
-        {
-            sendErrorResponse(resp, code);
-            return;
-        }
 
         // Retrieve trainee email by session.
         final HttpSession session = req.getSession(false);
@@ -97,7 +104,6 @@ public class TraineeAvailableSlots extends AbstractRestServlet {
         catch (Throwable th)
         {
             sendErrorResponse(resp, Codes.UNEXPECTED_ERROR);
-            return;
         }
     }
 }

@@ -28,6 +28,15 @@ import java.sql.SQLException;
  */
 public class PasswordChangeServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by retrieving a token associated to a specific
+     * password reset request
+     *
+     * @param req  the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Read the token field from the request (GET parameter)
@@ -38,6 +47,14 @@ public class PasswordChangeServlet extends AbstractServlet {
         req.getRequestDispatcher(Constants.PATH_PASSWORD_CHANGE).forward(req, resp);
     }
 
+    /**
+     * Handles the post request by changing the password associated to a user
+     *
+     * @param req  the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 

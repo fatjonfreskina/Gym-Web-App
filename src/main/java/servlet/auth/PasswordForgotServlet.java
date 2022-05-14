@@ -26,10 +26,19 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Servlet used to manage the case in which a user forgets his/her password
+ *
  * @author Riccardo Forzan
  */
 public class PasswordForgotServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by providing the correct page to the user
+     * @param req  the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //If a GET request has been sent, then the form to ask for a password reset is shown
@@ -42,6 +51,16 @@ public class PasswordForgotServlet extends AbstractServlet {
         }
     }
 
+    /**
+     * Handles the post request by adding a token associated to the user representing his/her
+     * unique request to change password. A mail will be sent to the user providing the
+     * token in order to change his/her password
+     *
+     * @param req  the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 

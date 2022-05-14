@@ -1,8 +1,6 @@
 package dao.subscription;
 
 import constants.Constants;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import resource.CourseEdition;
 import resource.Subscription;
 
@@ -11,18 +9,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DAO class used to get the valid subscriptions from a given course
+ *
  * @author Andrea Pasin
  */
 public class GetValidSubscriptionsByCourseDatabase {
+
     private static final String STATEMENT = "SELECT * FROM subscription WHERE courseEditionId = ? and courseName = ? and startday+ (duration || ' day')::interval > CURRENT_DATE;";
+
     private final Connection connection;
+
     private final CourseEdition course;
 
+    /**
+     * Constructor for this class
+     *
+     * @param connection the database connection
+     * @param course     the course
+     */
     public GetValidSubscriptionsByCourseDatabase(final Connection connection, final CourseEdition course) {
         this.connection = connection;
         this.course = course;
     }
 
+    /**
+     * Executes the sql statement retrieving all the subscriptions associated to a course
+     *
+     * @return the subscriptions associated to a course
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<Subscription> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -45,8 +60,7 @@ public class GetValidSubscriptionsByCourseDatabase {
                 Subscription s = new Subscription(courseEditionId, courseName, duration, startDay, discount, traineeEmail);
                 result.add(s);
             }
-        }
-        finally {
+        } finally {
             if (rs != null) rs.close();
             if (ps != null) ps.close();
             connection.close();

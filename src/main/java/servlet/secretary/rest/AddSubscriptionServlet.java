@@ -26,8 +26,20 @@ import java.util.List;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+/**
+ * Rest servlet used to add a subscription for a user
+ *
+ * @author Francesco Caldivezzi
+ */
 public class AddSubscriptionServlet extends AbstractServlet
 {
+    /**
+     * Handles a post request by adding a subscription for a given user
+     * @param req  the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
@@ -118,6 +130,13 @@ public class AddSubscriptionServlet extends AbstractServlet
         out.close();
     }
 
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return  a confirmation/error message
+     */
     //parametri attesi : email, durata, corso, courseid, discount, startday(oggi) checkboxato,
     private Codes parseParams(HttpServletRequest req, HttpServletResponse res)
     {

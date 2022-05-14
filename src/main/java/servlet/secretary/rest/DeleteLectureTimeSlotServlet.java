@@ -27,10 +27,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
+ * Rest servlet used to delete a lecture and notifying the users
+ *
  * @author Riccardo Forzan
  */
 public class DeleteLectureTimeSlotServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by deleting a lecture from the schedule of the gym
+     * also notifying all the users about this
+     *
+     * @param request the request
+     * @param response the response
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //Try to perform the operation
@@ -118,6 +128,11 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
         }
     }
 
+    /**
+     * Checks for the validity of a date
+     * @param time  the date
+     * @return  true if the date is valid, false otherwise
+     */
     private boolean isDateValid(LocalTime time) {
         return time.getMinute() == 0 && time.getSecond() == 0;
     }

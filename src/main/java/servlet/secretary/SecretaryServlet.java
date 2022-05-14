@@ -15,7 +15,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet handling requests for the Secretary home page
+ */
 public class SecretaryServlet extends AbstractServlet {
+    /**
+     * Handles the get request by retrieving the different rooms and teachers
+     *
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Person> teachers = null;
@@ -30,10 +41,8 @@ public class SecretaryServlet extends AbstractServlet {
         } catch (SQLException | NamingException e) {
             e.printStackTrace();
         }
-        request.setAttribute("rooms",rooms);
+        request.setAttribute("rooms", rooms);
         request.setAttribute("teachers", teachers);
         request.getRequestDispatcher(Constants.PATH_SECRETARY_HOME).forward(request, response);
     }
-
-
 }

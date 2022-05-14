@@ -9,22 +9,40 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-    @author Tumiati Riccardo
+/**
+ * DAO class to get the valid subscriptions of a trainee
+ *
+ * @author Riccardo Tumiati
  */
 public class GetValidSubscriptionByTraineeDatabase {
-    private static final String statement = "SELECT subscription.coursename as coursename, name, surname, startday+ (duration || ' day')::interval as expiration" +
-            " FROM subscription JOIN teaches ON subscription.courseEditionId = teaches.courseEditionId and subscription.courseName = teaches.courseName"+
-            " JOIN person ON teaches.trainer = person.email"+
-            " WHERE trainee = ? and startday+ (duration || ' day')::interval>CURRENT_DATE";
+    private static final String statement = """
+            SELECT subscription.coursename as coursename, name, surname, startday+ (duration || ' day')::interval as expiration
+            FROM subscription JOIN teaches ON subscription.courseEditionId = teaches.courseEditionId and subscription.courseName = teaches.courseName
+            JOIN person ON teaches.trainer = person.email
+            WHERE trainee = ? and startday+ (duration || ' day')::interval>CURRENT_DATE
+            """;
+
     private final Connection conn;
+
     private final String trainee_email;
 
+    /**
+     * Constructor for this class
+     *
+     * @param conn  the database connection
+     * @param email the email address of a trainee
+     */
     public GetValidSubscriptionByTraineeDatabase(final Connection conn, final String email) {
         this.conn = conn;
         this.trainee_email = email;
     }
 
+    /**
+     * Executes the sql statement retrieving the list of valid subscriptions of a trainee
+     *
+     * @return the list of valid subscriptions of a trainee
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<ValidSubscription> execute() throws SQLException {
         PreparedStatement stm = null;
         ResultSet rs = null;

@@ -8,41 +8,60 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
+ * This DAO is used to get the last medical certificate
+ *
  * @author Francesco Caldivezzi
- * */
-
+ */
 public class GetLastMedicalCertfiticateByPersonDatabase {
 
+    /**
+     * The SELECT query to execute on the database
+     */
     private static final String STATEMENT = """
             select *
             from medicalcertificate
             where person = ? and expirationdate = (select max(expirationdate) from medicalcertificate where person = ?)            
             """;
+
+    /**
+     * Connection to the database
+     */
     private final Connection conn;
+
+    /**
+     * Person object
+     */
     private final Person person;
 
-
-    public GetLastMedicalCertfiticateByPersonDatabase(final Connection conn, final Person person)
-    {
+    /**
+     * Parametric constructor
+     *
+     * @param conn   the database connection
+     * @param person the person object to be passed to the query
+     */
+    public GetLastMedicalCertfiticateByPersonDatabase(final Connection conn, final Person person) {
         this.conn = conn;
         this.person = person;
     }
 
+    /**
+     * Execute the query
+     *
+     * @return MedicalCertificate object matched by the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public MedicalCertificate execute() throws SQLException {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        MedicalCertificate ret= null;
+        MedicalCertificate ret = null;
         try {
             pstmt = conn.prepareStatement(STATEMENT);
-            pstmt.setString(1, Constants.PERSON_EMAIL);
-            pstmt.setString(2, Constants.PERSON_EMAIL);
+            pstmt.setString(1, person.getEmail());
+            pstmt.setString(2, person.getEmail());
             rs = pstmt.executeQuery();
-            if (rs.next())
-            {
+            if (rs.next()) {
                 ret = new MedicalCertificate(
                         rs.getString(Constants.MEDICALCERTIFICATE_PERSON),
                         rs.getDate(Constants.MEDICALCERTIFICATE_EXPIRATIONDATE),

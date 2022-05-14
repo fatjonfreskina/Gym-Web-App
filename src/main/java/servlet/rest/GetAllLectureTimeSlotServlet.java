@@ -1,4 +1,4 @@
-package servlet.secretary.rest;
+package servlet.rest;
 
 import com.google.gson.Gson;
 import dao.lecturetimeslot.GetAllLectureTimeSlotDatabase;
@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
+import servlet.AbstractRestServlet;
 import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
@@ -24,9 +25,10 @@ import static constants.DateTimeFormats.dateFormat;
 import static constants.DateTimeFormats.timeFormat;
 
 /**
+ * Rest servlet to retrieve all the lectures in a given period
  * @author Riccardo Forzan
  */
-public class GetAllLectureTimeSlotServlet extends AbstractServlet {
+public class GetAllLectureTimeSlotServlet extends AbstractRestServlet {
 
     /**
      * Helper class used to fill the calendar using AJAX
@@ -53,6 +55,15 @@ public class GetAllLectureTimeSlotServlet extends AbstractServlet {
 
     }
 
+    /**
+     * Handles the get request by retrieving all the lectures held in a given period
+     * of time
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -82,15 +93,7 @@ public class GetAllLectureTimeSlotServlet extends AbstractServlet {
             myLectureTimeSlots.add(myLectureTimeSlot);
         }
 
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-
-        PrintWriter out = response.getWriter();
-        String ltsJson = new Gson().toJson(myLectureTimeSlots);
-        out.println(ltsJson);
-        out.flush();
-        out.close();
-
+        sendDataResponse(response,myLectureTimeSlots);
     }
 
 }

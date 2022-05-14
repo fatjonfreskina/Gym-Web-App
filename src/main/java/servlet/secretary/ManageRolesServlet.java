@@ -15,15 +15,34 @@ import java.io.*;
 import java.sql.SQLException;
 
 /**
+ * Servlet used by a secretary to manage the roles of a user
+ *
  * @author Alberto Campeol
  */
 public class ManageRolesServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by retrieving the opportune page
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher(Constants.PATH_SECRETARY_MANAGE_ROLES).forward(req, res);
     }
 
+    /**
+     * Handles the post request by adding to the database the different roles for a user
+     * specified in the request. It also returns a confirmation/error message
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String email = null;
@@ -74,8 +93,14 @@ public class ManageRolesServlet extends AbstractServlet {
         req.getRequestDispatcher(Constants.PATH_SECRETARY_MANAGE_ROLES).forward(req, res);
     }
 
-
-    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return an error/confirmation message
+     */
+    public Codes parseParams(HttpServletRequest req, HttpServletResponse res) {
         String email = null;
         Codes error = Codes.OK;
         try

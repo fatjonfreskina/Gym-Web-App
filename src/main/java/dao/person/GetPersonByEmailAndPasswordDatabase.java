@@ -11,23 +11,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This DAO is used to execute the login looking for a user by email and password
+ *
  * @author Fatjon Freskina
  */
 public class GetPersonByEmailAndPasswordDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = """
             SELECT * FROM person
             WHERE email = ? 
             AND  psw = ?;
             """;
+
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
+
+    /**
+     * The Person object
+     */
     private final Person person;
 
-
+    /**
+     * Parametric constructor
+     *
+     * @param connection the connection to the database
+     * @param person     The person object to be passed
+     */
     public GetPersonByEmailAndPasswordDatabase(final Connection connection, final Person person) {
         this.connection = connection;
         this.person = person;
     }
 
+    /**
+     * Executes the SELECT query
+     *
+     * @return The Person object that matches the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public Person execute() throws SQLException {
 
         PreparedStatement pstmt = null;

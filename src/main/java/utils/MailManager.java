@@ -3,7 +3,11 @@ package utils;
 import jakarta.activation.DataHandler;
 import jakarta.activation.FileDataSource;
 import jakarta.mail.*;
-import jakarta.mail.internet.*;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
+
 
 import java.util.Date;
 import java.util.Properties;
@@ -13,19 +17,8 @@ import java.util.Properties;
  *
  * @author Marco Alessio, Simone D'Antimo
  */
-public class MailManager
-{
-    /*
-    Connection parameters per e-mail provider:
+public class MailManager {
 
-                    Host:                       Port:           Cryptographic option:
-    - Gmail         smtp.gmail.com              465             SSL (must enable sender account's option
-                                                                "Less secure app access" first)
-    - Hotmail       smtp.live.com               25 / 587        STARTTLS
-                                                465             SSL
-    - Libero        smtp.libero.it              465             SSL
-    - Outlook       smtp-mail.outlook.com       587             STARTTLS
-    */
     private final String fromEmail;
     private final Session session;
 
@@ -38,8 +31,7 @@ public class MailManager
      * @param password The password of the sender's e-mail address
      */
 
-    public MailManager(String host, int port, String email, String password)
-    {
+    public MailManager(String host, int port, String email, String password) {
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.host", host);
@@ -52,11 +44,9 @@ public class MailManager
         properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
-        session = Session.getInstance(properties, new Authenticator()
-        {
+        session = Session.getInstance(properties, new Authenticator() {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication()
-            {
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, password);
             }
         });
@@ -76,8 +66,8 @@ public class MailManager
      * @param text    : The text of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-    public void sendMail(String email, String subject, String text) throws MessagingException
-    {
+  /*
+    public void sendMail(String email, String subject, String text) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
 
@@ -91,29 +81,57 @@ public class MailManager
 
         Transport.send(msg);
     }
-
+   */
 
     /**
      * This method is used to send a complex e-mail message, and not limited to only plain text.
      *
      * @param email   : The e-mail address of the single receiver
      * @param subject : The subject of the e-mail
-     * @param content : The content of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-    public void sendMail(String email, String subject, Multipart content) throws MessagingException
-    {
+
+    //To make this work : Add a logo.jpg in Tomcat folder/gwa (same folder where medicalCertificate and Avatar folders are)
+
+    public void sendMail(String email, String subject, String text) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
-
         Message msg = new MimeMessage(session);
         msg.setFrom(fromAddress);
         msg.setRecipient(Message.RecipientType.TO, toAddress);
 
+        Multipart multipart = new MimeMultipart();
+        BodyPart textPart = new MimeBodyPart();
+
+
+        final String htmlText =
+                """
+                <div style="width:100%; height:100%;">
+                     <div style="width:500px; height:220px;">
+                          <img src="cid:logo_cid" name="gwa_logo.jpg" alt="gwa_logo" width="500" height="200">
+                     </div>
+                </div>
+                <div> <pre>""" + text + "</pre> </div> ";
+
+
+        textPart.setContent(htmlText, "text/html");
+
+        BodyPart imgPart = new MimeBodyPart();
+        imgPart.setDataHandler(new DataHandler(new FileDataSource("../gwa/logo.jpg")));
+        imgPart.setHeader("Content-ID", "<logo_cid>");
+        imgPart.setFileName("logo.jpg");
+
+        //Add text and image to the body
+        multipart.addBodyPart(textPart);
+        multipart.addBodyPart(imgPart);
+
+        //Set email fields
         msg.setSentDate(new Date());
         msg.setSubject(subject);
-        msg.setContent(content);
+        msg.setContent(multipart);
 
+        //Send message
         Transport.send(msg);
+
     }
 }

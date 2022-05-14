@@ -10,24 +10,32 @@ import utils.InputValidation;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 /**
+ * Service used to retrieve a trainee by his/her email
+ *
  * @author Harjot Singh
  */
 public class TraineeService {
 
-  private final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
-
   private final DataSource dataSource;
 
+  /**
+   * The constructod
+   * @param dataSource  the datasource used to retrieve the data
+   */
   public TraineeService(DataSource dataSource) {
     this.dataSource = dataSource;
   }
 
+  /**
+   * Gets a trainee by his/her email
+   * @param traineeEmail  the trainee's email
+   * @return  the trainee
+   * @throws SQLException if there is an issue with the datasource
+   * @throws TraineeNotFound if the trainee is not found
+   */
   public Trainee getTraineeByEmail(String traineeEmail) throws SQLException, TraineeNotFound {
-    logger.debug(loggerClass + "traineeEmail " + traineeEmail);
     if (InputValidation.isValidEmailAddress(traineeEmail)) {
       Trainee trainee = new GetTraineeByEmailDatabase(dataSource.getConnection(), traineeEmail).execute();
-      logger.debug(loggerClass + trainee);
       if (trainee == null) throw new TraineeNotFound();
       return trainee;
     } else throw new TraineeNotFound();

@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
+ * Servlet handling requests for the Calendar page
+ *
  * @author Francesco Caldivezzi
  * @author Alberto Campeol
  */
@@ -25,21 +27,15 @@ import java.util.List;
 public class CalendarServlet extends AbstractServlet {
 
     /**
-     * The JSON UTF-8 MIME media type
+     * Handles the get request by retrieving the page
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
      */
-    private static final String JSON_UTF_8_MEDIA_TYPE = "application/json; charset=utf-8";
-
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //res.setContentType(JSON_UTF_8_MEDIA_TYPE);
-        List<WeeklyCalendarSlot> list = null;
-        try {
-            list = new GetWeeklyCalendarSlotByDateDatabase(getDataSource().getConnection(), Date.valueOf(LocalDate.now())).execute();
-        } catch (SQLException | NamingException ex) {
-            //errore
-        }
-        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-        req.setAttribute("weeklyCalendar", gson.toJson(list));
         req.getRequestDispatcher(Constants.PATH_CALENDAR).forward(req, res);
     }
 }

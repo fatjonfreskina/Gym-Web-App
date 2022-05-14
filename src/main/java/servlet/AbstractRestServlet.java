@@ -45,17 +45,32 @@ import java.sql.Time;
  */
 public class AbstractRestServlet extends AbstractServlet
 {
+    /**
+     * The GSON builder
+     */
     protected static final Gson GSON = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd")
             .registerTypeAdapter(Date.class, new DateJsonAdapter())
             .registerTypeAdapter(Time.class, new TimeJsonAdapter())
             .create();
 
+    /**
+     * The accept header
+     */
     protected static final String ACCEPT_HEADER = "accept";
 
+    /**
+     * The utf8 encoding
+     */
     protected static final String UTF8_ENCODING = "utf-8";
 
+    /**
+     * The json media type
+     */
     protected static final String JSON_MEDIA_TYPE = "application/json";
+    /**
+     * All media types
+     */
     protected static final String ALL_MEDIA_TYPE = "*/*";
 
 
@@ -213,11 +228,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doHead(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doHead(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
@@ -227,11 +241,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doOptions(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
@@ -255,11 +268,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doPut(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }
@@ -269,11 +281,10 @@ public class AbstractRestServlet extends AbstractServlet
      * Default implementation, which sends a METHOD_NOT_ALLOWED error back as response.
      * @param req The HTTP request.
      * @param res The HTTP response.
-     * @throws ServletException Never thrown.
      * @throws IOException If something happens when writing the response to the output stream.
      */
     @Override
-    protected void doTrace(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+    protected void doTrace(HttpServletRequest req, HttpServletResponse res) throws IOException
     {
         sendErrorResponse(res, Codes.METHOD_NOT_ALLOWED);
     }

@@ -25,20 +25,33 @@ public class CourseEdition {
         this.courseName = courseName;
     }
 
+    /**
+     * Gets the course edition id
+     *
+     * @return the course edition id
+     */
     public final int getId() {
         return ID;
     }
 
+    /**
+     * Gets the course name
+     *
+     * @return the course name
+     */
     public final String getCourseName() {
         return courseName;
     }
 
     @Override
     public String toString() {
-        return "CourseEdition{" +
-            "ID=" + ID +
-            ", courseName='" + courseName + '\'' +
-            '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("CourseEdition{ID=");
+        sb.append(ID);
+        sb.append(", courseName='");
+        sb.append(courseName);
+        sb.append("'}");
+        return sb.toString();
     }
 
     @Override

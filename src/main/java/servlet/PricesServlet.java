@@ -7,6 +7,8 @@ import dao.teaches.GetListTeacherByCourseEditionDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import resource.CourseEdition;
 import resource.Person;
 import resource.view.PricesView;
@@ -18,9 +20,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Servlet that handles http get requests for the Prices web page
+ *
  * @author Francesco Caldivezzi
  */
 public class PricesServlet extends AbstractServlet {
+    /**
+     * Handles the get request by sending a response with various information for the courses (e.g. prices, trainers, subscriptions...)
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<PricesView> list = null;
@@ -44,6 +55,7 @@ public class PricesServlet extends AbstractServlet {
             }
             toShow.add(new PricesView(p.getCourseEditionId(),p.getCourseName(),p.getDuration(),p.getCost(),p.getMin(),p.getMax(),trainers,(float)p.getLecturesPerWeek()));
         }
+
         req.setAttribute("pricesView", toShow);
         req.getRequestDispatcher(Constants.PATH_PRICES).forward(req, res);
 

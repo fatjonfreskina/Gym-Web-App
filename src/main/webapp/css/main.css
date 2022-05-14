@@ -1,0 +1,99 @@
+:root{
+    --min-heigth-navavar : 10vh;
+}
+
+body {
+    background-color: #e4e5e7 !important;
+}
+
+.global-container {
+    margin-top: var(--min-heigth-navavar);
+    min-height: 100vh;
+    padding: 5% 15% 5% 15%;
+}
+
+
+.navbar{
+    min-height: var(--min-heigth-navavar);
+}
+
+.navbar-elements-light{
+    color: white !important;
+}
+
+/* NAVBAR */
+.color-navbar-footer {
+    background-color: #33414f !important;
+}
+
+/*Burger Icon White*/
+.navbar-toggler-icon {
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1.0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")
+}
+
+/*Carousel*/
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-size: 50%, 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.alert-box-message {
+    margin: 0;
+}
+
+.avatar-image-box {
+    aspect-ratio: 4.0/3.0;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+/* < */
+@media (max-width: 992px) {
+    .hidden-icon-menu{
+        display: none;
+    }
+    .navbar{
+        min-height: var(--min-heigth-navavar);
+    }
+}
+
+/*>*/
+@media (min-width: 992px){
+    .compressed-navbar-actions{
+        display: none;
+    }
+}
+
+@font-face {
+    font-family: 'myFirstFont';
+    src: url("/wa2122-gwa/css/fonts/Sansation_Light.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'myFirstFont';
+    src: url("/wa2122-gwa/css/fonts/Sansation_Bold.ttf") format('truetype');
+    font-weight: bold;
+}
+h1{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+}
+h2{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+p{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 20px;
+}
+div{
+    font-family: 'myFirstFont', sans-serif;
+    font-size: 20px;
+}

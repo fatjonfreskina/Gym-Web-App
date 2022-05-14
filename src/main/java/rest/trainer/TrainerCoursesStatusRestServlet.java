@@ -1,53 +1,45 @@
 package rest.trainer;
 
 import constants.Codes;
-import constants.Constants;
-import dao.lecturetimeslot.GetLectureTimeSlotsInRangeDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import resource.LectureTimeSlot;
-import resource.Teaches;
 import resource.view.CourseStatus;
 import service.TrainerService;
 import servlet.AbstractRestServlet;
-import servlet.AbstractServlet;
 
 import javax.naming.NamingException;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
+ * Rest servlet used to retrieve the courses' statues of the courses held by a trainer
+ *
  * @author Harjot Singh
  */
 public class TrainerCoursesStatusRestServlet extends AbstractRestServlet {
 
-  private static final Logger logger = LogManager.getLogger("harjot_singh_logger");
-  private final String loggerClass = this.getClass().getCanonicalName() + ": ";
+    /**
+     * Handles the get request by getting all the courses' statuses
+     *
+     * @param req the request
+     * @param res the response
+     * @throws ServletException if either the request or response are not of the expected types or any other error occurs
+     * @throws IOException      if some error occurs while writing the response
+     */
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        String trainerEmail = session.getAttribute("email").toString();
 
-  @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-    HttpSession session = req.getSession(false);
-    String trainerEmail = session.getAttribute("email").toString();
-
-    try {
-      TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
-
-      List<CourseStatus> coursesStatus = trainerService.getTrainersCoursesStatus();
-      logger.debug(loggerClass + coursesStatus);//first table
-      sendDataResponse(res, coursesStatus);
-    } catch (SQLException | NamingException e) {
-      sendErrorResponse(res, Codes.INTERNAL_ERROR);
+        try {
+            TrainerService trainerService = new TrainerService(getDataSource(), trainerEmail);
+            List<CourseStatus> coursesStatus = trainerService.getTrainersCoursesStatus();
+            sendDataResponse(res, coursesStatus);
+        } catch (SQLException | NamingException e) {
+            sendErrorResponse(res, Codes.INTERNAL_ERROR);
+        }
     }
-  }
 }

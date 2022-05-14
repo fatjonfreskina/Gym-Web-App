@@ -1,4 +1,4 @@
-let contextPath = $('#contextPathHolder').attr('data'); // "/wa2122-gwa"
+let contextPath = "/wa2122-gwa"
 
 GET_Trainee = (email) => {
     //Perform the AJAX request to fill the calendar
@@ -11,9 +11,9 @@ GET_Trainee = (email) => {
             //console.log("t:", response)
             return response;
         },
-        error: (err) => {
-            console.log(err);
-            return err;
+        error: (response) => {
+            //console.log(response);
+            showWarningMessage("Server error while retrieving data");
         }
     });
 }
@@ -31,8 +31,8 @@ GET_TrainerAttendance = () => {
             return response;
         },
         error: function (err) {
-            console.log(err);
-            return null;
+            //console.log(response);
+            showWarningMessage("Server error while retrieving data");
         }
     });
 }
@@ -44,7 +44,7 @@ POST_Subscription = (email) => {
     let found = false
     for (let i = 0; i < subscriptions.length && !found; i++) {
         let cur = subscriptions[i];
-        if (cur.trainee == email) {
+        if (cur.trainee === email) {
             subscription = cur;
             found = true;
             //console.log("38", cur);
@@ -62,8 +62,9 @@ POST_Subscription = (email) => {
             //console.log("data:", data)
             GET_TrainerAttendance()
         },
-        error: function (err) {
-            alert(JSON.stringify(err.responseJSON));
+        error: function (response) {
+            //console.log(response);
+            showWarningMessage("Server error sending data");
         }
     });
 }
@@ -80,10 +81,10 @@ DELETE_Reservation = (email) => {
         success: function () { //data, textStatus, xhr
             //console.log("data:", data)
             GET_TrainerAttendance()
-
         },
         error: function (err) {
-            console.log(err.responseJSON)
+            //console.log(response);
+            showWarningMessage("Server error sending data");
         }
     });
 }
@@ -91,6 +92,10 @@ DELETE_Reservation = (email) => {
 let reservations;
 let subscriptions = [];
 
+/**
+ *
+ * @param rows
+ */
 updateReservationsTable = (rows) => {
     //console.log(rows)
     let TABLE = $('#reservationsTABLE');
@@ -103,6 +108,11 @@ updateReservationsTable = (rows) => {
     })
 
 }
+
+/**
+ *
+ * @param attendances
+ */
 updateReservations = (attendances) => {
     //console.log("updateReservations");
     reservations = attendances.reservations;
@@ -122,14 +132,21 @@ updateReservations = (attendances) => {
                 };
                 //console.log("obj", obj);
                 results.push(obj);
-                if (results.length == res.length) {
+                if (results.length === res.length) {
                     updateReservationsTable(results);
                 }
             });
         }); else updateReservationsTable(results)
-    })
+    }).fail(function(response){
+        //console.log(response);
+        showWarningMessage("Server error while updating reservation");
+    });
 }
 
+/**
+ *
+ * @param rows
+ */
 updateSubscriptionsTable = (rows) => {
     //console.log(rows)
     let TABLE = $('#subscriptionsTABLE');
@@ -143,6 +160,11 @@ updateSubscriptionsTable = (rows) => {
         columns: [{data: 'name'}, {data: 'surname'}, {data: 'email'}, {data: 'action'}]
     })
 }
+
+/**
+ *
+ * @param attendance
+ */
 updateSubscriptions = (attendance) => {
     //console.log("updateSubscriptions");
     subscriptions = [];
@@ -169,13 +191,35 @@ updateSubscriptions = (attendance) => {
                 };
                 //console.log("obj", obj);
                 results.push(obj);
-                if (results.length == res.length) {
+                if (results.length === res.length) {
                     updateSubscriptionsTable(results);
                 }
             });
         }); else updateSubscriptionsTable(results)
-    })
+    }).fail(function(response){
+        //console.log(response);
+        showWarningMessage("Server error while updating reservation");
+    });
 }
 
 // CALL
 GET_TrainerAttendance();
+
+/**
+ * Shows an error / warning message in the appropriate alert
+ * @param message message to show
+ */
+function showWarningMessage(message) {
+
+    const messageBody = $('#alert-warning-message-body')
+    messageBody.empty()
+    messageBody.text(message)
+
+    const alertBox = $('#alert-warning');
+    alertBox.show();
+
+    alertBox.fadeTo(2000, 500).slideUp(500, function () {
+        $(this).slideUp(500);
+    });
+
+}

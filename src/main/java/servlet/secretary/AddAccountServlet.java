@@ -35,15 +35,34 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
 /**
+ * Servlet used by a secretary to add an account for a user
+ *
  * @author Alberto Campeol
  */
 public class AddAccountServlet extends AbstractServlet {
 
+    /**
+     * Handles the get request by retrieving the opportune page
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher(Constants.PATH_SECRETARY_ADD_ACCOUNT).forward(req, res);
     }
 
+    /**
+     * Handles the post request by adding a user to the database with his/her corresponding
+     * roles
+     *
+     * @param req  the request
+     * @param res  the response
+     * @throws ServletException If some internal error happens.
+     * @throws IOException If something happens when writing the response to the output stream.
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
@@ -87,7 +106,7 @@ public class AddAccountServlet extends AbstractServlet {
             if (req.getParameter(Person.ROLE_TRAINEE) != null)
                 isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
             boolean roles[] = {isSecretary, isTrainee, isTrainer};
-            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, roles);
+            error = insertUser(taxCode, firstName, lastName, address, email, password, telephoneNumber, birthDate, avatar, roles,req);
             if (error.getErrorCode() != Codes.OK.getErrorCode()) {
                 message = new Message(error.getErrorMessage(), true);
                 registrable = false;
@@ -104,7 +123,15 @@ public class AddAccountServlet extends AbstractServlet {
 
     }
 
-
+    /**
+     * Checks if the different parameters are well formatted
+     *
+     * @param req  the request
+     * @param res  the response
+     * @return  a confirmation/error message
+     * @throws ServletException If some internal error happens.
+     * @throws IOException If something happens when writing the response to the output stream.
+     */
     public Codes parseParams(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String taxCode = null;
         String firstName = null;
@@ -122,7 +149,7 @@ public class AddAccountServlet extends AbstractServlet {
             address = req.getParameter(Constants.ADDRESS);
             email = req.getParameter(Constants.EMAIL);
             telephoneNumber = req.getParameter(Constants.TELEPHONE_NUMBER);
-            Integer.parseInt(telephoneNumber);
+            Long.parseLong(telephoneNumber);
             birthDate = Date.valueOf(req.getParameter(Constants.BIRTH_DATE));
 
         } catch (IllegalArgumentException e) //Either Telephone isn't a telephone or birthDate isn't a Date
@@ -163,8 +190,23 @@ public class AddAccountServlet extends AbstractServlet {
         return error;
     }
 
+    /**
+     * Adds a user to the database
+     * @param taxCode  the user's tax code
+     * @param firstName  the user's first name
+     * @param lastName  the user's last name
+     * @param address  the user's address
+     * @param email  the user's email
+     * @param password  the user's password
+     * @param telephoneNumber  the user's telephone number
+     * @param birthDate  the user's birthdate
+     * @param avatar  the user's avatar
+     * @param roles  the user's role
+     * @param req the request
+     * @return an error/confirmation message
+     */
     public Codes insertUser(String taxCode, String firstName, String lastName, String address, String email,
-                            String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles) {
+                            String password, String telephoneNumber, Date birthDate, Part avatar, boolean[] roles,HttpServletRequest req) {
         Codes error = Codes.OK;
         Person p1 = null;
         Person p2 = null;
@@ -207,6 +249,9 @@ public class AddAccountServlet extends AbstractServlet {
                             PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp,p.getEmail());
                             //Insert the password reset into the database
                             new InsertPasswordResetDatabase(conn, passwordReset).execute();
+
+                            if(pathImg != null)
+                                req.getSession(false).setAttribute("avatarPath",pathImg);
                             MailTypes.mailForPasswordChanges(p, passwordReset);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
                             error = Codes.INTERNAL_ERROR;
@@ -225,6 +270,13 @@ public class AddAccountServlet extends AbstractServlet {
     }
 
 
+    /**
+     * Saves the avatar of a user
+     * @param file  the user's avatar file
+     * @param taxCode  the user's tax code
+     * @return a confirmation/error message
+     * @throws IOException
+     */
     private Codes saveFile(Part file, String taxCode) throws IOException {
         OutputStream writer = null;
         InputStream content = null;
@@ -275,6 +327,11 @@ public class AddAccountServlet extends AbstractServlet {
         return Codes.OK;
     }
 
+    /**
+     * Generates a random password
+     * @param len  the password length
+     * @return  the password as a {@code String}
+     */
     public static String generateRandomPassword(int len)
     {
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

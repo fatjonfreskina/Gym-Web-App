@@ -17,8 +17,20 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Servlet handling requests for a secretary managing the subscriptions
+ */
 public class ManagesSubscriptionServlet extends AbstractServlet
 {
+    /**
+     * Handles the get request by retrieving the different courses for which is possible to
+     * buy a subscription
+     *
+     * @param request  the request
+     * @param response  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

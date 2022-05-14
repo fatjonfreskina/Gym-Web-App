@@ -16,28 +16,40 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
 /**
- * TODO: aggiungere testo che descrive cosa fa la servlet.
- * @author Tumiati Riccardo, Marco Alessio, Fatjon Freskina
+ * Rest servlet used to delete a reservation made by a trainee
+ *
+ * @author Tumiati Riccardo
+ * @author Marco Alessio
+ * @author Fatjon Freskina
  */
 public class TraineeDeleteReservationServlet extends AbstractRestServlet {
     // trainee/rest/reservation/room/{room}/date/{date}/starttime/{time}
     private static final Pattern URI_REGEX = Pattern.compile(
             "/wa2122-gwa/trainee/rest/reservation/room/(.*)/date/(.*)/starttime/(.*)", Pattern.DOTALL);
 
-    //TODO: for debugging purposes only, must be canceled
-    /*
-    @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
-    }*/
 
+    /**
+     * Handles the delete request by deleting a reservation made by a trainee
+     *
+     * @param req the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
 
+    /**
+     * Auxiliary method to handle the delete request by deleting a reservation made by a trainee
+     *
+     * @param req the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         // Retrieve input data from the requested URI.
@@ -84,6 +96,12 @@ public class TraineeDeleteReservationServlet extends AbstractRestServlet {
         }
     }
 
+    /**
+     * Checks if a reservation is valid according to its date and time
+     *
+     * @param reservationDate the date of the reservation
+     * @param reservationTime  the time of the reservation
+     */
     private boolean isDateAndTimeValid(Date reservationDate, Time reservationTime)
     {
         long millis = System.currentTimeMillis();

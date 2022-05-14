@@ -1,12 +1,10 @@
 package jobs;
 
 import constants.Constants;
-import dao.person.GetAllPersonsDatabase;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
-import jakarta.mail.MessagingException;
+import dao.person.GetAllPersonsDatabase;
 import resource.MedicalCertificate;
 import resource.Person;
-import utils.MailTypes;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -25,6 +23,9 @@ import java.util.List;
  */
 public class MedicalCertificateExpiration implements Runnable {
 
+    /**
+     * Runs this job by notifying users if their medical certificate has expired
+     */
     @Override
     public void run() {
 
@@ -80,7 +81,7 @@ public class MedicalCertificateExpiration implements Runnable {
 
         } catch (NamingException | SQLException e) {
             //Print exception to logs of Tomcat
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }

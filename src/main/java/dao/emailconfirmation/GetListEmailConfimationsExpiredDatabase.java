@@ -7,19 +7,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Gets all the EmailConfirmation object from the database which are expired
+ *
  * @author Francesco Caldivezzi
  */
 public class GetListEmailConfimationsExpiredDatabase {
 
+    /**
+     * Query to execute on the database
+     */
     private static final String STATEMENT = "select * from emailconfirmation where expirationdate <= ?";
+
+    /**
+     * Database connection
+     */
     private final Connection connection;
+
+    /**
+     * Date parameter
+     */
     private Timestamp date;
 
+    /**
+     * @param connection database connection
+     * @param date       maximum date
+     */
     public GetListEmailConfimationsExpiredDatabase(final Connection connection, Timestamp date) {
         this.connection = connection;
         this.date = date;
     }
 
+    /**
+     * Gets the list of all expired EmailConfirmation entries
+     *
+     * @return list of all expired EmailConfirmation entries
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public List<EmailConfirmation> execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;

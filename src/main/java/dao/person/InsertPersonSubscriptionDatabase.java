@@ -11,9 +11,20 @@ import java.sql.*;
  */
 public class InsertPersonSubscriptionDatabase {
 
+    /**
+     * Query to be executed
+     */
     private static final String STATEMENT =
             "INSERT INTO subscription (courseeditionid, coursename, duration, startday, discount, trainee) VALUES (?,?,?,?,?,?);";
+
+    /**
+     * Database connection
+     */
     private final Connection con;
+
+    /**
+     * Subscription to insert
+     */
     private final Subscription subscription;
 
     /**

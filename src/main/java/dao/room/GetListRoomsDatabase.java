@@ -16,6 +16,7 @@ import java.util.List;
  * @author Francesco Caldivezzi
  */
 public class GetListRoomsDatabase {
+
     private static final String STATEMENT = "SELECT * FROM room;";
 
     private final Connection con;
@@ -33,6 +34,7 @@ public class GetListRoomsDatabase {
      * Execute an the query and provide the list of rooms of the gym
      *
      * @return the list of rooms in the gym
+     * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<Room> execute() throws SQLException {
         PreparedStatement pstmt = null;

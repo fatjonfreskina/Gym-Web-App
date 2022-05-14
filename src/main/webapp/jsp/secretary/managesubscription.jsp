@@ -1,97 +1,96 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Manage Subscription</title>
+    <meta charset="UTF-8">
+    <jsp:include page="/jsp/include/style.jsp"/>
+    <jsp:include page="/jsp/include/favicon.jsp"/>
+    <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
 </head>
 <body>
-<jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<header>
+    <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
+</header>
+
+<main class="global-container">
+    <form method="post" action="<c:url value="/secretary/rest/addsubscription"/>" id="form">
+
+        <div class="form-group row">
+            <label for="course_name" class="col-sm-3 col-form-label">Course Name :</label>
+            <div class="col-sm-9">
+                <select name="course_name" id="course_name" class="form-control">
+                    <c:forEach var="course" items="${courses}">
+                        <option  value="${course.name}"><c:out value="${course.name}"/> </option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="partial_email" class="col-sm-3 col-form-label" >Search :</label>
+            <div class="col-sm-9">
+                <div class="input-group rounded">
+                    <input type="search" name="partial_email" id="partial_email" class="form-control rounded" placeholder="Insert Email" aria-label="Search" aria-describedby="search-addon">
+                    <span class="input-group-text border-0" id="search-addon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
 
 
-<form method="post" action="<c:url value="/secretary/rest/addsubscription"/>">
-    <label>Course Name : </label>
-    <select name="course_name" id="course_name">
-        <c:forEach var="course" items="${courses}">
-            <option  value="${course.name}"><c:out value="${course.name}"/> </option><br>
-        </c:forEach>
-    </select><br>
+            </div>
+        </div>
 
+        <div class="form-group row">
+            <label for="duration" class="col-sm-3 col-form-label">Subscription Duration :</label>
+            <div class="col-sm-9">
+                <select id="duration" class="form-control" name="duration">
+                    <option  value="7">Free</option>
+                    <option  value="30">Mothly</option>
+                    <option  value="90">Quaterly</option>
+                    <option  value="180">Half-Yearly</option>
+                    <option  value="365">Year</option>
+                </select>
+            </div>
+        </div>
 
-    <label>Search : </label><input type="text" name="partial_email" id="partial_email"><br>
-    <label>Subscription Duration : </label>
-    <select name="duration">
-        <option  value="7">Free</option><br>
-        <option  value="30">Mothly</option><br>
-        <option  value="90">Quaterly</option><br>
-        <option  value="180">Half-Yearly</option><br>
-        <option  value="365">Year</option><br>
-    </select><br>
-    <label>Discount : </label><input type="number" name = "discount" min = "0" max ="100" value="0">
+        <div class="form-group row">
+            <label for="discount" class="col-sm-3 col-form-label">Discount :</label>
+            <div class="col-sm-9">
+                <input type="number" id="discount" name = "discount" min = "0" max ="100" value="0" class="form-control" />
+            </div>
+        </div>
 
-    <input type="submit" name="Submit"/>
+        <div class="form-group row">
+            <label for="list_emails" class="col-sm-3 col-form-label">Users :</label>
+            <div class="col-sm-9">
+                <ul id="list_emails" class="list-group"></ul>
+            </div>
+        </div>
 
-    <ul id="list_emails"></ul>
-    <ul id="list_last_date"></ul>
+        <div class="form-group row">
+            <label for="list_last_date" class="col-sm-3 col-form-label">Last Event :</label>
+            <div class="col-sm-9">
+                <ul id="list_last_date" class="list-group"></ul>
+            </div>
+        </div>
 
+        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
+            <p id="alert-message-body" class="alert-box-message">
+            </p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-
-</form>
-
-<script>
-    $("#partial_email").on('input',function (){
-        $.ajax({
-            url: "<c:url value="/secretary/rest/listlikepersons"/>",
-            data: {
-                "partial_email" : $("#partial_email").val()
-            },
-            cache: false,
-            type: "GET",
-            dataType: 'json',
-            success: function(response) {
-                $("#list_emails").empty()
-
-                console.log(response)
-
-                for(const person of response)
-                {
-                    $("#list_emails").append("<li>"+person.email + "<input type='radio' name = 'trainee' value = '"+person.email+"'"+"/></li>")
-                }
-            },
-            error: function(xhr)
-            {
-                console.log(xhr);
-            }
-        });
-    })
-
-    $("#course_name").change(function (){
-        $.ajax({
-            url: "<c:url value="/secretary/rest/timeschedules"/>",
-            data: {
-                "course_name" : $("#course_name").val()
-            },
-            cache: false,
-            type: "GET",
-            dataType: 'json',
-            success: function(response) {
-                $("#list_last_date").empty()
-                for(const lastDate of response)
-                {
-                    $("#list_last_date").append("<li>" +lastDate.date+"<input type='radio' name='course_edition_id' value='"+lastDate.courseEditionId+"'/></li>")
-                }
-            },
-            error: function(xhr)
-            {
-                console.log(xhr);
-            }
-        });
-    })
-    $("#course_name").trigger('change')
-</script>
-
+        <input type="submit" name="Submit" class="btn btn-outline-primary btn-lg"/>
+    </form>
+</main>
 
 
 <jsp:include page="../include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
+<script src="<c:url value="/js/secretary/manage-subscription.js"/>"></script>
 </body>
 </html>

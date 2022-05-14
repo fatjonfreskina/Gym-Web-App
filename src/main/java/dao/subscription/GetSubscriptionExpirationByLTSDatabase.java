@@ -3,23 +3,41 @@ package dao.subscription;
 import resource.LectureTimeSlot;
 import java.sql.*;
 
-/*
-    @author Riccardo Tumiati
+/**
+ * DAO class used to get the expiration date of the subscription from a lecture
+ * @author Riccardo Tumiati
  */
 public class GetSubscriptionExpirationByLTSDatabase {
-    private final String STATEMENT = "SELECT startday+ (duration || ' day')::interval AS expiration"+
-            " FROM lecturetimeslot AS lts JOIN subscription AS s ON (lts.courseeditionid = s.courseeditionid AND lts.coursename = s.coursename)"+
-            " WHERE s.trainee = ? AND lts.roomname = ? AND lts.date = ? AND lts.starttime = ?";
+
+    private final String STATEMENT = """
+            SELECT startday+ (duration || ' day')::interval AS expiration
+            FROM lecturetimeslot AS lts JOIN subscription AS s ON (lts.courseeditionid = s.courseeditionid AND lts.coursename = s.coursename)
+            WHERE s.trainee = ? AND lts.roomname = ? AND lts.date = ? AND lts.starttime = ?
+            """;
+
     private final Connection conn;
+
     private final LectureTimeSlot lts;
+
     private final String email;
 
+    /**
+     * Constructor for this class
+     * @param conn  the database connection
+     * @param lts  the lecture
+     * @param email  the trainee's email address
+     */
     public GetSubscriptionExpirationByLTSDatabase(Connection conn, LectureTimeSlot lts, String email){
         this.conn = conn;
         this.lts = lts;
         this.email = email;
     }
 
+    /**
+     * Executes the sql statement retrieving the subscription expiration date from a given lecture
+     * @return the subscription expiration date
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
     public Date execute() throws SQLException {
         PreparedStatement stm = null;
         ResultSet rs = null;

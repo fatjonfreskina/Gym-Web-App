@@ -4,6 +4,7 @@ import com.google.gson.JsonParseException;
 import constants.Constants;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
+import dao.medicalcertificate.GetLastMedicalCertfiticateByPersonDatabase;
 import dao.reservation.GetAvailableSlotsReservationDatabase;
 import dao.reservation.GetReservationByAllFieldsDatabase;
 import dao.reservation.InsertReservationDatabase;
@@ -13,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import resource.LectureTimeSlot;
+import resource.MedicalCertificate;
+import resource.Person;
 import resource.Reservation;
 import servlet.AbstractRestServlet;
 
@@ -23,14 +26,26 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 
 /**
- * TODO: aggiungere testo che descrive cosa fa la servlet.
- * @author Tumiati Riccardo, Marco Alessio, Fatjon Freskina
+ * Rest servlet used to add a reservation
+ *
+ * @author Tumiati Riccardo
+ * @author Marco Alessio
+ * @author Fatjon Freskina
  */
 public class TraineeNewReservationServlet extends AbstractRestServlet {
 
+    /**
+     * Handles the post request by adding a reservation
+     *
+     * @param req the request
+     * @param resp  the response
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -51,6 +66,13 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
         processRequest(req,resp);
     }
 
+    /**
+     * Auxiliary method to handle the post request by adding a reservation
+     *
+     * @param req the request
+     * @param resp  the response
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Reader input = new InputStreamReader(req.getInputStream(), StandardCharsets.UTF_8);
         Reservation res;
@@ -96,7 +118,7 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             }
 
             //Check 3: available slots for the requested reservation
-            if (new GetAvailableSlotsReservationDatabase(getConnection(),res).execute() <=0) {
+            if (new GetAvailableSlotsReservationDatabase(getConnection(),res).execute() == 0) {
                 sendErrorResponse(resp, Codes.ROOM_ALREADY_FULL);
                 return;
             }
@@ -104,6 +126,14 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
             //Check 4: not already present a reservation made by the same user in the same slot
             if (new GetReservationByAllFieldsDatabase(getConnection(),res).execute() != null) {
                 sendErrorResponse(resp, Codes.RESERVATION_ALREADY_PRESENT);
+                return;
+            }
+
+            //Check 5: user's medical certificate not valid
+            MedicalCertificate medicalCertificate = new GetLastMedicalCertfiticateByPersonDatabase(getDataSource().getConnection(),
+                    new Person(email,null,null,null,null,null,null,null,null)).execute();
+            if(medicalCertificate == null || medicalCertificate.getExpirationDate().toLocalDate().isBefore(LocalDate.now())){
+                sendErrorResponse(resp, Codes.BAD_REQUEST);
                 return;
             }
         } catch(Throwable th) {
@@ -122,6 +152,12 @@ public class TraineeNewReservationServlet extends AbstractRestServlet {
         }
     }
 
+    /**
+     * Checks if a reservation is valid according to its date and time
+     *
+     * @param reservationDate the date of the reservation
+     * @param reservationTime  the time of the reservation
+     */
     private boolean isDateAndTimeValid(Date reservationDate, Time reservationTime)
     {
         long millis = System.currentTimeMillis();

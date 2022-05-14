@@ -12,6 +12,7 @@ public class Message {
      * This constructor is used for error messages
      *
      * @param message general description of the error
+     * @param isError the parameter representing if it's an error or not
      */
     public Message(final String message, boolean isError) {
         this.message = message;
@@ -29,10 +30,20 @@ public class Message {
 
     }
 
+    /**
+     * Gets the message
+     *
+     * @return the message
+     */
     public final String getMessage() {
         return message;
     }
 
+    /**
+     * Returns if this message represents an error
+     *
+     * @return true if the message is an error, false otherwise
+     */
     public final boolean isError() {
         return isError;
     }

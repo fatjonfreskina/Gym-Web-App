@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * Return a list of reservations of a user within a given date interval.
+ * Rest servlet used to retrieve the reservations of a trainee
  *
  * @author Marco Alessio
  */
@@ -27,19 +27,27 @@ public class GetReservationsServlet extends AbstractRestServlet
     private static final Pattern URI_REGEX = Pattern.compile(
             "/wa2122-gwa/trainee/rest/reservation/from-date/(.*)/to-date/(.*)", Pattern.DOTALL);
 
+    /**
+     * Handles the get requests by retrieving the reservations of a trainee in the provided interval
+     * of time
+     *
+     * @param req the request.
+     * @param res the response.
+     * @throws ServletException if some internal error happens
+     * @throws IOException if it was not possible to forward the request and write the response
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
         // Check that the request accepts JSON format.
-        //final ErrorCodes code = checkAcceptMediaType(req);
-        final Codes code = Codes.OK;  //To enable browser requests (no JSON accepted) to be executed.
+        final Codes code = checkAcceptMediaType(req);
         if (code != Codes.OK)
         {
             sendErrorResponse(res, code);
             return;
         }
 
-        // Retrieve trainee email by session.
+        // Retrieve trainee email by current session.
         final HttpSession session = req.getSession(false);
         final String email = session.getAttribute("email").toString();
 
@@ -56,7 +64,6 @@ public class GetReservationsServlet extends AbstractRestServlet
         final String fromString = matcher.group(1);
         final String toString = matcher.group(2);
 
-        // TODO: input sanitization.
         Date fromDate;
         Date toDate;
 

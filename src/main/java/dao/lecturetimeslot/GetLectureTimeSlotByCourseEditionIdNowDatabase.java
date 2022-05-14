@@ -11,21 +11,43 @@ import java.sql.*;
  * @author Andrea Pasin
  */
 public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
+
+    /**
+     * The SELECT query to be executed
+     */
     private static final String STATEMENT = "SELECT * FROM lecturetimeslot WHERE date = CURRENT_DATE " +
             "and starttime <= CURRENT_TIME " +
             "and (starttime + INTERVAL '2 hour') >= CURRENT_TIME " +
             "and courseeditionid= ?;";
+
+    /**
+     * The connection to the database
+     */
     private final Connection connection;
+
+    /**
+     * The lectureTimeSlot object
+     */
     private final LectureTimeSlot lectureTimeSlot;
 
-
+    /**
+     * Parametric constructor
+     *
+     * @param connection      the connection to the database
+     * @param lectureTimeSlot the lectureTimeSlot object to be retrieved
+     */
     public GetLectureTimeSlotByCourseEditionIdNowDatabase(final Connection connection, final LectureTimeSlot lectureTimeSlot) {
         this.connection = connection;
         this.lectureTimeSlot = lectureTimeSlot;
     }
 
-    public LectureTimeSlot execute() throws SQLException
-    {
+    /**
+     * Executes the query
+     *
+     * @return LectureTimeSlot object that matched the query
+     * @throws SQLException is thrown if something goes wrong while querying the database
+     */
+    public LectureTimeSlot execute() throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         LectureTimeSlot result = null;
@@ -34,7 +56,6 @@ public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
             ps.setInt(1, lectureTimeSlot.getCourseEditionId());
 
             rs = ps.executeQuery();
-
 
             if (rs.next()) {
                 String roomName = rs.getString(Constants.LECTURETIMESLOT_ROOMNAME);
@@ -45,8 +66,7 @@ public class GetLectureTimeSlotByCourseEditionIdNowDatabase {
                 String substitution = rs.getString(Constants.LECTURETIMESLOT_SUBSTITUTION);
                 result = new LectureTimeSlot(roomName, date, startTime, courseEditionId, courseName, substitution);
             }
-        }  finally
-        {
+        } finally {
             if (rs != null)
                 rs.close();
             if (ps != null)

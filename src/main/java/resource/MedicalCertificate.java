@@ -34,18 +34,38 @@ public class MedicalCertificate {
     }
 
 
+    /**
+     * Gets the person's email
+     *
+     * @return the person's email
+     */
     public final String getPersonEmail() {
         return personEmail;
     }
 
+    /**
+     * Gets the medical certificate's expiration date
+     *
+     * @return the medical certificate's expiration date
+     */
     public final Date getExpirationDate() {
         return expirationDate;
     }
 
+    /**
+     * Gets the doctor who signed this medical certificate
+     *
+     * @return the doctor who signed this medical certificate
+     */
     public final String getDoctorName() {
         return doctorName;
     }
 
+    /**
+     * Gets the path to this medical certificate
+     *
+     * @return the path to this medical certificate
+     */
     public final String getPath() {
         return path;
     }
