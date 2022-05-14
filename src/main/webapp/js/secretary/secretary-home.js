@@ -6,13 +6,13 @@ $(document).ready(function () {
      * to the console the object that is not compliant with the standardA
      * @param response object returned by the server
      */
-    function manageServerResponse(response){
-        if(response.isError === undefined || response.message === undefined){
+    function manageServerResponse(response) {
+        if (response.isError === undefined || response.message === undefined) {
             showWarningMessage("Error while understanding the response");
             console.log(response);
             return;
         }
-        if(response.isError == true){
+        if (response.isError == true) {
             showWarningMessage(response.message);
         } else {
             showSuccessMessage(response.message);
@@ -49,11 +49,18 @@ $(document).ready(function () {
             hour12: false
         },
         nowIndicator: true,
-        eventClick: function (info) {
-            selectedEvent = info.event.extendedProps.customLTS;
-            $("#modal-actions-course").modal("show");
-        }
+        eventClick: ShowActionsModal
     });
+
+
+    /**
+     * Shows the modal to select which action you want to perform
+     * @param info event that has been clicked
+     */
+    function ShowActionsModal(info) {
+        selectedEvent = info.event.extendedProps.customLTS;
+        $("#modal-actions-course").modal("show");
+    }
 
     /**
      * Returns the color associated to the course name, black for non associated courses
@@ -132,6 +139,7 @@ $(document).ready(function () {
                 calendar.render();
             },
             error: function (xhr) {
+                //console.log(xhr);
                 showWarningMessage("Error while rendering the calendar");
             }
         });
@@ -145,7 +153,6 @@ $(document).ready(function () {
     renderCalendar();
 
     $("#button-delete-lecturetimeslot").click(() => {
-
         if (selectedEvent !== undefined) {
 
             const roomNane = selectedEvent.roomName;
@@ -170,11 +177,9 @@ $(document).ready(function () {
                     }
                 });
             }
-
         } else {
             showWarningMessage("Event not found");
         }
-
     });
 
     $("#button-notify-substitution").click(() => {
@@ -234,13 +239,13 @@ $(document).ready(function () {
             const now = moment();
 
             //Check newDate >= actual date
-            if(!newDate.isSameOrAfter(now, 'day')){
+            if (!newDate.isSameOrAfter(now, 'day')) {
                 showWarningMessage("Provided date is invalid");
                 return;
             }
 
             //If the date is the same of today check the time given is after now
-            if( newDate.isSame(now, 'day') && newStartTime.isBefore(now.format("HH:mm:ss")) ){
+            if (newDate.isSame(now, 'day') && newStartTime.isBefore(now.format("HH:mm:ss"))) {
                 showWarningMessage("Provided time is invalid");
                 return;
             }
@@ -273,4 +278,5 @@ $(document).ready(function () {
 
     });
 
-});
+})
+;
