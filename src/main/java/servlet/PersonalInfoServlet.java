@@ -139,7 +139,7 @@ public class PersonalInfoServlet extends AbstractServlet
             }
         }
 
-        //req.setAttribute("personalInfo", p);
+        req.setAttribute("personalInfo", p);
 
         // Return the appropriate error message and send back to the "Personal Info" page.
         if (error != Codes.OK)
@@ -147,7 +147,6 @@ public class PersonalInfoServlet extends AbstractServlet
             res.setStatus(error.getHTTPCode());
             final Message message = new Message(error.getErrorMessage(),true);
             req.setAttribute(Constants.MESSAGE, message);
-
             req.getRequestDispatcher(Constants.PATH_PERSONALINFO).forward(req, res);
         }
         else
@@ -180,6 +179,16 @@ public class PersonalInfoServlet extends AbstractServlet
 
             final String dirPath = (Constants.AVATAR_PATH_FOLDER + "/" + taxCode).replace('/', File.separatorChar);
 
+            BufferedImage img;
+            try {
+                 img = ImageIO.read(file.getInputStream());
+                 if(img == null)
+                     return Codes.CANNOT_UPLOAD_FILE;
+            }catch (Throwable e)
+            {
+                return Codes.CANNOT_UPLOAD_FILE;
+            }
+
             // Create the avatar folder of the given user, if it does not exist yet.
             final File createDirectory = new File(dirPath);
             if (!createDirectory.exists())
@@ -204,12 +213,8 @@ public class PersonalInfoServlet extends AbstractServlet
             */
             try
             {
-                BufferedImage img = ImageIO.read(file.getInputStream());
-
                 final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + "."+extension);
                 ImageIO.write(img, extension, saveFile);
-
-
             }
             catch (Throwable e)
             {
