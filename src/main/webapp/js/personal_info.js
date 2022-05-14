@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const form = $('#form')
-
+    const button = $('#button')
     //error boxes
     let alertBox = $("#alert-box")
     alertBox.hide()
@@ -14,7 +14,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.one("submit",function (e) {
+    button.click(function (e) {
         e.preventDefault();
         //TODO: CHECK WRONG?? ALSO BACKEND
 
@@ -35,6 +35,10 @@ $(document).ready(function() {
         form.submit()
     })
 
+    /**
+     *
+     * @param message
+     */
     function showMessage(message) {
         messageBody.empty()
         messageBody.text(message)

@@ -6,7 +6,7 @@ $(document).ready(function() {
     let alertBox = $("#alert-box")
     let messageBody = $("#alert-message-body")
 
-    form.one("submit",function (e) {
+    buttonUpdate.click(function (e) {
         e.preventDefault();
         let isTrainee = document.getElementById("trainee").checked
         let isTrainer = document.getElementById("trainer").checked

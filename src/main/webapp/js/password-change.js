@@ -3,12 +3,13 @@ $(document).ready(function() {
     const password = $('#password')
     const confirmedPassword = $('#confirm_password')
     const form = $('#form')
+    const button =$('#button')
 
     //error boxes
     let alertBox = $("#alert-box")
     let messageBody = $("#alert-message-body")
 
-    form.one("submit",function (e) {
+    button.click(function (e) {
         e.preventDefault();
 
         //password are not the same

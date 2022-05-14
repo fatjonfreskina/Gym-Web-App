@@ -19,7 +19,7 @@ $(document).ready(function() {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    form.one("submit", function (e) {
+    buttonRegister.click(function (e) {
         e.preventDefault();
 
         //telephone control

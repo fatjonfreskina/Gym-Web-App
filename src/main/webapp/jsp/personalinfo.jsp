@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="submit" value="Change" class="btn btn-outline-primary btn-lg"/>
+                    <input type="submit" value="Change" class="btn btn-outline-primary btn-lg" id="button"/>
                 </div>
             </div>
 
