@@ -1,10 +1,3 @@
-import {
-    isPswLengthSafe,
-    isPswCharSafe,
-    hasNumbers,
-    hasNumbers,
-} from '/form-validation-functions';
-
 $(document).ready(function() {
     const form = $('#form')
     const birtDate = $('#birth_date')
