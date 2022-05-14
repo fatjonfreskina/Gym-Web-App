@@ -86,6 +86,13 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
 function clickHandler(info) {
     let event = info.event;
     selectedLectureTimeSlot = event.extendedProps.customLTS;
+    event_date = event._instance.range.start.getTime()
+    actual_date = new Date().getTime()
+    if(event_date < actual_date){
+        e_message.textContent = "Selected slot is no more available";
+        $("#e-reservation").modal("show");
+        return
+    }
     if (selectedLectureTimeSlot.booked) {
         c_course_name.textContent = selectedLectureTimeSlot.courseName
         c_course_date.textContent = selectedLectureTimeSlot.customDate
