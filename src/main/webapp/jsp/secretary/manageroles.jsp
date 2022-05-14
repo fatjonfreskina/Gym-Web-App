@@ -20,14 +20,15 @@
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
             <div class="col-sm-10">
-                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email" required>
+                <input type="email" name="email" id="email" maxlength="40" class="form-control"
+                       placeholder="Enter Email" required>
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Role : </label>
             <div class="col-sm-3">
-                <input  type="checkbox" id="trainee" name="trainee" />
+                <input type="checkbox" id="trainee" name="trainee"/>
                 <label for="trainee">Trainee</label>
             </div>
             <div class="col-sm-3">
@@ -45,7 +46,7 @@
         <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
             <p id="alert-message-body" class="alert-box-message">
             </p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -56,7 +57,10 @@
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 <jsp:include page="/jsp/include/moment/scripts.jsp"/>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
+
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+
 <script src="<c:url value="/js/secretary/manage_roles.js"/>"></script>
 </body>
 </html>

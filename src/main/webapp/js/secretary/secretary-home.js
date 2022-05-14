@@ -1,44 +1,6 @@
 $(document).ready(function () {
 
     /**
-     * Shows a success message in the appropriate alert
-     * @param message message to show
-     */
-    function showSuccessMessage(message) {
-
-        const messageBody = $('#alert-success-message-body')
-        messageBody.empty()
-        messageBody.text(message)
-
-        const alertBox = $('#alert-success');
-        alertBox.show();
-
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-
-    }
-
-    /**
-     * Shows an error / warning message in the appropriate alert
-     * @param message message to show
-     */
-    function showWarningMessage(message) {
-
-        const messageBody = $('#alert-warning-message-body')
-        messageBody.empty()
-        messageBody.text(message)
-
-        const alertBox = $('#alert-warning');
-        alertBox.show();
-
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-
-    }
-
-    /**
      * Manages a response object returned by the server.
      * If the object given does not have the two expected fields returns an alert with a default message and prints
      * to the console the object that is not compliant with the standardA

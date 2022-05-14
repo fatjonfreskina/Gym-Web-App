@@ -18,26 +18,15 @@
 
 <main class="global-container">
 
-    <div id="alert-success" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-        <p id="alert-success-message-body" class="alert-box-message">
-        </p>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-
-    <div id="alert-warning" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
-        <p id="alert-warning-message-body" class="alert-box-message">
-        </p>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <!-- Error messages -->
+    <jsp:include page="../include/message.jsp"/>
 
     <div id="calendar" class="secretary-home-calendar">
     </div>
+
+    <!-- Modal triggered to select an action -->
     <div id="modal-actions-course" class="modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Actions</h5>
@@ -67,8 +56,9 @@
         </div>
     </div>
 
+    <!-- Modal used to notify a substitution -->
     <div id="modal-notify-substitution" class="modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Notify substitution</h5>
@@ -107,9 +97,9 @@
         </div>
     </div>
 
-
+    <!-- Modal used to change the schedule of a class -->
     <div id="modal-change-schedule" class="modal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Change schedule</h5>
@@ -157,6 +147,10 @@
 <jsp:include page="../include/scripts.jsp"/>
 <jsp:include page="../include/fullcalendar/scripts.jsp"/>
 <jsp:include page="../include/moment/scripts.jsp"/>
+
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+
 <script src="<c:url value="/js/secretary/secretary-home.js"/>"></script>
 </body>
 </html>

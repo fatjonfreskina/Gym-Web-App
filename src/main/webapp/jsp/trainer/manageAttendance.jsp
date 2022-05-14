@@ -73,11 +73,15 @@
     </c:choose>
     <jsp:include page="/jsp/include/message.jsp"/>
 </main>
+
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="../include/scripts.jsp"/>
 <jsp:include page="../include/datatables/script.jsp"/>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+
 <script src="<c:url value="/js/trainer/trainer-attendance.js"/>"></script>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
+
 </body>
 </html>

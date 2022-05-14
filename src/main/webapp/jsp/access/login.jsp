@@ -41,8 +41,11 @@
 
 
 </main>
+
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+
 </body>
 </html>

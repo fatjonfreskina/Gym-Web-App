@@ -182,8 +182,11 @@
 <jsp:include page="/jsp/include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 <jsp:include page="/jsp/include/moment/scripts.jsp"/>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
-<script src="<c:url value="/js/personal_info.js"/>"></script>
+
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+
+<script src="<c:url value="/js/personal-info.js"/>"></script>
 
 </body>
 </html>

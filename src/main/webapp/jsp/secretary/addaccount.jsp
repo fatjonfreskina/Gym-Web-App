@@ -14,11 +14,15 @@
     <jsp:include page="/jsp/secretary/include/headersecretary.jsp"/>
 </header>
 <main class="global-container">
+
+    <jsp:include page="/jsp/include/message.jsp"/>
+
     <form method="post" action="<c:url value="/secretary/addaccount"/>" enctype="multipart/form-data" id="form">
         <div class="form-group row">
             <label for="tax_code" class="col-sm-2 col-form-label">Tax Code :</label>
             <div class="col-sm-10">
-                <input type="text" name="tax_code" id="tax_code" minlength="16" maxlength="16" class="form-control" placeholder="Insert Tax Code" required>
+                <input type="text" name="tax_code" id="tax_code" minlength="16" maxlength="16" class="form-control"
+                       placeholder="Insert Tax Code" required/>
             </div>
         </div>
 
@@ -26,35 +30,39 @@
         <div class="form-group row">
             <label for="first_name" class="col-sm-2 col-form-label">First Name :</label>
             <div class="col-sm-10">
-                <input type="text" name="first_name" id="first_name" maxlength="30" class="form-control" placeholder="Insert First Name" required>
+                <input type="text" name="first_name" id="first_name" maxlength="30" class="form-control"
+                       placeholder="Insert First Name" required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="last_name" class="col-sm-2 col-form-label">Last Name :</label>
             <div class="col-sm-10">
-                <input type="text" name="last_name" id="last_name" maxlength="30" class="form-control" placeholder="Insert Last Name" required>
+                <input type="text" name="last_name" id="last_name" maxlength="30" class="form-control"
+                       placeholder="Insert Last Name" required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="birth_date" class="col-sm-2 col-form-label">Birth Date :</label>
             <div class="col-sm-10">
-                <input type="date" name="birth_date" id="birth_date" class="form-control" required>
+                <input type="date" name="birth_date" id="birth_date" class="form-control" required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="address" class="col-sm-2 col-form-label">Address :</label>
             <div class="col-sm-10">
-                <input type="text" name="address" id="address" class="form-control" placeholder="Insert Address" required>
+                <input type="text" name="address" id="address" class="form-control" placeholder="Insert Address"
+                       required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="telephone_number" class="col-sm-2 col-form-label">Telephone Number :</label>
             <div class="col-sm-10">
-                <input type="tel" name="telephone_number" id="telephone_number" class="form-control" placeholder="Insert Telephone Number" required>
+                <input type="tel" name="telephone_number" id="telephone_number" class="form-control"
+                       placeholder="Insert Telephone Number" required/>
             </div>
         </div>
 
@@ -62,7 +70,7 @@
             <label for="file" class="col-sm-2 col-form-label">Avatar (Optional) :</label>
             <div class="col-sm-10">
                 <div class="custom-file">
-                    <input type="file" name="avatar" id="file" class="custom-file-input">
+                    <input type="file" name="avatar" id="file" class="custom-file-input"/>
                     <label class="custom-file-label" for="file">Choose File</label>
                 </div>
             </div>
@@ -71,14 +79,15 @@
         <div class="form-group row">
             <label for="email" class="col-sm-2 col-form-label">Email :</label>
             <div class="col-sm-10">
-                <input type="email" name="email" id="email" maxlength="40" class="form-control" placeholder="Enter Email" required>
+                <input type="email" name="email" id="email" maxlength="40" class="form-control"
+                       placeholder="Enter Email" required/>
             </div>
         </div>
 
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Role : </label>
             <div class="col-sm-3">
-                <input  type="checkbox" id="trainee" name="trainee" />
+                <input type="checkbox" id="trainee" name="trainee"/>
                 <label for="trainee">Trainee</label>
             </div>
             <div class="col-sm-3">
@@ -91,25 +100,18 @@
             </div>
         </div>
 
-        <jsp:include page="/jsp/include/message.jsp"/>
-        <!-- alert box for messages -->
-        <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
-            <p id="alert-message-body" class="alert-box-message">
-            </p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
         <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-register">Register</button>
     </form>
 
-
 </main>
+
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
 <jsp:include page="/jsp/include/moment/scripts.jsp"/>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
+
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+
 <script src="<c:url value="/js/register.js"/>"></script>
 </body>
 </html>

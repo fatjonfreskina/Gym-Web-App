@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,13 +26,14 @@
 
         <jsp:include page="/jsp/include/message.jsp"/>
 
-        <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg" />
+        <input type="submit" value="Submit" class="btn btn-outline-primary btn-lg"/>
     </form>
 
 
 </main>
 <jsp:include page="../include/footer.jsp"/>
 <jsp:include page="/jsp/include/scripts.jsp"/>
-<script src="<c:url value="/js/message-delay.js"/>"></script>
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
 </body>
 </html>
