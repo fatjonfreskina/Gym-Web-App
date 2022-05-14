@@ -139,7 +139,8 @@ public class PersonalInfoServlet extends AbstractServlet
             }
         }
 
-        req.setAttribute("personalInfo", p);
+        if (error != Codes.OK)
+            req.setAttribute("personalInfo", p);
 
         // Return the appropriate error message and send back to the "Personal Info" page.
         if (error != Codes.OK)
