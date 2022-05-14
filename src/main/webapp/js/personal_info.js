@@ -25,11 +25,13 @@ $(document).ready(function() {
         {
             if(!isFileTypeValid()){
                 showMessage("File type must be .jpg, .jpeg, .png")
-                return
+                e.preventDefault();
+                return false;
             }
             if(!isFileSizeValid()){
                 showMessage("File size must be smaller than 5MB")
-                return
+                e.preventDefault();
+                return false;
             }
         }
         form.submit()

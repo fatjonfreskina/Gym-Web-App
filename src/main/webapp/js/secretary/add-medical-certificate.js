@@ -23,18 +23,21 @@ $(document).ready(function() {
         if(expirationdate.val() < now)
         {
             showMessage("Expiration date is not valid")
-            return
+            e.preventDefault();
+            return false;
         }
         let avatar = document.getElementById("file")
         //File check
         if (avatar.files.length !== 0 ){
             if(!isFileTypeValid()){
                 showMessage("File type must be a .pdf")
-                return
+                e.preventDefault();
+                return false;
             }
             if(!isFileSizeValid()){
                 showMessage("File size must be smaller than 5MB")
-                return
+                e.preventDefault();
+                return false;
             }
         }
 

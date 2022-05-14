@@ -14,7 +14,8 @@ $(document).ready(function() {
         if (!isTrainer && !isTrainee && !isSecretary)
         {
             showMessage("Please choose a role for the selected user")
-            return;
+            e.preventDefault();
+            return false;
         }
         form.submit()
     })

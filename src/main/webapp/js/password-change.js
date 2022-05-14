@@ -16,7 +16,8 @@ $(document).ready(function() {
         if(password.val() !== confirmedPassword.val())
         {
             showMessage("Password Are Different")
-            return
+            e.preventDefault();
+            return false;
         }
         form.submit()
     })

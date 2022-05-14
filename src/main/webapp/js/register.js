@@ -20,13 +20,14 @@ $(document).ready(function() {
     });
 
     buttonRegister.click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         //telephone control
         if (telephone.val().length !== 10)
         {
             showMessage("Telephone length is not correct");
-            return;
+            e.preventDefault();
+            return false;
         }
         else
         {
@@ -34,7 +35,8 @@ $(document).ready(function() {
             if (isNaN(parsed))
             {
                 showMessage("Provided Telephone not valid")
-                return
+                e.preventDefault();
+                return false;
             }
         }
         if (document.location.pathname === "/wa2122-gwa/register")
@@ -43,7 +45,8 @@ $(document).ready(function() {
             if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < 14)
             {
                 showMessage("You must be at least 14 years old to sign in")
-                return
+                e.preventDefault();
+                return false;
             }
         }
         else
@@ -54,7 +57,8 @@ $(document).ready(function() {
             if (!isTrainer && !isTrainee && !isSecretary)
             {
                 showMessage("Select a role for the new user")
-                return;
+                e.preventDefault();
+                return false;
             }
             let years_threshold = 14
             if (isTrainer || isSecretary)
@@ -65,7 +69,8 @@ $(document).ready(function() {
             {
                 let msg = `The new user must be at least ${years_threshold} years old`
                 showMessage(msg)
-                return
+                e.preventDefault();
+                return false;
             }
         }
 
@@ -75,7 +80,8 @@ $(document).ready(function() {
             if(password.val() !== confirmedPassword.val())
             {
                 showMessage("Password Are Different")
-                return
+                e.preventDefault();
+                return false;
             }
         }
 
@@ -84,11 +90,13 @@ $(document).ready(function() {
         if (avatar.files.length !== 0 ){
             if(!isFileTypeValid()){
                 showMessage("File type must be .jpg, .jpeg, .png")
-                return
+                e.preventDefault();
+                return false;
             }
             if(!isFileSizeValid()){
                 showMessage("File size must be smaller than 5MB")
-                return
+                e.preventDefault();
+                return false;
             }
         }
 
