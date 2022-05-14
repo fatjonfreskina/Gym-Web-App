@@ -7,7 +7,7 @@ $(document).ready(function() {
     let messageBody = $("#alert-message-body")
 
     buttonUpdate.click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         let isTrainee = document.getElementById("trainee").checked
         let isTrainer = document.getElementById("trainer").checked
         let isSecretary = document.getElementById("secretary").checked

@@ -10,7 +10,7 @@ $(document).ready(function() {
     let messageBody = $("#alert-message-body")
 
     button.click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         //password are not the same
         if(password.val() !== confirmedPassword.val())

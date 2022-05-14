@@ -3,7 +3,7 @@ $(document).ready(function() {
     const button = $('#button')
     //error boxes
     let alertBox = $("#alert-box")
-    alertBox.hide()
+    //alertBox.hide()
     let messageBody = $("#alert-message-body")
 
     //handle file upload label change
@@ -15,7 +15,7 @@ $(document).ready(function() {
     });
 
     button.click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         //TODO: CHECK WRONG?? ALSO BACKEND
 
         let avatar = document.getElementById("avatar")
@@ -33,6 +33,11 @@ $(document).ready(function() {
                 e.preventDefault();
                 return false;
             }
+        }else
+        {
+            showMessage("You must upload a file")
+            e.preventDefault();
+            return false;
         }
         form.submit()
     })

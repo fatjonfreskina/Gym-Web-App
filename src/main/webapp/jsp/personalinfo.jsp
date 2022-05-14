@@ -45,15 +45,7 @@
 
         <form method="post" action="<c:url value="/personal_info"/>" enctype="multipart/form-data" id="form">
 
-            <div class="form-group row">
-                <div id="alert-box" class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <p id="alert-message-body" class="alert-box-message">
-                    </p>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
+
             <%-- ********** AVATAR ********** --%>
             <div class="form-group row">
                 <label class="col-sm-3 col-form-label">Avatar :</label>
@@ -97,6 +89,16 @@
             </div>
 
         </form>
+
+        <div class="form-group row">
+            <div id="alert-box" class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert" style="display: none;">
+                <p id="alert-message-body" class="alert-box-message">
+                </p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
 
         <%-- ********** TAX CODE ********** --%>
         <div class="form-group row">

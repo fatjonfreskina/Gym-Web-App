@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
 
     buttonRegister.click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         let now = new Date();
         // check if date is in the past
         if(expirationdate.val() < now)
