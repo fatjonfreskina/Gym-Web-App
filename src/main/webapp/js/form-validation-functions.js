@@ -1,11 +1,10 @@
-//TODO: fix variable declarations inside functions: var/const/let ?
 /**
  *
  * Checks if the length of the password is between 8 and 16 chars
  *
  * @returns {boolean} true if length is ok
  */
-export function isPswLengthSafe(psw) {
+function isPswLengthSafe(psw) {
     //var psw = document.getElementById('password');
 
     if (psw.length < 8 || psw.length > 16) {
@@ -21,7 +20,7 @@ export function isPswLengthSafe(psw) {
  *
  * @returns {boolean} true if chars are ok
  */
-export function isPswCharSafe(psw){
+function isPswCharSafe(psw){
 
     var lowerCases = /[a-z]/g;
     var upperCases = /[A-Z]/g;
@@ -38,7 +37,7 @@ export function isPswCharSafe(psw){
  *
  * @returns {boolean} true if has numbers
  */
-export function hasNumbers(psw){
+function hasNumbers(psw){
 
     var numbers = /[0-9]/g;
     if (!psw.match(numbers)) {
@@ -54,13 +53,16 @@ export function hasNumbers(psw){
  *
  * @returns {boolean} true if it is smaller than 5MB
  */
-export function isFileSizeValid(fileInput){
+function isFileSizeValid(){
+    const fileInput =
+        document.getElementById('file');
 
-    if (fileInput.files[0].size/1024 > 5120){ //5MB
-        return false;
+    // 5 MB
+    if (fileInput.files[0].size/1024 > 5120){
+        return false //File is too big
     }
     else {
-        return true;
+        return true //Proceed with validation
     }
 }
 
@@ -70,17 +72,43 @@ export function isFileSizeValid(fileInput){
  *
  * @returns {boolean} true if it is valid
  */
-export function isFileTypeValid(fileInput) {
+function isFileTypeValid() {
+    const fileInput =
+        document.getElementById('file');
 
     const filePath = fileInput.value;
+
     // Allowed file type
     const allowedExtensions =
         /(\.jpg|\.jpeg|\.png)$/i;
 
     if (!allowedExtensions.exec(filePath)) {
-        return false;
+        return false       //Show error message
     }
     else {
+        return true        //Proceed with validation
+    }
+}
+
+/**
+ *
+ * Checks if the telephone length is valid
+ *
+ * @param telephone the telephone passed in
+ * @returns {boolean} true if it is valid
+ */
+function isPhoneLengthValid(telephone){
+    if (telephone.length !== 10){
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function isConfirmedPswMatching (password1, password2){
+    if (password2 !== password1) {
+        return false;
+    } else {
         return true;
     }
 }

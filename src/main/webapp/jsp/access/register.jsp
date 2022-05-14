@@ -60,7 +60,7 @@
         <div class="form-group row">
             <label for="telephone_number" class="col-sm-2 col-form-label">Telephone Number :</label>
             <div class="col-sm-10">
-                <input type="tel" name="telephone_number" id="telephone_number"
+                <input type="tel" name="telephone_number" minlength="10" maxlength="10" id="telephone_number"
                        class="form-control" placeholder="Insert Telephone Number" required >
             </div>
         </div>
@@ -121,7 +121,7 @@
 
 <!-- Common JS to handle messages -->
 <script src="<c:url value="/js/message.js"/>"></script>
-
+<script src="<c:url value="/js/form-validation-functions.js"/>"></script>
 <script src="<c:url value="/js/register.js"/>"></script>
 
 </body>
