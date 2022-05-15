@@ -5,31 +5,34 @@ $(document).ready(function() {
     const form = $('#form')
     const button =$('#button')
 
-    //error boxes
-    let alertBox = $("#alert-box")
-    let messageBody = $("#alert-message-body")
 
     button.click(function (e) {
-        //e.preventDefault();
-
-        //password are not the same
+        //perform password validation
         if(password.val() !== confirmedPassword.val())
         {
-            showMessage("Password Are Different")
+            showWarningMessage("Password Are Different")
+            e.preventDefault();
+            return false;
+        }
+
+        if (!isPswLengthSafe(password.val())){
+            showWarningMessage("Password must be between 8 and 16 characters");
+            e.preventDefault();
+            return false;
+        }
+
+        if (!isPswCharSafe(password.val())){
+            showWarningMessage("Password must contain upper and lower case letters");
+            e.preventDefault();
+            return false;
+        }
+
+        if (!hasNumbers(password.val())){
+            showWarningMessage("Password must contain numbers");
             e.preventDefault();
             return false;
         }
         form.submit()
     })
-
-    function showMessage(message) {
-        messageBody.empty()
-        messageBody.text(message)
-        alertBox.show()
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-    }
-
 
 })

@@ -32,6 +32,7 @@ function showWarningMessage(message) {
     messageBody.text(message)
 
     const alertBox = $('#alert-warning');
+    window.scrollTo(0, 0);
     alertBox.show();
 
     alertBox.fadeTo(2000, 500).slideUp(500, function () {
