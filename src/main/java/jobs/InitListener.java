@@ -32,7 +32,7 @@ public class InitListener implements ServletContextListener {
         scheduler.scheduleAtFixedRate(new DropUncompletedRegistrations(), 0, 1, TimeUnit.DAYS);
 
 
-        scheduler.scheduleAtFixedRate(new DropUncompletedPasswordChanged(), 0, 1, TimeUnit.MINUTES);
+        scheduler.scheduleAtFixedRate(new DropUncompletedPasswordChanged(), 0, 30, TimeUnit.MINUTES);
 
         //Super call
         jakarta.servlet.ServletContextListener.super.contextInitialized(sce);
