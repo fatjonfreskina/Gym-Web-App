@@ -50,7 +50,7 @@
             </button>
         </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-update">Update</button>
+        <input type="submit" class="btn btn-outline-primary btn-lg" id="btn-update" value="Update"/>
     </form>
 </main>
 <jsp:include page="../include/footer.jsp"/>

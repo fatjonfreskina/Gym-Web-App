@@ -11,15 +11,26 @@ $(document).ready(function() {
 
     button.click(function (e) {
         //e.preventDefault();
+        if (form[0].checkValidity()) {
+            if (password.val() === "" || confirmedPassword.val() === "") {
+                showMessage("You must insert at least one character for the password")
+                e.preventDefault();
+                return false;
+            }
 
-        //password are not the same
-        if(password.val() !== confirmedPassword.val())
-        {
-            showMessage("Password Are Different")
-            e.preventDefault();
-            return false;
+            //password are not the same
+            if (password.val() !== confirmedPassword.val()) {
+                showMessage("Password Are Different")
+                e.preventDefault();
+                return false;
+            }
+            form.submit()
         }
-        form.submit()
+        else
+        {
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
+        }
     })
 
     function showMessage(message) {

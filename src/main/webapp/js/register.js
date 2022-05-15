@@ -22,85 +22,90 @@ $(document).ready(function() {
     buttonRegister.click(function (e) {
         //e.preventDefault();
 
-        //telephone control
-        if (telephone.val().length !== 10)
+        if (form[0].checkValidity())
         {
-            showMessage("Telephone length is not correct");
-            e.preventDefault();
-            return false;
-        }
-        else
-        {
-            let parsed = Number(telephone.val())
-            if (isNaN(parsed))
+            if (telephone.val().length !== 10)
             {
-                showMessage("Provided Telephone not valid")
+                showMessage("Telephone length is not correct");
                 e.preventDefault();
                 return false;
             }
-        }
-        if (document.location.pathname === "/wa2122-gwa/register")
-        {
-            // < 14 years
-            if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < 14)
+            else
             {
-                showMessage("You must be at least 14 years old to sign in")
-                e.preventDefault();
-                return false;
+                let parsed = Number(telephone.val())
+                if (isNaN(parsed))
+                {
+                    showMessage("Provided Telephone not valid")
+                    e.preventDefault();
+                    return false;
+                }
             }
-        }
-        else
-        {
-            let isTrainee = document.getElementById("trainee").checked
-            let isTrainer = document.getElementById("trainer").checked
-            let isSecretary = document.getElementById("secretary").checked
-            if (!isTrainer && !isTrainee && !isSecretary)
+            if (document.location.pathname === "/wa2122-gwa/register")
             {
-                showMessage("Select a role for the new user")
-                e.preventDefault();
-                return false;
+                // < 14 years
+                if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < 14)
+                {
+                    showMessage("You must be at least 14 years old to sign in")
+                    e.preventDefault();
+                    return false;
+                }
             }
-            let years_threshold = 14
-            if (isTrainer || isSecretary)
+            else
             {
-                years_threshold = 18
+                let isTrainee = document.getElementById("trainee").checked
+                let isTrainer = document.getElementById("trainer").checked
+                let isSecretary = document.getElementById("secretary").checked
+                if (!isTrainer && !isTrainee && !isSecretary)
+                {
+                    showMessage("Select a role for the new user")
+                    e.preventDefault();
+                    return false;
+                }
+                let years_threshold = 14
+                if (isTrainer || isSecretary)
+                {
+                    years_threshold = 18
+                }
+                if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < years_threshold)
+                {
+                    let msg = `The new user must be at least ${years_threshold} years old`
+                    showMessage(msg)
+                    e.preventDefault();
+                    return false;
+                }
             }
-            if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < years_threshold)
-            {
-                let msg = `The new user must be at least ${years_threshold} years old`
-                showMessage(msg)
-                e.preventDefault();
-                return false;
-            }
-        }
 
-        if (document.location.pathname === "/wa2122-gwa/register")
-        {
-            //password are not the same
-            if(password.val() !== confirmedPassword.val())
+            if (document.location.pathname === "/wa2122-gwa/register")
             {
-                showMessage("Password Are Different")
-                e.preventDefault();
-                return false;
+                //password are not the same
+                if(password.val() !== confirmedPassword.val())
+                {
+                    showMessage("Password Are Different")
+                    e.preventDefault();
+                    return false;
+                }
             }
-        }
 
-        let avatar = document.getElementById("file")
-        //File check
-        if (avatar.files.length !== 0 ){
-            if(!isFileTypeValid()){
-                showMessage("File type must be .jpg, .jpeg, .png")
-                e.preventDefault();
-                return false;
+            let avatar = document.getElementById("file")
+            //File check
+            if (avatar.files.length !== 0 ){
+                if(!isFileTypeValid()){
+                    showMessage("File type must be .jpg, .jpeg, .png")
+                    e.preventDefault();
+                    return false;
+                }
+                if(!isFileSizeValid()){
+                    showMessage("File size must be smaller than 5MB")
+                    e.preventDefault();
+                    return false;
+                }
             }
-            if(!isFileSizeValid()){
-                showMessage("File size must be smaller than 5MB")
-                e.preventDefault();
-                return false;
-            }
+            form.submit();
+        } else
+        {
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
         }
-
-        form.submit();
     })
 
     function showMessage(message) {

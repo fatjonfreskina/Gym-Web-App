@@ -36,7 +36,7 @@
 
         <jsp:include page="/jsp/include/message.jsp"/>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg">Login</button>
+        <input type="submit" class="btn btn-outline-primary btn-lg" value="Login"/>
     </form>
 
 

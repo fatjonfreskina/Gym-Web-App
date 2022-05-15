@@ -8,16 +8,22 @@ $(document).ready(function() {
 
     buttonUpdate.click(function (e) {
         //e.preventDefault();
-        let isTrainee = document.getElementById("trainee").checked
-        let isTrainer = document.getElementById("trainer").checked
-        let isSecretary = document.getElementById("secretary").checked
-        if (!isTrainer && !isTrainee && !isSecretary)
-        {
-            showMessage("Please choose a role for the selected user")
-            e.preventDefault();
-            return false;
+        if (form[0].checkValidity()) {
+            let isTrainee = document.getElementById("trainee").checked
+            let isTrainer = document.getElementById("trainer").checked
+            let isSecretary = document.getElementById("secretary").checked
+            if (!isTrainer && !isTrainee && !isSecretary) {
+                showMessage("Please choose a role for the selected user")
+                e.preventDefault();
+                return false;
+            }
+            form.submit()
         }
-        form.submit()
+        else
+        {
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
+        }
     })
 
     function showMessage(message) {

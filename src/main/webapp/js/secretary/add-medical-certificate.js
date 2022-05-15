@@ -17,31 +17,35 @@ $(document).ready(function() {
     });
 
     buttonRegister.click(function (e) {
-        //e.preventDefault();
-        let now = new Date();
-        // check if date is in the past
-        if(expirationdate.val() < now)
-        {
-            showMessage("Expiration date is not valid")
-            e.preventDefault();
-            return false;
-        }
-        let avatar = document.getElementById("file")
-        //File check
-        if (avatar.files.length !== 0 ){
-            if(!isFileTypeValid()){
-                showMessage("File type must be a .pdf")
+        if (form[0].checkValidity()) {
+            let now = new Date();
+            // check if date is in the past
+            if (expirationdate.val() < now) {
+                showMessage("Expiration date is not valid")
                 e.preventDefault();
                 return false;
             }
-            if(!isFileSizeValid()){
-                showMessage("File size must be smaller than 5MB")
-                e.preventDefault();
-                return false;
+            let avatar = document.getElementById("file")
+            //File check
+            if (avatar.files.length !== 0) {
+                if (!isFileTypeValid()) {
+                    showMessage("File type must be a .pdf")
+                    e.preventDefault();
+                    return false;
+                }
+                if (!isFileSizeValid()) {
+                    showMessage("File size must be smaller than 5MB")
+                    e.preventDefault();
+                    return false;
+                }
             }
-        }
 
-        form.submit()
+            form.submit()
+        }else
+        {
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
+        }
     })
 
     function showMessage(message) {

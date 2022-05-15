@@ -108,6 +108,10 @@ public class PasswordChangeServlet extends AbstractServlet {
         String raw_password = req.getParameter(Constants.PASSWORD);
         String raw_confirm = req.getParameter(Constants.CONFIRM_PASSWORD);
 
+        if("".equals(raw_password) || "".equals(raw_confirm)) {
+            return new Message(Codes.PASSWORD_NOT_VALID.getErrorMessage(),true);
+        }
+
         //Validate the password field against XSS, the password is valid if it does not contain something suspicious
         if (InputValidation.containsXSS(raw_password)) {
             return new Message(Codes.PASSWORD_NOT_VALID.getErrorMessage(), true);

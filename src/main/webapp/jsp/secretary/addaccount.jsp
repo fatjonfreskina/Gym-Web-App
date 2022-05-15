@@ -101,7 +101,7 @@
             </button>
         </div>
 
-        <button type="submit" class="btn btn-outline-primary btn-lg" id="btn-register">Register</button>
+        <input type="submit" class="btn btn-outline-primary btn-lg" id="btn-register" value="Register" />
     </form>
 
 

@@ -57,7 +57,7 @@
             </button>
         </div>
 
-        <button type="submit" id="btn-send" class="btn btn-outline-primary btn-lg" >Add Certificate</button>
+        <input type="submit" id="btn-send" class="btn btn-outline-primary btn-lg" value="Add Certificate"/>
     </form>
 </main>
 
