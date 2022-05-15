@@ -501,7 +501,7 @@ public class Constants {
      * Regex to specify which file name are accepted for avatar file
      */
     public static final Pattern ACCEPTED_AVATAR_FILENAME_REGEX = Pattern.compile(
-            "^(.*)\\.(png|jpg|jpeg)$", Pattern.DOTALL);
+            "^(.*)\\.(png|jpg|jpeg|PNG|JPG|JPEG)$", Pattern.DOTALL);
 
     /**
      * Regex to specify which file name are accepted for medical certificate file
