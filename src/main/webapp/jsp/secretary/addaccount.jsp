@@ -108,6 +108,7 @@
         <jsp:include page="/jsp/include/moment/scripts.jsp"/>
         <!-- Common JS to handle messages -->
         <script src="<c:url value="/js/message.js"/>"></script>
+        <script src="<c:url value="/js/form-validation-functions.js"/>"></script>
         <script src="<c:url value="/js/file_upload.js"/>"></script>
         <script src="<c:url value="/js/register.js"/>"></script>
     </body>

@@ -1,23 +1,17 @@
 $(document).ready(function() {
-
-    let alertBox = $("#alert-box")
-    let messageBody = $("#alert-message-body")
-
     const form = $('#form')
-
 
     form.submit(function (e) {
         e.preventDefault()
-
         if($("input[name=trainee]:checked").length === 0)
         {
-            showMessage("You need to select a User")
+            showWarningMessage("You need to select a User")
             return
         }
 
         if($("input[name=course_edition_id]:checked").length === 0)
         {
-            showMessage("You need to select a Date")
+            showWarningMessage("You need to select a Date")
             return
         }
 
@@ -28,16 +22,10 @@ $(document).ready(function() {
             type: "POST",
             data: formValues,
             success: function (response) {
-                messageBody.empty()
-                console.log(response.message)
-                messageBody.text(response.message)
-                alertBox.show()
-                alertBox.fadeTo(2000, 500).slideUp(500, function () {
-                    $(this).slideUp(500);
-                });
+                showSuccessMessage(response.message)
             },
             error: function (data) {
-                showMessage("Some unknown server side error occurred")
+                showWarningMessage("Some unknown server side error occurred")
             }
         });
     });
@@ -59,7 +47,7 @@ $(document).ready(function() {
                 }
             },
             error: function (data) {
-                showMessage("Some unknown server side error occurred")
+                showWarningMessage("Some unknown server side error occurred")
             }
 
         });
@@ -84,20 +72,10 @@ $(document).ready(function() {
                 }
             },
             error: function (xhr) {
-                showMessage("Some unknown server side error occurred")
+                showWarningMessage("Some unknown server side error occurred")
             }
         });
     })
 
     courseName.trigger('change')
-
-
-    function showMessage(message) {
-        messageBody.empty()
-        messageBody.text(message)
-        alertBox.show()
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-    }
 });
