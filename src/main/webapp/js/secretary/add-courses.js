@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    let alertBox = $("#alert-box")
-    let messageBody = $("#alert-message-body")
 
     const cost30 = $('#cost_30')
     const cost90 = $('#cost_90')
@@ -42,14 +40,14 @@ $(document).ready(function() {
 
         }else
         {
-            showMessage("Checkboxes and Prices does not match")
+            showWarningMessage("Checkboxes and Prices does not match")
             return
         }
 
         //date correctness
         if(moment(dateFirstEvent.val(),'YYYY-MM-DD').isBefore(moment()))
         {
-            showMessage("Date must be after today")
+            showWarningMessage("Date must be after today")
             return
         }
 
@@ -57,7 +55,7 @@ $(document).ready(function() {
         if((monday.val().length === 0 ) && (tuesday.val().length === 0 ) && (wednesday.val().length === 0 ) &&
             (thursday.val().length === 0 ) && (friday.val().length === 0 ) && (saturday.val().length === 0 ) && (sunday.val().length === 0 ))
         {
-            showMessage("Select at least one hour!")
+            showWarningMessage("Select at least one hour!")
             return
         }
 
@@ -69,28 +67,13 @@ $(document).ready(function() {
             type: "POST",
             data: formValues,
             success: function (response) {
-
-                messageBody.empty()
-                messageBody.text(response.message)
-
-                alertBox.show()
-                alertBox.fadeTo(2000, 500).slideUp(500, function () {
-                    $(this).slideUp(500);
-                });
+                showSuccessMessage(response.message)
             },
             error: function (data) {
-                showMessage("Some unknown server side error occurred")
+                showWarningMessage("Some unknown server side error occurred")
             }
         });
     });
 
-    function showMessage(message) {
-        messageBody.empty()
-        messageBody.text(message)
-        alertBox.show()
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-    }
 
 });

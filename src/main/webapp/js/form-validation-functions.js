@@ -68,11 +68,33 @@ function isFileSizeValid(){
 
 /**
  *
- * Checks if the file type is valid (allowed: jpg, jpeg, png)
+ * Checks if the document file is valid (allowed: pdf)
  *
  * @returns {boolean} true if it is valid
  */
-function isFileTypeValid() {
+function isDocumentFileValid() {
+    const fileInput =
+        document.getElementById('file');
+
+    const filePath = fileInput.value;
+    // Allowed file type
+    const allowedExtensions = /(\.pdf)$/i;
+
+    if (!allowedExtensions.exec(filePath)) {
+        return false       //Show error message
+    }
+    else {
+        return true        //Proceed with validation
+    }
+}
+
+/**
+ *
+ * Checks if the image file is valid (allowed: jpg, jpeg, png)
+ *
+ * @returns {boolean} true if it is valid
+ */
+function isImageFileValid() {
     const fileInput =
         document.getElementById('file');
 

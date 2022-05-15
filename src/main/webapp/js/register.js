@@ -5,16 +5,9 @@ $(document).ready(function() {
     const confirmedPassword = $('#confirm_password')
     const telephone = $('#telephone_number')
     const buttonRegister = $('#btn-register')
-    const file = $('#file')
-    
-    //TODO avatar label change import
-    //handle file upload label change
-    $(".custom-file-input").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        if(fileName === "")
-            fileName = "Choose File"
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
+
+    //handle label change when a user selects a file to upload
+    upload_listener()
 
     buttonRegister.click(function (e) {
 
@@ -37,6 +30,7 @@ $(document).ready(function() {
         }
         else
         {
+            //check if a role is selected
             let isTrainee = document.getElementById("trainee").checked
             let isTrainer = document.getElementById("trainer").checked
             let isSecretary = document.getElementById("secretary").checked
@@ -51,6 +45,7 @@ $(document).ready(function() {
             {
                 years_threshold = 18
             }
+            //check age of the new user
             if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < years_threshold)
             {
                 let msg = `The new user must be at least ${years_threshold} years old`
@@ -74,7 +69,7 @@ $(document).ready(function() {
         let avatar = document.getElementById("file")
         //File check
         if (avatar.files.length !== 0 ){
-            if(!isFileTypeValid()){
+            if(!isImageFileValid()){
                 showWarningMessage("File type must be .jpg, .jpeg, .png")
                 e.preventDefault();
                 return false;
@@ -85,7 +80,7 @@ $(document).ready(function() {
                 return false;
             }
         }
-
+        //check password requirements
         if (!isPswLengthSafe(password.val())){
             showWarningMessage("Password must be between 8 and 16 characters");
             e.preventDefault();
