@@ -98,12 +98,13 @@ function isImageFileValid() {
         document.getElementById('file');
 
     const filePath = fileInput.value;
+    let lowerFilePath = filePath.toLowerCase();
 
     // Allowed file type
     const allowedExtensions =
         /(\.jpg|\.jpeg|\.png)$/i;
 
-    if (!allowedExtensions.exec(filePath)) {
+    if (!allowedExtensions.exec(lowerFilePath)) {
         return false       //Show error message
     }
     else {
