@@ -58,7 +58,7 @@ $(document).ready(function() {
         if (document.location.pathname === "/wa2122-gwa/register")
         {
             //password are not the same
-            if(password.val() !== confirmedPassword.val())
+            if(!isConfirmedPswMatching(password.val(), confirmedPassword.val()))
             {
                 showWarningMessage("Password Are Different")
                 e.preventDefault();

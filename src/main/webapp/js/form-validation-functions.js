@@ -5,7 +5,6 @@
  * @returns {boolean} true if length is ok
  */
 function isPswLengthSafe(psw) {
-    //var psw = document.getElementById('password');
 
     if (psw.length < 8 || psw.length > 16) {
         return false;
@@ -127,8 +126,16 @@ function isPhoneLengthValid(telephone){
     }
 }
 
-function isConfirmedPswMatching (password1, password2){
-    if (password2 !== password1) {
+/**
+ *
+ * Checks if password and confirm password are the same
+ *
+ * @param password the password input from the form
+ * @param confirmedPassword the confirmed password input from the form
+ * @returns {boolean} true if they are the same
+ */
+function isConfirmedPswMatching (password, confirmedPassword){
+    if (password !== confirmedPassword) {
         return false;
     } else {
         return true;
