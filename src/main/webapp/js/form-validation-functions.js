@@ -6,11 +6,7 @@
  */
 function isPswLengthSafe(psw) {
 
-    if (psw.length < 8 || psw.length > 16) {
-        return false;
-    } else {
-        return true;
-    }
+    return !(psw.length < 8 || psw.length > 16);
 }
 
 /**
@@ -21,29 +17,21 @@ function isPswLengthSafe(psw) {
  */
 function isPswCharSafe(psw){
 
-    var lowerCases = /[a-z]/g;
-    var upperCases = /[A-Z]/g;
-    if (!psw.match(upperCases) || !psw.match(lowerCases)){
-        return false;
-    } else {
-        return true;
-    }
+    let lowerCases = /[a-z]/g;
+    let upperCases = /[A-Z]/g;
+    return !(!psw.match(upperCases) || !psw.match(lowerCases));
 }
 
 /**
  *
  * Checks if the password field given contains a number
  *
- * @returns {boolean} true if has numbers
+ * @returns {boolean} true if password has numbers
  */
 function hasNumbers(psw){
 
-    var numbers = /[0-9]/g;
-    if (!psw.match(numbers)) {
-        return false
-    } else {
-        return true;
-    }
+    let numbers = /[0-9]/g;
+    return psw.match(numbers);
 }
 
 /**
@@ -57,12 +45,7 @@ function isFileSizeValid(){
         document.getElementById('file');
 
     // 5 MB
-    if (fileInput.files[0].size/1024 > 5120){
-        return false //File is too big
-    }
-    else {
-        return true //Proceed with validation
-    }
+    return fileInput.files[0].size / 1024 <= 5120;
 }
 
 /**
@@ -79,12 +62,7 @@ function isDocumentFileValid() {
     // Allowed file type
     const allowedExtensions = /(\.pdf)$/i;
 
-    if (!allowedExtensions.exec(filePath)) {
-        return false       //Show error message
-    }
-    else {
-        return true        //Proceed with validation
-    }
+    return allowedExtensions.exec(filePath);
 }
 
 /**
@@ -104,12 +82,7 @@ function isImageFileValid() {
     const allowedExtensions =
         /(\.jpg|\.jpeg|\.png)$/i;
 
-    if (!allowedExtensions.exec(lowerFilePath)) {
-        return false       //Show error message
-    }
-    else {
-        return true        //Proceed with validation
-    }
+    return allowedExtensions.exec(lowerFilePath);
 }
 
 /**
@@ -120,11 +93,7 @@ function isImageFileValid() {
  * @returns {boolean} true if it is valid
  */
 function isPhoneLengthValid(telephone){
-    if (telephone.length !== 10){
-        return false;
-    } else {
-        return true;
-    }
+    return telephone.length === 10;
 }
 
 /**
@@ -136,9 +105,5 @@ function isPhoneLengthValid(telephone){
  * @returns {boolean} true if they are the same
  */
 function isConfirmedPswMatching (password, confirmedPassword){
-    if (password !== confirmedPassword) {
-        return false;
-    } else {
-        return true;
-    }
+    return password === confirmedPassword;
 }
