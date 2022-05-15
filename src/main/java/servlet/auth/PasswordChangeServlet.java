@@ -98,7 +98,10 @@ public class PasswordChangeServlet extends AbstractServlet {
             //Retrieve the PasswordReset instance
             passwordReset = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
             //Retrieve the Person associated
-            actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordReset.getPerson()).execute();
+            if(passwordReset != null)
+                actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordReset.getPerson()).execute();
+            else
+                return new Message(Codes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         } catch (SQLException | NamingException e) {
             //Something went wrong in the handling of the token
             return new Message(Codes.TOKEN_NOT_FOUND.getErrorMessage(), true);
