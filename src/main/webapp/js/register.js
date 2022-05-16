@@ -12,8 +12,8 @@ $(document).ready(function () {
     buttonRegister.click(function (e) {
         //e.preventDefault();
 
+        //Enable HTML5 validity checks
         if (!form[0].checkValidity()) {
-            //To call html5 validation without recursive calls
             form[0].reportValidity()
             return false;
         }
