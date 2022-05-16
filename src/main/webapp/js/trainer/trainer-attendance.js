@@ -13,7 +13,8 @@ GET_Trainee = (email) => {
         },
         error: (response) => {
             //console.log(response);
-            showWarningMessage("Server error while retrieving data");
+            if(!response.responseJSON.isError)
+                showWarningMessage("Server error while retrieving data");
         }
     });
 }
@@ -30,9 +31,9 @@ GET_TrainerAttendance = () => {
             updateSubscriptions(response);
             return response;
         },
-        error: function (err) {
-            //console.log(response);
-            showWarningMessage("Server error while retrieving data");
+        error: function (response) {
+            if(!response.responseJSON.isError)
+                showWarningMessage("Server error while retrieving data");
         }
     });
 }
@@ -64,7 +65,8 @@ POST_Subscription = (email) => {
         },
         error: function (response) {
             //console.log(response);
-            showWarningMessage("Server error sending data");
+            if(!response.responseJSON.isError)
+                showWarningMessage("Server error sending data");
         }
     });
 }
@@ -84,7 +86,8 @@ DELETE_Reservation = (email) => {
         },
         error: function (err) {
             //console.log(response);
-            showWarningMessage("Server error sending data");
+            if(!err.responseJSON.isError)
+                showWarningMessage("Server error sending data");
         }
     });
 }
@@ -139,7 +142,8 @@ updateReservations = (attendances) => {
         }); else updateReservationsTable(results)
     }).fail(function(response){
         //console.log(response);
-        showWarningMessage("Server error while updating reservation");
+        if(!response.responseJSON.isError)
+            showWarningMessage("Server error while updating reservation");
     });
 }
 
@@ -198,7 +202,8 @@ updateSubscriptions = (attendance) => {
         }); else updateSubscriptionsTable(results)
     }).fail(function(response){
         //console.log(response);
-        showWarningMessage("Server error while updating reservation");
+        if(!response.responseJSON.isError)
+            showWarningMessage("Server error while updating reservation");
     });
 }
 
