@@ -55,38 +55,42 @@ public class ManageRolesServlet extends AbstractServlet {
         else
         {
             email = req.getParameter(Constants.EMAIL);
-            boolean isTrainer = false;
-            if (req.getParameter(Person.ROLE_TRAINER) != null)
-                isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
-            boolean isSecretary = false;
-            if (req.getParameter(Person.ROLE_SECRETARY) != null)
-                isSecretary = req.getParameter(Person.ROLE_SECRETARY).equals("on");
-            boolean isTrainee = false;
-            if (req.getParameter(Person.ROLE_TRAINEE) != null)
-                isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
-            try
-            {
-                Person p = new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute();
-                if (p == null)
-                    error = Codes.INVALID_FIELDS;
-                else
-                {
-                    new DeletePersonRoleDatabase(getDataSource().getConnection(), p).execute();
-                    if (isSecretary)
-                        new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_SECRETARY).execute();
-                    if (isTrainee)
-                        new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINEE).execute();
-                    if (isTrainer)
-                        new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINER).execute();
-                }
-            } catch (SQLException e) {
-                error = Codes.INTERNAL_ERROR;
-            } catch (NamingException e) {
-                error = Codes.INTERNAL_ERROR;
-            }
-            if (error.getErrorCode() != Codes.OK.getErrorCode())
-                message = new Message(error.getErrorMessage(), true);
 
+            String emailLogged = (String) req.getSession(false).getAttribute("email");
+            if(emailLogged.equals(email))
+                message = new Message(Codes.INVALID_FIELDS.getErrorMessage(), true);
+            else
+            {
+                boolean isTrainer = false;
+                if (req.getParameter(Person.ROLE_TRAINER) != null)
+                    isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
+                boolean isSecretary = false;
+                if (req.getParameter(Person.ROLE_SECRETARY) != null)
+                    isSecretary = req.getParameter(Person.ROLE_SECRETARY).equals("on");
+                boolean isTrainee = false;
+                if (req.getParameter(Person.ROLE_TRAINEE) != null)
+                    isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
+                try
+                {
+                    Person p = new GetPersonByEmailDatabase(getDataSource().getConnection(), email).execute();
+                    if (p == null)
+                        error = Codes.INVALID_FIELDS;
+                    else
+                    {
+                        new DeletePersonRoleDatabase(getDataSource().getConnection(), p).execute();
+                        if (isSecretary)
+                            new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_SECRETARY).execute();
+                        if (isTrainee)
+                            new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINEE).execute();
+                        if (isTrainer)
+                            new InsertPersonRoleDatabase(getDataSource().getConnection(), p, Person.ROLE_TRAINER).execute();
+                    }
+                } catch (SQLException | NamingException e) {
+                    error = Codes.INTERNAL_ERROR;
+                }
+                if (error.getErrorCode() != Codes.OK.getErrorCode())
+                    message = new Message(error.getErrorMessage(), true);
+            }
         }
         res.setStatus(error.getHTTPCode());
         req.setAttribute(Constants.MESSAGE, message);
