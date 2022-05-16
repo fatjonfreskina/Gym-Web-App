@@ -18,9 +18,13 @@ $(document).ready(function () {
             url: "rest/addsubscription",
             cache: false,
             type: "POST",
+            dataType: 'json',
             data: formValues,
             success: function (response) {
-                showSuccessMessage(response.message)
+                if(response.isError)
+                    showWarningMessage(response.message)
+                else
+                    showSuccessMessage(response.message)
             },
             error: function (data) {
                 showWarningMessage("Some unknown server side error occurred")
