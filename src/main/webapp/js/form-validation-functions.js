@@ -15,7 +15,7 @@ function isPswLengthSafe(psw) {
  *
  * @returns {boolean} true if chars are ok
  */
-function isPswCharSafe(psw){
+function isPswCharSafe(psw) {
 
     let lowerCases = /[a-z]/g;
     let upperCases = /[A-Z]/g;
@@ -28,7 +28,7 @@ function isPswCharSafe(psw){
  *
  * @returns {boolean} true if password has numbers
  */
-function hasNumbers(psw){
+function hasNumbers(psw) {
 
     let numbers = /[0-9]/g;
     return psw.match(numbers);
@@ -40,7 +40,7 @@ function hasNumbers(psw){
  *
  * @returns {boolean} true if it is smaller than 5MB
  */
-function isFileSizeValid(){
+function isFileSizeValid() {
     const fileInput =
         document.getElementById('file');
 
@@ -92,7 +92,7 @@ function isImageFileValid() {
  * @param telephone the telephone passed in
  * @returns {boolean} true if it is valid
  */
-function isPhoneLengthValid(telephone){
+function isPhoneLengthValid(telephone) {
     return telephone.length === 10;
 }
 
@@ -104,6 +104,6 @@ function isPhoneLengthValid(telephone){
  * @param confirmedPassword the confirmed password input from the form
  * @returns {boolean} true if they are the same
  */
-function isConfirmedPswMatching (password, confirmedPassword){
+function isConfirmedPswMatching(password, confirmedPassword) {
     return password === confirmedPassword;
 }

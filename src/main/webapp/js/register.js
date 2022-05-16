@@ -67,7 +67,7 @@ $(document).ready(function () {
         let avatar = document.getElementById("file")
         //File check
         if (avatar.files.length !== 0) {
-            if (!isFileTypeValid()) {
+            if (!isImageFileValid()) {
                 showWarningMessage("File type must be .jpg, .jpeg, .png")
                 e.preventDefault();
                 return;

@@ -91,10 +91,11 @@
         </form>
 
         <div class="form-group row">
-            <div id="alert-box" class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert" style="display: none;">
+            <div id="alert-box" class="alert alert-warning alert-dismissible fade show col-sm-12" role="alert"
+                 style="display: none;">
                 <p id="alert-message-body" class="alert-box-message">
                 </p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -185,7 +186,7 @@
 
 <!-- Common JS to handle messages -->
 <script src="<c:url value="/js/message.js"/>"></script>
-
+<script src="<c:url value="/js/form-validation-functions.js"/>"></script>
 <script src="<c:url value="/js/personal-info.js"/>"></script>
 
 </body>
