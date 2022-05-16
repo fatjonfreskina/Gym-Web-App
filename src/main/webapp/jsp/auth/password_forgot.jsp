@@ -7,11 +7,12 @@
     <meta charset="UTF-8">
     <jsp:include page="/jsp/include/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
+    <jsp:include page="/jsp/include/favicon.jsp"/>
 </head>
 <body>
 <header>
     <jsp:include page="../include/header.jsp"/>
-    <jsp:include page="/jsp/include/favicon.jsp"/>
+
 </header>
 <main class="global-container">
     <form method="POST" action="<c:url value="/password_forgot"/>" enctype="application/x-www-form-urlencoded">
