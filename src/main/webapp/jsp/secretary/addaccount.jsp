@@ -59,7 +59,7 @@
                 <div class="form-group row">
                     <label for="telephone_number" class="col-sm-3 col-form-label">Telephone Number :</label>
                     <div class="col-sm-9">
-                        <input type="tel" name="telephone_number" id="telephone_number" class="form-control"
+                        <input type="tel" name="telephone_number" minlength="10" maxlength="10" id="telephone_number" class="form-control"
                                placeholder="Insert Telephone Number" required/>
                     </div>
                 </div>

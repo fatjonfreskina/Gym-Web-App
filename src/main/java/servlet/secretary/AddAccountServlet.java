@@ -250,8 +250,6 @@ public class AddAccountServlet extends AbstractServlet {
                             //Insert the password reset into the database
                             new InsertPasswordResetDatabase(conn, passwordReset).execute();
 
-                            if(pathImg != null)
-                                req.getSession(false).setAttribute("avatarPath",pathImg);
                             MailTypes.mailForPasswordChanges(p, passwordReset);
                         } catch (NoSuchAlgorithmException | MessagingException e) {
                             error = Codes.INTERNAL_ERROR;
