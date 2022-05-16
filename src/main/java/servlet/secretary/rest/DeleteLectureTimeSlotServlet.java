@@ -7,6 +7,7 @@ import dao.lecturetimeslot.DeleteLectureTimeSlotDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.reservation.GetAllPeopleInReservationTimeSlotDatabase;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import resource.LectureTimeSlot;
@@ -14,6 +15,7 @@ import resource.Message;
 import resource.Person;
 import resource.Reservation;
 import servlet.AbstractServlet;
+import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -114,7 +116,7 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
             //Iterate over all persons
             for (Person p : noticeTo) {
                 Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(), p.getEmail()).execute();
-                //TODO: unlock mail sending             MailTypes.mailForCancellationLecture(person,lectureTimeSlot);
+                MailTypes.mailForCancellationLecture(person,lectureTimeSlot);
             }
 
             //Delete the LectureTimeSlot (all subscriptions have been removed)
@@ -123,7 +125,7 @@ public class DeleteLectureTimeSlotServlet extends AbstractServlet {
             //Operation has been completed successfully
             return new Message(Codes.OK.getErrorMessage(), false);
 
-        } catch (SQLException | NamingException e) {
+        } catch (SQLException | NamingException | MessagingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
     }

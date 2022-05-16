@@ -99,6 +99,12 @@ public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
             //Get the LectureTimeSlot
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName, date, startTime, null, null, null)).execute();
 
+            Date actual = new Date(System.currentTimeMillis());
+            //Check the date of the lesson you are trying to move is after the current date in millis
+            if (date.before(actual)) {
+                return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+            }
+
 
             List<LectureTimeSlot> lecturesToday = new GetLectureTimeSlotsInRangeDatabase(getDataSource().getConnection(),lectureTimeSlot.getDate(),lectureTimeSlot.getDate()).execute(); //all today's lectures
 

@@ -9,6 +9,7 @@ import dao.person.GetNumberLectureTeacherByTeacherDateTimeDatabase;
 import dao.person.GetPersonByEmailDatabase;
 import dao.person.GetTrainerOfLectureTimeSlotDatabase;
 import dao.reservation.GetAllPeopleInReservationTimeSlotDatabase;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import resource.Message;
 import resource.Person;
 import resource.Reservation;
 import servlet.AbstractServlet;
+import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -170,10 +172,10 @@ public class UpdateLectureTimeSlotServlet extends AbstractServlet {
             //Send a mail to each user
             for (Person p : personList) {
                 Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(), p.getEmail()).execute();
-                //TODO: unlock mail sending          MailTypes.mailForTrainerChanged(person, lectureTimeSlot, notes);
+                MailTypes.mailForLectureChanged(person, lectureTimeSlot);
             }
             return new Message(Codes.OK.getErrorMessage(), false);
-        } catch (SQLException | NamingException e) {
+        } catch (SQLException | NamingException | MessagingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
 

@@ -135,4 +135,17 @@ public class MailTypes {
         emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
         MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", emailContent);
     }
+
+    /**
+     * This mail is sent when a substitution for a trainer has been specified
+     *
+     * @param person          recipient of the message
+     * @param lectureTimeSlot lecture time slot modified
+     * @throws MessagingException thrown if there is an error while sending
+     */
+    public static void mailForLectureChanged(Person person, LectureTimeSlot lectureTimeSlot) throws MessagingException {
+        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is rescheduled\n";
+        emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
+        MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", emailContent);
+    }
 }
