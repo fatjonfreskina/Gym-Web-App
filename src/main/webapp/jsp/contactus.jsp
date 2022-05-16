@@ -8,27 +8,7 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
-
-    <style>
-        div.centervert{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-        }
-        div.contacts{
-            padding: 20px;
-
-        }
-        span.contact{
-            margin: 10px;
-        }
-        div.title{
-            font-weight: bold;
-            display: inline;
-        }
-
-    </style>
+    <link rel="stylesheet" href="<c:url value="/css/contactus.css"/>">
 </head>
 <body>
 <header>

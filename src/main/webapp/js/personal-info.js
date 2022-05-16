@@ -17,29 +17,32 @@ $(document).ready(function() {
     button.click(function (e) {
         //e.preventDefault();
         //TODO: CHECK WRONG?? ALSO BACKEND
+        if (form[0].checkValidity()) {
+            let avatar = document.getElementById("avatar")
 
-        let avatar = document.getElementById("avatar")
-
-        //File check
-        if (avatar.files.length !== 0 )
-        {
-            if(!isFileTypeValid()){
-                showMessage("File type must be .jpg, .jpeg, .png")
+            //File check
+            if (avatar.files.length !== 0) {
+                if (!isFileTypeValid()) {
+                    showMessage("File type must be .jpg, .jpeg, .png")
+                    e.preventDefault();
+                    return false;
+                }
+                if (!isFileSizeValid()) {
+                    showMessage("File size must be smaller than 5MB")
+                    e.preventDefault();
+                    return false;
+                }
+            } else {
+                showMessage("You must upload a file")
                 e.preventDefault();
                 return false;
             }
-            if(!isFileSizeValid()){
-                showMessage("File size must be smaller than 5MB")
-                e.preventDefault();
-                return false;
-            }
+            form.submit()
         }else
         {
-            showMessage("You must upload a file")
-            e.preventDefault();
-            return false;
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
         }
-        form.submit()
     })
 
     /**

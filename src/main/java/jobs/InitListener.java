@@ -31,6 +31,9 @@ public class InitListener implements ServletContextListener {
         //Add job to drop user's registration when expired, it runs once a day
         scheduler.scheduleAtFixedRate(new DropUncompletedRegistrations(), 0, 1, TimeUnit.DAYS);
 
+
+        scheduler.scheduleAtFixedRate(new DropUncompletedPasswordChanged(), 0, 30, TimeUnit.MINUTES);
+
         //Super call
         jakarta.servlet.ServletContextListener.super.contextInitialized(sce);
 

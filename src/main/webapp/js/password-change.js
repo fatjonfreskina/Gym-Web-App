@@ -5,34 +5,26 @@ $(document).ready(function() {
     const form = $('#form')
     const button =$('#button')
 
-
     button.click(function (e) {
-        //perform password validation
-        if(password.val() !== confirmedPassword.val())
-        {
-            showWarningMessage("Password Are Different")
-            e.preventDefault();
-            return false;
-        }
+        //e.preventDefault();
+        if (form[0].checkValidity()) {
+            if (password.val() === "" || confirmedPassword.val() === "") {
+                showWarningMessage("You must insert at least one character for the password")
+                e.preventDefault();
+                return false;
+            }
 
-        if (!isPswLengthSafe(password.val())){
-            showWarningMessage("Password must be between 8 and 16 characters");
-            e.preventDefault();
-            return false;
+            //password are not the same
+            if (password.val() !== confirmedPassword.val()) {
+                showWarningMessage("Password Are Different")
+                e.preventDefault();
+                return false;
+            }
+            form.submit()
+        } else {
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
         }
-
-        if (!isPswCharSafe(password.val())){
-            showWarningMessage("Password must contain upper and lower case letters");
-            e.preventDefault();
-            return false;
-        }
-
-        if (!hasNumbers(password.val())){
-            showWarningMessage("Password must contain numbers");
-            e.preventDefault();
-            return false;
-        }
-        form.submit()
     })
 
 })

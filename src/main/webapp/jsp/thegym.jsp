@@ -8,21 +8,7 @@
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
-    <style>
-        .carousel-main-box{
-            width:600px;
-            height:500px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 50px;
-        }
-        .carouselimg {
-            object-fit: cover;
-            height: 500px;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="<c:url value="/css/thegym.css"/>">
 </head>
 <body>
 <header>

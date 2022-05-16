@@ -98,7 +98,10 @@ public class PasswordChangeServlet extends AbstractServlet {
             //Retrieve the PasswordReset instance
             passwordReset = new GetPasswordResetDatabase(getDataSource().getConnection(), token).execute();
             //Retrieve the Person associated
-            actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordReset.getPerson()).execute();
+            if(passwordReset != null)
+                actualPerson = new GetPersonByEmailDatabase(getDataSource().getConnection(), passwordReset.getPerson()).execute();
+            else
+                return new Message(Codes.TOKEN_NOT_FOUND.getErrorMessage(), true);
         } catch (SQLException | NamingException e) {
             //Something went wrong in the handling of the token
             return new Message(Codes.TOKEN_NOT_FOUND.getErrorMessage(), true);
@@ -107,6 +110,10 @@ public class PasswordChangeServlet extends AbstractServlet {
         //Get from the request the new password and then change it
         String raw_password = req.getParameter(Constants.PASSWORD);
         String raw_confirm = req.getParameter(Constants.CONFIRM_PASSWORD);
+
+        if("".equals(raw_password) || "".equals(raw_confirm)) {
+            return new Message(Codes.PASSWORD_NOT_VALID.getErrorMessage(),true);
+        }
 
         //Validate the password field against XSS, the password is valid if it does not contain something suspicious
         if (InputValidation.containsXSS(raw_password)) {

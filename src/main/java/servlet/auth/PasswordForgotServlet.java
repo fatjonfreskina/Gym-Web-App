@@ -118,7 +118,7 @@ public class PasswordForgotServlet extends AbstractServlet {
             conn = getDataSource().getConnection();
             //Take the actual date and add 24H
             Date now = new Date();
-            Date expiration = new Date(now.getTime() + TimeUnit.HOURS.toMillis(24));
+            Date expiration = new Date(now.getTime() + TimeUnit.MINUTES.toMillis(30));
             Timestamp expirationTimestamp = new Timestamp(expiration.getTime());
             //PasswordReset
             PasswordReset passwordReset = new PasswordReset(token, expirationTimestamp, person.getEmail());

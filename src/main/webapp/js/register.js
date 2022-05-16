@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const form = $('#form')
     const birtDate = $('#birth_date')
     const password = $('#password')
@@ -10,6 +10,13 @@ $(document).ready(function() {
     upload_listener()
 
     buttonRegister.click(function (e) {
+        //e.preventDefault();
+
+        if (!form[0].checkValidity()) {
+            //To call html5 validation without recursive calls
+            form[0].reportValidity()
+            return false;
+        }
 
         //telephone control
         if (!isPhoneLengthValid(telephone.val())) {
@@ -18,36 +25,29 @@ $(document).ready(function() {
             return false;
         }
 
-        if (document.location.pathname === "/wa2122-gwa/register")
-        {
+        if (document.location.pathname === "/wa2122-gwa/register") {
             // < 14 years
-            if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < 14)
-            {
+            if (moment().diff(moment(birtDate.val(), 'YYYY-MM-DD'), 'years') < 14) {
                 showWarningMessage("You must be at least 14 years old to sign in")
                 e.preventDefault();
                 return false;
             }
-        }
-        else
-        {
+        } else {
             //check if a role is selected
             let isTrainee = document.getElementById("trainee").checked
             let isTrainer = document.getElementById("trainer").checked
             let isSecretary = document.getElementById("secretary").checked
-            if (!isTrainer && !isTrainee && !isSecretary)
-            {
+            if (!isTrainer && !isTrainee && !isSecretary) {
                 showWarningMessage("Select a role for the new user")
                 e.preventDefault();
                 return false;
             }
             let years_threshold = 14
-            if (isTrainer || isSecretary)
-            {
+            if (isTrainer || isSecretary) {
                 years_threshold = 18
             }
             //check age of the new user
-            if(moment().diff(moment(birtDate.val(),'YYYY-MM-DD'),'years') < years_threshold)
-            {
+            if (moment().diff(moment(birtDate.val(), 'YYYY-MM-DD'), 'years') < years_threshold) {
                 let msg = `The new user must be at least ${years_threshold} years old`
                 showWarningMessage(msg)
                 e.preventDefault();
@@ -55,12 +55,10 @@ $(document).ready(function() {
             }
         }
 
-        if (document.location.pathname === "/wa2122-gwa/register")
-        {
+        if (document.location.pathname === "/wa2122-gwa/register") {
             //password are not the same
-            if(!isConfirmedPswMatching(password.val(), confirmedPassword.val()))
-            {
-                showWarningMessage("Password Are Different")
+            if (password.val() !== confirmedPassword.val()) {
+                showMessage("Password Are Different")
                 e.preventDefault();
                 return false;
             }
@@ -68,37 +66,20 @@ $(document).ready(function() {
 
         let avatar = document.getElementById("file")
         //File check
-        if (avatar.files.length !== 0 ){
-            if(!isImageFileValid()){
-                showWarningMessage("File type must be .jpg, .jpeg, .png")
+        if (avatar.files.length !== 0) {
+            if (!isFileTypeValid()) {
+                showMessage("File type must be .jpg, .jpeg, .png")
                 e.preventDefault();
                 return false;
             }
-            if(!isFileSizeValid()){
-                showWarningMessage("File size must be smaller than 5MB")
+            if (!isFileSizeValid()) {
+                showMessage("File size must be smaller than 5MB")
                 e.preventDefault();
                 return false;
             }
         }
-        //check password requirements
-        if (!isPswLengthSafe(password.val())){
-            showWarningMessage("Password must be between 8 and 16 characters");
-            e.preventDefault();
-            return false;
-        }
 
-        if (!isPswCharSafe(password.val())){
-            showWarningMessage("Password must contain upper and lower case letters");
-            e.preventDefault();
-            return false;
-        }
-
-        if (!hasNumbers(password.val())){
-            showWarningMessage("Password must contain numbers");
-            e.preventDefault();
-            return false;
-        }
         form.submit();
     })
-    
+
 })

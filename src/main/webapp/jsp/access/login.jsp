@@ -40,12 +40,11 @@
                 <button type="submit" class="btn btn-outline-primary btn-lg">Login</button>
             </form>
 
-        </main>
 
-        <jsp:include page="../include/footer.jsp"/>
-        <jsp:include page="/jsp/include/scripts.jsp"/>
-        <!-- Common JS to handle messages -->
-        <script src="<c:url value="/js/message.js"/>"></script>
-
-    </body>
+</main>
+<jsp:include page="../include/footer.jsp"/>
+<jsp:include page="/jsp/include/scripts.jsp"/>
+<!-- Common JS to handle messages -->
+<script src="<c:url value="/js/message.js"/>"></script>
+</body>
 </html>

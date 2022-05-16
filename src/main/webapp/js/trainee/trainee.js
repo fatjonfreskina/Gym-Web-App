@@ -93,6 +93,11 @@ function clickHandler(info) {
         $("#e-reservation").modal("show");
         return
     }
+    if(parseInt(selectedLectureTimeSlot.availableSlots) <= 0){
+        e_message.textContent = "Selected slot is full";
+        $("#e-reservation").modal("show");
+        return
+    }
     if (selectedLectureTimeSlot.booked) {
         c_course_name.textContent = selectedLectureTimeSlot.courseName
         c_course_date.textContent = selectedLectureTimeSlot.customDate

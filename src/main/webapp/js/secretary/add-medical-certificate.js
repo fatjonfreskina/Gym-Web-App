@@ -6,10 +6,16 @@ $(document).ready(function() {
     upload_listener()
 
     buttonRegister.click(function (e) {
+
+        //Enable HTML5 validity checks
+        if (!form[0].checkValidity()) {
+            form[0].reportValidity()
+            return false;
+        }
+
         let now = new Date();
         // check if date is in the past
-        if(expirationdate.val() < now)
-        {
+        if(expirationdate.val() < now) {
             showWarningMessage("Expiration date is not valid")
             e.preventDefault();
             return false;
