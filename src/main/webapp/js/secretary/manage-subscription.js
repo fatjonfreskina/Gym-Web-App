@@ -1,16 +1,14 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const form = $('#form')
 
     form.submit(function (e) {
         e.preventDefault()
-        if($("input[name=trainee]:checked").length === 0)
-        {
+        if ($("input[name=trainee]:checked").length === 0) {
             showWarningMessage("You need to select a User")
             return
         }
 
-        if($("input[name=course_edition_id]:checked").length === 0)
-        {
+        if ($("input[name=course_edition_id]:checked").length === 0) {
             showWarningMessage("You need to select a Date")
             return
         }

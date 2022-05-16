@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     const cost30 = $('#cost_30')
     const cost90 = $('#cost_90')
@@ -26,35 +26,28 @@ $(document).ready(function() {
         e.preventDefault()
 
         //correctness of checkboxes
-        if((cost30.val() !== "") && (subscriptionType30.is(":checked")))
-        {
+        if ((cost30.val() !== "") && (subscriptionType30.is(":checked"))) {
 
-        }else if((cost90.val() !== "") && (subscriptionType90.is(":checked")))
-        {
+        } else if ((cost90.val() !== "") && (subscriptionType90.is(":checked"))) {
 
-        }else if((cost180.val() !== "") && (subscriptionType180.is(":checked")))
-        {
+        } else if ((cost180.val() !== "") && (subscriptionType180.is(":checked"))) {
 
-        }else if((cost365.val() !== "") && (subscriptionType365.is(":checked")))
-        {
+        } else if ((cost365.val() !== "") && (subscriptionType365.is(":checked"))) {
 
-        }else
-        {
+        } else {
             showWarningMessage("Checkboxes and Prices does not match")
             return
         }
 
         //date correctness
-        if(moment(dateFirstEvent.val(),'YYYY-MM-DD').isBefore(moment()))
-        {
+        if (moment(dateFirstEvent.val(), 'YYYY-MM-DD').isBefore(moment())) {
             showWarningMessage("Date must be after today")
             return
         }
 
         //Time correctness
-        if((monday.val().length === 0 ) && (tuesday.val().length === 0 ) && (wednesday.val().length === 0 ) &&
-            (thursday.val().length === 0 ) && (friday.val().length === 0 ) && (saturday.val().length === 0 ) && (sunday.val().length === 0 ))
-        {
+        if ((monday.val().length === 0) && (tuesday.val().length === 0) && (wednesday.val().length === 0) &&
+            (thursday.val().length === 0) && (friday.val().length === 0) && (saturday.val().length === 0) && (sunday.val().length === 0)) {
             showWarningMessage("Select at least one hour!")
             return
         }

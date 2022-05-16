@@ -1,15 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const form = $('#form')
     const button = $('#button')
-    //error boxes
-    let alertBox = $("#alert-box")
-    //alertBox.hide()
-    let messageBody = $("#alert-message-body")
 
     //handle file upload label change
-    $(".custom-file-input").on("change", function() {
+    $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
-        if(fileName === "")
+        if (fileName === "")
             fileName = "Choose File"
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
@@ -23,40 +19,26 @@ $(document).ready(function() {
             //File check
             if (avatar.files.length !== 0) {
                 if (!isFileTypeValid()) {
-                    showMessage("File type must be .jpg, .jpeg, .png")
+                    showWarningMessage("File type must be .jpg, .jpeg, .png")
                     e.preventDefault();
-                    return false;
+                    return;
                 }
                 if (!isFileSizeValid()) {
-                    showMessage("File size must be smaller than 5MB")
+                    showWarningMessage("File size must be smaller than 5MB")
                     e.preventDefault();
-                    return false;
+                    return;
                 }
             } else {
-                showMessage("You must upload a file")
+                showWarningMessage("You must upload a file")
                 e.preventDefault();
-                return false;
+                return;
             }
             form.submit()
-        }else
-        {
+        } else {
             //To call html5 validation without recursive calls
             form[0].reportValidity()
         }
     })
-
-    /**
-     *
-     * @param message
-     */
-    function showMessage(message) {
-        messageBody.empty()
-        messageBody.text(message)
-        alertBox.show()
-        alertBox.fadeTo(2000, 500).slideUp(500, function () {
-            $(this).slideUp(500);
-        });
-    }
 
     function isFileTypeValid() {
         const fileInput =
@@ -68,25 +50,14 @@ $(document).ready(function() {
         const allowedExtensions =
             /(\.jpg|\.jpeg|\.png)$/i;
 
-        if (!allowedExtensions.exec(filePath)) {
-            return false       //Show error message
-        }
-        else {
-            return true        //Proceed with validation
-        }
+        return allowedExtensions.exec(filePath);
     }
 
-    function isFileSizeValid(){
+    function isFileSizeValid() {
         const fileInput =
             document.getElementById('avatar');
 
         // 5 MB
-        if (fileInput.files[0].size/1024 > 5120){
-
-            return false //File is too big
-        }
-        else {
-            return true //Proceed with validation
-        }
+        return fileInput.files[0].size / 1024 <= 5120;
     }
 })

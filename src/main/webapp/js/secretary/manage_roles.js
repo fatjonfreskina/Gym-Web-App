@@ -8,7 +8,7 @@ $(document).ready(function () {
         //Enable HTML5 validity checks
         if (!form[0].checkValidity()) {
             form[0].reportValidity()
-            return false;
+            return;
         }
 
         let isTrainee = document.getElementById("trainee").checked
@@ -17,7 +17,7 @@ $(document).ready(function () {
         if (!isTrainer && !isTrainee && !isSecretary) {
             showWarningMessage("Please choose a role for the selected user")
             e.preventDefault();
-            return false;
+            return;
         }
         form.submit()
 

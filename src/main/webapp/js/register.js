@@ -15,14 +15,14 @@ $(document).ready(function () {
         //Enable HTML5 validity checks
         if (!form[0].checkValidity()) {
             form[0].reportValidity()
-            return false;
+            return;
         }
 
         //telephone control
         if (!isPhoneLengthValid(telephone.val())) {
             showWarningMessage("Telephone length is not correct");
             e.preventDefault();
-            return false;
+            return;
         }
 
         if (document.location.pathname === "/wa2122-gwa/register") {
@@ -30,7 +30,7 @@ $(document).ready(function () {
             if (moment().diff(moment(birtDate.val(), 'YYYY-MM-DD'), 'years') < 14) {
                 showWarningMessage("You must be at least 14 years old to sign in")
                 e.preventDefault();
-                return false;
+                return;
             }
         } else {
             //check if a role is selected
@@ -40,7 +40,7 @@ $(document).ready(function () {
             if (!isTrainer && !isTrainee && !isSecretary) {
                 showWarningMessage("Select a role for the new user")
                 e.preventDefault();
-                return false;
+                return;
             }
             let years_threshold = 14
             if (isTrainer || isSecretary) {
@@ -51,16 +51,16 @@ $(document).ready(function () {
                 let msg = `The new user must be at least ${years_threshold} years old`
                 showWarningMessage(msg)
                 e.preventDefault();
-                return false;
+                return;
             }
         }
 
         if (document.location.pathname === "/wa2122-gwa/register") {
             //password are not the same
             if (password.val() !== confirmedPassword.val()) {
-                showMessage("Password Are Different")
+                showWarningMessage("Password Are Different")
                 e.preventDefault();
-                return false;
+                return;
             }
         }
 
@@ -68,14 +68,14 @@ $(document).ready(function () {
         //File check
         if (avatar.files.length !== 0) {
             if (!isFileTypeValid()) {
-                showMessage("File type must be .jpg, .jpeg, .png")
+                showWarningMessage("File type must be .jpg, .jpeg, .png")
                 e.preventDefault();
-                return false;
+                return;
             }
             if (!isFileSizeValid()) {
-                showMessage("File size must be smaller than 5MB")
+                showWarningMessage("File size must be smaller than 5MB")
                 e.preventDefault();
-                return false;
+                return;
             }
         }
 

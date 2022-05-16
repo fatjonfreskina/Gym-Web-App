@@ -10,20 +10,20 @@ $(document).ready(function () {
         //Enable HTML5 validity checks
         if (!form[0].checkValidity()) {
             form[0].reportValidity()
-            return false;
+            return;
         }
 
         if (password.val() === "" || confirmedPassword.val() === "") {
             showWarningMessage("You must insert at least one character for the password")
             e.preventDefault();
-            return false;
+            return;
         }
 
         //password are not the same
         if (password.val() !== confirmedPassword.val()) {
             showWarningMessage("Password Are Different")
             e.preventDefault();
-            return false;
+            return;
         }
         form.submit()
 

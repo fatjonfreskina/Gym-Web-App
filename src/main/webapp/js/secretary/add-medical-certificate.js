@@ -10,7 +10,7 @@ $(document).ready(function () {
         //Enable HTML5 validity checks
         if (!form[0].checkValidity()) {
             form[0].reportValidity()
-            return false;
+            return;
         }
 
         let now = new Date();
@@ -18,7 +18,7 @@ $(document).ready(function () {
         if (expirationdate.val() < now) {
             showWarningMessage("Expiration date is not valid")
             e.preventDefault();
-            return false;
+            return;
         }
         let cert = document.getElementById("file")
         //File check
@@ -26,12 +26,12 @@ $(document).ready(function () {
             if (!isDocumentFileValid()) {
                 showWarningMessage("File type must be a .pdf")
                 e.preventDefault();
-                return false;
+                return;
             }
             if (!isFileSizeValid()) {
                 showWarningMessage("File size must be smaller than 5MB")
                 e.preventDefault();
-                return false;
+                return;
             }
         }
         form.submit()

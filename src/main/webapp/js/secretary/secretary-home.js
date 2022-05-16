@@ -8,7 +8,7 @@ $(document).ready(function () {
      */
     function manageServerResponse(response) {
         if (response.isError === undefined || response.message === undefined) {
-            showWarningMessage("Error while understanding the response");
+            showWarningMessage("Error while parsing the response");
             console.log(response);
             return;
         }
