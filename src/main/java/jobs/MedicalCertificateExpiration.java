@@ -3,8 +3,10 @@ package jobs;
 import constants.Constants;
 import dao.medicalcertificate.GetMedicalCertificateDatabase;
 import dao.person.GetAllPersonsDatabase;
+import jakarta.mail.MessagingException;
 import resource.MedicalCertificate;
 import resource.Person;
+import utils.MailTypes;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -73,8 +75,8 @@ public class MedicalCertificateExpiration implements Runnable {
                 }
 
                 //If the medical certificate of the user has expired, then send a mail
-                if (!hasValidCertificate) {
-                    //TODO: Unlock emails   MailTypes.mailForMedicalCertificateExpiring(p, expiringCertificate);
+                if (!hasValidCertificate && expiringCertificate != null) {
+                     MailTypes.mailForMedicalCertificateExpiring(p, expiringCertificate);
                 }
 
             }
@@ -82,6 +84,8 @@ public class MedicalCertificateExpiration implements Runnable {
         } catch (NamingException | SQLException e) {
             //Print exception to logs of Tomcat
             System.out.println(e.getMessage());
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
 
     }
