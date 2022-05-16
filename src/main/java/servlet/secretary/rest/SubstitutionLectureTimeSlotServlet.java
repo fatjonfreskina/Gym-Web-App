@@ -2,6 +2,7 @@ package servlet.secretary.rest;
 
 import com.google.gson.Gson;
 import constants.Codes;
+import constants.DateTimeFormats;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
 import dao.lecturetimeslot.UpdateLectureTimeSlotDatabase;
 import dao.person.GetPersonByEmailDatabase;
@@ -21,15 +22,14 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.time.LocalDate;
+import java.text.ParseException;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 /**
  * Rest servlet used to perform a substitution of a trainer
+ *
  * @author Riccardo Forzan
  */
 public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
@@ -38,10 +38,10 @@ public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
      * Handles the post request by executing the substitution of a trainer in a
      * LectureTimeSlot and sending an email to all the subscribed users
      *
-     * @param request the request
+     * @param request  the request
      * @param response the response
      * @throws ServletException if some internal error happens
-     * @throws IOException if it was not possible to forward the request and write the response
+     * @throws IOException      if it was not possible to forward the request and write the response
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,12 +72,17 @@ public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
         //Parse the parameters
         String roomName = request.getParameter("roomname");
 
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
-        LocalDate localDate = LocalDate.parse(request.getParameter("date"), formatter);
-        Date date = new Date(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
+        Date date = null;
+        try {
+            date = DateTimeFormats.dateConvert(
+                    DateTimeFormats.dateFormat.parse(request.getParameter("date")));
+        } catch (ParseException e) {
+            return new Message(Codes.INVALID_DATE.getErrorMessage(), true);
+        }
 
-        LocalTime localTime = LocalTime.parse(request.getParameter("starttime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        LocalTime localTime = LocalTime.parse(request.getParameter("starttime").substring(0, 8),
+                DateTimeFormatter.ofPattern(DateTimeFormats.timeFormatPattern));
+
         Time startTime = Time.valueOf(localTime);
 
         String email = request.getParameter("substitution");
