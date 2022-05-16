@@ -12,7 +12,7 @@ $(document).ready(function () {
             console.log(response);
             return;
         }
-        if (response.isError == true) {
+        if (response.isError === true) {
             showWarningMessage(response.message);
         } else {
             showSuccessMessage(response.message);
@@ -155,14 +155,14 @@ $(document).ready(function () {
     $("#button-delete-lecturetimeslot").click(() => {
         if (selectedEvent !== undefined) {
 
-            const roomNane = selectedEvent.roomName;
+            const roomName = selectedEvent.roomName;
             const date = selectedEvent.customdate;
             const startTime = selectedEvent.customstartTime;
 
             if (confirm("Do you really want to delete?")) {
                 $.ajax({
                     url: "secretary/rest/deletelecturetimeslot" + '?' + $.param({
-                        "roomname": roomNane,
+                        "roomname": roomName,
                         "date": date,
                         "starttime": startTime
                     }),
@@ -186,7 +186,7 @@ $(document).ready(function () {
 
         if (selectedEvent !== undefined) {
 
-            const roomNane = selectedEvent.roomName;
+            const roomName = selectedEvent.roomName;
             const date = selectedEvent.customdate;
             const startTime = selectedEvent.customstartTime;
             const substituteEmail = $("#substitute").val();
@@ -196,10 +196,10 @@ $(document).ready(function () {
                 url: "secretary/rest/substitutionlecturetimeslot",
                 type: "POST",
                 data: {
-                    "roomname": roomNane,
+                    "roomname": roomName,
                     "date": date,
                     "starttime": startTime,
-                    "n": substituteEmail,
+                    "substitute": substituteEmail,
                     "notes": note
                 },
                 cache: false,
@@ -278,5 +278,4 @@ $(document).ready(function () {
 
     });
 
-})
-;
+});

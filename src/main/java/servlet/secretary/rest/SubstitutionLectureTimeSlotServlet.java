@@ -3,9 +3,12 @@ package servlet.secretary.rest;
 import com.google.gson.Gson;
 import constants.Codes;
 import dao.lecturetimeslot.GetLectureTimeSlotByRoomDateStartTimeDatabase;
+import dao.lecturetimeslot.GetLectureTimeSlotsInRangeDatabase;
 import dao.lecturetimeslot.UpdateLectureTimeSlotDatabase;
 import dao.person.GetPersonByEmailDatabase;
+import dao.person.GetTrainerOfLectureTimeSlotDatabase;
 import dao.reservation.GetAllPeopleInReservationTimeSlotDatabase;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,6 +17,7 @@ import resource.Message;
 import resource.Person;
 import resource.Reservation;
 import servlet.AbstractServlet;
+import utils.MailTypes;
 
 import javax.naming.NamingException;
 import java.io.IOException;
@@ -69,27 +73,43 @@ public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
      */
     private Message performSubstitution(HttpServletRequest request) {
 
+
         //Parse the parameters
         String roomName = request.getParameter("roomname");
 
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
-                .append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
-        LocalDate localDate = LocalDate.parse(request.getParameter("date"), formatter);
-        Date date = new Date(Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()).getTime());
+        //DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
+                //.append(DateTimeFormatter.ofPattern("MMM dd, yyyy")).toFormatter();
+        //LocalDate localDate = LocalDate.parse(request.getParameter("date"), formatter);
 
-        LocalTime localTime = LocalTime.parse(request.getParameter("starttime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
-        Time startTime = Time.valueOf(localTime);
+        Date date =  Date.valueOf(request.getParameter("date"));
+        //LocalTime localTime = LocalTime.parse(request.getParameter("starttime"), DateTimeFormatter.ofPattern("hh:mm:ss a"));
+        Time startTime = Time.valueOf(request.getParameter("starttime"));
 
-        String email = request.getParameter("substitution");
+        String email = request.getParameter("substitute");
         //This field will be sent as a motivation in the email to notice all the subscribed users
         String notes = request.getParameter("notes");
 
         LectureTimeSlot lectureTimeSlot;
 
+        //sostituisco con lo stesso trainer OK
+        //sostituzione trainer già impegnato in quel lecture time slot
+
         //Try to update the LectureTimeSlot
         try {
             //Get the LectureTimeSlot
             lectureTimeSlot = new GetLectureTimeSlotByRoomDateStartTimeDatabase(getDataSource().getConnection(), new LectureTimeSlot(roomName, date, startTime, null, null, null)).execute();
+
+
+            List<LectureTimeSlot> lecturesToday = new GetLectureTimeSlotsInRangeDatabase(getDataSource().getConnection(),lectureTimeSlot.getDate(),lectureTimeSlot.getDate()).execute(); //all today's lectures
+
+            boolean error = false;
+            for (LectureTimeSlot lts: lecturesToday)
+            {
+                if(lts.getStartTime().equals(lectureTimeSlot.getStartTime()))
+                    if(email.equals(new GetTrainerOfLectureTimeSlotDatabase(getDataSource().getConnection(),lts).execute().getEmail()))
+                        return new Message(Codes.OVERLAPPING_COURSES.getErrorMessage(), true);
+            }
+
             //Create a new LectureTimeSlot updating the substitution field
             LectureTimeSlot updatedLectureTimeSlot = new LectureTimeSlot(lectureTimeSlot.getRoomName(), lectureTimeSlot.getDate(), lectureTimeSlot.getStartTime(), lectureTimeSlot.getCourseEditionId(), lectureTimeSlot.getCourseName(), email);
             //Update the LectureTimeSlot
@@ -107,10 +127,10 @@ public class SubstitutionLectureTimeSlotServlet extends AbstractServlet {
             //Send a mail to each user
             for (Person p : personList) {
                 Person person = new GetPersonByEmailDatabase(getDataSource().getConnection(), p.getEmail()).execute();
-                //TODO: unlock mail sending          MailTypes.mailForTrainerChanged(person, lectureTimeSlot, notes);
+                MailTypes.mailForTrainerChanged(person, lectureTimeSlot, notes);
             }
             return new Message(Codes.OK.getErrorMessage(), false);
-        } catch (SQLException | NamingException e) {
+        } catch (SQLException | NamingException | MessagingException e) {
             return new Message(Codes.INTERNAL_ERROR.getErrorMessage(), true);
         }
 
