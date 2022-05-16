@@ -132,7 +132,7 @@ public class MailTypes {
         if (motivation != null) {
             emailContent += motivation;
         }
-        emailContent += "We really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
-        MANAGER.sendMail(person.getEmail(), "GWA Lecture cancelled", emailContent);
+        emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
+        MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", emailContent);
     }
 }
