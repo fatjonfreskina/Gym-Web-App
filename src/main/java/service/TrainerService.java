@@ -1,10 +1,7 @@
 package service;
 
 import constants.exceptions.*;
-import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
-import dao.lecturetimeslot.GetLectureTimeSlotsByCourseDatabase;
-import dao.lecturetimeslot.GetLectureTimeSlotsInRangeDatabase;
-import dao.lecturetimeslot.GetLectureTimeSlotsInRangeSubstitutionDatabase;
+import dao.lecturetimeslot.*;
 import dao.reservation.DeleteReservationDatabase;
 import dao.reservation.GetListReservationByLectureDatabase;
 import dao.reservation.InsertReservationDatabase;
@@ -171,6 +168,10 @@ public class TrainerService {
                     new LectureTimeSlot(t.getCourseEdition(), t.getCourseName())).execute();
             if (l != null) lectureTimeSlots.add(l);
         }
+
+        LectureTimeSlot lts = new GetLectureTimeSlotNowSubstitutionDatabase(dataSource.getConnection(),new Person(trainerEmail)).execute();
+        if(lts != null)
+            lectureTimeSlots.add(lts);
 
         if (lectureTimeSlots.isEmpty()) throw new TrainerNoCourseHeldNow();
 
