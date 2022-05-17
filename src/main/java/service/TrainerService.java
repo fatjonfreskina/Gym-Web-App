@@ -4,6 +4,7 @@ import constants.exceptions.*;
 import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotsByCourseDatabase;
 import dao.lecturetimeslot.GetLectureTimeSlotsInRangeDatabase;
+import dao.lecturetimeslot.GetLectureTimeSlotsInRangeSubstitutionDatabase;
 import dao.reservation.DeleteReservationDatabase;
 import dao.reservation.GetListReservationByLectureDatabase;
 import dao.reservation.InsertReservationDatabase;
@@ -23,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 /**
@@ -217,13 +219,20 @@ public class TrainerService {
      */
     public List<LectureTimeSlot> getAllLessonsInRange(Date from, Date to) throws NamingException, SQLException {
         List<CourseEdition> coursesHeld = getTrainersCourses();
-        List<LectureTimeSlot> allLessonInRange = new ArrayList<>();
+        List<LectureTimeSlot> allLessonInRange = new ArrayList<>(); //trainerEmail
         for (CourseEdition c : coursesHeld) {
             List<LectureTimeSlot> curCourseLTSinRange = new GetLectureTimeSlotsInRangeDatabase(dataSource.getConnection(), from, to).execute();
             curCourseLTSinRange.forEach(l -> {
-                if (c.equals(new CourseEdition(l.getCourseEditionId(), l.getCourseName()))) allLessonInRange.add(l);
+                if (c.equals(new CourseEdition(l.getCourseEditionId(), l.getCourseName())))
+                    allLessonInRange.add(l);
             });
         }
+        //rimuovi tutte le lezioni in cui c'è un substitute in un corso in cui insegno
+        allLessonInRange.removeIf(lectureTimeSlot -> lectureTimeSlot.getSubstitution() != null);
+
+        //per range di date per il trainer tutte le lts di sostituzione
+        allLessonInRange.addAll(new GetLectureTimeSlotsInRangeSubstitutionDatabase(dataSource.getConnection(),from,to,new Person(trainerEmail)).execute());
+
         return allLessonInRange;
     }
 
