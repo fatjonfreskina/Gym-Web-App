@@ -519,21 +519,25 @@ public class AddCoursesServlet extends AbstractServlet
                 }else
                 {
 
-                    if(cost30Integer != null && subscriptionType30Integer != null)
+                    if((cost30Integer != null && subscriptionType30Integer == null ) || (cost30Integer == null && subscriptionType30Integer != null))
                     {
-                        //ok
-
-                    }else if(cost90Integer != null && subscriptionType90Integer != null)
-                    {
-                        //ok
-                    }else if(cost180Integer != null && subscriptionType180Integer != null)
-                    {
-
-                    }else if(cost365Integer != null && subscriptionType365Integer != null)
-                    {
-
-                    }else
                         error = Codes.INVALID_FIELDS;
+                    }
+
+                    if((cost90Integer != null && subscriptionType90Integer == null) || (cost90Integer == null && subscriptionType90Integer != null))
+                    {
+                        error = Codes.INVALID_FIELDS;
+                    }
+
+                    if((cost180Integer != null && subscriptionType180Integer == null) || (cost180Integer == null && subscriptionType180Integer != null))
+                    {
+                        error = Codes.INVALID_FIELDS;
+                    }
+
+                    if((cost365Integer != null && subscriptionType365Integer == null) || (cost365Integer == null && subscriptionType365Integer != null))
+                    {
+                        error = Codes.INVALID_FIELDS;
+                    }
                 }
             }catch (Exception e)
             {

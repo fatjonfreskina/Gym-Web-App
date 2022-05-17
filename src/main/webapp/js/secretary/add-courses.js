@@ -20,23 +20,71 @@ $(document).ready(function () {
     const saturday = $('#saturday')
     const sunday = $('#sunday')
 
+    const weeks = $('#weeks')
+
     const form = $('#form')
 
     form.submit(function (e) {
         e.preventDefault()
 
         //correctness of checkboxes
-        if ((cost30.val() !== "") && (subscriptionType30.is(":checked"))) {
-
-        } else if ((cost90.val() !== "") && (subscriptionType90.is(":checked"))) {
-
-        } else if ((cost180.val() !== "") && (subscriptionType180.is(":checked"))) {
-
-        } else if ((cost365.val() !== "") && (subscriptionType365.is(":checked"))) {
-
-        } else {
-            showWarningMessage("Checkboxes and Prices does not match")
+        //console.log(cost30.val().charCodeAt(0))
+        if (((cost30.val() === "") || (cost30.val() === null) || (cost30.val() === undefined)) && (subscriptionType30.is(":checked"))) {
+            showWarningMessage("Prices do not match")
             return
+        }
+
+        if (((cost90.val() === "") || (cost90.val() === null) || (cost90.val() === undefined)) && (subscriptionType90.is(":checked"))) {
+            showWarningMessage("Prices do not match")
+            return
+        }
+
+        if (((cost180.val() === "") || (cost180.val() === null) || (cost180.val() === undefined)) && (subscriptionType180.is(":checked"))) {
+            showWarningMessage("Prices do not match")
+            return
+        }
+
+        if (((cost365.val() === "") || (cost365.val() === null) || (cost365.val() === undefined)) && (subscriptionType365.is(":checked"))) {
+            showWarningMessage("Prices do not match")
+            return
+        }
+
+        var nWeeks = parseInt(weeks.val())
+
+        if((subscriptionType30.is(":checked")))
+        {
+            if((nWeeks * 7 )< 30)
+            {
+                showWarningMessage("Invalid Price For the number of weeks")
+                return
+            }
+        }
+
+        if((subscriptionType90.is(":checked")))
+        {
+            if((nWeeks * 7 )< 90)
+            {
+                showWarningMessage("Invalid Price For the number of weeks")
+                return
+            }
+        }
+
+        if((subscriptionType180.is(":checked")))
+        {
+            if((nWeeks * 7 )< 180)
+            {
+                showWarningMessage("Invalid Price For the number of weeks")
+                return
+            }
+        }
+
+        if((subscriptionType365.is(":checked")))
+        {
+            if((nWeeks * 7 )< 364)
+            {
+                showWarningMessage("Invalid Price For the number of weeks")
+                return
+            }
         }
 
         //date correctness
@@ -52,6 +100,12 @@ $(document).ready(function () {
             return
         }
 
+        //1 che ci sia durata in settimane
+        if(weeks.val()  == null || weeks.val() === undefined)
+        {
+            showWarningMessage("Select at least one week!")
+            return
+        }
 
         const formValues = $(this).serialize();
         $.ajax({
