@@ -42,10 +42,19 @@ public class MailTypes {
      * @throws NoSuchAlgorithmException thrown if there is an error while calculating the token
      */
     public static void mailForConfirmRegistration(Person person) throws MessagingException, NoSuchAlgorithmException {
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that you've been successfully registered to our gym\nplease click this:\n");
+        sb.append(Constants.CONFIRMATION_URL);
+        sb.append(EncryptionManager.encrypt(person.getEmail()));
+        sb.append("\n\nKind regards,\nThe Gwa Team");
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that you've been successfully registered to our gym\nplease click this:\n" + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(person.getEmail()) + "\n\nKind regards,\nThe Gwa Team";
+        //String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that you've been successfully registered to our gym\nplease click this:\n" + Constants.CONFIRMATION_URL + EncryptionManager.encrypt(person.getEmail()) + "\n\nKind regards,\nThe Gwa Team";
 
-        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
+        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", sb.toString());
     }
 
     /**
@@ -58,9 +67,19 @@ public class MailTypes {
     @SuppressWarnings("unused")
     public static void mailForSubscriptionToCourse(Person person, Subscription subscription) throws MessagingException {
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that your subscription to " + subscription.getCourseName() + " course is confirmed, you can pay at the gym next time you will come\n\nKind regards,\nThe Gwa Team";
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that your subscription to ");
+        sb.append(subscription.getCourseName());
+        sb.append(" course is confirmed, you can pay at the gym next time you will come\n\nKind regards,\nThe Gwa Team");
 
-        MANAGER.sendMail(person.getEmail(), "GWA subscription confirmed", emailContent);
+
+        //String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that your subscription to " + subscription.getCourseName() + " course is confirmed, you can pay at the gym next time you will come\n\nKind regards,\nThe Gwa Team";
+
+        MANAGER.sendMail(person.getEmail(), "GWA subscription confirmed", sb.toString());
     }
 
     /**
@@ -71,10 +90,19 @@ public class MailTypes {
      * @throws MessagingException thrown if there is an error while sending
      */
     public static void mailForPasswordChanges(Person person, PasswordReset passwordReset) throws MessagingException {
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that we received a request to change your password.\nIf you ask for this, please, click the link below. Otherwise ignore this email\n");
+        sb.append(Constants.PASSWORD_CHANGE_URL);
+        sb.append(passwordReset.getToken());
+        sb.append("\nthe link will expire in 30 minutes\n\nKind regards,\nThe Gwa Team");
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that we received a request to change your password.\nIf you ask for this, please, click the link below. Otherwise ignore this email\n" + Constants.PASSWORD_CHANGE_URL + passwordReset.getToken() + "\nthe link will expire in 30 minutes\n\nKind regards,\nThe Gwa Team";
+        //String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that we received a request to change your password.\nIf you ask for this, please, click the link below. Otherwise ignore this email\n" + Constants.PASSWORD_CHANGE_URL + passwordReset.getToken() + "\nthe link will expire in 30 minutes\n\nKind regards,\nThe Gwa Team";
 
-        MANAGER.sendMail(person.getEmail(), "GWA Password reset request", emailContent);
+        MANAGER.sendMail(person.getEmail(), "GWA Password reset request", sb.toString());
     }
 
     /**
@@ -84,9 +112,15 @@ public class MailTypes {
      * @throws MessagingException thrown if there is an error while sending
      */
     public static void mailForMedicalCertificateUploaded(Person person) throws MessagingException {
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that we have received your Medical Certificate\n\nKind regards,\nThe Gwa Team");
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that we have received your Medical Certificate\n\nKind regards,\nThe Gwa Team";
-        MANAGER.sendMail(person.getEmail(), "GWA Medical certificate uploaded", emailContent);
+        //String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that we have received your Medical Certificate\n\nKind regards,\nThe Gwa Team";
+        MANAGER.sendMail(person.getEmail(), "GWA Medical certificate uploaded", sb.toString());
     }
 
     /**
@@ -98,10 +132,18 @@ public class MailTypes {
      */
     @SuppressWarnings("unused")
     public static void mailForMedicalCertificateExpiring(Person person, MedicalCertificate medicalCertificate) throws MessagingException {
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append("\n\nwe inform you that your medical certificate is expiring in date ");
+        sb.append(medicalCertificate.getExpirationDate());
+        sb.append(" we ask you to provide a new medical certificate before the expiration date, otherwise you will not be able to attending courses\n\nKind regards,\nThe Gwa Team");
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + "\n\nwe inform you that your medical certificate is expiring in date " + medicalCertificate.getExpirationDate() + " we ask you to provide a new medical certificate before the expiration date, otherwise you will not be able to attending courses\n\nKind regards,\nThe Gwa Team";
+        //String emailContent = "Dear " + person.getName() + " " + person.getSurname() + "\n\nwe inform you that your medical certificate is expiring in date " + medicalCertificate.getExpirationDate() + " we ask you to provide a new medical certificate before the expiration date, otherwise you will not be able to attending courses\n\nKind regards,\nThe Gwa Team";
 
-        MANAGER.sendMail(person.getEmail(), "GWA Medical certificate expiring", emailContent);
+        MANAGER.sendMail(person.getEmail(), "GWA Medical certificate expiring", sb.toString());
     }
 
     /**
@@ -113,9 +155,22 @@ public class MailTypes {
      */
     @SuppressWarnings("unused")
     public static void mailForCancellationLecture(Person person, LectureTimeSlot lectureTimeSlot) throws MessagingException {
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is cancelled. We really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that the lecture of ");
+        sb.append(lectureTimeSlot.getCourseName());
+        sb.append(" in date ");
+        sb.append(lectureTimeSlot.getDate());
+        sb.append(" at ");
+        sb.append(lectureTimeSlot.getStartTime());
+        sb.append(" is cancelled. We really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team");
 
-        MANAGER.sendMail(person.getEmail(), "GWA Lecture cancelled", emailContent);
+       // String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is cancelled. We really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
+
+        MANAGER.sendMail(person.getEmail(), "GWA Lecture cancelled", sb.toString());
     }
 
     /**
@@ -128,12 +183,32 @@ public class MailTypes {
      */
     @SuppressWarnings("unused")
     public static void mailForTrainerChanged(Person person, LectureTimeSlot lectureTimeSlot, String motivation) throws MessagingException {
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is cancelled\n";
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that the trainer for the lecture of ");
+        sb.append(lectureTimeSlot.getCourseName());
+        sb.append(" in date ");
+        sb.append(lectureTimeSlot.getDate());
+        sb.append(" at ");
+        sb.append(lectureTimeSlot.getStartTime());
+
+        sb.append(" is substituted because:\n");
+        if (motivation != null) {
+            sb.append( motivation);
+        }
+        sb.append(".\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team");
+
+
+
+        /*String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is cancelled\n";
         if (motivation != null) {
             emailContent += motivation;
         }
-        emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
-        MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", emailContent);
+        emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";*/
+        MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", sb.toString());
     }
 
     /**
@@ -144,8 +219,21 @@ public class MailTypes {
      * @throws MessagingException thrown if there is an error while sending
      */
     public static void mailForLectureChanged(Person person, LectureTimeSlot lectureTimeSlot) throws MessagingException {
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is rescheduled\n";
-        emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";
-        MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", emailContent);
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that the trainer for the lecture of ");
+        sb.append(lectureTimeSlot.getCourseName());
+        sb.append(" in date ");
+        sb.append(lectureTimeSlot.getDate());
+        sb.append(" at ");
+        sb.append(lectureTimeSlot.getStartTime());
+        sb.append(" is rescheduled.\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team");
+
+        /*String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that the lecture of " + lectureTimeSlot.getCourseName() + " in date " + lectureTimeSlot.getDate() + " at " + lectureTimeSlot.getStartTime() + " is rescheduled\n";
+        emailContent += "\nWe really apologize for the inconvenient\n\nKind regards,\nThe Gwa Team";*/
+        MANAGER.sendMail(person.getEmail(), "GWA Trainer Substitution", sb.toString());
     }
 }
