@@ -28,10 +28,16 @@ public class MailTypes {
      * @throws MessagingException thrown if there is an error while sending
      */
     public static void registrationConfirmed(Person person) throws MessagingException {
+        StringBuilder sb=new StringBuilder();
+        sb.append("Dear ");
+        sb.append(person.getName());
+        sb.append(" ");
+        sb.append(person.getSurname());
+        sb.append(",\n\n\nwe inform you that you've been successfully registered to our gym\n\nKind regards,\nThe Gwa Team");
 
-        String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that you've been successfully registered to our gym\n\nKind regards,\nThe Gwa Team";
+        //String emailContent = "Dear " + person.getName() + " " + person.getSurname() + ",\n\n\nwe inform you that you've been successfully registered to our gym\n\nKind regards,\nThe Gwa Team";
 
-        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", emailContent);
+        MANAGER.sendMail(person.getEmail(), "GWA Registration Confirmed", sb.toString());
     }
 
     /**
