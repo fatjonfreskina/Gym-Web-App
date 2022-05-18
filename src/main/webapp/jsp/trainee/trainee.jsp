@@ -54,6 +54,7 @@
                         <span id="d-course-substitution"></span>
                     </div>
                 </div>
+
 				<div class="row">
 					<div class="col-sm">
 						<span class="text-dark">Course name:</span>
