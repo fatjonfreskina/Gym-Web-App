@@ -7,6 +7,7 @@ import dao.reservation.GetListReservationByLectureDatabase;
 import dao.reservation.InsertReservationDatabase;
 import dao.room.GetRoomByNameDatabase;
 import dao.subscription.GetSubscriptionsByCourseDatabase;
+import dao.subscription.GetValidSubscriptionsByCourseDatabase;
 import dao.teaches.GetTeachesByTrainerDatabase;
 import resource.*;
 import resource.rest.TrainerAttendance;
@@ -129,12 +130,8 @@ public class TrainerService {
         //Get the list of reservation for the lecture now and their corresponding trainees
         List<Reservation> reservations = new GetListReservationByLectureDatabase(dataSource.getConnection(), lectureHeldNow).execute();
 
-        //TODO change back to GetValidSubscriptionByCourseDatabase, problems:
-        // 1) does not give the valid ones (date problems)
-        // 2) not all invalid are removed
-        // CUR sol: giving back all subscription but adding only those are valid
         //Get the subscriptions for the course held now and their corresponding trainees
-        List<Subscription> subscriptions = new GetSubscriptionsByCourseDatabase(dataSource.getConnection(),
+        List<Subscription> subscriptions = new GetValidSubscriptionsByCourseDatabase(dataSource.getConnection(),
                 new CourseEdition(lectureHeldNow.getCourseEditionId(), lectureHeldNow.getCourseName())).execute();
 
         if (reservations.isEmpty() && subscriptions.isEmpty()) {
@@ -159,7 +156,7 @@ public class TrainerService {
     public LectureTimeSlot getTrainersCurrentLectureTimeSlot(String trainerEmail) throws SQLException, TrainerNoCourseHeldNow, TrainerCoursesOverlapping, TrainerNoCourseHeld {
         List<Teaches> teaches = new GetTeachesByTrainerDatabase(dataSource.getConnection(), new Person(trainerEmail)).execute();
 
-        if (teaches.isEmpty()) throw new TrainerNoCourseHeld();
+        //if (teaches.isEmpty()) throw new TrainerNoCourseHeld();
 
         //Get the lecture that should be held now
         List<LectureTimeSlot> lectureTimeSlots = new ArrayList<>();

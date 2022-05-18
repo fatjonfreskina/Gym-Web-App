@@ -11,7 +11,9 @@ let d_course_date = document.getElementById('d-course-date');
 let d_course_startTime = document.getElementById('d-course-startTime');
 let d_course_endTime = document.getElementById('d-course-endTime');
 let d_course_roomName = document.getElementById('d-course-roomName');
+let d_course_substitution = document.getElementById('d-course-substitution');
 let e_message = document.getElementById('e-message');
+let div_substitution = document.getElementById('div-substitution');
 
 let calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'timeGridWeek',
@@ -86,8 +88,10 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
 function clickHandler(info) {
     let event = info.event;
     selectedLectureTimeSlot = event.extendedProps.customLTS;
-    event_date = event._instance.range.start.getTime()
+    event_date = parseInt(event._instance.range.start.getTime())- 2*60*60*1000
     actual_date = new Date().getTime()
+    console.log("EVENT DATE : "+ event_date)
+    console.log("ACTUAL DATE : "+ actual_date)
     if(event_date < actual_date){
         e_message.textContent = "Selected slot is no more available";
         $("#e-reservation").modal("show");
@@ -99,6 +103,18 @@ function clickHandler(info) {
         return
     }
     if (selectedLectureTimeSlot.booked) {
+
+        console.log(selectedLectureTimeSlot)
+
+        if(selectedLectureTimeSlot.substitution !== undefined)
+        {
+            console.log("Pippo");
+            div_substitution.style.removeProperty("display")
+            //div_substitution.removeAttribute("style")
+            d_course_substitution.textContent = "There is a substitute for this lecture!"
+        }else
+            div_substitution.style.setProperty("display","none")
+
         c_course_name.textContent = selectedLectureTimeSlot.courseName
         c_course_date.textContent = selectedLectureTimeSlot.customDate
         c_course_startTime.textContent = selectedLectureTimeSlot.customStartTime
@@ -134,7 +150,7 @@ function insertReservation() {
         },
         error: function (response) {
             //console.log(response.responseJSON.message);
-            e_message.textContent = "An internal error occurred while inserting";
+            e_message.textContent = response.responseJSON.message;
             $("#e-reservation").modal("show");
         }
     });
@@ -155,7 +171,7 @@ function deleteReservation() {
         },
         error: function (response) {
             //console.log(response.responseJSON.message);
-            e_message.textContent = "An internal error occurred while deleting";
+            e_message.textContent = response.responseJSON.message;
             $("#e-reservation").modal("show");
         }
     });
@@ -243,7 +259,7 @@ function renderCalendar() {
                         lectureTimeSlot.customStartTime = lts.startTime;
                         lectureTimeSlot.availableSlots = lts.totalSlots - lts.occupiedSlots
                         lectureTimeSlot.booked = !present
-
+                        lectureTimeSlot.substitution = lts.substitution
 
                         //Add the custom object to the calendar object
                         event.customLTS = lectureTimeSlot;
@@ -257,7 +273,7 @@ function renderCalendar() {
                 },
                 error: function (response) {
                     //console.log(response.responseJSON.message);
-                    e_message.textContent = "An internal error occurred while loading the calendar";
+                    e_message.textContent = response.responseJSON.message;
                     $("#e-reservation").modal("show");
                 }
             });

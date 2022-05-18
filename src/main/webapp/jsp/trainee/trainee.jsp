@@ -46,6 +46,14 @@
           </div>
           <div class="modal-body">
             <div class="container">
+                <div class="row" style="display: none;" id="div-substitution">
+                    <div class="col-sm">
+                        <span class="text-danger">Warning:</span>
+                    </div>
+                    <div class="col-sm">
+                        <span id="d-course-substitution"></span>
+                    </div>
+                </div>
 				<div class="row">
 					<div class="col-sm">
 						<span class="text-dark">Course name:</span>

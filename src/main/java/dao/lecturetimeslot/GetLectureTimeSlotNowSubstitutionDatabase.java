@@ -18,9 +18,8 @@ public class GetLectureTimeSlotNowSubstitutionDatabase {
      */
     private static final String STATEMENT = """
             SELECT * FROM lecturetimeslot WHERE date = CURRENT_DATE 
-            and starttime <= CURRENT_TIME and substitution = ?;
+            and starttime <= CURRENT_TIME and substitution = ? and (starttime + INTERVAL '2 hour') >= CURRENT_TIME;
             """;
-//TODO : ADD COMMENT "and (starttime + INTERVAL '2 hour') >= CURRENT_TIME " +
     /**
      * The connection to the database
      */
