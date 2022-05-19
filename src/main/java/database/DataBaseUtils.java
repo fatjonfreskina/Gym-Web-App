@@ -187,15 +187,8 @@ public class DataBaseUtils {
             //Generate fake address
             String address = faker.address().fullAddress();
 
-            String avatar_url = faker.avatar().image();
-            //TODO: download the avatar
-            //TODO: save the downloaded file into the assets
-            //TODO: set the path to the downloaded file
-            //TODO: if one of the firt two passages fails, then set the avatar to null
-
             String sql = String.format("INSERT INTO person VALUES ('%s',ARRAY['%s']::roles[],'%s','%s','%s','%s',TO_DATE('%s','DD/MM/YYYY'),'%s','%s',NULL);", email, role, firstName, lastName, pwd, tax_code, date, phone, address);
             System.out.println(sql);
-            //TODO: use the DAO to perform the insert (when ready)
 
         }
 

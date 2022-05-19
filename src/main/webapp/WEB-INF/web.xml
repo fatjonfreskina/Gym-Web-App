@@ -275,11 +275,6 @@
     <servlet-mapping>
         <servlet-name>TrainerCoursesStatusRestServlet</servlet-name>
         <url-pattern>/rest/trainer/courses_status</url-pattern>
-        <!-- TODO good to destructure it, for future development, in
-            /course
-            /course/{id}
-            now we do only what we need and specified in initial requirements
-        -->
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TrainerCalendarRestServlet</servlet-name>
