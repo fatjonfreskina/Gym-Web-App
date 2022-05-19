@@ -59,6 +59,26 @@ $(document).ready(function () {
      */
     function ShowActionsModal(info) {
         selectedEvent = info.event.extendedProps.customLTS;
+
+        let div_substitution = $('#modal-div-substitution')
+        if(selectedEvent.substitution !== undefined) {
+            div_substitution.show();
+            $('#modal-course-substitution').text("There is a substitute for this lecture!");
+        }else{
+            div_substitution.hide();
+        }
+
+        //Load data of this lecture
+        $('#modal-course-name').text(selectedEvent.courseName);
+        $('#modal-course-date').text(selectedEvent.customdate);
+        $('#modal-course-startTime').text(selectedEvent.customstartTime);
+        $('#modal-course-roomName').text(selectedEvent.roomName);
+
+        //Fill the modal fields with the data
+        $('#newStartTime').val(selectedEvent.customstartTime)
+        $('#newDate').val(selectedEvent.customdate)
+        $('#newRoom').val(selectedEvent.roomName)
+
         $("#modal-actions-course").modal("show");
     }
 
@@ -114,7 +134,6 @@ $(document).ready(function () {
                     //startDate = new Date(Date.parse(lts.date + ' ' + lts.startTime + ' GMT+2'));
                     startDate = new Date(Date.parse(lts.date + 'T' + lts.startTime.toString()));
 
-                    //TODO fix date management
                     //console.log(moment(lts.dateTime).toDate());
                     //startDate = new Date(lts.dateTime);
                     event.start = startDate;
@@ -125,6 +144,8 @@ $(document).ready(function () {
 
                     let lectureTimeSlot = {};
                     lectureTimeSlot.courseEditionId = lts.courseEditionId;
+                    lectureTimeSlot.courseName = lts.courseName;
+                    lectureTimeSlot.substitution = lts.substitution;
                     lectureTimeSlot.roomName = lts.roomName;
                     lectureTimeSlot.customdate = lts.date;
                     lectureTimeSlot.customstartTime = lts.startTime;

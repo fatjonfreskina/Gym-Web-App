@@ -40,6 +40,7 @@ public class GetLectureTimeSlotsInRangeSubstitutionDatabase {
      * @param connection the connection to the database
      * @param from       the date from which to look for
      * @param to         the date up to look for
+     * @param substitution the substitution
      */
     public GetLectureTimeSlotsInRangeSubstitutionDatabase(final Connection connection, final Date from, final Date to, final Person substitution) {
         this.connection = connection;

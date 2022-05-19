@@ -18,7 +18,6 @@ $(document).ready(function () {
             return;
         }
 
-        //TODO: CHECK WRONG?? ALSO BACKEND
         let avatar = document.getElementById("avatar")
 
         //File check

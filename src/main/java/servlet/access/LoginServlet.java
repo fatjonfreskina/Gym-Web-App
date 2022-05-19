@@ -34,8 +34,6 @@ import java.util.List;
  */
 public class LoginServlet extends AbstractServlet {
 
-
-
     /**
      * Handles the get request by providing the correct page
      * @param req  the request
@@ -51,7 +49,6 @@ public class LoginServlet extends AbstractServlet {
             res.sendRedirect(req.getContextPath());
         } else {
             req.getRequestDispatcher(Constants.PATH_LOGIN).forward(req, res);
-            // req.getRequestDispatcher("/jsp/access/roles.jsp").forward(req, res);
         }
     }
 
@@ -69,9 +66,7 @@ public class LoginServlet extends AbstractServlet {
         Person person = null;
         List<TypeOfRoles> userRoles = null;
 
-
         //Parse params to check if they are well-formatted, if not send back an error
-        //Message message = new Message(Codes.OK.getErrorMessage(),false);
         Codes error = parseParams(req, res);
 
         if (error.getErrorCode() != Codes.OK.getErrorCode()) {
@@ -81,7 +76,6 @@ public class LoginServlet extends AbstractServlet {
 
         email = req.getParameter(Constants.EMAIL);
         password = req.getParameter(Constants.PASSWORD);
-
 
         //Encrypt password
         try {
@@ -94,7 +88,6 @@ public class LoginServlet extends AbstractServlet {
             sendBackError(error, req, res);
             return;
         }
-
 
         //Validate credentials
         try {
@@ -110,7 +103,6 @@ public class LoginServlet extends AbstractServlet {
             return;
         }
 
-
         //Check if the person had confirmed the email
         EmailConfirmation emailStillToConfirm = null;
         try {
@@ -123,14 +115,8 @@ public class LoginServlet extends AbstractServlet {
         if (emailStillToConfirm != null) {
             error = Codes.NOT_AUTHENTICATED;
             sendBackError(error, req, res);
-            /*
-            res.setStatus(error.getHTTPCode());
-            req.setAttribute(Constants.MESSAGE,message);
-            //sendBackError(error,req,res);
-            req.getRequestDispatcher(Constants.PATH_CONFIRM_REGISTRATION).forward(req, res);*/
             return;
         }
-
 
         //Retrieve person roles
         try {
@@ -157,20 +143,12 @@ public class LoginServlet extends AbstractServlet {
         session.setAttribute("defaultRole", userRoles.get(0).getRole());
         session.setAttribute("avatarPath", person.getAvatarPath());
 
-
         //Everything is fine so far! Now act depending on user roles
         if (userRoles.size() == 1) {
-
             res.sendRedirect(req.getContextPath() + "/" + userRoles.get(0).getRole());
             return;
         }
         if (userRoles.size() > 1) {
-
-            //req.setAttribute("roles", roles);
-
-            //TODO in servlet for /access/roles where the user selects one role as default
-            //session.setAttribute("defaultRole", userRoles.get(1).getRole());
-            //req.getRequestDispatcher("/access/roles").forward(req, res);
             res.sendRedirect(req.getContextPath() + "/access/roles");
         }
     }

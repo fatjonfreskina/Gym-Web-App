@@ -47,7 +47,7 @@ public class GetListPasswordReset {
     /**
      * Gets a password reset from the database
      *
-     * @return List<PasswordReset> object associated with the token string given
+     * @return List of PasswordReset object associated with the token string given
      * @throws SQLException is thrown if something goes wrong while querying the database
      */
     public List<PasswordReset> execute() throws SQLException {

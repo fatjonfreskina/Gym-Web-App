@@ -33,7 +33,8 @@ public class GetLectureTimeSlotNowSubstitutionDatabase {
     /**
      * Parametric constructor
      *
-     * @param connection      the connection to the database
+     * @param substitution the substitution
+     * @param connection   the connection to the database
      */
     public GetLectureTimeSlotNowSubstitutionDatabase(final Connection connection, final Person substitution) {
         this.connection = connection;
@@ -52,7 +53,7 @@ public class GetLectureTimeSlotNowSubstitutionDatabase {
         LectureTimeSlot result = null;
         try {
             ps = connection.prepareStatement(STATEMENT);
-            ps.setString(1,substitution.getEmail());
+            ps.setString(1, substitution.getEmail());
             rs = ps.executeQuery();
 
             if (rs.next()) {

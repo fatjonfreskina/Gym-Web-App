@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO: Review the comment on this DAO
  * This DAO is used to get the weekly slots of a course by passing the date
  *
  * @author Alberto Campeol
@@ -22,16 +21,15 @@ public class GetWeeklyCalendarSlotByDateDatabase {
     /**
      * The SELECT query to be executed
      */
-    private static final String STATEMENT =
-            "SELECT roomname, date, starttime, courseeditionid, coursename, substitution, " +
-                    "tr.email as trainer_email, tr.name as trainer_name, tr.surname as trainer_surname, tr.psw as trainer_psw, " +
-                    "tr.taxCode as trainer_taxcode, tr.birthDate as trainer_birthdate, tr.telephone as trainer_telephone, " +
-                    "tr.address as trainer_address, tr.avatarPath as trainer_avatarpath, " +
-                    "sub.email, sub.name, sub.surname, sub.psw, sub.taxCode, sub.birthDate, sub.telephone, sub.address, sub.avatarPath" +
-                    " FROM lecturetimeslot NATURAL JOIN teaches AS t " +
-                    "JOIN person AS tr ON t.trainer = tr.email " +
-                    "LEFT JOIN person AS sub ON substitution = sub.email " +
-                    "WHERE date >= ? AND date <= ? ORDER BY date,starttime ASC";
+    private static final String STATEMENT = """
+            SELECT roomname, date, starttime, courseeditionid, coursename, substitution, tr.email as trainer_email, 
+            tr.name as trainer_name, tr.surname as trainer_surname, tr.psw as trainer_psw,tr.taxCode as trainer_taxcode, 
+            tr.birthDate as trainer_birthdate, tr.telephone as trainer_telephone, tr.address as trainer_address, 
+            tr.avatarPath as trainer_avatarpath, sub.email, sub.name, sub.surname, sub.psw, sub.taxCode, sub.birthDate, 
+            sub.telephone, sub.address, sub.avatarPath FROM lecturetimeslot NATURAL JOIN teaches AS t JOIN person 
+            AS tr ON t.trainer = tr.email LEFT JOIN person AS sub ON substitution = sub.email
+            WHERE date >= ? AND date <= ? ORDER BY date,starttime ASC
+            """;
 
     /**
      * The date to be passed to the query

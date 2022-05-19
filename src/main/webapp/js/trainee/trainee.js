@@ -90,8 +90,7 @@ function clickHandler(info) {
     selectedLectureTimeSlot = event.extendedProps.customLTS;
     event_date = parseInt(event._instance.range.start.getTime())- 2*60*60*1000
     actual_date = new Date().getTime()
-    console.log("EVENT DATE : "+ event_date)
-    console.log("ACTUAL DATE : "+ actual_date)
+
     if(event_date < actual_date){
         e_message.textContent = "Selected slot is no more available";
         $("#e-reservation").modal("show");
@@ -104,11 +103,8 @@ function clickHandler(info) {
     }
     if (selectedLectureTimeSlot.booked) {
 
-        console.log(selectedLectureTimeSlot)
-
         if(selectedLectureTimeSlot.substitution !== undefined)
         {
-            console.log("Pippo");
             div_substitution.style.removeProperty("display")
             //div_substitution.removeAttribute("style")
             d_course_substitution.textContent = "There is a substitute for this lecture!"
