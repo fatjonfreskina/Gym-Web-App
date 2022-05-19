@@ -88,6 +88,7 @@ public class MailManager {
      *
      * @param email   : The e-mail address of the single receiver
      * @param subject : The subject of the e-mail
+     * @param text : The details
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
 
