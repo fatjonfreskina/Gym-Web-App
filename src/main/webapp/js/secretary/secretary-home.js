@@ -67,10 +67,17 @@ $(document).ready(function () {
         }else{
             div_substitution.hide();
         }
+
+        //Load data of this lecture
         $('#modal-course-name').text(selectedEvent.courseName);
         $('#modal-course-date').text(selectedEvent.customdate);
         $('#modal-course-startTime').text(selectedEvent.customstartTime);
         $('#modal-course-roomName').text(selectedEvent.roomName);
+
+        //Fill the modal fields with the data
+        $('#newStartTime').val(selectedEvent.customstartTime)
+        $('#newDate').val(selectedEvent.customdate)
+        $('#newRoom').val(selectedEvent.roomName)
 
         $("#modal-actions-course").modal("show");
     }

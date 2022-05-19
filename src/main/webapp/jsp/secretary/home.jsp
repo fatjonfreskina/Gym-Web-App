@@ -157,7 +157,7 @@
                         <div class="form-group row">
                             <label for="newStartTime" class="col-sm-6">Specify a new start time</label>
                             <select id="newStartTime" name="newStartTime" class="form-control col-sm-6">
-                                <option value="8:00:00">8:00</option>
+                                <option value="08:00:00">8:00</option>
                                 <option value="10:00:00">10:00</option>
                                 <option value="12:00:00">12:00</option>
                                 <option value="14:00:00">14:00</option>
