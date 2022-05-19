@@ -59,7 +59,6 @@ $(document).ready(function () {
      */
     function ShowActionsModal(info) {
         selectedEvent = info.event.extendedProps.customLTS;
-        console.log(selectedEvent);
 
         let div_substitution = $('#modal-div-substitution')
         if(selectedEvent.substitution !== undefined) {
