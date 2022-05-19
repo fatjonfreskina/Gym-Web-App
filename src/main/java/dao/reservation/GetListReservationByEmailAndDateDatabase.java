@@ -13,11 +13,11 @@ import java.util.List;
  * @author Fatjon Freskina, Marco Alessio
  */
 public class GetListReservationByEmailAndDateDatabase
-        /**
-         * The query statement, select the fields of lecture time slot given a trainee and a date greater and smaller
-         * than the passed one
-         */
 {
+    /**
+     * The query statement, select the fields of lecture time slot given a trainee and a date greater and smaller
+     * than the passed one
+     */
     private static final String STATEMENT = """
             SELECT lectureroom, lecturedate, lecturestarttime
             FROM reservation
