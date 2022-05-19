@@ -42,7 +42,7 @@ INSERT INTO personroles VALUES ('richifenomeno@gmail.com','trainer');
 INSERT INTO personroles VALUES ('shery.stamm@example.com','trainer');
 INSERT INTO personroles VALUES ('simonedantimo3@gmail.com','trainer');
 INSERT INTO personroles VALUES ('harjot.98@hotmail.com','trainer');
-INSERT INTO personroles VALUES ('classe1g.viola@gmail.com','trainer');
+INSERT INTO personroles VALUES ('classe1g.viola@gmail.com','trainee');
 INSERT INTO personroles VALUES ('lupin.zombie9900@gmail.com','secretary');
 INSERT INTO personroles VALUES ('vendettav@gmail.com','secretary');
 INSERT INTO personroles VALUES ('alberto.campeol@outlook.it','secretary');
@@ -76,7 +76,6 @@ INSERT INTO teaches VALUES (1,'Powerlifting','richifenomeno@gmail.com');
 INSERT INTO teaches VALUES (2,'Cardio','simonedantimo3@gmail.com');
 INSERT INTO teaches VALUES (3,'Yoga','shery.stamm@example.com');
 INSERT INTO teaches VALUES (4,'Crossfit','simonedantimo3@gmail.com');
-INSERT INTO teaches VALUES (5,'Bodybuilding','classe1g.viola@gmail.com');
 INSERT INTO teaches VALUES (6,'Calisthenics','harjot.98@hotmail.com');
 
 --Room

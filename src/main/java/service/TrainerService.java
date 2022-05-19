@@ -1,14 +1,13 @@
 package service;
 
 import constants.exceptions.*;
-import dao.lecturetimeslot.GetLectureTimeSlotByCourseEditionIdNowDatabase;
-import dao.lecturetimeslot.GetLectureTimeSlotsByCourseDatabase;
-import dao.lecturetimeslot.GetLectureTimeSlotsInRangeDatabase;
+import dao.lecturetimeslot.*;
 import dao.reservation.DeleteReservationDatabase;
 import dao.reservation.GetListReservationByLectureDatabase;
 import dao.reservation.InsertReservationDatabase;
 import dao.room.GetRoomByNameDatabase;
 import dao.subscription.GetSubscriptionsByCourseDatabase;
+import dao.subscription.GetValidSubscriptionsByCourseDatabase;
 import dao.teaches.GetTeachesByTrainerDatabase;
 import resource.*;
 import resource.rest.TrainerAttendance;
@@ -23,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.stream.Collectors;
 
 /**
@@ -130,12 +130,8 @@ public class TrainerService {
         //Get the list of reservation for the lecture now and their corresponding trainees
         List<Reservation> reservations = new GetListReservationByLectureDatabase(dataSource.getConnection(), lectureHeldNow).execute();
 
-        //TODO change back to GetValidSubscriptionByCourseDatabase, problems:
-        // 1) does not give the valid ones (date problems)
-        // 2) not all invalid are removed
-        // CUR sol: giving back all subscription but adding only those are valid
         //Get the subscriptions for the course held now and their corresponding trainees
-        List<Subscription> subscriptions = new GetSubscriptionsByCourseDatabase(dataSource.getConnection(),
+        List<Subscription> subscriptions = new GetValidSubscriptionsByCourseDatabase(dataSource.getConnection(),
                 new CourseEdition(lectureHeldNow.getCourseEditionId(), lectureHeldNow.getCourseName())).execute();
 
         if (reservations.isEmpty() && subscriptions.isEmpty()) {
@@ -160,7 +156,7 @@ public class TrainerService {
     public LectureTimeSlot getTrainersCurrentLectureTimeSlot(String trainerEmail) throws SQLException, TrainerNoCourseHeldNow, TrainerCoursesOverlapping, TrainerNoCourseHeld {
         List<Teaches> teaches = new GetTeachesByTrainerDatabase(dataSource.getConnection(), new Person(trainerEmail)).execute();
 
-        if (teaches.isEmpty()) throw new TrainerNoCourseHeld();
+        //if (teaches.isEmpty()) throw new TrainerNoCourseHeld();
 
         //Get the lecture that should be held now
         List<LectureTimeSlot> lectureTimeSlots = new ArrayList<>();
@@ -169,6 +165,10 @@ public class TrainerService {
                     new LectureTimeSlot(t.getCourseEdition(), t.getCourseName())).execute();
             if (l != null) lectureTimeSlots.add(l);
         }
+
+        LectureTimeSlot lts = new GetLectureTimeSlotNowSubstitutionDatabase(dataSource.getConnection(),new Person(trainerEmail)).execute();
+        if(lts != null)
+            lectureTimeSlots.add(lts);
 
         if (lectureTimeSlots.isEmpty()) throw new TrainerNoCourseHeldNow();
 
@@ -217,13 +217,20 @@ public class TrainerService {
      */
     public List<LectureTimeSlot> getAllLessonsInRange(Date from, Date to) throws NamingException, SQLException {
         List<CourseEdition> coursesHeld = getTrainersCourses();
-        List<LectureTimeSlot> allLessonInRange = new ArrayList<>();
+        List<LectureTimeSlot> allLessonInRange = new ArrayList<>(); //trainerEmail
         for (CourseEdition c : coursesHeld) {
             List<LectureTimeSlot> curCourseLTSinRange = new GetLectureTimeSlotsInRangeDatabase(dataSource.getConnection(), from, to).execute();
             curCourseLTSinRange.forEach(l -> {
-                if (c.equals(new CourseEdition(l.getCourseEditionId(), l.getCourseName()))) allLessonInRange.add(l);
+                if (c.equals(new CourseEdition(l.getCourseEditionId(), l.getCourseName())))
+                    allLessonInRange.add(l);
             });
         }
+        //rimuovi tutte le lezioni in cui c'è un substitute in un corso in cui insegno
+        allLessonInRange.removeIf(lectureTimeSlot -> lectureTimeSlot.getSubstitution() != null);
+
+        //per range di date per il trainer tutte le lts di sostituzione
+        allLessonInRange.addAll(new GetLectureTimeSlotsInRangeSubstitutionDatabase(dataSource.getConnection(),from,to,new Person(trainerEmail)).execute());
+
         return allLessonInRange;
     }
 

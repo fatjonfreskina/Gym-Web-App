@@ -24,8 +24,7 @@
         Prices
     </h1>
     <p>
-        In this page it is possible to see the prices based for each possible subscription. <br>
-        SOMETHING ELSE TO ADD HERE...
+        In this page it is possible to see the prices based for each possible subscription.
     </p>
     <div class="container-table100">
         <div class="wrap-table100">

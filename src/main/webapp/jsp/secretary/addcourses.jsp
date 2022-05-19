@@ -108,7 +108,7 @@
                 <div class="form-group row">
                     <label for="date" class="col-sm-3 col-form-label">Date First Event : </label>
                     <div class="col-sm-9">
-                        <input id="date" type="date" name="date_first_event" class="form-control"/>
+                        <input id="date" type="date" name="date_first_event" class="form-control" required/>
                     </div>
                 </div>
 
@@ -222,7 +222,7 @@
                     <label for="weeks" class="col-sm-3 col-form-label">Duration weeks : </label>
                     <div class="col-sm-9">
                         <input type="number" name="weeks" min="1" max="52" id="weeks" class="form-control"
-                               placeholder="Enter Number Of Weeks" />
+                               placeholder="Enter Number Of Weeks" required/>
                     </div>
                 </div>
 
