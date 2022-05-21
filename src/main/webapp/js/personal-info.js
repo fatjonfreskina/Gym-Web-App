@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     const form = $('#form')
     const button = $('#button')
 
