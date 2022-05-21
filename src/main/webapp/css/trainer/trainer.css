@@ -1,25 +1,35 @@
 h1 {
     font-size: 2rem;
+    font-weight: normal;
+}
+
+h3 {
+    font-weight: bold;
 }
 
 div {
     font-size: 1rem;
 }
+
 body {
     width: 100%;
 }
+
 /* < */
 @media (max-width: 992px) {
     .global-container {
         padding: 20px;
     }
-    .navbar-logo{
+
+    .navbar-logo {
         width: 110px;
     }
+
     /*.navbar{
         flex-wrap: nowrap;
     }*/
 }
+
 @media (max-width: 425px) {
     .global-container {
         padding: 5px;
@@ -39,19 +49,22 @@ body {
     text-transform: uppercase !important;
 }
 
+#reservationsTABLE th,
+#subscriptionsTABLE th{
+    border-top: 0;
+}
 #reservationsTABLE td, /*#reservationsTABLE th,*/
 #subscriptionsTABLE td /*, #subscriptionsTABLE th*/
 {
-    text-align: center;
+    /*text-align: center;*/
     vertical-align: middle;
     padding: 4px;
 }
 
 .trainer__manage__present, .trainer__manage__absent {
     padding: 10px 0;
-
 }
 
-.trainer__manage__present > h1, .trainer__manage__absent > h1 {
-    margin-bottom: -10px;
+.trainer__manage__present > h3, .trainer__manage__absent > h3 {
+    margin-bottom: -15px;
 }
