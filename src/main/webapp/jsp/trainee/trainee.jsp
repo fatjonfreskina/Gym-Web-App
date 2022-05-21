@@ -24,6 +24,12 @@
             <hr class="my-4">
             <jsp:include page="/jsp/trainee/subscriptiontrainee.jsp"/>
             <hr class="my-4">
+            <h1 class = "text-primary font-weight-bold text-center">Reserve a course slot</h1>
+            <div>
+                Reserve a slot of time for your courses. Press directly in the calendar the box you want.
+                After your booking has been correctly confirmed the box will appear <span class="text-light bg-dark">black</span>. 
+                In case you want to cancel it, re-press in the same box and confirm the deletion.
+            </div>
             <div id="trainee__calendar"></div>
         </c:when>
         <c:otherwise>
