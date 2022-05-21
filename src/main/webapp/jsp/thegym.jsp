@@ -5,6 +5,7 @@
 <head>
     <title>The Gym</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <jsp:include page="/jsp/include/style.jsp"/>
     <jsp:include page="/jsp/include/favicon.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
