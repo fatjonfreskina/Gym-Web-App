@@ -9,3 +9,13 @@
     object-fit: cover;
     height: 500px;
 }
+.text-info {
+    color: white !important;
+}
+.bg-info {
+    background-color: white!important;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    background-color: transparent;
+    border: none;
+}
