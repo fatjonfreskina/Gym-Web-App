@@ -1,4 +1,4 @@
-<footer class="text-center text-light text-lg-start color-navbar-footer">
+<footer class="text-center text-light text-lg-start color-navbar-footer pt-4">
 
     <a class="navbar-elements-light text-decoration-none" href="https://instagram.com/unipd?igshid=YmMyMTA2M2Y="><i
             class="fa-brands fa-instagram fa-xl"></i>Instagram</a>
