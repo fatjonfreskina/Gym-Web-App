@@ -16,7 +16,6 @@ body {
     padding: 5% 15% 5% 15%;
 }
 
-
 .navbar{
     min-height: var(--min-heigth-navavar);
 }
@@ -50,6 +49,7 @@ body {
 .alert-box-message {
     margin: 0;
 }
+
 
 .avatar-image-box {
     aspect-ratio: 4.0/3.0;
