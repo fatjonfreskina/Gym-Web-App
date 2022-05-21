@@ -106,19 +106,14 @@ public class PersonalInfoServlet extends AbstractServlet
                     {
                         final String extension = matcher.group(2);
 
-                            /*
-                            There is a bug in "RetrieveAvatar" servlet, where it expects the avatar to always be called
-                            "avatar.jpg". Therefore, if the input image has not ".jpg" extension, it will fail to
-                            retrieve the avatar. This may happen for PNG images, and also for JPEG images with extension
-                            ".jpeg".
-                            */
                         final String avatarPath = Constants.AVATAR_PATH_FOLDER + File.separator + p.getTaxCode() +
                                 File.separator + Constants.AVATAR + "." + extension;
-                        //+ extension;
+
                         // Save the avatar of the user to disk.
                         error = saveFile(avatar, p.getTaxCode());
                         if (error == Codes.OK)
                         {
+                            // Update the person data in the database, changing its avatar.
                             final Person person = new Person(p.getEmail(), p.getName(), p.getSurname(), p.getPsw(),
                                     p.getTaxCode(), p.getBirthDate(), p.getTelephone(), p.getAddress(), avatarPath);
 
@@ -126,6 +121,7 @@ public class PersonalInfoServlet extends AbstractServlet
 
                             session.setAttribute("avatarPath",avatarPath);
 
+                            // Set the "personalInfo" attribute with the new values.
                             req.setAttribute("personalInfo", person);
                         }
                     }
@@ -139,6 +135,7 @@ public class PersonalInfoServlet extends AbstractServlet
             }
         }
 
+        // In case of errors, eet the "personalInfo" attribute with its previous value.
         if (error != Codes.OK)
             req.setAttribute("personalInfo", p);
 
@@ -180,8 +177,13 @@ public class PersonalInfoServlet extends AbstractServlet
 
             final String dirPath = (Constants.AVATAR_PATH_FOLDER + "/" + taxCode).replace('/', File.separatorChar);
 
+            /*
+            Try to read the avatar file in an image object. If it fails,
+            it means that the content of the file is not a valid image.
+            */
             BufferedImage img;
-            try {
+            try
+            {
                  img = ImageIO.read(file.getInputStream());
                  if(img == null)
                      return Codes.CANNOT_UPLOAD_FILE;
@@ -206,15 +208,12 @@ public class PersonalInfoServlet extends AbstractServlet
             }
 
             /*
-            Reads the given file to an image file, and save it to disk as JPEG image. This is done for 2 reasons:
-            1) Perform input validation
-            2) There is a bug in "RetrieveAvatar" servlet, where it expects the avatar to always be called
-               "avatar.jpg". Therefore, if the input image has not ".jpg" extension, it will fail to retrieve the
-               avatar. This may happen for PNG images, and also for JPEG images with extension ".jpeg".
+            Reads the given file to an image file, and save it to disk. This is
+            done in order to perform input validation.
             */
             try
             {
-                final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + "."+extension);
+                final File saveFile = new File(dirPath + File.separator + Constants.AVATAR + "." + extension);
                 ImageIO.write(img, extension, saveFile);
             }
             catch (Throwable e)
