@@ -37,10 +37,6 @@ public class MailManager {
         properties.setProperty("mail.smtp.host", host);
         properties.setProperty("mail.smtp.port", Integer.toString(port));
 
-        // The two options below SEEMS to be useless, but I'm not sure yet.
-        //properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        //properties.setProperty("mail.smtp.socketFactory.port", "465");
-
         properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
 
@@ -50,9 +46,7 @@ public class MailManager {
                 return new PasswordAuthentication(email, password);
             }
         });
-        //session.setDebug(true);
         session.setDebug(false);
-
 
         fromEmail = email;
     }
@@ -66,7 +60,7 @@ public class MailManager {
      * @param text    : The text of the e-mail
      * @throws MessagingException : If the sending of the e-mail fails for any reason
      */
-  /*
+    /*
     public void sendMail(String email, String subject, String text) throws MessagingException {
         final InternetAddress fromAddress = new InternetAddress(fromEmail);
         final InternetAddress toAddress = new InternetAddress(email);
@@ -81,7 +75,7 @@ public class MailManager {
 
         Transport.send(msg);
     }
-   */
+    */
 
     /**
      * This method is used to send a complex e-mail message, and not limited to only plain text.

@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
  * @author Marco Alessio
  * @author Fatjon Freskina
  */
-public class TraineeDeleteReservationServlet extends AbstractRestServlet {
-    // trainee/rest/reservation/room/{room}/date/{date}/starttime/{time}
+public class TraineeDeleteReservationServlet extends AbstractRestServlet
+{
     private static final Pattern URI_REGEX = Pattern.compile(
             "/wa2122-gwa/trainee/rest/reservation/room/(.*)/date/(.*)/starttime/(.*)", Pattern.DOTALL);
 
