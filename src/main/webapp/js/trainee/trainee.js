@@ -42,36 +42,35 @@ let calendar = new FullCalendar.Calendar(calendarEl, {
     eventClick: clickHandler,
     eventContent: function (info) {
         let container = document.createElement('div')
-        container.className = 'container'
-
+        container.className = 'container-fluid'
         let row1 = document.createElement('div')
-        row1.className = 'row'
+        row1.className = 'row overflow-hidden'
         let c12 = document.createElement('div')
         c12.className = 'col-sm font-weight-bold text-uppercase'
         c12.innerHTML = info.event._def.extendedProps.customLTS.courseName
         row1.appendChild(c12)
 
         let row2 = document.createElement('div')
-        row2.className = 'row'
+        row2.className = 'row overflow-hidden'
         let c21 = document.createElement('div')
         c21.className = 'col-sm'
-        c21.innerHTML = 'Slots:'
-        let c22 = document.createElement('div')
-        c22.className = 'col-sm'
-        c22.innerHTML = info.event._def.extendedProps.customLTS.availableSlots
+        c21.innerHTML = info.event._def.extendedProps.customLTS.roomName
         row2.appendChild(c21)
-        row2.appendChild(c22)
+
+        let event = info.event;
+        // retrieve slot time and subtract two hours limiting reservations
+        event_date = parseInt(event._instance.range.start.getTime())- 2*60*60*1000
+        actual_date = new Date().getTime()
 
         let row3 = document.createElement('div')
-        row3.className = 'row'
+        row3.className = 'row overflow-hidden'
         let c31 = document.createElement('div')
         c31.className = 'col-sm'
-        c31.innerHTML = 'Room:'
-        let c32 = document.createElement('div')
-        c32.className = 'col-sm'
-        c32.innerHTML = info.event._def.extendedProps.customLTS.roomName
+        if(event_date >= actual_date && info.event._def.extendedProps.customLTS.availableSlots > 0)
+            c31.innerHTML = "<i class=\"fa-solid fa-check-to-slot text-success\"></i>"
+        else
+            c31.innerHTML = "<i class=\"fa-solid fa-hand text-danger\"></i>"
         row3.appendChild(c31)
-        row3.appendChild(c32)
 
         container.appendChild(row1)
         container.appendChild(row2)
