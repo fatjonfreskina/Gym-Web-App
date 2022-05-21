@@ -15,7 +15,7 @@
 <header>
     <jsp:include page="/jsp/trainer/include/headertrainer.jsp"/>
 </header>
-<main class="global-container">
+<main class="global-container trainer__container">
 
     <div id="alert-warning" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
         <p id="alert-warning-message-body" class="alert-box-message">

@@ -5,7 +5,9 @@ h1 {
 div {
     font-size: 1rem;
 }
-
+body {
+    width: 100%;
+}
 /* < */
 @media (max-width: 992px) {
     .global-container {
@@ -18,6 +20,11 @@ div {
         flex-wrap: nowrap;
     }*/
 }
+@media (max-width: 425px) {
+    .global-container {
+        padding: 5px;
+    }
+}
 
 .trainer__container {
     min-width: 400px;
@@ -25,8 +32,9 @@ div {
 
 #trainer__calendar {
     height: auto;
-    max-height: calc(80vh);
-    max-width: calc(100% - 20px);
+    max-height: 80vh;
+    min-height: 70vh;
+    /*max-width: calc(100% - 20px);*/
     margin: 40px auto;
     text-transform: uppercase !important;
 }
