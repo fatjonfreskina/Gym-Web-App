@@ -2,7 +2,7 @@ h1 {
     font-size: 2rem;
 }
 
-div {
+.global-container div {
     font-size: 1rem;
 }
 
@@ -14,9 +14,16 @@ div {
     .navbar-logo{
         width: 110px;
     }
+    /* For NAVBAR*/
     /*.navbar{
         flex-wrap: nowrap;
     }*/
+    div {
+        font-size: 1rem;
+    }
+    .compressed-navbar-actions{
+        text-align: right;
+    }
 }
 
 .carousel-main-box {

@@ -6,6 +6,7 @@
     <title>GWA - Trainer Home page </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
+    <jsp:include page="/jsp/include/favicon.jsp"/>
     <jsp:include page="/jsp/include/style.jsp"/>
     <link rel="stylesheet" href="<c:url value="/css/main.css"/>">
     <jsp:include page="../include/fullcalendar/style.jsp"/>
