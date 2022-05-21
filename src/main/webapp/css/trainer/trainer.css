@@ -1,3 +1,24 @@
+h1 {
+    font-size: 2rem;
+}
+
+div {
+    font-size: 1rem;
+}
+
+/* < */
+@media (max-width: 992px) {
+    .global-container {
+        padding: 20px;
+    }
+    .navbar-logo{
+        width: 110px;
+    }
+    /*.navbar{
+        flex-wrap: nowrap;
+    }*/
+}
+
 .trainer__container {
     min-width: 400px;
 }

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <nav class="navbar navbar-expand-lg color-navbar-footer fixed-top">
-    <img src="<c:url value="/images/GWA_logo.svg"/>" alt="Logo" width="10%"/>
+    <img src="<c:url value="/images/GWA_logo.svg"/>" alt="Logo" width="10%" class="navbar-logo"/>
     <button
             class="navbar-toggler"
             type="button"
