@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     const form = $('#form')
     const birtDate = $('#birth_date')
     const password = $('#password')

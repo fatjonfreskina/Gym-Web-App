@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     const form = $('#form')
     const expirationdate = $('#date')
     const buttonRegister = $('#btn-send')
@@ -36,4 +37,5 @@ $(document).ready(function () {
         }
         form.submit()
     })
+
 })
