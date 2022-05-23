@@ -159,22 +159,6 @@ public class AddAccountServlet extends AbstractServlet {
 
         if (error.getErrorCode() == Codes.OK.getErrorCode()) //Phone is a phone and birthDate is a Date
         {
-            if (taxCode == null || taxCode.isEmpty() ||
-                    firstName == null || firstName.isEmpty() ||
-                    lastName == null || lastName.isEmpty() ||
-                    address == null || address.isEmpty() ||
-                    email == null || email.isEmpty()  ||
-                    telephoneNumber == null || telephoneNumber.isEmpty() ||
-                    birthDate == null) // Check if some of the fields are empty
-            {
-                error = Codes.EMPTY_INPUT_FIELDS;
-            } else if (telephoneNumber.length() != Person.LENGTH_TELEPHONE) {
-                error = Codes.NOT_TELEPHONE_NUMBER;
-            } else if ((Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.ADULT_AGE)) {
-                error = Codes.MINIMUM_AGE;
-            } else if (!InputValidation.isValidEmailAddress(email)) {
-                error = Codes.NOT_A_MAIL;
-            }
             boolean isTrainer = false;
             if (req.getParameter(Person.ROLE_TRAINER) != null)
                 isTrainer = req.getParameter(Person.ROLE_TRAINER).equals("on");
@@ -186,6 +170,24 @@ public class AddAccountServlet extends AbstractServlet {
                 isTrainee = req.getParameter(Person.ROLE_TRAINEE).equals("on");
             if (!isSecretary && !isTrainee && !isTrainer)
                 error = Codes.EMPTY_INPUT_FIELDS;
+            if (taxCode == null || taxCode.isEmpty() ||
+                    firstName == null || firstName.isEmpty() ||
+                    lastName == null || lastName.isEmpty() ||
+                    address == null || address.isEmpty() ||
+                    email == null || email.isEmpty()  ||
+                    telephoneNumber == null || telephoneNumber.isEmpty() ||
+                    birthDate == null) // Check if some of the fields are empty
+            {
+                error = Codes.EMPTY_INPUT_FIELDS;
+            } else if (telephoneNumber.length() != Person.LENGTH_TELEPHONE) {
+                error = Codes.NOT_TELEPHONE_NUMBER;
+            } else if (((isSecretary || isTrainer) && (Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.ADULT_AGE))
+                        || ((isTrainee && !isSecretary && !isTrainer) && (Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.MIN_AGE))) {
+                // a trainee can be 14 years old, but secretary or trainer must be 18 years old
+                error = Codes.MINIMUM_AGE;
+            } else if (!InputValidation.isValidEmailAddress(email)) {
+                error = Codes.NOT_A_MAIL;
+            }
         }
         return error;
     }
