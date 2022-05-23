@@ -183,7 +183,7 @@ public class AddAccountServlet extends AbstractServlet {
                 error = Codes.NOT_TELEPHONE_NUMBER;
             } else if (((isSecretary || isTrainer) && (Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.ADULT_AGE))
                         || ((isTrainee && !isSecretary && !isTrainer) && (Period.between(LocalDate.parse(birthDate.toString()), LocalDate.now()).getYears() < Person.MIN_AGE))) {
-                // a trainee can be 14 years old, but secretary or trainer must be 18 years old
+                // a trainee can be even 14 years old, but secretary or trainer must be an adult
                 error = Codes.MINIMUM_AGE;
             } else if (!InputValidation.isValidEmailAddress(email)) {
                 error = Codes.NOT_A_MAIL;
