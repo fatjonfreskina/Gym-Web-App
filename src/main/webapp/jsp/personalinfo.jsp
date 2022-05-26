@@ -103,7 +103,7 @@
 
         <%-- ********** TAX CODE ********** --%>
         <div class="form-group row">
-            <label for="taxCode" class="col-sm-3 col-form-label">Tax Code :</label>
+            <label for="taxCode" class="col-sm-3 col-form-label">Tax Code:</label>
             <div class="col-sm-9">
                 <input type="text" name="taxCode" id="taxCode" class="form-control"
                        value="<c:out value="${personalInfo.taxCode}"/>" readonly>
@@ -112,7 +112,7 @@
 
         <%-- ********** FIRST NAME ********** --%>
         <div class="form-group row">
-            <label for="firstName" class="col-sm-3 col-form-label">First Name :</label>
+            <label for="firstName" class="col-sm-3 col-form-label">First Name:</label>
             <div class="col-sm-9">
                 <input type="text" name="firstName" id="firstName" class="form-control"
                        value="<c:out value="${personalInfo.name}"/>" readonly>
@@ -121,7 +121,7 @@
 
         <%-- ********** LAST NAME ********** --%>
         <div class="form-group row">
-            <label for="lastName" class="col-sm-3 col-form-label">Last Name :</label>
+            <label for="lastName" class="col-sm-3 col-form-label">Last Name:</label>
             <div class="col-sm-9">
                 <input type="text" name="lastName" id="lastName" class="form-control"
                        value="<c:out value="${personalInfo.surname}"/>" readonly>
@@ -139,7 +139,7 @@
 
         <%-- ********** ADDRESS ********** --%>
         <div class="form-group row">
-            <label for="address" class="col-sm-3 col-form-label">Address :</label>
+            <label for="address" class="col-sm-3 col-form-label">Address:</label>
             <div class="col-sm-9">
                 <input type="text" name="address" id="address" class="form-control"
                        value="<c:out value="${personalInfo.address}"/>" readonly>
@@ -148,7 +148,7 @@
 
         <%-- ********** TELEPHONE NUMBER ********** --%>
         <div class="form-group row">
-            <label for="telephone" class="col-sm-3 col-form-label">Telephone Number :</label>
+            <label for="telephone" class="col-sm-3 col-form-label">Telephone Number:</label>
             <div class="col-sm-9">
                 <input type="text" name="telephone" id="telephone" class="form-control"
                        value="<c:out value="${personalInfo.telephone}"/>" readonly>
@@ -157,7 +157,7 @@
 
         <%-- ********** EMAIL ********** --%>
         <div class="form-group row">
-            <label for="email" class="col-sm-3 col-form-label">Email :</label>
+            <label for="email" class="col-sm-3 col-form-label">Email:</label>
             <div class="col-sm-9">
                 <input type="email" name="email" id="email" class="form-control"
                        value="<c:out value="${personalInfo.email}"/>" readonly>
@@ -166,7 +166,7 @@
 
         <%-- ********** PASSWORD ********** --%>
         <div class="form-group row">
-            <label class="col-sm-3 col-form-label">Password :</label>
+            <label class="col-sm-3 col-form-label">Password:</label>
             <div class="col-sm-9">
                 <a class="btn btn-outline-primary btn-lg" href="<c:url value="/password_forgot"/>">Change</a>
             </div>
