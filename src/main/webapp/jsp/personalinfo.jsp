@@ -48,7 +48,7 @@
 
             <%-- ********** AVATAR ********** --%>
             <div class="form-group row">
-                <label class="col-sm-3 col-form-label">Avatar :</label>
+                <label class="col-sm-3 col-form-label">Avatar:</label>
 
                 <div class="col-sm-3 avatar-image-box">
 

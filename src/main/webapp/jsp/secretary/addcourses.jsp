@@ -20,7 +20,7 @@
             <form method="post" action="<c:url value="/secretary/addcourses"/>" id="form">
 
                 <div class="form-group row">
-                    <label for="course_name" class="col-sm-3 col-form-label">Course Name :</label>
+                    <label for="course_name" class="col-sm-3 col-form-label">Course Name:</label>
                     <div class="col-sm-9">
                         <select name="course_name" id="course_name" class="form-control">
                             <c:forEach var="course" items="${courses}">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="teacher" class="col-sm-3 col-form-label">Teacher :</label>
+                    <label for="teacher" class="col-sm-3 col-form-label">Teacher:</label>
                     <div class="col-sm-9">
                         <select name="teacher" id="teacher" class="form-control">
                             <c:forEach var="teacher" items="${teachers}">
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="room" class="col-sm-3 col-form-label">Rooms :</label>
+                    <label for="room" class="col-sm-3 col-form-label">Rooms:</label>
                     <div class="col-sm-9">
                         <select name="room" id="room" class="form-control">
                             <c:forEach var="room" items="${rooms}">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="room" class="col-sm-3 col-form-label">Subscription Type :</label>
+                    <label for="room" class="col-sm-3 col-form-label">Subscription Type:</label>
                 </div>
 
                 <div class="form-group row">
@@ -106,14 +106,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="date" class="col-sm-3 col-form-label">Date First Event : </label>
+                    <label for="date" class="col-sm-3 col-form-label">Date First Event: </label>
                     <div class="col-sm-9">
                         <input id="date" type="date" name="date_first_event" class="form-control" required/>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="monday" class="col-sm-3 col-form-label">Monday, Start Time :</label>
+                    <label for="monday" class="col-sm-3 col-form-label">Monday, Start Time:</label>
                     <div class="col-sm-9">
                         <select name="monday" multiple class="selectpicker" id="monday">
                             <option value="8:00:00">8:00</option>
@@ -219,7 +219,7 @@
 
 
                 <div class="form-group row">
-                    <label for="weeks" class="col-sm-3 col-form-label">Duration weeks : </label>
+                    <label for="weeks" class="col-sm-3 col-form-label">Duration weeks: </label>
                     <div class="col-sm-9">
                         <input type="number" name="weeks" min="1" max="52" id="weeks" class="form-control"
                                placeholder="Enter Number Of Weeks" required/>

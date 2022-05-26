@@ -20,7 +20,7 @@
           id="form">
 
         <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label">Email :</label>
+            <label for="email" class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-10">
                 <input id="email" type="email" name="person" class="form-control" maxlength="40"
                        placeholder="Enter Email" required/>
@@ -28,14 +28,14 @@
         </div>
 
         <div class="form-group row">
-            <label for="date" class="col-sm-2 col-form-label">Expiration Date :</label>
+            <label for="date" class="col-sm-2 col-form-label">Expiration Date:</label>
             <div class="col-sm-10">
                 <input id="date" type="date" name="expirationdate" class="form-control" required/>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="doctor_name" class="col-sm-2 col-form-label">Doctor name :</label>
+            <label for="doctor_name" class="col-sm-2 col-form-label">Doctor name:</label>
             <div class="col-sm-10">
                 <input id="doctor_name" type="text" name="doctorname" value="" class="form-control"
                        placeholder="Enter Doctor Name" maxlength="30" required/>
