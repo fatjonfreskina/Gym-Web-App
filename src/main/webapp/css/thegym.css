@@ -1,10 +1,3 @@
-h1 {
-    font-size: 2rem;
-}
-
-.global-container div {
-    font-size: 1rem;
-}
 
 /* < */
 @media (max-width: 992px) {
@@ -18,9 +11,7 @@ h1 {
     /*.navbar{
         flex-wrap: nowrap;
     }*/
-    div {
-        font-size: 1rem;
-    }
+
     .compressed-navbar-actions{
         text-align: right;
     }
