@@ -103,18 +103,20 @@ public class MailManager {
         Multipart multipart = new MimeMultipart();
         BodyPart textPart = new MimeBodyPart();
 
+        StringBuilder htmlText = new StringBuilder();
 
-        final String htmlText =
-                """
+         htmlText.append("""
                 <div style="width:100%; height:100%;">
                      <div style="width:500px; height:220px;">
                           <img src="cid:logo_cid" name="gwa_logo.jpg" alt="gwa_logo" width="500" height="200">
                      </div>
                 </div>
-                <div> <pre>""" + text + "</pre> </div> ";
+                <div> <pre>""");
+         htmlText.append(text);
+         htmlText.append("</pre> </div>");
 
 
-        textPart.setContent(htmlText, "text/html");
+        textPart.setContent(htmlText.toString(), "text/html");
 
         BodyPart imgPart = new MimeBodyPart();
         imgPart.setDataHandler(new DataHandler(new FileDataSource("../gwa/logo.jpg")));
